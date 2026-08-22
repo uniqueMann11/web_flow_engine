@@ -1,0 +1,78 @@
+{
+  "comply": {
+    "comply-in": [
+      {
+        "b": "HIPAA-compliant by design",
+        "span": "Architected with signed BAAs, encrypted PHI at rest and in transit, and audit logging from day one, not retrofitted."
+      },
+      {
+        "b": "PHI never leaks",
+        "span": "All patient data stays within your controlled environment; no third-party model training or storage of protected health information."
+      },
+      {
+        "b": "Clinical guardrails enforced",
+        "span": "Built-in safety filters, human-in-the-loop for diagnosis outputs, and disclaimers per HIPAA Privacy Rule."
+      },
+      {
+        "b": "Real compliance, not name-swap",
+        "span": "Every integration and data flow validated against HIPAA Security Rule, 45 CFR 164, before deployment, not just labelled compliant."
+      }
+    ]
+  },
+  "what-is": {
+    "sec-head": {
+      "eyebrow": "Plain answer",
+      "h2": "What is a RAG chatbot for healthcare?"
+    },
+    "tldr": {
+      "b": "Quick answer",
+      "p": [
+        "A RAG chatbot for healthcare combines retrieval-augmented generation with large language models to answer clinical queries using only your approved medical knowledge base, like EHRs, clinical guidelines, or drug formularies. It retrieves relevant, de-identified documents before generating a response, ensuring PHI is never exposed to the model, and all outputs are auditable and compliant with HIPAA. This architecture powers use cases from patient intake triage to clinical decision support, delivering accurate, context-aware answers without compromising data privacy."
+      ]
+    }
+  },
+  "vs-agency": {
+    "sec-head": {
+      "eyebrow": "The honest comparison",
+      "h2": "RAG chatbot developer vs healthcare AI agency"
+    },
+    "tablewrap": {
+      "thead": [
+        "Factor",
+        "Independent RAG chatbot developer (me)",
+        "Healthcare AI development agency"
+      ],
+      "tbody": [
+        {
+          "th": "Cost",
+          "td": [
+            "Lower, direct hourly or fixed-rate, no agency markup",
+            "Higher, includes project managers, compliance lawyers, and overhead"
+          ]
+        },
+        {
+          "th": "Who builds it",
+          "td": [
+            "Me, directly, with 10+ years in healthcare software and LLMs",
+            "Allocated junior team, often rotated across projects"
+          ]
+        },
+        {
+          "th": "Best for",
+          "td": [
+            "Scoped clinical RAG builds, $5K to $50K, with targeted PHI workflows",
+            "Large enterprise EHR integrations or multi-department rollouts"
+          ]
+        },
+        {
+          "th": "Start time",
+          "td": [
+            "72 hours to first prototype with compliance review",
+            "4 to 8 weeks for contract, scoping, and team allocation"
+          ]
+        }
+      ]
+    },
+    "p": "Most healthcare RAG chatbot projects, a specific clinical use case like triage, prior authorization, or drug lookup, are well within scope for a single senior developer who understands both LLM orchestration and HIPAA compliance. An agency's advantage only shows when a project requires parallel work across multiple clinical departments, extensive EHR system integration, or a full compliance audit team."
+  }
+}

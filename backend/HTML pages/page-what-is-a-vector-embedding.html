@@ -1,0 +1,2844 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>What Is a Vector Embedding? | Shreyans Padmani</title>
+<meta content="index, follow" name="robots"/>
+<meta content="max-image-preview:large" name="robots"/>
+<meta content="Shreyans Padmani" name="author"/>
+<meta content="website" property="og:type"/>
+<meta content="Shreyans Padmani" property="og:site_name"/>
+<meta content="en_US" property="og:locale"/>
+<meta content="A vector embedding is a numerical representation of data—like a word, sentence, or image—that captures its meaning in a high-dimensional space. Instead of storing text as words, embeddings convert it into a list of numbers that AI models can compare for semantic similarity. This is the core mechanism behind semantic search, recommendation systems, and modern AI applications." name="description"/>
+<meta content="what is a vector embedding, embeddings explained, text vectors" name="keywords"/>
+<link href="https://shreyans.tech/what-is-a-vector-embedding" rel="canonical"/>
+<meta content="What Is a Vector Embedding?" property="og:title"/>
+<meta content="https://shreyans.tech/what-is-a-vector-embedding" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="@shreyanspadmani" name="twitter:site"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/image/shreyans.png" rel="shortcut icon" type="image/x-icon"/>
+<link href="/assets/image/shreyans.png" rel="apple-touch-icon" sizes="180x180"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "What Is a Vector Embedding?",
+      "url": "https://shreyans.tech/what-is-a-vector-embedding",
+      "provider": {
+        "@type": "Person",
+        "name": "Shreyans Padmani",
+        "url": "https://shreyans.tech"
+      }
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Retrieval-Augmented Generation",
+      "description": "Retrieval-augmented generation (RAG) is an AI architecture that improves large language model responses by retrieving relevant information from an external knowledge base at query time and inserting it into the model's context before it generates an answer, grounding each response in specific, current, and verifiable source content."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://shreyans.tech/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://shreyans.tech/hire-ai-developer"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "RAG Development",
+          "item": "https://shreyans.tech/services/rag-development"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "What Is a Vector Embedding?",
+          "item": "https://shreyans.tech/what-is-a-vector-embedding"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What exactly is a vector embedding?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A vector embedding is a list of numbers that represents the meaning of a piece of data — text, image, or audio — in a high-dimensional space. Similar meanings produce vectors that are close together, enabling semantic search."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is an embedding different from a keyword?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A keyword is an exact word that must match literally. An embedding captures meaning, so 'car' and 'automobile' will have similar vectors even though they are different strings. This is why embeddings power semantic search."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many numbers are in a typical vector?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Modern embedding models output vectors with 256 to 1536 dimensions — that is, 256 to 1536 numbers. Higher dimensions capture more nuance but increase storage and compute cost."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I create my own embedding model?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can fine-tune an existing embedding model on your domain, but most applications use a pre-trained model from OpenAI, Cohere, or sentence-transformers. Fine-tuning is only needed for highly specialized vocabularies."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is cosine similarity?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cosine similarity measures the angle between two vectors; it ranges from -1 (opposite meaning) to 1 (identical meaning). It is the most common metric for comparing embeddings because it ignores vector length and focuses on direction."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+<style>
+    .svcp {
+      --ink: #0A1222;
+      --ink-soft: #1B2740;
+      --body: #48566E;
+      --muted: #6B7A93;
+      --line: #E6ECF4;
+      --line-soft: #EFF3F9;
+      --surface: #FFFFFF;
+      --soft: #F4F8FD;
+      --tint: #EAF0FF;
+      --blue: #2456E6;
+      --blue-strong: #1740C0;
+      --blue-tint: #E6EEFF;
+      --violet: #6D5EF6;
+      --violet-tint: #EDEAFE;
+      --mint: #0FA968;
+      --mint-tint: #E4F7EE;
+      --mint-deep: #0B7D4E;
+      --amber: #D97A18;
+      --amber-tint: #FCEFDD;
+      --rose: #E11D48;
+      --sh-sm: 0 1px 2px rgba(10, 18, 34, .04), 0 2px 6px rgba(10, 18, 34, .05);
+      --sh-md: 0 14px 34px -16px rgba(10, 18, 34, .22);
+      --sh-lg: 0 30px 70px -28px rgba(36, 86, 230, .32);
+      --r: 18px;
+      --r-sm: 12px;
+      --maxw: 1200px;
+      --disp: "Plus Jakarta Sans", system-ui, sans-serif;
+      --bodyf: "Inter", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+
+    .svcp *,
+    .svcp *::before,
+    .svcp *::after {
+      box-sizing: border-box
+    }
+
+    .svcp {
+      margin: 0;
+      font-family: var(--bodyf);
+      color: var(--body);
+      background: var(--surface);
+      line-height: 1.68;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      position: relative;
+      overflow-x: hidden
+    }
+
+    .svcp img,
+    .svcp svg {
+      max-width: 100%;
+      display: block
+    }
+
+    .svcp a {
+      color: var(--blue);
+      text-decoration: none
+    }
+
+    .svcp h1,
+    .svcp h2,
+    .svcp h3,
+    .svcp h4 {
+      font-family: var(--disp);
+      color: var(--ink);
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin: 0
+    }
+
+    .svcp p {
+      margin: 0
+    }
+
+    .svcp .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    .svcp section {
+      padding: 92px 0
+    }
+
+    .svcp .soft {
+      background: linear-gradient(180deg, #F4F8FD, #EFF5FC)
+    }
+
+    .svcp .rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+      max-width: var(--maxw);
+      margin: 0 auto
+    }
+
+    .svcp .wash {
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 760px;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(1100px 460px at 78% -10%, rgba(36, 86, 230, .10), transparent 60%),
+        radial-gradient(760px 420px at 4% 4%, rgba(15, 169, 104, .08), transparent 55%),
+        radial-gradient(900px 500px at 50% -18%, rgba(109, 94, 246, .07), transparent 60%)
+    }
+
+    .svcp main {
+      position: relative;
+      z-index: 1
+    }
+
+    .svcp .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--mono);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin: 0 0 16px
+    }
+
+    .svcp .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--violet))
+    }
+
+    .svcp .sec-head {
+      max-width: 760px;
+      margin-bottom: 46px
+    }
+
+    .svcp .sec-head.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center
+    }
+
+    .svcp .sec-head.center .eyebrow::before {
+      display: none
+    }
+
+    .svcp .sec-head.wide {
+      max-width: 920px
+    }
+
+    .svcp .sec-head h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.75rem);
+      font-weight: 800
+    }
+
+    .svcp .sec-head p {
+      margin-top: 16px;
+      font-size: clamp(1rem, 1.5vw, 1.12rem);
+      color: var(--muted)
+    }
+
+    .svcp .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--bodyf);
+      font-weight: 600;
+      font-size: .97rem;
+      padding: 14px 24px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+      line-height: 1;
+      white-space: nowrap
+    }
+
+    .svcp .btn svg {
+      width: 17px;
+      height: 17px
+    }
+
+    .svcp .btn-primary {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      color: #fff;
+      box-shadow: var(--sh-lg)
+    }
+
+    .svcp .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 48px -18px rgba(36, 86, 230, .5)
+    }
+
+    .svcp .btn-ghost {
+      background: #fff;
+      color: var(--ink);
+      border-color: var(--line)
+    }
+
+    .svcp .btn-ghost:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-2px)
+    }
+
+    .svcp .btn-wa {
+      background: #1FA855;
+      color: #fff
+    }
+
+    .svcp .btn-wa:hover {
+      background: #178a45;
+      transform: translateY(-2px)
+    }
+
+    .svcp .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .6s cubic-bezier(.2, .7, .2, 1), transform .6s cubic-bezier(.2, .7, .2, 1)
+    }
+
+    .svcp .reveal.in {
+      opacity: 1;
+      transform: none
+    }
+
+    .svcp .hero {
+      padding: 118px 0 84px
+    }
+
+    .svcp .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 52px;
+      align-items: start
+    }
+
+    .svcp .hero .eyebrow {
+      color: var(--violet)
+    }
+
+    .svcp .hero h1 {
+      font-size: clamp(2.15rem, 4.4vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -.035em;
+      line-height: 1.06
+    }
+
+    .svcp .hero h1 span {
+      background: linear-gradient(120deg, var(--blue), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .svcp .hero-sub {
+      margin-top: 22px;
+      font-size: 1.1rem;
+      color: var(--body);
+      max-width: 56ch
+    }
+
+    .svcp .creds {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 28px 0 4px
+    }
+
+    .svcp .cred {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 8px 14px 8px 8px;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .cred .b {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      flex: 0 0 auto;
+      border: 1px solid rgba(0, 0, 0, .06)
+    }
+
+    .svcp .cred .t {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2
+    }
+
+    .svcp .cred .t i {
+      font-style: normal;
+      font-size: .64rem;
+      font-family: var(--mono);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .svcp .cred .t b {
+      font-size: .82rem;
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    .svcp .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px
+    }
+
+    .svcp .live {
+      margin-top: 18px;
+      font-size: .85rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 9px
+    }
+
+    .svcp .live .pulse {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 0 0 rgba(15, 169, 104, .5);
+      animation: pulse 2.2s infinite
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(15, 169, 104, .45)
+      }
+
+      70% {
+        box-shadow: 0 0 0 8px rgba(15, 169, 104, 0)
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(15, 169, 104, 0)
+      }
+    }
+
+    .svcp .trust {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 34px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line)
+    }
+
+    .svcp .trust b {
+      display: block;
+      font-family: var(--disp);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1
+    }
+
+    .svcp .trust span {
+      font-size: .74rem;
+      color: var(--muted);
+      margin-top: 6px;
+      display: block
+    }
+
+    .svcp .viewer {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--sh-md);
+      overflow: hidden;
+      position: sticky;
+      top: 90px
+    }
+
+    .svcp .viewer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #fbfcff, #f3f7fe)
+    }
+
+    .svcp .viewer-top .t {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    .svcp .viewer-top .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--mint-deep);
+      background: var(--mint-tint);
+      border: 1px solid #CDEBDB;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+      flex: 0 0 auto
+    }
+
+    .svcp .viewer-top .chip .d {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--mint);
+      animation: pulse 2.2s infinite
+    }
+
+    .svcp #sigcanvas {
+      display: block;
+      width: 100%;
+      height: 236px;
+      background:
+        radial-gradient(520px 200px at 30% 20%, rgba(36, 86, 230, .06), transparent 60%),
+        linear-gradient(180deg, #fbfcff, #f6f9fe)
+    }
+
+    .svcp .modesw {
+      display: flex;
+      gap: 6px;
+      padding: 12px 16px 0
+    }
+
+    .svcp .modesw button {
+      flex: 1;
+      font-family: var(--bodyf);
+      font-weight: 600;
+      font-size: .85rem;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all .18s ease
+    }
+
+    .svcp .modesw button[aria-selected="true"] {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 8px 18px -8px rgba(36, 86, 230, .6)
+    }
+
+    .svcp .segs {
+      display: flex;
+      gap: 6px;
+      padding: 10px 16px 4px;
+      flex-wrap: wrap
+    }
+
+    .svcp .segs button {
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .03em;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .18s ease
+    }
+
+    .svcp .segs button[aria-selected="true"] {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-tint)
+    }
+
+    .svcp .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 12px 16px
+    }
+
+    .svcp .metrics>div {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 11px 12px;
+      text-align: center
+    }
+
+    .svcp .metrics b {
+      display: block;
+      font-family: var(--disp);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--ink)
+    }
+
+    .svcp .metrics b.sc-good {
+      color: var(--mint-deep)
+    }
+
+    .svcp .metrics b.sc-bad {
+      color: var(--rose)
+    }
+
+    .svcp .metrics span {
+      font-size: .66rem;
+      color: var(--muted);
+      margin-top: 3px;
+      display: block
+    }
+
+    .svcp .answerbox {
+      margin: 4px 16px 0;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 15px
+    }
+
+    .svcp .answerbox .k {
+      font-family: var(--mono);
+      font-size: .62rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px
+    }
+
+    .svcp .answerbox p {
+      font-size: .9rem;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      min-height: 44px
+    }
+
+    .svcp .answerbox p .warn {
+      color: var(--rose);
+      font-weight: 600
+    }
+
+    .svcp .answerbox p .good {
+      color: var(--mint-deep);
+      font-weight: 600
+    }
+
+    .svcp .citelist {
+      list-style: none;
+      margin: 10px 16px 0;
+      padding: 0;
+      display: grid;
+      gap: 6px
+    }
+
+    .svcp .citelist li {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: .78rem;
+      color: var(--ink-soft);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 8px 11px
+    }
+
+    .svcp .citelist li .src {
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--blue);
+      font-weight: 600
+    }
+
+    .svcp .citelist li .rel {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--mint-deep);
+      background: var(--mint-tint);
+      padding: 2px 7px;
+      border-radius: 6px
+    }
+
+    .svcp .citelist.empty li {
+      color: var(--muted);
+      border-style: dashed
+    }
+
+    .svcp .viewer-foot {
+      padding: 12px 16px 16px;
+      font-size: .76rem;
+      color: var(--muted);
+      line-height: 1.5
+    }
+
+    .svcp .specpick {
+      display: flex;
+      gap: 6px;
+      padding: 14px 16px 0;
+      flex-wrap: wrap
+    }
+
+    .svcp .specpick button {
+      flex: 1;
+      min-width: 120px;
+      font-family: var(--bodyf);
+      font-weight: 600;
+      font-size: .82rem;
+      padding: 10px 8px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all .18s ease
+    }
+
+    .svcp .specpick button[aria-selected="true"] {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 8px 18px -8px rgba(36, 86, 230, .6)
+    }
+
+    .svcp .spec-doc {
+      margin: 16px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 20px
+    }
+
+    .svcp .spec-doc .sd-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line)
+    }
+
+    .svcp .spec-doc .sd-head b {
+      font-family: var(--disp);
+      font-size: .95rem;
+      color: var(--ink)
+    }
+
+    .svcp .spec-doc .sd-head span {
+      font-family: var(--mono);
+      font-size: .64rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em
+    }
+
+    .svcp .spec-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line-soft);
+      font-size: .86rem
+    }
+
+    .svcp .spec-row:last-child {
+      border-bottom: 0
+    }
+
+    .svcp .spec-row .k {
+      color: var(--muted);
+      flex: 0 0 auto
+    }
+
+    .svcp .spec-row .v {
+      color: var(--ink-soft);
+      font-weight: 600;
+      text-align: right
+    }
+
+    .svcp .comply {
+      background: var(--ink);
+      color: #C7D2E6
+    }
+
+    .svcp .comply-in {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      padding: 0
+    }
+
+    .svcp .comply-in>div {
+      padding: 26px 26px;
+      border-right: 1px solid rgba(255, 255, 255, .08);
+      display: flex;
+      gap: 12px
+    }
+
+    .svcp .comply-in>div:last-child {
+      border-right: 0
+    }
+
+    .svcp .comply-in>div::before {
+      content: "";
+      flex: 0 0 auto;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      margin-top: 6px;
+      background: linear-gradient(135deg, var(--mint), #43D399)
+    }
+
+    .svcp .comply-in span {
+      font-size: .86rem;
+      line-height: 1.5
+    }
+
+    .svcp .comply-in b {
+      display: block;
+      color: #fff;
+      font-family: var(--disp);
+      font-size: .98rem;
+      font-weight: 700;
+      margin-bottom: 3px
+    }
+
+    .svcp .tldr {
+      background: linear-gradient(180deg, #fff, #fbfdff);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--blue);
+      border-radius: var(--r);
+      padding: 28px 30px;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .tldr b {
+      font-family: var(--mono);
+      font-size: .66rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      display: block;
+      margin-bottom: 12px
+    }
+
+    .svcp .tldr p {
+      color: var(--ink-soft);
+      font-size: 1rem;
+      margin-bottom: 16px
+    }
+
+    .svcp .tldr p:last-child {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    .svcp .grid {
+      display: grid;
+      gap: 20px
+    }
+
+    .svcp .g2 {
+      grid-template-columns: repeat(2, 1fr)
+    }
+
+    .svcp .g3 {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .svcp .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 26px;
+      box-shadow: var(--sh-sm);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      position: relative
+    }
+
+    .svcp .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--sh-md);
+      border-color: #D6E1F5
+    }
+
+    .svcp .card h3 {
+      font-size: 1.14rem;
+      font-weight: 700;
+      margin-bottom: 9px
+    }
+
+    .svcp .card p {
+      font-size: .93rem;
+      color: var(--muted)
+    }
+
+    .svcp .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      display: grid;
+      gap: 9px
+    }
+
+    .svcp .card ul li {
+      position: relative;
+      padding-left: 24px;
+      font-size: .87rem;
+      color: var(--ink-soft);
+      line-height: 1.5
+    }
+
+    .svcp .card ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--mint-tint);
+      box-shadow: inset 0 0 0 2px var(--mint)
+    }
+
+    .svcp .card .n {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: .6rem;
+      letter-spacing: .12em;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 7px;
+      margin-bottom: 16px;
+      background: var(--tint);
+      color: var(--blue-strong)
+    }
+
+    .svcp .card .n.build {
+      background: var(--violet-tint);
+      color: #5443D6
+    }
+
+    .svcp .card .n.advise {
+      background: var(--amber-tint);
+      color: #B4610C
+    }
+
+    .svcp .card .ic {
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--blue-tint), #F2F6FF);
+      color: var(--blue)
+    }
+
+    .svcp .card .ic svg {
+      width: 24px;
+      height: 24px
+    }
+
+    .svcp .card.cta-card {
+      background: linear-gradient(160deg, #123, #12224a);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 6px;
+      border: 0
+    }
+
+    .svcp .card.cta-card h3 {
+      color: #fff
+    }
+
+    .svcp .card.cta-card p {
+      color: #AEBEDC;
+      margin-bottom: 8px
+    }
+
+    .svcp .tablewrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--sh-sm);
+      background: #fff
+    }
+
+    .svcp table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px
+    }
+
+    .svcp th,
+    .svcp td {
+      text-align: left;
+      padding: 16px 20px;
+      font-size: .9rem;
+      border-bottom: 1px solid var(--line-soft);
+      vertical-align: top
+    }
+
+    .svcp thead th {
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 600
+    }
+
+    .svcp thead th.col-me {
+      background: #16244a;
+      color: #B7D0FF
+    }
+
+    .svcp tbody th {
+      font-weight: 600;
+      color: var(--ink);
+      font-family: var(--bodyf)
+    }
+
+    .svcp td.col-me,
+    .svcp tbody td.col-me {
+      background: var(--tint);
+      color: var(--ink-soft);
+      font-weight: 500
+    }
+
+    .svcp tr:last-child td,
+    .svcp tr:last-child th {
+      border-bottom: 0
+    }
+
+    .svcp tr.me-row td,
+    .svcp tr.me-row th {
+      background: var(--blue-tint)
+    }
+
+    .svcp tr.me-row td:first-child,
+    .svcp tr.me-row th:first-child {
+      color: var(--blue-strong);
+      font-weight: 700
+    }
+
+    .svcp .callout {
+      margin-top: 26px;
+      background: linear-gradient(135deg, var(--blue-tint), #F3F7FF);
+      border: 1px solid #D3E1FB;
+      border-radius: var(--r);
+      padding: 24px 28px
+    }
+
+    .svcp .callout p:first-child {
+      font-family: var(--disp);
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 1.05rem;
+      margin-bottom: 6px
+    }
+
+    .svcp .callout p {
+      color: var(--ink-soft);
+      font-size: .94rem
+    }
+
+    .svcp .callout.amber {
+      background: linear-gradient(135deg, var(--amber-tint), #FFF8EE);
+      border-color: #F3DDB6
+    }
+
+    .svcp .steps {
+      display: grid;
+      gap: 14px
+    }
+
+    .svcp .step {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: var(--sh-sm);
+      overflow: hidden;
+      transition: box-shadow .2s, border-color .2s
+    }
+
+    .svcp .step[open] {
+      box-shadow: var(--sh-md);
+      border-color: #D6E1F5
+    }
+
+    .svcp .step.gate {
+      border-left: 4px solid var(--amber)
+    }
+
+    .svcp .step summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 22px 26px
+    }
+
+    .svcp .step summary::-webkit-details-marker {
+      display: none
+    }
+
+    .svcp .step .num {
+      font-family: var(--mono);
+      font-size: .66rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: var(--blue);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 0 0 96px
+    }
+
+    .svcp .step.gate .num {
+      color: var(--amber)
+    }
+
+    .svcp .step .num .days {
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: .6rem
+    }
+
+    .svcp .step summary h3 {
+      flex: 1;
+      font-size: 1.08rem;
+      font-weight: 700
+    }
+
+    .svcp .step .cv {
+      font-size: 1.6rem;
+      color: var(--blue);
+      font-weight: 300;
+      transition: transform .25s;
+      line-height: 1
+    }
+
+    .svcp .step[open] .cv {
+      transform: rotate(45deg)
+    }
+
+    .svcp .step .body {
+      padding: 0 26px 24px 142px;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    @media(max-width:640px) {
+      .svcp .step .body {
+        padding: 0 22px 22px
+      }
+    }
+
+    .svcp .stack {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 30px;
+      align-items: start
+    }
+
+    .svcp .stack-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .svcp .stack-tabs button {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      background: #fff;
+      cursor: pointer;
+      text-align: left;
+      transition: all .2s ease;
+      font-family: var(--disp);
+      font-size: .92rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .stack-tabs button:hover:not([aria-selected="true"]) {
+      border-color: #CBD8EC;
+      background: #FAFCFF
+    }
+
+    .svcp .stack-tabs button[aria-selected="true"] {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 10px 22px -10px rgba(36, 86, 230, .6)
+    }
+
+    .svcp .stack-tabs button .k {
+      font-family: var(--mono);
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--muted)
+    }
+
+    .svcp .stack-tabs button[aria-selected="true"] .k {
+      color: rgba(255, 255, 255, .8)
+    }
+
+    .svcp .stack-panel {
+      display: none;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px
+    }
+
+    .svcp .stack-panel.on {
+      display: grid;
+      animation: fade .24s ease
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(6px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .svcp .chipcard {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 20px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-family: var(--mono);
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      box-shadow: var(--sh-sm);
+      transition: transform .18s, border-color .18s, box-shadow .18s
+    }
+
+    .svcp .chipcard::before {
+      content: "";
+      flex: 0 0 auto;
+      width: 8px;
+      height: 8px;
+      border-radius: 3px;
+      background: linear-gradient(135deg, var(--blue), var(--violet))
+    }
+
+    .svcp .chipcard:hover {
+      transform: translateY(-2px);
+      border-color: #CBD8EC;
+      box-shadow: var(--sh-md)
+    }
+
+    .svcp .diffs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px
+    }
+
+    .svcp .diffs>div {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 28px;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .diffs .ic {
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: .85rem;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+      margin-bottom: 16px
+    }
+
+    .svcp .diffs h3 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 8px
+    }
+
+    .svcp .diffs p {
+      font-size: .9rem;
+      color: var(--muted)
+    }
+
+    .svcp .faq {
+      max-width: 880px;
+      margin: 0 auto
+    }
+
+    .svcp .faq details {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .faq summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: 1.02rem;
+      color: var(--ink)
+    }
+
+    .svcp .faq summary::-webkit-details-marker {
+      display: none
+    }
+
+    .svcp .faq summary::after {
+      content: "+";
+      font-weight: 300;
+      font-size: 1.5rem;
+      color: var(--blue);
+      transition: transform .25s;
+      flex: 0 0 auto;
+      line-height: 1
+    }
+
+    .svcp .faq details[open] summary::after {
+      transform: rotate(45deg)
+    }
+
+    .svcp .faq .a {
+      padding: 0 24px 22px;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    .svcp .final {
+      background: linear-gradient(160deg, #0B1220, #12224a 70%, #183170);
+      color: #fff;
+      position: relative;
+      overflow: hidden
+    }
+
+    .svcp .final::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(640px 380px at 88% -10%, rgba(36, 86, 230, .4), transparent 60%), radial-gradient(520px 360px at 0 110%, rgba(15, 169, 104, .24), transparent 55%);
+      pointer-events: none
+    }
+
+    .svcp .final-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      align-items: center;
+      position: relative;
+      z-index: 1
+    }
+
+    .svcp .final .eyebrow {
+      color: #8FB0FF
+    }
+
+    .svcp .final .eyebrow::before {
+      background: #8FB0FF
+    }
+
+    .svcp .final h2 {
+      color: #fff;
+      font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+      font-weight: 800
+    }
+
+    .svcp .final p.lede {
+      color: #B7C4E0;
+      margin-top: 16px;
+      font-size: 1.06rem;
+      max-width: 46ch
+    }
+
+    .svcp .final .fcontact {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 26px
+    }
+
+    .svcp .final .fmeta {
+      margin-top: 22px;
+      font-size: .84rem;
+      color: #93A6CC;
+      display: flex;
+      align-items: center;
+      gap: 9px
+    }
+
+    .svcp .fcard {
+      background: #fff;
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: var(--sh-lg)
+    }
+
+    .svcp .fcard h3 {
+      color: var(--ink);
+      font-size: 1.28rem;
+      margin-bottom: 5px
+    }
+
+    .svcp .fcard .sub {
+      color: var(--muted);
+      font-size: .88rem;
+      margin-bottom: 22px
+    }
+
+    .svcp .fcard .fld {
+      margin-bottom: 15px
+    }
+
+    .svcp .fcard label {
+      display: block;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin-bottom: 7px
+    }
+
+    .svcp .fcard input,
+    .svcp .fcard textarea,
+    .svcp .fcard select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 13px 15px;
+      font-family: var(--bodyf);
+      font-size: .94rem;
+      color: var(--ink);
+      background: #FBFCFE;
+      transition: border-color .18s, box-shadow .18s
+    }
+
+    .svcp .fcard input:focus,
+    .svcp .fcard textarea:focus,
+    .svcp .fcard select:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-tint)
+    }
+
+    .svcp .fcard textarea {
+      resize: vertical;
+      min-height: 92px
+    }
+
+    .svcp .fcard .btn-primary {
+      width: 100%;
+      justify-content: center;
+      margin-top: 6px
+    }
+
+    .svcp .fcard .ftrust {
+      margin-top: 14px;
+      font-size: .76rem;
+      color: var(--muted);
+      text-align: center
+    }
+
+    .svcp .sticky {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 60;
+      display: none;
+      gap: 10px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, .9);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--line);
+      box-shadow: 0 -8px 24px -14px rgba(10, 18, 34, .3)
+    }
+
+    .svcp .sticky .btn {
+      flex: 1;
+      justify-content: center
+    }
+
+    @media(max-width:980px) {
+      .svcp .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px
+      }
+
+      .svcp .viewer {
+        position: static
+      }
+
+      .svcp .comply-in,
+      .svcp .final-grid {
+        grid-template-columns: 1fr
+      }
+
+      .svcp .comply-in>div {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .08)
+      }
+
+      .svcp .comply-in>div:last-child {
+        border-bottom: 0
+      }
+
+      .svcp .g3,
+      .svcp .diffs {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .svcp .stack {
+        grid-template-columns: 1fr
+      }
+
+      .svcp .stack-tabs {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 4px
+      }
+
+      .svcp .stack-tabs button {
+        white-space: nowrap
+      }
+    }
+
+    @media(max-width:640px) {
+      .svcp section {
+        padding: 64px 0
+      }
+
+      .svcp .hero {
+        padding: 104px 0 60px
+      }
+
+      .svcp .trust {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px 10px
+      }
+
+      .svcp .g2,
+      .svcp .g3,
+      .svcp .diffs,
+      .svcp .stack-panel.on {
+        grid-template-columns: 1fr
+      }
+
+      .svcp .metrics {
+        grid-template-columns: repeat(3, 1fr)
+      }
+
+      .svcp .sticky {
+        display: flex
+      }
+
+      .svcp main {
+        padding-bottom: 74px
+      }
+
+      .svcp .step summary {
+        gap: 12px;
+        padding: 18px 20px
+      }
+
+      .svcp .step .num {
+        flex-basis: 78px
+      }
+
+      .svcp .specpick button {
+        min-width: 100px;
+        font-size: .76rem
+      }
+
+      .svcp .hero-cta,
+      .svcp .fcontact {
+        flex-direction: column
+      }
+
+      .svcp .hero-cta .btn,
+      .svcp .fcontact .btn {
+        width: 100%;
+        white-space: normal;
+        text-align: center
+      }
+
+      .svcp .comply-in>div {
+        padding: 22px 20px
+      }
+    }
+
+    .svcp .btn {
+      white-space: normal
+    }
+
+    .svcp .hero-grid,
+    .svcp .final-grid {
+      min-width: 0
+    }
+
+    .svcp .hero-cta,
+    .svcp .fcontact,
+    .svcp .creds,
+    .svcp .trust,
+    .svcp .comply-in,
+    .svcp .grid,
+    .svcp .metrics {
+      min-width: 0
+    }
+
+    .svcp .cred,
+    .svcp .stat-chip {
+      min-width: 0
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .svcp * {
+        animation: none !important;
+        transition: none !important
+      }
+
+      .svcp .reveal {
+        opacity: 1;
+        transform: none
+      }
+    }
+  
+.viewer {
+    width: 100%;
+    max-width: 520px;
+    box-sizing: border-box;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    box-shadow: var(--sh-md);
+    overflow: hidden;
+    font-family: var(--bodyf);
+    color: var(--body);
+}
+.viewer .vw-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line-soft);
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+.viewer .vw-heading {
+    font-family: var(--disp);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.3;
+}
+.viewer .vw-heading svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--blue);
+}
+.viewer .vw-badge {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--blue-tint);
+    color: var(--blue);
+    border: 1px solid rgba(36, 86, 230, 0.18);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.viewer .vw-pipeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 12px 18px 4px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.viewer .vw-pstep {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    flex: 1 1 0;
+    min-width: 0;
+}
+.viewer .vw-pstep-box {
+    background: var(--soft);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-sm);
+    padding: 5px 8px;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background 0.2s, border-color 0.2s;
+    line-height: 1.3;
+}
+.viewer .vw-pstep.active .vw-pstep-box {
+    background: var(--blue-tint);
+    border-color: var(--blue);
+    color: var(--blue);
+}
+.viewer .vw-pstep-label {
+    font-size: 0.55rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+.viewer .vw-parrow {
+    flex: 0 0 auto;
+    color: var(--line);
+    font-size: 1rem;
+    font-weight: 300;
+    padding: 0 2px;
+}
+.viewer .vw-chart-wrap {
+    margin: 10px 18px 8px;
+    background: var(--soft);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-sm);
+    padding: 10px 12px 8px;
+    position: relative;
+}
+.viewer .vw-chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--muted);
+    margin-bottom: 4px;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.viewer .vw-chart-header span:first-child {
+    font-weight: 600;
+    color: var(--ink-soft);
+}
+.viewer .vw-chart-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    cursor: default;
+    touch-action: manipulation;
+}
+.viewer .vw-chart-svg .vw-point {
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.viewer .vw-chart-svg .vw-point:hover .vw-dot {
+    opacity: 0.85;
+}
+.viewer .vw-chart-svg .vw-dot {
+    transition: r 0.25s, fill 0.25s;
+}
+.viewer .vw-chart-svg .vw-label {
+    font-family: var(--mono);
+    font-size: 7px;
+    font-weight: 600;
+    fill: var(--ink-soft);
+    pointer-events: none;
+    transition: fill 0.25s, font-size 0.25s;
+}
+.viewer .vw-chart-svg .vw-point.selected .vw-label {
+    fill: var(--blue);
+    font-size: 8px;
+    font-weight: 700;
+}
+.viewer .vw-chart-svg .vw-ring {
+    fill: none;
+    stroke-width: 2.5;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.viewer .vw-chart-svg .vw-point.selected .vw-ring {
+    opacity: 1;
+}
+.viewer .vw-chart-svg .vw-grid-line {
+    stroke: var(--line);
+    stroke-width: 0.5;
+    stroke-dasharray: 3 3;
+}
+.viewer .vw-chart-svg .vw-axis-label {
+    font-family: var(--mono);
+    font-size: 5.5px;
+    fill: var(--muted);
+}
+.viewer .vw-details {
+    padding: 0 18px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 82px;
+    transition: min-height 0.3s;
+}
+.viewer .vw-details-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.viewer .vw-details-word {
+    font-family: var(--disp);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.viewer .vw-details-word .vw-color-swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: inline-block;
+}
+.viewer .vw-details-neighbor {
+    font-size: 0.7rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    background: var(--soft);
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line-soft);
+}
+.viewer .vw-details-vec {
+    background: var(--soft);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-sm);
+    padding: 8px 12px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+}
+.viewer .vw-details-vec .vw-vec-label {
+    color: var(--muted);
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-weight: 600;
+}
+.viewer .vw-details-vec .vw-vec-vals {
+    color: var(--ink-soft);
+    word-break: break-all;
+    font-size: 0.65rem;
+}
+.viewer .vw-details-vec .vw-vec-dims {
+    color: var(--muted);
+    font-size: 0.6rem;
+    margin-left: auto;
+    white-space: nowrap;
+}
+.viewer .vw-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 18px;
+    border-top: 1px solid var(--line-soft);
+    background: var(--soft);
+    font-size: 0.7rem;
+    color: var(--muted);
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.viewer .vw-foot svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    color: var(--blue);
+    opacity: 0.6;
+}
+.viewer .vw-foot span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+@media (max-width: 460px) {
+    .viewer .vw-top {
+        padding: 10px 12px;
+    }
+    .viewer .vw-heading {
+        font-size: 0.78rem;
+    }
+    .viewer .vw-pipeline {
+        padding: 8px 12px 2px;
+        gap: 2px;
+    }
+    .viewer .vw-pstep-box {
+        font-size: 0.55rem;
+        padding: 4px 5px;
+    }
+    .viewer .vw-parrow {
+        font-size: 0.75rem;
+    }
+    .viewer .vw-chart-wrap {
+        margin: 6px 12px 6px;
+        padding: 6px 8px;
+    }
+    .viewer .vw-chart-header {
+        font-size: 0.52rem;
+    }
+    .viewer .vw-details {
+        padding: 0 12px 10px;
+        min-height: 70px;
+    }
+    .viewer .vw-details-word {
+        font-size: 0.95rem;
+    }
+    .viewer .vw-details-vec {
+        font-size: 0.58rem;
+        padding: 6px 10px;
+    }
+    .viewer .vw-foot {
+        padding: 8px 12px;
+        font-size: 0.62rem;
+    }
+}
+</style>
+</head>
+<body>
+<div class="svcp">
+<div class="wash"></div>
+<main>
+<!-- ================= HERO ================= -->
+<section class="hero" id="demo">
+<div class="wrap">
+<div class="hero-grid">
+<div>
+<p class="eyebrow">The building block of AI understanding</p>
+<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">Vector embeddings: what a vector embedding is, <span>and how it works</span></h1>
+<p class="hero-sub">A vector embedding is a numerical representation of data—like a word, sentence, or image—that captures its meaning in a high-dimensional space. Instead of storing text as words, embeddings convert it into a list of numbers that AI models can compare for semantic similarity. This is the core mechanism behind semantic search, recommendation systems, and modern AI applications.</p>
+<div class="creds">
+<div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<path d="M12 8v4l3 3"></path>
+<circle cx="12" cy="12" r="9"></circle>
+</svg></span><span class="t"><i>Definition</i><b>Numerical representation of meaning</b></span></div>
+<div class="cred"><span class="b" style="background:#0FA968" title="Reduction"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<path d="M3 3v18h18"></path>
+<path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14"></path>
+</svg></span><span class="t"><i>Analogy</i><b>Like a GPS for words</b></span></div>
+<div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="14">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M12 6v6l4 2"></path>
+</svg></span><span class="t"><i>Use Case</i><b>Powers semantic search &amp; AI</b></span></div>
+</div>
+<div class="hero-cta">
+<a class="btn btn-primary" href="#diagram">See a visual diagram <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M5 12h14M13 6l6 6-6 6"></path>
+</svg></a>
+<a class="btn btn-ghost" href="#example">View code example</a>
+</div>
+<p class="live"><span class="pulse"></span> Every vector maps to a real-world concept, no black boxes.</p>
+<div class="trust">
+<div><b data-count="5" data-suffix="+">1536</b><span>Dimensions in OpenAI embeddings</span></div>
+<div><b data-count="80" data-suffix="%">99%</b><span>Semantic similarity accuracy</span></div>
+<div><b>1ms</b><span>Query time per vector</span></div>
+</div>
+</div>
+<!-- ===== SIGNATURE: RAG vs Plain LLM vs Fine-Tuning ===== -->
+<div class="viewer">
+<div class="vw-top">
+<span class="vw-heading">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 2a10 10 0 1 0 10 10"></path>
+<path d="M12 12 8 8"></path>
+<path d="M12 12 16 16"></path>
+<circle cx="12" cy="12" r="2.5"></circle>
+<path d="M12 2v4"></path>
+<path d="M12 18v4"></path>
+<path d="M2 12h4"></path>
+<path d="M18 12h4"></path>
+</svg>
+            What Is a Vector Embedding?
+        </span>
+<span class="vw-badge">GLOSSARY</span>
+</div>
+<div class="vw-pipeline" id="pipeline">
+<div class="vw-pstep active" data-step="0">
+<span class="vw-pstep-box">"king"</span>
+<span class="vw-pstep-label">Text</span>
+</div>
+<span class="vw-parrow">→</span>
+<div class="vw-pstep" data-step="1">
+<span class="vw-pstep-box">[king]</span>
+<span class="vw-pstep-label">Tokens</span>
+</div>
+<span class="vw-parrow">→</span>
+<div class="vw-pstep" data-step="2">
+<span class="vw-pstep-box">Embed</span>
+<span class="vw-pstep-label">Model</span>
+</div>
+<span class="vw-parrow">→</span>
+<div class="vw-pstep" data-step="3">
+<span class="vw-pstep-box">[0.82, −0.31…]</span>
+<span class="vw-pstep-label">Vector</span>
+</div>
+</div>
+<div class="vw-chart-wrap">
+<div class="vw-chart-header">
+<span>Semantic Vector Space (2D projection)</span>
+<span>Click any word</span>
+</div>
+<svg class="vw-chart-svg" id="vectorPlot" preserveaspectratio="xMidYMid meet" viewbox="0 0 360 240">
+<!-- grid -->
+<line class="vw-grid-line" x1="40" x2="320" y1="40" y2="40"></line>
+<line class="vw-grid-line" x1="40" x2="320" y1="80" y2="80"></line>
+<line class="vw-grid-line" x1="40" x2="320" y1="120" y2="120"></line>
+<line class="vw-grid-line" x1="40" x2="320" y1="160" y2="160"></line>
+<line class="vw-grid-line" x1="40" x2="320" y1="200" y2="200"></line>
+<line class="vw-grid-line" x1="40" x2="40" y1="40" y2="220"></line>
+<line class="vw-grid-line" x1="110" x2="110" y1="40" y2="220"></line>
+<line class="vw-grid-line" x1="180" x2="180" y1="40" y2="220"></line>
+<line class="vw-grid-line" x1="250" x2="250" y1="40" y2="220"></line>
+<line class="vw-grid-line" x1="320" x2="320" y1="40" y2="220"></line>
+<!-- axes -->
+<text class="vw-axis-label" text-anchor="middle" x="180" y="234">Dimension 1</text>
+<text class="vw-axis-label" text-anchor="middle" transform="rotate(-90,18,130)" x="18" y="130">Dimension 2</text>
+<!-- points rendered via JS -->
+</svg>
+</div>
+<div class="vw-details" id="details">
+<div class="vw-details-top">
+<div class="vw-details-word">
+<span class="vw-color-swatch" id="swatch" style="background:var(--blue);"></span>
+<span id="wordName">king</span>
+</div>
+<span class="vw-details-neighbor" id="neighborInfo">Nearest: queen</span>
+</div>
+<div class="vw-details-vec">
+<span class="vw-vec-label">Vector</span>
+<span class="vw-vec-vals" id="vecVals">[0.82, −0.31, 0.45, 0.12, 0.67]</span>
+<span class="vw-vec-dims" id="vecDims">384 dim</span>
+</div>
+</div>
+<div class="vw-foot">
+<span>
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path>
+</svg>
+            Each word maps to a unique coordinate in semantic space
+        </span>
+<span>Similar words cluster together</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= COMPLY STRIP ================= -->
+<div class="comply">
+<div class="wrap comply-in">
+<div><span><b>Meaning captured, not hashed</b>The embedding maps similar words and concepts to nearby points in a high-dimensional space.</span></div>
+<div><span><b>Context matters</b>Same word in different sentences produces different vectors, so relationships stay precise.</span></div>
+<div><span><b>Numbers represent semantics</b>These lists of floats allow computers to measure meaning mathematically and find related content.</span></div>
+<div><span><b>Foundation for search</b>Vector embeddings enable semantic search, clustering, and retrieval without exact keyword matches.</span></div>
+</div>
+</div>
+<!-- ================= WHAT IS RAG (definition) ================= -->
+<section id="what-is-rag">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Plain definition</p>
+<h2>What is a vector embedding?</h2>
+</div>
+<div class="tldr reveal">
+<b>Definition</b>
+<p>A vector embedding is a numerical representation of data—text, image, audio, or other content—converted into a list of floating-point numbers (a vector) that captures its semantic meaning. Each coordinate in the vector represents abstract features learned by a machine learning model, so that similar concepts occupy nearby positions in a high-dimensional space. This mathematical encoding enables computers to compare meaning at scale, making vector embeddings the core building block for semantic search, retrieval-augmented generation, recommendation systems, and clustering.</p>
+</div>
+</div>
+</section>
+<!-- ================= HOW RAG WORKS ================= -->
+<section class="soft" id="how-it-works">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Concept walkthrough</p>
+<h2>Embedding in action</h2>
+<p>The same five-step pipeline animating in the signature panel above, applied to your own documents.</p>
+</div>
+<div class="grid g3 reveal" style="grid-template-columns:repeat(5,1fr)">
+<div class="card" style="padding:20px"><span class="n">STEP 1</span>
+<h3 style="font-size:.98rem">Text input</h3>
+<p style="font-size:.84rem">A sentence or phrase, like 'the cat sat on the mat,' is fed into an embedding model.</p>
+</div>
+<div class="card" style="padding:20px"><span class="n">STEP 2</span>
+<h3 style="font-size:.98rem">Model encodes</h3>
+<p style="font-size:.84rem">The model analyzes word order, synonyms, and context, producing a list of numbers like [0.12, -0.45, 0.89, ...].</p>
+</div>
+<div class="card" style="padding:20px"><span class="n">STEP 3</span>
+<h3 style="font-size:.98rem">Vector produced</h3>
+<p style="font-size:.84rem">The output is a high-dimensional vector—often 768 or 1536 dimensions—representing the meaning.</p>
+</div>
+<div class="card" style="padding:20px"><span class="n">STEP 4</span>
+<h3 style="font-size:.98rem">Matched by distance</h3>
+<p style="font-size:.84rem">Cosine similarity or dot product measures how close this vector is to other vectors in the database.</p>
+</div>
+<div class="card" style="padding:20px"><span class="n build">STEP 5</span>
+<h3 style="font-size:.98rem">Semantic retrieval</h3>
+<p style="font-size:.84rem">The closest vectors return as results, finding content that means the same thing even with different words.</p>
+</div>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= RAG vs LLM vs FINE-TUNING ================= -->
+<section id="comparison">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">The concept</p>
+<h2>Vector embedding vs text vs token</h2>
+<p>These are frequently combined: a fine-tuned model for task-specific behavior, grounded by RAG for current
+              or proprietary data access.</p>
+</div>
+<div class="tablewrap reveal">
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Text</th>
+<th class="col-me">Vector Embedding</th>
+<th>Token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Representation</th>
+<td>Human-readable characters</td>
+<td class="col-me">Numerical list of floats</td>
+<td>Sub-word unit from tokenizer</td>
+</tr>
+<tr>
+<th scope="row">Meaning</th>
+<td>Direct semantic meaning</td>
+<td class="col-me">Captures semantic relationships</td>
+<td>No inherent meaning alone</td>
+</tr>
+<tr>
+<th scope="row">Best for</th>
+<td>Human communication</td>
+<td class="col-me">Similarity search and clustering</td>
+<td>Model input processing</td>
+</tr>
+<tr>
+<th scope="row">Traceability</th>
+<td>Directly interpretable</td>
+<td class="col-me">Requires decoding to interpret</td>
+<td>Maps back to original text</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- ================= SERVICES ================= -->
+<section class="soft" id="services">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">What I build</p>
+<h2>Embedding pipeline services</h2>
+<p>Each layer of a production RAG pipeline, built and tested as its own verifiable stage.</p>
+</div>
+<div class="grid g3 reveal">
+<div class="card"><span class="n build">BUILD</span>
+<h3>Text preprocessing &amp; chunking</h3>
+<p>Building the pipeline that cleans, normalizes, and splits your source text into optimally sized chunks for embedding generation, directly affecting retrieval quality.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Embedding model selection</h3>
+<p>Selecting and configuring the right embedding model (OpenAI, Cohere, sentence-transformers, BGE) based on your domain, latency, and dimensionality requirements.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Vector database architecture</h3>
+<p>Designing the vector storage layer (Pinecone, Weaviate, Qdrant, FAISS, pgvector) for efficient indexing, approximate nearest neighbor search, and scalable retrieval.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Similarity search &amp; retrieval</h3>
+<p>Implementing cosine similarity, dot product, or Euclidean distance search with metadata filtering and hybrid search to maximize relevance of retrieved embeddings.</p>
+</div>
+<div class="card"><span class="n advise">EVALUATE</span>
+<h3>Embedding quality evaluation</h3>
+<p>Testing retrieval precision, recall, and mean reciprocal rank against your real queries using a customized evaluation set, with results shared transparently before launch.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Production deployment</h3>
+<p>Deploying the full embedding pipeline as a versioned, monitored API integrated with your application or search system.</p>
+</div>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= WHY BUSINESSES NEED RAG ================= -->
+<section id="why">
+<div class="wrap">
+<div class="grid g2 reveal">
+<div class="sec-head" style="margin-bottom:0">
+<p class="eyebrow">Why it matters</p>
+<h2>What is a vector?</h2>
+<p>A vector embedding is a list of numbers — a mathematical representation — that captures the meaning of a piece of text, an image, or any data. Instead of storing words like 'cat' and 'dog', a model converts them into points in space where similar meanings sit close together.</p>
+</div>
+<div class="card" style="align-self:start">
+<span class="n">VISUAL EXAMPLE</span>
+<h3 style="margin-bottom:4px">Embeddings in action</h3>
+<ul>
+<li>The word 'king' becomes a vector like [0.2, 0.7, -0.1, 0.4, ...]</li>
+<li>The word 'queen' becomes a vector like [0.3, 0.8, -0.2, 0.5, ...]</li>
+<li>These two vectors are 'close' in the embedding space because their meanings are similar</li>
+<li>A vector for 'apple' (fruit) sits near 'banana' but far from 'apple' (company)</li>
+<li>A diagram would show three clusters: fruits, companies, and animals — each cluster grouping related meanings</li>
+
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= PROCESS ================= -->
+<section class="soft" id="process">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">How it works</p>
+<h2>Process</h2>
+</div>
+<div class="steps reveal">
+<details class="step" open="">
+<summary><span class="num">STEP 01<span class="days">the input</span></span>
+<h3>Text to numbers</h3><span class="cv">+</span>
+</summary>
+<div class="body">A pre-trained embedding model, like OpenAI's text-embedding-3-small, takes your text and outputs a fixed-length vector — typically 256 to 1536 numbers.</div>
+</details>
+<details class="step">
+<summary><span class="num">STEP 02<span class="days">the space</span></span>
+<h3>Semantic proximity</h3><span class="cv">+</span>
+</summary>
+<div class="body">Vectors live in a high-dimensional space. The distance between two vectors (cosine similarity) measures how similar their meanings are — closer means more related.</div>
+</details>
+<details class="step gate">
+<summary><span class="num">STEP 03<span class="days">the database</span></span>
+<h3>Vector search</h3><span class="cv">+</span>
+</summary>
+<div class="body">A vector database indexes these embeddings. At query time, it converts your question into a vector and finds the nearest neighbors — the most semantically relevant documents.</div>
+</details>
+<details class="step">
+<summary><span class="num">STEP 04<span class="days">the output</span></span>
+<h3>Retrieval result</h3><span class="cv">+</span>
+</summary>
+<div class="body">The system returns the original text chunks whose vectors are closest to the query vector, enabling accurate retrieval without exact keyword matching.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 05<span class="days">30 days plus</span></span>
+<h3>Deployment &amp; support</h3><span class="cv">+</span>
+</summary>
+<div class="body">Production deployment with monitoring and a post-launch support window.</div>
+</details>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= PRICING ================= -->
+<section id="pricing">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Investment</p>
+<h2>Pricing</h2>
+</div>
+<div class="tablewrap reveal">
+<table>
+<thead>
+<tr>
+<th>Engagement type</th>
+<th class="col-me">What's included</th>
+<th>Typical investment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Embedding concept demo</td>
+<td class="col-me">Live walkthrough of embedding generation, similarity search, and visualization</td>
+<td>$500 to $1,500</td>
+</tr>
+<tr class="me-row">
+<td>Embedding pipeline build</td>
+<td class="col-me">Full ingestion pipeline, vector database setup, and search API</td>
+<td>$3,000 to $10,000</td>
+</tr>
+<tr>
+<td>Embedding system audit</td>
+<td class="col-me">Review existing embedding strategy, recommend model and index improvements</td>
+<td>$1,000 to $2,500</td>
+</tr>
+<tr>
+<td>Hourly consulting</td>
+<td class="col-me">Architecture review, model selection guidance, similarity threshold tuning</td>
+<td>$75 to $150/hr</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Retrieval-grounded systems
+            delivered include the AI Customer Feedback Classification pipeline and AI Video Summarizer. Full case
+            studies at <a href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
+</div>
+</section>
+<!-- ================= FAQ ================= -->
+<section class="soft" id="faq">
+<div class="wrap">
+<div class="sec-head center reveal">
+<p class="eyebrow">FAQ</p>
+<h2>Frequently asked questions</h2>
+</div>
+<div class="faq reveal">
+<details open="">
+<summary>What exactly is a vector embedding?</summary>
+<div class="a">A vector embedding is a list of numbers that represents the meaning of a piece of data — text, image, or audio — in a high-dimensional space. Similar meanings produce vectors that are close together, enabling semantic search.</div>
+</details>
+<details>
+<summary>How is an embedding different from a keyword?</summary>
+<div class="a">A keyword is an exact word that must match literally. An embedding captures meaning, so 'car' and 'automobile' will have similar vectors even though they are different strings. This is why embeddings power semantic search.</div>
+</details>
+<details>
+<summary>How many numbers are in a typical vector?</summary>
+<div class="a">Modern embedding models output vectors with 256 to 1536 dimensions — that is, 256 to 1536 numbers. Higher dimensions capture more nuance but increase storage and compute cost.</div>
+</details>
+<details>
+<summary>Can I create my own embedding model?</summary>
+<div class="a">You can fine-tune an existing embedding model on your domain, but most applications use a pre-trained model from OpenAI, Cohere, or sentence-transformers. Fine-tuning is only needed for highly specialized vocabularies.</div>
+</details>
+<details>
+<summary>What is cosine similarity?</summary>
+<div class="a">Cosine similarity measures the angle between two vectors; it ranges from -1 (opposite meaning) to 1 (identical meaning). It is the most common metric for comparing embeddings because it ignores vector length and focuses on direction.</div>
+</details>
+</div>
+</div>
+</section>
+</main>
+</div>
+<script>
+    (function () {
+      var page = document.querySelector('.svcp');
+      if (!page) return;
+
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+      page.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+      function countUp(el) {
+        var target = parseFloat(el.dataset.count), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+        var t0 = null, dur = 1300;
+        function step(ts) {
+          if (!t0) t0 = ts; var p = Math.min((ts - t0) / dur, 1); var e = 1 - Math.pow(1 - p, 3);
+          el.textContent = pre + Math.round(target * e) + suf; if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      var cio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } });
+      }, { threshold: .6 });
+      page.querySelectorAll('[data-count]').forEach(function (el) { cio.observe(el); });
+
+      page.querySelectorAll('.stack').forEach(function (root) {
+        var tabs = root.querySelectorAll('.stack-tabs [role="tab"]'), panels = root.querySelectorAll('.stack-panel');
+        function act(tab) {
+          var t = tab.dataset.s;
+          tabs.forEach(function (x) { x.setAttribute('aria-selected', x === tab ? 'true' : 'false'); });
+          panels.forEach(function (p) { p.classList.toggle('on', p.dataset.p === t); });
+        }
+        tabs.forEach(function (tab, i) {
+          tab.addEventListener('click', function () { act(tab); });
+          tab.addEventListener('keydown', function (e) {
+            var n = null;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = tabs[i + 1] || tabs[0];
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = tabs[i - 1] || tabs[tabs.length - 1];
+            if (n) { e.preventDefault(); n.focus(); act(n); }
+          });
+        });
+      });
+
+      page.querySelectorAll('.faq details').forEach(function (d) {
+        d.addEventListener('toggle', function () { if (d.open) { page.querySelectorAll('.faq details').forEach(function (o) { if (o !== d) o.open = false; }); } });
+      });
+    })();
+
+  </script>
+<script>
+    (function () {
+      var page = document.querySelector('.svcp');
+      var canvas = document.getElementById('sigcanvas'), ctx = canvas.getContext('2d');
+      var mode = 'rag', domain = 0, t = 0, raf = null;
+
+      var domains = [
+        {
+          seg: 'support policy',
+          rag: {
+            q: 'What is our refund window for enterprise plans?',
+            a: 'Per your <b>Enterprise Terms v3</b>, enterprise plans carry a 30-day refund window from the invoice date; anything past that routes to a manual review queue.',
+            cites: [['enterprise_terms_v3.pdf', '0.95'], ['billing_policy.md', '0.87'], ['plan_comparison.pdf', '0.80']]
+          },
+          bare: { a: '<span class="warn">Unverified:</span> Most SaaS refund windows run 14 to 30 days. (A generic industry guess, not your actual policy.)' },
+          finetune: { a: '<span class="good">Tone-matched:</span> replies fluently in your brand voice, but the refund-window figure itself is whatever pattern was frozen into the weights at the last training run, not today\'s policy.' }
+        },
+        {
+          seg: 'internal wiki',
+          rag: {
+            q: 'What is the approval process for expenses over $5,000?',
+            a: 'Per the <b>Finance Approval Matrix</b>, spend above $5,000 requires director sign-off plus a two-day finance review before the PO is issued.',
+            cites: [['finance_approval_matrix.pdf', '0.93'], ['procurement_policy.md', '0.85'], ['finance_faq.pdf', '0.79']]
+          },
+          bare: { a: '<span class="warn">Unverified:</span> Usually needs manager approval above a few thousand dollars. (No specific threshold, no named approver, invented.)' },
+          finetune: { a: '<span class="good">Tone-matched:</span> sounds like your finance team, but the $5,000 threshold and approver name are whatever was true when the model was last fine-tuned.' }
+        },
+        {
+          seg: 'product catalog',
+          rag: {
+            q: 'Is the XR-200 compatible with the older mounting kit?',
+            a: 'Per the <b>XR-200 spec sheet</b>, it requires the v2 mounting kit; the original kit is not compatible without the v2 adapter plate.',
+            cites: [['xr200_spec_sheet.pdf', '0.96'], ['mounting_kit_v2.pdf', '0.88'], ['compat_matrix.csv', '0.82']]
+          },
+          bare: { a: '<span class="warn">Unverified:</span> Probably compatible, most mounts are similar across a product line. (No spec lookup, no real answer.)' },
+          finetune: { a: '<span class="good">Tone-matched:</span> answers helpfully and on-brand, but for a product launched after the last fine-tune, it has no idea the XR-200 exists.' }
+        }];
+
+      function resize() { var r = canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2); canvas.width = r.width * d; canvas.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
+
+      var pts = []; (function seed() {
+        var rng = 17; function rnd() { rng = (rng * 9301 + 49297) % 233280; return rng / 233280; }
+        for (var i = 0; i < 24; i++) { pts.push({ x: .12 + rnd() * .76, y: .16 + rnd() * .7, r: 2 + rnd() * 2 }); }
+      })();
+
+      function draw() {
+        var r = canvas.getBoundingClientRect(), W = r.width, H = r.height;
+        ctx.clearRect(0, 0, W, H);
+        ctx.strokeStyle = 'rgba(36,86,230,.06)'; ctx.lineWidth = 1;
+        for (var gx = 0; gx <= W; gx += W / 8) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
+        for (var gy = 0; gy <= H; gy += H / 5) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
+
+        var q = { x: W * .16, y: H * .5 };
+        pts.forEach(function (p) { ctx.beginPath(); ctx.arc(p.x * W, p.y * H, p.r, 0, Math.PI * 2); ctx.fillStyle = 'rgba(107,122,147,.28)'; ctx.fill(); });
+
+        if (mode === 'rag') {
+          var targets = [{ x: W * .62, y: H * .26 }, { x: W * .74, y: H * .44 }, { x: W * .68, y: H * .66 }, { x: W * .82, y: H * .58 }];
+          targets.forEach(function (tp, i) {
+            var prog = Math.min(1, Math.max(0, (t - i * 10) / 40));
+            var mx = q.x + (tp.x - q.x) * prog, my = q.y + (tp.y - q.y) * prog;
+            var grad = ctx.createLinearGradient(q.x, q.y, tp.x, tp.y);
+            grad.addColorStop(0, 'rgba(36,86,230,.7)'); grad.addColorStop(1, 'rgba(109,94,246,.25)');
+            ctx.strokeStyle = grad; ctx.lineWidth = 1.6;
+            ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(mx, my); ctx.stroke();
+            var pp = (t * .02 + i * .25) % 1;
+            ctx.beginPath(); ctx.arc(q.x + (tp.x - q.x) * pp, q.y + (tp.y - q.y) * pp, 2.6, 0, Math.PI * 2); ctx.fillStyle = 'rgba(15,169,104,.9)'; ctx.fill();
+          });
+          targets.forEach(function (tp) {
+            ctx.beginPath(); ctx.arc(tp.x, tp.y, 7, 0, Math.PI * 2); ctx.fillStyle = 'rgba(15,169,104,.16)'; ctx.fill();
+            ctx.beginPath(); ctx.arc(tp.x, tp.y, 4, 0, Math.PI * 2); ctx.fillStyle = '#0FA968'; ctx.fill();
+          });
+          ctx.fillStyle = 'rgba(15,169,104,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
+          ctx.fillText('retrieved \u00b7 grounded', W * .58, H * .14);
+        } else if (mode === 'bare') {
+          var wob = Math.sin(t * .05) * 6;
+          ctx.strokeStyle = 'rgba(225,29,72,.35)'; ctx.lineWidth = 1.4; ctx.setLineDash([4, 4]);
+          ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(W * .7 + wob, H * .4); ctx.stroke(); ctx.setLineDash([]);
+          ctx.beginPath(); ctx.arc(W * .7 + wob, H * .4, 5, 0, Math.PI * 2); ctx.fillStyle = 'rgba(225,29,72,.7)'; ctx.fill();
+          ctx.fillStyle = 'rgba(225,29,72,.85)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
+          ctx.fillText('no retrieval \u00b7 ungrounded', W * .5, H * .14);
+        } else {
+          var mnode = { x: W * .62, y: H * .44 };
+          ctx.strokeStyle = 'rgba(109,94,246,.5)'; ctx.lineWidth = 1.6;
+          ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(mnode.x, mnode.y); ctx.stroke();
+          ctx.beginPath(); ctx.arc(mnode.x, mnode.y, 16, 0, Math.PI * 2); ctx.fillStyle = 'rgba(109,94,246,.14)'; ctx.fill();
+          ctx.beginPath(); ctx.arc(mnode.x, mnode.y, 9, 0, Math.PI * 2); ctx.fillStyle = '#6D5EF6'; ctx.fill();
+          for (var i = 0; i < 3; i++) {
+            var ang = t * .03 + i * (Math.PI * 2 / 3); var ox = mnode.x + Math.cos(ang) * 26, oy = mnode.y + Math.sin(ang) * 26;
+            ctx.beginPath(); ctx.arc(ox, oy, 2.4, 0, Math.PI * 2); ctx.fillStyle = 'rgba(109,94,246,.6)'; ctx.fill();
+          }
+          ctx.fillStyle = 'rgba(109,94,246,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
+          ctx.fillText('trained into weights \u00b7 static', W * .5, H * .14);
+        }
+
+        var pr = 6 + Math.sin(t * .08) * 1.4;
+        ctx.beginPath(); ctx.arc(q.x, q.y, pr + 7, 0, Math.PI * 2); ctx.fillStyle = 'rgba(36,86,230,.14)'; ctx.fill();
+        ctx.beginPath(); ctx.arc(q.x, q.y, pr, 0, Math.PI * 2); ctx.fillStyle = '#2456E6'; ctx.fill();
+        ctx.fillStyle = '#1B2740'; ctx.font = '600 11px "IBM Plex Mono",monospace';
+        ctx.fillText('query', q.x - 16, q.y + 22);
+
+        t += 1; raf = requestAnimationFrame(draw);
+      }
+
+      function update() {
+        var d = domains[domain];
+        var m1 = document.getElementById('m1'), m2 = document.getElementById('m2'), m3 = document.getElementById('m3');
+        var m1l = document.getElementById('m1l'), m2l = document.getElementById('m2l'), m3l = document.getElementById('m3l');
+        var cl = document.getElementById('citelist'), foot = document.getElementById('foot'), ans = document.getElementById('answer');
+        document.querySelector('.viewer-top .t').textContent = d.rag.q;
+        if (mode === 'rag') {
+          ans.innerHTML = d.rag.a;
+          m1.textContent = 'Low'; m1.className = 'sc-good'; m1l.textContent = 'Hallucination risk';
+          m2.textContent = '4'; m2l.textContent = 'Chunks retrieved';
+          m3.textContent = 'Live docs'; m3l.textContent = 'Answer basis';
+          cl.classList.remove('empty');
+          cl.innerHTML = d.rag.cites.map(function (c) { return '<li><span class="src">' + c[0] + '</span> <span class="rel">rel ' + c[1] + '</span></li>'; }).join('');
+          foot.textContent = 'Every answer traces back to the exact document it was generated from, that traceability is what a compliance or accuracy review depends on.';
+        } else if (mode === 'bare') {
+          ans.innerHTML = d.bare.a;
+          m1.textContent = 'High'; m1.className = 'sc-bad'; m1l.textContent = 'Hallucination risk';
+          m2.textContent = '0'; m2l.textContent = 'Chunks retrieved';
+          m3.textContent = 'Training only'; m3l.textContent = 'Answer basis';
+          cl.classList.add('empty');
+          cl.innerHTML = '<li>No sources retrieved, answer cannot be verified</li>';
+          foot.textContent = 'Faster, but nothing to cite and nothing to check. This is the exact failure mode RAG exists to prevent.';
+        } else {
+          ans.innerHTML = d.finetune.a;
+          m1.textContent = 'Med'; m1.className = ''; m1l.textContent = 'Staleness risk';
+          m2.textContent = 'Yes'; m2l.textContent = 'Retrain to update';
+          m3.textContent = 'Model weights'; m3l.textContent = 'Answer basis';
+          cl.classList.add('empty');
+          cl.innerHTML = '<li>No live source, behavior is frozen at training time</li>';
+          foot.textContent = 'Fine-tuning changes how the model answers, tone, format, task, not what it currently knows. That is exactly why RAG and fine-tuning are often combined.';
+        }
+      }
+
+      page.querySelectorAll('.modesw [role="tab"]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          page.querySelectorAll('.modesw [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
+          b.setAttribute('aria-selected', 'true'); mode = b.dataset.m; t = 0; update();
+        });
+      });
+      page.querySelectorAll('.segs [role="tab"]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          page.querySelectorAll('.segs [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
+          b.setAttribute('aria-selected', 'true'); domain = +b.dataset.d; t = 0; update();
+        });
+      });
+
+      window.addEventListener('resize', resize);
+      resize(); update();
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(); } else { draw(); cancelAnimationFrame(raf); }
+    })();
+  </script>
+
+<script>
+(function() {
+    var plot = document.getElementById('vectorPlot');
+    var wordName = document.getElementById('wordName');
+    var swatch = document.getElementById('swatch');
+    var neighborInfo = document.getElementById('neighborInfo');
+    var vecVals = document.getElementById('vecVals');
+    var vecDims = document.getElementById('vecDims');
+    var steps = document.querySelectorAll('.vw-pstep');
+
+    var words = [
+        { word: 'king', x: 68, y: 78, vec: [0.82, -0.31, 0.45, 0.12, 0.67], color: '#2456E6' },
+        { word: 'queen', x: 116, y: 92, vec: [0.79, -0.28, 0.52, 0.08, 0.71], color: '#2456E6' },
+        { word: 'man', x: 62, y: 158, vec: [0.61, -0.45, 0.12, 0.33, 0.28], color: '#6D5EF6' },
+        { word: 'woman', x: 110, y: 172, vec: [0.58, -0.42, 0.18, 0.29, 0.32], color: '#6D5EF6' },
+        { word: 'apple', x: 250, y: 198, vec: [0.12, 0.78, -0.34, 0.56, 0.08], color: '#0FA968' },
+        { word: 'orange', x: 298, y: 212, vec: [0.15, 0.82, -0.38, 0.52, 0.12], color: '#0FA968' },
+        { word: 'car', x: 218, y: 82, vec: [0.45, 0.12, 0.72, -0.28, 0.34], color: '#D97A18' },
+        { word: 'bus', x: 266, y: 96, vec: [0.48, 0.15, 0.68, -0.32, 0.30], color: '#D97A18' }
+    ];
+
+    var selectedIdx = 0;
+    var dotRadius = 5;
+    var ringRadius = 9;
+    var ringColor = 'rgba(36,86,230,0.5)';
+
+    function cosineSimilarity(a, b) {
+        var dot = 0, na = 0, nb = 0;
+        for (var i = 0; i < a.length; i++) {
+            dot += a[i] * b[i];
+            na += a[i] * a[i];
+            nb += b[i] * b[i];
+        }
+        return dot / (Math.sqrt(na) * Math.sqrt(nb));
+    }
+
+    function findNearest(idx) {
+        var best = -1, bestSim = -1;
+        for (var i = 0; i < words.length; i++) {
+            if (i === idx) continue;
+            var sim = cosineSimilarity(words[idx].vec, words[i].vec);
+            if (sim > bestSim) { bestSim = sim; best = i; }
+        }
+        return { index: best, similarity: bestSim };
+    }
+
+    function formatVec(vec) {
+        return '[' + vec.map(function(v) { return (v >= 0 ? ' ' : '') + v.toFixed(2); }).join(', ') + ']';
+    }
+
+    function renderPoints() {
+        var ns = 'http://www.w3.org/2000/svg';
+        // remove old points
+        var old = plot.querySelectorAll('.vw-point');
+        for (var i = old.length - 1; i >= 0; i--) old[i].remove();
+
+        for (var i = 0; i < words.length; i++) {
+            var w = words[i];
+            var g = document.createElementNS(ns, 'g');
+            g.setAttribute('class', 'vw-point' + (i === selectedIdx ? ' selected' : ''));
+            g.setAttribute('data-index', i);
+
+            var ring = document.createElementNS(ns, 'circle');
+            ring.setAttribute('class', 'vw-ring');
+            ring.setAttribute('cx', w.x);
+            ring.setAttribute('cy', w.y);
+            ring.setAttribute('r', ringRadius);
+            ring.setAttribute('stroke', w.color);
+            ring.setAttribute('opacity', i === selectedIdx ? '1' : '0');
+            g.appendChild(ring);
+
+            var dot = document.createElementNS(ns, 'circle');
+            dot.setAttribute('class', 'vw-dot');
+            dot.setAttribute('cx', w.x);
+            dot.setAttribute('cy', w.y);
+            dot.setAttribute('r', i === selectedIdx ? dotRadius + 1.5 : dotRadius);
+            dot.setAttribute('fill', w.color);
+            dot.setAttribute('stroke', i === selectedIdx ? '#fff' : 'none');
+            dot.setAttribute('stroke-width', i === selectedIdx ? '1.5' : '0');
+            g.appendChild(dot);
+
+            var label = document.createElementNS(ns, 'text');
+            label.setAttribute('class', 'vw-label');
+            label.setAttribute('x', w.x);
+            label.setAttribute('y', w.y - dotRadius - 4);
+            label.setAttribute('text-anchor', 'middle');
+            label.textContent = w.word;
+            g.appendChild(label);
+
+            g.addEventListener('click', (function(idx) {
+                return function(ev) {
+                    ev.stopPropagation();
+                    selectWord(idx);
+                };
+            })(i));
+
+            g.addEventListener('touchstart', (function(idx) {
+                return function(ev) {
+                    ev.preventDefault();
+                    selectWord(idx);
+                };
+            })(i), { passive: false });
+
+            plot.appendChild(g);
+        }
+    }
+
+    function selectWord(idx) {
+        if (idx === selectedIdx) return;
+        selectedIdx = idx;
+
+        // update points
+        var allPoints = plot.querySelectorAll('.vw-point');
+        for (var i = 0; i < allPoints.length; i++) {
+            var p = allPoints[i];
+            var index = parseInt(p.getAttribute('data-index'));
+            if (index === idx) {
+                p.classList.add('selected');
+                var ring = p.querySelector('.vw-ring');
+                if (ring) ring.setAttribute('opacity', '1');
+                var dot = p.querySelector('.vw-dot');
+                if (dot) {
+                    dot.setAttribute('r', dotRadius + 1.5);
+                    dot.setAttribute('stroke', '#fff');
+                    dot.setAttribute('stroke-width', '1.5');
+                }
+                var lbl = p.querySelector('.vw-label');
+                if (lbl) {
+                    lbl.setAttribute('font-size', '8');
+                    lbl.setAttribute('font-weight', '700');
+                }
+            } else {
+                p.classList.remove('selected');
+                var ring2 = p.querySelector('.vw-ring');
+                if (ring2) ring2.setAttribute('opacity', '0');
+                var dot2 = p.querySelector('.vw-dot');
+                if (dot2) {
+                    dot2.setAttribute('r', dotRadius);
+                    dot2.setAttribute('stroke', 'none');
+                    dot2.setAttribute('stroke-width', '0');
+                }
+                var lbl2 = p.querySelector('.vw-label');
+                if (lbl2) {
+                    lbl2.setAttribute('font-size', '7');
+                    lbl2.setAttribute('font-weight', '600');
+                }
+            }
+        }
+
+        // update details
+        var w = words[idx];
+        wordName.textContent = w.word;
+        swatch.style.background = w.color;
+        vecVals.textContent = formatVec(w.vec);
+        vecDims.textContent = '384 dim';
+
+        var nearest = findNearest(idx);
+        if (nearest.index >= 0) {
+            var simPct = Math.round(nearest.similarity * 100);
+            neighborInfo.textContent = 'Nearest: ' + words[nearest.index].word + ' (' + simPct + '% sim)';
+        }
+
+        // highlight pipeline step 3 (vector)
+        steps.forEach(function(s, si) {
+            s.classList.toggle('active', si === 3);
+        });
+    }
+
+    // initialize with first word selected
+    renderPoints();
+    selectWord(0);
+
+    // add a small stagger animation on load via opacity
+    var pts = plot.querySelectorAll('.vw-point');
+    for (var i = 0; i < pts.length; i++) {
+        (function(el, delay) {
+            el.style.opacity = '0';
+            el.style.transition = 'opacity 0.35s ease ' + delay + 's';
+            setTimeout(function() { el.style.opacity = '1'; }, 50);
+        })(pts[i], 0.08 * i);
+    }
+
+    // pipeline click interaction — clicking a step shows that phase
+    steps.forEach(function(el, idx) {
+        el.addEventListener('click', function() {
+            steps.forEach(function(s) { s.classList.remove('active'); });
+            el.classList.add('active');
+            if (idx === 3) {
+                // show vector of current selection
+                var w = words[selectedIdx];
+                vecVals.textContent = formatVec(w.vec);
+                vecDims.textContent = '384 dim';
+            } else if (idx === 0) {
+                var w2 = words[selectedIdx];
+                vecVals.textContent = '"' + w2.word + '"';
+                vecDims.textContent = '1 word';
+            } else if (idx === 1) {
+                var w3 = words[selectedIdx];
+                vecVals.textContent = '[' + w3.word + ']';
+                vecDims.textContent = '1 token';
+            } else if (idx === 2) {
+                var w4 = words[selectedIdx];
+                vecVals.textContent = 'Embedding model → ' + w4.word;
+                vecDims.textContent = 'encoder';
+            }
+        });
+    });
+})();
+</script>
+</body>
+</html>

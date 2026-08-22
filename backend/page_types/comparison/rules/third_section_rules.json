@@ -1,0 +1,45 @@
+{
+  "services": {
+    "sec-head": {
+      "eyebrow": "Eyebrow label (e.g., 'What I build'). Max 3 words.",
+      "h2": "Services section heading (e.g., 'RAG framework development services').",
+      "p": "Subtitle explaining how services are matched to project needs."
+    },
+    "grid g3": [
+      {
+        "card": {
+          "n": "Category tag (e.g., 'CONSULT', 'BUILD', 'AUDIT'). 1 word uppercase.",
+          "h3": "Service offering title (e.g., 'Framework selection consulting', 'LlamaIndex RAG development').",
+          "p": "Service description detailing technical scope and deliverables. Exactly 1-2 sentences."
+        }
+      },
+      {
+        "card cta-card": {
+          "h3": "CTA card headline (e.g., 'Not sure which you need?').",
+          "p": "Supportive prompt text encouraging evaluation.",
+          "btn-primary": {
+            "text": "CTA button label (e.g., 'Get a recommendation').",
+            "url": "Anchor link (e.g., '#lets-talk')."
+          }
+        }
+      }
+    ]
+  },
+  "where-wins": {
+    "sec-head": {
+      "eyebrow": "Eyebrow label (e.g., 'The honest breakdown'). Max 3 words.",
+      "h2": "Section heading (e.g., 'Where each framework wins')."
+    },
+    "grid g2": [
+      {
+        "card": {
+          "n": "Winning condition badge (e.g., 'LLAMAINDEX WINS WHEN', 'LANGCHAIN WINS WHEN'). 3-4 words uppercase.",
+          "h3": "Core decision driver (e.g., 'Retrieval quality is the bottleneck', 'RAG is one piece of a larger agent').",
+          "ul": [
+            "Specific bullet points with benchmarks, architectural reasons, and technical details."
+          ]
+        }
+      }
+    ]
+  }
+}

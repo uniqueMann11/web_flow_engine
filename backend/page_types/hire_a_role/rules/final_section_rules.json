@@ -1,0 +1,93 @@
+{
+  "engagement": {
+    "sec-head": {
+      "eyebrow": "Section eyebrow tag (e.g., 'How we work together'). Max 4 words.",
+      "h2": "Engagement models heading (e.g., 'Engagement models'). Max 4 words."
+    },
+    "tablewrap": {
+      "thead": [
+        "Header 1 (e.g., 'Factor')",
+        "Header 2 (e.g., 'Freelance RAG developer (me, directly)')",
+        "Header 3 (e.g., 'Dedicated team (via AtlasML)')"
+      ],
+      "tbody": [
+        {
+          "th": "Factor comparison category (e.g., 'Best for', 'Team size', 'Start time', 'Cost structure')",
+          "td": [
+            "Independent freelance developer model attributes",
+            "Dedicated agency / team model attributes"
+          ]
+        }
+      ]
+    },
+    "callout": {
+      "p": [
+        "Callout headline (e.g., 'Need a full team, not just one developer?'). Max 7 words.",
+        "Pragmatic referral advice for companies needing sustained, multi-engineer capacity vs single focused system. Exactly 1-2 paragraphs."
+      ]
+    }
+  },
+  "process": {
+    "sec-head": {
+      "eyebrow": "Process eyebrow tag (e.g., 'How it gets built'). Max 4 words.",
+      "h2": "Process section heading (e.g., 'Process'). Max 3 words."
+    },
+    "steps": [
+      {
+        "step": {
+          "num": "Phase indicator (e.g., 'PHASE 01', 'PHASE 02').",
+          "days": "Duration or timeline (e.g., 'days 1 to 2', 'within 48h', 'the decisive one', 'before launch', 'handoff'). Max 3 words.",
+          "h3": "Phase name (e.g., 'Discovery', 'Architecture spec', 'Build', 'Evaluation', 'Deployment'). Max 3 words.",
+          "body": "Clear description of phase actions and testable milestones. Exactly 1-2 sentences."
+        }
+      }
+    ]
+  },
+  "pricing": {
+    "sec-head": {
+      "eyebrow": "Pricing eyebrow tag (e.g., 'Investment'). Max 3 words.",
+      "h2": "Pricing section heading (e.g., 'Pricing'). Max 3 words."
+    },
+    "tablewrap": {
+      "thead": [
+        "Header 1 (e.g., 'Engagement type')",
+        "Header 2 (e.g., 'What\\'s included')",
+        "Header 3 (e.g., 'Typical investment')"
+      ],
+      "tbody": [
+        {
+          "td": [
+            "Engagement model name (e.g., 'RAG proof-of-concept', 'Production RAG chatbot', 'RAG system audit', 'Hourly consulting')",
+            "Scope and deliverables summary",
+            "Price range or rate (e.g., '$1,500 to $4,000', '$8,000 to $30,000', '$1,000 to $3,000', '$75 to $150/hr')"
+          ]
+        }
+      ]
+    },
+    "p": "Proof note citing delivered projects and case study link. Exactly 1-2 sentences."
+  },
+  "faq": {
+    "sec-head": {
+      "eyebrow": "FAQ eyebrow tag (e.g., 'FAQ').",
+      "h2": "FAQ section heading (e.g., 'Frequently asked questions')."
+    },
+    "faq": [
+      {
+        "faq-item": {
+          "faq-q": "Frequently asked question addressing cost, timelines, framework choices, or team vs individual fit. Max 15 words.",
+          "faq-a": "Clear, authoritative answer giving honest guidance and realistic timelines. Exactly 2-4 sentences."
+        }
+      }
+    ]
+  },
+  "final": {
+    "eyebrow": "Final CTA eyebrow tag (e.g., 'Let\\'s talk').",
+    "h2": "Final CTA headline (e.g., 'Ready to hire a RAG developer?'). Max 6 words.",
+    "lede": "Value proposition closing pitch and turnaround guarantee. Exactly 1-2 sentences.",
+    "fcard": {
+      "h3": "Form card heading (e.g., 'Get your written technical spec'). Max 5 words.",
+      "sub": "Form subtitle promise (e.g., 'Specific to your data and accuracy requirements.'). Max 7 words.",
+      "btn-primary": "Submit button text (e.g., 'Book my discovery call'). Max 4 words."
+    }
+  }
+}

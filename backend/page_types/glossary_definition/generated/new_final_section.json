@@ -1,0 +1,142 @@
+{
+  "why": {
+    "sec-head": {
+      "eyebrow": "Why it matters",
+      "h2": "What is a vector?",
+      "p": "A vector embedding is a list of numbers \u2014 a mathematical representation \u2014 that captures the meaning of a piece of text, an image, or any data. Instead of storing words like 'cat' and 'dog', a model converts them into points in space where similar meanings sit close together."
+    },
+    "card": {
+      "n": "VISUAL EXAMPLE",
+      "h3": "Embeddings in action",
+      "ul": [
+        "The word 'king' becomes a vector like [0.2, 0.7, -0.1, 0.4, ...]",
+        "The word 'queen' becomes a vector like [0.3, 0.8, -0.2, 0.5, ...]",
+        "These two vectors are 'close' in the embedding space because their meanings are similar",
+        "A vector for 'apple' (fruit) sits near 'banana' but far from 'apple' (company)",
+        "A diagram would show three clusters: fruits, companies, and animals \u2014 each cluster grouping related meanings"
+      ]
+    }
+  },
+  "process": {
+    "sec-head": {
+      "eyebrow": "How it works",
+      "h2": "Process"
+    },
+    "steps": [
+      {
+        "step": {
+          "num": "STEP 01",
+          "days": "the input",
+          "h3": "Text to numbers",
+          "body": "A pre-trained embedding model, like OpenAI's text-embedding-3-small, takes your text and outputs a fixed-length vector \u2014 typically 256 to 1536 numbers."
+        }
+      },
+      {
+        "step": {
+          "num": "STEP 02",
+          "days": "the space",
+          "h3": "Semantic proximity",
+          "body": "Vectors live in a high-dimensional space. The distance between two vectors (cosine similarity) measures how similar their meanings are \u2014 closer means more related."
+        }
+      },
+      {
+        "step": {
+          "num": "STEP 03",
+          "days": "the database",
+          "h3": "Vector search",
+          "body": "A vector database indexes these embeddings. At query time, it converts your question into a vector and finds the nearest neighbors \u2014 the most semantically relevant documents."
+        }
+      },
+      {
+        "step": {
+          "num": "STEP 04",
+          "days": "the output",
+          "h3": "Retrieval result",
+          "body": "The system returns the original text chunks whose vectors are closest to the query vector, enabling accurate retrieval without exact keyword matching."
+        }
+      }
+    ]
+  },
+  "pricing": {
+    "sec-head": {
+      "eyebrow": "Investment",
+      "h2": "Pricing"
+    },
+    "tablewrap": {
+      "thead": [
+        "Engagement type",
+        "What's included",
+        "Typical investment"
+      ],
+      "tbody": [
+        {
+          "td": [
+            "Embedding concept demo",
+            "Live walkthrough of embedding generation, similarity search, and visualization",
+            "$500 to $1,500"
+          ]
+        },
+        {
+          "td": [
+            "Embedding pipeline build",
+            "Full ingestion pipeline, vector database setup, and search API",
+            "$3,000 to $10,000"
+          ]
+        },
+        {
+          "td": [
+            "Embedding system audit",
+            "Review existing embedding strategy, recommend model and index improvements",
+            "$1,000 to $2,500"
+          ]
+        },
+        {
+          "td": [
+            "Hourly consulting",
+            "Architecture review, model selection guidance, similarity threshold tuning",
+            "$75 to $150/hr"
+          ]
+        }
+      ]
+    },
+    "p": "Embedding-based retrieval systems power the AI Customer Feedback Classification pipeline and AI Video Summarizer. Full case studies at shreyans.tech/ai-case-studies."
+  },
+  "faq": {
+    "sec-head": {
+      "eyebrow": "FAQ",
+      "h2": "Frequently asked questions"
+    },
+    "faq": [
+      {
+        "faq-item": {
+          "faq-q": "What exactly is a vector embedding?",
+          "faq-a": "A vector embedding is a list of numbers that represents the meaning of a piece of data \u2014 text, image, or audio \u2014 in a high-dimensional space. Similar meanings produce vectors that are close together, enabling semantic search."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "How is an embedding different from a keyword?",
+          "faq-a": "A keyword is an exact word that must match literally. An embedding captures meaning, so 'car' and 'automobile' will have similar vectors even though they are different strings. This is why embeddings power semantic search."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "How many numbers are in a typical vector?",
+          "faq-a": "Modern embedding models output vectors with 256 to 1536 dimensions \u2014 that is, 256 to 1536 numbers. Higher dimensions capture more nuance but increase storage and compute cost."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "Can I create my own embedding model?",
+          "faq-a": "You can fine-tune an existing embedding model on your domain, but most applications use a pre-trained model from OpenAI, Cohere, or sentence-transformers. Fine-tuning is only needed for highly specialized vocabularies."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "What is cosine similarity?",
+          "faq-a": "Cosine similarity measures the angle between two vectors; it ranges from -1 (opposite meaning) to 1 (identical meaning). It is the most common metric for comparing embeddings because it ignores vector length and focuses on direction."
+        }
+      }
+    ]
+  }
+}

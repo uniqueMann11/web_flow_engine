@@ -1,0 +1,78 @@
+{
+  "comply": {
+    "comply-in": [
+      {
+        "b": "Meaning captured, not hashed",
+        "span": "The embedding maps similar words and concepts to nearby points in a high-dimensional space."
+      },
+      {
+        "b": "Context matters",
+        "span": "Same word in different sentences produces different vectors, so relationships stay precise."
+      },
+      {
+        "b": "Numbers represent semantics",
+        "span": "These lists of floats allow computers to measure meaning mathematically and find related content."
+      },
+      {
+        "b": "Foundation for search",
+        "span": "Vector embeddings enable semantic search, clustering, and retrieval without exact keyword matches."
+      }
+    ]
+  },
+  "what-is": {
+    "sec-head": {
+      "eyebrow": "Plain definition",
+      "h2": "What is a vector embedding?"
+    },
+    "tldr": {
+      "b": "Definition",
+      "p": [
+        "A vector embedding is a numerical representation of data\u2014text, image, audio, or other content\u2014converted into a list of floating-point numbers (a vector) that captures its semantic meaning. Each coordinate in the vector represents abstract features learned by a machine learning model, so that similar concepts occupy nearby positions in a high-dimensional space. This mathematical encoding enables computers to compare meaning at scale, making vector embeddings the core building block for semantic search, retrieval-augmented generation, recommendation systems, and clustering."
+      ]
+    }
+  },
+  "how-it-works": {
+    "sec-head": {
+      "eyebrow": "Concept walkthrough",
+      "h2": "Embedding in action",
+      "p": "The same transformation process illustrated in the interactive diagram, applied to a simple text example."
+    },
+    "grid g3": [
+      {
+        "card": {
+          "n": "STEP 1",
+          "h3": "Text input",
+          "p": "A sentence or phrase, like 'the cat sat on the mat,' is fed into an embedding model."
+        }
+      },
+      {
+        "card": {
+          "n": "STEP 2",
+          "h3": "Model encodes",
+          "p": "The model analyzes word order, synonyms, and context, producing a list of numbers like [0.12, -0.45, 0.89, ...]."
+        }
+      },
+      {
+        "card": {
+          "n": "STEP 3",
+          "h3": "Vector produced",
+          "p": "The output is a high-dimensional vector\u2014often 768 or 1536 dimensions\u2014representing the meaning."
+        }
+      },
+      {
+        "card": {
+          "n": "STEP 4",
+          "h3": "Matched by distance",
+          "p": "Cosine similarity or dot product measures how close this vector is to other vectors in the database."
+        }
+      },
+      {
+        "card": {
+          "n": "STEP 5",
+          "h3": "Semantic retrieval",
+          "p": "The closest vectors return as results, finding content that means the same thing even with different words."
+        }
+      }
+    ]
+  }
+}

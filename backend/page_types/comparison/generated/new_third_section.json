@@ -1,0 +1,88 @@
+{
+  "services": {
+    "sec-head": {
+      "eyebrow": "Search services",
+      "h2": "Search implementation services",
+      "p": "Expert guidance on choosing and building the right search approach for your data and use case."
+    },
+    "grid g3": [
+      {
+        "card": {
+          "n": "CONSULT",
+          "h3": "Search strategy consulting",
+          "p": "An independent assessment of your data, user queries, and performance requirements, resulting in a recommendation: semantic, keyword, or hybrid, with benchmarks."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Semantic search development",
+          "p": "Vector search implementation using embeddings, ANN indexes, and reranking for understanding user intent and handling synonyms."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Keyword search development",
+          "p": "Full-text search with BM25, inverted indexes, and advanced query parsing for exact matches and structured queries."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Hybrid search architecture",
+          "p": "Combining semantic and keyword search with fusion algorithms (RRF, weighted scoring) to maximize recall and precision."
+        }
+      },
+      {
+        "card": {
+          "n": "AUDIT",
+          "h3": "Search performance audit",
+          "p": "Audit of existing search systems to identify failure points, measure latency, recall, and precision, and recommend improvements."
+        }
+      },
+      {
+        "card cta-card": {
+          "h3": "Not sure which search approach you need?",
+          "p": "Try the comparison above, or get a personalized recommendation.",
+          "btn-primary": {
+            "text": "Get a recommendation",
+            "url": "#lets-talk"
+          }
+        }
+      }
+    ]
+  },
+  "where-wins": {
+    "sec-head": {
+      "eyebrow": "The honest breakdown",
+      "h2": "Where each search approach wins"
+    },
+    "grid g2": [
+      {
+        "card": {
+          "n": "SEMANTIC SEARCH WINS WHEN",
+          "h3": "Understanding user intent is critical",
+          "ul": [
+            "User queries are natural language, conversational, or contain synonyms: semantic search captures meaning, not just words.",
+            "Keyword search fails on ambiguous or long-tail queries: semantic search bridges vocabulary gaps and returns relevant results even with no exact match.",
+            "But semantic search fails on precise numeric filters, product codes, or proper names: vector similarity can miss exact matches.",
+            "Hybrid search solves this by combining semantic recall with keyword precision, using reciprocal rank fusion (RRF) to blend scores."
+          ]
+        }
+      },
+      {
+        "card": {
+          "n": "KEYWORD SEARCH WINS WHEN",
+          "h3": "Exact matching and structured queries matter",
+          "ul": [
+            "Queries contain unique identifiers, SKUs, or exact phrases where precision is paramount: BM25 and inverted indexes guarantee exact matches.",
+            "Semantic search fails on rare terms or out-of-domain vocabulary: embeddings may not distinguish subtle differences, returning false positives.",
+            "But keyword search fails on synonymy, misspellings, and natural language: it cannot understand that 'car' and 'automobile' are the same.",
+            "Hybrid search combines both: keyword handles exact matches, semantic handles intent, and fusion ensures no trade-off in recall or precision."
+          ]
+        }
+      }
+    ]
+  }
+}

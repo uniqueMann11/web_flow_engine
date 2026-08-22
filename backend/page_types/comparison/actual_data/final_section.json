@@ -1,0 +1,131 @@
+{
+  "process": {
+    "sec-head": {
+      "eyebrow": "How it gets built",
+      "h2": "Engagement process"
+    },
+    "steps": [
+      {
+        "step": {
+          "num": "PHASE 01",
+          "days": "days 1 to 2",
+          "h3": "Discovery",
+          "body": "Understanding your data, use case, and whether the core challenge is retrieval quality, agentic behavior, or both."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 02",
+          "days": "within 48h",
+          "h3": "Framework recommendation",
+          "body": "A written architecture spec with a specific framework recommendation and reasoning, delivered within 48 hours."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 03",
+          "days": "the decisive one",
+          "h3": "Build",
+          "body": "Development in milestones, retrieval layer first if applicable, then orchestration and guardrails."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 04",
+          "days": "before launch",
+          "h3": "Evaluation",
+          "body": "Testing against your real queries and use cases using RAGAS or a custom eval set."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 05",
+          "days": "handoff",
+          "h3": "Deployment",
+          "body": "Production deployment with monitoring, tracing, and documentation for your team."
+        }
+      }
+    ]
+  },
+  "pricing": {
+    "sec-head": {
+      "eyebrow": "Investment",
+      "h2": "Pricing"
+    },
+    "tablewrap": {
+      "thead": [
+        "Engagement type",
+        "What's included",
+        "Typical investment"
+      ],
+      "tbody": [
+        {
+          "td": [
+            "Framework selection consulting",
+            "Written architecture recommendation and spec",
+            "$500 to $1,500"
+          ]
+        },
+        {
+          "td": [
+            "LlamaIndex RAG build",
+            "Retrieval pipeline, ingestion, evaluation, deployment",
+            "$8,000 to $25,000"
+          ]
+        },
+        {
+          "td": [
+            "LangChain/LangGraph agent build",
+            "Multi-step agent, tools, memory, guardrails, deployment",
+            "$8,000 to $30,000+"
+          ]
+        },
+        {
+          "td": [
+            "Hybrid architecture build",
+            "Both frameworks combined, full production system",
+            "$15,000 to $40,000+"
+          ]
+        }
+      ]
+    }
+  },
+  "faq": {
+    "sec-head": {
+      "eyebrow": "FAQ",
+      "h2": "Frequently asked questions"
+    },
+    "faq": [
+      {
+        "faq-item": {
+          "faq-q": "Is LlamaIndex better than LangChain for RAG?",
+          "faq-a": "For pure retrieval-augmented generation over document corpora, LlamaIndex is generally the stronger choice: its default chunking, metadata filtering, and reranking are more production-calibrated out of the box. For RAG as part of a broader agent system, LangChain remains the stronger foundation."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "Can you build with both frameworks in one project?",
+          "faq-a": "Yes, this is the most common production pattern I build in 2026: LlamaIndex handling retrieval, wrapped as a tool inside a LangGraph agent for orchestration. This combines the strengths of both rather than forcing one framework to do both jobs."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "How do you decide which framework to recommend?",
+          "faq-a": "Based on where your hardest problem actually lives: if it is retrieval quality over a messy document corpus, LlamaIndex. If it is multi-step agent behavior, tool use, or memory, LangChain and LangGraph. The framework recommendation is delivered in writing with the reasoning, as part of the discovery process, before any build work begins."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "Do I need a LangChain agency or can a freelance consultant handle this?",
+          "faq-a": "Most RAG and agent projects, a specific pipeline, agent, or integration, are well within scope for a single experienced developer working directly with you. An agency's advantage shows up on large, multi-disciplinary product builds needing several specialists in parallel, not on the RAG/LangChain engineering itself."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "How much does RAG framework development cost?",
+          "faq-a": "A framework selection consultation runs $500 to $1,500. A full LlamaIndex or LangChain build ranges from $8,000 to $30,000+ depending on complexity. A hybrid architecture combining both frameworks typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use case."
+        }
+      }
+    ]
+  }
+}

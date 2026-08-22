@@ -1,0 +1,47 @@
+{
+  "services": {
+    "sec-head": {
+      "eyebrow": "Section eyebrow tag (e.g., 'What I offer'). Max 4 words.",
+      "h2": "Services heading (e.g., 'RAG development services I offer'). Max 7 words."
+    },
+    "grid g3": [
+      {
+        "card": {
+          "n": "Service type badge (e.g., 'BUILD', 'AUDIT', 'ADVISE'). Max 1 word.",
+          "h3": "Service name heading (e.g., 'RAG chatbot development'). Max 4-5 words.",
+          "p": "Clear description of the service deliverables, technical scope, and safety boundaries. Exactly 1-2 sentences."
+        }
+      },
+      {
+        "card cta-card": {
+          "h3": "CTA card headline (e.g., 'Not sure what you need?'). Max 5 words.",
+          "p": "Actionable invitation to discuss or preview specs (e.g., 'Try the spec-preview widget above, or get it scoped properly.'). Max 12 words.",
+          "btn-primary": {
+            "text": "CTA button text (e.g., 'Talk it through'). Max 3 words.",
+            "url": "Anchor link (e.g., '#lets-talk')."
+          }
+        }
+      }
+    ]
+  },
+  "stack": {
+    "sec-head": {
+      "eyebrow": "Tooling eyebrow tag (e.g., 'Tooling'). Max 2 words.",
+      "h2": "Tech stack heading (e.g., 'Tech stack & ecosystem'). Max 5 words."
+    },
+    "stack-tabs": [
+      {
+        "key": "Tab two-digit index (e.g., '01', '02', '03', '04', '05')",
+        "name": "Category name (e.g., 'Orchestration & Frameworks', 'Vector Databases', 'Embedding Models', 'LLMs & Frontier Models', 'Evaluation & Deployment')",
+        "id": "Matching slug id (e.g., 'orch', 'vec', 'emb', 'llm', 'eval')"
+      }
+    ],
+    "stack-panels": {
+      "orch": "Array of 4-6 orchestration frameworks (e.g., ['LangChain', 'LlamaIndex', 'LangGraph', 'Haystack'])",
+      "vec": "Array of 4-6 vector database technologies (e.g., ['Pinecone', 'Weaviate', 'Qdrant', 'pgvector (PostgreSQL)', 'Chroma DB', 'FAISS'])",
+      "emb": "Array of 4-6 embedding model providers (e.g., ['OpenAI Embeddings', 'Cohere Embed & Rerank', 'BAAI BGE', 'Voyage AI'])",
+      "llm": "Array of 4-6 LLM models (e.g., ['OpenAI GPT-4o', 'Anthropic Claude', 'Google Gemini', 'Meta Llama 3', 'Mistral AI'])",
+      "eval": "Array of 4-6 eval and deployment tools (e.g., ['RAGAS', 'DeepEval', 'FastAPI', 'Docker', 'AWS / GCP / Azure'])"
+    }
+  }
+}

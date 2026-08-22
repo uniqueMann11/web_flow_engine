@@ -1,0 +1,59 @@
+{
+  "hero": {
+    "eyebrow": "Production-grade, not a demo",
+    "h1": {
+      "h1": "LangChain development services:",
+      "span": "production-grade agents and RAG pipelines"
+    },
+    "hero-sub": "LangChain has become the default framework for building serious LLM applications: agents that use tools, maintain memory, and reason across multiple steps, not just single-shot chatbot replies. I build this correctly: production-grade, not a fragile demo that breaks the first time a tool call fails.",
+    "creds": [
+      {
+        "cred": {
+          "i": "Experience",
+          "b": "5+ yrs LangChain/LangGraph"
+        }
+      },
+      {
+        "cred": {
+          "i": "Access",
+          "b": "Direct, no account manager"
+        }
+      },
+      {
+        "cred": {
+          "i": "Turnaround",
+          "b": "48h architecture spec"
+        }
+      }
+    ],
+    "hero-cta": [
+      {
+        "btn-primary": {
+          "text": "Talk to a LangChain developer",
+          "url": "#lets-talk"
+        }
+      },
+      {
+        "btn-ghost": {
+          "text": "View case studies",
+          "url": "/ai-case-studies"
+        }
+      }
+    ],
+    "live": "Honest read included: whether LangChain is even the right tool for it",
+    "trust": [
+      {
+        "b": "119K+",
+        "span": "GitHub stars, LangChain"
+      },
+      {
+        "b": "500+",
+        "span": "Integrations available"
+      },
+      {
+        "b": "48h",
+        "span": "To a written architecture spec"
+      }
+    ]
+  }
+}

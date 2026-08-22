@@ -1,0 +1,84 @@
+{
+  "services": {
+    "sec-head": {
+      "eyebrow": "For Healthcare",
+      "h2": "RAG chatbot development for healthcare"
+    },
+    "grid g3": [
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "HIPAA-compliant RAG pipeline development",
+          "p": "Retrieval-augmented generation pipelines built with LangChain and LlamaIndex, designed for clinical documents, research papers, and patient records while ensuring end-to-end HIPAA compliance through encrypted embeddings and access controls."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Clinical decision support agents (LangGraph)",
+          "p": "Multi-step agents using explicit state graphs and conditional edges for clinical workflows such as differential diagnosis, treatment planning, and medication checks, with built-in audit trails for HIPAA accountability."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "EHR & medical API integrations",
+          "p": "Systems that connect the LLM to electronic health records (EHR), lab systems, and provider APIs, enabling secure execution of actions like retrieving patient histories or scheduling follow-ups, all within HIPAA-compliant boundaries."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Patient memory & continuity systems",
+          "p": "Chatbots that maintain clinical context across multiple encounters, storing summaries of prior visits, allergies, and medication lists while fully encrypting PHI and supporting patient consent management."
+        }
+      },
+      {
+        "card": {
+          "n": "AUDIT",
+          "h3": "HIPAA compliance audits & migration",
+          "p": "Review of existing LangChain implementations for PHI exposure risks, data handling gaps, and encryption practices, plus migration support to meet HIPAA Privacy and Security Rule requirements."
+        }
+      },
+      {
+        "card cta-card": {
+          "h3": "Not sure about HIPAA compliance?",
+          "p": "We provide an honest assessment of your current AI pipeline's compliance posture and what's needed.",
+          "btn-primary": {
+            "text": "Get a compliance check",
+            "url": "#lets-talk"
+          }
+        }
+      }
+    ]
+  },
+  "engagement": {
+    "sec-head": {
+      "eyebrow": "How we work together",
+      "h2": "Engagement models"
+    },
+    "grid g3": [
+      {
+        "card": {
+          "n": "PROJECT-BASED",
+          "h3": "Fixed-price, milestone-based",
+          "p": "A scoped RAG chatbot build for healthcare delivered as a fixed-price, milestone-based engagement, including HIPAA compliance documentation."
+        }
+      },
+      {
+        "card": {
+          "n": "HOURLY",
+          "h3": "Consulting",
+          "p": "Architecture review or debugging support for existing healthcare AI implementations, with focus on PHI security."
+        }
+      },
+      {
+        "card": {
+          "n": "RETAINER",
+          "h3": "Dedicated monthly",
+          "p": "Ongoing healthcare RAG development for businesses with a continuing AI roadmap, ensuring continuous compliance updates."
+        }
+      }
+    ]
+  }
+}

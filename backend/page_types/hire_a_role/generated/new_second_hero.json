@@ -1,0 +1,70 @@
+{
+  "comply": {
+    "comply-in": [
+      {
+        "b": "You work with me, directly",
+        "span": "No account manager, no rotating junior, the person who scopes it also builds it."
+      },
+      {
+        "b": "Working, integrated systems",
+        "span": "Not a proof-of-concept left on a shelf, a deployed system connected to your stack."
+      },
+      {
+        "b": "Written spec first",
+        "span": "Architecture, timeline, and cost in writing within 48 hours, before any billing begins."
+      },
+      {
+        "b": "Right-sized engagement",
+        "span": "One developer for a scoped system, or a referral to a dedicated team when you need more."
+      }
+    ]
+  },
+  "what-is": {
+    "sec-head": {
+      "eyebrow": "Plain answer",
+      "h2": "What does an AI agent developer do?"
+    },
+    "tldr": {
+      "b": "Quick answer",
+      "p": [
+        "An AI agent developer designs and builds autonomous agent systems: architectures that orchestrate LLMs, tools, and memory to execute complex, multi-step tasks. This includes framework selection (LangGraph, CrewAI, AutoGen), tool integration, state management, guardrails, observability, and production deployment. A freelance AI agent developer delivers a functioning, production-ready system with a proven delivery record, not just a framework demo."
+      ]
+    }
+  },
+  "roles": {
+    "sec-head": {
+      "eyebrow": "Job title decoder",
+      "h2": "AI agent developer vs LLM engineer vs AI engineer"
+    },
+    "tablewrap": {
+      "thead": [
+        "Title",
+        "Primary focus",
+        "When you need this role"
+      ],
+      "tbody": [
+        {
+          "th": "AI agent developer",
+          "td": [
+            "Autonomous agent architecture, framework implementation, tool orchestration, and state management",
+            "You need a system that plans, executes, and adapts across multiple steps using your tools and data"
+          ]
+        },
+        {
+          "th": "LLM engineer",
+          "td": [
+            "Fine-tuning, prompt engineering, model evaluation",
+            "You need to customize model behavior itself, not just what it knows"
+          ]
+        },
+        {
+          "th": "AI engineer",
+          "td": [
+            "Broader ML/AI system design, may include agents, training, and MLOps",
+            "You need end-to-end AI infrastructure, agent development being one part"
+          ]
+        }
+      ]
+    }
+  }
+}

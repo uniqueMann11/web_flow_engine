@@ -1,0 +1,2283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAG Development Services | What Is Retrieval-Augmented Generation | Shreyans Padmani</title>
+  <meta name="robots" content="index, follow">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="author" content="Shreyans Padmani">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Shreyans Padmani">
+  <meta property="og:locale" content="en_US">
+  <meta name="description"
+    content="RAG development services: what retrieval-augmented generation is, how it works, and how I build production RAG systems, document ingestion, retrieval engineering, guardrails, and deployment.">
+  <meta name="keywords" content="what is RAG, retrieval augmented generation explained, RAG development services">
+  <link rel="canonical" href="https://shreyans.tech/what-is-rag" />
+  <meta property="og:title" content="RAG Development Services | What Is RAG — Shreyans Padmani">
+  <meta property="og:url" content="https://shreyans.tech/what-is-rag">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@shreyanspadmani">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="shortcut icon" href="/assets/image/shreyans.png" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/image/shreyans.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          "name": "RAG Development Services",
+          "url": "https://shreyans.tech/what-is-rag",
+          "provider": { "@type": "Person", "name": "Shreyans Padmani", "url": "https://shreyans.tech" }
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Retrieval-Augmented Generation",
+          "description": "Retrieval-augmented generation (RAG) is an AI architecture that improves large language model responses by retrieving relevant information from an external knowledge base at query time and inserting it into the model's context before it generates an answer, grounding each response in specific, current, and verifiable source content."
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://shreyans.tech/" },
+            { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://shreyans.tech/hire-ai-developer" },
+            { "@type": "ListItem", "position": 3, "name": "RAG Development", "item": "https://shreyans.tech/services/rag-development" },
+            { "@type": "ListItem", "position": 4, "name": "What Is RAG", "item": "https://shreyans.tech/what-is-rag" }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "What does RAG stand for?", "acceptedAnswer": { "@type": "Answer", "text": "RAG stands for retrieval-augmented generation, an AI architecture that retrieves relevant information before an LLM generates its response, rather than relying only on the model's training data." } },
+            { "@type": "Question", "name": "Is RAG the same as fine-tuning?", "acceptedAnswer": { "@type": "Answer", "text": "No. Fine-tuning changes a model's weights through additional training. RAG retrieves external information and adds it to the model's context at query time without changing the model. They solve different problems and are often used together." } },
+            { "@type": "Question", "name": "Does RAG eliminate AI hallucination?", "acceptedAnswer": { "@type": "Answer", "text": "RAG significantly reduces hallucination, typically 60 to 80% versus a bare LLM, by grounding responses in retrieved content, but does not eliminate it entirely. Guardrails and confidence thresholds are layered on top in every production system." } },
+            { "@type": "Question", "name": "How much does RAG development cost?", "acceptedAnswer": { "@type": "Answer", "text": "A proof-of-concept starts at $1,500 to $4,000. A full production RAG system ranges from $8,000 to $30,000 depending on complexity and data volume." } },
+            { "@type": "Question", "name": "How long does it take to build a RAG system?", "acceptedAnswer": { "@type": "Answer", "text": "A proof-of-concept typically takes 2 to 4 weeks. A full production system with guardrails, evaluation, and deployment typically takes 4 to 10 weeks depending on data complexity and integration scope." } }
+          ]
+        }
+      ]
+    }</script>
+
+  <style>
+    .svcp {
+      --ink: #0A1222;
+      --ink-soft: #1B2740;
+      --body: #48566E;
+      --muted: #6B7A93;
+      --line: #E6ECF4;
+      --line-soft: #EFF3F9;
+      --surface: #FFFFFF;
+      --soft: #F4F8FD;
+      --tint: #EAF0FF;
+      --blue: #2456E6;
+      --blue-strong: #1740C0;
+      --blue-tint: #E6EEFF;
+      --violet: #6D5EF6;
+      --violet-tint: #EDEAFE;
+      --mint: #0FA968;
+      --mint-tint: #E4F7EE;
+      --mint-deep: #0B7D4E;
+      --amber: #D97A18;
+      --amber-tint: #FCEFDD;
+      --rose: #E11D48;
+      --sh-sm: 0 1px 2px rgba(10, 18, 34, .04), 0 2px 6px rgba(10, 18, 34, .05);
+      --sh-md: 0 14px 34px -16px rgba(10, 18, 34, .22);
+      --sh-lg: 0 30px 70px -28px rgba(36, 86, 230, .32);
+      --r: 18px;
+      --r-sm: 12px;
+      --maxw: 1200px;
+      --disp: "Plus Jakarta Sans", system-ui, sans-serif;
+      --bodyf: "Inter", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+
+    .svcp *,
+    .svcp *::before,
+    .svcp *::after {
+      box-sizing: border-box
+    }
+
+    .svcp {
+      margin: 0;
+      font-family: var(--bodyf);
+      color: var(--body);
+      background: var(--surface);
+      line-height: 1.68;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      position: relative;
+      overflow-x: hidden
+    }
+
+    .svcp img,
+    .svcp svg {
+      max-width: 100%;
+      display: block
+    }
+
+    .svcp a {
+      color: var(--blue);
+      text-decoration: none
+    }
+
+    .svcp h1,
+    .svcp h2,
+    .svcp h3,
+    .svcp h4 {
+      font-family: var(--disp);
+      color: var(--ink);
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin: 0
+    }
+
+    .svcp p {
+      margin: 0
+    }
+
+    .svcp .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    .svcp section {
+      padding: 92px 0
+    }
+
+    .svcp .soft {
+      background: linear-gradient(180deg, #F4F8FD, #EFF5FC)
+    }
+
+    .svcp .rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+      max-width: var(--maxw);
+      margin: 0 auto
+    }
+
+    .svcp .wash {
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 760px;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(1100px 460px at 78% -10%, rgba(36, 86, 230, .10), transparent 60%),
+        radial-gradient(760px 420px at 4% 4%, rgba(15, 169, 104, .08), transparent 55%),
+        radial-gradient(900px 500px at 50% -18%, rgba(109, 94, 246, .07), transparent 60%)
+    }
+
+    .svcp main {
+      position: relative;
+      z-index: 1
+    }
+
+    .svcp .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--mono);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin: 0 0 16px
+    }
+
+    .svcp .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--violet))
+    }
+
+    .svcp .sec-head {
+      max-width: 760px;
+      margin-bottom: 46px
+    }
+
+    .svcp .sec-head.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center
+    }
+
+    .svcp .sec-head.center .eyebrow::before {
+      display: none
+    }
+
+    .svcp .sec-head.wide {
+      max-width: 920px
+    }
+
+    .svcp .sec-head h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.75rem);
+      font-weight: 800
+    }
+
+    .svcp .sec-head p {
+      margin-top: 16px;
+      font-size: clamp(1rem, 1.5vw, 1.12rem);
+      color: var(--muted)
+    }
+
+    .svcp .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--bodyf);
+      font-weight: 600;
+      font-size: .97rem;
+      padding: 14px 24px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+      line-height: 1;
+      white-space: nowrap
+    }
+
+    .svcp .btn svg {
+      width: 17px;
+      height: 17px
+    }
+
+    .svcp .btn-primary {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      color: #fff;
+      box-shadow: var(--sh-lg)
+    }
+
+    .svcp .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 48px -18px rgba(36, 86, 230, .5)
+    }
+
+    .svcp .btn-ghost {
+      background: #fff;
+      color: var(--ink);
+      border-color: var(--line)
+    }
+
+    .svcp .btn-ghost:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-2px)
+    }
+
+    .svcp .btn-wa {
+      background: #1FA855;
+      color: #fff
+    }
+
+    .svcp .btn-wa:hover {
+      background: #178a45;
+      transform: translateY(-2px)
+    }
+
+    .svcp .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .6s cubic-bezier(.2, .7, .2, 1), transform .6s cubic-bezier(.2, .7, .2, 1)
+    }
+
+    .svcp .reveal.in {
+      opacity: 1;
+      transform: none
+    }
+
+    .svcp .hero {
+      padding: 118px 0 84px
+    }
+
+    .svcp .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 52px;
+      align-items: start
+    }
+
+    .svcp .hero .eyebrow {
+      color: var(--violet)
+    }
+
+    .svcp .hero h1 {
+      font-size: clamp(2.15rem, 4.4vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -.035em;
+      line-height: 1.06
+    }
+
+    .svcp .hero h1 span {
+      background: linear-gradient(120deg, var(--blue), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .svcp .hero-sub {
+      margin-top: 22px;
+      font-size: 1.1rem;
+      color: var(--body);
+      max-width: 56ch
+    }
+
+    .svcp .creds {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 28px 0 4px
+    }
+
+    .svcp .cred {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 8px 14px 8px 8px;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .cred .b {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      flex: 0 0 auto;
+      border: 1px solid rgba(0, 0, 0, .06)
+    }
+
+    .svcp .cred .t {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2
+    }
+
+    .svcp .cred .t i {
+      font-style: normal;
+      font-size: .64rem;
+      font-family: var(--mono);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .svcp .cred .t b {
+      font-size: .82rem;
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    .svcp .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px
+    }
+
+    .svcp .live {
+      margin-top: 18px;
+      font-size: .85rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 9px
+    }
+
+    .svcp .live .pulse {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 0 0 rgba(15, 169, 104, .5);
+      animation: pulse 2.2s infinite
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(15, 169, 104, .45)
+      }
+
+      70% {
+        box-shadow: 0 0 0 8px rgba(15, 169, 104, 0)
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(15, 169, 104, 0)
+      }
+    }
+
+    .svcp .trust {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 34px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line)
+    }
+
+    .svcp .trust b {
+      display: block;
+      font-family: var(--disp);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1
+    }
+
+    .svcp .trust span {
+      font-size: .74rem;
+      color: var(--muted);
+      margin-top: 6px;
+      display: block
+    }
+
+    .svcp .viewer {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--sh-md);
+      overflow: hidden;
+      position: sticky;
+      top: 90px
+    }
+
+    .svcp .viewer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #fbfcff, #f3f7fe)
+    }
+
+    .svcp .viewer-top .t {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    .svcp .viewer-top .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--mint-deep);
+      background: var(--mint-tint);
+      border: 1px solid #CDEBDB;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+      flex: 0 0 auto
+    }
+
+    .svcp .viewer-top .chip .d {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--mint);
+      animation: pulse 2.2s infinite
+    }
+
+    .svcp #sigcanvas {
+      display: block;
+      width: 100%;
+      height: 236px;
+      background:
+        radial-gradient(520px 200px at 30% 20%, rgba(36, 86, 230, .06), transparent 60%),
+        linear-gradient(180deg, #fbfcff, #f6f9fe)
+    }
+
+    .svcp .modesw {
+      display: flex;
+      gap: 6px;
+      padding: 12px 16px 0
+    }
+
+    .svcp .modesw button {
+      flex: 1;
+      font-family: var(--bodyf);
+      font-weight: 600;
+      font-size: .85rem;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all .18s ease
+    }
+
+    .svcp .modesw button[aria-selected="true"] {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 8px 18px -8px rgba(36, 86, 230, .6)
+    }
+
+    .svcp .segs {
+      display: flex;
+      gap: 6px;
+      padding: 10px 16px 4px;
+      flex-wrap: wrap
+    }
+
+    .svcp .segs button {
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .03em;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .18s ease
+    }
+
+    .svcp .segs button[aria-selected="true"] {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-tint)
+    }
+
+    .svcp .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 12px 16px
+    }
+
+    .svcp .metrics>div {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 11px 12px;
+      text-align: center
+    }
+
+    .svcp .metrics b {
+      display: block;
+      font-family: var(--disp);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--ink)
+    }
+
+    .svcp .metrics b.sc-good {
+      color: var(--mint-deep)
+    }
+
+    .svcp .metrics b.sc-bad {
+      color: var(--rose)
+    }
+
+    .svcp .metrics span {
+      font-size: .66rem;
+      color: var(--muted);
+      margin-top: 3px;
+      display: block
+    }
+
+    .svcp .answerbox {
+      margin: 4px 16px 0;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 15px
+    }
+
+    .svcp .answerbox .k {
+      font-family: var(--mono);
+      font-size: .62rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px
+    }
+
+    .svcp .answerbox p {
+      font-size: .9rem;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      min-height: 44px
+    }
+
+    .svcp .answerbox p .warn {
+      color: var(--rose);
+      font-weight: 600
+    }
+
+    .svcp .answerbox p .good {
+      color: var(--mint-deep);
+      font-weight: 600
+    }
+
+    .svcp .citelist {
+      list-style: none;
+      margin: 10px 16px 0;
+      padding: 0;
+      display: grid;
+      gap: 6px
+    }
+
+    .svcp .citelist li {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: .78rem;
+      color: var(--ink-soft);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 8px 11px
+    }
+
+    .svcp .citelist li .src {
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--blue);
+      font-weight: 600
+    }
+
+    .svcp .citelist li .rel {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--mint-deep);
+      background: var(--mint-tint);
+      padding: 2px 7px;
+      border-radius: 6px
+    }
+
+    .svcp .citelist.empty li {
+      color: var(--muted);
+      border-style: dashed
+    }
+
+    .svcp .viewer-foot {
+      padding: 12px 16px 16px;
+      font-size: .76rem;
+      color: var(--muted);
+      line-height: 1.5
+    }
+
+    .svcp .specpick {
+      display: flex;
+      gap: 6px;
+      padding: 14px 16px 0;
+      flex-wrap: wrap
+    }
+
+    .svcp .specpick button {
+      flex: 1;
+      min-width: 120px;
+      font-family: var(--bodyf);
+      font-weight: 600;
+      font-size: .82rem;
+      padding: 10px 8px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all .18s ease
+    }
+
+    .svcp .specpick button[aria-selected="true"] {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 8px 18px -8px rgba(36, 86, 230, .6)
+    }
+
+    .svcp .spec-doc {
+      margin: 16px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 20px
+    }
+
+    .svcp .spec-doc .sd-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line)
+    }
+
+    .svcp .spec-doc .sd-head b {
+      font-family: var(--disp);
+      font-size: .95rem;
+      color: var(--ink)
+    }
+
+    .svcp .spec-doc .sd-head span {
+      font-family: var(--mono);
+      font-size: .64rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em
+    }
+
+    .svcp .spec-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line-soft);
+      font-size: .86rem
+    }
+
+    .svcp .spec-row:last-child {
+      border-bottom: 0
+    }
+
+    .svcp .spec-row .k {
+      color: var(--muted);
+      flex: 0 0 auto
+    }
+
+    .svcp .spec-row .v {
+      color: var(--ink-soft);
+      font-weight: 600;
+      text-align: right
+    }
+
+    .svcp .comply {
+      background: var(--ink);
+      color: #C7D2E6
+    }
+
+    .svcp .comply-in {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      padding: 0
+    }
+
+    .svcp .comply-in>div {
+      padding: 26px 26px;
+      border-right: 1px solid rgba(255, 255, 255, .08);
+      display: flex;
+      gap: 12px
+    }
+
+    .svcp .comply-in>div:last-child {
+      border-right: 0
+    }
+
+    .svcp .comply-in>div::before {
+      content: "";
+      flex: 0 0 auto;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      margin-top: 6px;
+      background: linear-gradient(135deg, var(--mint), #43D399)
+    }
+
+    .svcp .comply-in span {
+      font-size: .86rem;
+      line-height: 1.5
+    }
+
+    .svcp .comply-in b {
+      display: block;
+      color: #fff;
+      font-family: var(--disp);
+      font-size: .98rem;
+      font-weight: 700;
+      margin-bottom: 3px
+    }
+
+    .svcp .tldr {
+      background: linear-gradient(180deg, #fff, #fbfdff);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--blue);
+      border-radius: var(--r);
+      padding: 28px 30px;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .tldr b {
+      font-family: var(--mono);
+      font-size: .66rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      display: block;
+      margin-bottom: 12px
+    }
+
+    .svcp .tldr p {
+      color: var(--ink-soft);
+      font-size: 1rem;
+      margin-bottom: 16px
+    }
+
+    .svcp .tldr p:last-child {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    .svcp .grid {
+      display: grid;
+      gap: 20px
+    }
+
+    .svcp .g2 {
+      grid-template-columns: repeat(2, 1fr)
+    }
+
+    .svcp .g3 {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .svcp .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 26px;
+      box-shadow: var(--sh-sm);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      position: relative
+    }
+
+    .svcp .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--sh-md);
+      border-color: #D6E1F5
+    }
+
+    .svcp .card h3 {
+      font-size: 1.14rem;
+      font-weight: 700;
+      margin-bottom: 9px
+    }
+
+    .svcp .card p {
+      font-size: .93rem;
+      color: var(--muted)
+    }
+
+    .svcp .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      display: grid;
+      gap: 9px
+    }
+
+    .svcp .card ul li {
+      position: relative;
+      padding-left: 24px;
+      font-size: .87rem;
+      color: var(--ink-soft);
+      line-height: 1.5
+    }
+
+    .svcp .card ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--mint-tint);
+      box-shadow: inset 0 0 0 2px var(--mint)
+    }
+
+    .svcp .card .n {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: .6rem;
+      letter-spacing: .12em;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 7px;
+      margin-bottom: 16px;
+      background: var(--tint);
+      color: var(--blue-strong)
+    }
+
+    .svcp .card .n.build {
+      background: var(--violet-tint);
+      color: #5443D6
+    }
+
+    .svcp .card .n.advise {
+      background: var(--amber-tint);
+      color: #B4610C
+    }
+
+    .svcp .card .ic {
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--blue-tint), #F2F6FF);
+      color: var(--blue)
+    }
+
+    .svcp .card .ic svg {
+      width: 24px;
+      height: 24px
+    }
+
+    .svcp .card.cta-card {
+      background: linear-gradient(160deg, #123, #12224a);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 6px;
+      border: 0
+    }
+
+    .svcp .card.cta-card h3 {
+      color: #fff
+    }
+
+    .svcp .card.cta-card p {
+      color: #AEBEDC;
+      margin-bottom: 8px
+    }
+
+    .svcp .tablewrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--sh-sm);
+      background: #fff
+    }
+
+    .svcp table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px
+    }
+
+    .svcp th,
+    .svcp td {
+      text-align: left;
+      padding: 16px 20px;
+      font-size: .9rem;
+      border-bottom: 1px solid var(--line-soft);
+      vertical-align: top
+    }
+
+    .svcp thead th {
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 600
+    }
+
+    .svcp thead th.col-me {
+      background: #16244a;
+      color: #B7D0FF
+    }
+
+    .svcp tbody th {
+      font-weight: 600;
+      color: var(--ink);
+      font-family: var(--bodyf)
+    }
+
+    .svcp td.col-me,
+    .svcp tbody td.col-me {
+      background: var(--tint);
+      color: var(--ink-soft);
+      font-weight: 500
+    }
+
+    .svcp tr:last-child td,
+    .svcp tr:last-child th {
+      border-bottom: 0
+    }
+
+    .svcp tr.me-row td,
+    .svcp tr.me-row th {
+      background: var(--blue-tint)
+    }
+
+    .svcp tr.me-row td:first-child,
+    .svcp tr.me-row th:first-child {
+      color: var(--blue-strong);
+      font-weight: 700
+    }
+
+    .svcp .callout {
+      margin-top: 26px;
+      background: linear-gradient(135deg, var(--blue-tint), #F3F7FF);
+      border: 1px solid #D3E1FB;
+      border-radius: var(--r);
+      padding: 24px 28px
+    }
+
+    .svcp .callout p:first-child {
+      font-family: var(--disp);
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 1.05rem;
+      margin-bottom: 6px
+    }
+
+    .svcp .callout p {
+      color: var(--ink-soft);
+      font-size: .94rem
+    }
+
+    .svcp .callout.amber {
+      background: linear-gradient(135deg, var(--amber-tint), #FFF8EE);
+      border-color: #F3DDB6
+    }
+
+    .svcp .steps {
+      display: grid;
+      gap: 14px
+    }
+
+    .svcp .step {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: var(--sh-sm);
+      overflow: hidden;
+      transition: box-shadow .2s, border-color .2s
+    }
+
+    .svcp .step[open] {
+      box-shadow: var(--sh-md);
+      border-color: #D6E1F5
+    }
+
+    .svcp .step.gate {
+      border-left: 4px solid var(--amber)
+    }
+
+    .svcp .step summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 22px 26px
+    }
+
+    .svcp .step summary::-webkit-details-marker {
+      display: none
+    }
+
+    .svcp .step .num {
+      font-family: var(--mono);
+      font-size: .66rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: var(--blue);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 0 0 96px
+    }
+
+    .svcp .step.gate .num {
+      color: var(--amber)
+    }
+
+    .svcp .step .num .days {
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: .6rem
+    }
+
+    .svcp .step summary h3 {
+      flex: 1;
+      font-size: 1.08rem;
+      font-weight: 700
+    }
+
+    .svcp .step .cv {
+      font-size: 1.6rem;
+      color: var(--blue);
+      font-weight: 300;
+      transition: transform .25s;
+      line-height: 1
+    }
+
+    .svcp .step[open] .cv {
+      transform: rotate(45deg)
+    }
+
+    .svcp .step .body {
+      padding: 0 26px 24px 142px;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    @media(max-width:640px) {
+      .svcp .step .body {
+        padding: 0 22px 22px
+      }
+    }
+
+    .svcp .stack {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 30px;
+      align-items: start
+    }
+
+    .svcp .stack-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .svcp .stack-tabs button {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      background: #fff;
+      cursor: pointer;
+      text-align: left;
+      transition: all .2s ease;
+      font-family: var(--disp);
+      font-size: .92rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .stack-tabs button:hover:not([aria-selected="true"]) {
+      border-color: #CBD8EC;
+      background: #FAFCFF
+    }
+
+    .svcp .stack-tabs button[aria-selected="true"] {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 10px 22px -10px rgba(36, 86, 230, .6)
+    }
+
+    .svcp .stack-tabs button .k {
+      font-family: var(--mono);
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--muted)
+    }
+
+    .svcp .stack-tabs button[aria-selected="true"] .k {
+      color: rgba(255, 255, 255, .8)
+    }
+
+    .svcp .stack-panel {
+      display: none;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px
+    }
+
+    .svcp .stack-panel.on {
+      display: grid;
+      animation: fade .24s ease
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(6px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .svcp .chipcard {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 20px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-family: var(--mono);
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      box-shadow: var(--sh-sm);
+      transition: transform .18s, border-color .18s, box-shadow .18s
+    }
+
+    .svcp .chipcard::before {
+      content: "";
+      flex: 0 0 auto;
+      width: 8px;
+      height: 8px;
+      border-radius: 3px;
+      background: linear-gradient(135deg, var(--blue), var(--violet))
+    }
+
+    .svcp .chipcard:hover {
+      transform: translateY(-2px);
+      border-color: #CBD8EC;
+      box-shadow: var(--sh-md)
+    }
+
+    .svcp .diffs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px
+    }
+
+    .svcp .diffs>div {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 28px;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .diffs .ic {
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: .85rem;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+      margin-bottom: 16px
+    }
+
+    .svcp .diffs h3 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 8px
+    }
+
+    .svcp .diffs p {
+      font-size: .9rem;
+      color: var(--muted)
+    }
+
+    .svcp .faq {
+      max-width: 880px;
+      margin: 0 auto
+    }
+
+    .svcp .faq details {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .faq summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: 1.02rem;
+      color: var(--ink)
+    }
+
+    .svcp .faq summary::-webkit-details-marker {
+      display: none
+    }
+
+    .svcp .faq summary::after {
+      content: "+";
+      font-weight: 300;
+      font-size: 1.5rem;
+      color: var(--blue);
+      transition: transform .25s;
+      flex: 0 0 auto;
+      line-height: 1
+    }
+
+    .svcp .faq details[open] summary::after {
+      transform: rotate(45deg)
+    }
+
+    .svcp .faq .a {
+      padding: 0 24px 22px;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    .svcp .final {
+      background: linear-gradient(160deg, #0B1220, #12224a 70%, #183170);
+      color: #fff;
+      position: relative;
+      overflow: hidden
+    }
+
+    .svcp .final::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(640px 380px at 88% -10%, rgba(36, 86, 230, .4), transparent 60%), radial-gradient(520px 360px at 0 110%, rgba(15, 169, 104, .24), transparent 55%);
+      pointer-events: none
+    }
+
+    .svcp .final-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      align-items: center;
+      position: relative;
+      z-index: 1
+    }
+
+    .svcp .final .eyebrow {
+      color: #8FB0FF
+    }
+
+    .svcp .final .eyebrow::before {
+      background: #8FB0FF
+    }
+
+    .svcp .final h2 {
+      color: #fff;
+      font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+      font-weight: 800
+    }
+
+    .svcp .final p.lede {
+      color: #B7C4E0;
+      margin-top: 16px;
+      font-size: 1.06rem;
+      max-width: 46ch
+    }
+
+    .svcp .final .fcontact {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 26px
+    }
+
+    .svcp .final .fmeta {
+      margin-top: 22px;
+      font-size: .84rem;
+      color: #93A6CC;
+      display: flex;
+      align-items: center;
+      gap: 9px
+    }
+
+    .svcp .fcard {
+      background: #fff;
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: var(--sh-lg)
+    }
+
+    .svcp .fcard h3 {
+      color: var(--ink);
+      font-size: 1.28rem;
+      margin-bottom: 5px
+    }
+
+    .svcp .fcard .sub {
+      color: var(--muted);
+      font-size: .88rem;
+      margin-bottom: 22px
+    }
+
+    .svcp .fcard .fld {
+      margin-bottom: 15px
+    }
+
+    .svcp .fcard label {
+      display: block;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin-bottom: 7px
+    }
+
+    .svcp .fcard input,
+    .svcp .fcard textarea,
+    .svcp .fcard select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 13px 15px;
+      font-family: var(--bodyf);
+      font-size: .94rem;
+      color: var(--ink);
+      background: #FBFCFE;
+      transition: border-color .18s, box-shadow .18s
+    }
+
+    .svcp .fcard input:focus,
+    .svcp .fcard textarea:focus,
+    .svcp .fcard select:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-tint)
+    }
+
+    .svcp .fcard textarea {
+      resize: vertical;
+      min-height: 92px
+    }
+
+    .svcp .fcard .btn-primary {
+      width: 100%;
+      justify-content: center;
+      margin-top: 6px
+    }
+
+    .svcp .fcard .ftrust {
+      margin-top: 14px;
+      font-size: .76rem;
+      color: var(--muted);
+      text-align: center
+    }
+
+    .svcp .sticky {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 60;
+      display: none;
+      gap: 10px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, .9);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--line);
+      box-shadow: 0 -8px 24px -14px rgba(10, 18, 34, .3)
+    }
+
+    .svcp .sticky .btn {
+      flex: 1;
+      justify-content: center
+    }
+
+    @media(max-width:980px) {
+      .svcp .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px
+      }
+
+      .svcp .viewer {
+        position: static
+      }
+
+      .svcp .comply-in,
+      .svcp .final-grid {
+        grid-template-columns: 1fr
+      }
+
+      .svcp .comply-in>div {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .08)
+      }
+
+      .svcp .comply-in>div:last-child {
+        border-bottom: 0
+      }
+
+      .svcp .g3,
+      .svcp .diffs {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .svcp .stack {
+        grid-template-columns: 1fr
+      }
+
+      .svcp .stack-tabs {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 4px
+      }
+
+      .svcp .stack-tabs button {
+        white-space: nowrap
+      }
+    }
+
+    @media(max-width:640px) {
+      .svcp section {
+        padding: 64px 0
+      }
+
+      .svcp .hero {
+        padding: 104px 0 60px
+      }
+
+      .svcp .trust {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px 10px
+      }
+
+      .svcp .g2,
+      .svcp .g3,
+      .svcp .diffs,
+      .svcp .stack-panel.on {
+        grid-template-columns: 1fr
+      }
+
+      .svcp .metrics {
+        grid-template-columns: repeat(3, 1fr)
+      }
+
+      .svcp .sticky {
+        display: flex
+      }
+
+      .svcp main {
+        padding-bottom: 74px
+      }
+
+      .svcp .step summary {
+        gap: 12px;
+        padding: 18px 20px
+      }
+
+      .svcp .step .num {
+        flex-basis: 78px
+      }
+
+      .svcp .specpick button {
+        min-width: 100px;
+        font-size: .76rem
+      }
+
+      .svcp .hero-cta,
+      .svcp .fcontact {
+        flex-direction: column
+      }
+
+      .svcp .hero-cta .btn,
+      .svcp .fcontact .btn {
+        width: 100%;
+        white-space: normal;
+        text-align: center
+      }
+
+      .svcp .comply-in>div {
+        padding: 22px 20px
+      }
+    }
+
+    .svcp .btn {
+      white-space: normal
+    }
+
+    .svcp .hero-grid,
+    .svcp .final-grid {
+      min-width: 0
+    }
+
+    .svcp .hero-cta,
+    .svcp .fcontact,
+    .svcp .creds,
+    .svcp .trust,
+    .svcp .comply-in,
+    .svcp .grid,
+    .svcp .metrics {
+      min-width: 0
+    }
+
+    .svcp .cred,
+    .svcp .stat-chip {
+      min-width: 0
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .svcp * {
+        animation: none !important;
+        transition: none !important
+      }
+
+      .svcp .reveal {
+        opacity: 1;
+        transform: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="svcp">
+    <div class="wash"></div>
+    <main>
+
+      <!-- ================= HERO ================= -->
+      <section class="hero" id="demo">
+        <div class="wrap">
+          <div class="hero-grid">
+            <div>
+              <p class="eyebrow">The architecture behind grounded AI</p>
+              <h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">RAG development services: what retrieval-augmented
+                generation is, <span>and how I build it</span></h1>
+              <p class="hero-sub">Retrieval-augmented generation is the architecture behind every AI system that needs
+                to answer accurately from your own data instead of guessing from general training knowledge. I design
+                and build production RAG systems: document ingestion, retrieval engineering, generation, guardrails, and
+                deployment.</p>
+
+              <div class="creds">
+                <div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg width="15"
+                      height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 8v4l3 3" />
+                      <circle cx="12" cy="12" r="9" />
+                    </svg></span><span class="t"><i>Experience</i><b>5+ yrs production RAG</b></span></div>
+                <div class="cred"><span class="b" style="background:#0FA968" title="Reduction"><svg width="15"
+                      height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 3v18h18" />
+                      <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14" />
+                    </svg></span><span class="t"><i>Outcome</i><b>60&ndash;80% less hallucination</b></span></div>
+                <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg width="14" height="14"
+                      viewBox="0 0 24 24" fill="none" stroke="#2456E6" stroke-width="2.4" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" />
+                    </svg></span><span class="t"><i>Turnaround</i><b>48h written spec</b></span></div>
+              </div>
+
+              <div class="hero-cta">
+                <a class="btn btn-primary" href="#lets-talk">Talk to a RAG developer <svg fill="none"
+                    stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M5 12h14M13 6l6 6-6 6"></path>
+                  </svg></a>
+                <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
+              </div>
+              <p class="live"><span class="pulse"></span> Every answer traces to a source, guardrails included from day
+                one</p>
+
+              <div class="trust">
+                <div><b data-count="5" data-suffix="+">0+</b><span>Years building production RAG</span></div>
+                <div><b data-count="80" data-suffix="%">0%</b><span>Peak hallucination reduction</span></div>
+                <div><b>48h</b><span>From call to written spec</span></div>
+              </div>
+            </div>
+
+            <!-- ===== SIGNATURE: RAG vs Plain LLM vs Fine-Tuning ===== -->
+            <div class="viewer">
+              <div class="viewer-top">
+                <span class="t">grounding preview, illustrative</span>
+                <span class="chip"><span class="d"></span>live</span>
+              </div>
+              <canvas id="sigcanvas"
+                aria-label="Illustration comparing retrieval-augmented generation, a plain LLM, and a fine-tuned model. RAG retrieves matching document chunks and cites them. A plain LLM guesses with no source. A fine-tuned model answers in a trained style but without a live, checkable source."></canvas>
+              <div class="modesw" role="tablist" aria-label="Grounding mode">
+                <button role="tab" aria-selected="true" data-m="rag" type="button">RAG</button>
+                <button role="tab" aria-selected="false" data-m="bare" type="button">Plain LLM</button>
+                <button role="tab" aria-selected="false" data-m="finetune" type="button">Fine-tuned</button>
+              </div>
+              <div class="segs" role="tablist" aria-label="Business scenario">
+                <button role="tab" aria-selected="true" data-d="0" type="button">support policy</button>
+                <button role="tab" aria-selected="false" data-d="1" type="button">internal wiki</button>
+                <button role="tab" aria-selected="false" data-d="2" type="button">product catalog</button>
+              </div>
+              <div class="metrics">
+                <div><b id="m1" class="sc-good">Low</b><span id="m1l">Hallucination risk</span></div>
+                <div><b id="m2">4</b><span id="m2l">Chunks retrieved</span></div>
+                <div><b id="m3">Live docs</b><span id="m3l">Answer basis</span></div>
+              </div>
+              <div class="answerbox">
+                <span class="k">Generated answer</span>
+                <p id="answer"></p>
+              </div>
+              <ul class="citelist" id="citelist"></ul>
+              <div class="viewer-foot" id="foot">Switch modes to see what each approach actually gives you, and what it
+                can't.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= COMPLY STRIP ================= -->
+      <div class="comply">
+        <div class="wrap comply-in">
+          <div><span><b>Grounded, not guessed</b>Every answer is retrieved from your own documents at query time, not
+              the model's fixed training memory.</span></div>
+          <div><span><b>Source-traceable</b>Each response can cite the exact document it came from, for review and for
+              trust.</span></div>
+          <div><span><b>Guardrails included</b>Confidence thresholds and a defensive "I don't know" fallback ship with
+              every build, not bolted on later.</span></div>
+          <div><span><b>No retraining required</b>Update the knowledge base, not the model. Documents change daily, RAG
+              keeps up without a training run.</span></div>
+        </div>
+      </div>
+
+      <!-- ================= WHAT IS RAG (definition) ================= -->
+      <section id="what-is-rag">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">Plain answer</p>
+            <h2>What is RAG (retrieval-augmented generation)?</h2>
+          </div>
+          <div class="tldr reveal">
+            <b>Definition</b>
+            <p>Retrieval-augmented generation (RAG) is an AI architecture that improves large language model responses
+              by retrieving relevant information from an external knowledge base at query time and inserting it into the
+              model's context before it generates an answer. Instead of relying only on what the model learned during
+              training, a fixed and eventually outdated snapshot, RAG grounds each response in specific, current, and
+              verifiable source content, making answers more accurate, current, and traceable back to a source document.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= HOW RAG WORKS ================= -->
+      <section class="soft" id="how-it-works">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">Step by step</p>
+            <h2>How RAG works</h2>
+            <p>The same five-step pipeline animating in the signature panel above, applied to your own documents.</p>
+          </div>
+          <div class="grid g3 reveal" style="grid-template-columns:repeat(5,1fr)">
+            <div class="card" style="padding:20px"><span class="n">STEP 1</span>
+              <h3 style="font-size:.98rem">Query submitted</h3>
+              <p style="font-size:.84rem">A user asks a question in natural language.</p>
+            </div>
+            <div class="card" style="padding:20px"><span class="n">STEP 2</span>
+              <h3 style="font-size:.98rem">Query embedded</h3>
+              <p style="font-size:.84rem">Converted into a numerical embedding capturing its meaning.</p>
+            </div>
+            <div class="card" style="padding:20px"><span class="n">STEP 3</span>
+              <h3 style="font-size:.98rem">Vector search</h3>
+              <p style="font-size:.84rem">The system finds the most relevant chunks in a vector database.</p>
+            </div>
+            <div class="card" style="padding:20px"><span class="n">STEP 4</span>
+              <h3 style="font-size:.98rem">Context inserted</h3>
+              <p style="font-size:.84rem">Retrieved content joins the query in the LLM's context window.</p>
+            </div>
+            <div class="card" style="padding:20px"><span class="n build">STEP 5</span>
+              <h3 style="font-size:.98rem">Grounded answer</h3>
+              <p style="font-size:.84rem">The LLM generates a response with sources available to cite.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- ================= RAG vs LLM vs FINE-TUNING ================= -->
+      <section id="comparison">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">The decision</p>
+            <h2>RAG vs plain LLM vs fine-tuning</h2>
+            <p>These are frequently combined: a fine-tuned model for task-specific behavior, grounded by RAG for current
+              or proprietary data access.</p>
+          </div>
+          <div class="tablewrap reveal">
+            <table>
+              <thead>
+                <tr>
+                  <th>Factor</th>
+                  <th>Plain LLM</th>
+                  <th class="col-me">RAG</th>
+                  <th>Fine-tuning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Knowledge source</th>
+                  <td>Fixed training data</td>
+                  <td class="col-me">Training data plus live retrievable content</td>
+                  <td>Training data plus new task-specific behavior</td>
+                </tr>
+                <tr>
+                  <th scope="row">Update process</th>
+                  <td>Requires retraining</td>
+                  <td class="col-me">Add or update documents, no retraining</td>
+                  <td>Requires retraining on new examples</td>
+                </tr>
+                <tr>
+                  <th scope="row">Best for</th>
+                  <td>General knowledge tasks</td>
+                  <td class="col-me">Domain-specific, current, or private data access</td>
+                  <td>Changing model style, tone, or task behavior</td>
+                </tr>
+                <tr>
+                  <th scope="row">Traceability</th>
+                  <td>No source citation</td>
+                  <td class="col-me">Can cite exact source document</td>
+                  <td>No source citation</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SERVICES ================= -->
+      <section class="soft" id="services">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">What I build</p>
+            <h2>RAG development services</h2>
+            <p>Each layer of a production RAG pipeline, built and tested as its own verifiable stage.</p>
+          </div>
+          <div class="grid g3 reveal">
+            <div class="card"><span class="n build">BUILD</span>
+              <h3>Document ingestion &amp; chunking</h3>
+              <p>Building the pipeline that prepares your source content, PDFs, wikis, databases, support tickets, into
+                properly chunked, retrievable pieces. This step determines the ceiling on everything downstream.</p>
+            </div>
+            <div class="card"><span class="n build">BUILD</span>
+              <h3>Vector database architecture</h3>
+              <p>Selecting and configuring the right vector store (Pinecone, Weaviate, Qdrant, FAISS, pgvector) for your
+                scale, latency, and hosting requirements.</p>
+            </div>
+            <div class="card"><span class="n build">BUILD</span>
+              <h3>Retrieval engineering</h3>
+              <p>Building the retrieval layer: hybrid search (semantic plus keyword), metadata filtering, and reranking
+                to maximize the relevance of what gets passed to the LLM.</p>
+            </div>
+            <div class="card"><span class="n build">BUILD</span>
+              <h3>Generation &amp; guardrails</h3>
+              <p>Configuring the generation layer with grounding constraints, defensive fallback behavior, and
+                confidence thresholds so the system says "I do not know" instead of guessing.</p>
+            </div>
+            <div class="card"><span class="n advise">EVALUATE</span>
+              <h3>RAG evaluation</h3>
+              <p>Testing retrieval and generation quality against your real queries using RAGAS, DeepEval, or a custom
+                evaluation set, with results shared transparently before launch.</p>
+            </div>
+            <div class="card"><span class="n build">BUILD</span>
+              <h3>Production deployment</h3>
+              <p>Deploying the full RAG pipeline as a versioned, monitored API integrated with your product or internal
+                tools.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- ================= WHY BUSINESSES NEED RAG ================= -->
+      <section id="why">
+        <div class="wrap">
+          <div class="grid g2 reveal">
+            <div class="sec-head" style="margin-bottom:0">
+              <p class="eyebrow">Why it matters</p>
+              <h2>Why businesses need RAG</h2>
+              <p>A plain LLM has no access to your private,
+                proprietary, or real-time information, and will either say it does not know or generate a
+                plausible-sounding but incorrect answer. RAG solves this directly by giving the model exactly the
+                information it needs, retrieved fresh at query time, without the cost and delay of retraining the model
+                every time your underlying information changes.</p>
+            </div>
+            <div class="card" style="align-self:start">
+              <span class="n">COMMON APPLICATIONS</span>
+              <h3 style="margin-bottom:4px">Where I've built RAG systems</h3>
+              <ul>
+                <li>Customer support chatbots grounded in product documentation and policies</li>
+                <li>Internal knowledge assistants for employee Q&amp;A over wikis and HR policies</li>
+                <li>Healthcare AI assistants grounded in clinical guidelines &mdash; <a href="/rag-chatbot-healthcare"
+                    style="font-weight:600">see the healthcare page</a></li>
+                <li>Legal and compliance research tools citing specific clauses or precedents</li>
+                <li>Ecommerce product Q&amp;A answering from a live product catalog</li>
+                <li>Enterprise search surfacing answers, not just links, across large repositories</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PROCESS ================= -->
+      <section class="soft" id="process">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">How it gets built</p>
+            <h2>Process</h2>
+          </div>
+          <div class="steps reveal">
+            <details class="step" open>
+              <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
+                <h3>Discovery</h3><span class="cv">+</span>
+              </summary>
+              <div class="body">Understanding your data sources, use case, and what "accurate" needs to mean for your
+                application.</div>
+            </details>
+            <details class="step">
+              <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
+                <h3>Architecture spec</h3><span class="cv">+</span>
+              </summary>
+              <div class="body">A written technical spec covering retrieval strategy, vector database choice, and
+                guardrail design, delivered within 48 hours.</div>
+            </details>
+            <details class="step gate">
+              <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
+                <h3>Build in milestones</h3><span class="cv">+</span>
+              </summary>
+              <div class="body">Ingestion, retrieval, generation, and guardrails built and tested as separate,
+                verifiable stages.</div>
+            </details>
+            <details class="step">
+              <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
+                <h3>Evaluation</h3><span class="cv">+</span>
+              </summary>
+              <div class="body">Testing against real queries with transparent results before launch.</div>
+            </details>
+            <details class="step">
+              <summary><span class="num">PHASE 05<span class="days">30 days plus</span></span>
+                <h3>Deployment &amp; support</h3><span class="cv">+</span>
+              </summary>
+              <div class="body">Production deployment with monitoring and a post-launch support window.</div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- ================= PRICING ================= -->
+      <section id="pricing">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">Investment</p>
+            <h2>Pricing</h2>
+          </div>
+          <div class="tablewrap reveal">
+            <table>
+              <thead>
+                <tr>
+                  <th>Engagement type</th>
+                  <th class="col-me">What's included</th>
+                  <th>Typical investment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>RAG proof-of-concept</td>
+                  <td class="col-me">Baseline retrieval pipeline on a data sample, evaluation report</td>
+                  <td>$1,500 to $4,000</td>
+                </tr>
+                <tr class="me-row">
+                  <td>Production RAG system</td>
+                  <td class="col-me">Full pipeline, guardrails, deployment, documentation</td>
+                  <td>$8,000 to $30,000</td>
+                </tr>
+                <tr>
+                  <td>RAG system audit</td>
+                  <td class="col-me">Diagnose and improve an underperforming existing system</td>
+                  <td>$1,000 to $3,000</td>
+                </tr>
+                <tr>
+                  <td>Hourly consulting</td>
+                  <td class="col-me">Architecture review, retrieval strategy design</td>
+                  <td>$75 to $150/hr</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Retrieval-grounded systems
+            delivered include the AI Customer Feedback Classification pipeline and AI Video Summarizer. Full case
+            studies at <a href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
+        </div>
+      </section>
+
+      <!-- ================= FAQ ================= -->
+      <section class="soft" id="faq">
+        <div class="wrap">
+          <div class="sec-head center reveal">
+            <p class="eyebrow">FAQ</p>
+            <h2>Frequently asked questions</h2>
+          </div>
+          <div class="faq reveal">
+            <details open>
+              <summary>What does RAG stand for?</summary>
+              <div class="a">RAG stands for retrieval-augmented generation, an AI architecture that retrieves relevant
+                information before an LLM generates its response, rather than relying only on the model's training data.
+              </div>
+            </details>
+            <details>
+              <summary>Is RAG the same as fine-tuning?</summary>
+              <div class="a">No. Fine-tuning changes a model's weights through additional training. RAG retrieves
+                external information and adds it to the model's context at query time without changing the model. They
+                solve different problems and are often used together.</div>
+            </details>
+            <details>
+              <summary>Does RAG eliminate AI hallucination?</summary>
+              <div class="a">RAG significantly reduces hallucination, typically 60 to 80% versus a bare LLM, by
+                grounding responses in retrieved content, but does not eliminate it entirely. Guardrails and confidence
+                thresholds are layered on top in every production system I build.</div>
+            </details>
+            <details>
+              <summary>How much does RAG development cost?</summary>
+              <div class="a">A proof-of-concept starts at $1,500 to $4,000. A full production RAG system ranges from
+                $8,000 to $30,000 depending on complexity and data volume. Contact for a fixed-price estimate specific
+                to your use case.</div>
+            </details>
+            <details>
+              <summary>How long does it take to build a RAG system?</summary>
+              <div class="a">A proof-of-concept typically takes 2 to 4 weeks. A full production system with guardrails,
+                evaluation, and deployment typically takes 4 to 10 weeks depending on data complexity and integration
+                scope.</div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var page = document.querySelector('.svcp');
+      if (!page) return;
+
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+      page.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+      function countUp(el) {
+        var target = parseFloat(el.dataset.count), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+        var t0 = null, dur = 1300;
+        function step(ts) {
+          if (!t0) t0 = ts; var p = Math.min((ts - t0) / dur, 1); var e = 1 - Math.pow(1 - p, 3);
+          el.textContent = pre + Math.round(target * e) + suf; if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      var cio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } });
+      }, { threshold: .6 });
+      page.querySelectorAll('[data-count]').forEach(function (el) { cio.observe(el); });
+
+      page.querySelectorAll('.stack').forEach(function (root) {
+        var tabs = root.querySelectorAll('.stack-tabs [role="tab"]'), panels = root.querySelectorAll('.stack-panel');
+        function act(tab) {
+          var t = tab.dataset.s;
+          tabs.forEach(function (x) { x.setAttribute('aria-selected', x === tab ? 'true' : 'false'); });
+          panels.forEach(function (p) { p.classList.toggle('on', p.dataset.p === t); });
+        }
+        tabs.forEach(function (tab, i) {
+          tab.addEventListener('click', function () { act(tab); });
+          tab.addEventListener('keydown', function (e) {
+            var n = null;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = tabs[i + 1] || tabs[0];
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = tabs[i - 1] || tabs[tabs.length - 1];
+            if (n) { e.preventDefault(); n.focus(); act(n); }
+          });
+        });
+      });
+
+      page.querySelectorAll('.faq details').forEach(function (d) {
+        d.addEventListener('toggle', function () { if (d.open) { page.querySelectorAll('.faq details').forEach(function (o) { if (o !== d) o.open = false; }); } });
+      });
+    })();
+
+  </script>
+  <script>
+    (function () {
+      var page = document.querySelector('.svcp');
+      var canvas = document.getElementById('sigcanvas'), ctx = canvas.getContext('2d');
+      var mode = 'rag', domain = 0, t = 0, raf = null;
+
+      var domains = [
+        {
+          seg: 'support policy',
+          rag: {
+            q: 'What is our refund window for enterprise plans?',
+            a: 'Per your <b>Enterprise Terms v3</b>, enterprise plans carry a 30-day refund window from the invoice date; anything past that routes to a manual review queue.',
+            cites: [['enterprise_terms_v3.pdf', '0.95'], ['billing_policy.md', '0.87'], ['plan_comparison.pdf', '0.80']]
+          },
+          bare: { a: '<span class="warn">Unverified:</span> Most SaaS refund windows run 14 to 30 days. (A generic industry guess, not your actual policy.)' },
+          finetune: { a: '<span class="good">Tone-matched:</span> replies fluently in your brand voice, but the refund-window figure itself is whatever pattern was frozen into the weights at the last training run, not today\'s policy.' }
+        },
+        {
+          seg: 'internal wiki',
+          rag: {
+            q: 'What is the approval process for expenses over $5,000?',
+            a: 'Per the <b>Finance Approval Matrix</b>, spend above $5,000 requires director sign-off plus a two-day finance review before the PO is issued.',
+            cites: [['finance_approval_matrix.pdf', '0.93'], ['procurement_policy.md', '0.85'], ['finance_faq.pdf', '0.79']]
+          },
+          bare: { a: '<span class="warn">Unverified:</span> Usually needs manager approval above a few thousand dollars. (No specific threshold, no named approver, invented.)' },
+          finetune: { a: '<span class="good">Tone-matched:</span> sounds like your finance team, but the $5,000 threshold and approver name are whatever was true when the model was last fine-tuned.' }
+        },
+        {
+          seg: 'product catalog',
+          rag: {
+            q: 'Is the XR-200 compatible with the older mounting kit?',
+            a: 'Per the <b>XR-200 spec sheet</b>, it requires the v2 mounting kit; the original kit is not compatible without the v2 adapter plate.',
+            cites: [['xr200_spec_sheet.pdf', '0.96'], ['mounting_kit_v2.pdf', '0.88'], ['compat_matrix.csv', '0.82']]
+          },
+          bare: { a: '<span class="warn">Unverified:</span> Probably compatible, most mounts are similar across a product line. (No spec lookup, no real answer.)' },
+          finetune: { a: '<span class="good">Tone-matched:</span> answers helpfully and on-brand, but for a product launched after the last fine-tune, it has no idea the XR-200 exists.' }
+        }];
+
+      function resize() { var r = canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2); canvas.width = r.width * d; canvas.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
+
+      var pts = []; (function seed() {
+        var rng = 17; function rnd() { rng = (rng * 9301 + 49297) % 233280; return rng / 233280; }
+        for (var i = 0; i < 24; i++) { pts.push({ x: .12 + rnd() * .76, y: .16 + rnd() * .7, r: 2 + rnd() * 2 }); }
+      })();
+
+      function draw() {
+        var r = canvas.getBoundingClientRect(), W = r.width, H = r.height;
+        ctx.clearRect(0, 0, W, H);
+        ctx.strokeStyle = 'rgba(36,86,230,.06)'; ctx.lineWidth = 1;
+        for (var gx = 0; gx <= W; gx += W / 8) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
+        for (var gy = 0; gy <= H; gy += H / 5) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
+
+        var q = { x: W * .16, y: H * .5 };
+        pts.forEach(function (p) { ctx.beginPath(); ctx.arc(p.x * W, p.y * H, p.r, 0, Math.PI * 2); ctx.fillStyle = 'rgba(107,122,147,.28)'; ctx.fill(); });
+
+        if (mode === 'rag') {
+          var targets = [{ x: W * .62, y: H * .26 }, { x: W * .74, y: H * .44 }, { x: W * .68, y: H * .66 }, { x: W * .82, y: H * .58 }];
+          targets.forEach(function (tp, i) {
+            var prog = Math.min(1, Math.max(0, (t - i * 10) / 40));
+            var mx = q.x + (tp.x - q.x) * prog, my = q.y + (tp.y - q.y) * prog;
+            var grad = ctx.createLinearGradient(q.x, q.y, tp.x, tp.y);
+            grad.addColorStop(0, 'rgba(36,86,230,.7)'); grad.addColorStop(1, 'rgba(109,94,246,.25)');
+            ctx.strokeStyle = grad; ctx.lineWidth = 1.6;
+            ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(mx, my); ctx.stroke();
+            var pp = (t * .02 + i * .25) % 1;
+            ctx.beginPath(); ctx.arc(q.x + (tp.x - q.x) * pp, q.y + (tp.y - q.y) * pp, 2.6, 0, Math.PI * 2); ctx.fillStyle = 'rgba(15,169,104,.9)'; ctx.fill();
+          });
+          targets.forEach(function (tp) {
+            ctx.beginPath(); ctx.arc(tp.x, tp.y, 7, 0, Math.PI * 2); ctx.fillStyle = 'rgba(15,169,104,.16)'; ctx.fill();
+            ctx.beginPath(); ctx.arc(tp.x, tp.y, 4, 0, Math.PI * 2); ctx.fillStyle = '#0FA968'; ctx.fill();
+          });
+          ctx.fillStyle = 'rgba(15,169,104,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
+          ctx.fillText('retrieved \u00b7 grounded', W * .58, H * .14);
+        } else if (mode === 'bare') {
+          var wob = Math.sin(t * .05) * 6;
+          ctx.strokeStyle = 'rgba(225,29,72,.35)'; ctx.lineWidth = 1.4; ctx.setLineDash([4, 4]);
+          ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(W * .7 + wob, H * .4); ctx.stroke(); ctx.setLineDash([]);
+          ctx.beginPath(); ctx.arc(W * .7 + wob, H * .4, 5, 0, Math.PI * 2); ctx.fillStyle = 'rgba(225,29,72,.7)'; ctx.fill();
+          ctx.fillStyle = 'rgba(225,29,72,.85)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
+          ctx.fillText('no retrieval \u00b7 ungrounded', W * .5, H * .14);
+        } else {
+          var mnode = { x: W * .62, y: H * .44 };
+          ctx.strokeStyle = 'rgba(109,94,246,.5)'; ctx.lineWidth = 1.6;
+          ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(mnode.x, mnode.y); ctx.stroke();
+          ctx.beginPath(); ctx.arc(mnode.x, mnode.y, 16, 0, Math.PI * 2); ctx.fillStyle = 'rgba(109,94,246,.14)'; ctx.fill();
+          ctx.beginPath(); ctx.arc(mnode.x, mnode.y, 9, 0, Math.PI * 2); ctx.fillStyle = '#6D5EF6'; ctx.fill();
+          for (var i = 0; i < 3; i++) {
+            var ang = t * .03 + i * (Math.PI * 2 / 3); var ox = mnode.x + Math.cos(ang) * 26, oy = mnode.y + Math.sin(ang) * 26;
+            ctx.beginPath(); ctx.arc(ox, oy, 2.4, 0, Math.PI * 2); ctx.fillStyle = 'rgba(109,94,246,.6)'; ctx.fill();
+          }
+          ctx.fillStyle = 'rgba(109,94,246,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
+          ctx.fillText('trained into weights \u00b7 static', W * .5, H * .14);
+        }
+
+        var pr = 6 + Math.sin(t * .08) * 1.4;
+        ctx.beginPath(); ctx.arc(q.x, q.y, pr + 7, 0, Math.PI * 2); ctx.fillStyle = 'rgba(36,86,230,.14)'; ctx.fill();
+        ctx.beginPath(); ctx.arc(q.x, q.y, pr, 0, Math.PI * 2); ctx.fillStyle = '#2456E6'; ctx.fill();
+        ctx.fillStyle = '#1B2740'; ctx.font = '600 11px "IBM Plex Mono",monospace';
+        ctx.fillText('query', q.x - 16, q.y + 22);
+
+        t += 1; raf = requestAnimationFrame(draw);
+      }
+
+      function update() {
+        var d = domains[domain];
+        var m1 = document.getElementById('m1'), m2 = document.getElementById('m2'), m3 = document.getElementById('m3');
+        var m1l = document.getElementById('m1l'), m2l = document.getElementById('m2l'), m3l = document.getElementById('m3l');
+        var cl = document.getElementById('citelist'), foot = document.getElementById('foot'), ans = document.getElementById('answer');
+        document.querySelector('.viewer-top .t').textContent = d.rag.q;
+        if (mode === 'rag') {
+          ans.innerHTML = d.rag.a;
+          m1.textContent = 'Low'; m1.className = 'sc-good'; m1l.textContent = 'Hallucination risk';
+          m2.textContent = '4'; m2l.textContent = 'Chunks retrieved';
+          m3.textContent = 'Live docs'; m3l.textContent = 'Answer basis';
+          cl.classList.remove('empty');
+          cl.innerHTML = d.rag.cites.map(function (c) { return '<li><span class="src">' + c[0] + '</span> <span class="rel">rel ' + c[1] + '</span></li>'; }).join('');
+          foot.textContent = 'Every answer traces back to the exact document it was generated from, that traceability is what a compliance or accuracy review depends on.';
+        } else if (mode === 'bare') {
+          ans.innerHTML = d.bare.a;
+          m1.textContent = 'High'; m1.className = 'sc-bad'; m1l.textContent = 'Hallucination risk';
+          m2.textContent = '0'; m2l.textContent = 'Chunks retrieved';
+          m3.textContent = 'Training only'; m3l.textContent = 'Answer basis';
+          cl.classList.add('empty');
+          cl.innerHTML = '<li>No sources retrieved, answer cannot be verified</li>';
+          foot.textContent = 'Faster, but nothing to cite and nothing to check. This is the exact failure mode RAG exists to prevent.';
+        } else {
+          ans.innerHTML = d.finetune.a;
+          m1.textContent = 'Med'; m1.className = ''; m1l.textContent = 'Staleness risk';
+          m2.textContent = 'Yes'; m2l.textContent = 'Retrain to update';
+          m3.textContent = 'Model weights'; m3l.textContent = 'Answer basis';
+          cl.classList.add('empty');
+          cl.innerHTML = '<li>No live source, behavior is frozen at training time</li>';
+          foot.textContent = 'Fine-tuning changes how the model answers, tone, format, task, not what it currently knows. That is exactly why RAG and fine-tuning are often combined.';
+        }
+      }
+
+      page.querySelectorAll('.modesw [role="tab"]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          page.querySelectorAll('.modesw [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
+          b.setAttribute('aria-selected', 'true'); mode = b.dataset.m; t = 0; update();
+        });
+      });
+      page.querySelectorAll('.segs [role="tab"]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          page.querySelectorAll('.segs [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
+          b.setAttribute('aria-selected', 'true'); domain = +b.dataset.d; t = 0; update();
+        });
+      });
+
+      window.addEventListener('resize', resize);
+      resize(); update();
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(); } else { draw(); cancelAnimationFrame(raf); }
+    })();
+  </script>
+</body>
+
+</html>

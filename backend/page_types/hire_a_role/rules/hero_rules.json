@@ -1,0 +1,39 @@
+{
+  "hero": {
+    "eyebrow": "Micro-label above main heading (e.g., 'Direct access, no account layer'). Max 6 words.",
+    "h1": {
+      "h1-text": "Role title prefix (e.g., 'Hire a RAG developer:').",
+      "span": "Targeted expertise or sub-specialization (e.g., 'freelance retrieval-augmented generation engineer'). Max 6 words."
+    },
+    "hero-sub": "Introductory paragraph stating the engineer's persona, role scope, core deliverables (RAG pipelines, assistants, production deployment), and engineering guarantees. Exactly 2-3 sentences.",
+    "creds": [
+      {
+        "cred": {
+          "i": "Cred category (e.g., 'Experience', 'Delivered', 'Turnaround'). Max 1-2 words.",
+          "b": "Cred highlight text (e.g., '5+ yrs AI & ML systems', '20+ projects shipped', '48h written spec'). Max 5 words."
+        }
+      }
+    ],
+    "hero-cta": [
+      {
+        "btn-primary": {
+          "text": "Direct hire CTA button text (e.g., 'Hire me directly'). Max 4 words.",
+          "url": "Anchor or contact link (e.g., '/contact')."
+        }
+      },
+      {
+        "btn-ghost": {
+          "text": "Secondary proof button text (e.g., 'View case studies'). Max 4 words.",
+          "url": "URL or case studies link (e.g., '/ai-case-studies')."
+        }
+      }
+    ],
+    "live": "Availability and onboarding trust signal (e.g., 'Start in 48 to 72 hours, no team overhead, no account manager'). Exactly 1 sentence.",
+    "trust": [
+      {
+        "b": "Authority metric or speed stat (e.g., '5+', '20+', '48h').",
+        "span": "Metric label (e.g., 'Years building AI & ML systems', 'Projects shipped to production', 'To a written technical spec'). Max 5 words."
+      }
+    ]
+  }
+}

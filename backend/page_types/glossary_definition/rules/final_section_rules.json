@@ -1,0 +1,69 @@
+{
+  "why": {
+    "sec-head": {
+      "eyebrow": "Business value eyebrow tag (e.g., 'Why it matters'). Max 3 words.",
+      "h2": "Value proposition heading (e.g., 'Why businesses need RAG'). Max 5 words.",
+      "p": "Comprehensive argument on why standard models fail with private data and how grounding eliminates retraining cycles. Exactly 2-3 sentences."
+    },
+    "card": {
+      "n": "Section badge (e.g., 'COMMON APPLICATIONS'). Max 2 words.",
+      "h3": "Portfolio applications heading (e.g., 'Where I\\'ve built RAG systems'). Max 5 words.",
+      "ul": [
+        "Concrete real-world use cases (e.g., support chatbots, internal assistants, healthcare clinical tools, legal research, ecommerce catalogs, enterprise search)"
+      ]
+    }
+  },
+  "process": {
+    "sec-head": {
+      "eyebrow": "Process eyebrow tag (e.g., 'How it gets built'). Max 4 words.",
+      "h2": "Process section heading (e.g., 'Process'). Max 3 words."
+    },
+    "steps": [
+      {
+        "step": {
+          "num": "Phase indicator (e.g., 'PHASE 01', 'PHASE 02').",
+          "days": "Phase duration (e.g., 'days 1 to 2', 'within 48h', 'the decisive one', 'before launch', '30 days plus'). Max 3 words.",
+          "h3": "Phase title (e.g., 'Discovery', 'Architecture spec', 'Build in milestones', 'Evaluation', 'Deployment & support'). Max 4 words.",
+          "body": "Clear description of phase actions and deliverables. Exactly 1-2 sentences."
+        }
+      }
+    ]
+  },
+  "pricing": {
+    "sec-head": {
+      "eyebrow": "Pricing eyebrow tag (e.g., 'Investment'). Max 3 words.",
+      "h2": "Pricing section heading (e.g., 'Pricing'). Max 3 words."
+    },
+    "tablewrap": {
+      "thead": [
+        "Header 1 (e.g., 'Engagement type')",
+        "Header 2 (e.g., 'What\\'s included')",
+        "Header 3 (e.g., 'Typical investment')"
+      ],
+      "tbody": [
+        {
+          "td": [
+            "Engagement model name (e.g., 'RAG proof-of-concept', 'Production RAG system', 'RAG system audit', 'Hourly consulting')",
+            "Scope summary",
+            "Investment range (e.g., '$1,500 to $4,000', '$8,000 to $30,000', '$1,000 to $3,000', '$75 to $150/hr')"
+          ]
+        }
+      ]
+    },
+    "p": "Case study proof statement and link. Exactly 1-2 sentences."
+  },
+  "faq": {
+    "sec-head": {
+      "eyebrow": "FAQ eyebrow tag (e.g., 'FAQ').",
+      "h2": "FAQ section heading (e.g., 'Frequently asked questions')."
+    },
+    "faq": [
+      {
+        "faq-item": {
+          "faq-q": "Frequently asked conceptual question addressing definitions, fine-tuning comparisons, hallucination risks, pricing, or timelines. Max 12 words.",
+          "faq-a": "In-depth authoritative answer delivering clear technical guidance. Exactly 2-4 sentences."
+        }
+      }
+    ]
+  }
+}

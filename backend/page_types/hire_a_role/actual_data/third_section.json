@@ -1,0 +1,75 @@
+{
+  "services": {
+    "sec-head": {
+      "eyebrow": "What I offer",
+      "h2": "RAG development services I offer"
+    },
+    "grid g3": [
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "RAG chatbot development",
+          "p": "Chatbots grounded in your documentation, product catalog, or knowledge base, with escalation logic for anything outside their confidence bounds."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Internal knowledge assistants",
+          "p": "Employee-facing Q&A systems over company wikis, policies, and internal documentation."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Document Q&A systems",
+          "p": "Retrieval-grounded Q&A for legal, healthcare, and financial document corpora, with source citation for every answer."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Hybrid RAG-agent systems",
+          "p": "Retrieval combined with multi-step tool use, LangGraph-orchestrated for systems that both answer and act."
+        }
+      },
+      {
+        "card": {
+          "n": "AUDIT",
+          "h3": "RAG system audits",
+          "p": "Diagnosing and improving underperforming existing RAG systems, from chunking strategy through to guardrail design."
+        }
+      },
+      {
+        "card cta-card": {
+          "h3": "Not sure what you need?",
+          "p": "Try the spec-preview widget above, or get it scoped properly.",
+          "btn-primary": {
+            "text": "Talk it through",
+            "url": "#lets-talk"
+          }
+        }
+      }
+    ]
+  },
+  "stack": {
+    "sec-head": {
+      "eyebrow": "Tooling",
+      "h2": "Tech stack & ecosystem"
+    },
+    "stack-tabs": [
+      { "key": "01", "name": "Orchestration & Frameworks", "id": "orch" },
+      { "key": "02", "name": "Vector Databases", "id": "vec" },
+      { "key": "03", "name": "Embedding Models", "id": "emb" },
+      { "key": "04", "name": "LLMs & Frontier Models", "id": "llm" },
+      { "key": "05", "name": "Evaluation & Deployment", "id": "eval" }
+    ],
+    "stack-panels": {
+      "orch": ["LangChain", "LlamaIndex", "LangGraph", "Haystack"],
+      "vec": ["Pinecone", "Weaviate", "Qdrant", "pgvector (PostgreSQL)", "Chroma DB", "FAISS"],
+      "emb": ["OpenAI Embeddings", "Cohere Embed & Rerank", "BAAI BGE", "Voyage AI"],
+      "llm": ["OpenAI GPT-4o", "Anthropic Claude", "Google Gemini", "Meta Llama 3", "Mistral AI"],
+      "eval": ["RAGAS", "DeepEval", "FastAPI", "Docker", "AWS / GCP / Azure"]
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "comply": {
+    "comply-in": [
+      {
+        "b": "Core value proposition headline (e.g., 'Grounded, not guessed'). Max 5 words.",
+        "span": "Supporting explanation of technical integrity, source citations, guardrails, or no-retraining agility. Max 18 words."
+      }
+    ]
+  },
+  "what-is": {
+    "sec-head": {
+      "eyebrow": "Section eyebrow tag (e.g., 'Plain answer'). Max 3 words.",
+      "h2": "Direct question defining the term (e.g., 'What is RAG (retrieval-augmented generation)?'). Max 8 words."
+    },
+    "tldr": {
+      "b": "Definition label (e.g., 'Definition').",
+      "p": [
+        "Rigorous technical definition explaining the query-time retrieval mechanism, context insertion, and why it prevents model hallucination without retraining. Exactly 1 paragraph."
+      ]
+    }
+  },
+  "how-it-works": {
+    "sec-head": {
+      "eyebrow": "Workflow eyebrow tag (e.g., 'Step by step'). Max 3 words.",
+      "h2": "Workflow heading (e.g., 'How RAG works'). Max 4 words.",
+      "p": "Subtitle linking the concept directly to the interactive visualization above. Exactly 1 sentence."
+    },
+    "grid g3": [
+      {
+        "card": {
+          "n": "Step number badge (e.g., 'STEP 1', 'STEP 2', 'STEP 3', 'STEP 4', 'STEP 5'). Max 2 words.",
+          "h3": "Step title (e.g., 'Query submitted', 'Query embedded', 'Vector search', 'Context inserted', 'Grounded answer'). Max 3-4 words.",
+          "p": "Concise explanation of what occurs in this phase of the pipeline. Exactly 1 sentence."
+        }
+      }
+    ]
+  }
+}

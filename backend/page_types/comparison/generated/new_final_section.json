@@ -1,0 +1,131 @@
+{
+  "process": {
+    "sec-head": {
+      "eyebrow": "The analysis path",
+      "h2": "Your search evaluation"
+    },
+    "steps": [
+      {
+        "step": {
+          "num": "PHASE 01",
+          "days": "days 1 to 2",
+          "h3": "Audit your current search",
+          "body": "We analyze your existing keyword or semantic search setup, identifying failures: zero-result queries, irrelevant results, or high bounce rates."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 02",
+          "days": "within 48h",
+          "h3": "Architecture recommendation",
+          "body": "A written spec detailing whether pure semantic, pure keyword, or a hybrid search approach fits your data and user intent."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 03",
+          "days": "the decisive one",
+          "h3": "Build the retrieval layer",
+          "body": "Implementation of the chosen approach: vector embeddings, inverted index, or a hybrid orchestrator with reranking."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 04",
+          "days": "before launch",
+          "h3": "Eval with query sets",
+          "body": "Testing against your real queries using precision, recall, and NDCG metrics to identify edge cases where each model fails."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 05",
+          "days": "handoff",
+          "h3": "Deploy & monitor",
+          "body": "Production deployment with fallback logic, query analysis, and a dashboard to track retrieval failure modes over time."
+        }
+      }
+    ]
+  },
+  "pricing": {
+    "sec-head": {
+      "eyebrow": "Investment",
+      "h2": "Pricing"
+    },
+    "tablewrap": {
+      "thead": [
+        "Engagement type",
+        "What's included",
+        "Typical investment"
+      ],
+      "tbody": [
+        {
+          "td": [
+            "Search architecture audit",
+            "Review of current search setup, failure analysis, and written recommendation",
+            "$1,000 to $2,500"
+          ]
+        },
+        {
+          "td": [
+            "Pure semantic search build",
+            "Embedding pipeline, vector index, and retrieval implementation",
+            "$6,000 to $18,000"
+          ]
+        },
+        {
+          "td": [
+            "Hybrid search system",
+            "Combined vector and full-text indices, reranking, and fallback logic",
+            "$12,000 to $30,000"
+          ]
+        },
+        {
+          "td": [
+            "Custom eval and monitoring",
+            "Query set creation, eval framework, and production monitoring dashboard",
+            "$4,000 to $10,000"
+          ]
+        }
+      ]
+    }
+  },
+  "faq": {
+    "sec-head": {
+      "eyebrow": "FAQ",
+      "h2": "Frequently asked questions"
+    },
+    "faq": [
+      {
+        "faq-item": {
+          "faq-q": "When does pure keyword search outperform semantic search?",
+          "faq-a": "Keyword search wins with exact product codes, SKUs, or short queries where precision on specific terms matters more than conceptual understanding. It fails when users phrase queries differently than the document's language."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "When does pure semantic search outperform keyword search?",
+          "faq-a": "Semantic search excels with natural language queries, synonyms, and vague concepts, but fails on rare terms or when the embedding model isn't fine-tuned on your domain. It also struggles with queries requiring exact substring matching."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "What is hybrid search and why use it?",
+          "faq-a": "Hybrid search combines vector and keyword indices, typically with a reranker to merge results. It's the Answer Engine Optimization staple because it covers both exact and conceptual queries, reducing failure modes of either approach."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "How do I benchmark the right approach for my data?",
+          "faq-a": "Create a query set with labeled relevance judgments, then run both pure keyword and pure semantic searches. Measure precision, recall, and the number of queries where each returns zero relevant results. The approach with fewer failures wins."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "What does a hybrid search build cost?",
+          "faq-a": "A hybrid system combining vector and full-text indices with reranking runs $12,000 to $30,000, including ingestion, evaluation, and deployment. Contact for a fixed estimate specific to your data size and query patterns."
+        }
+      }
+    ]
+  }
+}

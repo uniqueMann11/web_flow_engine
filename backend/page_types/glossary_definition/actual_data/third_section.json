@@ -1,0 +1,102 @@
+{
+  "comparison": {
+    "sec-head": {
+      "eyebrow": "The decision",
+      "h2": "RAG vs plain LLM vs fine-tuning",
+      "p": "These are frequently combined: a fine-tuned model for task-specific behavior, grounded by RAG for current or proprietary data access."
+    },
+    "tablewrap": {
+      "thead": [
+        "Factor",
+        "Plain LLM",
+        "RAG",
+        "Fine-tuning"
+      ],
+      "tbody": [
+        {
+          "th": "Knowledge source",
+          "td": [
+            "Fixed training data",
+            "Training data plus live retrievable content",
+            "Training data plus new task-specific behavior"
+          ]
+        },
+        {
+          "th": "Update process",
+          "td": [
+            "Requires retraining",
+            "Add or update documents, no retraining",
+            "Requires retraining on new examples"
+          ]
+        },
+        {
+          "th": "Best for",
+          "td": [
+            "General knowledge tasks",
+            "Domain-specific, current, or private data access",
+            "Changing model style, tone, or task behavior"
+          ]
+        },
+        {
+          "th": "Traceability",
+          "td": [
+            "No source citation",
+            "Can cite exact source document",
+            "No source citation"
+          ]
+        }
+      ]
+    }
+  },
+  "services": {
+    "sec-head": {
+      "eyebrow": "What I build",
+      "h2": "RAG development services",
+      "p": "Each layer of a production RAG pipeline, built and tested as its own verifiable stage."
+    },
+    "grid g3": [
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Document ingestion & chunking",
+          "p": "Building the pipeline that prepares your source content, PDFs, wikis, databases, support tickets, into properly chunked, retrievable pieces. This step determines the ceiling on everything downstream."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Vector database architecture",
+          "p": "Selecting and configuring the right vector store (Pinecone, Weaviate, Qdrant, FAISS, pgvector) for your scale, latency, and hosting requirements."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Retrieval engineering",
+          "p": "Building the retrieval layer: hybrid search (semantic plus keyword), metadata filtering, and reranking to maximize the relevance of what gets passed to the LLM."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Generation & guardrails",
+          "p": "Configuring the generation layer with grounding constraints, defensive fallback behavior, and confidence thresholds so the system says \"I do not know\" instead of guessing."
+        }
+      },
+      {
+        "card": {
+          "n": "EVALUATE",
+          "h3": "RAG evaluation",
+          "p": "Testing retrieval and generation quality against your real queries using RAGAS, DeepEval, or a custom evaluation set, with results shared transparently before launch."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Production deployment",
+          "p": "Deploying the full RAG pipeline as a versioned, monitored API integrated with your product or internal tools."
+        }
+      }
+    ]
+  }
+}

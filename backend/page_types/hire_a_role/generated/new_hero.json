@@ -1,0 +1,59 @@
+{
+  "hero": {
+    "eyebrow": "Direct access, no account layer",
+    "h1": {
+      "h1-text": "Hire an AI agent developer:",
+      "span": "freelance agent framework engineer"
+    },
+    "hero-sub": "I am Shreyans Padmani, a freelance AI agent developer and engineer. I build production-grade autonomous agents, multi-agent systems, and tool-calling pipelines using LangGraph, CrewAI, and AutoGen, then deploy them with the monitoring, guardrails, and integration your business requires.",
+    "creds": [
+      {
+        "cred": {
+          "i": "Experience",
+          "b": "5+ yrs AI & ML systems"
+        }
+      },
+      {
+        "cred": {
+          "i": "Delivered",
+          "b": "20+ projects shipped"
+        }
+      },
+      {
+        "cred": {
+          "i": "Turnaround",
+          "b": "48h written spec"
+        }
+      }
+    ],
+    "hero-cta": [
+      {
+        "btn-primary": {
+          "text": "Hire me directly",
+          "url": "/contact"
+        }
+      },
+      {
+        "btn-ghost": {
+          "text": "View case studies",
+          "url": "/ai-case-studies"
+        }
+      }
+    ],
+    "live": "Start in 48 to 72 hours, no team overhead, no account manager",
+    "trust": [
+      {
+        "b": "5+",
+        "span": "Years building AI & ML systems"
+      },
+      {
+        "b": "20+",
+        "span": "Projects shipped to production"
+      },
+      {
+        "b": "48h",
+        "span": "To a written technical spec"
+      }
+    ]
+  }
+}

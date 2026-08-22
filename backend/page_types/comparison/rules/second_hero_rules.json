@@ -1,0 +1,50 @@
+{
+  "comply": {
+    "comply-in": [
+      {
+        "b": "Feature or benefit headline (e.g., 'Both frameworks, done right'). Max 4 words.",
+        "span": "Detailed explanation of the commitment or principle. Max 1-2 sentences."
+      }
+    ]
+  },
+  "what-is": {
+    "sec-head": {
+      "eyebrow": "Eyebrow label (e.g., 'Plain answer'). Max 3 words.",
+      "h2": "Direct question heading (e.g., 'What is LangChain? What is LlamaIndex?')."
+    },
+    "tldr": {
+      "b": "Tag label (e.g., 'Quick answer').",
+      "p": [
+        "Concise, balanced definition explaining both technologies, their licensing, and where the core architectural choice lies. Exactly 2-3 sentences."
+      ]
+    }
+  },
+  "comparison": {
+    "sec-head": {
+      "eyebrow": "Eyebrow label (e.g., 'The comparison'). Max 3 words.",
+      "h2": "Main comparison heading (e.g., 'Framework comparison: LangChain vs LlamaIndex')."
+    },
+    "tablewrap": {
+      "thead": [
+        "Header 1 (e.g., 'Factor')",
+        "Header 2 (e.g., 'LangChain (via LangGraph)')",
+        "Header 3 (e.g., 'LlamaIndex')"
+      ],
+      "tbody": [
+        {
+          "th": "Comparison dimension (e.g., 'Primary strength', 'Best for', 'Code volume for equivalent RAG', 'Framework overhead', 'Ecosystem', 'Observability').",
+          "td": [
+            "Assessment for Option 1.",
+            "Assessment for Option 2."
+          ]
+        }
+      ]
+    },
+    "callout": {
+      "p": [
+        "Callout headline (e.g., 'The 2026 reality'). Max 4 words.",
+        "Detailed explanation of the hybrid or consensus architecture pattern."
+      ]
+    }
+  }
+}

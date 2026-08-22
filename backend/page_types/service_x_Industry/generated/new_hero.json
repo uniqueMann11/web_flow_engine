@@ -1,0 +1,59 @@
+{
+  "hero": {
+    "eyebrow": "HIPAA-ready, not checkbox",
+    "h1": {
+      "h1": "RAG chatbot development for healthcare:",
+      "span": "compliant clinical decision support"
+    },
+    "hero-sub": "Healthcare AI must protect PHI while delivering accurate clinical answers. I build HIPAA-compliant RAG chatbots that ingest medical records, radiology reports, and lab data\u2014without exposing sensitive patient information. This isn't a generic demo; it's production-grade retrieval grounded in robust de-identification and access controls.",
+    "creds": [
+      {
+        "cred": {
+          "i": "Compliance",
+          "b": "HIPAA security rule"
+        }
+      },
+      {
+        "cred": {
+          "i": "Access",
+          "b": "Direct, no account manager"
+        }
+      },
+      {
+        "cred": {
+          "i": "Turnaround",
+          "b": "48h architecture spec"
+        }
+      }
+    ],
+    "hero-cta": [
+      {
+        "btn-primary": {
+          "text": "Talk to a medical AI developer",
+          "url": "#lets-talk"
+        }
+      },
+      {
+        "btn-ghost": {
+          "text": "View case studies",
+          "url": "/ai-case-studies"
+        }
+      }
+    ],
+    "live": "Honest read included: whether RAG is even appropriate for your clinical workflow.",
+    "trust": [
+      {
+        "b": "119K+",
+        "span": "GitHub stars, LangChain"
+      },
+      {
+        "b": "500+",
+        "span": "Integrations available"
+      },
+      {
+        "b": "48h",
+        "span": "To a written architecture spec"
+      }
+    ]
+  }
+}

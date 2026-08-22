@@ -1,0 +1,97 @@
+{
+  "comply": {
+    "comply-in": [
+      {
+        "b": "Both methods, done right",
+        "span": "Semantic and keyword search, used for what each actually excels at\u2014meaning understanding vs. exact matching."
+      },
+      {
+        "b": "Recommendation in writing",
+        "span": "A specific search strategy, with the reasoning behind it, before any implementation begins."
+      },
+      {
+        "b": "Hybrid when it earns it",
+        "span": "Combining vector embeddings with BM25 or TF-IDF in a single query, the standard 2026 pattern for robust retrieval."
+      },
+      {
+        "b": "Honest, not default",
+        "span": "If your use case doesn't need the complexity of semantic search, I'll say so\u2014and recommend keyword search instead."
+      }
+    ]
+  },
+  "what-is": {
+    "sec-head": {
+      "eyebrow": "Plain answer",
+      "h2": "What is Semantic Search? What is Keyword Search?"
+    },
+    "tldr": {
+      "b": "Quick answer",
+      "p": [
+        "Semantic search uses vector embeddings and neural models to understand the meaning behind a query, matching conceptually related content even when no exact words match. Keyword search relies on exact term matching via algorithms like BM25 or TF-IDF, delivering fast, precise results when the query terms appear in the document. Both are fundamental retrieval methods, and the real decision comes down to whether your hardest problem is understanding intent or catching exact phrases\u2014and hybrid search combines them for the best of both worlds."
+      ]
+    }
+  },
+  "comparison": {
+    "sec-head": {
+      "eyebrow": "The comparison",
+      "h2": "Search comparison: Semantic Search vs Keyword Search"
+    },
+    "tablewrap": {
+      "thead": [
+        "Factor",
+        "Semantic Search",
+        "Keyword Search"
+      ],
+      "tbody": [
+        {
+          "th": "Primary strength",
+          "td": [
+            "Understands meaning, synonyms, and context via embeddings",
+            "Fast exact match on literal terms and metadata"
+          ]
+        },
+        {
+          "th": "Best for",
+          "td": [
+            "Content discovery, Q&A, chatbots, long-tail queries",
+            "E-commerce, product catalogs, structured fields, known IDs"
+          ]
+        },
+        {
+          "th": "Indexing setup complexity",
+          "td": [
+            "Requires embedding model, vector database, and reindexing pipeline",
+            "Simple inverted index with TF-IDF or BM25; low overhead"
+          ]
+        },
+        {
+          "th": "Query latency",
+          "td": [
+            "Higher due to embedding generation and ANN search (20\u201350ms typical)",
+            "Low (5\u201310ms) for direct index lookup and scoring"
+          ]
+        },
+        {
+          "th": "Context understanding",
+          "td": [
+            "Handles synonyms, paraphrases, and misspellings naturally",
+            "Fails on misspelled or out-of-vocabulary terms unless fuzzy logic is added"
+          ]
+        },
+        {
+          "th": "Exact match reliability",
+          "td": [
+            "May miss literal terms if embedding drifts or vectors are misaligned",
+            "Perfect for exact product codes, names, and boolean filters"
+          ]
+        }
+      ]
+    },
+    "callout": {
+      "p": [
+        "The hybrid reality",
+        "Most production retrieval systems use both together: semantic search for understanding broad intent, and keyword search for precision on exact terms. This is the standard architecture I build when a project genuinely needs both recall and relevance\u2014and it's the foundation of Answer Engine Optimization (AEO) in 2026."
+      ]
+    }
+  }
+}

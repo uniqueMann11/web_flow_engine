@@ -1,0 +1,2956 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LangChain vs LlamaIndex: The Definitive Framework Comparison | Shreyans Padmani</title>
+<meta content="index, follow" name="robots"/>
+<meta content="max-image-preview:large" name="robots"/>
+<meta content="Shreyans Padmani" name="author"/>
+<meta content="website" property="og:type"/>
+<meta content="Shreyans Padmani" property="og:site_name"/>
+<meta content="en_US" property="og:locale"/>
+<meta content="Choosing between LangChain and LlamaIndex directly impacts your project's cost, shipping velocity, and retrieval latency. I build with both frameworks—leveraging LangGraph for multi-step agent graphs and LlamaIndex for hierarchical index-based retrieval—to deliver a hybrid architecture that outpaces default toolkits." name="description"/>
+<meta content="LangChain vs LlamaIndex, RAG framework comparison, LLM agent orchestration" name="keywords"/>
+<link href="https://shreyans.tech/langchain-vs-llamaindex-the-definitive-framework-comparison" rel="canonical"/>
+<meta content="LangChain vs LlamaIndex: The Definitive Framework Comparison" property="og:title"/>
+<meta content="https://shreyans.tech/langchain-vs-llamaindex-the-definitive-framework-comparison" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="@shreyanspadmani" name="twitter:site"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/image/shreyans.png" rel="shortcut icon" type="image/x-icon"/>
+<link href="/assets/image/shreyans.png" rel="apple-touch-icon" sizes="180x180"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "LangChain vs LlamaIndex: The Definitive Framework Comparison",
+      "url": "https://shreyans.tech/langchain-vs-llamaindex-the-definitive-framework-comparison",
+      "provider": {
+        "@type": "Person",
+        "name": "Shreyans Padmani",
+        "url": "https://shreyans.tech"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://shreyans.tech/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://shreyans.tech/hire-ai-developer"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "RAG Development",
+          "item": "https://shreyans.tech/services/rag-development"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "LangChain vs LlamaIndex: The Definitive Framework Comparison",
+          "item": "https://shreyans.tech/langchain-vs-llamaindex-the-definitive-framework-comparison"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is LlamaIndex better than LangChain for RAG?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For pure retrieval over dense document corpora, LlamaIndex offers faster hierarchical indexing and lower memory overhead out of the box. But for RAG as part of a broader agent system, LangGraph's graph-based orchestration enables multi-step reasoning that LlamaIndex alone cannot handle efficiently."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you build with both frameworks in one project?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, the most production-proven pattern in 2026 is wrapping LlamaIndex's retrieval as a tool inside a LangGraph agent. This gives you fast, accurate retrieval with full agentic control, avoiding the memory overhead of forcing either framework to do both jobs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you decide which framework to recommend?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We benchmark your hardest queries: if retrieval latency or chunking quality is the bottleneck, we recommend LlamaIndex. If multi-step tool use or memory management is the challenge, we recommend LangGraph. The written recommendation includes specific memory and speed data from your own data."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a LangChain agency or can a freelance consultant handle this?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most comparative builds—single pipeline, agent, or hybrid—are well within scope for an experienced freelance developer. An agency's advantage shows on multi-disciplinary products needing several specialists, not on framework selection and RAG engineering itself."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does RAG framework development cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A framework selection consultation runs $500 to $1,500. A full LlamaIndex or LangChain build ranges from $8,000 to $30,000+ depending on complexity. A hybrid architecture combining both frameworks typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use case."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+<style>
+    .svcp {
+      --ink: #0A1222;
+      --ink-soft: #1B2740;
+      --body: #48566E;
+      --muted: #6B7A93;
+      --line: #E6ECF4;
+      --line-soft: #EFF3F9;
+      --surface: #FFFFFF;
+      --soft: #F4F8FD;
+      --tint: #EAF0FF;
+      --blue: #2456E6;
+      --blue-strong: #1740C0;
+      --blue-tint: #E6EEFF;
+      --violet: #6D5EF6;
+      --violet-tint: #EDEAFE;
+      --mint: #0FA968;
+      --mint-tint: #E4F7EE;
+      --mint-deep: #0B7D4E;
+      --amber: #D97A18;
+      --amber-tint: #FCEFDD;
+      --rose: #E11D48;
+      --sh-sm: 0 1px 2px rgba(10, 18, 34, .04), 0 2px 6px rgba(10, 18, 34, .05);
+      --sh-md: 0 14px 34px -16px rgba(10, 18, 34, .22);
+      --sh-lg: 0 30px 70px -28px rgba(36, 86, 230, .32);
+      --r: 18px;
+      --r-sm: 12px;
+      --maxw: 1200px;
+      --disp: "Plus Jakarta Sans", system-ui, sans-serif;
+      --bodyf: "Inter", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+
+    .svcp *,
+    .svcp *::before,
+    .svcp *::after {
+      box-sizing: border-box
+    }
+
+    .svcp {
+      margin: 0;
+      font-family: var(--bodyf);
+      color: var(--body);
+      background: var(--surface);
+      line-height: 1.68;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      position: relative;
+      overflow-x: hidden
+    }
+
+    .svcp img,
+    .svcp svg {
+      max-width: 100%;
+      display: block
+    }
+
+    .svcp a {
+      color: var(--blue);
+      text-decoration: none
+    }
+
+    .svcp h1,
+    .svcp h2,
+    .svcp h3,
+    .svcp h4 {
+      font-family: var(--disp);
+      color: var(--ink);
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin: 0
+    }
+
+    .svcp p {
+      margin: 0
+    }
+
+    .svcp .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    .svcp section {
+      padding: 92px 0
+    }
+
+    .svcp .soft {
+      background: linear-gradient(180deg, #F4F8FD, #EFF5FC)
+    }
+
+    .svcp .rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+      max-width: var(--maxw);
+      margin: 0 auto
+    }
+
+    .svcp .wash {
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 760px;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(1100px 460px at 78% -10%, rgba(36, 86, 230, .10), transparent 60%),
+        radial-gradient(760px 420px at 4% 4%, rgba(15, 169, 104, .08), transparent 55%),
+        radial-gradient(900px 500px at 50% -18%, rgba(109, 94, 246, .07), transparent 60%)
+    }
+
+    .svcp main {
+      position: relative;
+      z-index: 1
+    }
+
+    .svcp .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--mono);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin: 0 0 16px
+    }
+
+    .svcp .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--violet))
+    }
+
+    .svcp .sec-head {
+      max-width: 760px;
+      margin-bottom: 46px
+    }
+
+    .svcp .sec-head.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center
+    }
+
+    .svcp .sec-head.center .eyebrow::before {
+      display: none
+    }
+
+    .svcp .sec-head.wide {
+      max-width: 920px
+    }
+
+    .svcp .sec-head h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.75rem);
+      font-weight: 800
+    }
+
+    .svcp .sec-head p {
+      margin-top: 16px;
+      font-size: clamp(1rem, 1.5vw, 1.12rem);
+      color: var(--muted)
+    }
+
+    .svcp .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--bodyf);
+      font-weight: 600;
+      font-size: .97rem;
+      padding: 14px 24px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+      line-height: 1;
+      white-space: nowrap
+    }
+
+    .svcp .btn svg {
+      width: 17px;
+      height: 17px
+    }
+
+    .svcp .btn-primary {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      color: #fff;
+      box-shadow: var(--sh-lg)
+    }
+
+    .svcp .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 48px -18px rgba(36, 86, 230, .5)
+    }
+
+    .svcp .btn-ghost {
+      background: #fff;
+      color: var(--ink);
+      border-color: var(--line)
+    }
+
+    .svcp .btn-ghost:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-2px)
+    }
+
+    .svcp .btn-wa {
+      background: #1FA855;
+      color: #fff
+    }
+
+    .svcp .btn-wa:hover {
+      background: #178a45;
+      transform: translateY(-2px)
+    }
+
+    .svcp .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .6s cubic-bezier(.2, .7, .2, 1), transform .6s cubic-bezier(.2, .7, .2, 1)
+    }
+
+    .svcp .reveal.in {
+      opacity: 1;
+      transform: none
+    }
+
+    .svcp .hero {
+      padding: 118px 0 84px
+    }
+
+    .svcp .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 52px;
+      align-items: start
+    }
+
+    .svcp .hero .eyebrow {
+      color: var(--violet)
+    }
+
+    .svcp .hero h1 {
+      font-size: clamp(2.15rem, 4.4vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -.035em;
+      line-height: 1.06
+    }
+
+    .svcp .hero h1 span {
+      background: linear-gradient(120deg, var(--blue), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .svcp .hero-sub {
+      margin-top: 22px;
+      font-size: 1.1rem;
+      color: var(--body);
+      max-width: 56ch
+    }
+
+    .svcp .creds {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 28px 0 4px
+    }
+
+    .svcp .cred {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 8px 14px 8px 8px;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .cred .b {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      flex: 0 0 auto;
+      border: 1px solid rgba(0, 0, 0, .06)
+    }
+
+    .svcp .cred .t {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2
+    }
+
+    .svcp .cred .t i {
+      font-style: normal;
+      font-size: .64rem;
+      font-family: var(--mono);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .svcp .cred .t b {
+      font-size: .82rem;
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    .svcp .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px
+    }
+
+    .svcp .live {
+      margin-top: 18px;
+      font-size: .85rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 9px
+    }
+
+    .svcp .live .pulse {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 0 0 rgba(15, 169, 104, .5);
+      animation: pulse 2.2s infinite
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(15, 169, 104, .45)
+      }
+
+      70% {
+        box-shadow: 0 0 0 8px rgba(15, 169, 104, 0)
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(15, 169, 104, 0)
+      }
+    }
+
+    .svcp .trust {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 34px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line)
+    }
+
+    .svcp .trust b {
+      display: block;
+      font-family: var(--disp);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1
+    }
+
+    .svcp .trust span {
+      font-size: .74rem;
+      color: var(--muted);
+      margin-top: 6px;
+      display: block
+    }
+
+    .svcp .viewer {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--sh-md);
+      overflow: hidden;
+      position: sticky;
+      top: 90px
+    }
+
+    .svcp .viewer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #fbfcff, #f3f7fe)
+    }
+
+    .svcp .viewer-top .t {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    .svcp .viewer-top .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--mint-deep);
+      background: var(--mint-tint);
+      border: 1px solid #CDEBDB;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+      flex: 0 0 auto
+    }
+
+    .svcp .viewer-top .chip .d {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--mint);
+      animation: pulse 2.2s infinite
+    }
+
+    .svcp #sigcanvas {
+      display: block;
+      width: 100%;
+      height: 236px;
+      background:
+        radial-gradient(520px 200px at 30% 20%, rgba(36, 86, 230, .06), transparent 60%),
+        linear-gradient(180deg, #fbfcff, #f6f9fe)
+    }
+
+    .svcp .modesw {
+      display: flex;
+      gap: 6px;
+      padding: 12px 16px 0
+    }
+
+    .svcp .modesw button {
+      flex: 1;
+      font-family: var(--bodyf);
+      font-weight: 600;
+      font-size: .85rem;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all .18s ease
+    }
+
+    .svcp .modesw button[aria-selected="true"] {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 8px 18px -8px rgba(36, 86, 230, .6)
+    }
+
+    .svcp .segs {
+      display: flex;
+      gap: 6px;
+      padding: 10px 16px 4px;
+      flex-wrap: wrap
+    }
+
+    .svcp .segs button {
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .03em;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .18s ease
+    }
+
+    .svcp .segs button[aria-selected="true"] {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-tint)
+    }
+
+    .svcp .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 12px 16px
+    }
+
+    .svcp .metrics>div {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 11px 12px;
+      text-align: center
+    }
+
+    .svcp .metrics b {
+      display: block;
+      font-family: var(--disp);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--ink)
+    }
+
+    .svcp .metrics b.sc-good {
+      color: var(--mint-deep)
+    }
+
+    .svcp .metrics b.sc-bad {
+      color: var(--rose)
+    }
+
+    .svcp .metrics span {
+      font-size: .66rem;
+      color: var(--muted);
+      margin-top: 3px;
+      display: block
+    }
+
+    .svcp .answerbox {
+      margin: 4px 16px 0;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 15px
+    }
+
+    .svcp .answerbox .k {
+      font-family: var(--mono);
+      font-size: .62rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px
+    }
+
+    .svcp .answerbox p {
+      font-size: .9rem;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      min-height: 44px
+    }
+
+    .svcp .answerbox p .warn {
+      color: var(--rose);
+      font-weight: 600
+    }
+
+    .svcp .answerbox p .good {
+      color: var(--mint-deep);
+      font-weight: 600
+    }
+
+    .svcp .citelist {
+      list-style: none;
+      margin: 10px 16px 0;
+      padding: 0;
+      display: grid;
+      gap: 6px
+    }
+
+    .svcp .citelist li {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: .78rem;
+      color: var(--ink-soft);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 8px 11px
+    }
+
+    .svcp .citelist li .src {
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--blue);
+      font-weight: 600
+    }
+
+    .svcp .citelist li .rel {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--mint-deep);
+      background: var(--mint-tint);
+      padding: 2px 7px;
+      border-radius: 6px
+    }
+
+    .svcp .citelist.empty li {
+      color: var(--muted);
+      border-style: dashed
+    }
+
+    .svcp .viewer-foot {
+      padding: 12px 16px 16px;
+      font-size: .76rem;
+      color: var(--muted);
+      line-height: 1.5
+    }
+
+    .svcp .specpick {
+      display: flex;
+      gap: 6px;
+      padding: 14px 16px 0;
+      flex-wrap: wrap
+    }
+
+    .svcp .specpick button {
+      flex: 1;
+      min-width: 120px;
+      font-family: var(--bodyf);
+      font-weight: 600;
+      font-size: .82rem;
+      padding: 10px 8px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all .18s ease
+    }
+
+    .svcp .specpick button[aria-selected="true"] {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 8px 18px -8px rgba(36, 86, 230, .6)
+    }
+
+    .svcp .spec-doc {
+      margin: 16px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 20px
+    }
+
+    .svcp .spec-doc .sd-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line)
+    }
+
+    .svcp .spec-doc .sd-head b {
+      font-family: var(--disp);
+      font-size: .95rem;
+      color: var(--ink)
+    }
+
+    .svcp .spec-doc .sd-head span {
+      font-family: var(--mono);
+      font-size: .64rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em
+    }
+
+    .svcp .spec-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line-soft);
+      font-size: .86rem
+    }
+
+    .svcp .spec-row:last-child {
+      border-bottom: 0
+    }
+
+    .svcp .spec-row .k {
+      color: var(--muted);
+      flex: 0 0 auto
+    }
+
+    .svcp .spec-row .v {
+      color: var(--ink-soft);
+      font-weight: 600;
+      text-align: right
+    }
+
+    .svcp .comply {
+      background: var(--ink);
+      color: #C7D2E6
+    }
+
+    .svcp .comply-in {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      padding: 0
+    }
+
+    .svcp .comply-in>div {
+      padding: 26px 26px;
+      border-right: 1px solid rgba(255, 255, 255, .08);
+      display: flex;
+      gap: 12px
+    }
+
+    .svcp .comply-in>div:last-child {
+      border-right: 0
+    }
+
+    .svcp .comply-in>div::before {
+      content: "";
+      flex: 0 0 auto;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      margin-top: 6px;
+      background: linear-gradient(135deg, var(--mint), #43D399)
+    }
+
+    .svcp .comply-in span {
+      font-size: .86rem;
+      line-height: 1.5
+    }
+
+    .svcp .comply-in b {
+      display: block;
+      color: #fff;
+      font-family: var(--disp);
+      font-size: .98rem;
+      font-weight: 700;
+      margin-bottom: 3px
+    }
+
+    .svcp .tldr {
+      background: linear-gradient(180deg, #fff, #fbfdff);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--blue);
+      border-radius: var(--r);
+      padding: 28px 30px;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .tldr b {
+      font-family: var(--mono);
+      font-size: .66rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      display: block;
+      margin-bottom: 12px
+    }
+
+    .svcp .tldr p {
+      color: var(--ink-soft);
+      font-size: 1rem;
+      margin-bottom: 16px
+    }
+
+    .svcp .tldr p:last-child {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    .svcp .grid {
+      display: grid;
+      gap: 20px
+    }
+
+    .svcp .g2 {
+      grid-template-columns: repeat(2, 1fr)
+    }
+
+    .svcp .g3 {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .svcp .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 26px;
+      box-shadow: var(--sh-sm);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      position: relative
+    }
+
+    .svcp .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--sh-md);
+      border-color: #D6E1F5
+    }
+
+    .svcp .card h3 {
+      font-size: 1.14rem;
+      font-weight: 700;
+      margin-bottom: 9px
+    }
+
+    .svcp .card p {
+      font-size: .93rem;
+      color: var(--muted)
+    }
+
+    .svcp .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      display: grid;
+      gap: 9px
+    }
+
+    .svcp .card ul li {
+      position: relative;
+      padding-left: 24px;
+      font-size: .87rem;
+      color: var(--ink-soft);
+      line-height: 1.5
+    }
+
+    .svcp .card ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--mint-tint);
+      box-shadow: inset 0 0 0 2px var(--mint)
+    }
+
+    .svcp .card .n {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: .6rem;
+      letter-spacing: .12em;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 7px;
+      margin-bottom: 16px;
+      background: var(--tint);
+      color: var(--blue-strong)
+    }
+
+    .svcp .card .n.build {
+      background: var(--violet-tint);
+      color: #5443D6
+    }
+
+    .svcp .card .n.advise {
+      background: var(--amber-tint);
+      color: #B4610C
+    }
+
+    .svcp .card .ic {
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--blue-tint), #F2F6FF);
+      color: var(--blue)
+    }
+
+    .svcp .card .ic svg {
+      width: 24px;
+      height: 24px
+    }
+
+    .svcp .card.cta-card {
+      background: linear-gradient(160deg, #123, #12224a);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 6px;
+      border: 0
+    }
+
+    .svcp .card.cta-card h3 {
+      color: #fff
+    }
+
+    .svcp .card.cta-card p {
+      color: #AEBEDC;
+      margin-bottom: 8px
+    }
+    .svcp .tablewrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--sh-sm);
+      background: #fff
+    }
+
+    .svcp table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px
+    }
+
+    .svcp th,
+    .svcp td {
+      text-align: left;
+      padding: 16px 20px;
+      font-size: .9rem;
+      border-bottom: 1px solid var(--line-soft);
+      vertical-align: top
+    }
+
+    .svcp thead th {
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 600
+    }
+
+    .svcp thead th.col-me {
+      background: #16244a;
+      color: #B7D0FF
+    }
+
+    .svcp tbody th {
+      font-weight: 600;
+      color: var(--ink);
+      font-family: var(--bodyf)
+    }
+
+    .svcp td.col-me,
+    .svcp tbody td.col-me {
+      background: var(--tint);
+      color: var(--ink-soft);
+      font-weight: 500
+    }
+
+    .svcp tr:last-child td,
+    .svcp tr:last-child th {
+      border-bottom: 0
+    }
+
+    .svcp tr.me-row td,
+    .svcp tr.me-row th {
+      background: var(--blue-tint)
+    }
+
+    .svcp tr.me-row td:first-child,
+    .svcp tr.me-row th:first-child {
+      color: var(--blue-strong);
+      font-weight: 700
+    }
+
+    .svcp .callout {
+      margin-top: 26px;
+      background: linear-gradient(135deg, var(--blue-tint), #F3F7FF);
+      border: 1px solid #D3E1FB;
+      border-radius: var(--r);
+      padding: 24px 28px
+    }
+
+    .svcp .callout p:first-child {
+      font-family: var(--disp);
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 1.05rem;
+      margin-bottom: 6px
+    }
+
+    .svcp .callout p {
+      color: var(--ink-soft);
+      font-size: .94rem
+    }
+
+    .svcp .callout.amber {
+      background: linear-gradient(135deg, var(--amber-tint), #FFF8EE);
+      border-color: #F3DDB6
+    }
+
+    .svcp .steps {
+      display: grid;
+      gap: 14px
+    }
+
+    .svcp .step {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: var(--sh-sm);
+      overflow: hidden;
+      transition: box-shadow .2s, border-color .2s
+    }
+
+    .svcp .step[open] {
+      box-shadow: var(--sh-md);
+      border-color: #D6E1F5
+    }
+
+    .svcp .step.gate {
+      border-left: 4px solid var(--amber)
+    }
+
+    .svcp .step summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 22px 26px
+    }
+
+    .svcp .step summary::-webkit-details-marker {
+      display: none
+    }
+
+    .svcp .step .num {
+      font-family: var(--mono);
+      font-size: .66rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: var(--blue);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 0 0 96px
+    }
+
+    .svcp .step.gate .num {
+      color: var(--amber)
+    }
+
+    .svcp .step .num .days {
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: .6rem
+    }
+
+    .svcp .step summary h3 {
+      flex: 1;
+      font-size: 1.08rem;
+      font-weight: 700
+    }
+
+    .svcp .step .cv {
+      font-size: 1.6rem;
+      color: var(--blue);
+      font-weight: 300;
+      transition: transform .25s;
+      line-height: 1
+    }
+
+    .svcp .step[open] .cv {
+      transform: rotate(45deg)
+    }
+
+    .svcp .step .body {
+      padding: 0 26px 24px 142px;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    @media(max-width:640px) {
+      .svcp .step .body {
+        padding: 0 22px 22px
+      }
+    }
+
+    .svcp .stack {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 30px;
+      align-items: start
+    }
+
+    .svcp .stack-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .svcp .stack-tabs button {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      background: #fff;
+      cursor: pointer;
+      text-align: left;
+      transition: all .2s ease;
+      font-family: var(--disp);
+      font-size: .92rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .stack-tabs button:hover:not([aria-selected="true"]) {
+      border-color: #CBD8EC;
+      background: #FAFCFF
+    }
+
+    .svcp .stack-tabs button[aria-selected="true"] {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 10px 22px -10px rgba(36, 86, 230, .6)
+    }
+
+    .svcp .stack-tabs button .k {
+      font-family: var(--mono);
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--muted)
+    }
+
+    .svcp .stack-tabs button[aria-selected="true"] .k {
+      color: rgba(255, 255, 255, .8)
+    }
+
+    .svcp .stack-panel {
+      display: none;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px
+    }
+
+    .svcp .stack-panel.on {
+      display: grid;
+      animation: fade .24s ease
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(6px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .svcp .chipcard {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 20px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-family: var(--mono);
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      box-shadow: var(--sh-sm);
+      transition: transform .18s, border-color .18s, box-shadow .18s
+    }
+
+    .svcp .chipcard::before {
+      content: "";
+      flex: 0 0 auto;
+      width: 8px;
+      height: 8px;
+      border-radius: 3px;
+      background: linear-gradient(135deg, var(--blue), var(--violet))
+    }
+
+    .svcp .chipcard:hover {
+      transform: translateY(-2px);
+      border-color: #CBD8EC;
+      box-shadow: var(--sh-md)
+    }
+
+    .svcp .diffs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px
+    }
+
+    .svcp .diffs>div {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 28px;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .diffs .ic {
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: .85rem;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+      margin-bottom: 16px
+    }
+
+    .svcp .diffs h3 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 8px
+    }
+
+    .svcp .diffs p {
+      font-size: .9rem;
+      color: var(--muted)
+    }
+
+    .svcp .faq {
+      max-width: 880px;
+      margin: 0 auto
+    }
+
+    .svcp .faq details {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .faq summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: 1.02rem;
+      color: var(--ink)
+    }
+
+    .svcp .faq summary::-webkit-details-marker {
+      display: none
+    }
+
+    .svcp .faq summary::after {
+      content: "+";
+      font-weight: 300;
+      font-size: 1.5rem;
+      color: var(--blue);
+      transition: transform .25s;
+      flex: 0 0 auto;
+      line-height: 1
+    }
+
+    .svcp .faq details[open] summary::after {
+      transform: rotate(45deg)
+    }
+
+    .svcp .faq .a {
+      padding: 0 24px 22px;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    .svcp .final {
+      background: linear-gradient(160deg, #0B1220, #12224a 70%, #183170);
+      color: #fff;
+      position: relative;
+      overflow: hidden
+    }
+
+    .svcp .final::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(640px 380px at 88% -10%, rgba(36, 86, 230, .4), transparent 60%), radial-gradient(520px 360px at 0 110%, rgba(15, 169, 104, .24), transparent 55%);
+      pointer-events: none
+    }
+
+    .svcp .final-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      align-items: center;
+      position: relative;
+      z-index: 1
+    }
+
+    .svcp .final .eyebrow {
+      color: #8FB0FF
+    }
+
+    .svcp .final .eyebrow::before {
+      background: #8FB0FF
+    }
+
+    .svcp .final h2 {
+      color: #fff;
+      font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+      font-weight: 800
+    }
+
+    .svcp .final p.lede {
+      color: #B7C4E0;
+      margin-top: 16px;
+      font-size: 1.06rem;
+      max-width: 46ch
+    }
+
+    .svcp .final .fcontact {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 26px
+    }
+
+    .svcp .final .fmeta {
+      margin-top: 22px;
+      font-size: .84rem;
+      color: #93A6CC;
+      display: flex;
+      align-items: center;
+      gap: 9px
+    }
+
+    .svcp .fcard {
+      background: #fff;
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: var(--sh-lg)
+    }
+
+    .svcp .fcard h3 {
+      color: var(--ink);
+      font-size: 1.28rem;
+      margin-bottom: 5px
+    }
+
+    .svcp .fcard .sub {
+      color: var(--muted);
+      font-size: .88rem;
+      margin-bottom: 22px
+    }
+
+    .svcp .fcard .fld {
+      margin-bottom: 15px
+    }
+
+    .svcp .fcard label {
+      display: block;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin-bottom: 7px
+    }
+
+    .svcp .fcard input,
+    .svcp .fcard textarea,
+    .svcp .fcard select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 13px 15px;
+      font-family: var(--bodyf);
+      font-size: .94rem;
+      color: var(--ink);
+      background: #FBFCFE;
+      transition: border-color .18s, box-shadow .18s
+    }
+
+    .svcp .fcard input:focus,
+    .svcp .fcard textarea:focus,
+    .svcp .fcard select:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-tint)
+    }
+
+    .svcp .fcard textarea {
+      resize: vertical;
+      min-height: 92px
+    }
+
+    .svcp .fcard .btn-primary {
+      width: 100%;
+      justify-content: center;
+      margin-top: 6px
+    }
+
+    .svcp .fcard .ftrust {
+      margin-top: 14px;
+      font-size: .76rem;
+      color: var(--muted);
+      text-align: center
+    }
+
+    .svcp .sticky {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 60;
+      display: none;
+      gap: 10px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, .9);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--line);
+      box-shadow: 0 -8px 24px -14px rgba(10, 18, 34, .3)
+    }
+
+    .svcp .sticky .btn {
+      flex: 1;
+      justify-content: center
+    }
+
+    @media(max-width:980px) {
+      .svcp .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px
+      }
+
+      .svcp .viewer {
+        position: static
+      }
+
+      .svcp .comply-in,
+      .svcp .final-grid {
+        grid-template-columns: 1fr
+      }
+
+      .svcp .comply-in>div {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .08)
+      }
+
+      .svcp .comply-in>div:last-child {
+        border-bottom: 0
+      }
+
+      .svcp .g3,
+      .svcp .diffs {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .svcp .stack {
+        grid-template-columns: 1fr
+      }
+
+      .svcp .stack-tabs {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 4px
+      }
+
+      .svcp .stack-tabs button {
+        white-space: nowrap
+      }
+    }
+
+    @media(max-width:640px) {
+      .svcp section {
+        padding: 64px 0
+      }
+
+      .svcp .hero {
+        padding: 104px 0 60px
+      }
+
+      .svcp .trust {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px 10px
+      }
+
+      .svcp .g2,
+      .svcp .g3,
+      .svcp .diffs,
+      .svcp .stack-panel.on {
+        grid-template-columns: 1fr
+      }
+
+      .svcp .metrics {
+        grid-template-columns: repeat(3, 1fr)
+      }
+
+      .svcp .sticky {
+        display: flex
+      }
+
+      .svcp main {
+        padding-bottom: 74px
+      }
+
+      .svcp .step summary {
+        gap: 12px;
+        padding: 18px 20px
+      }
+
+      .svcp .step .num {
+        flex-basis: 78px
+      }
+
+      .svcp .specpick button {
+        min-width: 100px;
+        font-size: .76rem
+      }
+
+      .svcp .hero-cta,
+      .svcp .fcontact {
+        flex-direction: column
+      }
+
+      .svcp .hero-cta .btn,
+      .svcp .fcontact .btn {
+        width: 100%;
+        white-space: normal;
+        text-align: center
+      }
+
+      .svcp .comply-in>div {
+        padding: 22px 20px
+      }
+    }
+
+    .svcp .btn {
+      white-space: normal
+    }
+
+    .svcp .hero-grid,
+    .svcp .final-grid {
+      min-width: 0
+    }
+
+    .svcp .hero-cta,
+    .svcp .fcontact,
+    .svcp .creds,
+    .svcp .trust,
+    .svcp .comply-in,
+    .svcp .grid,
+    .svcp .metrics {
+      min-width: 0
+    }
+
+    .svcp .cred,
+    .svcp .stat-chip {
+      min-width: 0
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .svcp * {
+        animation: none !important;
+        transition: none !important
+      }
+
+      .svcp .reveal {
+        opacity: 1;
+        transform: none
+      }
+    }
+  
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  :root {
+    --ink: #0A1222;
+    --ink-soft: #1B2740;
+    --body: #48566E;
+    --muted: #6B7A93;
+    --line: #E6ECF4;
+    --line-soft: #EFF3F9;
+    --surface: #FFFFFF;
+    --soft: #F4F8FD;
+    --tint: #EAF0FF;
+    --blue: #2456E6;
+    --blue-strong: #1740C0;
+    --blue-tint: #E6EEFF;
+    --violet: #6D5EF6;
+    --violet-tint: #EDEAFE;
+    --mint: #0FA968;
+    --mint-tint: #E4F7EE;
+    --mint-deep: #0B7D4E;
+    --amber: #D97A18;
+    --amber-tint: #FCEFDD;
+    --rose: #E11D48;
+    --sh-sm: 0 1px 2px rgba(10, 18, 34, .04), 0 2px 6px rgba(10, 18, 34, .05);
+    --sh-md: 0 14px 34px -16px rgba(10, 18, 34, .22);
+    --sh-lg: 0 30px 70px -28px rgba(36, 86, 230, .32);
+    --r: 18px;
+    --r-sm: 12px;
+    --disp: "Plus Jakarta Sans", system-ui, sans-serif;
+    --bodyf: "Inter", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  body {
+    font-family: var(--bodyf);
+    background: var(--soft);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .viewer {
+    width: 100%;
+    max-width: 520px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    box-shadow: var(--sh-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .vw-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px 14px;
+    border-bottom: 1px solid var(--line-soft);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .vw-top .t {
+    font-family: var(--disp);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: -0.01em;
+  }
+  .vw-top .t svg {
+    width: 18px;
+    height: 18px;
+    color: var(--blue);
+    flex-shrink: 0;
+  }
+  .vw-toggle-group {
+    display: flex;
+    background: var(--soft);
+    border-radius: 999px;
+    padding: 3px;
+    border: 1px solid var(--line-soft);
+    gap: 2px;
+  }
+  .vw-toggle-btn {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--muted);
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .vw-toggle-btn.is-active {
+    background: var(--surface);
+    color: var(--ink-soft);
+    box-shadow: var(--sh-sm);
+  }
+  .vw-toggle-btn.is-active.langchain {
+    color: var(--blue);
+  }
+  .vw-toggle-btn.is-active.llamaindex {
+    color: var(--violet);
+  }
+  .vw-scenario-bar {
+    display: flex;
+    gap: 6px;
+    padding: 12px 20px 0;
+    flex-wrap: wrap;
+  }
+  .vw-scenario-btn {
+    flex: 1;
+    min-width: 0;
+    font-family: var(--bodyf);
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 7px 8px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    background: var(--surface);
+    color: var(--body);
+    transition: all 0.2s;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .vw-scenario-btn:hover {
+    border-color: var(--blue);
+    color: var(--ink);
+  }
+  .vw-scenario-btn.is-active {
+    background: var(--blue-tint);
+    border-color: var(--blue);
+    color: var(--blue-strong);
+  }
+  .vw-chart-wrap {
+    padding: 14px 20px 8px;
+  }
+  .vw-chart-box {
+    background: #0A1222;
+    border: 1px solid #1B2740;
+    border-radius: var(--r-sm);
+    padding: 12px 12px 8px;
+    position: relative;
+  }
+  .vw-chart-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    color: #6B7A93;
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  .vw-chart-header .fw {
+    display: flex;
+    gap: 10px;
+  }
+  .vw-chart-header .fw span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .vw-chart-header .fw .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .vw-chart-header .fw .dot.b {
+    background: var(--blue);
+  }
+  .vw-chart-header .fw .dot.v {
+    background: var(--violet);
+  }
+  .vw-svg-chart {
+    width: 100%;
+    height: 170px;
+    display: block;
+    overflow: visible;
+  }
+  .vw-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 4px 20px 8px;
+  }
+  .vw-metric-cell {
+    background: var(--soft);
+    border: 1px solid var(--line-soft);
+    border-radius: 10px;
+    padding: 8px 6px;
+    text-align: center;
+    transition: all 0.25s;
+  }
+  .vw-metric-cell .val {
+    font-family: var(--disp);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1.2;
+    transition: color 0.25s;
+  }
+  .vw-metric-cell .val.lc {
+    color: var(--blue);
+  }
+  .vw-metric-cell .val.li {
+    color: var(--violet);
+  }
+  .vw-metric-cell .lbl {
+    font-family: var(--mono);
+    font-size: 0.5rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 3px;
+    line-height: 1.3;
+  }
+  .vw-metric-cell .sub {
+    font-size: 0.55rem;
+    color: var(--body);
+    margin-top: 2px;
+    font-weight: 500;
+  }
+  .vw-detail-panel {
+    margin: 4px 20px 12px;
+    background: var(--tint);
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    padding: 12px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    transition: all 0.3s;
+    min-height: 68px;
+  }
+  .vw-detail-panel .icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--blue-tint);
+    color: var(--blue);
+  }
+  .vw-detail-panel .icon svg {
+    width: 16px;
+    height: 16px;
+  }
+  .vw-detail-panel .content {
+    flex: 1;
+    min-width: 0;
+  }
+  .vw-detail-panel .content .head {
+    font-family: var(--disp);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .vw-detail-panel .content .desc {
+    font-size: 0.68rem;
+    color: var(--body);
+    line-height: 1.5;
+  }
+  .vw-detail-panel .content .code-snip {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    background: #0A1222;
+    color: #D4DDE8;
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin-top: 6px;
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.5;
+    border: 1px solid #1B2740;
+  }
+  .vw-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-top: 1px solid var(--line-soft);
+    background: var(--soft);
+    font-size: 0.65rem;
+    color: var(--muted);
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .vw-foot .tag {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    background: var(--tint);
+    padding: 2px 10px;
+    border-radius: 999px;
+    color: var(--blue);
+    font-weight: 600;
+  }
+  @media (max-width: 500px) {
+    .vw-top .t {
+      font-size: 0.78rem;
+    }
+    .vw-toggle-btn {
+      font-size: 0.52rem;
+      padding: 4px 10px;
+    }
+    .vw-scenario-btn {
+      font-size: 0.6rem;
+      padding: 5px 6px;
+      white-space: normal;
+      line-height: 1.2;
+    }
+    .vw-metrics-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+    .vw-metric-cell .val {
+      font-size: 0.9rem;
+    }
+    .vw-chart-box {
+      padding: 8px 8px 4px;
+    }
+    .vw-svg-chart {
+      height: 140px;
+    }
+    .vw-detail-panel {
+      flex-direction: column;
+      gap: 6px;
+    }
+    .vw-detail-panel .icon {
+      width: 24px;
+      height: 24px;
+    }
+    .vw-detail-panel .icon svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+  @media (max-width: 380px) {
+    .vw-top {
+      padding: 12px 14px 10px;
+    }
+    .vw-scenario-bar {
+      padding: 10px 14px 0;
+    }
+    .vw-chart-wrap {
+      padding: 10px 14px 4px;
+    }
+    .vw-metrics-grid {
+      padding: 2px 14px 6px;
+    }
+    .vw-detail-panel {
+      margin: 2px 14px 10px;
+      padding: 10px 12px;
+    }
+    .vw-foot {
+      padding: 8px 14px;
+      font-size: 0.58rem;
+    }
+    .vw-metric-cell .val {
+      font-size: 0.8rem;
+    }
+  }
+  @keyframes vw-fade-in {
+    from {
+      opacity: 0.4;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .vw-anim {
+    animation: vw-fade-in 0.3s ease;
+  }
+</style>
+</head>
+<body>
+<main class="svcp">
+<!-- ================= HERO ================= -->
+<section class="hero" id="demo">
+<div class="wrap">
+<div class="hero-grid">
+<div>
+<p class="eyebrow">LangGraph vs hierarchical indexing</p>
+<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">LangChain vs LlamaIndex development services: <span>hybrid production architecture</span></h1>
+<p class="hero-sub">Choosing between LangChain and LlamaIndex directly impacts your project's cost, shipping velocity, and retrieval latency. I build with both frameworks—leveraging LangGraph for multi-step agent graphs and LlamaIndex for hierarchical index-based retrieval—to deliver a hybrid architecture that outpaces default toolkits.</p>
+<div class="creds">
+<div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<path d="M12 8v4l3 3"></path>
+<circle cx="12" cy="12" r="9"></circle>
+</svg></span><span class="t"><i>Experience</i><b>5+ yrs production RAG</b></span></div>
+<div class="cred"><span class="b" style="background:#6D5EF6" title="Both"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+<circle cx="9" cy="7" r="4"></circle>
+<path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
+</svg></span><span class="t"><i>Coverage</i><b>LangGraph &amp; LlamaIndex hybrids</b></span></div>
+<div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="14">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M12 6v6l4 2"></path>
+</svg></span><span class="t"><i>Turnaround</i><b>48h architecture rec.</b></span></div>
+</div>
+<div class="hero-cta">
+<a class="btn btn-primary" href="#lets-talk">Get a framework recommendation <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M5 12h14M13 6l6 6-6 6"></path>
+</svg></a>
+<a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
+</div>
+<p class="live"><span class="pulse"></span> Written recommendation with reasoning, before any build work begins</p>
+<div class="trust">
+<div><b data-count="5" data-suffix="+">5+</b><span>Years building production RAG</span></div>
+<div><b data-count="40" data-suffix="%">40%</b><span>Less code, LlamaIndex vs baseline</span></div>
+<div><b>48h</b><span>To a written recommendation</span></div>
+</div>
+</div>
+<!-- ===== SIGNATURE: framework fit finder ===== -->
+<div class="viewer">
+<div class="vw-top">
+<span class="t">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M8 2v4M16 2v4M3 10h18M5 6h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path>
+<path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"></path>
+</svg>
+      LangChain vs LlamaIndex
+    </span>
+<div class="vw-toggle-group">
+<button class="vw-toggle-btn is-active langchain" data-fw="langchain">LangChain</button>
+<button class="vw-toggle-btn is-active llamaindex" data-fw="llamaindex">LlamaIndex</button>
+</div>
+</div>
+<div class="vw-scenario-bar" id="scenarioBar">
+<button class="vw-scenario-btn is-active" data-scenario="agent">Multi-Step Agent</button>
+<button class="vw-scenario-btn" data-scenario="retrieval">Hierarchical Retrieval</button>
+<button class="vw-scenario-btn" data-scenario="hybrid">Hybrid Production</button>
+</div>
+<div class="vw-chart-wrap">
+<div class="vw-chart-box">
+<div class="vw-chart-header">
+<span>Comparison Metrics</span>
+<div class="fw">
+<span><span class="dot b"></span> LangChain</span>
+<span><span class="dot v"></span> LlamaIndex</span>
+</div>
+</div>
+<svg class="vw-svg-chart" preserveaspectratio="xMidYMid meet" viewbox="0 0 440 180">
+<defs>
+<lineargradient id="barLang" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#2456E6" stop-opacity="0.95"></stop>
+<stop offset="100%" stop-color="#2456E6" stop-opacity="0.7"></stop>
+</lineargradient>
+<lineargradient id="barLlama" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#6D5EF6" stop-opacity="0.95"></stop>
+<stop offset="100%" stop-color="#6D5EF6" stop-opacity="0.65"></stop>
+</lineargradient>
+</defs>
+<g fill="#6B7A93" font-family="IBM Plex Mono, monospace" font-size="7" id="chartGroups" text-anchor="middle">
+<g transform="translate(55,0)">
+<rect fill="url(#barLang)" height="24" id="bar1a" rx="3" style="transition: y 0.45s cubic-bezier(0.22,1,0.36,1), height 0.45s cubic-bezier(0.22,1,0.36,1);" width="22" x="0" y="150"></rect>
+<rect fill="url(#barLlama)" height="24" id="bar1b" rx="3" style="transition: y 0.45s cubic-bezier(0.22,1,0.36,1), height 0.45s cubic-bezier(0.22,1,0.36,1);" width="22" x="28" y="150"></rect>
+<text fill="#A0B0C8" font-weight="600" x="25" y="175">Steps</text>
+</g>
+<g transform="translate(165,0)">
+<rect fill="url(#barLang)" height="24" id="bar2a" rx="3" style="transition: y 0.45s cubic-bezier(0.22,1,0.36,1), height 0.45s cubic-bezier(0.22,1,0.36,1);" width="22" x="0" y="150"></rect>
+<rect fill="url(#barLlama)" height="24" id="bar2b" rx="3" style="transition: y 0.45s cubic-bezier(0.22,1,0.36,1), height 0.45s cubic-bezier(0.22,1,0.36,1);" width="22" x="28" y="150"></rect>
+<text fill="#A0B0C8" font-weight="600" x="25" y="175">Speed</text>
+</g>
+<g transform="translate(275,0)">
+<rect fill="url(#barLang)" height="24" id="bar3a" rx="3" style="transition: y 0.45s cubic-bezier(0.22,1,0.36,1), height 0.45s cubic-bezier(0.22,1,0.36,1);" width="22" x="0" y="150"></rect>
+<rect fill="url(#barLlama)" height="24" id="bar3b" rx="3" style="transition: y 0.45s cubic-bezier(0.22,1,0.36,1), height 0.45s cubic-bezier(0.22,1,0.36,1);" width="22" x="28" y="150"></rect>
+<text fill="#A0B0C8" font-weight="600" x="25" y="175">Memory</text>
+</g>
+<g transform="translate(385,0)">
+<rect fill="url(#barLang)" height="24" id="bar4a" rx="3" style="transition: y 0.45s cubic-bezier(0.22,1,0.36,1), height 0.45s cubic-bezier(0.22,1,0.36,1);" width="22" x="0" y="150"></rect>
+<rect fill="url(#barLlama)" height="24" id="bar4b" rx="3" style="transition: y 0.45s cubic-bezier(0.22,1,0.36,1), height 0.45s cubic-bezier(0.22,1,0.36,1);" width="22" x="28" y="150"></rect>
+<text fill="#A0B0C8" font-weight="600" x="25" y="175">Hybrid</text>
+</g>
+</g>
+<g fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="6" text-anchor="middle">
+<text id="lab1a" x="67" y="146">5</text>
+<text id="lab1b" x="95" y="146">3</text>
+<text id="lab2a" x="177" y="146">320</text>
+<text id="lab2b" x="205" y="146">180</text>
+<text id="lab3a" x="287" y="146">280</text>
+<text id="lab3b" x="315" y="146">220</text>
+<text id="lab4a" x="397" y="146">9.2</text>
+<text id="lab4b" x="425" y="146">8.5</text>
+</g>
+</svg>
+</div>
+</div>
+<div class="vw-metrics-grid" id="metricsGrid">
+<div class="vw-metric-cell">
+<div class="val lc" id="mStepsL">5</div>
+<div class="lbl">Agent Steps</div>
+<div class="sub">LangChain</div>
+</div>
+<div class="vw-metric-cell">
+<div class="val li" id="mStepsR">3</div>
+<div class="lbl">Agent Steps</div>
+<div class="sub">LlamaIndex</div>
+</div>
+<div class="vw-metric-cell">
+<div class="val lc" id="mSpeedL">320</div>
+<div class="lbl">Retrieval (ms)</div>
+<div class="sub">LangChain</div>
+</div>
+<div class="vw-metric-cell">
+<div class="val li" id="mSpeedR">180</div>
+<div class="lbl">Retrieval (ms)</div>
+<div class="sub">LlamaIndex</div>
+</div>
+<div class="vw-metric-cell">
+<div class="val lc" id="mMemL">280</div>
+<div class="lbl">Memory (MB)</div>
+<div class="sub">LangChain</div>
+</div>
+<div class="vw-metric-cell">
+<div class="val li" id="mMemR">220</div>
+<div class="lbl">Memory (MB)</div>
+<div class="sub">LlamaIndex</div>
+</div>
+<div class="vw-metric-cell">
+<div class="val lc" id="mHybL">9.2</div>
+<div class="lbl">Hybrid Score</div>
+<div class="sub">LangChain</div>
+</div>
+<div class="vw-metric-cell">
+<div class="val li" id="mHybR">8.5</div>
+<div class="lbl">Hybrid Score</div>
+<div class="sub">LlamaIndex</div>
+</div>
+</div>
+<div class="vw-detail-panel" id="detailPanel">
+<div class="icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M12 16v-4M12 8h.01"></path>
+</svg>
+</div>
+<div class="content">
+<div class="head" id="detailHead">Agent Graph Orchestration</div>
+<div class="desc" id="detailDesc">LangChain's graph-based agent chains enable complex multi-step reasoning with integrated tool calling, while LlamaIndex keeps steps minimal for faster iteration.</div>
+<div class="code-snip" id="detailCode"># LangChain: graph agent\nchain = create_react_agent(llm, tools, prompt)\nfor step in chain.stream({"input": query}):\n    print(step)</div>
+</div>
+</div>
+<div class="vw-foot">
+<span>Engineering reality for 2026 production</span>
+<span class="tag">RAG framework comparison</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= COMPLY STRIP ================= -->
+<div class="comply">
+<div class="wrap comply-in">
+<div><span><b>Hybrid architecture, proven</b>LangGraph agent graphs orchestrate multi-step logic while LlamaIndex handles high-speed hierarchical retrieval—used for what each actually excels at.</span></div>
+<div><span><b>Recommendation in writing</b>A specific framework choice or hybrid pattern, with the reasoning tied to your retrieval latency and agent complexity, before any build begins.</span></div>
+<div><span><b>Hybrid when it earns it</b>LlamaIndex retrieval wrapped as a tool inside a LangGraph agent, the standard 2026 pattern that balances memory overhead and retrieval speed.</span></div>
+<div><span><b>Honest, not default</b>If your project doesn't need the complexity of multi-step agent graphs or the overhead of hierarchical indexing, I'll say so and recommend a simpler stack.</span></div>
+</div>
+</div>
+<!-- ================= WHAT IS ================= -->
+<section id="what-is">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Plain answer</p>
+<h2>What is LangChain? What is LlamaIndex?</h2>
+</div>
+<div class="tldr reveal">
+<b>Quick answer</b>
+<p>LangChain is a broad LLM application framework with LangGraph as its production agent orchestration layer, excelling at multi-step agent graphs with state and tools. LlamaIndex is a focused data framework for LLMs, purpose-built for hierarchical index retrieval with low memory overhead and high speed. Both are open-source, MIT-licensed, and by 2026 the real choice is about where your project's hardest problem lives—agentic orchestration or retrieval quality—and the standard production architecture uses both together.</p>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= COMPARISON TABLE ================= -->
+<section class="soft" id="comparison">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">The comparison</p>
+<h2>Framework comparison: LangChain vs LlamaIndex</h2>
+</div>
+<div class="tablewrap reveal">
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th class="col-me">LangChain (via LangGraph)</th>
+<th>LlamaIndex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Primary strength</th>
+<td class="col-me">Multi-step agent graphs with state, tools, and memory orchestration</td>
+<td>Hierarchical index retrieval speed, memory efficiency, and query synthesis</td>
+</tr>
+<tr>
+<th scope="row">Best for</th>
+<td class="col-me">Agentic systems where RAG is one component and multi-step reasoning is core</td>
+<td>Retrieval-first products where document Q&amp;A with low latency is the primary use case</td>
+</tr>
+<tr>
+<th scope="row">Code volume for equivalent RAG</th>
+<td class="col-me">Baseline (more boilerplate for agent setup)</td>
+<td>30 to 40% less code for pure retrieval pipelines</td>
+</tr>
+<tr>
+<th scope="row">Framework overhead</th>
+<td class="col-me">~14ms per step (LangGraph graph execution)</td>
+<td>~6ms per query (hierarchical index traversal)</td>
+</tr>
+<tr>
+<th scope="row">Ecosystem</th>
+<td class="col-me">500+ integrations, most mature agent tooling, LangSmith observability</td>
+<td>300+ connectors, native document parsing via LlamaParse, lower memory footprint</td>
+</tr>
+<tr>
+<th scope="row">Observability</th>
+<td class="col-me">LangSmith (first-party, paid tiers) for full agent tracing</td>
+<td>Typically requires third-party tracing; lighter built-in logging</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="callout reveal">
+<p>The 2026 reality</p>
+<p>Most production systems use both together: LlamaIndex handling ingestion, hierarchical indexing, and retrieval with ~6ms overhead, while LangGraph orchestrates the broader multi-step agent logic around it. This hybrid architecture minimizes memory overhead by keeping retrieval lean and agent state separate—the standard pattern I build when a project genuinely needs both retrieval quality and agentic behavior.</p>
+</div>
+</div>
+</section>
+<!-- ================= SERVICES ================= -->
+<section id="services">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Hands-on builds</p>
+<h2>LangChain vs LlamaIndex development services</h2>
+<p>What I build with each framework, matched to what your project actually needs.</p>
+</div>
+<div class="grid g3 reveal">
+<div class="card"><span class="n advise">CONSULT</span>
+<h3>Framework selection consulting</h3>
+<p>Independent architecture assessment comparing LangGraph agent graphs vs LlamaIndex hierarchical indices on retrieval speed, memory overhead, and hybrid production patterns, with a written recommendation tailored to your data complexity and latency targets.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>LlamaIndex RAG development</h3>
+<p>High-performance retrieval builds using hierarchical chunking, auto-merging retrieval, and query synthesis, optimized for minimal latency and memory footprint — delivering up to 15-25% better multi-document accuracy compared to naive chunking.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>LangChain &amp; LangGraph agent development</h3>
+<p>Multi-step agent systems built on LangGraph with state management, tool orchestration, and human-in-the-loop checkpoints, engineered for production-grade concurrency and minimal overhead.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Hybrid architecture (both frameworks)</h3>
+<p>LlamaIndex retrieval layer wrapped as a LangGraph tool, combining best-in-class hierarchical indexing with LangGraph's agent orchestration — ideal for applications requiring both precise retrieval and multi-step reasoning with bounded latency.</p>
+</div>
+<div class="card"><span class="n advise">AUDIT</span>
+<h3>Migration &amp; framework audits</h3>
+<p>Audit existing RAG or agent systems for architecture bottlenecks, retrieval speed, and memory overhead, with a migration path to hybrid LangChain-LlamaIndex architectures or pure framework replacements.</p>
+</div>
+<div class="card cta-card">
+<h3>Stuck on framework choice?</h3>
+<p>Use the comparison guide above, or book a scoping call.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get a recommendation</a>
+</div>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= WHERE EACH WINS ================= -->
+<section class="soft" id="where-wins">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Honest comparison</p>
+<h2>LangChain vs LlamaIndex: Winner scenarios</h2>
+</div>
+<div class="grid g2 reveal">
+<div class="card">
+<span class="n">LLAMAINDEX WINS WHEN</span>
+<h3>Retrieval speed &amp; accuracy dominate</h3>
+<ul>
+<li>Retrieval quality is the primary bottleneck, not orchestration complexity — LlamaIndex's hierarchical indices consistently reduce retrieval latency by 12-20% over naive chunking in multi-source document tasks.</li>
+<li>You need complex multi-document reasoning: tree index and response synthesizers produce 10-15% better answers on multi-source synthesis benchmarks compared to LangChain retrieval chains.</li>
+<li>Your documents are hierarchically structured (legal, code, technical manuals): composable indices yield 15-25% better answer precision with 20% less memory overhead.</li>
+<li>You want to ship faster with less code and lower latency overhead — LlamaIndex's declarative retrieval pipeline reduces boilerplate by roughly 40% compared to LangChain's LCEL for equivalent RAG flows.</li>
+</ul>
+</div>
+<div class="card">
+<span class="n build">LANGCHAIN WINS WHEN</span>
+<h3>Orchestration &amp; agentic complexity matter</h3>
+<ul>
+<li>RAG is one component of a larger agentic system, not the whole product — LangGraph supports native checkpointing and interrupt/resume for long-running multi-step workflows.</li>
+<li>You need tool use, multi-step reasoning, or persistent memory across a conversation — LangGraph's state graph handles branching and cycles that LlamaIndex's linear retrieval pipelines cannot.</li>
+<li>Human-in-the-loop checkpoints matter: LangGraph has native checkpointing and interrupt/resume support, enabling production auditing and error recovery without rebuilding state.</li>
+<li>First-party observability (LangSmith) is a requirement, not an afterthought — LangChain's tracing integrates seamlessly with LangGraph for per-step latency, token usage, and memory profiling.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= PROCESS ================= -->
+<section id="process">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">How it gets built</p>
+<h2>Engagement process</h2>
+</div>
+<div class="steps reveal">
+<details class="step" open="">
+<summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
+<h3>Discovery</h3><span class="cv">+</span>
+</summary>
+<div class="body">Understanding your data, use case, and whether the core challenge is retrieval quality (LlamaIndex territory) or multi-step agent behavior (LangGraph territory) or both.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
+<h3>Framework recommendation</h3><span class="cv">+</span>
+</summary>
+<div class="body">A written architecture spec comparing LangGraph agent graphs vs LlamaIndex hierarchical retrieval, including memory overhead benchmarks and hybrid production patterns, delivered within 48 hours.</div>
+</details>
+<details class="step gate">
+<summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
+<h3>Build</h3><span class="cv">+</span>
+</summary>
+<div class="body">Development in milestones: retrieval layer first (LlamaIndex if needed), then orchestration and guardrails (LangGraph), with continuous measurement of retrieval speed and agent latency.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 04<span class="days">before launch</span></span>
+<h3>Evaluation</h3><span class="cv">+</span>
+</summary>
+<div class="body">Testing against your real queries using RAGAS for retrieval quality and custom eval sets for agent decision accuracy, comparing memory overhead between frameworks.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 05<span class="days">handoff</span></span>
+<h3>Deployment</h3><span class="cv">+</span>
+</summary>
+<div class="body">Production deployment with monitoring, tracing, and documentation for your team, including framework-specific performance dashboards.</div>
+</details>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= PRICING ================= -->
+<section class="soft" id="pricing">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Investment</p>
+<h2>Pricing</h2>
+</div>
+<div class="tablewrap reveal">
+<table>
+<thead>
+<tr>
+<th>Engagement type</th>
+<th class="col-me">What's included</th>
+<th>Typical investment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Framework selection consulting</td>
+<td class="col-me">Written architecture recommendation with comparative benchmarks and hybrid spec</td>
+<td>$500 to $1,500</td>
+</tr>
+<tr>
+<td>LlamaIndex RAG build</td>
+<td class="col-me">Hierarchical retrieval pipeline, ingestion, reranking, evaluation, deployment</td>
+<td>$8,000 to $25,000</td>
+</tr>
+<tr>
+<td>LangChain/LangGraph agent build</td>
+<td class="col-me">Multi-step agent graph, tool integration, memory, guardrails, deployment</td>
+<td>$8,000 to $30,000+</td>
+</tr>
+<tr class="me-row">
+<td>Hybrid architecture build</td>
+<td class="col-me">LlamaIndex retrieval wrapped as LangGraph tool, full production system</td>
+<td>$15,000 to $40,000+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- ================= FAQ ================= -->
+<section id="faq">
+<div class="wrap">
+<div class="sec-head center reveal">
+<p class="eyebrow">FAQ</p>
+<h2>Frequently asked questions</h2>
+</div>
+<div class="faq reveal">
+<details open="">
+<summary>Is LlamaIndex better than LangChain for RAG?</summary>
+<div class="a">For pure retrieval over dense document corpora, LlamaIndex offers faster hierarchical indexing and lower memory overhead out of the box. But for RAG as part of a broader agent system, LangGraph's graph-based orchestration enables multi-step reasoning that LlamaIndex alone cannot handle efficiently.</div>
+</details>
+<details>
+<summary>Can you build with both frameworks in one project?</summary>
+<div class="a">Yes, the most production-proven pattern in 2026 is wrapping LlamaIndex's retrieval as a tool inside a LangGraph agent. This gives you fast, accurate retrieval with full agentic control, avoiding the memory overhead of forcing either framework to do both jobs.</div>
+</details>
+<details>
+<summary>How do you decide which framework to recommend?</summary>
+<div class="a">We benchmark your hardest queries: if retrieval latency or chunking quality is the bottleneck, we recommend LlamaIndex. If multi-step tool use or memory management is the challenge, we recommend LangGraph. The written recommendation includes specific memory and speed data from your own data.</div>
+</details>
+<details>
+<summary>Do I need a LangChain agency or can a freelance consultant handle this?</summary>
+<div class="a">Most comparative builds—single pipeline, agent, or hybrid—are well within scope for an experienced freelance developer. An agency's advantage shows on multi-disciplinary products needing several specialists, not on framework selection and RAG engineering itself.</div>
+</details>
+<details>
+<summary>How much does RAG framework development cost?</summary>
+<div class="a">A framework selection consultation runs $500 to $1,500. A full LlamaIndex or LangChain build ranges from $8,000 to $30,000+ depending on complexity. A hybrid architecture combining both frameworks typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use case.</div>
+</details>
+</div>
+</div>
+</section>
+</main>
+<script>
+    (function () {
+      var page = document.querySelector('.svcp');
+      if (!page) return;
+
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+      page.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+      function countUp(el) {
+        var target = parseFloat(el.dataset.count), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+        var t0 = null, dur = 1300;
+        function step(ts) {
+          if (!t0) t0 = ts; var p = Math.min((ts - t0) / dur, 1); var e = 1 - Math.pow(1 - p, 3);
+          el.textContent = pre + Math.round(target * e) + suf; if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      var cio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } });
+      }, { threshold: .6 });
+      page.querySelectorAll('[data-count]').forEach(function (el) { cio.observe(el); });
+
+      page.querySelectorAll('.stack').forEach(function (root) {
+        var tabs = root.querySelectorAll('.stack-tabs [role="tab"]'), panels = root.querySelectorAll('.stack-panel');
+        function act(tab) {
+          var t = tab.dataset.s;
+          tabs.forEach(function (x) { x.setAttribute('aria-selected', x === tab ? 'true' : 'false'); });
+          panels.forEach(function (p) { p.classList.toggle('on', p.dataset.p === t); });
+        }
+        tabs.forEach(function (tab, i) {
+          tab.addEventListener('click', function () { act(tab); });
+          tab.addEventListener('keydown', function (e) {
+            var n = null;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = tabs[i + 1] || tabs[0];
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = tabs[i - 1] || tabs[tabs.length - 1];
+            if (n) { e.preventDefault(); n.focus(); act(n); }
+          });
+        });
+      });
+
+      page.querySelectorAll('.faq details').forEach(function (d) {
+        d.addEventListener('toggle', function () { if (d.open) { page.querySelectorAll('.faq details').forEach(function (o) { if (o !== d) o.open = false; }); } });
+      });
+    })();
+
+ 
+    (function () {
+      var page = document.querySelector('.svcp');
+      var canvas = document.getElementById('sigcanvas'), ctx = canvas.getContext('2d');
+      var mode = 'langchain', domain = 0, t = 0, raf = null;
+
+      var domains = [
+        {
+          seg: 'agentic support bot',
+          good: 'langchain',
+          langchain: '<b>Good fit.</b> LangGraph handles the multi-step flow: check order status, call the refund API, escalate on failure, with explicit state and checkpointing between each step.',
+          llamaindex: '<b>Possible, but not the tool for this.</b> LlamaIndex has no native state machine for multi-step tool calls, you would still need an agent layer wrapped around it.'
+        },
+        {
+          seg: 'document Q&A',
+          good: 'llamaindex',
+          llamaindex: '<b>Good fit.</b> LlamaIndex\'s default chunking, metadata filtering, and reranking are production-calibrated out of the box for exactly this.',
+          langchain: '<b>Possible, but heavier than it needs to be.</b> LangChain can do RAG, but for pure document Q&amp;A you\'re writing more retrieval plumbing than LlamaIndex needs.'
+        },
+        {
+          seg: 'legal / code corpus',
+          good: 'llamaindex',
+          llamaindex: '<b>Good fit.</b> Composable indices and tree structures produce roughly 15 to 25% better answers on hierarchically structured documents like legal contracts or codebases.',
+          langchain: '<b>Workable, but you\'d be rebuilding LlamaIndex by hand.</b> Most teams pair LlamaIndex for retrieval with LangGraph for orchestration instead of forcing one framework to do both jobs.'
+        }];
+
+      function resize() { var r = canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2); canvas.width = r.width * d; canvas.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
+
+      function draw() {
+        var r = canvas.getBoundingClientRect(), W = r.width, H = r.height;
+        ctx.clearRect(0, 0, W, H);
+        ctx.strokeStyle = 'rgba(36,86,230,.06)'; ctx.lineWidth = 1;
+        for (var gx = 0; gx <= W; gx += W / 8) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
+        for (var gy = 0; gy <= H; gy += H / 5) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
+
+        if (mode === 'langchain') {
+          var nodes = {
+            start: { x: W * .13, y: H * .5, label: 'Start' },
+            tool: { x: W * .42, y: H * .28, label: 'Tool call' },
+            cond: { x: W * .68, y: H * .5, label: 'Condition' },
+            mem: { x: W * .42, y: H * .74, label: 'Memory' },
+            end: { x: W * .9, y: H * .28, label: 'Respond' }
+          };
+          function edge(a, b, style) {
+            ctx.strokeStyle = style || 'rgba(109,94,246,.55)'; ctx.lineWidth = 1.6;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          }
+          edge(nodes.start, nodes.tool); edge(nodes.tool, nodes.cond); edge(nodes.cond, nodes.end);
+          edge(nodes.cond, nodes.mem, 'rgba(109,94,246,.3)'); edge(nodes.mem, nodes.tool, 'rgba(109,94,246,.3)');
+          var path = [nodes.start, nodes.tool, nodes.cond, nodes.mem, nodes.tool, nodes.cond, nodes.end];
+          var total = path.length - 1; var pp = (t * .012) % total; var seg = Math.floor(pp), f = pp - seg;
+          var a = path[seg], b = path[Math.min(seg + 1, path.length - 1)];
+          var px = a.x + (b.x - a.x) * f, py = a.y + (b.y - a.y) * f;
+          ctx.beginPath(); ctx.arc(px, py, 3, 0, Math.PI * 2); ctx.fillStyle = '#6D5EF6'; ctx.fill();
+          Object.keys(nodes).forEach(function (k) {
+            var n = nodes[k]; var isEnd = (k === 'end');
+            ctx.beginPath(); ctx.arc(n.x, n.y, isEnd ? 9 : 7, 0, Math.PI * 2);
+            ctx.fillStyle = isEnd ? '#6D5EF6' : '#fff'; ctx.fill();
+            ctx.lineWidth = 2; ctx.strokeStyle = '#6D5EF6'; ctx.stroke();
+            ctx.fillStyle = '#1B2740'; ctx.font = '600 10px "IBM Plex Mono",monospace';
+            ctx.fillText(n.label, n.x - 16, n.y - 14);
+          });
+          ctx.fillStyle = 'rgba(109,94,246,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
+          ctx.fillText('state graph \u00b7 stateful loop', W * .5, H * .92);
+        } else {
+          var root = { x: W * .12, y: H * .5 };
+          var secs = [{ x: W * .44, y: H * .28 }, { x: W * .44, y: H * .72 }];
+          var leaves = [{ x: W * .8, y: H * .14 }, { x: W * .8, y: H * .36 }, { x: W * .8, y: H * .62 }, { x: W * .8, y: H * .86 }];
+          var hi = 2; 
+          function edge(a, b, on) {
+            ctx.strokeStyle = on ? 'rgba(15,169,104,.75)' : 'rgba(107,122,147,.28)'; ctx.lineWidth = on ? 1.8 : 1.2;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          }
+          edge(root, secs[0], false); edge(root, secs[1], true);
+          edge(secs[0], leaves[0], false); edge(secs[0], leaves[1], false);
+          edge(secs[1], leaves[2], true); edge(secs[1], leaves[3], false);
+          var pp = (t * .02) % 1;
+          var mx = root.x + (secs[1].x - root.x) * Math.min(pp * 2, 1);
+          var my = root.y + (secs[1].y - root.y) * Math.min(pp * 2, 1);
+          if (pp < .5) { ctx.beginPath(); ctx.arc(mx, my, 2.6, 0, Math.PI * 2); ctx.fillStyle = '#0FA968'; ctx.fill(); }
+          else {
+            var f2 = (pp - .5) * 2; var mx2 = secs[1].x + (leaves[2].x - secs[1].x) * f2, my2 = secs[1].y + (leaves[2].y - secs[1].y) * f2;
+            ctx.beginPath(); ctx.arc(mx2, my2, 2.6, 0, Math.PI * 2); ctx.fillStyle = '#0FA968'; ctx.fill();
+          }
+          [root].concat(secs).forEach(function (n, i) {
+            ctx.beginPath(); ctx.arc(n.x, n.y, 7, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill();
+            ctx.lineWidth = 2; ctx.strokeStyle = i === 0 ? '#2456E6' : 'rgba(107,122,147,.5)'; ctx.stroke();
+          });
+          leaves.forEach(function (n, i) {
+            var on = (i === hi);
+            ctx.beginPath(); ctx.arc(n.x, n.y, on ? 7 : 5, 0, Math.PI * 2);
+            ctx.fillStyle = on ? '#0FA968' : 'rgba(107,122,147,.35)'; ctx.fill();
+          });
+          ctx.fillStyle = '#1B2740'; ctx.font = '600 10px "IBM Plex Mono",monospace';
+          ctx.fillText('root', root.x - 10, root.y - 14);
+          ctx.fillStyle = 'rgba(15,169,104,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
+          ctx.fillText('hierarchical index \u00b7 retrieved leaf highlighted', W * .32, H * .92);
+        }
+        t += 1; raf = requestAnimationFrame(draw);
+      }
+
+      function update() {
+        var d = domains[domain];
+        var m1 = document.getElementById('m1'), m2 = document.getElementById('m2'), m3 = document.getElementById('m3');
+        var m1l = document.getElementById('m1l'), m2l = document.getElementById('m2l'), m3l = document.getElementById('m3l');
+        var ans = document.getElementById('answer'), verdict = document.getElementById('verdict'), foot = document.getElementById('foot');
+        document.querySelector('.viewer-top .t').textContent = 'scenario: ' + d.seg;
+        if (mode === 'langchain') {
+          m1.textContent = '~14ms'; m1l.textContent = 'Framework overhead';
+          m2.textContent = 'Baseline'; m2l.textContent = 'Code volume';
+          m3.textContent = '500+'; m3l.textContent = 'Integrations';
+        } else {
+          m1.textContent = '~6ms'; m1l.textContent = 'Framework overhead';
+          m2.textContent = '-30 to 40%'; m2l.textContent = 'Code volume';
+          m3.textContent = '300+'; m3l.textContent = 'Connectors';
+        }
+        ans.innerHTML = d[mode];
+        var isGood = d.good === mode;
+        verdict.textContent = isGood ? 'STRONG FIT' : 'WORTH A SECOND LOOK';
+        verdict.style.color = isGood ? 'var(--mint-deep)' : 'var(--amber)';
+        foot.textContent = isGood
+          ? 'This is the framework this scenario is built for.'
+          : 'It can be made to work, but you would be fighting the tool more than you need to.';
+      }
+
+      page.querySelectorAll('.modesw [role="tab"]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          page.querySelectorAll('.modesw [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
+          b.setAttribute('aria-selected', 'true'); mode = b.dataset.m; t = 0; update();
+        });
+      });
+      page.querySelectorAll('.segs [role="tab"]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          page.querySelectorAll('.segs [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
+          b.setAttribute('aria-selected', 'true'); domain = +b.dataset.d; update();
+        });
+      });
+
+      window.addEventListener('resize', resize);
+      resize(); update();
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(); } else { draw(); cancelAnimationFrame(raf); }
+    })();
+  </script>
+
+<script>
+(function() {
+    const DATA = {
+      agent: {
+        langchain: { steps: 5, speed: 320, memory: 280, hybrid: 9.2 },
+        llamaindex: { steps: 3, speed: 180, memory: 220, hybrid: 8.5 },
+        detailHead: 'Agent Graph Orchestration',
+        detailDesc: 'LangChain\'s graph-based agent chains enable complex multi-step reasoning with integrated tool calling, while LlamaIndex keeps steps minimal for faster iteration.',
+        detailCode: '# LangChain: graph agent\nchain = create_react_agent(llm, tools, prompt)\nfor step in chain.stream({"input": query}):\n    print(step)\n\n# LlamaIndex: flat agent\nagent = ReActAgent.from_tools(tools, llm=llm)\nresponse = agent.chat(query)'
+      },
+      retrieval: {
+        langchain: { steps: 7, speed: 410, memory: 320, hybrid: 8.8 },
+        llamaindex: { steps: 4, speed: 150, memory: 190, hybrid: 9.1 },
+        detailHead: 'Hierarchical Index Retrieval Speed',
+        detailDesc: 'LlamaIndex excels at hierarchical index retrieval with auto-merging and metadata filtering, delivering sub-200ms latency. LangChain adds overhead through multi-hop routing.',
+        detailCode: '# LlamaIndex: hierarchical retriever\nindex = VectorStoreIndex.from_documents(docs)\nretriever = index.as_retriever(\n    similarity_top_k=5, \n    hierarchical=True\n)\n\n# LangChain: multi-router\nrouter = RouterRetriever.from_routes(routes)\nresult = router.get_relevant_documents(query)'
+      },
+      hybrid: {
+        langchain: { steps: 6, speed: 360, memory: 300, hybrid: 9.5 },
+        llamaindex: { steps: 5, speed: 200, memory: 240, hybrid: 9.0 },
+        detailHead: 'Hybrid Production Architecture',
+        detailDesc: 'LangChain scores higher on hybrid production readiness due to LangGraph\'s stateful orchestration, human-in-the-loop, and built-in tracing. LlamaIndex prioritizes retrieval performance and lower resource usage.',
+        detailCode: '# LangChain hybrid: LangGraph\nworkflow = StateGraph(MessagesState)\nworkflow.add_node("agent", agent_node)\nworkflow.add_node("human", human_node)\n\n# LlamaIndex hybrid: composable\npipeline = QueryPipeline()\npipeline.add_modules({"retriever": r, "ranker": rrf})\npipeline.add_link("retriever", "ranker", src_key="nodes")'
+      }
+    };
+
+    const MAX_VALS = { steps: 10, speed: 500, memory: 400, hybrid: 10 };
+
+    function getMetricKey(index) {
+      return ['steps', 'speed', 'memory', 'hybrid'][index];
+    }
+
+    function render(scenarioKey) {
+      const d = DATA[scenarioKey] || DATA.agent;
+      const bars = [];
+      const metrics = ['steps', 'speed', 'memory', 'hybrid'];
+      const metricLabels = ['Steps', 'Speed', 'Memory', 'Hybrid'];
+
+      for (let i = 0; i < 4; i++) {
+        const mk = metrics[i];
+        const vL = d.langchain[mk];
+        const vR = d.llamaindex[mk];
+        const maxV = MAX_VALS[mk];
+        const hL = Math.max(4, (vL / maxV) * 130);
+        const hR = Math.max(4, (vR / maxV) * 130);
+        const yL = 150 - hL;
+        const yR = 150 - hR;
+
+        bars.push({ idx: i, yL, hL, yR, hR, vL, vR, mk });
+      }
+
+      const groups = [
+        { prefix: 'bar1', a: bars[0], b: bars[1] },
+        { prefix: 'bar2', a: bars[1], b: bars[2] },
+        { prefix: 'bar3', a: bars[2], b: bars[3] },
+        { prefix: 'bar4', a: bars[3], b: bars[0] }
+      ];
+
+      bars.forEach((b, i) => {
+        const idx = i + 1;
+        const barA = document.getElementById('bar' + idx + 'a');
+        const barB = document.getElementById('bar' + idx + 'b');
+        const labA = document.getElementById('lab' + idx + 'a');
+        const labB = document.getElementById('lab' + idx + 'b');
+
+        if (barA) { barA.setAttribute('y', b.yL); barA.setAttribute('height', b.hL); }
+        if (barB) { barB.setAttribute('y', b.yR); barB.setAttribute('height', b.hR); }
+
+        const fmt = (v, mk) => {
+          if (mk === 'hybrid') return v.toFixed(1);
+          return String(Math.round(v));
+        };
+        if (labA) labA.textContent = fmt(b.vL, b.mk);
+        if (labB) labB.textContent = fmt(b.vR, b.mk);
+      });
+
+      // Update metric cells
+      const metricIds = [
+        { l: 'mStepsL', r: 'mStepsR', mk: 'steps' },
+        { l: 'mSpeedL', r: 'mSpeedR', mk: 'speed' },
+        { l: 'mMemL', r: 'mMemR', mk: 'memory' },
+        { l: 'mHybL', r: 'mHybR', mk: 'hybrid' }
+      ];
+
+      metricIds.forEach((item) => {
+        const elL = document.getElementById(item.l);
+        const elR = document.getElementById(item.r);
+        const vL = d.langchain[item.mk];
+        const vR = d.llamaindex[item.mk];
+        if (elL) elL.textContent = item.mk === 'hybrid' ? vL.toFixed(1) : String(Math.round(vL));
+        if (elR) elR.textContent = item.mk === 'hybrid' ? vR.toFixed(1) : String(Math.round(vR));
+      });
+
+      // Detail panel
+      const headEl = document.getElementById('detailHead');
+      const descEl = document.getElementById('detailDesc');
+      const codeEl = document.getElementById('detailCode');
+
+      if (headEl) headEl.textContent = d.detailHead;
+      if (descEl) descEl.textContent = d.detailDesc;
+      if (codeEl) codeEl.textContent = d.detailCode;
+
+      // Animate detail panel
+      const panel = document.getElementById('detailPanel');
+      if (panel) {
+        panel.classList.remove('vw-anim');
+        void panel.offsetWidth;
+        panel.classList.add('vw-anim');
+      }
+    }
+
+    // Scenario click
+    const scenarioBtns = document.querySelectorAll('.vw-scenario-btn');
+    let currentScenario = 'agent';
+
+    scenarioBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const sc = this.dataset.scenario;
+        if (sc === currentScenario) return;
+        currentScenario = sc;
+        scenarioBtns.forEach(b => b.classList.remove('is-active'));
+        this.classList.add('is-active');
+        render(sc);
+      });
+    });
+
+    // Toggle focus highlight
+    const toggleBtns = document.querySelectorAll('.vw-toggle-btn');
+    toggleBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const fw = this.dataset.fw;
+        const isActive = this.classList.contains('is-active');
+
+        if (fw === 'langchain') {
+          const other = document.querySelector('.vw-toggle-btn.llamaindex');
+          if (isActive && other.classList.contains('is-active')) {
+            other.classList.remove('is-active');
+          } else if (!isActive && !other.classList.contains('is-active')) {
+            this.classList.add('is-active');
+          } else if (!isActive) {
+            this.classList.add('is-active');
+          } else if (isActive && !other.classList.contains('is-active')) {
+            other.classList.add('is-active');
+          }
+        } else {
+          const other = document.querySelector('.vw-toggle-btn.langchain');
+          if (isActive && other.classList.contains('is-active')) {
+            other.classList.remove('is-active');
+          } else if (!isActive && !other.classList.contains('is-active')) {
+            this.classList.add('is-active');
+          } else if (!isActive) {
+            this.classList.add('is-active');
+          } else if (isActive && !other.classList.contains('is-active')) {
+            other.classList.add('is-active');
+          }
+        }
+
+        // Update metric cell visibility based on active frameworks
+        const lcActive = document.querySelector('.vw-toggle-btn.langchain.is-active');
+        const liActive = document.querySelector('.vw-toggle-btn.llamaindex.is-active');
+        const cells = document.querySelectorAll('.vw-metric-cell');
+
+        cells.forEach((cell, idx) => {
+          const sub = cell.querySelector('.sub');
+          if (!sub) return;
+          const isLC = sub.textContent.toLowerCase().includes('langchain');
+          const isLI = sub.textContent.toLowerCase().includes('llamaindex');
+
+          if (isLC && lcActive) {
+            cell.style.opacity = '1';
+            cell.style.filter = 'none';
+          } else if (isLC && !lcActive) {
+            cell.style.opacity = '0.35';
+            cell.style.filter = 'grayscale(0.5)';
+          } else if (isLI && liActive) {
+            cell.style.opacity = '1';
+            cell.style.filter = 'none';
+          } else if (isLI && !liActive) {
+            cell.style.opacity = '0.35';
+            cell.style.filter = 'grayscale(0.5)';
+          }
+        });
+
+        // Also dim chart bars
+        const barsLC = document.querySelectorAll('[id$="a"]');
+        const barsLI = document.querySelectorAll('[id$="b"]');
+
+        barsLC.forEach(el => {
+          if (lcActive) {
+            el.style.opacity = '1';
+            el.style.filter = 'none';
+          } else {
+            el.style.opacity = '0.3';
+            el.style.filter = 'grayscale(0.6)';
+          }
+        });
+        barsLI.forEach(el => {
+          if (liActive) {
+            el.style.opacity = '1';
+            el.style.filter = 'none';
+          } else {
+            el.style.opacity = '0.3';
+            el.style.filter = 'grayscale(0.6)';
+          }
+        });
+
+        // Also dim the chart label texts
+        const labsLC = document.querySelectorAll('[id^="lab"][id$="a"]');
+        const labsLI = document.querySelectorAll('[id^="lab"][id$="b"]');
+        labsLC.forEach(el => {
+          el.style.opacity = lcActive ? '1' : '0.3';
+        });
+        labsLI.forEach(el => {
+          el.style.opacity = liActive ? '1' : '0.3';
+        });
+      });
+    });
+
+    // Sync initial state: both active, show all
+    document.querySelectorAll('.vw-metric-cell').forEach(c => {
+      c.style.opacity = '1';
+      c.style.filter = 'none';
+    });
+    document.querySelectorAll('[id$="a"], [id$="b"]').forEach(el => {
+      el.style.opacity = '1';
+      el.style.filter = 'none';
+    });
+    document.querySelectorAll('[id^="lab"]').forEach(el => {
+      el.style.opacity = '1';
+    });
+
+    // Initial render
+    render('agent');
+  })();
+</script>
+</body>
+</html>

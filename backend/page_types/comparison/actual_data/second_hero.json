@@ -1,0 +1,97 @@
+{
+  "comply": {
+    "comply-in": [
+      {
+        "b": "Both frameworks, done right",
+        "span": "LangChain, LangGraph, and LlamaIndex, used for what each is actually built for."
+      },
+      {
+        "b": "Recommendation in writing",
+        "span": "A specific framework choice, with the reasoning behind it, before any build begins."
+      },
+      {
+        "b": "Hybrid when it earns it",
+        "span": "LlamaIndex retrieval wrapped as a tool inside a LangGraph agent, the standard 2026 pattern."
+      },
+      {
+        "b": "Honest, not default",
+        "span": "If your project doesn't need the complexity of one framework, I'll say so."
+      }
+    ]
+  },
+  "what-is": {
+    "sec-head": {
+      "eyebrow": "Plain answer",
+      "h2": "What is LangChain? What is LlamaIndex?"
+    },
+    "tldr": {
+      "b": "Quick answer",
+      "p": [
+        "LangChain is a broad LLM application framework built around composable chains, agents, tools, and memory, with LangGraph as its production agent orchestration layer. LlamaIndex is a focused data framework for LLMs, purpose-built for ingesting, indexing, and querying document corpora via retrieval-augmented generation. Both are open-source, MIT-licensed, and by 2026 both frameworks handle RAG and agents to some degree, the real choice is about where your project's hardest problem actually lives."
+      ]
+    }
+  },
+  "comparison": {
+    "sec-head": {
+      "eyebrow": "The comparison",
+      "h2": "Framework comparison: LangChain vs LlamaIndex"
+    },
+    "tablewrap": {
+      "thead": [
+        "Factor",
+        "LangChain (via LangGraph)",
+        "LlamaIndex"
+      ],
+      "tbody": [
+        {
+          "th": "Primary strength",
+          "td": [
+            "Multi-step agent orchestration, state, tools, memory",
+            "Retrieval quality: chunking, indexing, query synthesis"
+          ]
+        },
+        {
+          "th": "Best for",
+          "td": [
+            "Agentic systems where RAG is one component",
+            "Retrieval-first products where document Q&A is the core"
+          ]
+        },
+        {
+          "th": "Code volume for equivalent RAG",
+          "td": [
+            "Baseline",
+            "30 to 40% less code"
+          ]
+        },
+        {
+          "th": "Framework overhead",
+          "td": [
+            "~14ms (LangGraph)",
+            "~6ms"
+          ]
+        },
+        {
+          "th": "Ecosystem",
+          "td": [
+            "500+ integrations, most mature agent tooling",
+            "300+ connectors, native document parsing via LlamaParse"
+          ]
+        },
+        {
+          "th": "Observability",
+          "td": [
+            "LangSmith (first-party, paid tiers)",
+            "Typically requires third-party tracing"
+          ]
+        }
+      ]
+    },
+    "callout": {
+      "p": [
+        "The 2026 reality",
+        "Most production systems use both together: LlamaIndex handling ingestion, indexing, and retrieval, with LangGraph orchestrating the broader multi-step agent logic around it. This is the standard architecture I build when a project genuinely needs both retrieval quality and agentic behavior."
+      ]
+    }
+  }
+}

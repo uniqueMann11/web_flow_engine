@@ -1,0 +1,84 @@
+{
+  "services": {
+    "sec-head": {
+      "eyebrow": "What I build",
+      "h2": "LangChain development services"
+    },
+    "grid g3": [
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "RAG pipeline development",
+          "p": "Retrieval-augmented generation pipelines using LangChain's retriever and chain primitives, paired with LlamaIndex for the retrieval layer when document-heavy retrieval quality is the priority."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Multi-step agent development (LangGraph)",
+          "p": "Agents that take multiple actions in sequence, call external tools and APIs, and adapt based on intermediate results, built with explicit state graphs, conditional edges, and checkpointing."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Tool-using & function-calling systems",
+          "p": "Systems that connect an LLM to your actual business tools: databases, internal APIs, third-party services, so the AI can take real actions, not just generate text."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Conversational memory systems",
+          "p": "Chatbots and assistants that maintain context across a conversation or across sessions, tuned to your specific need: short-term context, long-term preference memory, or both."
+        }
+      },
+      {
+        "card": {
+          "n": "AUDIT",
+          "h3": "LangChain system audits & migration",
+          "p": "Review and improvement of an existing LangChain implementation, or migration support for teams adding agentic capability to a retrieval-only system."
+        }
+      },
+      {
+        "card cta-card": {
+          "h3": "Not sure LangChain is right?",
+          "p": "Part of the engagement is an honest read on whether it's even the right tool.",
+          "btn-primary": {
+            "text": "Get an honest assessment",
+            "url": "#lets-talk"
+          }
+        }
+      }
+    ]
+  },
+  "engagement": {
+    "sec-head": {
+      "eyebrow": "How we work together",
+      "h2": "Engagement models"
+    },
+    "grid g3": [
+      {
+        "card": {
+          "n": "PROJECT-BASED",
+          "h3": "Fixed-price, milestone-based",
+          "p": "A scoped LangChain build delivered as a fixed-price, milestone-based engagement."
+        }
+      },
+      {
+        "card": {
+          "n": "HOURLY",
+          "h3": "Consulting",
+          "p": "Architecture review or debugging support for an existing implementation."
+        }
+      },
+      {
+        "card": {
+          "n": "RETAINER",
+          "h3": "Dedicated monthly",
+          "p": "Ongoing LangChain development for businesses with a continuing agentic AI roadmap."
+        }
+      }
+    ]
+  }
+}

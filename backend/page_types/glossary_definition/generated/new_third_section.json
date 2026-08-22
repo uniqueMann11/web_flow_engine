@@ -1,0 +1,102 @@
+{
+  "comparison": {
+    "sec-head": {
+      "eyebrow": "The concept",
+      "h2": "Vector embedding vs text vs token",
+      "p": "These are fundamentally different representations: a vector is a mathematical object, text is human-readable, and a token is a processing unit."
+    },
+    "tablewrap": {
+      "thead": [
+        "Factor",
+        "Text",
+        "Vector Embedding",
+        "Token"
+      ],
+      "tbody": [
+        {
+          "th": "Representation",
+          "td": [
+            "Human-readable characters",
+            "Numerical list of floats",
+            "Sub-word unit from tokenizer"
+          ]
+        },
+        {
+          "th": "Meaning",
+          "td": [
+            "Direct semantic meaning",
+            "Captures semantic relationships",
+            "No inherent meaning alone"
+          ]
+        },
+        {
+          "th": "Best for",
+          "td": [
+            "Human communication",
+            "Similarity search and clustering",
+            "Model input processing"
+          ]
+        },
+        {
+          "th": "Traceability",
+          "td": [
+            "Directly interpretable",
+            "Requires decoding to interpret",
+            "Maps back to original text"
+          ]
+        }
+      ]
+    }
+  },
+  "services": {
+    "sec-head": {
+      "eyebrow": "What I build",
+      "h2": "Embedding pipeline services",
+      "p": "Each layer of a production embedding pipeline, built and tested as its own verifiable stage."
+    },
+    "grid g3": [
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Text preprocessing & chunking",
+          "p": "Building the pipeline that cleans, normalizes, and splits your source text into optimally sized chunks for embedding generation, directly affecting retrieval quality."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Embedding model selection",
+          "p": "Selecting and configuring the right embedding model (OpenAI, Cohere, sentence-transformers, BGE) based on your domain, latency, and dimensionality requirements."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Vector database architecture",
+          "p": "Designing the vector storage layer (Pinecone, Weaviate, Qdrant, FAISS, pgvector) for efficient indexing, approximate nearest neighbor search, and scalable retrieval."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Similarity search & retrieval",
+          "p": "Implementing cosine similarity, dot product, or Euclidean distance search with metadata filtering and hybrid search to maximize relevance of retrieved embeddings."
+        }
+      },
+      {
+        "card": {
+          "n": "EVALUATE",
+          "h3": "Embedding quality evaluation",
+          "p": "Testing retrieval precision, recall, and mean reciprocal rank against your real queries using a customized evaluation set, with results shared transparently before launch."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Production deployment",
+          "p": "Deploying the full embedding pipeline as a versioned, monitored API integrated with your application or search system."
+        }
+      }
+    ]
+  }
+}

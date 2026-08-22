@@ -1,0 +1,88 @@
+{
+  "services": {
+    "sec-head": {
+      "eyebrow": "What I build",
+      "h2": "RAG framework development services",
+      "p": "What I build with each framework, matched to what your project actually needs."
+    },
+    "grid g3": [
+      {
+        "card": {
+          "n": "CONSULT",
+          "h3": "Framework selection consulting",
+          "p": "An independent architecture assessment of your use case, data, and requirements, resulting in a written recommendation: LangChain, LlamaIndex, or both, with the reasoning behind it."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "LlamaIndex RAG development",
+          "p": "Retrieval-first builds: document ingestion, hierarchical chunking, auto-merging retrieval, and query synthesis for document-heavy applications where answer accuracy from your corpus is the product."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "LangChain & LangGraph agent development",
+          "p": "Multi-step agent systems: tool use, conversational memory, state management, and human-in-the-loop checkpoints for AI that takes actions, not just answers questions."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Hybrid architecture (both frameworks)",
+          "p": "LlamaIndex as the retrieval layer wrapped as a tool inside a LangGraph agent, combining best-in-class retrieval with production-grade orchestration in one system."
+        }
+      },
+      {
+        "card": {
+          "n": "AUDIT",
+          "h3": "Migration & framework audits",
+          "p": "Assessment and migration support for teams that chose the wrong framework early and are hitting friction, or need to add agentic capability to an existing retrieval-only system."
+        }
+      },
+      {
+        "card cta-card": {
+          "h3": "Not sure which you need?",
+          "p": "Try the fit-check widget above, or get it scoped properly.",
+          "btn-primary": {
+            "text": "Get a recommendation",
+            "url": "#lets-talk"
+          }
+        }
+      }
+    ]
+  },
+  "where-wins": {
+    "sec-head": {
+      "eyebrow": "The honest breakdown",
+      "h2": "Where each framework wins"
+    },
+    "grid g2": [
+      {
+        "card": {
+          "n": "LLAMAINDEX WINS WHEN",
+          "h3": "Retrieval quality is the bottleneck",
+          "ul": [
+            "Retrieval quality is the primary bottleneck, not orchestration complexity",
+            "You need complex multi-document reasoning: tree index and response synthesizers produce roughly 10 to 15% better answers on multi-source synthesis benchmarks",
+            "Your documents are hierarchically structured (legal, code, technical manuals): composable indices produce roughly 15 to 25% better answers",
+            "You want to ship faster with less code and lower latency overhead"
+          ]
+        }
+      },
+      {
+        "card": {
+          "n": "LANGCHAIN WINS WHEN",
+          "h3": "RAG is one piece of a larger agent",
+          "ul": [
+            "RAG is one component of a larger agentic system, not the whole product",
+            "You need tool use, multi-step reasoning, or persistent memory across a conversation",
+            "Human-in-the-loop checkpoints matter: LangGraph has native checkpointing and interrupt/resume support",
+            "First-party observability (LangSmith) is a requirement, not an afterthought"
+          ]
+        }
+      }
+    ]
+  }
+}

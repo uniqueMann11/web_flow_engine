@@ -1,0 +1,120 @@
+{
+  "process": {
+    "sec-head": {
+      "eyebrow": "How it gets built",
+      "h2": "Process"
+    },
+    "steps": [
+      {
+        "step": {
+          "num": "PHASE 01",
+          "days": "days 1 to 2",
+          "h3": "Discovery",
+          "body": "Understanding clinical workflows, identifying PHI data sources, defining retrieval scope, and establishing HIPAA compliance requirements for the RAG chatbot."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 05",
+          "days": "handoff",
+          "h3": "Deployment & monitoring",
+          "body": "Production deployment with HIPAA-compliant logging and tracing for full visibility into chatbot behavior and PHI handling."
+        }
+      }
+    ]
+  },
+  "when-not": {
+    "sec-head": {
+      "eyebrow": "Honest tool selection",
+      "h2": "When LangChain is not the right choice"
+    },
+    "callout": {
+      "p": [
+        "Direct architectural honesty upfront",
+        "Part of a proper RAG chatbot engagement is an honest assessment of whether a full agentic framework is even necessary for your healthcare use case. If your need is purely high-quality medical document retrieval with no multi-step reasoning or tool use, a simpler retrieval pipeline may be a lower-overhead, more auditable choice. See the RAG framework development services page for the fuller comparison."
+      ]
+    }
+  },
+  "pricing": {
+    "sec-head": {
+      "eyebrow": "Investment",
+      "h2": "Pricing"
+    },
+    "tablewrap": {
+      "thead": [
+        "Engagement type",
+        "What's included",
+        "Typical investment"
+      ],
+      "tbody": [
+        {
+          "td": [
+            "HIPAA-compliant RAG chatbot",
+            "Secure PHI handling, clinical retrieval pipeline, and compliance documentation",
+            "$8,000 to $25,000"
+          ]
+        },
+        {
+          "td": [
+            "Medical AI assistant",
+            "Multi-turn clinical assistant with PHI redaction, guardrails, and EHR integration",
+            "$15,000 to $40,000+"
+          ]
+        },
+        {
+          "td": [
+            "Healthcare AI audit",
+            "HIPAA compliance review and improvement plan for an existing RAG implementation",
+            "$2,000 to $5,000"
+          ]
+        },
+        {
+          "td": [
+            "Hourly consulting",
+            "Architecture review, compliance guidance, debugging support",
+            "$100 to $200/hr"
+          ]
+        }
+      ]
+    },
+    "p": "Retrieval and generation-grounded systems built using this class of architecture include the AI Clinical Decision Support pipeline and Medical Documentation Summarizer. Full case studies at shreyans.tech/ai-case-studies."
+  },
+  "faq": {
+    "sec-head": {
+      "eyebrow": "FAQ",
+      "h2": "Frequently asked questions"
+    },
+    "faq": [
+      {
+        "faq-item": {
+          "faq-q": "How does a RAG chatbot for healthcare handle PHI?",
+          "faq-a": "PHI is handled through strict access controls, data encryption at rest and in transit, and retrieval pipelines that redact or anonymize patient identifiers before sending data to the LLM. All logs and traces are also scrubbed of PHI to maintain HIPAA compliance."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "What clinical use cases can a medical AI assistant support?",
+          "faq-a": "A medical AI assistant can support symptom triage, clinical decision support, medical literature retrieval, patient history summarization, and medication interaction checks, all while maintaining strict HIPAA compliance and clinical accuracy."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "How much does a HIPAA compliant chatbot cost?",
+          "faq-a": "A HIPAA-compliant RAG chatbot typically runs $8,000 to $25,000 for a secure clinical retrieval pipeline, while a full medical AI assistant with EHR integration ranges from $15,000 to $40,000+ depending on complexity."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "Is LangChain HIPAA compliant out of the box?",
+          "faq-a": "No, LangChain itself is not HIPAA compliant. Compliance is achieved through the deployment architecture, data handling practices, and access controls implemented in the RAG pipeline. We handle all of that during the build process."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "When should I NOT use a RAG chatbot for healthcare?",
+          "faq-a": "If your use case is purely straightforward FAQ retrieval with no multi-step reasoning or clinical decision support, a simpler document search system may be more cost-effective and easier to audit. RAG earns its complexity when you need context-aware, evidence-based responses from diverse clinical sources."
+        }
+      }
+    ]
+  }
+}

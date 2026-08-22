@@ -1,0 +1,78 @@
+{
+  "comply": {
+    "comply-in": [
+      {
+        "b": "Grounded, not guessed",
+        "span": "Every answer is retrieved from your own documents at query time, not the model's fixed training memory."
+      },
+      {
+        "b": "Source-traceable",
+        "span": "Each response can cite the exact document it came from, for review and for trust."
+      },
+      {
+        "b": "Guardrails included",
+        "span": "Confidence thresholds and a defensive \"I don't know\" fallback ship with every build, not bolted on later."
+      },
+      {
+        "b": "No retraining required",
+        "span": "Update the knowledge base, not the model. Documents change daily, RAG keeps up without a training run."
+      }
+    ]
+  },
+  "what-is": {
+    "sec-head": {
+      "eyebrow": "Plain answer",
+      "h2": "What is RAG (retrieval-augmented generation)?"
+    },
+    "tldr": {
+      "b": "Definition",
+      "p": [
+        "Retrieval-augmented generation (RAG) is an AI architecture that improves large language model responses by retrieving relevant information from an external knowledge base at query time and inserting it into the model's context before it generates an answer. Instead of relying only on what the model learned during training, a fixed and eventually outdated snapshot, RAG grounds each response in specific, current, and verifiable source content, making answers more accurate, current, and traceable back to a source document."
+      ]
+    }
+  },
+  "how-it-works": {
+    "sec-head": {
+      "eyebrow": "Step by step",
+      "h2": "How RAG works",
+      "p": "The same five-step pipeline animating in the signature panel above, applied to your own documents."
+    },
+    "grid g3": [
+      {
+        "card": {
+          "n": "STEP 1",
+          "h3": "Query submitted",
+          "p": "A user asks a question in natural language."
+        }
+      },
+      {
+        "card": {
+          "n": "STEP 2",
+          "h3": "Query embedded",
+          "p": "Converted into a numerical embedding capturing its meaning."
+        }
+      },
+      {
+        "card": {
+          "n": "STEP 3",
+          "h3": "Vector search",
+          "p": "The system finds the most relevant chunks in a vector database."
+        }
+      },
+      {
+        "card": {
+          "n": "STEP 4",
+          "h3": "Context inserted",
+          "p": "Retrieved content joins the query in the LLM's context window."
+        }
+      },
+      {
+        "card": {
+          "n": "STEP 5",
+          "h3": "Grounded answer",
+          "p": "The LLM generates a response with sources available to cite."
+        }
+      }
+    ]
+  }
+}

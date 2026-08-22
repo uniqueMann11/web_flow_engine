@@ -1,0 +1,59 @@
+{
+  "hero": {
+    "eyebrow": "The architecture behind grounded AI",
+    "h1": {
+      "h1-text": "RAG development services: what retrieval-augmented generation is,",
+      "span": "and how I build it"
+    },
+    "hero-sub": "Retrieval-augmented generation is the architecture behind every AI system that needs to answer accurately from your own data instead of guessing from general training knowledge. I design and build production RAG systems: document ingestion, retrieval engineering, generation, guardrails, and deployment.",
+    "creds": [
+      {
+        "cred": {
+          "i": "Experience",
+          "b": "5+ yrs production RAG"
+        }
+      },
+      {
+        "cred": {
+          "i": "Outcome",
+          "b": "60–80% less hallucination"
+        }
+      },
+      {
+        "cred": {
+          "i": "Turnaround",
+          "b": "48h written spec"
+        }
+      }
+    ],
+    "hero-cta": [
+      {
+        "btn-primary": {
+          "text": "Talk to a RAG developer",
+          "url": "#lets-talk"
+        }
+      },
+      {
+        "btn-ghost": {
+          "text": "View case studies",
+          "url": "/ai-case-studies"
+        }
+      }
+    ],
+    "live": "Every answer traces to a source, guardrails included from day one",
+    "trust": [
+      {
+        "b": "5+",
+        "span": "Years building production RAG"
+      },
+      {
+        "b": "80%",
+        "span": "Peak hallucination reduction"
+      },
+      {
+        "b": "48h",
+        "span": "From call to written spec"
+      }
+    ]
+  }
+}

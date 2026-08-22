@@ -1,0 +1,39 @@
+{
+  "hero": {
+    "eyebrow": "Micro-label above main heading (e.g., 'The right framework, built correctly'). Max 6 words.",
+    "h1": {
+      "h1-text": "Primary comparison title prefix (e.g., 'LangChain vs LlamaIndex development services:').",
+      "span": "Value proposition or core focus suffix (e.g., 'the right RAG framework'). Max 6 words."
+    },
+    "hero-sub": "Introductory paragraph explaining how choosing between the two tools affects cost, velocity, and architecture. Exactly 2-3 sentences.",
+    "creds": [
+      {
+        "cred": {
+          "i": "Cred category (e.g., 'Experience', 'Coverage', 'Turnaround'). Max 1-2 words.",
+          "b": "Cred highlight text (e.g., '5+ yrs production RAG', 'Both frameworks, used correctly', '48h architecture rec.'). Max 5 words."
+        }
+      }
+    ],
+    "hero-cta": [
+      {
+        "btn-primary": {
+          "text": "Action-oriented primary CTA button text (e.g., 'Get a framework recommendation'). Max 4 words.",
+          "url": "Anchor link (e.g., '#lets-talk')."
+        }
+      },
+      {
+        "btn-ghost": {
+          "text": "Secondary ghost CTA button text (e.g., 'View case studies'). Max 4 words.",
+          "url": "URL or anchor link."
+        }
+      }
+    ],
+    "live": "Trust note about written deliverables and discovery commitment. Max 1 sentence.",
+    "trust": [
+      {
+        "b": "Key metric or ratio (e.g., '5+', '40%', '48h').",
+        "span": "Metric explanation (e.g., 'Years building production RAG', 'Less code, LlamaIndex vs baseline', 'To a written recommendation')."
+      }
+    ]
+  }
+}

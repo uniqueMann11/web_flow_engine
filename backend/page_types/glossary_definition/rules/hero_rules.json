@@ -1,0 +1,39 @@
+{
+  "hero": {
+    "eyebrow": "Micro-label above main heading (e.g., 'The architecture behind grounded AI'). Max 6 words.",
+    "h1": {
+      "h1-text": "Primary concept / service title prefix (e.g., 'RAG development services: what retrieval-augmented generation is,').",
+      "span": "Value proposition or deliverable suffix (e.g., 'and how I build it'). Max 6 words."
+    },
+    "hero-sub": "Introductory paragraph defining the core technology concept, why grounded AI matters over guessing from general training, and full lifecycle engineering scope. Exactly 2-3 sentences.",
+    "creds": [
+      {
+        "cred": {
+          "i": "Cred category (e.g., 'Experience', 'Outcome', 'Turnaround'). Max 1-2 words.",
+          "b": "Cred highlight text (e.g., '5+ yrs production RAG', '60–80% less hallucination', '48h written spec'). Max 5 words."
+        }
+      }
+    ],
+    "hero-cta": [
+      {
+        "btn-primary": {
+          "text": "Action-oriented primary CTA button text (e.g., 'Talk to a RAG developer'). Max 4-5 words.",
+          "url": "Anchor link (e.g., '#lets-talk')."
+        }
+      },
+      {
+        "btn-ghost": {
+          "text": "Secondary ghost CTA button text (e.g., 'View case studies'). Max 4 words.",
+          "url": "URL or anchor link (e.g., '/ai-case-studies')."
+        }
+      }
+    ],
+    "live": "Trust statement guaranteeing source traceability and guardrail design from day one. Exactly 1 sentence.",
+    "trust": [
+      {
+        "b": "Authority metric or benchmark figure (e.g., '5+', '80%', '48h').",
+        "span": "Metric explanation (e.g., 'Years building production RAG', 'Peak hallucination reduction', 'From call to written spec'). Max 5 words."
+      }
+    ]
+  }
+}

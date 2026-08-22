@@ -1,0 +1,44 @@
+{
+  "comply": {
+    "comply-in": [
+      {
+        "b": "Core value proposition headline (e.g., 'You work with me, directly'). Max 5 words.",
+        "span": "Supporting explanation detailing direct communication, production focus, or written specs (e.g., 'No account manager, no rotating junior, the person who scopes it also builds it.'). Max 15 words."
+      }
+    ]
+  },
+  "what-is": {
+    "sec-head": {
+      "eyebrow": "Section eyebrow tag (e.g., 'Plain answer'). Max 3 words.",
+      "h2": "Direct question heading defining the role (e.g., 'What does a RAG developer do?'). Max 8 words."
+    },
+    "tldr": {
+      "b": "TLDR label (e.g., 'Quick answer').",
+      "p": [
+        "Concise definition of the role, core responsibilities (ingestion, retrieval, embedding models, vector DBs, guardrails), and production deliverable scope. Exactly 1-2 paragraphs."
+      ]
+    }
+  },
+  "roles": {
+    "sec-head": {
+      "eyebrow": "Decoder eyebrow tag (e.g., 'Job title decoder'). Max 4 words.",
+      "h2": "Role comparison heading (e.g., 'RAG developer vs LLM engineer vs AI engineer'). Max 8 words."
+    },
+    "tablewrap": {
+      "thead": [
+        "Header 1 (e.g., 'Title')",
+        "Header 2 (e.g., 'Primary focus')",
+        "Header 3 (e.g., 'When you need this role')"
+      ],
+      "tbody": [
+        {
+          "th": "Role title name (e.g., 'RAG developer', 'LLM engineer', 'AI engineer')",
+          "td": [
+            "Primary focus description of this specific job title",
+            "Specific business trigger or use case when you should hire this role"
+          ]
+        }
+      ]
+    }
+  }
+}

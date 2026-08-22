@@ -1,0 +1,151 @@
+{
+  "why": {
+    "sec-head": {
+      "eyebrow": "Why it matters",
+      "h2": "Why businesses need RAG",
+      "p": "A plain LLM has no access to your private, proprietary, or real-time information, and will either say it does not know or generate a plausible-sounding but incorrect answer. RAG solves this directly by giving the model exactly the information it needs, retrieved fresh at query time, without the cost and delay of retraining the model every time your underlying information changes."
+    },
+    "card": {
+      "n": "COMMON APPLICATIONS",
+      "h3": "Where I've built RAG systems",
+      "ul": [
+        "Customer support chatbots grounded in product documentation and policies",
+        "Internal knowledge assistants for employee Q&A over wikis and HR policies",
+        "Healthcare AI assistants grounded in clinical guidelines — see the healthcare page",
+        "Legal and compliance research tools citing specific clauses or precedents",
+        "Ecommerce product Q&A answering from a live product catalog",
+        "Enterprise search surfacing answers, not just links, across large repositories"
+      ]
+    }
+  },
+  "process": {
+    "sec-head": {
+      "eyebrow": "How it gets built",
+      "h2": "Process"
+    },
+    "steps": [
+      {
+        "step": {
+          "num": "PHASE 01",
+          "days": "days 1 to 2",
+          "h3": "Discovery",
+          "body": "Understanding your data sources, use case, and what \"accurate\" needs to mean for your application."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 02",
+          "days": "within 48h",
+          "h3": "Architecture spec",
+          "body": "A written technical spec covering retrieval strategy, vector database choice, and guardrail design, delivered within 48 hours."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 03",
+          "days": "the decisive one",
+          "h3": "Build in milestones",
+          "body": "Ingestion, retrieval, generation, and guardrails built and tested as separate, verifiable stages."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 04",
+          "days": "before launch",
+          "h3": "Evaluation",
+          "body": "Testing against real queries with transparent results before launch."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 05",
+          "days": "30 days plus",
+          "h3": "Deployment & support",
+          "body": "Production deployment with monitoring and a post-launch support window."
+        }
+      }
+    ]
+  },
+  "pricing": {
+    "sec-head": {
+      "eyebrow": "Investment",
+      "h2": "Pricing"
+    },
+    "tablewrap": {
+      "thead": [
+        "Engagement type",
+        "What's included",
+        "Typical investment"
+      ],
+      "tbody": [
+        {
+          "td": [
+            "RAG proof-of-concept",
+            "Baseline retrieval pipeline on a data sample, evaluation report",
+            "$1,500 to $4,000"
+          ]
+        },
+        {
+          "td": [
+            "Production RAG system",
+            "Full pipeline, guardrails, deployment, documentation",
+            "$8,000 to $30,000"
+          ]
+        },
+        {
+          "td": [
+            "RAG system audit",
+            "Diagnose and improve an underperforming existing system",
+            "$1,000 to $3,000"
+          ]
+        },
+        {
+          "td": [
+            "Hourly consulting",
+            "Architecture review, retrieval strategy design",
+            "$75 to $150/hr"
+          ]
+        }
+      ]
+    },
+    "p": "Retrieval-grounded systems delivered include the AI Customer Feedback Classification pipeline and AI Video Summarizer. Full case studies at shreyans.tech/ai-case-studies."
+  },
+  "faq": {
+    "sec-head": {
+      "eyebrow": "FAQ",
+      "h2": "Frequently asked questions"
+    },
+    "faq": [
+      {
+        "faq-item": {
+          "faq-q": "What does RAG stand for?",
+          "faq-a": "RAG stands for retrieval-augmented generation, an AI architecture that retrieves relevant information before an LLM generates its response, rather than relying only on the model's training data."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "Is RAG the same as fine-tuning?",
+          "faq-a": "No. Fine-tuning changes a model's weights through additional training. RAG retrieves external information and adds it to the model's context at query time without changing the model. They solve different problems and are often used together."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "Does RAG eliminate AI hallucination?",
+          "faq-a": "RAG significantly reduces hallucination, typically 60 to 80% versus a bare LLM, by grounding responses in retrieved content, but does not eliminate it entirely. Guardrails and confidence thresholds are layered on top in every production system I build."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "How much does RAG development cost?",
+          "faq-a": "A proof-of-concept starts at $1,500 to $4,000. A full production RAG system ranges from $8,000 to $30,000 depending on complexity and data volume. Contact for a fixed-price estimate specific to your use case."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "How long does it take to build a RAG system?",
+          "faq-a": "A proof-of-concept typically takes 2 to 4 weeks. A full production system with guardrails, evaluation, and deployment typically takes 4 to 10 weeks depending on data complexity and integration scope."
+        }
+      }
+    ]
+  }
+}

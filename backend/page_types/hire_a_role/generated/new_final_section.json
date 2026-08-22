@@ -1,0 +1,191 @@
+{
+  "engagement": {
+    "sec-head": {
+      "eyebrow": "How we work together",
+      "h2": "Engagement models"
+    },
+    "tablewrap": {
+      "thead": [
+        "Factor",
+        "Freelance AI agent developer (me, directly)",
+        "Dedicated team (via AtlasML)"
+      ],
+      "tbody": [
+        {
+          "th": "Best for",
+          "td": [
+            "A single, scoped AI agent build or chatbot",
+            "Ongoing, multi-project AI roadmap needing several engineers"
+          ]
+        },
+        {
+          "th": "Team size",
+          "td": [
+            "One engineer: me",
+            "Multiple senior AI/ML engineers embedded full-time"
+          ]
+        },
+        {
+          "th": "Start time",
+          "td": [
+            "48 to 72 hours",
+            "Varies by team scope and structure"
+          ]
+        },
+        {
+          "th": "Cost structure",
+          "td": [
+            "Project-based or hourly, no team overhead",
+            "Team-based retainer, reflects multi-engineer capacity"
+          ]
+        }
+      ]
+    },
+    "callout": {
+      "p": [
+        "Need a full team, not just one developer?",
+        "If your business needs a dedicated, multi-person AI/ML engineering team embedded full-time across GenAI, ML, NLP, and computer vision, not a single freelance AI agent developer, I recommend AtlasML, a dedicated AI/ML engineering team staffing provider. For a single, well-scoped AI agent system, working with me directly is typically faster to start and more cost-effective; if your roadmap spans multiple concurrent AI disciplines needing sustained team capacity, AtlasML is built for that scale."
+      ]
+    }
+  },
+  "process": {
+    "sec-head": {
+      "eyebrow": "How it gets built",
+      "h2": "Process"
+    },
+    "steps": [
+      {
+        "step": {
+          "num": "PHASE 01",
+          "days": "days 1 to 2",
+          "h3": "Discovery",
+          "body": "Understanding your use case, tool requirements, and what success looks like for your agent."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 02",
+          "days": "within 48h",
+          "h3": "Architecture spec",
+          "body": "A written technical spec covering agent framework choice, tool integration design, and guardrail strategy, delivered within 48 hours."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 03",
+          "days": "the decisive one",
+          "h3": "Build",
+          "body": "Agent built in milestones: tool definition, memory, orchestration, guardrails, each testable independently."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 04",
+          "days": "before launch",
+          "h3": "Evaluation",
+          "body": "Testing against your real tasks using custom eval sets, results shared transparently before launch."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 05",
+          "days": "handoff",
+          "h3": "Deployment",
+          "body": "Production deployment as a versioned API, with monitoring and a post-launch support window."
+        }
+      }
+    ]
+  },
+  "pricing": {
+    "sec-head": {
+      "eyebrow": "Investment",
+      "h2": "Pricing"
+    },
+    "tablewrap": {
+      "thead": [
+        "Engagement type",
+        "What's included",
+        "Typical investment"
+      ],
+      "tbody": [
+        {
+          "td": [
+            "AI agent proof-of-concept",
+            "Baseline agent pipeline on a sample task, evaluation report",
+            "$1,500 to $4,000"
+          ]
+        },
+        {
+          "td": [
+            "Production AI agent",
+            "Full agent with tool integrations, memory, guardrails, deployment, documentation",
+            "$8,000 to $30,000"
+          ]
+        },
+        {
+          "td": [
+            "AI agent audit",
+            "Diagnose and improve an existing underperforming agent system",
+            "$1,000 to $3,000"
+          ]
+        },
+        {
+          "td": [
+            "Hourly consulting",
+            "Architecture review, agent framework strategy design",
+            "$75 to $150/hr"
+          ]
+        }
+      ]
+    },
+    "p": "AI agent systems built with LangGraph and CrewAI are core to several delivered projects, including the AI Customer Feedback Classification system and AI Video Summarizer. Full case studies at shreyans.tech/ai-case-studies."
+  },
+  "faq": {
+    "sec-head": {
+      "eyebrow": "FAQ",
+      "h2": "Frequently asked questions"
+    },
+    "faq": [
+      {
+        "faq-item": {
+          "faq-q": "What is the difference between an AI agent developer and a general AI developer?",
+          "faq-a": "An AI agent developer specializes in agentic architectures, tool use, memory, and multi-step reasoning systems. A general AI developer may cover a broader range including model training, computer vision, or MLOps. For a project specifically about building an autonomous agent that reasons and acts, an agent specialist brings deeper, focused expertise."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "How much does it cost to hire a freelance AI agent developer?",
+          "faq-a": "A scoped proof-of-concept typically starts at $1,500 to $4,000. A full production agent with tool integrations and guardrails ranges from $8,000 to $30,000 depending on complexity. Hourly consulting runs $75 to $150/hr."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "Should I hire one freelance AI agent developer or a dedicated team?",
+          "faq-a": "For a single, well-scoped AI agent system, one experienced freelance developer is typically faster to start and more cost-effective. If your roadmap spans multiple concurrent AI disciplines and needs sustained, embedded team capacity, a dedicated team provider like AtlasML is better matched to that scale."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "How long does it take to build an AI agent?",
+          "faq-a": "A proof-of-concept typically takes 2 to 4 weeks. A full production agent with tools, memory, guardrails, and deployment typically takes 4 to 10 weeks depending on task complexity and integration scope."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "What frameworks do you use to build AI agents?",
+          "faq-a": "Primarily LangGraph, CrewAI, and AutoGen, combined with appropriate tools and memory backends matched to your use case. See the AI agent framework development services page for how the framework choice is made."
+        }
+      }
+    ]
+  },
+  "final": {
+    "eyebrow": "Let's talk",
+    "h2": "Ready to hire an AI agent developer?",
+    "lede": "Tell me about your task and what you need the agent to autonomously accomplish. You'll receive a written technical spec within 48 hours of a discovery call.",
+    "fcard": {
+      "h3": "Get your written technical spec",
+      "sub": "Specific to your task and autonomy requirements.",
+      "btn-primary": "Book my discovery call"
+    }
+  }
+}

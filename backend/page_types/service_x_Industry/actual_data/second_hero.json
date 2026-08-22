@@ -1,0 +1,78 @@
+{
+  "comply": {
+    "comply-in": [
+      {
+        "b": "Explicit state, not hidden",
+        "span": "LangGraph state graphs with conditional edges and checkpointing, not implicit chain magic."
+      },
+      {
+        "b": "Tool failures handled",
+        "span": "Retry logic, fallback paths, and human-in-the-loop checkpoints, built in from the start."
+      },
+      {
+        "b": "Full tracing",
+        "span": "LangSmith or equivalent, so agent behavior in production is visible, not a black box."
+      },
+      {
+        "b": "Honest tool selection",
+        "span": "If LangChain is overkill for your case, I'll say so and recommend the simpler option."
+      }
+    ]
+  },
+  "what-is": {
+    "sec-head": {
+      "eyebrow": "Plain answer",
+      "h2": "What is LangChain?"
+    },
+    "tldr": {
+      "b": "Quick answer",
+      "p": [
+        "LangChain is an open-source framework for building applications powered by large language models. It provides composable building blocks, chains, agents, tools, memory, and retrievers, connected via the LangChain Expression Language (LCEL). Its agent framework, LangGraph, adds explicit state management and conditional logic for multi-step, tool-using AI systems. LangChain is the most widely adopted framework of its kind, with roughly 119K GitHub stars and 500+ integrations."
+      ]
+    }
+  },
+  "vs-agency": {
+    "sec-head": {
+      "eyebrow": "The honest comparison",
+      "h2": "LangChain consultant vs LangChain agency"
+    },
+    "tablewrap": {
+      "thead": [
+        "Factor",
+        "Independent LangChain consultant (me)",
+        "LangChain development agency"
+      ],
+      "tbody": [
+        {
+          "th": "Cost",
+          "td": [
+            "Lower, direct rate, no team overhead",
+            "Higher, includes team and account management"
+          ]
+        },
+        {
+          "th": "Who builds it",
+          "td": [
+            "Me, directly, every time",
+            "Allocated team member, may change"
+          ]
+        },
+        {
+          "th": "Best for",
+          "td": [
+            "Scoped agent or RAG builds, $2K to $30K range",
+            "Large, multi-disciplinary product builds"
+          ]
+        },
+        {
+          "th": "Start time",
+          "td": [
+            "48 to 72 hours",
+            "2 to 4 weeks typically"
+          ]
+        }
+      ]
+    },
+    "p": "Most LangChain projects, a specific agent, a specific RAG pipeline, a specific tool integration, are well within scope for a single experienced developer working directly with you. An agency's advantage shows up when a project genuinely needs several specialists working in parallel on a larger product, not for the LangChain engineering itself."
+  }
+}

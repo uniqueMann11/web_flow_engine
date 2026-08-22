@@ -1,0 +1,43 @@
+{
+  "comparison": {
+    "sec-head": {
+      "eyebrow": "Comparison eyebrow tag (e.g., 'The decision'). Max 3 words.",
+      "h2": "Architectural comparison heading (e.g., 'RAG vs plain LLM vs fine-tuning'). Max 7 words.",
+      "p": "Context clarifying how approaches complement each other in production systems. Exactly 1 sentence."
+    },
+    "tablewrap": {
+      "thead": [
+        "Header 1 (e.g., 'Factor')",
+        "Header 2 (e.g., 'Plain LLM')",
+        "Header 3 (e.g., 'RAG')",
+        "Header 4 (e.g., 'Fine-tuning')"
+      ],
+      "tbody": [
+        {
+          "th": "Comparison dimension name (e.g., 'Knowledge source', 'Update process', 'Best for', 'Traceability')",
+          "td": [
+            "Baseline LLM characteristic",
+            "RAG architecture characteristic",
+            "Fine-tuned model characteristic"
+          ]
+        }
+      ]
+    }
+  },
+  "services": {
+    "sec-head": {
+      "eyebrow": "Services eyebrow tag (e.g., 'What I build'). Max 3 words.",
+      "h2": "Services section heading (e.g., 'RAG development services'). Max 5 words.",
+      "p": "Explanation of modular engineering layers and verifiable milestones. Exactly 1 sentence."
+    },
+    "grid g3": [
+      {
+        "card": {
+          "n": "Action badge (e.g., 'BUILD', 'EVALUATE', 'AUDIT'). Max 1 word.",
+          "h3": "Layer deliverable name (e.g., 'Document ingestion & chunking', 'Vector database architecture', 'Retrieval engineering', 'Generation & guardrails', 'RAG evaluation', 'Production deployment'). Max 4-5 words.",
+          "p": "Comprehensive description of technical tasks, tooling choices, and performance impact for this layer. Exactly 1-2 sentences."
+        }
+      }
+    ]
+  }
+}

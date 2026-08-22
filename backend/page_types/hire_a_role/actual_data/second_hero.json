@@ -1,0 +1,70 @@
+{
+  "comply": {
+    "comply-in": [
+      {
+        "b": "You work with me, directly",
+        "span": "No account manager, no rotating junior, the person who scopes it also builds it."
+      },
+      {
+        "b": "Working, integrated systems",
+        "span": "Not a proof-of-concept left on a shelf, a deployed system connected to your stack."
+      },
+      {
+        "b": "Written spec first",
+        "span": "Architecture, timeline, and cost in writing within 48 hours, before any billing begins."
+      },
+      {
+        "b": "Right-sized engagement",
+        "span": "One developer for a scoped system, or a referral to a dedicated team when you need more."
+      }
+    ]
+  },
+  "what-is": {
+    "sec-head": {
+      "eyebrow": "Plain answer",
+      "h2": "What does a RAG developer do?"
+    },
+    "tldr": {
+      "b": "Quick answer",
+      "p": [
+        "A RAG developer designs and builds retrieval-augmented generation systems: pipelines that retrieve relevant information from a knowledge base and use it to ground an LLM's responses. This includes document ingestion and chunking, embedding model selection, vector database setup, retrieval logic, guardrail design, and production deployment. A freelance RAG developer delivers a working, integrated system, not just a proof-of-concept."
+      ]
+    }
+  },
+  "roles": {
+    "sec-head": {
+      "eyebrow": "Job title decoder",
+      "h2": "RAG developer vs LLM engineer vs AI engineer"
+    },
+    "tablewrap": {
+      "thead": [
+        "Title",
+        "Primary focus",
+        "When you need this role"
+      ],
+      "tbody": [
+        {
+          "th": "RAG developer",
+          "td": [
+            "Retrieval architecture, knowledge grounding, chatbot/assistant builds",
+            "You need an AI system that answers accurately from your specific data"
+          ]
+        },
+        {
+          "th": "LLM engineer",
+          "td": [
+            "Fine-tuning, prompt engineering, model evaluation",
+            "You need to customize model behavior itself, not just what it knows"
+          ]
+        },
+        {
+          "th": "AI engineer",
+          "td": [
+            "Broader ML/AI system design, may include RAG, training, and MLOps",
+            "You need end-to-end AI infrastructure, RAG being one part"
+          ]
+        }
+      ]
+    }
+  }
+}

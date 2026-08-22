@@ -1,0 +1,126 @@
+{
+  "services": {
+    "sec-head": {
+      "eyebrow": "What I build",
+      "h2": "Agent development services I offer"
+    },
+    "grid g3": [
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Custom AI agent development",
+          "p": "Goal-driven agents that plan, use tools, and call APIs autonomously\u2014backed by a record of production deliveries."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Agentic RAG systems",
+          "p": "Retrieval agents with multi-step reasoning and source citations, built on LangGraph for reliable enterprise Q&A."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Workflow automation agents",
+          "p": "Agents that automate complex business workflows, from data extraction to follow-up actions, with human-in-the-loop guardrails."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Multi-agent orchestration",
+          "p": "Coordinated swarms of specialized agents that collaborate on tasks\u2014scalable, observable, and tested in production."
+        }
+      },
+      {
+        "card": {
+          "n": "AUDIT",
+          "h3": "Agent system audits",
+          "p": "Debugging and optimizing faltering agent pipelines: broken tool chains, hallucination patterns, and latency bottlenecks."
+        }
+      },
+      {
+        "card cta-card": {
+          "h3": "Need a production agent?",
+          "p": "Talk through your use case and see past delivery benchmarks.",
+          "btn-primary": {
+            "text": "Discuss your project",
+            "url": "#lets-talk"
+          }
+        }
+      }
+    ]
+  },
+  "stack": {
+    "sec-head": {
+      "eyebrow": "Tech stack",
+      "h2": "Frameworks & delivery stack"
+    },
+    "stack-tabs": [
+      {
+        "key": "01",
+        "name": "Orchestration & Frameworks",
+        "id": "orch"
+      },
+      {
+        "key": "02",
+        "name": "Vector Databases",
+        "id": "vec"
+      },
+      {
+        "key": "03",
+        "name": "Embedding Models",
+        "id": "emb"
+      },
+      {
+        "key": "04",
+        "name": "LLMs & Frontier Models",
+        "id": "llm"
+      },
+      {
+        "key": "05",
+        "name": "Evaluation & Deployment",
+        "id": "eval"
+      }
+    ],
+    "stack-panels": {
+      "orch": [
+        "LangGraph",
+        "LangChain",
+        "CrewAI",
+        "AutoGen",
+        "Haystack"
+      ],
+      "vec": [
+        "Pinecone",
+        "Weaviate",
+        "Qdrant",
+        "pgvector (PostgreSQL)",
+        "Chroma DB",
+        "FAISS"
+      ],
+      "emb": [
+        "OpenAI Embeddings",
+        "Cohere Embed & Rerank",
+        "BAAI BGE",
+        "Voyage AI"
+      ],
+      "llm": [
+        "OpenAI GPT-4o",
+        "Anthropic Claude",
+        "Google Gemini",
+        "Meta Llama 3",
+        "Mistral AI"
+      ],
+      "eval": [
+        "LangSmith",
+        "RAGAS",
+        "DeepEval",
+        "FastAPI",
+        "Docker",
+        "AWS / GCP / Azure"
+      ]
+    }
+  }
+}

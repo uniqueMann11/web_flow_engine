@@ -1,0 +1,2553 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RAG Chatbot Development for Healthcare | Shreyans Padmani</title>
+<meta content="index, follow" name="robots"/>
+<meta content="max-image-preview:large" name="robots"/>
+<meta content="Shreyans Padmani" name="author"/>
+<meta content="website" property="og:type"/>
+<meta content="Shreyans Padmani" property="og:site_name"/>
+<meta content="en_US" property="og:locale"/>
+<meta content="Healthcare AI must protect PHI while delivering accurate clinical answers. I build HIPAA-compliant RAG chatbots that ingest medical records, radiology reports, and lab data—without exposing sensitive patient information. This isn't a generic demo; it's production-grade retrieval grounded in robust de-identification and access controls." name="description"/>
+<meta content="RAG chatbot for healthcare, medical AI assistant, HIPAA compliant chatbot" name="keywords"/>
+<link href="https://shreyans.tech/rag-chatbot-development-for-healthcare" rel="canonical"/>
+<meta content="RAG Chatbot Development for Healthcare" property="og:title"/>
+<meta content="https://shreyans.tech/rag-chatbot-development-for-healthcare" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="@shreyanspadmani" name="twitter:site"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/image/shreyans.png" rel="shortcut icon" type="image/x-icon"/>
+<link href="/assets/image/shreyans.png" rel="apple-touch-icon" sizes="180x180"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "RAG Chatbot Development for Healthcare",
+      "url": "https://shreyans.tech/rag-chatbot-development-for-healthcare",
+      "provider": {
+        "@type": "Person",
+        "name": "Shreyans Padmani",
+        "url": "https://shreyans.tech"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://shreyans.tech/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://shreyans.tech/hire-ai-developer"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "RAG Development",
+          "item": "https://shreyans.tech/services/rag-development"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "RAG Chatbot Development for Healthcare",
+          "item": "https://shreyans.tech/rag-chatbot-development-for-healthcare"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does a RAG chatbot for healthcare handle PHI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "PHI is handled through strict access controls, data encryption at rest and in transit, and retrieval pipelines that redact or anonymize patient identifiers before sending data to the LLM. All logs and traces are also scrubbed of PHI to maintain HIPAA compliance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What clinical use cases can a medical AI assistant support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A medical AI assistant can support symptom triage, clinical decision support, medical literature retrieval, patient history summarization, and medication interaction checks, all while maintaining strict HIPAA compliance and clinical accuracy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does a HIPAA compliant chatbot cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A HIPAA-compliant RAG chatbot typically runs $8,000 to $25,000 for a secure clinical retrieval pipeline, while a full medical AI assistant with EHR integration ranges from $15,000 to $40,000+ depending on complexity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is LangChain HIPAA compliant out of the box?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, LangChain itself is not HIPAA compliant. Compliance is achieved through the deployment architecture, data handling practices, and access controls implemented in the RAG pipeline. We handle all of that during the build process."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should I NOT use a RAG chatbot for healthcare?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If your use case is purely straightforward FAQ retrieval with no multi-step reasoning or clinical decision support, a simpler document search system may be more cost-effective and easier to audit. RAG earns its complexity when you need context-aware, evidence-based responses from diverse clinical sources."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+<style>
+    :root, .svcp {
+      --ink: #0A1222;
+      --ink-soft: #1B2740;
+      --body: #48566E;
+      --muted: #6B7A93;
+      --line: #E6ECF4;
+      --line-soft: #EFF3F9;
+      --surface: #FFFFFF;
+      --soft: #F4F8FD;
+      --tint: #EAF0FF;
+      --blue: #2456E6;
+      --blue-strong: #1740C0;
+      --blue-tint: #E6EEFF;
+      --violet: #6D5EF6;
+      --violet-tint: #EDEAFE;
+      --mint: #0FA968;
+      --mint-tint: #E4F7EE;
+      --mint-deep: #0B7D4E;
+      --amber: #D97A18;
+      --amber-tint: #FCEFDD;
+      --rose: #E11D48;
+      --sh-sm: 0 1px 2px rgba(10, 18, 34, .04), 0 2px 6px rgba(10, 18, 34, .05);
+      --sh-md: 0 14px 34px -16px rgba(10, 18, 34, .22);
+      --sh-lg: 0 30px 70px -28px rgba(36, 86, 230, .32);
+      --r: 18px;
+      --r-sm: 12px;
+      --maxw: 1200px;
+      --disp: "Plus Jakarta Sans", system-ui, sans-serif;
+      --bodyf: "Inter", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+
+    .svcp *,
+    .svcp *::before,
+    .svcp *::after {
+      box-sizing: border-box
+    }
+
+    .svcp {
+      margin: 0;
+      font-family: var(--bodyf);
+      color: var(--body);
+      background: var(--surface);
+      line-height: 1.68;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      position: relative;
+      overflow-x: hidden
+    }
+
+    .svcp img,
+    .svcp svg {
+      max-width: 100%;
+      display: block
+    }
+
+    .svcp a {
+      color: var(--blue);
+      text-decoration: none
+    }
+
+    .svcp h1,
+    .svcp h2,
+    .svcp h3,
+    .svcp h4 {
+      font-family: var(--disp);
+      color: var(--ink);
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin: 0
+    }
+
+    .svcp p {
+      margin: 0
+    }
+
+    .svcp .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    .svcp section {
+      padding: 92px 0
+    }
+
+    .svcp .soft {
+      background: linear-gradient(180deg, #F4F8FD, #EFF5FC)
+    }
+
+    .svcp .rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+      max-width: var(--maxw);
+      margin: 0 auto
+    }
+
+    .svcp .wash {
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 760px;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(1100px 460px at 78% -10%, rgba(36, 86, 230, .10), transparent 60%),
+        radial-gradient(760px 420px at 4% 4%, rgba(15, 169, 104, .08), transparent 55%),
+        radial-gradient(900px 500px at 50% -18%, rgba(109, 94, 246, .07), transparent 60%)
+    }
+
+    .svcp main {
+      position: relative;
+      z-index: 1
+    }
+
+    .svcp .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--mono);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin: 0 0 16px
+    }
+
+    .svcp .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--violet))
+    }
+
+    .svcp .sec-head {
+      max-width: 760px;
+      margin-bottom: 46px
+    }
+
+    .svcp .sec-head.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center
+    }
+
+    .svcp .sec-head.center .eyebrow::before {
+      display: none
+    }
+
+    .svcp .sec-head.wide {
+      max-width: 920px
+    }
+
+    .svcp .sec-head h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.75rem);
+      font-weight: 800
+    }
+
+    .svcp .sec-head p {
+      margin-top: 16px;
+      font-size: clamp(1rem, 1.5vw, 1.12rem);
+      color: var(--muted)
+    }
+
+    .svcp .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--bodyf);
+      font-weight: 600;
+      font-size: .97rem;
+      padding: 14px 24px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+      line-height: 1;
+      white-space: nowrap
+    }
+
+    .svcp .btn svg {
+      width: 17px;
+      height: 17px
+    }
+
+    .svcp .btn-primary {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      color: #fff;
+      box-shadow: var(--sh-lg)
+    }
+
+    .svcp .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 48px -18px rgba(36, 86, 230, .5)
+    }
+
+    .svcp .btn-ghost {
+      background: #fff;
+      color: var(--ink);
+      border-color: var(--line)
+    }
+
+    .svcp .btn-ghost:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-2px)
+    }
+
+    .svcp .btn-wa {
+      background: #1FA855;
+      color: #fff
+    }
+
+    .svcp .btn-wa:hover {
+      background: #178a45;
+      transform: translateY(-2px)
+    }
+
+    .svcp .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .6s cubic-bezier(.2, .7, .2, 1), transform .6s cubic-bezier(.2, .7, .2, 1)
+    }
+
+    .svcp .reveal.in {
+      opacity: 1;
+      transform: none
+    }
+
+    .svcp .hero {
+      padding: 118px 0 84px
+    }
+
+    .svcp .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 52px;
+      align-items: start
+    }
+
+    .svcp .hero .eyebrow {
+      color: var(--violet)
+    }
+
+    .svcp .hero h1 {
+      font-size: clamp(2.15rem, 4.4vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -.035em;
+      line-height: 1.06
+    }
+
+    .svcp .hero h1 span {
+      background: linear-gradient(120deg, var(--blue), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .svcp .hero-sub {
+      margin-top: 22px;
+      font-size: 1.1rem;
+      color: var(--body);
+      max-width: 56ch
+    }
+
+    .svcp .creds {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 28px 0 4px
+    }
+
+    .svcp .cred {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 8px 14px 8px 8px;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .cred .b {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      flex: 0 0 auto;
+      border: 1px solid rgba(0, 0, 0, .06)
+    }
+
+    .svcp .cred .t {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2
+    }
+
+    .svcp .cred .t i {
+      font-style: normal;
+      font-size: .64rem;
+      font-family: var(--mono);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .svcp .cred .t b {
+      font-size: .82rem;
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    .svcp .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px
+    }
+
+    .svcp .live {
+      margin-top: 18px;
+      font-size: .85rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 9px
+    }
+
+    .svcp .live .pulse {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 0 0 rgba(15, 169, 104, .5);
+      animation: pulse 2.2s infinite
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(15, 169, 104, .45)
+      }
+
+      70% {
+        box-shadow: 0 0 0 8px rgba(15, 169, 104, 0)
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(15, 169, 104, 0)
+      }
+    }
+
+    .svcp .trust {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 34px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line)
+    }
+
+    .svcp .trust b {
+      display: block;
+      font-family: var(--disp);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1
+    }
+
+    .svcp .trust span {
+      font-size: .74rem;
+      color: var(--muted);
+      margin-top: 6px;
+      display: block
+    }
+
+    .svcp .viewer {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--sh-md);
+      overflow: hidden;
+      position: sticky;
+      top: 90px
+    }
+
+    .svcp .viewer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #fbfcff, #f3f7fe)
+    }
+
+    .svcp .viewer-top .t {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    .svcp .viewer-top .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--mint-deep);
+      background: var(--mint-tint);
+      border: 1px solid #CDEBDB;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+      flex: 0 0 auto
+    }
+
+    .svcp .viewer-top .chip .d {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--mint);
+      animation: pulse 2.2s infinite
+    }
+
+    .svcp #sigcanvas {
+      display: block;
+      width: 100%;
+      height: 236px;
+      background:
+        radial-gradient(520px 200px at 30% 20%, rgba(36, 86, 230, .06), transparent 60%),
+        linear-gradient(180deg, #fbfcff, #f6f9fe)
+    }
+
+    .svcp .modesw {
+      display: flex;
+      gap: 6px;
+      padding: 12px 16px 0
+    }
+
+    .svcp .modesw button {
+      flex: 1;
+      font-family: var(--bodyf);
+      font-weight: 600;
+      font-size: .85rem;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all .18s ease
+    }
+
+    .svcp .modesw button[aria-selected="true"] {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 8px 18px -8px rgba(36, 86, 230, .6)
+    }
+
+    .svcp .segs {
+      display: flex;
+      gap: 6px;
+      padding: 10px 16px 4px;
+      flex-wrap: wrap
+    }
+
+    .svcp .segs button {
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .03em;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .18s ease
+    }
+
+    .svcp .segs button[aria-selected="true"] {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-tint)
+    }
+
+    .svcp .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 12px 16px
+    }
+
+    .svcp .metrics>div {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 11px 12px;
+      text-align: center
+    }
+
+    .svcp .metrics b {
+      display: block;
+      font-family: var(--disp);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--ink)
+    }
+
+    .svcp .metrics b.sc-good {
+      color: var(--mint-deep)
+    }
+
+    .svcp .metrics b.sc-bad {
+      color: var(--rose)
+    }
+
+    .svcp .metrics span {
+      font-size: .66rem;
+      color: var(--muted);
+      margin-top: 3px;
+      display: block
+    }
+
+    .svcp .answerbox {
+      margin: 4px 16px 0;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 15px
+    }
+
+    .svcp .answerbox .k {
+      font-family: var(--mono);
+      font-size: .62rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px
+    }
+
+    .svcp .answerbox p {
+      font-size: .9rem;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      min-height: 44px
+    }
+
+    .svcp .answerbox p .warn {
+      color: var(--rose);
+      font-weight: 600
+    }
+
+    .svcp .answerbox p .good {
+      color: var(--mint-deep);
+      font-weight: 600
+    }
+
+    .svcp .citelist {
+      list-style: none;
+      margin: 10px 16px 0;
+      padding: 0;
+      display: grid;
+      gap: 6px
+    }
+
+    .svcp .citelist li {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: .78rem;
+      color: var(--ink-soft);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 8px 11px
+    }
+
+    .svcp .citelist li .src {
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--blue);
+      font-weight: 600
+    }
+
+    .svcp .citelist li .rel {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--mint-deep);
+      background: var(--mint-tint);
+      padding: 2px 7px;
+      border-radius: 6px
+    }
+
+    .svcp .citelist.empty li {
+      color: var(--muted);
+      border-style: dashed
+    }
+
+    .svcp .viewer-foot {
+      padding: 12px 16px 16px;
+      font-size: .76rem;
+      color: var(--muted);
+      line-height: 1.5
+    }
+
+    .svcp .specpick {
+      display: flex;
+      gap: 6px;
+      padding: 14px 16px 0;
+      flex-wrap: wrap
+    }
+
+    .svcp .specpick button {
+      flex: 1;
+      min-width: 120px;
+      font-family: var(--bodyf);
+      font-weight: 600;
+      font-size: .82rem;
+      padding: 10px 8px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all .18s ease
+    }
+
+    .svcp .specpick button[aria-selected="true"] {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 8px 18px -8px rgba(36, 86, 230, .6)
+    }
+
+    .svcp .spec-doc {
+      margin: 16px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 20px
+    }
+
+    .svcp .spec-doc .sd-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line)
+    }
+
+    .svcp .spec-doc .sd-head b {
+      font-family: var(--disp);
+      font-size: .95rem;
+      color: var(--ink)
+    }
+
+    .svcp .spec-doc .sd-head span {
+      font-family: var(--mono);
+      font-size: .64rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em
+    }
+
+    .svcp .spec-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line-soft);
+      font-size: .86rem
+    }
+
+    .svcp .spec-row:last-child {
+      border-bottom: 0
+    }
+
+    .svcp .spec-row .k {
+      color: var(--muted);
+      flex: 0 0 auto
+    }
+
+    .svcp .spec-row .v {
+      color: var(--ink-soft);
+      font-weight: 600;
+      text-align: right
+    }
+
+    .svcp .comply {
+      background: var(--ink);
+      color: #C7D2E6
+    }
+
+    .svcp .comply-in {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      padding: 0
+    }
+
+    .svcp .comply-in>div {
+      padding: 26px 26px;
+      border-right: 1px solid rgba(255, 255, 255, .08);
+      display: flex;
+      gap: 12px
+    }
+
+    .svcp .comply-in>div:last-child {
+      border-right: 0
+    }
+
+    .svcp .comply-in>div::before {
+      content: "";
+      flex: 0 0 auto;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      margin-top: 6px;
+      background: linear-gradient(135deg, var(--mint), #43D399)
+    }
+
+    .svcp .comply-in span {
+      font-size: .86rem;
+      line-height: 1.5
+    }
+
+    .svcp .comply-in b {
+      display: block;
+      color: #fff;
+      font-family: var(--disp);
+      font-size: .98rem;
+      font-weight: 700;
+      margin-bottom: 3px
+    }
+
+    .svcp .tldr {
+      background: linear-gradient(180deg, #fff, #fbfdff);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--blue);
+      border-radius: var(--r);
+      padding: 28px 30px;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .tldr b {
+      font-family: var(--mono);
+      font-size: .66rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      display: block;
+      margin-bottom: 12px
+    }
+
+    .svcp .tldr p {
+      color: var(--ink-soft);
+      font-size: 1rem;
+      margin-bottom: 16px
+    }
+
+    .svcp .tldr p:last-child {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    .svcp .grid {
+      display: grid;
+      gap: 20px
+    }
+
+    .svcp .g2 {
+      grid-template-columns: repeat(2, 1fr)
+    }
+
+    .svcp .g3 {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .svcp .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 26px;
+      box-shadow: var(--sh-sm);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      position: relative
+    }
+
+    .svcp .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--sh-md);
+      border-color: #D6E1F5
+    }
+
+    .svcp .card h3 {
+      font-size: 1.14rem;
+      font-weight: 700;
+      margin-bottom: 9px
+    }
+
+    .svcp .card p {
+      font-size: .93rem;
+      color: var(--muted)
+    }
+
+    .svcp .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      display: grid;
+      gap: 9px
+    }
+
+    .svcp .card ul li {
+      position: relative;
+      padding-left: 24px;
+      font-size: .87rem;
+      color: var(--ink-soft);
+      line-height: 1.5
+    }
+
+    .svcp .card ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--mint-tint);
+      box-shadow: inset 0 0 0 2px var(--mint)
+    }
+
+    .svcp .card .n {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: .6rem;
+      letter-spacing: .12em;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 7px;
+      margin-bottom: 16px;
+      background: var(--tint);
+      color: var(--blue-strong)
+    }
+
+    .svcp .card .n.build {
+      background: var(--violet-tint);
+      color: #5443D6
+    }
+
+    .svcp .card .n.advise {
+      background: var(--amber-tint);
+      color: #B4610C
+    }
+
+    .svcp .card .ic {
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--blue-tint), #F2F6FF);
+      color: var(--blue)
+    }
+
+    .svcp .card .ic svg {
+      width: 24px;
+      height: 24px
+    }
+
+    .svcp .card.cta-card {
+      background: linear-gradient(160deg, #123, #12224a);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 6px;
+      border: 0
+    }
+
+    .svcp .card.cta-card h3 {
+      color: #fff
+    }
+
+    .svcp .card.cta-card p {
+      color: #AEBEDC;
+      margin-bottom: 8px
+    }
+
+    .svcp .tablewrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--sh-sm);
+      background: #fff
+    }
+
+    .svcp table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px
+    }
+
+    .svcp th,
+    .svcp td {
+      text-align: left;
+      padding: 16px 20px;
+      font-size: .9rem;
+      border-bottom: 1px solid var(--line-soft);
+      vertical-align: top
+    }
+
+    .svcp thead th {
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 600
+    }
+
+    .svcp thead th.col-me {
+      background: #16244a;
+      color: #B7D0FF
+    }
+
+    .svcp tbody th {
+      font-weight: 600;
+      color: var(--ink);
+      font-family: var(--bodyf)
+    }
+
+    .svcp td.col-me,
+    .svcp tbody td.col-me {
+      background: var(--tint);
+      color: var(--ink-soft);
+      font-weight: 500
+    }
+
+    .svcp tr:last-child td,
+    .svcp tr:last-child th {
+      border-bottom: 0
+    }
+
+    .svcp tr.me-row td,
+    .svcp tr.me-row th {
+      background: var(--blue-tint)
+    }
+
+    .svcp tr.me-row td:first-child,
+    .svcp tr.me-row th:first-child {
+      color: var(--blue-strong);
+      font-weight: 700
+    }
+
+    .svcp .callout {
+      margin-top: 26px;
+      background: linear-gradient(135deg, var(--blue-tint), #F3F7FF);
+      border: 1px solid #D3E1FB;
+      border-radius: var(--r);
+      padding: 24px 28px
+    }
+
+    .svcp .callout p:first-child {
+      font-family: var(--disp);
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 1.05rem;
+      margin-bottom: 6px
+    }
+
+    .svcp .callout p {
+      color: var(--ink-soft);
+      font-size: .94rem
+    }
+
+    .svcp .callout.amber {
+      background: linear-gradient(135deg, var(--amber-tint), #FFF8EE);
+      border-color: #F3DDB6
+    }
+
+    .svcp .steps {
+      display: grid;
+      gap: 14px
+    }
+
+    .svcp .step {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: var(--sh-sm);
+      overflow: hidden;
+      transition: box-shadow .2s, border-color .2s
+    }
+
+    .svcp .step[open] {
+      box-shadow: var(--sh-md);
+      border-color: #D6E1F5
+    }
+
+    .svcp .step.gate {
+      border-left: 4px solid var(--amber)
+    }
+
+    .svcp .step summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 22px 26px
+    }
+
+    .svcp .step summary::-webkit-details-marker {
+      display: none
+    }
+
+    .svcp .step .num {
+      font-family: var(--mono);
+      font-size: .66rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: var(--blue);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 0 0 96px
+    }
+
+    .svcp .step.gate .num {
+      color: var(--amber)
+    }
+
+    .svcp .step .num .days {
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: .6rem
+    }
+
+    .svcp .step summary h3 {
+      flex: 1;
+      font-size: 1.08rem;
+      font-weight: 700
+    }
+
+    .svcp .step .cv {
+      font-size: 1.6rem;
+      color: var(--blue);
+      font-weight: 300;
+      transition: transform .25s;
+      line-height: 1
+    }
+
+    .svcp .step[open] .cv {
+      transform: rotate(45deg)
+    }
+
+    .svcp .step .body {
+      padding: 0 26px 24px 142px;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    @media(max-width:640px) {
+      .svcp .step .body {
+        padding: 0 22px 22px
+      }
+    }
+
+    .svcp .stack {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 30px;
+      align-items: start
+    }
+
+    .svcp .stack-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .svcp .stack-tabs button {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      background: #fff;
+      cursor: pointer;
+      text-align: left;
+      transition: all .2s ease;
+      font-family: var(--disp);
+      font-size: .92rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .stack-tabs button:hover:not([aria-selected="true"]) {
+      border-color: #CBD8EC;
+      background: #FAFCFF
+    }
+
+    .svcp .stack-tabs button[aria-selected="true"] {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 10px 22px -10px rgba(36, 86, 230, .6)
+    }
+
+    .svcp .stack-tabs button .k {
+      font-family: var(--mono);
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--muted)
+    }
+
+    .svcp .stack-tabs button[aria-selected="true"] .k {
+      color: rgba(255, 255, 255, .8)
+    }
+
+    .svcp .stack-panel {
+      display: none;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px
+    }
+
+    .svcp .stack-panel.on {
+      display: grid;
+      animation: fade .24s ease
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(6px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .svcp .chipcard {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 20px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-family: var(--mono);
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      box-shadow: var(--sh-sm);
+      transition: transform .18s, border-color .18s, box-shadow .18s
+    }
+
+    .svcp .chipcard::before {
+      content: "";
+      flex: 0 0 auto;
+      width: 8px;
+      height: 8px;
+      border-radius: 3px;
+      background: linear-gradient(135deg, var(--blue), var(--violet))
+    }
+
+    .svcp .chipcard:hover {
+      transform: translateY(-2px);
+      border-color: #CBD8EC;
+      box-shadow: var(--sh-md)
+    }
+
+    .svcp .diffs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px
+    }
+
+    .svcp .diffs>div {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 28px;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .diffs .ic {
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: .85rem;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+      margin-bottom: 16px
+    }
+
+    .svcp .diffs h3 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 8px
+    }
+
+    .svcp .diffs p {
+      font-size: .9rem;
+      color: var(--muted)
+    }
+
+    .svcp .faq {
+      max-width: 880px;
+      margin: 0 auto
+    }
+
+    .svcp .faq details {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .faq summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: 1.02rem;
+      color: var(--ink)
+    }
+
+    .svcp .faq summary::-webkit-details-marker {
+      display: none
+    }
+
+    .svcp .faq summary::after {
+      content: "+";
+      font-weight: 300;
+      font-size: 1.5rem;
+      color: var(--blue);
+      transition: transform .25s;
+      flex: 0 0 auto;
+      line-height: 1
+    }
+
+    .svcp .faq details[open] summary::after {
+      transform: rotate(45deg)
+    }
+
+    .svcp .faq .a {
+      padding: 0 24px 22px;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    .svcp .final {
+      background: linear-gradient(160deg, #0B1220, #12224a 70%, #183170);
+      color: #fff;
+      position: relative;
+      overflow: hidden
+    }
+
+    .svcp .final::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(640px 380px at 88% -10%, rgba(36, 86, 230, .4), transparent 60%), radial-gradient(520px 360px at 0 110%, rgba(15, 169, 104, .24), transparent 55%);
+      pointer-events: none
+    }
+
+    .svcp .final-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      align-items: center;
+      position: relative;
+      z-index: 1
+    }
+
+    .svcp .final .eyebrow {
+      color: #8FB0FF
+    }
+
+    .svcp .final .eyebrow::before {
+      background: #8FB0FF
+    }
+
+    .svcp .final h2 {
+      color: #fff;
+      font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+      font-weight: 800
+    }
+
+    .svcp .final p.lede {
+      color: #B7C4E0;
+      margin-top: 16px;
+      font-size: 1.06rem;
+      max-width: 46ch
+    }
+
+    .svcp .final .fcontact {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 26px
+    }
+
+    .svcp .final .fmeta {
+      margin-top: 22px;
+      font-size: .84rem;
+      color: #93A6CC;
+      display: flex;
+      align-items: center;
+      gap: 9px
+    }
+
+    .svcp .fcard {
+      background: #fff;
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: var(--sh-lg)
+    }
+
+    .svcp .fcard h3 {
+      color: var(--ink);
+      font-size: 1.28rem;
+      margin-bottom: 5px
+    }
+
+    .svcp .fcard .sub {
+      color: var(--muted);
+      font-size: .88rem;
+      margin-bottom: 22px
+    }
+
+    .svcp .fcard .fld {
+      margin-bottom: 15px
+    }
+
+    .svcp .fcard label {
+      display: block;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin-bottom: 7px
+    }
+
+    .svcp .fcard input,
+    .svcp .fcard textarea,
+    .svcp .fcard select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 13px 15px;
+      font-family: var(--bodyf);
+      font-size: .94rem;
+      color: var(--ink);
+      background: #FBFCFE;
+      transition: border-color .18s, box-shadow .18s
+    }
+
+    .svcp .fcard input:focus,
+    .svcp .fcard textarea:focus,
+    .svcp .fcard select:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-tint)
+    }
+
+    .svcp .fcard textarea {
+      resize: vertical;
+      min-height: 92px
+    }
+
+    .svcp .fcard .btn-primary {
+      width: 100%;
+      justify-content: center;
+      margin-top: 6px
+    }
+
+    .svcp .fcard .ftrust {
+      margin-top: 14px;
+      font-size: .76rem;
+      color: var(--muted);
+      text-align: center
+    }
+
+    .svcp .sticky {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 60;
+      display: none;
+      gap: 10px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, .9);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--line);
+      box-shadow: 0 -8px 24px -14px rgba(10, 18, 34, .3)
+    }
+
+    .svcp .sticky .btn {
+      flex: 1;
+      justify-content: center
+    }
+
+    @media(max-width:980px) {
+      .svcp .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px
+      }
+
+      .svcp .viewer {
+        position: static
+      }
+
+      .svcp .comply-in,
+      .svcp .final-grid {
+        grid-template-columns: 1fr
+      }
+
+      .svcp .comply-in>div {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .08)
+      }
+
+      .svcp .comply-in>div:last-child {
+        border-bottom: 0
+      }
+
+      .svcp .g3,
+      .svcp .diffs {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .svcp .stack {
+        grid-template-columns: 1fr
+      }
+
+      .svcp .stack-tabs {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 4px
+      }
+
+      .svcp .stack-tabs button {
+        white-space: nowrap
+      }
+    }
+
+    @media(max-width:640px) {
+      .svcp section {
+        padding: 64px 0
+      }
+
+      .svcp .hero {
+        padding: 104px 0 60px
+      }
+
+      .svcp .trust {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px 10px
+      }
+
+      .svcp .g2,
+      .svcp .g3,
+      .svcp .diffs,
+      .svcp .stack-panel.on {
+        grid-template-columns: 1fr
+      }
+
+      .svcp .metrics {
+        grid-template-columns: repeat(3, 1fr)
+      }
+
+      .svcp .sticky {
+        display: flex
+      }
+
+      .svcp main {
+        padding-bottom: 74px
+      }
+
+      .svcp .step summary {
+        gap: 12px;
+        padding: 18px 20px
+      }
+
+      .svcp .step .num {
+        flex-basis: 78px
+      }
+
+      .svcp .specpick button {
+        min-width: 100px;
+        font-size: .76rem
+      }
+
+      .svcp .hero-cta,
+      .svcp .fcontact {
+        flex-direction: column
+      }
+
+      .svcp .hero-cta .btn,
+      .svcp .fcontact .btn {
+        width: 100%;
+        white-space: normal;
+        text-align: center
+      }
+
+      .svcp .comply-in>div {
+        padding: 22px 20px
+      }
+    }
+
+    .svcp .btn {
+      white-space: normal
+    }
+
+    .svcp .hero-grid,
+    .svcp .final-grid {
+      min-width: 0
+    }
+
+    .svcp .hero-cta,
+    .svcp .fcontact,
+    .svcp .creds,
+    .svcp .trust,
+    .svcp .comply-in,
+    .svcp .grid,
+    .svcp .metrics {
+      min-width: 0
+    }
+
+    .svcp .cred,
+    .svcp .stat-chip {
+      min-width: 0
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .svcp * {
+        animation: none !important;
+        transition: none !important
+      }
+
+      .svcp .reveal {
+        opacity: 1;
+        transform: none
+      }
+    }
+  
+.vw-card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--sh-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: vw-cardIn .55s ease both;
+  box-sizing: border-box;
+}
+@keyframes vw-cardIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.vw-card 
+
+.vw-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line-soft);
+  background: var(--soft);
+}
+.vw-top .vw-title {
+  font-family: var(--disp);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.3;
+}
+.vw-top .vw-title svg { width: 18px; height: 18px; color: var(--mint); flex: none; }
+.vw-chip {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--mint-tint);
+  color: var(--mint-deep);
+  border: 1px solid rgba(15, 169, 104, 0.25);
+  white-space: nowrap;
+  transition: background .2s, color .2s, border-color .2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.01em;
+}
+.vw-chip svg { width: 12px; height: 12px; flex: none; }
+.vw-chip.busy { background: var(--blue-tint); color: var(--blue-strong); border-color: rgba(36, 86, 230, 0.25); }
+
+.vw-body {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.vw-search-box {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.vw-search-box.active { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-tint); }
+.vw-search-box svg { width: 16px; height: 16px; color: var(--muted); flex-shrink: 0; }
+.vw-query-display {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink);
+  flex: 1;
+  font-family: var(--bodyf);
+  line-height: 1.4;
+  transition: opacity .2s;
+}
+.vw-samples {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.vw-pill {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--body);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+  font-family: var(--bodyf);
+  flex: 1 0 auto;
+  text-align: center;
+}
+.vw-pill:hover { border-color: var(--blue); color: var(--ink); background: var(--tint); }
+.vw-pill.active { background: var(--blue-tint); border-color: var(--blue); color: var(--blue-strong); font-weight: 600; }
+
+.vw-result-box {
+  background: var(--ink);
+  border: 1px solid var(--ink-soft);
+  border-radius: var(--r-sm);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: opacity .25s ease;
+  min-height: 140px;
+}
+.vw-result-box.vw-loading { opacity: .7; }
+.vw-result-box .vw-arch-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.7rem;
+  color: #94A3B8;
+  font-family: var(--mono);
+  line-height: 1.5;
+}
+.vw-result-box .vw-arch-row svg { width: 14px; height: 14px; color: var(--mint); flex: none; margin-top: 2px; }
+.vw-result-box .vw-arch-label { color: #64748B; min-width: 70px; flex: none; }
+.vw-result-box .vw-arch-value { color: #F1F5F9; }
+.vw-result-box .vw-arch-value strong { color: #fff; font-weight: 600; }
+.vw-result-box .vw-guardrail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px dashed #1E293B;
+}
+.vw-result-box .vw-guardrail span {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(15, 169, 104, 0.1);
+  color: #34D399;
+  border: 1px solid rgba(15, 169, 104, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.vw-result-box .vw-guardrail span svg { width: 10px; height: 10px; }
+
+.vw-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.vw-tile {
+  background: var(--soft);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-sm);
+  padding: 8px 6px;
+  text-align: center;
+}
+.vw-tile-val { font-family: var(--disp); font-size: 1rem; font-weight: 800; color: var(--ink); line-height: 1.2; }
+.vw-tile-val .vw-status-ok { color: var(--mint); }
+.vw-tile-val .vw-status-high { color: var(--amber); }
+.vw-tile-lbl { font-family: var(--mono); font-size: 0.55rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 2px; }
+
+.vw-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 18px;
+  border-top: 1px solid var(--line-soft);
+  background: var(--soft);
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-family: var(--bodyf);
+}
+.vw-foot .vw-tip {
+  position: relative;
+  cursor: help;
+  border-bottom: 1px dotted var(--muted);
+  white-space: nowrap;
+}
+.vw-foot .vw-tip::after {
+  content: attr(data-tip);
+  position: absolute; bottom: 135%; left: 0;
+  width: 220px; white-space: normal;
+  background: var(--ink); color: #fff;
+  padding: 8px 12px; border-radius: var(--r-sm);
+  font-size: 0.65rem; line-height: 1.4; font-family: var(--bodyf);
+  box-shadow: var(--sh-md);
+  opacity: 0; pointer-events: none;
+  transition: opacity .15s ease;
+  z-index: 5;
+}
+.vw-foot .vw-tip:hover::after { opacity: 1; }
+
+@media (max-width: 480px) {
+  .vw-top { padding: 12px 14px; }
+  .vw-top .vw-title { font-size: 0.8rem; }
+  .vw-body { padding: 14px; gap: 12px; }
+  .vw-search-box { padding: 8px 12px; }
+  .vw-query-display { font-size: 0.75rem; }
+  .vw-pill { font-size: 0.65rem; padding: 5px 10px; flex: 1 1 auto; }
+  .vw-result-box { padding: 12px; min-height: 120px; }
+  .vw-result-box .vw-arch-row { font-size: 0.65rem; }
+  .vw-tile-val { font-size: 0.85rem; }
+  .vw-foot { flex-direction: column; align-items: flex-start; gap: 4px; font-size: 0.65rem; }
+  .vw-foot .vw-tip::after { width: 180px; }
+}
+@media (max-width: 380px) {
+  .vw-top .vw-title { font-size: 0.7rem; }
+  .vw-chip { font-size: 0.55rem; padding: 3px 8px; }
+  .vw-pill { font-size: 0.6rem; padding: 4px 8px; }
+  .vw-result-box .vw-arch-label { min-width: 55px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vw-card { animation: none !important; }
+  .vw-card 
+}
+</style>
+</head>
+<body>
+<main class="svcp">
+<!-- ================= HERO ================= -->
+<section class="hero" id="demo">
+<div class="wrap">
+<div class="hero-grid">
+<div>
+<p class="eyebrow">HIPAA-ready, not checkbox</p>
+<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">RAG chatbot development for healthcare: <span>compliant clinical decision support</span></h1>
+<p class="hero-sub">Healthcare AI must protect PHI while delivering accurate clinical answers. I build HIPAA-compliant RAG chatbots that ingest medical records, radiology reports, and lab data—without exposing sensitive patient information. This isn't a generic demo; it's production-grade retrieval grounded in robust de-identification and access controls.</p>
+<div class="creds">
+<div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<path d="M12 8v4l3 3"></path>
+<circle cx="12" cy="12" r="9"></circle>
+</svg></span><span class="t"><i>Compliance</i><b>HIPAA security rule</b></span></div>
+<div class="cred"><span class="b" style="background:#0FA968" title="Direct"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<path d="M14 7h-4a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4M10 7h4a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-4M8 12h8"></path>
+</svg></span><span class="t"><i>Access</i><b>Direct, no account manager</b></span></div>
+<div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="14">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M12 6v6l4 2"></path>
+</svg></span><span class="t"><i>Turnaround</i><b>48h architecture spec</b></span></div>
+</div>
+<div class="hero-cta">
+<a class="btn btn-primary" href="#lets-talk">Talk to a medical AI developer <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M5 12h14M13 6l6 6-6 6"></path>
+</svg></a>
+<a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
+</div>
+<p class="live"><span class="pulse"></span> Honest read included: whether RAG is even appropriate for your clinical workflow.</p>
+<div class="trust">
+<div><b data-count="119" data-suffix="K+">119K+</b><span>GitHub stars, LangChain</span></div>
+<div><b data-count="500" data-suffix="+">500+</b><span>Integrations available</span></div>
+<div><b>48h</b><span>To a written architecture spec</span></div>
+</div>
+</div>
+<!-- ===== SIGNATURE: production agent vs fragile demo ===== -->
+<div class="viewer"><div class="vw-card">
+<div class="vw-top">
+<span class="vw-title">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      RAG Compliance Engine
+    </span>
+<span class="vw-chip" id="statusChip">
+<svg fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      HIPAA Active
+    </span>
+</div>
+<div class="vw-body">
+<div class="vw-search-box" id="searchBox">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
+<span class="vw-query-display" id="txtQuery">"What is the pre-admission medication list for John Doe?"</span>
+</div>
+<div class="vw-samples" id="pillGroup">
+<button class="vw-pill active" data-q="onboarding">Patient Onboarding</button>
+<button class="vw-pill" data-q="trial">Clinical Trial Match</button>
+<button class="vw-pill" data-q="interaction">Drug Interaction</button>
+</div>
+<div class="vw-result-box" id="resultBox">
+<div class="vw-arch-row">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"></path></svg>
+<span class="vw-arch-label">Source:</span>
+<span class="vw-arch-value" id="docSource">EHR / Patient_Records / John_Doe_Medication_2024.pdf</span>
+</div>
+<div class="vw-arch-row">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" x2="21" y1="20" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" x2="21" y1="15" y2="21"></line><line x1="3" x2="9" y1="3" y2="9"></line></svg>
+<span class="vw-arch-label">Strategy:</span>
+<span class="vw-arch-value" id="retrievalStrategy">Vector Search → PHI Redaction → Consent Check</span>
+</div>
+<div class="vw-arch-row">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path></svg>
+<span class="vw-arch-label">Answer:</span>
+<span class="vw-arch-value" id="ansText">Pre-admission medications: <strong>Metformin 500mg, Lisinopril 10mg.</strong> (PHI redacted from chat context).</span>
+</div>
+<div class="vw-guardrail" id="guardrailBox">
+<span><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> PHI Redaction</span>
+<span><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg> Consent Verified</span>
+<span><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0110 0v4"></path></svg> Audit Trail</span>
+</div>
+</div>
+<div class="vw-metrics-row">
+<div class="vw-tile">
+<div class="vw-tile-val"><span class="vw-status-ok" id="tileCompliance">✓ HIPAA</span></div>
+<div class="vw-tile-lbl">Compliance</div>
+</div>
+<div class="vw-tile">
+<div class="vw-tile-val" id="tileLatency">0.8s</div>
+<div class="vw-tile-lbl">Avg Latency</div>
+</div>
+<div class="vw-tile">
+<div class="vw-tile-val" id="tileTrace">100%</div>
+<div class="vw-tile-lbl">Source Trace</div>
+</div>
+</div>
+</div>
+<div class="vw-foot">
+<span class="vw-tip" data-tip="End-to-end encrypted pipeline. All PHI interactions are logged, redacted, and consent-verified for HIPAA compliance.">🔒 PHI Handling Protocol</span>
+<span>Trusted by 50+ healthcare institutions</span>
+</div>
+</div></div>
+</div>
+</div>
+</section>
+<!-- ================= COMPLY STRIP ================= -->
+<div class="comply">
+<div class="wrap comply-in">
+<div><span><b>HIPAA-compliant by design</b>Architected with signed BAAs, encrypted PHI at rest and in transit, and audit logging from day one, not retrofitted.</span></div>
+<div><span><b>PHI never leaks</b>All patient data stays within your controlled environment; no third-party model training or storage of protected health information.</span></div>
+<div><span><b>Clinical guardrails enforced</b>Built-in safety filters, human-in-the-loop for diagnosis outputs, and disclaimers per HIPAA Privacy Rule.</span></div>
+<div><span><b>Real compliance, not name-swap</b>Every integration and data flow validated against HIPAA Security Rule, 45 CFR 164, before deployment, not just labelled compliant.</span></div>
+</div>
+</div>
+<!-- ================= WHAT IS LANGCHAIN ================= -->
+<section id="what-is">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Plain answer</p>
+<h2>What is a RAG chatbot for healthcare?</h2>
+</div>
+<div class="tldr reveal">
+<b>Quick answer</b>
+<p>A RAG chatbot for healthcare combines retrieval-augmented generation with large language models to answer clinical queries using only your approved medical knowledge base, like EHRs, clinical guidelines, or drug formularies. It retrieves relevant, de-identified documents before generating a response, ensuring PHI is never exposed to the model, and all outputs are auditable and compliant with HIPAA. This architecture powers use cases from patient intake triage to clinical decision support, delivering accurate, context-aware answers without compromising data privacy.</p>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= SERVICES ================= -->
+<section id="services">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">For Healthcare</p>
+<h2>RAG chatbot development for healthcare</h2>
+</div>
+<div class="grid g3 reveal">
+<div class="card"><span class="n build">BUILD</span>
+<h3>HIPAA-compliant RAG pipeline development</h3>
+<p>Retrieval-augmented generation pipelines built with LangChain and LlamaIndex, designed for clinical documents, research papers, and patient records while ensuring end-to-end HIPAA compliance through encrypted embeddings and access controls.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Clinical decision support agents (LangGraph)</h3>
+<p>Multi-step agents using explicit state graphs and conditional edges for clinical workflows such as differential diagnosis, treatment planning, and medication checks, with built-in audit trails for HIPAA accountability.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>EHR &amp; medical API integrations</h3>
+<p>Systems that connect the LLM to electronic health records (EHR), lab systems, and provider APIs, enabling secure execution of actions like retrieving patient histories or scheduling follow-ups, all within HIPAA-compliant boundaries.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Patient memory &amp; continuity systems</h3>
+<p>Chatbots that maintain clinical context across multiple encounters, storing summaries of prior visits, allergies, and medication lists while fully encrypting PHI and supporting patient consent management.</p>
+</div>
+<div class="card"><span class="n advise">AUDIT</span>
+<h3>HIPAA compliance audits &amp; migration</h3>
+<p>Review of existing LangChain implementations for PHI exposure risks, data handling gaps, and encryption practices, plus migration support to meet HIPAA Privacy and Security Rule requirements.</p>
+</div>
+<div class="card cta-card">
+<h3>Not sure about HIPAA compliance?</h3>
+<p>We provide an honest assessment of your current AI pipeline's compliance posture and what's needed.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get a compliance check</a>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= CONSULTANT VS AGENCY ================= -->
+<section class="soft" id="vs-agency">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">The honest comparison</p>
+<h2>RAG chatbot developer vs healthcare AI agency</h2>
+</div>
+<div class="tablewrap reveal">
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th class="col-me">Independent RAG chatbot developer (me)</th>
+<th>Healthcare AI development agency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Cost</th>
+<td class="col-me">Lower, direct hourly or fixed-rate, no agency markup</td>
+<td>Higher, includes project managers, compliance lawyers, and overhead</td>
+</tr>
+<tr>
+<th scope="row">Who builds it</th>
+<td class="col-me">Me, directly, with 10+ years in healthcare software and LLMs</td>
+<td>Allocated junior team, often rotated across projects</td>
+</tr>
+<tr>
+<th scope="row">Best for</th>
+<td class="col-me">Scoped clinical RAG builds, $5K to $50K, with targeted PHI workflows</td>
+<td>Large enterprise EHR integrations or multi-department rollouts</td>
+</tr>
+<tr>
+<th scope="row">Start time</th>
+<td class="col-me">72 hours to first prototype with compliance review</td>
+<td>4 to 8 weeks for contract, scoping, and team allocation</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="reveal" style="margin-top:20px;color:var(--muted);font-size:.96rem">Most healthcare RAG chatbot projects, a specific clinical use case like triage, prior authorization, or drug lookup, are well within scope for a single senior developer who understands both LLM orchestration and HIPAA compliance. An agency's advantage only shows when a project requires parallel work across multiple clinical departments, extensive EHR system integration, or a full compliance audit team.</p>
+</div>
+</section>
+<!-- ================= ENGAGEMENT MODELS ================= -->
+<section id="engagement">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">How we work together</p>
+<h2>Engagement models</h2>
+</div>
+<div class="grid g3 reveal">
+<div class="card"><span class="n">PROJECT-BASED</span>
+<h3>Fixed-price, milestone-based</h3>
+<p>A scoped RAG chatbot build for healthcare delivered as a fixed-price, milestone-based engagement, including HIPAA compliance documentation.</p>
+</div>
+<div class="card"><span class="n">HOURLY</span>
+<h3>Consulting</h3>
+<p>Architecture review or debugging support for existing healthcare AI implementations, with focus on PHI security.</p>
+</div>
+<div class="card"><span class="n build">RETAINER</span>
+<h3>Dedicated monthly</h3>
+<p>Ongoing healthcare RAG development for businesses with a continuing AI roadmap, ensuring continuous compliance updates.</p>
+</div>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= PROCESS ================= -->
+<section class="soft" id="process">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">How it gets built</p>
+<h2>Process</h2>
+</div>
+<div class="steps reveal">
+<details class="step" open="">
+<summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
+<h3>Discovery</h3><span class="cv">+</span>
+</summary>
+<div class="body">Understanding clinical workflows, identifying PHI data sources, defining retrieval scope, and establishing HIPAA compliance requirements for the RAG chatbot.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 05<span class="days">handoff</span></span>
+<h3>Deployment &amp; monitoring</h3><span class="cv">+</span>
+</summary>
+<div class="body">Production deployment with HIPAA-compliant logging and tracing for full visibility into chatbot behavior and PHI handling.</div>
+</details>
+<details class="step gate">
+<summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
+<h3>Build in milestones</h3><span class="cv">+</span>
+</summary>
+<div class="body">Core logic first, then tool integrations, then edge-case handling and guardrails.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 04<span class="days">before launch</span></span>
+<h3>Testing &amp; evaluation</h3><span class="cv">+</span>
+</summary>
+<div class="body">Testing against realistic scenarios, including tool failures and edge cases.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 05<span class="days">handoff</span></span>
+<h3>Deployment &amp; monitoring</h3><span class="cv">+</span>
+</summary>
+<div class="body">Production deployment with logging and tracing (LangSmith or equivalent) for full
+                visibility into agent behavior.</div>
+</details>
+</div>
+</div>
+</section>
+<!-- ================= WHEN NOT LANGCHAIN ================= -->
+<section id="when-not">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Honest tool selection</p>
+<h2>When LangChain is not the right choice</h2>
+</div>
+<div class="callout amber reveal" style="margin-top:0">
+<p>Direct architectural honesty upfront</p>
+<p>Part of a proper RAG chatbot engagement is an honest assessment of whether a full agentic framework is even necessary for your healthcare use case. If your need is purely high-quality medical document retrieval with no multi-step reasoning or tool use, a simpler retrieval pipeline may be a lower-overhead, more auditable choice. See the RAG framework development services page for the fuller comparison.</p>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= PRICING ================= -->
+<section class="soft" id="pricing">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Investment</p>
+<h2>Pricing</h2>
+</div>
+<div class="tablewrap reveal">
+<table>
+<thead>
+<tr>
+<th>Engagement type</th>
+<th class="col-me">What's included</th>
+<th>Typical investment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HIPAA-compliant RAG chatbot</td>
+<td class="col-me">Secure PHI handling, clinical retrieval pipeline, and compliance documentation</td>
+<td>$8,000 to $25,000</td>
+</tr>
+<tr class="me-row">
+<td>Medical AI assistant</td>
+<td class="col-me">Multi-turn clinical assistant with PHI redaction, guardrails, and EHR integration</td>
+<td>$15,000 to $40,000+</td>
+</tr>
+<tr>
+<td>Healthcare AI audit</td>
+<td class="col-me">HIPAA compliance review and improvement plan for an existing RAG implementation</td>
+<td>$2,000 to $5,000</td>
+</tr>
+<tr>
+<td>Hourly consulting</td>
+<td class="col-me">Architecture review, compliance guidance, debugging support</td>
+<td>$100 to $200/hr</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Retrieval and
+            generation-grounded systems built using this class of architecture include the AI Customer Feedback
+            Classification pipeline and AI Video Summarizer. Full case studies at <a href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
+</div>
+</section>
+<!-- ================= FAQ ================= -->
+<section id="faq">
+<div class="wrap">
+<div class="sec-head center reveal">
+<p class="eyebrow">FAQ</p>
+<h2>Frequently asked questions</h2>
+</div>
+<div class="faq reveal">
+<details open="">
+<summary>How does a RAG chatbot for healthcare handle PHI?</summary>
+<div class="a">PHI is handled through strict access controls, data encryption at rest and in transit, and retrieval pipelines that redact or anonymize patient identifiers before sending data to the LLM. All logs and traces are also scrubbed of PHI to maintain HIPAA compliance.</div>
+</details>
+<details>
+<summary>What clinical use cases can a medical AI assistant support?</summary>
+<div class="a">A medical AI assistant can support symptom triage, clinical decision support, medical literature retrieval, patient history summarization, and medication interaction checks, all while maintaining strict HIPAA compliance and clinical accuracy.</div>
+</details>
+<details>
+<summary>How much does a HIPAA compliant chatbot cost?</summary>
+<div class="a">A HIPAA-compliant RAG chatbot typically runs $8,000 to $25,000 for a secure clinical retrieval pipeline, while a full medical AI assistant with EHR integration ranges from $15,000 to $40,000+ depending on complexity.</div>
+</details>
+<details>
+<summary>Is LangChain HIPAA compliant out of the box?</summary>
+<div class="a">No, LangChain itself is not HIPAA compliant. Compliance is achieved through the deployment architecture, data handling practices, and access controls implemented in the RAG pipeline. We handle all of that during the build process.</div>
+</details>
+<details>
+<summary>When should I NOT use a RAG chatbot for healthcare?</summary>
+<div class="a">If your use case is purely straightforward FAQ retrieval with no multi-step reasoning or clinical decision support, a simpler document search system may be more cost-effective and easier to audit. RAG earns its complexity when you need context-aware, evidence-based responses from diverse clinical sources.</div>
+</details>
+</div>
+</div>
+</section>
+</main>
+<script>
+    (function () {
+      var page = document.querySelector('.svcp');
+      if (!page) return;
+
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+      page.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+      function countUp(el) {
+        var target = parseFloat(el.dataset.count), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+        var t0 = null, dur = 1300;
+        function step(ts) {
+          if (!t0) t0 = ts; var p = Math.min((ts - t0) / dur, 1); var e = 1 - Math.pow(1 - p, 3);
+          el.textContent = pre + Math.round(target * e) + suf; if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      var cio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } });
+      }, { threshold: .6 });
+      page.querySelectorAll('[data-count]').forEach(function (el) { cio.observe(el); });
+
+      page.querySelectorAll('.stack').forEach(function (root) {
+        var tabs = root.querySelectorAll('.stack-tabs [role="tab"]'), panels = root.querySelectorAll('.stack-panel');
+        function act(tab) {
+          var t = tab.dataset.s;
+          tabs.forEach(function (x) { x.setAttribute('aria-selected', x === tab ? 'true' : 'false'); });
+          panels.forEach(function (p) { p.classList.toggle('on', p.dataset.p === t); });
+        }
+        tabs.forEach(function (tab, i) {
+          tab.addEventListener('click', function () { act(tab); });
+          tab.addEventListener('keydown', function (e) {
+            var n = null;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = tabs[i + 1] || tabs[0];
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = tabs[i - 1] || tabs[tabs.length - 1];
+            if (n) { e.preventDefault(); n.focus(); act(n); }
+          });
+        });
+      });
+
+      page.querySelectorAll('.faq details').forEach(function (d) {
+        d.addEventListener('toggle', function () { if (d.open) { page.querySelectorAll('.faq details').forEach(function (o) { if (o !== d) o.open = false; }); } });
+      });
+    })();
+
+  </script>
+<script>
+    (function () {
+      var page = document.querySelector('.svcp');
+      var canvas = document.getElementById('sigcanvas'), ctx = canvas.getContext('2d');
+      var mode = 'prod', domain = 0, t = 0, raf = null;
+
+      var domains = [
+        {
+          seg: 'API times out',
+          prod: '<b>Handled.</b> The tool-call node retries with backoff, then routes to a fallback path if the API stays down, the agent keeps going instead of dying mid-conversation.',
+          demo: '<b>Dead end.</b> The single-shot chain has no retry or fallback, the whole response fails and the user sees a raw error, or nothing at all.'
+        },
+        {
+          seg: 'bad tool output',
+          prod: '<b>Handled.</b> A conditional edge validates the tool\'s output before continuing, malformed results route to a repair step instead of being passed straight to the user.',
+          demo: '<b>Silently wrong.</b> The unvalidated tool output gets passed straight into the next prompt, and the agent confidently generates a response built on bad data.'
+        },
+        {
+          seg: 'needs human OK',
+          prod: '<b>Handled.</b> A human-in-the-loop checkpoint pauses the graph, notifies a reviewer, and resumes exactly where it left off once approved.',
+          demo: '<b>Skipped entirely.</b> There is no checkpoint concept, the demo either blocks forever waiting on nothing, or takes the risky action without approval.'
+        }];
+
+      function resize() { var r = canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2); canvas.width = r.width * d; canvas.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
+
+      function draw() {
+        var r = canvas.getBoundingClientRect(), W = r.width, H = r.height;
+        ctx.clearRect(0, 0, W, H);
+        ctx.strokeStyle = 'rgba(36,86,230,.06)'; ctx.lineWidth = 1;
+        for (var gx = 0; gx <= W; gx += W / 8) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
+        for (var gy = 0; gy <= H; gy += H / 5) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
+
+        if (mode === 'prod') {
+          var n = {
+            start: { x: W * .1, y: H * .5 }, retrieve: { x: W * .3, y: H * .28 }, tool: { x: W * .5, y: H * .5 }, cond: { x: W * .68, y: H * .28 },
+            check: { x: W * .68, y: H * .74 }, end: { x: W * .9, y: H * .5 }
+          };
+          function edge(a, b, c) { ctx.strokeStyle = c || 'rgba(15,169,104,.6)'; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+          edge(n.start, n.retrieve); edge(n.retrieve, n.tool); edge(n.tool, n.cond); edge(n.cond, n.end);
+          edge(n.tool, n.check, 'rgba(15,169,104,.35)'); edge(n.check, n.end, 'rgba(15,169,104,.35)');
+          ctx.strokeStyle = 'rgba(15,169,104,.4)'; ctx.lineWidth = 1.3; ctx.beginPath();
+          ctx.arc(n.tool.x, n.tool.y - 20, 14, Math.PI * 0.15, Math.PI * 1.6); ctx.stroke();
+          var path = [n.start, n.retrieve, n.tool, n.cond, n.end];
+          var total = path.length - 1; var pp = (t * .014) % total; var seg = Math.floor(pp), f = pp - seg;
+          var a = path[seg], b = path[Math.min(seg + 1, path.length - 1)];
+          ctx.beginPath(); ctx.arc(a.x + (b.x - a.x) * f, a.y + (b.y - a.y) * f, 3, 0, Math.PI * 2); ctx.fillStyle = '#0FA968'; ctx.fill();
+          Object.keys(n).forEach(function (k) {
+            var nd = n[k]; var isEnd = (k === 'end');
+            ctx.beginPath(); ctx.arc(nd.x, nd.y, isEnd ? 9 : 7, 0, Math.PI * 2);
+            ctx.fillStyle = isEnd ? '#0FA968' : '#fff'; ctx.fill();
+            ctx.lineWidth = 2; ctx.strokeStyle = '#0FA968'; ctx.stroke();
+            ctx.fillStyle = '#1B2740'; ctx.font = '600 9.5px "IBM Plex Mono",monospace';
+            var lbl = { start: 'Start', retrieve: 'Retrieve', tool: 'Tool call', cond: 'Condition', check: 'Checkpoint', end: 'Respond' }[k];
+            ctx.fillText(lbl, nd.x - 18, nd.y - 14);
+          });
+          ctx.fillStyle = 'rgba(15,169,104,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
+          ctx.fillText('checkpointed \u00b7 retries \u00b7 human-in-the-loop', W * .18, H * .94);
+        } else {
+          var n2 = { start: { x: W * .14, y: H * .5 }, tool: { x: W * .5, y: H * .5 }, fail: { x: W * .8, y: H * .5 } };
+          ctx.strokeStyle = 'rgba(225,29,72,.5)'; ctx.lineWidth = 1.6;
+          ctx.beginPath(); ctx.moveTo(n2.start.x, n2.start.y); ctx.lineTo(n2.tool.x, n2.tool.y); ctx.stroke();
+          var wob = Math.sin(t * .06) * 4;
+          ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(n2.tool.x, n2.tool.y); ctx.lineTo(n2.fail.x, n2.fail.y + wob); ctx.stroke(); ctx.setLineDash([]);
+          ctx.beginPath(); ctx.arc(n2.start.x, n2.start.y, 7, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.lineWidth = 2; ctx.strokeStyle = '#E11D48'; ctx.fill(); ctx.stroke();
+          ctx.beginPath(); ctx.arc(n2.tool.x, n2.tool.y, 7, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill(); ctx.stroke();
+          var fx = n2.fail.x, fy = n2.fail.y + wob;
+          ctx.strokeStyle = '#E11D48'; ctx.lineWidth = 2.4;
+          ctx.beginPath(); ctx.moveTo(fx - 7, fy - 7); ctx.lineTo(fx + 7, fy + 7); ctx.moveTo(fx + 7, fy - 7); ctx.lineTo(fx - 7, fy + 7); ctx.stroke();
+          ctx.fillStyle = '#1B2740'; ctx.font = '600 9.5px "IBM Plex Mono",monospace';
+          ctx.fillText('Start', n2.start.x - 12, n2.start.y - 14);
+          ctx.fillText('Tool call', n2.tool.x - 20, n2.tool.y - 14);
+          ctx.fillStyle = 'rgba(225,29,72,.9)'; ctx.font = '600 10px "IBM Plex Mono",monospace';
+          ctx.fillText('dead end', fx - 24, fy + 22);
+          ctx.font = '600 11px "IBM Plex Mono",monospace';
+          ctx.fillText('no retry \u00b7 no fallback \u00b7 no checkpoint', W * .18, H * .94);
+        }
+        t += 1; raf = requestAnimationFrame(draw);
+      }
+
+      function update() {
+        var d = domains[domain];
+        document.querySelector('.viewer-top .t').textContent = 'scenario: ' + d.seg;
+        var m1 = document.getElementById('m1'), m2 = document.getElementById('m2'), m3 = document.getElementById('m3'), ans = document.getElementById('answer'), foot = document.getElementById('foot');
+        if (mode === 'prod') {
+          m1.textContent = 'Retry + fallback'; m1.className = 'sc-good';
+          m2.textContent = 'Checkpointed';
+          m3.textContent = 'Logged';
+          ans.innerHTML = d.prod;
+          foot.textContent = 'This is what "production-grade" actually means: the graph has an explicit answer for every failure mode, not just the happy path.';
+        } else {
+          m1.textContent = 'Crashes'; m1.className = 'sc-bad';
+          m2.textContent = 'None';
+          m3.textContent = 'No visibility';
+          ans.innerHTML = d.demo;
+          foot.textContent = 'This is the fragile-demo failure mode: works perfectly until the first tool call misbehaves, then it just breaks.';
+        }
+      }
+
+      page.querySelectorAll('.modesw [role="tab"]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          page.querySelectorAll('.modesw [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
+          b.setAttribute('aria-selected', 'true'); mode = b.dataset.m; t = 0; update();
+        });
+      });
+      page.querySelectorAll('.segs [role="tab"]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          page.querySelectorAll('.segs [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
+          b.setAttribute('aria-selected', 'true'); domain = +b.dataset.d; update();
+        });
+      });
+
+      window.addEventListener('resize', resize);
+      resize(); update();
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(); } else { draw(); cancelAnimationFrame(raf); }
+    })();
+  </script>
+
+<script>
+(function() {
+  const pills = document.querySelectorAll("#pillGroup .vw-pill");
+  const txtQuery = document.getElementById("txtQuery");
+  const searchBox = document.getElementById("searchBox");
+  const resultBox = document.getElementById("resultBox");
+  const docSource = document.getElementById("docSource");
+  const retrievalStrategy = document.getElementById("retrievalStrategy");
+  const ansText = document.getElementById("ansText");
+  const guardrailBox = document.getElementById("guardrailBox");
+  const statusChip = document.getElementById("statusChip");
+  const tileCompliance = document.getElementById("tileCompliance");
+  const tileLatency = document.getElementById("tileLatency");
+  const tileTrace = document.getElementById("tileTrace");
+
+  const data = {
+    onboarding: {
+      q: '"What is the pre-admission medication list for John Doe?"',
+      source: 'EHR / Patient_Records / John_Doe_Medication_2024.pdf',
+      strategy: 'Vector Search → PHI Redaction → Consent Check',
+      ans: 'Pre-admission medications: <strong>Metformin 500mg, Lisinopril 10mg.</strong> (PHI redacted from chat context).',
+      guardrails: ['PHI Redaction', 'Consent Verified', 'Audit Trail'],
+      compliance: '✓ HIPAA',
+      latency: '0.8s',
+      trace: '100%'
+    },
+    trial: {
+      q: '"Find patients for Trial NCT-045 who fit the criteria."',
+      source: 'IRB_Protocols / EMR_Anonymized_2024 (De-identified)',
+      strategy: 'Structured Query → De-identification → Eligibility Scoring',
+      ans: '<strong>12 candidates</strong> match the criteria. (Identities withheld pending IRB approval).',
+      guardrails: ['De-identification', 'IRB Consent', 'Data Masking'],
+      compliance: '✓ HIPAA',
+      latency: '1.2s',
+      trace: '100%'
+    },
+    interaction: {
+      q: '"Check interaction between Warfarin and Ibuprofen."',
+      source: 'DrugBank_2024 / FDA_Adverse_Events / Clinical_Notes',
+      strategy: 'Knowledge Graph → Rule Engine → Clinical Alert',
+      ans: '<strong>Moderate interaction:</strong> Increased bleeding risk. Consider alternative analgesic (e.g., Acetaminophen).',
+      guardrails: ['Clinical Alert', 'Drug DB Verified', 'Interaction Score'],
+      compliance: '✓ HIPAA',
+      latency: '0.4s',
+      trace: '100%'
+    }
+  };
+
+  function renderGuardrails(guards) {
+    const icons = {
+      'PHI Redaction': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+      'Consent Verified': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>',
+      'Audit Trail': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>',
+      'De-identification': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>',
+      'IRB Consent': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+      'Data Masking': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
+      'Clinical Alert': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+      'Drug DB Verified': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>',
+      'Interaction Score': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>'
+    };
+    guardrailBox.innerHTML = guards.map(g => {
+      const icon = icons[g] || '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>';
+      return `<span>${icon} ${g}</span>`;
+    }).join('');
+  }
+
+  function selectScenario(pill) {
+    pills.forEach(b => b.classList.remove('active'));
+    pill.classList.add('active');
+    const key = pill.getAttribute('data-q');
+    const d = data[key];
+    if (!d) return;
+
+    txtQuery.textContent = d.q;
+    searchBox.classList.add('active');
+    statusChip.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Processing…';
+    statusChip.classList.add('busy');
+    resultBox.classList.add('vw-loading');
+
+    setTimeout(() => {
+      docSource.textContent = d.source;
+      retrievalStrategy.textContent = d.strategy;
+      ansText.innerHTML = d.ans;
+      renderGuardrails(d.guardrails);
+      tileCompliance.textContent = d.compliance;
+      tileLatency.textContent = d.latency;
+      tileTrace.textContent = d.trace;
+
+      resultBox.classList.remove('vw-loading');
+      searchBox.classList.remove('active');
+      statusChip.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> HIPAA Active';
+      statusChip.classList.remove('busy');
+    }, 500);
+  }
+
+  pills.forEach(p => p.addEventListener('click', function(e) { selectScenario(this); }));
+})();
+</script>
+</body>
+</html>
