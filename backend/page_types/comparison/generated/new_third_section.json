@@ -1,50 +1,50 @@
 {
   "services": {
     "sec-head": {
-      "eyebrow": "Search services",
-      "h2": "Search implementation services",
-      "p": "Expert guidance on choosing and building the right search approach for your data and use case."
+      "eyebrow": "What I offer",
+      "h2": "Vector database comparison services",
+      "p": "Hands-on consulting and implementation for your specific database evaluation, migration, or hybrid strategy."
     },
     "grid g3": [
       {
         "card": {
           "n": "CONSULT",
-          "h3": "Search strategy consulting",
-          "p": "An independent assessment of your data, user queries, and performance requirements, resulting in a recommendation: semantic, keyword, or hybrid, with benchmarks."
+          "h3": "Vector database selection consulting",
+          "p": "An independent, architecture-driven assessment of your use case, data volume, latency requirements, and budget, resulting in a written recommendation: Pinecone, Qdrant, Weaviate, or a hybrid approach."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Semantic search development",
-          "p": "Vector search implementation using embeddings, ANN indexes, and reranking for understanding user intent and handling synonyms."
+          "h3": "Pinecone production deployment",
+          "p": "End-to-end setup: pod sizing, index configuration, namespace management, and integration with LangChain or LlamaIndex for serverless or pod-based vector search at scale."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Keyword search development",
-          "p": "Full-text search with BM25, inverted indexes, and advanced query parsing for exact matches and structured queries."
+          "h3": "Qdrant self-hosted optimization",
+          "p": "Hardware-aware deployment, HNSW tuning, quantization strategies, and multi-node clustering for sub\u201110ms p99 latency under 10M+ vectors."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Hybrid search architecture",
-          "p": "Combining semantic and keyword search with fusion algorithms (RRF, weighted scoring) to maximize recall and precision."
+          "h3": "Weaviate hybrid search architecture",
+          "p": "Configuring vector + keyword (BM25) hybrid search, module integration (text2vec, generative), and multi-tenancy for production RAG pipelines."
         }
       },
       {
         "card": {
           "n": "AUDIT",
-          "h3": "Search performance audit",
-          "p": "Audit of existing search systems to identify failure points, measure latency, recall, and precision, and recommend improvements."
+          "h3": "Migration & benchmarking audits",
+          "p": "Quantitative comparison of recall, throughput, and cost across databases, with a migration roadmap and rollback plan for teams moving between Pinecone, Qdrant, or Weaviate."
         }
       },
       {
         "card cta-card": {
-          "h3": "Not sure which search approach you need?",
-          "p": "Try the comparison above, or get a personalized recommendation.",
+          "h3": "Not sure which you need?",
+          "p": "Try the fit\u2011check widget above, or get it scoped properly.",
           "btn-primary": {
             "text": "Get a recommendation",
             "url": "#lets-talk"
@@ -56,30 +56,30 @@
   "where-wins": {
     "sec-head": {
       "eyebrow": "The honest breakdown",
-      "h2": "Where each search approach wins"
+      "h2": "Where each database wins"
     },
     "grid g2": [
       {
         "card": {
-          "n": "SEMANTIC SEARCH WINS WHEN",
-          "h3": "Understanding user intent is critical",
+          "n": "PINECONE WINS WHEN",
+          "h3": "Managed zero\u2011ops at scale is the priority",
           "ul": [
-            "User queries are natural language, conversational, or contain synonyms: semantic search captures meaning, not just words.",
-            "Keyword search fails on ambiguous or long-tail queries: semantic search bridges vocabulary gaps and returns relevant results even with no exact match.",
-            "But semantic search fails on precise numeric filters, product codes, or proper names: vector similarity can miss exact matches.",
-            "Hybrid search solves this by combining semantic recall with keyword precision, using reciprocal rank fusion (RRF) to blend scores."
+            "You need sub\u201150ms p99 query latency with zero infrastructure management \u2013 Pinecone\u2019s serverless offering auto\u2011scales from 0 to billions of vectors",
+            "Production deployments where downtime and ops overhead cost more than the per\u2011vector premium \u2013 built\u2011in pod\u2011level replication and multi\u2011region support",
+            "Tight integration with enterprise AI stacks: native LangChain, LlamaIndex, and OpenAI embeddings reduce integration code by 40\u201360%",
+            "Cost\u2011predictable workloads for high\u2011query\u2011volume applications \u2013 pod\u2011based pricing yields lower per\u2011query cost above ~10M queries/month"
           ]
         }
       },
       {
         "card": {
-          "n": "KEYWORD SEARCH WINS WHEN",
-          "h3": "Exact matching and structured queries matter",
+          "n": "OPEN\u2011SOURCE WINS WHEN",
+          "h3": "Control, flexibility, and cost efficiency matter more",
           "ul": [
-            "Queries contain unique identifiers, SKUs, or exact phrases where precision is paramount: BM25 and inverted indexes guarantee exact matches.",
-            "Semantic search fails on rare terms or out-of-domain vocabulary: embeddings may not distinguish subtle differences, returning false positives.",
-            "But keyword search fails on synonymy, misspellings, and natural language: it cannot understand that 'car' and 'automobile' are the same.",
-            "Hybrid search combines both: keyword handles exact matches, semantic handles intent, and fusion ensures no trade-off in recall or precision."
+            "Qdrant: the fastest HNSW index build times (2\u20133x faster than Weaviate on 1M vectors), with streaming filtering and full payload indexing \u2013 ideal for real\u2011time recommender systems",
+            "Weaviate: the only database with built\u2011in hybrid search (vector + BM25) and zero\u2011shot classification modules \u2013 best for knowledge\u2011base RAG where text search is equal to semantic search",
+            "Both Qdrant and Weaviate give you flat\u2011pricing, no egress fees, and the ability to run on\u2011prem or in any cloud \u2013 total cost of ownership can be 5\u201310x lower than Pinecone at 100M+ vectors",
+            "You need custom quantization, index tuning, or multi\u2011tenancy at the storage layer \u2013 open\u2011source allows deep kernel\u2011level optimisations that managed services restrict"
           ]
         }
       }

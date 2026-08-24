@@ -2,81 +2,86 @@
   "services": {
     "sec-head": {
       "eyebrow": "What I build",
-      "h2": "LangChain development services"
+      "h2": "Healthcare RAG development services",
+      "p": "Custom, HIPAA-compliant retrieval pipelines and conversational AI assistants built specifically for medical systems."
     },
     "grid g3": [
       {
         "card": {
           "n": "BUILD",
-          "h3": "RAG pipeline development",
-          "p": "Retrieval-augmented generation pipelines using LangChain's retriever and chain primitives, paired with LlamaIndex for the retrieval layer when document-heavy retrieval quality is the priority."
+          "h3": "Clinical Decision Support Chatbots",
+          "p": "Physician-facing assistants that retrieve and cross-reference institutional protocols, PubMed literature, and UpToDate guidelines in seconds."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Multi-step agent development (LangGraph)",
-          "p": "Agents that take multiple actions in sequence, call external tools and APIs, and adapt based on intermediate results, built with explicit state graphs, conditional edges, and checkpointing."
+          "h3": "Patient Intake & Triage Assistants",
+          "p": "24/7 patient-facing symptom intake chatbots that collect histories, match with clinical triage protocols, and route emergency cases immediately."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Tool-using & function-calling systems",
-          "p": "Systems that connect an LLM to your actual business tools: databases, internal APIs, third-party services, so the AI can take real actions, not just generate text."
+          "h3": "EHR & Medical Record Q&A (FHIR)",
+          "p": "Multi-document synthesis across longitudinal patient records, lab histories, and doctor notes using HL7/FHIR compliant retrieval pipelines."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Conversational memory systems",
-          "p": "Chatbots and assistants that maintain context across a conversation or across sessions, tuned to your specific need: short-term context, long-term preference memory, or both."
+          "h3": "Formulary & Prescription Checkers",
+          "p": "Real-time drug-to-drug interaction checkers and insurance formulary lookup tools that help prescribers select covered, compatible medications."
         }
       },
       {
         "card": {
           "n": "AUDIT",
-          "h3": "LangChain system audits & migration",
-          "p": "Review and improvement of an existing LangChain implementation, or migration support for teams adding agentic capability to a retrieval-only system."
+          "h3": "Healthcare AI Red-Teaming & Audits",
+          "p": "Rigorous evaluations for clinical accuracy, PHI leak vulnerabilities, prompt injection resistance, and hallucination boundary enforcement."
         }
       },
       {
         "card cta-card": {
-          "h3": "Not sure LangChain is right?",
-          "p": "Part of the engagement is an honest read on whether it's even the right tool.",
+          "h3": "Need custom medical AI architecture?",
+          "p": "Try the clinical simulator widget above, or book a discovery session to scope your exact EHR integration.",
           "btn-primary": {
-            "text": "Get an honest assessment",
+            "text": "Talk to an AI engineer",
             "url": "#lets-talk"
           }
         }
       }
     ]
   },
-  "engagement": {
+  "use-cases": {
     "sec-head": {
-      "eyebrow": "How we work together",
-      "h2": "Engagement models"
+      "eyebrow": "Industry context",
+      "h2": "Where healthcare organizations deploy RAG",
+      "p": "Proven architectures tailored to hospitals, digital health platforms, and medical research institutes."
     },
-    "grid g3": [
+    "grid g2": [
       {
         "card": {
-          "n": "PROJECT-BASED",
-          "h3": "Fixed-price, milestone-based",
-          "p": "A scoped LangChain build delivered as a fixed-price, milestone-based engagement."
+          "n": "HOSPITALS & HEALTH SYSTEMS",
+          "h3": "Inpatient Triage & Clinical Protocols",
+          "p": "Instant clinician lookup for ICU protocols, infection control guidelines, and post-op care steps without leaving the electronic chart.",
+          "ul": [
+            "Integrated with Epic / Cerner via FHIR APIs",
+            "Clinician audit trail for every synthesized recommendation",
+            "Zero-retention local embedding models"
+          ]
         }
       },
       {
         "card": {
-          "n": "HOURLY",
-          "h3": "Consulting",
-          "p": "Architecture review or debugging support for an existing implementation."
-        }
-      },
-      {
-        "card": {
-          "n": "RETAINER",
-          "h3": "Dedicated monthly",
-          "p": "Ongoing LangChain development for businesses with a continuing agentic AI roadmap."
+          "n": "TELEHEALTH & DIGITAL HEALTH",
+          "h3": "Patient Intake & Asynchronous Triage",
+          "p": "Automating intake questionnaires, extracting structured medical history, and pre-populating doctor consultation summaries.",
+          "ul": [
+            "Automated 18-element PHI scrubber before LLM ingestion",
+            "24/7 symptom categorization and emergency flag triggers",
+            "Patient-friendly explanations of lab results and vitals"
+          ]
         }
       }
     ]

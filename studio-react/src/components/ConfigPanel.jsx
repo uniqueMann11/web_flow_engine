@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
-import { Play, RotateCcw, Sparkles } from "lucide-react";
-import { fetchPresets } from "../api.js";
+import { useState } from "react";
+import { Play, RotateCcw } from "lucide-react";
 
 const PAGE_TYPES = [
   "Comparison",
@@ -25,42 +24,12 @@ const DEFAULTS = {
 
 export default function ConfigPanel({ running, onRun }) {
   const [form, setForm] = useState(DEFAULTS);
-  const [presets, setPresets] = useState([]);
-  const [selectedPreset, setSelectedPreset] = useState("");
-
-  useEffect(() => {
-    fetchPresets()
-      .then((data) => {
-        if (data && data.presets) {
-          setPresets(data.presets);
-        }
-      })
-      .catch((err) => console.warn("Failed to load presets:", err));
-  }, []);
 
   function set(key) {
     return (e) => {
       const val = e.target.type === "checkbox" ? e.target.checked : e.target.value;
       setForm((f) => ({ ...f, [key]: val }));
     };
-  }
-
-  function handlePresetChange(e) {
-    const val = e.target.value;
-    setSelectedPreset(val);
-    if (!val) return;
-    const preset = presets.find((p) => p.name === val);
-    if (preset) {
-      setForm((prev) => ({
-        ...prev,
-        page_title: preset.page_title || "",
-        page_type: preset.page_type || "Comparison",
-        primary_keyword: preset.primary_keyword || "",
-        secondary_keyword: preset.secondary_keyword || "",
-        content_angle: preset.content_angle || "",
-        model: preset.model || prev.model,
-      }));
-    }
   }
 
   function handleSubmit(e) {
@@ -72,36 +41,11 @@ export default function ConfigPanel({ running, onRun }) {
   function reset(e) {
     e.preventDefault();
     setForm(DEFAULTS);
-    setSelectedPreset("");
   }
 
   return (
     <aside className="config-panel">
       <form onSubmit={handleSubmit}>
-        {/* Preset Picker */}
-        {presets.length > 0 && (
-          <div className="panel-section">
-            <div className="panel-section-title">
-              <Sparkles size={12} style={{ marginRight: "4px" }} /> Quick Presets
-            </div>
-            <div className="field">
-              <select
-                id="presetPicker"
-                value={selectedPreset}
-                onChange={handlePresetChange}
-                disabled={running}
-              >
-                <option value="">-- Load a Page Type Preset --</option>
-                {presets.map((p) => (
-                  <option key={p.name} value={p.name}>
-                    {p.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-        )}
-
         {/* Page Configuration */}
         <div className="panel-section">
           <div className="panel-section-title">Page Configuration</div>
@@ -179,59 +123,6 @@ export default function ConfigPanel({ running, onRun }) {
               placeholder="Provide specific architectural trade-offs, real-world benchmarks, nuances, pricing realities, and concrete takeaways..."
               disabled={running}
             />
-          </div>
-        </div>
-
-        {/* Pipeline Settings */}
-        <div className="panel-section">
-          <div className="panel-section-title">Generation Settings</div>
-          
-          <div className="field">
-            <label htmlFor="inputModel">Model</label>
-            <input
-              id="inputModel"
-              value={form.model}
-              onChange={set("model")}
-              placeholder="openrouter/deepseek/deepseek-v4-flash"
-              disabled={running}
-            />
-          </div>
-
-          <div className="field">
-            <label htmlFor="inputOutputFilename">Custom Output Filename (Optional)</label>
-            <input
-              id="inputOutputFilename"
-              value={form.output_filename}
-              onChange={set("output_filename")}
-              placeholder="page-custom-title.html"
-              disabled={running}
-            />
-          </div>
-
-          <div className="field-checkbox" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "8px" }}>
-            <input
-              type="checkbox"
-              id="checkSkipGen"
-              checked={form.skip_generate}
-              onChange={set("skip_generate")}
-              disabled={running}
-            />
-            <label htmlFor="checkSkipGen" style={{ margin: 0, fontSize: "0.8rem", cursor: "pointer" }}>
-              Skip AI generation (compile only)
-            </label>
-          </div>
-
-          <div className="field-checkbox" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "6px" }}>
-            <input
-              type="checkbox"
-              id="checkSkipWidget"
-              checked={form.skip_widget}
-              onChange={set("skip_widget")}
-              disabled={running}
-            />
-            <label htmlFor="checkSkipWidget" style={{ margin: 0, fontSize: "0.8rem", cursor: "pointer" }}>
-              Skip hero widget injection
-            </label>
           </div>
         </div>
 

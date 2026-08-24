@@ -1,48 +1,48 @@
 {
   "process": {
     "sec-head": {
-      "eyebrow": "The analysis path",
-      "h2": "Your search evaluation"
+      "eyebrow": "How it gets built",
+      "h2": "Engagement process"
     },
     "steps": [
       {
         "step": {
           "num": "PHASE 01",
           "days": "days 1 to 2",
-          "h3": "Audit your current search",
-          "body": "We analyze your existing keyword or semantic search setup, identifying failures: zero-result queries, irrelevant results, or high bounce rates."
+          "h3": "Discovery",
+          "body": "Understanding your data, use case, and whether the core challenge is retrieval quality, agentic behavior, or both."
         }
       },
       {
         "step": {
           "num": "PHASE 02",
           "days": "within 48h",
-          "h3": "Architecture recommendation",
-          "body": "A written spec detailing whether pure semantic, pure keyword, or a hybrid search approach fits your data and user intent."
+          "h3": "Framework recommendation",
+          "body": "A written architecture spec with a specific framework recommendation and reasoning, delivered within 48 hours."
         }
       },
       {
         "step": {
           "num": "PHASE 03",
           "days": "the decisive one",
-          "h3": "Build the retrieval layer",
-          "body": "Implementation of the chosen approach: vector embeddings, inverted index, or a hybrid orchestrator with reranking."
+          "h3": "Build",
+          "body": "Development in milestones, retrieval layer first if applicable, then orchestration and guardrails."
         }
       },
       {
         "step": {
           "num": "PHASE 04",
           "days": "before launch",
-          "h3": "Eval with query sets",
-          "body": "Testing against your real queries using precision, recall, and NDCG metrics to identify edge cases where each model fails."
+          "h3": "Evaluation",
+          "body": "Testing against your real queries and use cases using RAGAS or a custom eval set."
         }
       },
       {
         "step": {
           "num": "PHASE 05",
           "days": "handoff",
-          "h3": "Deploy & monitor",
-          "body": "Production deployment with fallback logic, query analysis, and a dashboard to track retrieval failure modes over time."
+          "h3": "Deployment",
+          "body": "Production deployment with monitoring, tracing, and documentation for your team."
         }
       }
     ]
@@ -61,30 +61,30 @@
       "tbody": [
         {
           "td": [
-            "Search architecture audit",
-            "Review of current search setup, failure analysis, and written recommendation",
-            "$1,000 to $2,500"
+            "Framework selection consulting",
+            "Written architecture recommendation and spec",
+            "$500 to $1,500"
           ]
         },
         {
           "td": [
-            "Pure semantic search build",
-            "Embedding pipeline, vector index, and retrieval implementation",
-            "$6,000 to $18,000"
+            "LlamaIndex RAG build",
+            "Retrieval pipeline, ingestion, evaluation, deployment",
+            "$8,000 to $25,000"
           ]
         },
         {
           "td": [
-            "Hybrid search system",
-            "Combined vector and full-text indices, reranking, and fallback logic",
-            "$12,000 to $30,000"
+            "LangChain/LangGraph agent build",
+            "Multi-step agent, tools, memory, guardrails, deployment",
+            "$8,000 to $30,000+"
           ]
         },
         {
           "td": [
-            "Custom eval and monitoring",
-            "Query set creation, eval framework, and production monitoring dashboard",
-            "$4,000 to $10,000"
+            "Hybrid architecture build",
+            "Both frameworks combined, full production system",
+            "$15,000 to $40,000+"
           ]
         }
       ]
@@ -98,32 +98,32 @@
     "faq": [
       {
         "faq-item": {
-          "faq-q": "When does pure keyword search outperform semantic search?",
-          "faq-a": "Keyword search wins with exact product codes, SKUs, or short queries where precision on specific terms matters more than conceptual understanding. It fails when users phrase queries differently than the document's language."
+          "faq-q": "Is LlamaIndex better than LangChain for RAG?",
+          "faq-a": "For pure retrieval-augmented generation over document corpora, LlamaIndex is generally the stronger choice: its default chunking, metadata filtering, and reranking are more production-calibrated out of the box. For RAG as part of a broader agent system, LangChain remains the stronger foundation."
         }
       },
       {
         "faq-item": {
-          "faq-q": "When does pure semantic search outperform keyword search?",
-          "faq-a": "Semantic search excels with natural language queries, synonyms, and vague concepts, but fails on rare terms or when the embedding model isn't fine-tuned on your domain. It also struggles with queries requiring exact substring matching."
+          "faq-q": "Can you build with both frameworks in one project?",
+          "faq-a": "Yes, this is the most common production pattern I build in 2026: LlamaIndex handling retrieval, wrapped as a tool inside a LangGraph agent for orchestration. This combines the strengths of both rather than forcing one framework to do both jobs."
         }
       },
       {
         "faq-item": {
-          "faq-q": "What is hybrid search and why use it?",
-          "faq-a": "Hybrid search combines vector and keyword indices, typically with a reranker to merge results. It's the Answer Engine Optimization staple because it covers both exact and conceptual queries, reducing failure modes of either approach."
+          "faq-q": "How do you decide which framework to recommend?",
+          "faq-a": "Based on where your hardest problem actually lives: if it is retrieval quality over a messy document corpus, LlamaIndex. If it is multi-step agent behavior, tool use, or memory, LangChain and LangGraph. The framework recommendation is delivered in writing with the reasoning, as part of the discovery process, before any build work begins."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How do I benchmark the right approach for my data?",
-          "faq-a": "Create a query set with labeled relevance judgments, then run both pure keyword and pure semantic searches. Measure precision, recall, and the number of queries where each returns zero relevant results. The approach with fewer failures wins."
+          "faq-q": "Do I need a LangChain agency or can a freelance consultant handle this?",
+          "faq-a": "Most RAG and agent projects, a specific pipeline, agent, or integration, are well within scope for a single experienced developer working directly with you. An agency's advantage shows up on large, multi-disciplinary product builds needing several specialists in parallel, not on the RAG/LangChain engineering itself."
         }
       },
       {
         "faq-item": {
-          "faq-q": "What does a hybrid search build cost?",
-          "faq-a": "A hybrid system combining vector and full-text indices with reranking runs $12,000 to $30,000, including ingestion, evaluation, and deployment. Contact for a fixed estimate specific to your data size and query patterns."
+          "faq-q": "How much does RAG framework development cost?",
+          "faq-a": "A framework selection consultation runs $500 to $1,500. A full LlamaIndex or LangChain build ranges from $8,000 to $30,000+ depending on complexity. A hybrid architecture combining both frameworks typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use case."
         }
       }
     ]

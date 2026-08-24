@@ -22,19 +22,19 @@
   "what-is": {
     "sec-head": {
       "eyebrow": "Plain answer",
-      "h2": "What does an AI agent developer do?"
+      "h2": "What does a vector database engineer do?"
     },
     "tldr": {
       "b": "Quick answer",
       "p": [
-        "An AI agent developer designs and builds autonomous agent systems: architectures that orchestrate LLMs, tools, and memory to execute complex, multi-step tasks. This includes framework selection (LangGraph, CrewAI, AutoGen), tool integration, state management, guardrails, observability, and production deployment. A freelance AI agent developer delivers a functioning, production-ready system with a proven delivery record, not just a framework demo."
+        "A vector database engineer designs and deploys vector search systems: pipelines that store, index, and retrieve high-dimensional embeddings for similarity search. This includes vector database selection (Pinecone, Weaviate, Qdrant), embedding model tuning, hybrid search architecture, metadata filtering, and production scaling. A freelance vector database engineer delivers a deployed, integrated system, not just a proof-of-concept."
       ]
     }
   },
   "roles": {
     "sec-head": {
       "eyebrow": "Job title decoder",
-      "h2": "AI agent developer vs LLM engineer vs AI engineer"
+      "h2": "Vector DB engineer vs search engineer vs AI engineer"
     },
     "tablewrap": {
       "thead": [
@@ -44,24 +44,24 @@
       ],
       "tbody": [
         {
-          "th": "AI agent developer",
+          "th": "Vector DB engineer",
           "td": [
-            "Autonomous agent architecture, framework implementation, tool orchestration, and state management",
-            "You need a system that plans, executes, and adapts across multiple steps using your tools and data"
+            "Vector database selection, indexing, embedding pipelines, hybrid search",
+            "You need a production-ready vector search system grounded in your data"
           ]
         },
         {
-          "th": "LLM engineer",
+          "th": "Search engineer",
           "td": [
-            "Fine-tuning, prompt engineering, model evaluation",
-            "You need to customize model behavior itself, not just what it knows"
+            "Full-text search, relevance tuning, search ranking, and query understanding",
+            "You need advanced text search with traditional BM25 or Elasticsearch"
           ]
         },
         {
           "th": "AI engineer",
           "td": [
-            "Broader ML/AI system design, may include agents, training, and MLOps",
-            "You need end-to-end AI infrastructure, agent development being one part"
+            "Broader AI/ML system design, may include RAG, training, and MLOps",
+            "You need end-to-end AI infrastructure, vector search being one component"
           ]
         }
       ]

@@ -1,23 +1,23 @@
 {
   "hero": {
-    "eyebrow": "Micro-label above main heading (e.g., 'Production-grade, not a demo'). Max 6 words.",
+    "eyebrow": "Micro-label above main heading indicating industry compliance or technical specialization (e.g., 'HIPAA-compliant, clinically grounded'). Max 5 words.",
     "h1": {
-      "h1": "Primary service title prefix (e.g., 'LangChain development services:').",
-      "span": "Value proposition or core technical deliverable suffix (e.g., 'production-grade agents and RAG pipelines'). Max 6 words."
+      "h1": "Main topic title combining service and industry (e.g., 'RAG chatbot development for healthcare:').",
+      "span": "Value proposition or deliverable highlight suffix (e.g., 'HIPAA-compliant clinical & patient AI'). Max 6 words."
     },
-    "hero-sub": "Introductory paragraph explaining the service value proposition, multi-step agent capabilities, and engineering reliability vs fragile demos. Exactly 2-3 sentences.",
+    "hero-sub": "Introductory paragraph explaining how the specialized technical service solves core industry data, regulatory, or workflow challenges with zero compromise on accuracy. Exactly 2-3 sentences.",
     "creds": [
       {
         "cred": {
-          "i": "Cred category (e.g., 'Experience', 'Access', 'Turnaround'). Max 1-2 words.",
-          "b": "Cred highlight text (e.g., '5+ yrs LangChain/LangGraph', 'Direct, no account manager', '48h architecture spec'). Max 5 words."
+          "i": "Cred category (e.g., 'Experience', 'Compliance', 'Turnaround'). Max 1-2 words.",
+          "b": "Cred highlight text (e.g., '5+ yrs healthcare AI', '100% HIPAA & BAA ready', '48h architecture spec'). Max 5 words."
         }
       }
     ],
     "hero-cta": [
       {
         "btn-primary": {
-          "text": "Action-oriented primary CTA button text (e.g., 'Talk to a LangChain developer'). Max 4-5 words.",
+          "text": "Action-oriented primary CTA button text (e.g., 'Discuss your healthcare project'). Max 5 words.",
           "url": "Anchor link (e.g., '#lets-talk')."
         }
       },
@@ -28,11 +28,11 @@
         }
       }
     ],
-    "live": "Trust note about upfront assessment and honest tool selection commitment. Exactly 1 sentence.",
+    "live": "Trust statement guaranteeing data isolation, compliance standards, and signed agreements before data access. Exactly 1 sentence.",
     "trust": [
       {
-        "b": "Key authority metric or stat (e.g., '119K+', '500+', '48h').",
-        "span": "Metric explanation (e.g., 'GitHub stars, LangChain', 'Integrations available', 'To a written architecture spec'). Max 5 words."
+        "b": "Authority metric or benchmark figure (e.g., '5+', '100%', '48h').",
+        "span": "Metric explanation (e.g., 'Years building healthcare AI', 'HIPAA & PHI audit compliance', 'To a written technical spec'). Max 5 words."
       }
     ]
   }

@@ -69,13 +69,30 @@ def get_page_type_dirs(page_type="Comparison"):
     Resolve (actual_data_dir, rules_dir, generated_dir) based on page_type.
     Falls back to 'comparison' folder if specific page_type folder is not present.
     """
+    import re
     slug = page_type.lower().replace(" ", "_").replace("/", "_").replace("-", "_") if page_type else "comparison"
+    norm_slug = re.sub(r'_+', '_', slug).strip('_')
+
     target_dir = None
     if os.path.exists(PAGE_TYPES_DIR):
         for name in os.listdir(PAGE_TYPES_DIR):
-            if name.lower() == slug or (("glossary" in slug or "defina" in slug or "defini" in slug) and "glossary" in name.lower()):
+            norm_name = re.sub(r'_+', '_', name.lower()).strip('_')
+            if norm_name == norm_slug:
                 target_dir = os.path.join(PAGE_TYPES_DIR, name)
                 break
+            elif ("tech" in norm_slug or "integration" in norm_slug) and ("tech" in norm_name or "integration" in norm_name):
+                target_dir = os.path.join(PAGE_TYPES_DIR, name)
+                break
+            elif ("glossary" in norm_slug or "defina" in norm_slug or "defini" in norm_slug) and "glossary" in norm_name:
+                target_dir = os.path.join(PAGE_TYPES_DIR, name)
+                break
+            elif ("hire" in norm_slug or "role" in norm_slug) and "hire" in norm_name:
+                target_dir = os.path.join(PAGE_TYPES_DIR, name)
+                break
+            elif ("service" in norm_slug or "industry" in norm_slug) and "service" in norm_name:
+                target_dir = os.path.join(PAGE_TYPES_DIR, name)
+                break
+
     if not target_dir or not os.path.exists(target_dir):
         target_dir = DEFAULT_TYPE_DIR
 
@@ -88,12 +105,14 @@ def get_page_type_dirs(page_type="Comparison"):
 
 TEMPLATE_MAP = {
     "comparison": "langchain-vs-llamaindex.html",
-    "service_x_industry": "langchain-development-services.html",
-    "service_x_industries": "langchain-development-services.html",
+    "technology_integration": "langchain-development-services.html",
+    "technology___integration": "langchain-development-services.html",
     "hire_a_role": "hire-rag-developer.html",
     "glossary_definition": "what-is-rag.html",
     "glossary_defination": "what-is-rag.html",
-    "technology_integration": "langchain-development-services.html",
+    "glossary___definition": "what-is-rag.html",
+    "service_x_industry": "rag-chatbot-healthcare.html",
+    "service_x_industries": "rag-chatbot-healthcare.html",
     "editorial_blog": "langchain-vs-llamaindex.html",
 }
 
@@ -114,7 +133,9 @@ def get_template_path(page_type="Comparison"):
             filename = "what-is-rag.html"
         elif "role" in slug or "hire" in slug:
             filename = "hire-rag-developer.html"
-        elif "service" in slug or "industry" in slug or "tech" in slug or "integration" in slug:
+        elif "service" in slug or "industry" in slug:
+            filename = "rag-chatbot-healthcare.html"
+        elif "tech" in slug or "integration" in slug:
             filename = "langchain-development-services.html"
         else:
             filename = "langchain-vs-llamaindex.html"

@@ -1,35 +1,35 @@
 {
   "hero": {
-    "eyebrow": "Semantic vs keyword: when each fails",
+    "eyebrow": "The right retrieval strategy",
     "h1": {
-      "h1": "Semantic search vs keyword search:",
-      "span": "when each fails, hybrid wins"
+      "h1": "RAG vs Long Context Windows:",
+      "span": "the 2026 decision"
     },
-    "hero-sub": "Choosing between semantic and keyword search defines your retrieval accuracy, latency, and ability to answer user intent. Semantic search excels at synonyms and context but fails on exact matches and rare terms. Keyword search is fast and precise but misses meaning \u2014 hybrid search combines both for robust answer engine optimization (AEO).",
+    "hero-sub": "Choosing between RAG and long context windows determines your cost per query, answer accuracy, and data freshness. I assess both architectures and recommend the optimal approach based on your throughput, latency, and update frequency\u2014not a default choice.",
     "creds": [
       {
         "cred": {
           "i": "Experience",
-          "b": "10+ yrs search systems"
+          "b": "5+ yrs production RAG"
         }
       },
       {
         "cred": {
           "i": "Coverage",
-          "b": "Semantic & keyword expertise"
+          "b": "Both RAG and long context"
         }
       },
       {
         "cred": {
           "i": "Turnaround",
-          "b": "72h hybrid audit"
+          "b": "48h architecture rec."
         }
       }
     ],
     "hero-cta": [
       {
         "btn-primary": {
-          "text": "Get hybrid search plan",
+          "text": "Get a strategy recommendation",
           "url": "#lets-talk"
         }
       },
@@ -40,19 +40,19 @@
         }
       }
     ],
-    "live": "Free written audit: where semantic fails, where keyword fails, and your hybrid path.",
+    "live": "Written recommendation with reasoning, before any build work begins",
     "trust": [
       {
-        "b": "10+",
-        "span": "Years building search systems"
+        "b": "5+",
+        "span": "Years building production RAG"
       },
       {
-        "b": "97%",
-        "span": "Recall with hybrid search"
+        "b": "40%",
+        "span": "Cost reduction potential"
       },
       {
-        "b": "72h",
-        "span": "To a hybrid architecture plan"
+        "b": "48h",
+        "span": "To a written recommendation"
       }
     ]
   }

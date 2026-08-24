@@ -1,0 +1,78 @@
+{
+  "comply": {
+    "comply-in": [
+      {
+        "b": "Throughput, not latency",
+        "span": "Optimize for tokens per second per GPU, not just response time. PagedAttention and continuous batching squeeze maximum throughput from your hardware."
+      },
+      {
+        "b": "GPU memory first",
+        "span": "Explicit KV cache management and tensor parallelism to fit larger models into fewer GPUs, reducing cost per request."
+      },
+      {
+        "b": "Cost-per-token tracking",
+        "span": "Instrument every deployment with real-time token cost and GPU utilization metrics, so you know exactly what each query costs."
+      },
+      {
+        "b": "Production reliability",
+        "span": "Graceful handling of OOM, request queue backpressure, and automatic scaling based on GPU load, not just request count."
+      }
+    ]
+  },
+  "what-is": {
+    "sec-head": {
+      "eyebrow": "Plain answer",
+      "h2": "What is vLLM?"
+    },
+    "tldr": {
+      "b": "Quick answer",
+      "p": [
+        "vLLM is an open-source, high-throughput inference engine for large language models, built on PagedAttention for near-zero KV cache waste. It achieves up to 24x higher throughput than vanilla Hugging Face Transformers by continuous batching and efficient GPU memory management, making it the go-to choice for self-hosted LLM serving at scale."
+      ]
+    }
+  },
+  "vs-agency": {
+    "sec-head": {
+      "eyebrow": "The honest comparison",
+      "h2": "vLLM consultant vs vLLM agency"
+    },
+    "tablewrap": {
+      "thead": [
+        "Factor",
+        "Independent vLLM consultant (me)",
+        "vLLM development agency"
+      ],
+      "tbody": [
+        {
+          "th": "Cost",
+          "td": [
+            "Lower, direct rate, no agency markup or account management overhead",
+            "Higher, includes team coordination and project management fees"
+          ]
+        },
+        {
+          "th": "Who builds it",
+          "td": [
+            "Me, directly, from GPU cluster design to production deployment",
+            "Allocated engineer, may rotate or hand off mid-project"
+          ]
+        },
+        {
+          "th": "Best for",
+          "td": [
+            "Scoped vLLM deployments, performance tuning, cost optimization ($3K\u2013$25K range)",
+            "Large-scale multi-model platforms requiring DevOps, frontend, and ML team"
+          ]
+        },
+        {
+          "th": "Start time",
+          "td": [
+            "48 to 72 hours",
+            "2 to 4 weeks typically"
+          ]
+        }
+      ]
+    },
+    "p": "Most vLLM deployments\u2014single-model serving, throughput tuning, GPU selection\u2014are well within scope for a single experienced engineer working directly with you. An agency's advantage appears only when you need a full product team spanning inference, API development, and monitoring infrastructure."
+  }
+}

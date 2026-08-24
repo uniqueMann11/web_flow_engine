@@ -1,51 +1,51 @@
 {
   "services": {
     "sec-head": {
-      "eyebrow": "What I build",
-      "h2": "Agent development services I offer"
+      "eyebrow": "Vector DB services",
+      "h2": "Vector database engineering services"
     },
     "grid g3": [
       {
         "card": {
           "n": "BUILD",
-          "h3": "Custom AI agent development",
-          "p": "Goal-driven agents that plan, use tools, and call APIs autonomously\u2014backed by a record of production deliveries."
+          "h3": "Vector DB architecture design",
+          "p": "Design and deploy production-grade vector databases on Pinecone, Weaviate, or Qdrant with optimal index configuration, sharding, and scaling."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Agentic RAG systems",
-          "p": "Retrieval agents with multi-step reasoning and source citations, built on LangGraph for reliable enterprise Q&A."
+          "h3": "Migration & integration",
+          "p": "Seamlessly migrate existing search or recommendation systems to vector databases, integrating with your current infrastructure."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Workflow automation agents",
-          "p": "Agents that automate complex business workflows, from data extraction to follow-up actions, with human-in-the-loop guardrails."
-        }
-      },
-      {
-        "card": {
-          "n": "BUILD",
-          "h3": "Multi-agent orchestration",
-          "p": "Coordinated swarms of specialized agents that collaborate on tasks\u2014scalable, observable, and tested in production."
+          "h3": "Hybrid search implementation",
+          "p": "Combine dense vector search with keyword and metadata filtering for more accurate and flexible retrieval."
         }
       },
       {
         "card": {
           "n": "AUDIT",
-          "h3": "Agent system audits",
-          "p": "Debugging and optimizing faltering agent pipelines: broken tool chains, hallucination patterns, and latency bottlenecks."
+          "h3": "Index performance tuning",
+          "p": "Audit and optimize vector index parameters\u2014HNSW, IVF, quantization\u2014to balance recall, latency, and cost."
+        }
+      },
+      {
+        "card": {
+          "n": "AUDIT",
+          "h3": "Vector DB health check",
+          "p": "Comprehensive review of your vector database setup, including ingestion pipelines, query patterns, and monitoring."
         }
       },
       {
         "card cta-card": {
-          "h3": "Need a production agent?",
-          "p": "Talk through your use case and see past delivery benchmarks.",
+          "h3": "Need a custom solution?",
+          "p": "Let's discuss your vector DB requirements and get a tailored plan.",
           "btn-primary": {
-            "text": "Discuss your project",
+            "text": "Get in touch",
             "url": "#lets-talk"
           }
         }
@@ -54,8 +54,8 @@
   },
   "stack": {
     "sec-head": {
-      "eyebrow": "Tech stack",
-      "h2": "Frameworks & delivery stack"
+      "eyebrow": "Tooling",
+      "h2": "Vector DB tech stack"
     },
     "stack-tabs": [
       {
@@ -86,10 +86,9 @@
     ],
     "stack-panels": {
       "orch": [
-        "LangGraph",
         "LangChain",
-        "CrewAI",
-        "AutoGen",
+        "LlamaIndex",
+        "LangGraph",
         "Haystack"
       ],
       "vec": [
@@ -114,7 +113,6 @@
         "Mistral AI"
       ],
       "eval": [
-        "LangSmith",
         "RAGAS",
         "DeepEval",
         "FastAPI",

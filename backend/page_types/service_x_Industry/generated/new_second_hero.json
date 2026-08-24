@@ -2,77 +2,82 @@
   "comply": {
     "comply-in": [
       {
-        "b": "HIPAA-compliant by design",
-        "span": "Architected with signed BAAs, encrypted PHI at rest and in transit, and audit logging from day one, not retrofitted."
+        "b": "100% brand voice adherence",
+        "span": "Every output is checked against your brand guidelines before delivery."
       },
       {
-        "b": "PHI never leaks",
-        "span": "All patient data stays within your controlled environment; no third-party model training or storage of protected health information."
+        "b": "FTC & industry regulation compliant",
+        "span": "Automatic screening for disallowed claims, disclaimers, and endorsement rules."
       },
       {
-        "b": "Clinical guardrails enforced",
-        "span": "Built-in safety filters, human-in-the-loop for diagnosis outputs, and disclaimers per HIPAA Privacy Rule."
+        "b": "GDPR & CCPA compliant processing",
+        "span": "No customer data is used for model training; all data isolated per client."
       },
       {
-        "b": "Real compliance, not name-swap",
-        "span": "Every integration and data flow validated against HIPAA Security Rule, 45 CFR 164, before deployment, not just labelled compliant."
+        "b": "Human-in-loop quality assurance",
+        "span": "Every piece passes through a trained editor before publishing."
       }
     ]
   },
   "what-is": {
     "sec-head": {
       "eyebrow": "Plain answer",
-      "h2": "What is a RAG chatbot for healthcare?"
+      "h2": "What is generative AI for marketing content?"
     },
     "tldr": {
-      "b": "Quick answer",
+      "b": "Definition",
       "p": [
-        "A RAG chatbot for healthcare combines retrieval-augmented generation with large language models to answer clinical queries using only your approved medical knowledge base, like EHRs, clinical guidelines, or drug formularies. It retrieves relevant, de-identified documents before generating a response, ensuring PHI is never exposed to the model, and all outputs are auditable and compliant with HIPAA. This architecture powers use cases from patient intake triage to clinical decision support, delivering accurate, context-aware answers without compromising data privacy."
+        "A generative AI marketing content system combines large language models with a real-time retrieval engine that pulls brand voice guidelines, channel-specific formatting rules, and regulatory compliance checklists before generating each piece of content. By grounding every output in verified marketing assets and human review checkpoints, it eliminates off-brand messaging, maintains consistency across email, social, web, and print, and avoids the cost of continuous model retraining."
       ]
     }
   },
   "vs-agency": {
     "sec-head": {
-      "eyebrow": "The honest comparison",
-      "h2": "RAG chatbot developer vs healthcare AI agency"
+      "eyebrow": "Direct access vs agency",
+      "h2": "Independent marketing AI engineer vs agency"
     },
     "tablewrap": {
       "thead": [
         "Factor",
-        "Independent RAG chatbot developer (me)",
-        "Healthcare AI development agency"
+        "Independent Marketing AI Engineer (me)",
+        "Generalist Content Automation Agency"
       ],
       "tbody": [
         {
-          "th": "Cost",
+          "th": "Brand voice & content expertise",
           "td": [
-            "Lower, direct hourly or fixed-rate, no agency markup",
-            "Higher, includes project managers, compliance lawyers, and overhead"
+            "Direct specialization in brand voice, tone, and channel-specific content strategies",
+            "Generalist developers rotated across unrelated industries and content types"
           ]
         },
         {
-          "th": "Who builds it",
+          "th": "Data security & compliance",
           "td": [
-            "Me, directly, with 10+ years in healthcare software and LLMs",
-            "Allocated junior team, often rotated across projects"
+            "Direct engineer signing data processing agreements; zero third-party exposure",
+            "Complex subcontractor chains increasing risk of data leakage and non-compliance"
           ]
         },
         {
-          "th": "Best for",
+          "th": "Deployment speed",
           "td": [
-            "Scoped clinical RAG builds, $5K to $50K, with targeted PHI workflows",
-            "Large enterprise EHR integrations or multi-department rollouts"
+            "Functional content workflow POC in 2-3 weeks; full deployment in 6-8 weeks",
+            "3-6 months weighed down by account managers and discovery phases"
           ]
         },
         {
-          "th": "Start time",
+          "th": "Cost structure",
           "td": [
-            "72 hours to first prototype with compliance review",
-            "4 to 8 weeks for contract, scoping, and team allocation"
+            "Transparent milestone pricing without agency overhead markups",
+            "High monthly retainer with billable hours for project managers and layers"
           ]
         }
       ]
     },
-    "p": "Most healthcare RAG chatbot projects, a specific clinical use case like triage, prior authorization, or drug lookup, are well within scope for a single senior developer who understands both LLM orchestration and HIPAA compliance. An agency's advantage only shows when a project requires parallel work across multiple clinical departments, extensive EHR system integration, or a full compliance audit team."
+    "callout": {
+      "p": [
+        "Direct access guarantees brand consistency",
+        "In marketing, a misaligned tone or off-brand message can damage customer trust. Working directly with the engineer who designs the generation pipeline gives your marketing leadership complete control over voice and quality."
+      ]
+    }
   }
 }

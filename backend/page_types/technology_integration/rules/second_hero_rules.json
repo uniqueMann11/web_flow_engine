@@ -1,0 +1,45 @@
+{
+  "comply": {
+    "comply-in": [
+      {
+        "b": "Engineering principle or commitment title (e.g., 'Explicit state, not hidden', 'Tool failures handled'). Max 4-5 words.",
+        "span": "Technical explanation of the guarantee or practice. Max 1-2 sentences."
+      }
+    ]
+  },
+  "what-is": {
+    "sec-head": {
+      "eyebrow": "Eyebrow label (e.g., 'Plain answer'). Max 3 words.",
+      "h2": "Direct question heading (e.g., 'What is LangChain?')."
+    },
+    "tldr": {
+      "b": "Tag label (e.g., 'Quick answer').",
+      "p": [
+        "Concise, authoritative explanation of the framework or core technology, its architecture (LCEL, LangGraph), capabilities, and ecosystem adoption. Exactly 2-3 sentences."
+      ]
+    }
+  },
+  "vs-agency": {
+    "sec-head": {
+      "eyebrow": "Eyebrow label (e.g., 'The honest comparison'). Max 3 words.",
+      "h2": "Comparison heading (e.g., 'LangChain consultant vs LangChain agency')."
+    },
+    "tablewrap": {
+      "thead": [
+        "Header 1 (e.g., 'Factor')",
+        "Header 2 (e.g., 'Independent LangChain consultant (me)')",
+        "Header 3 (e.g., 'LangChain development agency')"
+      ],
+      "tbody": [
+        {
+          "th": "Comparison dimension (e.g., 'Cost', 'Who builds it', 'Best for', 'Start time').",
+          "td": [
+            "Assessment for Independent Consultant (direct access, speed, lower overhead).",
+            "Assessment for Development Agency (team overhead, management layer)."
+          ]
+        }
+      ]
+    },
+    "p": "Contextual paragraph explaining when a direct senior developer is optimal vs when a full multi-disciplinary agency is required. Exactly 2 sentences."
+  }
+}

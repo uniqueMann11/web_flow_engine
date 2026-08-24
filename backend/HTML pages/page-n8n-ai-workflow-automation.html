@@ -1,66 +1,119 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LangChain vs LlamaIndex Development Services | RAG Framework Comparison | Shreyans Padmani</title>
-  <meta name="robots" content="index, follow">
-  <meta name="robots" content="max-image-preview:large">
-  <meta name="author" content="Shreyans Padmani">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Shreyans Padmani">
-  <meta property="og:locale" content="en_US">
-  <meta name="description"
-    content="LangChain vs LlamaIndex development services: the honest framework comparison, where each wins, and production RAG/agent development built with the right one, or both.">
-  <meta name="keywords" content="LangChain vs LlamaIndex, RAG framework comparison, LLM orchestration">
-  <link rel="canonical" href="https://shreyans.tech/langchain-vs-llamaindex" />
-  <meta property="og:title" content="LangChain vs LlamaIndex Development Services — Shreyans Padmani">
-  <meta property="og:url" content="https://shreyans.tech/langchain-vs-llamaindex">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@shreyanspadmani">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet">
-  <link rel="shortcut icon" href="/assets/image/shreyans.png" type="image/x-icon">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/image/shreyans.png">
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <script type="application/ld+json">{
-      "@context": "https://schema.org",
-      "@graph": [
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>n8n AI Workflow Automation | Shreyans Padmani</title>
+<meta content="index, follow" name="robots"/>
+<meta content="max-image-preview:large" name="robots"/>
+<meta content="Shreyans Padmani" name="author"/>
+<meta content="website" property="og:type"/>
+<meta content="Shreyans Padmani" property="og:site_name"/>
+<meta content="en_US" property="og:locale"/>
+<meta content="n8n brings AI to real workflows with a drag-and-drop builder, not a scripting marathon. I build and deploy n8n automations that run reliably—integrating LLM calls, data transformations, and 400+ services into production pipelines that don't break on the first error." name="description"/>
+<meta content="n8n AI automation, n8n consultant, AI workflow builder" name="keywords"/>
+<link href="https://shreyans.tech/n8n-ai-workflow-automation" rel="canonical"/>
+<meta content="n8n AI Workflow Automation" property="og:title"/>
+<meta content="https://shreyans.tech/n8n-ai-workflow-automation" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="@shreyanspadmani" name="twitter:site"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/image/shreyans.png" rel="shortcut icon" type="image/x-icon"/>
+<link href="/assets/image/shreyans.png" rel="apple-touch-icon" sizes="180x180"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "n8n AI Workflow Automation",
+      "url": "https://shreyans.tech/n8n-ai-workflow-automation",
+      "provider": {
+        "@type": "Person",
+        "name": "Shreyans Padmani",
+        "url": "https://shreyans.tech"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-          "@type": "Service",
-          "name": "RAG Framework Development Services (LangChain and LlamaIndex)",
-          "url": "https://shreyans.tech/langchain-vs-llamaindex",
-          "provider": { "@type": "Person", "name": "Shreyans Padmani", "url": "https://shreyans.tech" }
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://shreyans.tech/"
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://shreyans.tech/" },
-            { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://shreyans.tech/hire-ai-developer" },
-            { "@type": "ListItem", "position": 3, "name": "RAG Development", "item": "https://shreyans.tech/services/rag-development" },
-            { "@type": "ListItem", "position": 4, "name": "LangChain vs LlamaIndex", "item": "https://shreyans.tech/langchain-vs-llamaindex" }
-          ]
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://shreyans.tech/hire-ai-developer"
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "Is LlamaIndex better than LangChain for RAG?", "acceptedAnswer": { "@type": "Answer", "text": "For pure retrieval-augmented generation over document corpora, LlamaIndex is generally the stronger choice: its default chunking, metadata filtering, and reranking are more production-calibrated out of the box. For RAG as part of a broader agent system, LangChain remains the stronger foundation." } },
-            { "@type": "Question", "name": "Can you build with both frameworks in one project?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, this is the most common production pattern in 2026: LlamaIndex handling retrieval, wrapped as a tool inside a LangGraph agent for orchestration. This combines the strengths of both rather than forcing one framework to do both jobs." } },
-            { "@type": "Question", "name": "How do you decide which framework to recommend?", "acceptedAnswer": { "@type": "Answer", "text": "Based on where your hardest problem actually lives: if it is retrieval quality over a messy document corpus, LlamaIndex. If it is multi-step agent behavior, tool use, or memory, LangChain and LangGraph. The recommendation is delivered in writing with reasoning, before any build work begins." } },
-            { "@type": "Question", "name": "Do I need a LangChain agency or can a freelance consultant handle this?", "acceptedAnswer": { "@type": "Answer", "text": "Most RAG and agent projects, a specific pipeline, agent, or integration, are well within scope for a single experienced developer working directly with you. An agency's advantage shows up on large, multi-disciplinary product builds needing several specialists in parallel." } },
-            { "@type": "Question", "name": "How much does RAG framework development cost?", "acceptedAnswer": { "@type": "Answer", "text": "A framework selection consultation runs $500 to $1,500. A full LlamaIndex or LangChain build ranges from $8,000 to $30,000+ depending on complexity. A hybrid architecture combining both frameworks typically runs $15,000 to $40,000+." } }
-          ]
+          "@type": "ListItem",
+          "position": 3,
+          "name": "RAG Development",
+          "item": "https://shreyans.tech/services/rag-development"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "n8n AI Workflow Automation",
+          "item": "https://shreyans.tech/n8n-ai-workflow-automation"
         }
       ]
-    }</script>
-
-  <style>
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the difference between n8n and Zapier for AI workflows?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "n8n offers deeper low-code control with custom HTTP nodes, code nodes, and local execution, making it better for AI-heavy pipelines. Zapier's AI features are simpler but more limited for complex branching and on-premise data."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can n8n integrate with any AI model?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, n8n supports OpenAI, Anthropic, and local models via HTTP request nodes. Custom model APIs or self-hosted LLMs can be integrated with minimal custom code."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much do n8n AI workflow automation services cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A single AI workflow typically runs $2,000 to $5,000, while a multi-step automation ranges from $5,000 to $12,000. Hourly consulting is $75 to $150/hr."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is n8n free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, n8n is open-source under the Sustainable License (free for self-hosting). n8n cloud plans start at $20/month. Self-hosting gives full control over data privacy and costs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should I NOT use n8n for AI automation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If your workflow requires heavy custom Python logic, complex branching state management, or extensive parallel processing, a code-based framework like LangGraph or Temporal may be more appropriate. n8n is ideal for visual, event-driven automations."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+<style>
     :root, .svcp {
       --ink: #0A1222;
       --ink-soft: #1B2740;
@@ -969,6 +1022,7 @@
       color: #AEBEDC;
       margin-bottom: 8px
     }
+
     .svcp .tablewrap {
       overflow-x: auto;
       border: 1px solid var(--line);
@@ -1644,408 +1698,604 @@
         transform: none
       }
     }
-  </style>
+  
+.vw-card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--sh-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--bodyf);
+}
+
+.vw-card .vw-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.vw-card .vw-top .t {
+  font-family: var(--disp);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vw-card .vw-top .t svg {
+  width: 18px;
+  height: 18px;
+  color: var(--blue);
+  flex-shrink: 0;
+}
+
+.vw-card .vw-chip {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: var(--mint-tint);
+  color: var(--mint);
+  border: 1px solid rgba(15, 169, 104, 0.25);
+  white-space: nowrap;
+}
+
+.vw-card .vw-body {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.vw-card .vw-step-bar {
+  display: flex;
+  gap: 4px;
+}
+
+.vw-card .vw-step-btn {
+  flex: 1;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 7px 8px;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+  line-height: 1.3;
+}
+
+.vw-card .vw-step-btn:hover {
+  border-color: var(--blue);
+  color: var(--ink);
+}
+
+.vw-card .vw-step-btn.active {
+  background: var(--blue-tint);
+  border-color: var(--blue);
+  color: var(--blue-strong);
+}
+
+.vw-card .vw-dag-box {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 14px 12px 10px 12px;
+  position: relative;
+}
+
+.vw-card .vw-dag-svg {
+  width: 100%;
+  height: 90px;
+  overflow: visible;
+}
+
+.vw-card .vw-node-tag {
+  fill: var(--surface);
+  stroke: var(--line);
+  stroke-width: 1.5;
+  rx: 8;
+  ry: 8;
+}
+
+.vw-card .vw-node-tag.active-node {
+  fill: var(--blue-tint);
+  stroke: var(--blue);
+  stroke-width: 2;
+}
+
+.vw-card .vw-node-label {
+  font-family: var(--mono);
+  font-size: 6.5px;
+  fill: var(--ink-soft);
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.vw-card .vw-edge {
+  stroke: var(--line);
+  stroke-width: 1.8;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.vw-card .vw-edge.active-edge {
+  stroke: var(--blue);
+  stroke-width: 2.2;
+}
+
+.vw-card .vw-node-icon {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.6;
+}
+
+.vw-card .vw-node-icon.active-icon {
+  stroke: var(--blue);
+}
+
+.vw-card .vw-detail-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding-top: 2px;
+}
+
+.vw-card .vw-detail-cell {
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-sm);
+  padding: 8px 10px;
+}
+
+.vw-card .vw-cell-label {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 3px;
+}
+
+.vw-card .vw-cell-value {
+  font-family: var(--disp);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.vw-card .vw-cell-value .highlight {
+  color: var(--blue);
+}
+
+.vw-card .vw-cell-value .mint-highlight {
+  color: var(--mint);
+}
+
+.vw-card .vw-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  border-top: 1px solid var(--line-soft);
+  background: var(--soft);
+  font-size: 0.7rem;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+@media (max-width: 480px) {
+  .vw-card .vw-step-btn {
+    font-size: 0.55rem;
+    padding: 6px 4px;
+  }
+  .vw-card .vw-detail-row {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
-
 <body>
-    <main class="svcp">
-
-      <!-- ================= HERO ================= -->
-      <section class="hero" id="demo">
-        <div class="wrap">
-          <div class="hero-grid">
-            <div>
-              <p class="eyebrow">The right framework, built correctly</p>
-              <h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">LangChain vs LlamaIndex development services: <span>the
-                  right RAG framework</span></h1>
-              <p class="hero-sub">Choosing between LangChain and LlamaIndex determines how much you spend, how fast it
-                ships, and how well it performs in production. I build with both frameworks and pick the right one, or
-                the right combination, based on your actual retrieval and orchestration needs, not a default toolkit.
-              </p>
-
-              <div class="creds">
-                <div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg width="15"
-                      height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 8v4l3 3" />
-                      <circle cx="12" cy="12" r="9" />
-                    </svg></span><span class="t"><i>Experience</i><b>5+ yrs production RAG</b></span></div>
-                <div class="cred"><span class="b" style="background:#6D5EF6" title="Both"><svg width="15" height="15"
-                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
-                      stroke-linejoin="round">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                      <circle cx="9" cy="7" r="4" />
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-                    </svg></span><span class="t"><i>Coverage</i><b>Both frameworks, used correctly</b></span></div>
-                <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg width="14" height="14"
-                      viewBox="0 0 24 24" fill="none" stroke="#2456E6" stroke-width="2.4" stroke-linecap="round"
-                      stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M12 6v6l4 2" />
-                    </svg></span><span class="t"><i>Turnaround</i><b>48h architecture rec.</b></span></div>
-              </div>
-
-              <div class="hero-cta">
-                <a class="btn btn-primary" href="#lets-talk">Get a framework recommendation <svg fill="none"
-                    stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
-                    <path d="M5 12h14M13 6l6 6-6 6"></path>
-                  </svg></a>
-                <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
-              </div>
-              <p class="live"><span class="pulse"></span> Written recommendation with reasoning, before any build work
-                begins</p>
-
-              <div class="trust">
-                <div><b data-count="5" data-suffix="+">0+</b><span>Years building production RAG</span></div>
-                <div><b data-count="40" data-suffix="%">0%</b><span>Less code, LlamaIndex vs baseline</span></div>
-                <div><b>48h</b><span>To a written recommendation</span></div>
-              </div>
-            </div>
-
-            <!-- ===== SIGNATURE: framework fit finder ===== -->
-            <div class="viewer">
-              <div class="viewer-top">
-                <span class="t">framework fit, illustrative</span>
-                <span class="chip"><span class="d"></span>live</span>
-              </div>
-              <canvas id="sigcanvas"
-                aria-label="Illustration contrasting LangChain's agent state graph, with tool calls and conditional loops, against LlamaIndex's hierarchical retrieval tree, with a highlighted retrieved path."></canvas>
-              <div class="modesw" role="tablist" aria-label="Framework">
-                <button role="tab" aria-selected="true" data-m="langchain" type="button">LangChain (LangGraph)</button>
-                <button role="tab" aria-selected="false" data-m="llamaindex" type="button">LlamaIndex</button>
-              </div>
-              <div class="segs" role="tablist" aria-label="Project scenario">
-                <button role="tab" aria-selected="true" data-d="0" type="button">agentic support bot</button>
-                <button role="tab" aria-selected="false" data-d="1" type="button">document Q&amp;A</button>
-                <button role="tab" aria-selected="false" data-d="2" type="button">legal / code corpus</button>
-              </div>
-              <div class="metrics">
-                <div><b id="m1">~14ms</b><span id="m1l">Framework overhead</span></div>
-                <div><b id="m2">Baseline</b><span id="m2l">Code volume</span></div>
-                <div><b id="m3">500+</b><span id="m3l">Integrations</span></div>
-              </div>
-              <div class="answerbox">
-                <span class="k" id="verdict">FIT CHECK</span>
-                <p id="answer"></p>
-              </div>
-              <div class="viewer-foot" id="foot">Pick a scenario, then toggle the framework to see whether it's a strong
-                fit or you'd be fighting the tool.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= COMPLY STRIP ================= -->
-      <div class="comply">
-        <div class="wrap comply-in">
-          <div><span><b>Both frameworks, done right</b>LangChain, LangGraph, and LlamaIndex, used for what each is
-              actually built for.</span></div>
-          <div><span><b>Recommendation in writing</b>A specific framework choice, with the reasoning behind it, before
-              any build begins.</span></div>
-          <div><span><b>Hybrid when it earns it</b>LlamaIndex retrieval wrapped as a tool inside a LangGraph agent, the
-              standard 2026 pattern.</span></div>
-          <div><span><b>Honest, not default</b>If your project doesn't need the complexity of one framework, I'll say
-              so.</span></div>
-        </div>
-      </div>
-
-      <!-- ================= WHAT IS ================= -->
-      <section id="what-is">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">Plain answer</p>
-            <h2>What is LangChain? What is LlamaIndex?</h2>
-          </div>
-          <div class="tldr reveal">
-            <b>Quick answer</b>
-            <p>LangChain is a broad LLM application framework built around composable chains, agents, tools, and memory,
-              with LangGraph as its production agent orchestration layer. LlamaIndex is a focused data framework for
-              LLMs, purpose-built for ingesting, indexing, and querying document corpora via retrieval-augmented
-              generation. Both are open-source, MIT-licensed, and by 2026 both frameworks handle RAG and agents to some
-              degree, the real choice is about where your project's hardest problem actually lives.</p>
-          </div>
-        </div>
-      </section>
-
-      <div class="rule"></div>
-
-      <!-- ================= COMPARISON TABLE ================= -->
-      <section class="soft" id="comparison">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">The comparison</p>
-            <h2>Framework comparison: LangChain vs LlamaIndex</h2>
-          </div>
-          <div class="tablewrap reveal">
-            <table>
-              <thead>
-                <tr>
-                  <th>Factor</th>
-                  <th class="col-me">LangChain (via LangGraph)</th>
-                  <th>LlamaIndex</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Primary strength</th>
-                  <td class="col-me">Multi-step agent orchestration, state, tools, memory</td>
-                  <td>Retrieval quality: chunking, indexing, query synthesis</td>
-                </tr>
-                <tr>
-                  <th scope="row">Best for</th>
-                  <td class="col-me">Agentic systems where RAG is one component</td>
-                  <td>Retrieval-first products where document Q&amp;A is the core</td>
-                </tr>
-                <tr>
-                  <th scope="row">Code volume for equivalent RAG</th>
-                  <td class="col-me">Baseline</td>
-                  <td>30 to 40% less code</td>
-                </tr>
-                <tr>
-                  <th scope="row">Framework overhead</th>
-                  <td class="col-me">~14ms (LangGraph)</td>
-                  <td>~6ms</td>
-                </tr>
-                <tr>
-                  <th scope="row">Ecosystem</th>
-                  <td class="col-me">500+ integrations, most mature agent tooling</td>
-                  <td>300+ connectors, native document parsing via LlamaParse</td>
-                </tr>
-                <tr>
-                  <th scope="row">Observability</th>
-                  <td class="col-me">LangSmith (first-party, paid tiers)</td>
-                  <td>Typically requires third-party tracing</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="callout reveal">
-            <p>The 2026 reality</p>
-            <p>Most production systems use both together: LlamaIndex handling ingestion, indexing, and retrieval, with
-              LangGraph orchestrating the broader multi-step agent logic around it. This is the standard architecture I
-              build when a project genuinely needs both retrieval quality and agentic behavior.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= SERVICES ================= -->
-      <section id="services">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">What I build</p>
-            <h2>RAG framework development services</h2>
-            <p>What I build with each framework, matched to what your project actually needs.</p>
-          </div>
-          <div class="grid g3 reveal">
-            <div class="card"><span class="n advise">CONSULT</span>
-              <h3>Framework selection consulting</h3>
-              <p>An independent architecture assessment of your use case, data, and requirements, resulting in a written
-                recommendation: LangChain, LlamaIndex, or both, with the reasoning behind it.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>LlamaIndex RAG development</h3>
-              <p>Retrieval-first builds: document ingestion, hierarchical chunking, auto-merging retrieval, and query
-                synthesis for document-heavy applications where answer accuracy from your corpus is the product.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>LangChain &amp; LangGraph agent development</h3>
-              <p>Multi-step agent systems: tool use, conversational memory, state management, and human-in-the-loop
-                checkpoints for AI that takes actions, not just answers questions.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Hybrid architecture (both frameworks)</h3>
-              <p>LlamaIndex as the retrieval layer wrapped as a tool inside a LangGraph agent, combining best-in-class
-                retrieval with production-grade orchestration in one system.</p>
-            </div>
-            <div class="card"><span class="n advise">AUDIT</span>
-              <h3>Migration &amp; framework audits</h3>
-              <p>Assessment and migration support for teams that chose the wrong framework early and are hitting
-                friction, or need to add agentic capability to an existing retrieval-only system.</p>
-            </div>
-            <div class="card cta-card">
-              <h3>Not sure which you need?</h3>
-              <p>Try the fit-check widget above, or get it scoped properly.</p><a class="btn btn-primary"
-                href="#lets-talk" style="background:#fff;color:#0A1222">Get a recommendation</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="rule"></div>
-
-      <!-- ================= WHERE EACH WINS ================= -->
-      <section class="soft" id="where-wins">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">The honest breakdown</p>
-            <h2>Where each framework wins</h2>
-          </div>
-          <div class="grid g2 reveal">
-            <div class="card">
-              <span class="n">LLAMAINDEX WINS WHEN</span>
-              <h3>Retrieval quality is the bottleneck</h3>
-              <ul>
-                <li>Retrieval quality is the primary bottleneck, not orchestration complexity</li>
-                <li>You need complex multi-document reasoning: tree index and response synthesizers produce roughly 10
-                  to 15% better answers on multi-source synthesis benchmarks</li>
-                <li>Your documents are hierarchically structured (legal, code, technical manuals): composable indices
-                  produce roughly 15 to 25% better answers</li>
-                <li>You want to ship faster with less code and lower latency overhead</li>
-              </ul>
-            </div>
-            <div class="card">
-              <span class="n build">LANGCHAIN WINS WHEN</span>
-              <h3>RAG is one piece of a larger agent</h3>
-              <ul>
-                <li>RAG is one component of a larger agentic system, not the whole product</li>
-                <li>You need tool use, multi-step reasoning, or persistent memory across a conversation</li>
-                <li>Human-in-the-loop checkpoints matter: LangGraph has native checkpointing and interrupt/resume
-                  support</li>
-                <li>First-party observability (LangSmith) is a requirement, not an afterthought</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= PROCESS ================= -->
-      <section id="process">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">How it gets built</p>
-            <h2>Engagement process</h2>
-          </div>
-          <div class="steps reveal">
-            <details class="step" open>
-              <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
-                <h3>Discovery</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Understanding your data, use case, and whether the core challenge is retrieval quality,
-                agentic behavior, or both.</div>
-            </details>
-            <details class="step">
-              <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
-                <h3>Framework recommendation</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">A written architecture spec with a specific framework recommendation and reasoning,
-                delivered within 48 hours.</div>
-            </details>
-            <details class="step gate">
-              <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
-                <h3>Build</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Development in milestones, retrieval layer first if applicable, then orchestration and
-                guardrails.</div>
-            </details>
-            <details class="step">
-              <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
-                <h3>Evaluation</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Testing against your real queries and use cases using RAGAS or a custom eval set.</div>
-            </details>
-            <details class="step">
-              <summary><span class="num">PHASE 05<span class="days">handoff</span></span>
-                <h3>Deployment</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Production deployment with monitoring, tracing, and documentation for your team.</div>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <div class="rule"></div>
-
-      <!-- ================= PRICING ================= -->
-      <section class="soft" id="pricing">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">Investment</p>
-            <h2>Pricing</h2>
-          </div>
-          <div class="tablewrap reveal">
-            <table>
-              <thead>
-                <tr>
-                  <th>Engagement type</th>
-                  <th class="col-me">What's included</th>
-                  <th>Typical investment</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Framework selection consulting</td>
-                  <td class="col-me">Written architecture recommendation and spec</td>
-                  <td>$500 to $1,500</td>
-                </tr>
-                <tr>
-                  <td>LlamaIndex RAG build</td>
-                  <td class="col-me">Retrieval pipeline, ingestion, evaluation, deployment</td>
-                  <td>$8,000 to $25,000</td>
-                </tr>
-                <tr>
-                  <td>LangChain/LangGraph agent build</td>
-                  <td class="col-me">Multi-step agent, tools, memory, guardrails, deployment</td>
-                  <td>$8,000 to $30,000+</td>
-                </tr>
-                <tr class="me-row">
-                  <td>Hybrid architecture build</td>
-                  <td class="col-me">Both frameworks combined, full production system</td>
-                  <td>$15,000 to $40,000+</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= FAQ ================= -->
-      <section id="faq">
-        <div class="wrap">
-          <div class="sec-head center reveal">
-            <p class="eyebrow">FAQ</p>
-            <h2>Frequently asked questions</h2>
-          </div>
-          <div class="faq reveal">
-            <details open>
-              <summary>Is LlamaIndex better than LangChain for RAG?</summary>
-              <div class="a">For pure retrieval-augmented generation over document corpora, LlamaIndex is generally the
-                stronger choice: its default chunking, metadata filtering, and reranking are more production-calibrated
-                out of the box. For RAG as part of a broader agent system, LangChain remains the stronger foundation.
-              </div>
-            </details>
-            <details>
-              <summary>Can you build with both frameworks in one project?</summary>
-              <div class="a">Yes, this is the most common production pattern I build in 2026: LlamaIndex handling
-                retrieval, wrapped as a tool inside a LangGraph agent for orchestration. This combines the strengths of
-                both rather than forcing one framework to do both jobs.</div>
-            </details>
-            <details>
-              <summary>How do you decide which framework to recommend?</summary>
-              <div class="a">Based on where your hardest problem actually lives: if it is retrieval quality over a messy
-                document corpus, LlamaIndex. If it is multi-step agent behavior, tool use, or memory, LangChain and
-                LangGraph. The framework recommendation is delivered in writing with the reasoning, as part of the
-                discovery process, before any build work begins.</div>
-            </details>
-            <details>
-              <summary>Do I need a LangChain agency or can a freelance consultant handle this?</summary>
-              <div class="a">Most RAG and agent projects, a specific pipeline, agent, or integration, are well within
-                scope for a single experienced developer working directly with you. An agency's advantage shows up on
-                large, multi-disciplinary product builds needing several specialists in parallel, not on the
-                RAG/LangChain engineering itself.</div>
-            </details>
-            <details>
-              <summary>How much does RAG framework development cost?</summary>
-              <div class="a">A framework selection consultation runs $500 to $1,500. A full LlamaIndex or LangChain
-                build ranges from $8,000 to $30,000+ depending on complexity. A hybrid architecture combining both
-                frameworks typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use
-                case.</div>
-            </details>
-          </div>
-        </div>
-      </section>
-    </main>
-
-  <script>
+<main class="svcp">
+<!-- ================= HERO ================= -->
+<section class="hero" id="demo">
+<div class="wrap">
+<div class="hero-grid">
+<div>
+<p class="eyebrow">Low-code, high-output</p>
+<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">n8n AI workflow automation: <span>production workflows, not prototypes</span></h1>
+<p class="hero-sub">n8n brings AI to real workflows with a drag-and-drop builder, not a scripting marathon. I build and deploy n8n automations that run reliably—integrating LLM calls, data transformations, and 400+ services into production pipelines that don't break on the first error.</p>
+<div class="creds">
+<div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<path d="M12 8v4l3 3"></path>
+<circle cx="12" cy="12" r="9"></circle>
+</svg></span><span class="t"><i>Experience</i><b>3+ yrs n8n/AI</b></span></div>
+<div class="cred"><span class="b" style="background:#0FA968" title="Direct"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<path d="M14 7h-4a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4M10 7h4a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-4M8 12h8"></path>
+</svg></span><span class="t"><i>Access</i><b>Direct, no account manager</b></span></div>
+<div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="14">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M12 6v6l4 2"></path>
+</svg></span><span class="t"><i>Turnaround</i><b>48h workflow blueprint</b></span></div>
+</div>
+<div class="hero-cta">
+<a class="btn btn-primary" href="#lets-talk">Talk to an n8n developer <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M5 12h14M13 6l6 6-6 6"></path>
+</svg></a>
+<a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
+</div>
+<p class="live"><span class="pulse"></span> Honest read included: whether n8n is the right fit for your automation or not.</p>
+<div class="trust">
+<div><b data-count="119" data-suffix="K+">40K+</b><span>GitHub stars, n8n</span></div>
+<div><b data-count="500" data-suffix="+">400+</b><span>Integrations available</span></div>
+<div><b>48h</b><span>To a detailed workflow spec</span></div>
+</div>
+</div>
+<!-- ===== SIGNATURE: production agent vs fragile demo ===== -->
+<div class="viewer"><div class="vw-card">
+<div class="vw-top">
+<span class="t">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<rect height="2" rx="1" width="4" x="3" y="11"></rect>
+<rect height="2" rx="1" width="4" x="17" y="11"></rect>
+<circle cx="10" cy="12" r="3" stroke-width="2.5"></circle>
+<circle cx="14" cy="12" r="3" stroke-width="2.5"></circle>
+<path d="M13 12L14 12" stroke-width="2.5"></path>
+<path d="M7 12H4" stroke-dasharray="1 1" stroke-width="2"></path>
+<path d="M20 12H17" stroke-dasharray="1 1" stroke-width="2"></path>
+</svg>
+      n8n AI Workflow Pipeline
+    </span>
+<span class="vw-chip" id="vwStatusBadge">Active: 3 nodes</span>
+</div>
+<div class="vw-body">
+<div class="vw-step-bar">
+<button class="vw-step-btn active" data-step="0">Data Ingest</button>
+<button class="vw-step-btn" data-step="1">AI Transform</button>
+<button class="vw-step-btn" data-step="2">Action Out</button>
+</div>
+<div class="vw-dag-box">
+<svg class="vw-dag-svg" viewbox="0 0 420 90">
+<defs>
+<lineargradient id="lineGrad" x1="0" x2="1" y1="0" y2="0">
+<stop offset="0%" stop-color="var(--line)"></stop>
+<stop offset="100%" stop-color="var(--blue)" stop-opacity="0.3"></stop>
+</lineargradient>
+</defs>
+<!-- Edge line 1 -->
+<path class="vw-edge" d="M95,35 L145,35"></path>
+<path class="vw-edge" d="M95,35 L145,35" id="edge1" opacity="0" stroke="var(--blue)" stroke-width="2.2"></path>
+<!-- Edge line 2 -->
+<path class="vw-edge" d="M275,35 L325,35"></path>
+<path class="vw-edge" d="M275,35 L325,35" id="edge2" opacity="0" stroke="var(--blue)" stroke-width="2.2"></path>
+<!-- Node 1: Input -->
+<rect class="vw-node-tag" height="46" width="80" x="15" y="12"></rect>
+<rect class="vw-node-tag active-node" fill="var(--blue-tint)" height="46" id="node1bg" opacity="0" stroke="var(--blue)" stroke-width="2" width="80" x="15" y="12"></rect>
+<text class="vw-node-label" x="55" y="32">HTTP / Webhook</text>
+<text class="vw-node-label" fill="var(--muted)" font-size="5px" x="55" y="44">Google Sheets</text>
+<circle cx="35" cy="54" fill="var(--blue-tint)" r="5" stroke="var(--blue)" stroke-width="1.2"></circle>
+<path class="vw-node-icon" d="M33,54 L37,54 M35,52 L35,56" stroke-width="1.8"></path>
+<path class="vw-node-icon active-icon" d="M33,54 L37,54 M35,52 L35,56" id="icon1" opacity="0" stroke="var(--blue)"></path>
+<!-- Node 2: AI -->
+<rect class="vw-node-tag" height="46" width="130" x="145" y="12"></rect>
+<rect class="vw-node-tag active-node" fill="var(--blue-tint)" height="46" id="node2bg" opacity="0" stroke="var(--blue)" stroke-width="2" width="130" x="145" y="12"></rect>
+<text class="vw-node-label" x="210" y="30">OpenAI + n8n AI</text>
+<text class="vw-node-label" fill="var(--muted)" font-size="5px" x="210" y="42">Classify / Transform</text>
+<circle cx="190" cy="52" fill="var(--soft)" r="5" stroke="var(--muted)" stroke-width="1.2"></circle>
+<path class="vw-node-icon" d="M188,52 L192,52 M190,50 L190,54"></path>
+<path class="vw-node-icon active-icon" d="M188,52 L192,52 M190,50 L190,54" id="icon2" opacity="0" stroke="var(--blue)"></path>
+<!-- Node 3: Output -->
+<rect class="vw-node-tag" height="46" width="80" x="325" y="12"></rect>
+<rect class="vw-node-tag active-node" fill="var(--blue-tint)" height="46" id="node3bg" opacity="0" stroke="var(--blue)" stroke-width="2" width="80" x="325" y="12"></rect>
+<text class="vw-node-label" x="365" y="32">Slack / Email</text>
+<text class="vw-node-label" fill="var(--muted)" font-size="5px" x="365" y="44">Notion DB</text>
+<circle cx="345" cy="54" fill="var(--blue-tint)" r="5" stroke="var(--blue)" stroke-width="1.2"></circle>
+<path class="vw-node-icon" d="M343,54 L347,54 M345,52 L345,56"></path>
+<path class="vw-node-icon active-icon" d="M343,54 L347,54 M345,52 L345,56" id="icon3" opacity="0" stroke="var(--blue)"></path>
+<!-- Flow arrows -->
+<polygon fill="var(--line)" points="140,35 148,31 148,39"></polygon>
+<polygon fill="var(--line)" points="320,35 328,31 328,39"></polygon>
+</svg>
+<div class="vw-detail-row" id="vwDetailGrid">
+<div class="vw-detail-cell">
+<div class="vw-cell-label">Trigger</div>
+<div class="vw-cell-value" id="vwCellTrigger">Webhook POST</div>
+</div>
+<div class="vw-detail-cell">
+<div class="vw-cell-label">Source</div>
+<div class="vw-cell-value" id="vwCellSource">Google Sheets</div>
+</div>
+<div class="vw-detail-cell">
+<div class="vw-cell-label">Avg Latency</div>
+<div class="vw-cell-value"><span class="highlight" id="vwCellLatency">1.2s</span></div>
+</div>
+<div class="vw-detail-cell">
+<div class="vw-cell-label">AI Cost / run</div>
+<div class="vw-cell-value"><span class="mint-highlight" id="vwCellCost">$0.0042</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="vw-foot">
+<span>n8n consultant — AI workflow builder</span>
+<span>Low-code + AI</span>
+</div>
+</div></div>
+</div>
+</div>
+</section>
+<!-- ================= COMPLY STRIP ================= -->
+<div class="comply">
+<div class="wrap comply-in">
+<div><span><b>Visual, not code</b>n8n's drag-and-drop workflow builder with hundreds of nodes, not scripting from scratch. AI nodes for LLM calls, embeddings, and vector stores.</span></div>
+<div><span><b>AI nodes built-in</b>OpenAI, Anthropic, Hugging Face, and custom AI nodes with retry logic and error handling, ready for production.</span></div>
+<div><span><b>Full observability</b>Built-in execution history, logging, and error alerts so workflow behavior in production is transparent, not a black box.</span></div>
+<div><span><b>Honest complexity assessment</b>If n8n is overkill for a simple integration, I'll recommend a lighter alternative. If AI orchestration is needed, n8n is the right choice.</span></div>
+</div>
+</div>
+<!-- ================= WHAT IS LANGCHAIN ================= -->
+<section id="what-is">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Plain answer</p>
+<h2>What is n8n AI Workflow Automation?</h2>
+</div>
+<div class="tldr reveal">
+<b>Quick answer</b>
+<p>n8n is an open-source, low-code workflow automation platform that connects AI models, APIs, and data sources in a visual workflow builder. It provides pre-built nodes for LLMs, embeddings, vector stores, and retrieval-augmented generation (RAG), all orchestrated with conditional logic, error handling, and human-in-the-loop checkpoints. With over 400 integrations and a growing community, n8n is the leading choice for building real, production-ready AI workflows without deep coding.</p>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= SERVICES ================= -->
+<section id="services">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">What I build</p>
+<h2>n8n AI workflow automation services</h2>
+</div>
+<div class="grid g3 reveal">
+<div class="card"><span class="n build">BUILD</span>
+<h3>AI-powered data pipeline workflows</h3>
+<p>End-to-end workflows using n8n's visual builder to connect LLMs, databases, and APIs, handling data extraction, transformation, and injection across your business tools.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Multi-step agentic automations</h3>
+<p>Workflows that combine n8n's branching logic and error handling with AI nodes to create agents that make decisions, call external tools, and adapt based on real-time results.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Tool-connecting AI integrations</h3>
+<p>Automations that bridge an LLM to your actual business tools like CRMs, email, and internal APIs, enabling the AI to take real actions beyond text generation.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Conversational memory flows</h3>
+<p>Workflows that maintain conversation context across sessions using n8n's sub-workflow and data storage nodes, tuned for short-term or long-term preference memory.</p>
+</div>
+<div class="card"><span class="n advise">AUDIT</span>
+<h3>n8n workflow audits &amp; optimization</h3>
+<p>Review and improvement of existing n8n workflows for performance, error handling, and AI integration, or migration from manual to automated AI-driven processes.</p>
+</div>
+<div class="card cta-card">
+<h3>Not sure LangChain is right?</h3>
+<p>Part of the engagement is an honest read on whether it's even the right tool.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get an honest
+                assessment</a>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= CONSULTANT VS AGENCY ================= -->
+<section class="soft" id="vs-agency">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">The honest comparison</p>
+<h2>n8n consultant vs n8n development agency</h2>
+</div>
+<div class="tablewrap reveal">
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th class="col-me">Independent n8n consultant (me)</th>
+<th>n8n development agency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Cost</th>
+<td class="col-me">Lower, direct rate, no team overhead</td>
+<td>Higher, includes team and account management</td>
+</tr>
+<tr>
+<th scope="row">Who builds it</th>
+<td class="col-me">Me, directly, every time</td>
+<td>Allocated team member, may change</td>
+</tr>
+<tr>
+<th scope="row">Best for</th>
+<td class="col-me">Scoped AI workflow or integration builds, $2K to $30K range</td>
+<td>Large, multi-departmental automation initiatives</td>
+</tr>
+<tr>
+<th scope="row">Start time</th>
+<td class="col-me">48 to 72 hours</td>
+<td>2 to 4 weeks typically</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="reveal" style="margin-top:20px;color:var(--muted);font-size:.96rem">Most n8n projects, a specific AI workflow, a specific RAG pipeline, a specific tool integration, are well within scope for a single experienced developer working directly with you. An agency's advantage shows up when a project genuinely needs several specialists working in parallel on a larger automation platform, not for the n8n engineering itself.</p>
+</div>
+</section>
+<!-- ================= ENGAGEMENT MODELS ================= -->
+<section id="engagement">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">How we work together</p>
+<h2>Engagement models</h2>
+</div>
+<div class="grid g3 reveal">
+<div class="card"><span class="n">PROJECT-BASED</span>
+<h3>Fixed-price, milestone-based</h3>
+<p>A scoped n8n workflow build delivered as a fixed-price, milestone-based engagement with defined deliverables.</p>
+</div>
+<div class="card"><span class="n">HOURLY</span>
+<h3>Consulting</h3>
+<p>Architecture review or debugging support for an existing n8n implementation or AI integration.</p>
+</div>
+<div class="card"><span class="n build">RETAINER</span>
+<h3>Dedicated monthly</h3>
+<p>Ongoing n8n development for businesses with a continuing AI automation roadmap and evolving workflows.</p>
+</div>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= PROCESS ================= -->
+<section class="soft" id="process">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">How it's built</p>
+<h2>Process</h2>
+</div>
+<div class="steps reveal">
+<details class="step" open="">
+<summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
+<h3>Discovery</h3><span class="cv">+</span>
+</summary>
+<div class="body">Mapping out the exact workflow: which AI models, data sources (APIs, databases, files), and trigger events the n8n automation must handle, along with success criteria for accuracy and speed.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
+<h3>Architecture spec</h3><span class="cv">+</span>
+</summary>
+<div class="body">A written blueprint covering the node graph, AI model integration (OpenAI, Claude, local LLMs), error handling patterns, and credential management—delivered within 48 hours.</div>
+</details>
+<details class="step gate">
+<summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
+<h3>Build in milestones</h3><span class="cv">+</span>
+</summary>
+<div class="body">Core automation logic first, then AI nodes (e.g., GPT-4 for classification, Whisper for transcription), followed by fallback paths and rate-limit handling for production reliability.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 04<span class="days">before launch</span></span>
+<h3>Testing &amp; evaluation</h3><span class="cv">+</span>
+</summary>
+<div class="body">Low-code testing with real data flows, simulating API outages and malformed inputs to verify guardrails and performance under load.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 05<span class="days">handoff</span></span>
+<h3>Deployment &amp; monitoring</h3><span class="cv">+</span>
+</summary>
+<div class="body">Production deployment with n8n's built-in execution logging, webhook alerting, and optional dashboard for real-time visibility into run success and latency.</div>
+</details>
+</div>
+</div>
+</section>
+<!-- ================= WHEN NOT LANGCHAIN ================= -->
+<section id="when-not">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Honest tool fit</p>
+<h2>When n8n is not the right choice</h2>
+</div>
+<div class="callout amber reveal" style="margin-top:0">
+<p>Realistic suitability upfront</p>
+<p>Part of a proper n8n engagement is an honest assessment of whether low-code AI automation fits your needs. If your workflow requires complex, stateful agent orchestration with deep custom Python logic, a code-native framework like LangGraph may be more maintainable. n8n excels when speed and visual clarity matter more than infinite flexibility.</p>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= PRICING ================= -->
+<section class="soft" id="pricing">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Investment</p>
+<h2>Pricing</h2>
+</div>
+<div class="tablewrap reveal">
+<table>
+<thead>
+<tr>
+<th>Engagement type</th>
+<th class="col-me">What's included</th>
+<th>Typical investment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single AI workflow</td>
+<td class="col-me">One scoped n8n automation with AI node, trigger, and output destination</td>
+<td>$2,000 to $5,000</td>
+</tr>
+<tr class="me-row">
+<td>Multi-step automation</td>
+<td class="col-me">Complex graph with branching, data transformations, error handling, and 3-5 integrations</td>
+<td>$5,000 to $12,000</td>
+</tr>
+<tr>
+<td>Workflow audit &amp; optimize</td>
+<td class="col-me">Review and performance tuning of an existing n8n setup</td>
+<td>$1,000 to $2,500</td>
+</tr>
+<tr>
+<td>Hourly consulting</td>
+<td class="col-me">Debugging, design advice, workflow architecture</td>
+<td>$75 to $150/hr</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Retrieval and
+            generation-grounded systems built using this class of architecture include the AI Customer Feedback
+            Classification pipeline and AI Video Summarizer. Full case studies at <a href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
+</div>
+</section>
+<!-- ================= FAQ ================= -->
+<section id="faq">
+<div class="wrap">
+<div class="sec-head center reveal">
+<p class="eyebrow">FAQ</p>
+<h2>Frequently asked questions</h2>
+</div>
+<div class="faq reveal">
+<details open="">
+<summary>What is the difference between n8n and Zapier for AI workflows?</summary>
+<div class="a">n8n offers deeper low-code control with custom HTTP nodes, code nodes, and local execution, making it better for AI-heavy pipelines. Zapier's AI features are simpler but more limited for complex branching and on-premise data.</div>
+</details>
+<details>
+<summary>Can n8n integrate with any AI model?</summary>
+<div class="a">Yes, n8n supports OpenAI, Anthropic, and local models via HTTP request nodes. Custom model APIs or self-hosted LLMs can be integrated with minimal custom code.</div>
+</details>
+<details>
+<summary>How much do n8n AI workflow automation services cost?</summary>
+<div class="a">A single AI workflow typically runs $2,000 to $5,000, while a multi-step automation ranges from $5,000 to $12,000. Hourly consulting is $75 to $150/hr.</div>
+</details>
+<details>
+<summary>Is n8n free to use?</summary>
+<div class="a">Yes, n8n is open-source under the Sustainable License (free for self-hosting). n8n cloud plans start at $20/month. Self-hosting gives full control over data privacy and costs.</div>
+</details>
+<details>
+<summary>When should I NOT use n8n for AI automation?</summary>
+<div class="a">If your workflow requires heavy custom Python logic, complex branching state management, or extensive parallel processing, a code-based framework like LangGraph or Temporal may be more appropriate. n8n is ideal for visual, event-driven automations.</div>
+</details>
+</div>
+</div>
+</section>
+</main>
+<script>
     (function () {
       var page = document.querySelector('.svcp');
       if (!page) return;
@@ -2092,30 +2342,28 @@
       });
     })();
 
- 
+  </script>
+<script>
     (function () {
       var page = document.querySelector('.svcp');
       var canvas = document.getElementById('sigcanvas'), ctx = canvas.getContext('2d');
-      var mode = 'langchain', domain = 0, t = 0, raf = null;
+      var mode = 'prod', domain = 0, t = 0, raf = null;
 
       var domains = [
         {
-          seg: 'agentic support bot',
-          good: 'langchain',
-          langchain: '<b>Good fit.</b> LangGraph handles the multi-step flow: check order status, call the refund API, escalate on failure, with explicit state and checkpointing between each step.',
-          llamaindex: '<b>Possible, but not the tool for this.</b> LlamaIndex has no native state machine for multi-step tool calls, you would still need an agent layer wrapped around it.'
+          seg: 'API times out',
+          prod: '<b>Handled.</b> The tool-call node retries with backoff, then routes to a fallback path if the API stays down, the agent keeps going instead of dying mid-conversation.',
+          demo: '<b>Dead end.</b> The single-shot chain has no retry or fallback, the whole response fails and the user sees a raw error, or nothing at all.'
         },
         {
-          seg: 'document Q&A',
-          good: 'llamaindex',
-          llamaindex: '<b>Good fit.</b> LlamaIndex\'s default chunking, metadata filtering, and reranking are production-calibrated out of the box for exactly this.',
-          langchain: '<b>Possible, but heavier than it needs to be.</b> LangChain can do RAG, but for pure document Q&amp;A you\'re writing more retrieval plumbing than LlamaIndex needs.'
+          seg: 'bad tool output',
+          prod: '<b>Handled.</b> A conditional edge validates the tool\'s output before continuing, malformed results route to a repair step instead of being passed straight to the user.',
+          demo: '<b>Silently wrong.</b> The unvalidated tool output gets passed straight into the next prompt, and the agent confidently generates a response built on bad data.'
         },
         {
-          seg: 'legal / code corpus',
-          good: 'llamaindex',
-          llamaindex: '<b>Good fit.</b> Composable indices and tree structures produce roughly 15 to 25% better answers on hierarchically structured documents like legal contracts or codebases.',
-          langchain: '<b>Workable, but you\'d be rebuilding LlamaIndex by hand.</b> Most teams pair LlamaIndex for retrieval with LangGraph for orchestration instead of forcing one framework to do both jobs.'
+          seg: 'needs human OK',
+          prod: '<b>Handled.</b> A human-in-the-loop checkpoint pauses the graph, notifies a reviewer, and resumes exactly where it left off once approved.',
+          demo: '<b>Skipped entirely.</b> There is no checkpoint concept, the demo either blocks forever waiting on nothing, or takes the risky action without approval.'
         }];
 
       function resize() { var r = canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2); canvas.width = r.width * d; canvas.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
@@ -2127,94 +2375,70 @@
         for (var gx = 0; gx <= W; gx += W / 8) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
         for (var gy = 0; gy <= H; gy += H / 5) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
 
-        if (mode === 'langchain') {
-          var nodes = {
-            start: { x: W * .13, y: H * .5, label: 'Start' },
-            tool: { x: W * .42, y: H * .28, label: 'Tool call' },
-            cond: { x: W * .68, y: H * .5, label: 'Condition' },
-            mem: { x: W * .42, y: H * .74, label: 'Memory' },
-            end: { x: W * .9, y: H * .28, label: 'Respond' }
+        if (mode === 'prod') {
+          var n = {
+            start: { x: W * .1, y: H * .5 }, retrieve: { x: W * .3, y: H * .28 }, tool: { x: W * .5, y: H * .5 }, cond: { x: W * .68, y: H * .28 },
+            check: { x: W * .68, y: H * .74 }, end: { x: W * .9, y: H * .5 }
           };
-          function edge(a, b, style) {
-            ctx.strokeStyle = style || 'rgba(109,94,246,.55)'; ctx.lineWidth = 1.6;
-            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-          }
-          edge(nodes.start, nodes.tool); edge(nodes.tool, nodes.cond); edge(nodes.cond, nodes.end);
-          edge(nodes.cond, nodes.mem, 'rgba(109,94,246,.3)'); edge(nodes.mem, nodes.tool, 'rgba(109,94,246,.3)');
-          var path = [nodes.start, nodes.tool, nodes.cond, nodes.mem, nodes.tool, nodes.cond, nodes.end];
-          var total = path.length - 1; var pp = (t * .012) % total; var seg = Math.floor(pp), f = pp - seg;
+          function edge(a, b, c) { ctx.strokeStyle = c || 'rgba(15,169,104,.6)'; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+          edge(n.start, n.retrieve); edge(n.retrieve, n.tool); edge(n.tool, n.cond); edge(n.cond, n.end);
+          edge(n.tool, n.check, 'rgba(15,169,104,.35)'); edge(n.check, n.end, 'rgba(15,169,104,.35)');
+          ctx.strokeStyle = 'rgba(15,169,104,.4)'; ctx.lineWidth = 1.3; ctx.beginPath();
+          ctx.arc(n.tool.x, n.tool.y - 20, 14, Math.PI * 0.15, Math.PI * 1.6); ctx.stroke();
+          var path = [n.start, n.retrieve, n.tool, n.cond, n.end];
+          var total = path.length - 1; var pp = (t * .014) % total; var seg = Math.floor(pp), f = pp - seg;
           var a = path[seg], b = path[Math.min(seg + 1, path.length - 1)];
-          var px = a.x + (b.x - a.x) * f, py = a.y + (b.y - a.y) * f;
-          ctx.beginPath(); ctx.arc(px, py, 3, 0, Math.PI * 2); ctx.fillStyle = '#6D5EF6'; ctx.fill();
-          Object.keys(nodes).forEach(function (k) {
-            var n = nodes[k]; var isEnd = (k === 'end');
-            ctx.beginPath(); ctx.arc(n.x, n.y, isEnd ? 9 : 7, 0, Math.PI * 2);
-            ctx.fillStyle = isEnd ? '#6D5EF6' : '#fff'; ctx.fill();
-            ctx.lineWidth = 2; ctx.strokeStyle = '#6D5EF6'; ctx.stroke();
-            ctx.fillStyle = '#1B2740'; ctx.font = '600 10px "IBM Plex Mono",monospace';
-            ctx.fillText(n.label, n.x - 16, n.y - 14);
+          ctx.beginPath(); ctx.arc(a.x + (b.x - a.x) * f, a.y + (b.y - a.y) * f, 3, 0, Math.PI * 2); ctx.fillStyle = '#0FA968'; ctx.fill();
+          Object.keys(n).forEach(function (k) {
+            var nd = n[k]; var isEnd = (k === 'end');
+            ctx.beginPath(); ctx.arc(nd.x, nd.y, isEnd ? 9 : 7, 0, Math.PI * 2);
+            ctx.fillStyle = isEnd ? '#0FA968' : '#fff'; ctx.fill();
+            ctx.lineWidth = 2; ctx.strokeStyle = '#0FA968'; ctx.stroke();
+            ctx.fillStyle = '#1B2740'; ctx.font = '600 9.5px "IBM Plex Mono",monospace';
+            var lbl = { start: 'Start', retrieve: 'Retrieve', tool: 'Tool call', cond: 'Condition', check: 'Checkpoint', end: 'Respond' }[k];
+            ctx.fillText(lbl, nd.x - 18, nd.y - 14);
           });
-          ctx.fillStyle = 'rgba(109,94,246,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
-          ctx.fillText('state graph \u00b7 stateful loop', W * .5, H * .92);
-        } else {
-          var root = { x: W * .12, y: H * .5 };
-          var secs = [{ x: W * .44, y: H * .28 }, { x: W * .44, y: H * .72 }];
-          var leaves = [{ x: W * .8, y: H * .14 }, { x: W * .8, y: H * .36 }, { x: W * .8, y: H * .62 }, { x: W * .8, y: H * .86 }];
-          var hi = 2; 
-          function edge(a, b, on) {
-            ctx.strokeStyle = on ? 'rgba(15,169,104,.75)' : 'rgba(107,122,147,.28)'; ctx.lineWidth = on ? 1.8 : 1.2;
-            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-          }
-          edge(root, secs[0], false); edge(root, secs[1], true);
-          edge(secs[0], leaves[0], false); edge(secs[0], leaves[1], false);
-          edge(secs[1], leaves[2], true); edge(secs[1], leaves[3], false);
-          var pp = (t * .02) % 1;
-          var mx = root.x + (secs[1].x - root.x) * Math.min(pp * 2, 1);
-          var my = root.y + (secs[1].y - root.y) * Math.min(pp * 2, 1);
-          if (pp < .5) { ctx.beginPath(); ctx.arc(mx, my, 2.6, 0, Math.PI * 2); ctx.fillStyle = '#0FA968'; ctx.fill(); }
-          else {
-            var f2 = (pp - .5) * 2; var mx2 = secs[1].x + (leaves[2].x - secs[1].x) * f2, my2 = secs[1].y + (leaves[2].y - secs[1].y) * f2;
-            ctx.beginPath(); ctx.arc(mx2, my2, 2.6, 0, Math.PI * 2); ctx.fillStyle = '#0FA968'; ctx.fill();
-          }
-          [root].concat(secs).forEach(function (n, i) {
-            ctx.beginPath(); ctx.arc(n.x, n.y, 7, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill();
-            ctx.lineWidth = 2; ctx.strokeStyle = i === 0 ? '#2456E6' : 'rgba(107,122,147,.5)'; ctx.stroke();
-          });
-          leaves.forEach(function (n, i) {
-            var on = (i === hi);
-            ctx.beginPath(); ctx.arc(n.x, n.y, on ? 7 : 5, 0, Math.PI * 2);
-            ctx.fillStyle = on ? '#0FA968' : 'rgba(107,122,147,.35)'; ctx.fill();
-          });
-          ctx.fillStyle = '#1B2740'; ctx.font = '600 10px "IBM Plex Mono",monospace';
-          ctx.fillText('root', root.x - 10, root.y - 14);
           ctx.fillStyle = 'rgba(15,169,104,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
-          ctx.fillText('hierarchical index \u00b7 retrieved leaf highlighted', W * .32, H * .92);
+          ctx.fillText('checkpointed \u00b7 retries \u00b7 human-in-the-loop', W * .18, H * .94);
+        } else {
+          var n2 = { start: { x: W * .14, y: H * .5 }, tool: { x: W * .5, y: H * .5 }, fail: { x: W * .8, y: H * .5 } };
+          ctx.strokeStyle = 'rgba(225,29,72,.5)'; ctx.lineWidth = 1.6;
+          ctx.beginPath(); ctx.moveTo(n2.start.x, n2.start.y); ctx.lineTo(n2.tool.x, n2.tool.y); ctx.stroke();
+          var wob = Math.sin(t * .06) * 4;
+          ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(n2.tool.x, n2.tool.y); ctx.lineTo(n2.fail.x, n2.fail.y + wob); ctx.stroke(); ctx.setLineDash([]);
+          ctx.beginPath(); ctx.arc(n2.start.x, n2.start.y, 7, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.lineWidth = 2; ctx.strokeStyle = '#E11D48'; ctx.fill(); ctx.stroke();
+          ctx.beginPath(); ctx.arc(n2.tool.x, n2.tool.y, 7, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill(); ctx.stroke();
+          var fx = n2.fail.x, fy = n2.fail.y + wob;
+          ctx.strokeStyle = '#E11D48'; ctx.lineWidth = 2.4;
+          ctx.beginPath(); ctx.moveTo(fx - 7, fy - 7); ctx.lineTo(fx + 7, fy + 7); ctx.moveTo(fx + 7, fy - 7); ctx.lineTo(fx - 7, fy + 7); ctx.stroke();
+          ctx.fillStyle = '#1B2740'; ctx.font = '600 9.5px "IBM Plex Mono",monospace';
+          ctx.fillText('Start', n2.start.x - 12, n2.start.y - 14);
+          ctx.fillText('Tool call', n2.tool.x - 20, n2.tool.y - 14);
+          ctx.fillStyle = 'rgba(225,29,72,.9)'; ctx.font = '600 10px "IBM Plex Mono",monospace';
+          ctx.fillText('dead end', fx - 24, fy + 22);
+          ctx.font = '600 11px "IBM Plex Mono",monospace';
+          ctx.fillText('no retry \u00b7 no fallback \u00b7 no checkpoint', W * .18, H * .94);
         }
         t += 1; raf = requestAnimationFrame(draw);
       }
 
       function update() {
         var d = domains[domain];
-        var m1 = document.getElementById('m1'), m2 = document.getElementById('m2'), m3 = document.getElementById('m3');
-        var m1l = document.getElementById('m1l'), m2l = document.getElementById('m2l'), m3l = document.getElementById('m3l');
-        var ans = document.getElementById('answer'), verdict = document.getElementById('verdict'), foot = document.getElementById('foot');
         document.querySelector('.viewer-top .t').textContent = 'scenario: ' + d.seg;
-        if (mode === 'langchain') {
-          m1.textContent = '~14ms'; m1l.textContent = 'Framework overhead';
-          m2.textContent = 'Baseline'; m2l.textContent = 'Code volume';
-          m3.textContent = '500+'; m3l.textContent = 'Integrations';
+        var m1 = document.getElementById('m1'), m2 = document.getElementById('m2'), m3 = document.getElementById('m3'), ans = document.getElementById('answer'), foot = document.getElementById('foot');
+        if (mode === 'prod') {
+          m1.textContent = 'Retry + fallback'; m1.className = 'sc-good';
+          m2.textContent = 'Checkpointed';
+          m3.textContent = 'Logged';
+          ans.innerHTML = d.prod;
+          foot.textContent = 'This is what "production-grade" actually means: the graph has an explicit answer for every failure mode, not just the happy path.';
         } else {
-          m1.textContent = '~6ms'; m1l.textContent = 'Framework overhead';
-          m2.textContent = '-30 to 40%'; m2l.textContent = 'Code volume';
-          m3.textContent = '300+'; m3l.textContent = 'Connectors';
+          m1.textContent = 'Crashes'; m1.className = 'sc-bad';
+          m2.textContent = 'None';
+          m3.textContent = 'No visibility';
+          ans.innerHTML = d.demo;
+          foot.textContent = 'This is the fragile-demo failure mode: works perfectly until the first tool call misbehaves, then it just breaks.';
         }
-        ans.innerHTML = d[mode];
-        var isGood = d.good === mode;
-        verdict.textContent = isGood ? 'STRONG FIT' : 'WORTH A SECOND LOOK';
-        verdict.style.color = isGood ? 'var(--mint-deep)' : 'var(--amber)';
-        foot.textContent = isGood
-          ? 'This is the framework this scenario is built for.'
-          : 'It can be made to work, but you would be fighting the tool more than you need to.';
       }
 
       page.querySelectorAll('.modesw [role="tab"]').forEach(function (b) {
@@ -2235,6 +2459,102 @@
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(); } else { draw(); cancelAnimationFrame(raf); }
     })();
   </script>
-</body>
 
+<script>
+(function() {
+  var btns = document.querySelectorAll('.vw-step-btn');
+  var badge = document.getElementById('vwStatusBadge');
+  var cellTrigger = document.getElementById('vwCellTrigger');
+  var cellSource = document.getElementById('vwCellSource');
+  var cellLatency = document.getElementById('vwCellLatency');
+  var cellCost = document.getElementById('vwCellCost');
+
+  var node1bg = document.getElementById('node1bg');
+  var node2bg = document.getElementById('node2bg');
+  var node3bg = document.getElementById('node3bg');
+  var icon1 = document.getElementById('icon1');
+  var icon2 = document.getElementById('icon2');
+  var icon3 = document.getElementById('icon3');
+  var edge1 = document.getElementById('edge1');
+  var edge2 = document.getElementById('edge2');
+
+  var stepData = [
+    {
+      badge: 'Active: Input stage',
+      trigger: 'Webhook POST',
+      source: 'Google Sheets',
+      latency: '0.8s',
+      cost: '$0.000'
+    },
+    {
+      badge: 'Active: AI Transform',
+      trigger: 'Classify + Map',
+      source: 'OpenAI GPT-4o',
+      latency: '2.4s',
+      cost: '$0.0042'
+    },
+    {
+      badge: 'Active: Output stage',
+      trigger: 'Slack Webhook',
+      source: 'Notion API',
+      latency: '1.1s',
+      cost: '$0.000'
+    }
+  ];
+
+  function updateStep(index) {
+    var d = stepData[index];
+    badge.textContent = d.badge;
+    cellTrigger.textContent = d.trigger;
+    cellSource.textContent = d.source;
+    cellLatency.textContent = d.latency;
+    cellCost.textContent = d.cost;
+
+    var showOrder = [0, 1, 2];
+    if (index === 0) showOrder = [0];
+    else if (index === 1) showOrder = [0, 1];
+    else showOrder = [0, 1, 2];
+
+    [node1bg, node2bg, node3bg].forEach(function(el, i) {
+      if (showOrder.includes(i)) {
+        el.setAttribute('opacity', '1');
+      } else {
+        el.setAttribute('opacity', '0');
+      }
+    });
+
+    [icon1, icon2, icon3].forEach(function(el, i) {
+      if (showOrder.includes(i)) {
+        el.setAttribute('opacity', '1');
+      } else {
+        el.setAttribute('opacity', '0');
+      }
+    });
+
+    if (showOrder.includes(1)) {
+      edge1.setAttribute('opacity', '1');
+    } else {
+      edge1.setAttribute('opacity', '0');
+    }
+
+    if (showOrder.includes(2)) {
+      edge2.setAttribute('opacity', '1');
+    } else {
+      edge2.setAttribute('opacity', '0');
+    }
+
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    btns[index].classList.add('active');
+  }
+
+  btns.forEach(function(btn, idx) {
+    btn.addEventListener('click', function() {
+      updateStep(idx);
+    });
+  });
+
+  updateStep(0);
+})();
+</script>
+</body>
 </html>

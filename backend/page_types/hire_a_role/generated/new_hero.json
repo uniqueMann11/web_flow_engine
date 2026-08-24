@@ -2,10 +2,10 @@
   "hero": {
     "eyebrow": "Direct access, no account layer",
     "h1": {
-      "h1-text": "Hire an AI agent developer:",
-      "span": "freelance agent framework engineer"
+      "h1-text": "Hire a vector database engineer:",
+      "span": "freelance vector DB expert for hire"
     },
-    "hero-sub": "I am Shreyans Padmani, a freelance AI agent developer and engineer. I build production-grade autonomous agents, multi-agent systems, and tool-calling pipelines using LangGraph, CrewAI, and AutoGen, then deploy them with the monitoring, guardrails, and integration your business requires.",
+    "hero-sub": "I am Shreyans Padmani, a freelance vector database engineer specializing in Pinecone, Weaviate, and Qdrant. I design and build high-performance vector search pipelines, RAG systems, and AI knowledge assistants, then deploy them to production with monitoring, scaling, and integration your business requires.",
     "creds": [
       {
         "cred": {

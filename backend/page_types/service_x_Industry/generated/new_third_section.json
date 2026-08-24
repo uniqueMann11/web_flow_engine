@@ -1,82 +1,87 @@
 {
   "services": {
     "sec-head": {
-      "eyebrow": "For Healthcare",
-      "h2": "RAG chatbot development for healthcare"
+      "eyebrow": "What I build",
+      "h2": "Generative AI content services",
+      "p": "Modular, multi-channel content engines with brand voice enforcement and human-in-the-loop QA for verifiable marketing ROI."
     },
     "grid g3": [
       {
         "card": {
           "n": "BUILD",
-          "h3": "HIPAA-compliant RAG pipeline development",
-          "p": "Retrieval-augmented generation pipelines built with LangChain and LlamaIndex, designed for clinical documents, research papers, and patient records while ensuring end-to-end HIPAA compliance through encrypted embeddings and access controls."
+          "h3": "Multi-Channel Content Pipelines",
+          "p": "We architect automated pipelines that generate, adapt, and distribute SEO-optimized blog posts, social copy, email sequences, and ad variants while maintaining brand voice consistency and editorial standards."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Clinical decision support agents (LangGraph)",
-          "p": "Multi-step agents using explicit state graphs and conditional edges for clinical workflows such as differential diagnosis, treatment planning, and medication checks, with built-in audit trails for HIPAA accountability."
+          "h3": "Brand Voice & Style Enforcement",
+          "p": "Custom NLP models and prompt chains that analyze your existing content library to enforce tone, vocabulary, and structural guidelines across every piece of generated marketing copy."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "EHR & medical API integrations",
-          "p": "Systems that connect the LLM to electronic health records (EHR), lab systems, and provider APIs, enabling secure execution of actions like retrieving patient histories or scheduling follow-ups, all within HIPAA-compliant boundaries."
+          "h3": "Human-in-Loop QA Workflows",
+          "p": "Staged review systems where AI drafts are automatically flagged for factual accuracy, brand alignment, and readability before a human editor approves or revises for final publication."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Patient memory & continuity systems",
-          "p": "Chatbots that maintain clinical context across multiple encounters, storing summaries of prior visits, allergies, and medication lists while fully encrypting PHI and supporting patient consent management."
+          "h3": "Personalized Content Variants",
+          "p": "Generate hundreds of audience-specific content variations from a single source draft, each tailored to buyer persona, funnel stage, and channel format without losing core messaging."
         }
       },
       {
         "card": {
           "n": "AUDIT",
-          "h3": "HIPAA compliance audits & migration",
-          "p": "Review of existing LangChain implementations for PHI exposure risks, data handling gaps, and encryption practices, plus migration support to meet HIPAA Privacy and Security Rule requirements."
+          "h3": "Content Performance Audits",
+          "p": "Analyze existing content output for brand drift, SEO gaps, and conversion leakage, then provide a roadmap for retraining generative models and optimizing production workflows."
         }
       },
       {
         "card cta-card": {
-          "h3": "Not sure about HIPAA compliance?",
-          "p": "We provide an honest assessment of your current AI pipeline's compliance posture and what's needed.",
+          "h3": "Need scalable content engine?",
+          "p": "Try the content simulator above, or book a discovery session to scope your exact multi-channel needs.",
           "btn-primary": {
-            "text": "Get a compliance check",
+            "text": "Talk to an AI engineer",
             "url": "#lets-talk"
           }
         }
       }
     ]
   },
-  "engagement": {
+  "use-cases": {
     "sec-head": {
-      "eyebrow": "How we work together",
-      "h2": "Engagement models"
+      "eyebrow": "Industry context",
+      "h2": "Where brands deploy generative AI content",
+      "p": "Proven architectures tailored to e-commerce, SaaS, and media publishers seeking consistent brand voice at scale."
     },
-    "grid g3": [
+    "grid g2": [
       {
         "card": {
-          "n": "PROJECT-BASED",
-          "h3": "Fixed-price, milestone-based",
-          "p": "A scoped RAG chatbot build for healthcare delivered as a fixed-price, milestone-based engagement, including HIPAA compliance documentation."
+          "n": "E-COMMERCE & RETAIL",
+          "h3": "Product Descriptions & Campaigns",
+          "p": "Automate thousands of unique product descriptions, seasonal campaign emails, and social posts that stay on-brand and drive consistent conversion rates.",
+          "ul": [
+            "Integrated with Shopify / Magento APIs for real-time inventory data",
+            "A/B testing framework to measure brand voice adherence vs. conversion lift",
+            "Zero-retention local embedding models for proprietary product data"
+          ]
         }
       },
       {
         "card": {
-          "n": "HOURLY",
-          "h3": "Consulting",
-          "p": "Architecture review or debugging support for existing healthcare AI implementations, with focus on PHI security."
-        }
-      },
-      {
-        "card": {
-          "n": "RETAINER",
-          "h3": "Dedicated monthly",
-          "p": "Ongoing healthcare RAG development for businesses with a continuing AI roadmap, ensuring continuous compliance updates."
+          "n": "SAAS & TECH",
+          "h3": "Thought Leadership & Lead Gen",
+          "p": "Produce weekly blog posts, white papers, and LinkedIn thought leadership content that maintains a consistent executive voice and feeds directly into lead scoring pipelines.",
+          "ul": [
+            "Automated 12-point brand voice checker before content enters review queue",
+            "24/7 content generation with human editor approval gates",
+            "SEO-optimized meta data and internal linking structures generated automatically"
+          ]
         }
       }
     ]

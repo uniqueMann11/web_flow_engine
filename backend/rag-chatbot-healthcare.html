@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAG Chatbot Development for Healthcare | HIPAA-Compliant Medical AI | Shreyans Padmani</title>
+  <meta name="robots" content="index, follow">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="author" content="Shreyans Padmani">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Shreyans Padmani">
+  <meta property="og:locale" content="en_US">
+  <meta name="description"
+    content="Production RAG chatbot development for healthcare: HIPAA-compliant clinical decision support, EHR/FHIR data grounding, patient triage, and zero-hallucination medical AI systems.">
+  <meta name="keywords" content="RAG chatbot healthcare, HIPAA compliant medical AI, clinical decision support RAG, healthcare AI developer">
+  <link rel="canonical" href="https://shreyans.tech/rag-chatbot-healthcare" />
+  <meta property="og:title" content="RAG Chatbot Development for Healthcare — Shreyans Padmani">
+  <meta property="og:url" content="https://shreyans.tech/rag-chatbot-healthcare">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@shreyanspadmani">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="shortcut icon" href="/assets/image/shreyans.png" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/image/shreyans.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          "name": "RAG Chatbot Development for Healthcare",
+          "url": "https://shreyans.tech/rag-chatbot-healthcare",
+          "provider": { "@type": "Person", "name": "Shreyans Padmani", "url": "https://shreyans.tech" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://shreyans.tech/" },
+            { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://shreyans.tech/hire-ai-developer" },
+            { "@type": "ListItem", "position": 3, "name": "Healthcare AI", "item": "https://shreyans.tech/rag-chatbot-healthcare" }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "How do you ensure HIPAA compliance in healthcare RAG systems?", "acceptedAnswer": { "@type": "Answer", "text": "HIPAA compliance is built into the architecture: automatic de-identification of all 18 PHI identifiers before embedding, isolated private VPC or on-premise deployments, end-to-end encryption at rest and in transit, zero data retention agreements with model providers, and signed BAAs." } },
+            { "@type": "Question", "name": "Can the RAG chatbot integrate with EHR systems like Epic or Cerner?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Retrieval pipelines connect via HL7/FHIR APIs and secure database connectors, pulling relevant clinical notes, lab results, and patient histories in real time while respecting role-based access control (RBAC)." } },
+            { "@type": "Question", "name": "How does the system prevent medical hallucinations?", "acceptedAnswer": { "@type": "Answer", "text": "The system applies strict semantic chunking, cross-encoder reranking, and deterministic prompt constraints requiring exact citations from approved medical guidelines. When query confidence falls below a strict threshold, it triggers a defensive fallback with human clinician escalation." } },
+            { "@type": "Question", "name": "Do I need an agency or can an independent AI engineer build this?", "acceptedAnswer": { "@type": "Answer", "text": "Working directly with a specialized independent engineer ensures direct accountability, deeper compliance oversight, and 2-3x faster deployment without paying for agency account management layers." } },
+            { "@type": "Question", "name": "How much does a healthcare RAG chatbot cost to build?", "acceptedAnswer": { "@type": "Answer", "text": "A scoped HIPAA proof-of-concept starts at $2,500 to $6,000. A full production clinical RAG chatbot with EHR integration, guardrails, and compliance audits typically ranges from $12,000 to $45,000." } }
+          ]
+        }
+      ]
+    }</script>
+
+  <style>
+    :root, .svcp {
+      --ink: #0A1222;
+      --ink-soft: #1B2740;
+      --body: #48566E;
+      --muted: #6B7A93;
+      --line: #E6ECF4;
+      --line-soft: #EFF3F9;
+      --surface: #FFFFFF;
+      --soft: #F4F8FD;
+      --tint: #EAF0FF;
+      --blue: #2456E6;
+      --blue-strong: #1740C0;
+      --blue-tint: #E6EEFF;
+      --violet: #6D5EF6;
+      --violet-tint: #EDEAFE;
+      --mint: #0FA968;
+      --mint-tint: #E4F7EE;
+      --mint-deep: #0B7D4E;
+      --amber: #D97A18;
+      --amber-tint: #FCEFDD;
+      --rose: #E11D48;
+      --sh-sm: 0 1px 2px rgba(10, 18, 34, .04), 0 2px 6px rgba(10, 18, 34, .05);
+      --sh-md: 0 14px 34px -16px rgba(10, 18, 34, .22);
+      --sh-lg: 0 30px 70px -28px rgba(36, 86, 230, .32);
+      --r: 18px;
+      --r-sm: 12px;
+      --maxw: 1200px;
+      --disp: "Plus Jakarta Sans", system-ui, sans-serif;
+      --bodyf: "Inter", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+
+    .svcp *,
+    .svcp *::before,
+    .svcp *::after {
+      box-sizing: border-box
+    }
+
+    .svcp {
+      margin: 0;
+      font-family: var(--bodyf);
+      color: var(--body);
+      background: var(--surface);
+      line-height: 1.68;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      position: relative;
+      overflow-x: hidden
+    }
+
+    .svcp img,
+    .svcp svg {
+      max-width: 100%;
+      display: block
+    }
+
+    .svcp a {
+      color: var(--blue);
+      text-decoration: none
+    }
+
+    .svcp h1,
+    .svcp h2,
+    .svcp h3,
+    .svcp h4 {
+      font-family: var(--disp);
+      color: var(--ink);
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin: 0
+    }
+
+    .svcp p {
+      margin: 0
+    }
+
+    .svcp .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    .svcp section {
+      padding: 92px 0
+    }
+
+    .svcp .soft {
+      background: linear-gradient(180deg, #F4F8FD, #EFF5FC)
+    }
+
+    .svcp .rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+      max-width: var(--maxw);
+      margin: 0 auto
+    }
+
+    .svcp .wash {
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 760px;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(1100px 460px at 78% -10%, rgba(36, 86, 230, .10), transparent 60%),
+        radial-gradient(760px 420px at 4% 4%, rgba(15, 169, 104, .08), transparent 55%),
+        radial-gradient(900px 500px at 50% -18%, rgba(109, 94, 246, .07), transparent 60%)
+    }
+
+    .svcp main {
+      position: relative;
+      z-index: 1
+    }
+
+    .svcp .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--mono);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin: 0 0 16px
+    }
+
+    .svcp .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--violet))
+    }
+
+    .svcp .sec-head {
+      max-width: 760px;
+      margin-bottom: 46px
+    }
+
+    .svcp .sec-head.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center
+    }
+
+    .svcp .sec-head.center .eyebrow::before {
+      display: none
+    }
+
+    .svcp .sec-head.wide {
+      max-width: 920px
+    }
+
+    .svcp .sec-head h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.75rem);
+      font-weight: 800
+    }
+
+    .svcp .sec-head p {
+      margin-top: 16px;
+      font-size: clamp(1rem, 1.5vw, 1.12rem);
+      color: var(--muted)
+    }
+
+    .svcp .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--bodyf);
+      font-weight: 600;
+      font-size: .97rem;
+      padding: 14px 24px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+      line-height: 1;
+      white-space: nowrap
+    }
+
+    .svcp .btn svg {
+      width: 17px;
+      height: 17px
+    }
+
+    .svcp .btn-primary {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      color: #fff;
+      box-shadow: var(--sh-lg)
+    }
+
+    .svcp .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 48px -18px rgba(36, 86, 230, .5)
+    }
+
+    .svcp .btn-ghost {
+      background: #fff;
+      color: var(--ink);
+      border-color: var(--line)
+    }
+
+    .svcp .btn-ghost:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-2px)
+    }
+
+    .svcp .btn-wa {
+      background: #1FA855;
+      color: #fff
+    }
+
+    .svcp .btn-wa:hover {
+      background: #178a45;
+      transform: translateY(-2px)
+    }
+
+    .svcp .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .6s cubic-bezier(.2, .7, .2, 1), transform .6s cubic-bezier(.2, .7, .2, 1)
+    }
+
+    .svcp .reveal.in {
+      opacity: 1;
+      transform: none
+    }
+
+    .svcp .hero {
+      padding: 118px 0 84px
+    }
+
+    .svcp .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 52px;
+      align-items: center
+    }
+
+    .svcp .hero .eyebrow {
+      color: var(--violet)
+    }
+
+    .svcp .hero .eyebrow::before {
+      background: linear-gradient(90deg, var(--blue), var(--violet))
+    }
+
+    .svcp .hero h1 {
+      font-size: clamp(2.15rem, 4.4vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -.035em;
+      line-height: 1.06
+    }
+
+    .svcp .hero h1 span {
+      background: linear-gradient(120deg, var(--blue), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .svcp .hero-sub {
+      margin-top: 22px;
+      font-size: 1.1rem;
+      color: var(--body);
+      max-width: 56ch
+    }
+
+    .svcp .creds {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 28px 0 4px
+    }
+
+    .svcp .cred {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 8px 14px 8px 8px;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .cred .b {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      flex: 0 0 auto;
+      border: 1px solid rgba(0, 0, 0, .06)
+    }
+
+    .svcp .cred .t {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2
+    }
+
+    .svcp .cred .t i {
+      font-style: normal;
+      font-size: .64rem;
+      font-family: var(--mono);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .svcp .cred .t b {
+      font-size: .82rem;
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    .svcp .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px
+    }
+
+    .svcp .live {
+      margin-top: 18px;
+      font-size: .85rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 9px
+    }
+
+    .svcp .pulse {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 0 0 rgba(15, 169, 104, .5);
+      animation: pulse 2.2s infinite
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(15, 169, 104, .45) }
+      70% { box-shadow: 0 0 0 8px rgba(15, 169, 104, 0) }
+      100% { box-shadow: 0 0 0 0 rgba(15, 169, 104, 0) }
+    }
+
+    .svcp .trust {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 34px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line)
+    }
+
+    .svcp .trust b {
+      display: block;
+      font-family: var(--disp);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1
+    }
+
+    .svcp .trust span {
+      font-size: .74rem;
+      color: var(--muted);
+      margin-top: 6px;
+      display: block
+    }
+
+    .svcp .viewer {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--sh-md);
+      overflow: hidden;
+      position: sticky;
+      top: 90px
+    }
+
+    .svcp .viewer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #fbfcff, #f3f7fe)
+    }
+
+    .svcp .viewer-top .t {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    .svcp .viewer-top .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--mint-deep);
+      background: var(--mint-tint);
+      border: 1px solid #CDEBDB;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+      flex: 0 0 auto
+    }
+
+    .svcp .viewer-top .chip .d {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--mint);
+      animation: pulse 2.2s infinite
+    }
+
+    .svcp #sigcanvas {
+      display: block;
+      width: 100%;
+      height: 236px;
+      background:
+        radial-gradient(520px 200px at 30% 20%, rgba(36, 86, 230, .06), transparent 60%),
+        linear-gradient(180deg, #fbfcff, #f6f9fe)
+    }
+
+    .svcp .modesw {
+      display: flex;
+      gap: 6px;
+      padding: 12px 16px 0
+    }
+
+    .svcp .modesw button {
+      flex: 1;
+      font-family: var(--bodyf);
+      font-weight: 600;
+      font-size: .85rem;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all .18s ease
+    }
+
+    .svcp .modesw button[aria-selected="true"] {
+      background: linear-gradient(180deg, #2E62EF, #1D49CF);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 8px 18px -8px rgba(36, 86, 230, .6)
+    }
+
+    .svcp .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 12px 16px
+    }
+
+    .svcp .metrics>div {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 11px 12px;
+      text-align: center
+    }
+
+    .svcp .metrics b {
+      display: block;
+      font-family: var(--disp);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--ink)
+    }
+
+    .svcp .metrics b.sc-good {
+      color: var(--mint-deep)
+    }
+
+    .svcp .metrics b.sc-bad {
+      color: var(--rose)
+    }
+
+    .svcp .metrics span {
+      font-size: .66rem;
+      color: var(--muted);
+      margin-top: 3px;
+      display: block
+    }
+
+    .svcp .answerbox {
+      margin: 4px 16px 0;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 15px
+    }
+
+    .svcp .answerbox .k {
+      font-family: var(--mono);
+      font-size: .62rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px
+    }
+
+    .svcp .answerbox p {
+      font-size: .9rem;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      min-height: 44px
+    }
+
+    .svcp .citelist {
+      list-style: none;
+      margin: 10px 16px 0;
+      padding: 0;
+      display: grid;
+      gap: 6px
+    }
+
+    .svcp .citelist li {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: .78rem;
+      color: var(--ink-soft);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 8px 11px
+    }
+
+    .svcp .citelist li .src {
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--blue);
+      font-weight: 600
+    }
+
+    .svcp .citelist li .rel {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--mint-deep);
+      background: var(--mint-tint);
+      padding: 2px 7px;
+      border-radius: 6px
+    }
+
+    .svcp .viewer-foot {
+      padding: 12px 16px 16px;
+      font-size: .76rem;
+      color: var(--muted);
+      line-height: 1.5
+    }
+
+    .svcp .comply {
+      background: var(--ink);
+      color: #C7D2E6
+    }
+
+    .svcp .comply-in {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      padding: 0
+    }
+
+    .svcp .comply-in>div {
+      padding: 26px 26px;
+      border-right: 1px solid rgba(255, 255, 255, .08);
+      display: flex;
+      gap: 12px
+    }
+
+    .svcp .comply-in>div:last-child {
+      border-right: 0
+    }
+
+    .svcp .comply-in>div::before {
+      content: "";
+      flex: 0 0 auto;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      margin-top: 6px;
+      background: linear-gradient(135deg, var(--mint), #43D399)
+    }
+
+    .svcp .comply-in span {
+      font-size: .86rem;
+      line-height: 1.5
+    }
+
+    .svcp .comply-in b {
+      display: block;
+      color: #fff;
+      font-family: var(--disp);
+      font-size: .98rem;
+      font-weight: 700;
+      margin-bottom: 3px
+    }
+
+    .svcp .tldr {
+      background: linear-gradient(180deg, #fff, #fbfdff);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--blue);
+      border-radius: var(--r);
+      padding: 28px 30px;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .tldr b {
+      font-family: var(--mono);
+      font-size: .66rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      display: block;
+      margin-bottom: 12px
+    }
+
+    .svcp .tldr p {
+      color: var(--ink-soft);
+      font-size: 1rem;
+      margin-bottom: 16px
+    }
+
+    .svcp .tldr p:last-child {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    .svcp .grid {
+      display: grid;
+      gap: 20px
+    }
+
+    .svcp .g2 {
+      grid-template-columns: repeat(2, 1fr)
+    }
+
+    .svcp .g3 {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .svcp .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 26px;
+      box-shadow: var(--sh-sm);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      position: relative
+    }
+
+    .svcp .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--sh-md);
+      border-color: #D6E1F5
+    }
+
+    .svcp .card h3 {
+      font-size: 1.14rem;
+      font-weight: 700;
+      margin-bottom: 9px
+    }
+
+    .svcp .card p {
+      font-size: .93rem;
+      color: var(--muted)
+    }
+
+    .svcp .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      display: grid;
+      gap: 9px
+    }
+
+    .svcp .card ul li {
+      position: relative;
+      padding-left: 24px;
+      font-size: .87rem;
+      color: var(--ink-soft);
+      line-height: 1.5
+    }
+
+    .svcp .card ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--mint-tint);
+      box-shadow: inset 0 0 0 2px var(--mint)
+    }
+
+    .svcp .card .n {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: .6rem;
+      letter-spacing: .12em;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 7px;
+      margin-bottom: 16px;
+      background: var(--tint);
+      color: var(--blue-strong)
+    }
+
+    .svcp .card .n.build {
+      background: var(--violet-tint);
+      color: #5443D6
+    }
+
+    .svcp .card .n.advise {
+      background: var(--amber-tint);
+      color: #B4610C
+    }
+
+    .svcp .card .n.comply {
+      background: var(--mint-tint);
+      color: var(--mint-deep)
+    }
+
+    .svcp .card.cta-card {
+      background: linear-gradient(160deg, #123, #12224a);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 6px;
+      border: 0
+    }
+
+    .svcp .card.cta-card h3 {
+      color: #fff
+    }
+
+    .svcp .card.cta-card p {
+      color: #AEBEDC;
+      margin-bottom: 8px
+    }
+
+    /* Tables */
+    .svcp .tablewrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--sh-sm);
+      background: #fff
+    }
+
+    .svcp table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px
+    }
+
+    .svcp th,
+    .svcp td {
+      text-align: left;
+      padding: 16px 20px;
+      font-size: .9rem;
+      border-bottom: 1px solid var(--line-soft);
+      vertical-align: top
+    }
+
+    .svcp thead th {
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 600
+    }
+
+    .svcp thead th.col-me {
+      background: #16244a;
+      color: #B7D0FF
+    }
+
+    .svcp tbody th {
+      font-weight: 600;
+      color: var(--ink);
+      font-family: var(--bodyf)
+    }
+
+    .svcp td.col-me,
+    .svcp tbody td.col-me {
+      background: var(--tint);
+      color: var(--ink-soft);
+      font-weight: 500
+    }
+
+    .svcp tr:last-child td,
+    .svcp tr:last-child th {
+      border-bottom: 0
+    }
+
+    .svcp tr.me-row td,
+    .svcp tr.me-row th {
+      background: var(--blue-tint)
+    }
+
+    .svcp tr.me-row td:first-child,
+    .svcp tr.me-row th:first-child {
+      color: var(--blue-strong);
+      font-weight: 700
+    }
+
+    .svcp .callout {
+      margin-top: 26px;
+      background: linear-gradient(135deg, var(--blue-tint), #F3F7FF);
+      border: 1px solid #D3E1FB;
+      border-radius: var(--r);
+      padding: 24px 28px
+    }
+
+    .svcp .callout p:first-child {
+      font-family: var(--disp);
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 1.05rem;
+      margin-bottom: 6px
+    }
+
+    .svcp .callout p {
+      color: var(--ink-soft);
+      font-size: .94rem
+    }
+
+    .svcp .callout.amber {
+      background: linear-gradient(135deg, var(--amber-tint), #FFF8EE);
+      border-color: #F3DDB6
+    }
+
+    /* Process Steps */
+    .svcp .steps {
+      display: grid;
+      gap: 14px
+    }
+
+    .svcp .step {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: var(--sh-sm);
+      overflow: hidden;
+      transition: box-shadow .2s, border-color .2s
+    }
+
+    .svcp .step[open] {
+      box-shadow: var(--sh-md);
+      border-color: #D6E1F5
+    }
+
+    .svcp .step.gate {
+      border-left: 4px solid var(--amber)
+    }
+
+    .svcp .step summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 22px 26px
+    }
+
+    .svcp .step summary::-webkit-details-marker {
+      display: none
+    }
+
+    .svcp .step .num {
+      font-family: var(--mono);
+      font-size: .66rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: var(--blue);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 0 0 96px
+    }
+
+    .svcp .step.gate .num {
+      color: var(--amber)
+    }
+
+    .svcp .step .num .days {
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: .6rem
+    }
+
+    .svcp .step summary h3 {
+      flex: 1;
+      font-size: 1.08rem;
+      font-weight: 700
+    }
+
+    .svcp .step .cv {
+      font-size: 1.6rem;
+      color: var(--blue);
+      font-weight: 300;
+      transition: transform .25s;
+      line-height: 1
+    }
+
+    .svcp .step[open] .cv {
+      transform: rotate(45deg)
+    }
+
+    .svcp .step .body {
+      padding: 0 26px 24px 142px;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    @media(max-width:640px) {
+      .svcp .step .body {
+        padding: 0 22px 22px
+      }
+    }
+
+    /* FAQ */
+    .svcp .faq {
+      max-width: 880px;
+      margin: 0 auto
+    }
+
+    .svcp .faq details {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .faq summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: 1.02rem;
+      color: var(--ink)
+    }
+
+    .svcp .faq summary::-webkit-details-marker {
+      display: none
+    }
+
+    .svcp .faq summary::after {
+      content: "+";
+      font-weight: 300;
+      font-size: 1.5rem;
+      color: var(--blue);
+      transition: transform .25s;
+      flex: 0 0 auto;
+      line-height: 1
+    }
+
+    .svcp .faq details[open] summary::after {
+      transform: rotate(45deg)
+    }
+
+    .svcp .faq .a {
+      padding: 0 24px 22px;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    @media(max-width:980px) {
+      .svcp .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px
+      }
+
+      .svcp .viewer {
+        position: static
+      }
+
+      .svcp .comply-in {
+        grid-template-columns: 1fr
+      }
+
+      .svcp .comply-in>div {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .08)
+      }
+
+      .svcp .comply-in>div:last-child {
+        border-bottom: 0
+      }
+
+      .svcp .g3 {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:640px) {
+      .svcp section {
+        padding: 64px 0
+      }
+
+      .svcp .hero {
+        padding: 104px 0 60px
+      }
+
+      .svcp .trust {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px 10px
+      }
+
+      .svcp .g2,
+      .svcp .g3 {
+        grid-template-columns: 1fr
+      }
+
+      .svcp .metrics {
+        grid-template-columns: repeat(3, 1fr)
+      }
+
+      .svcp .step summary {
+        gap: 12px;
+        padding: 18px 20px
+      }
+
+      .svcp .step .num {
+        flex-basis: 78px
+      }
+
+      .svcp .hero-cta {
+        flex-direction: column
+      }
+
+      .svcp .hero-cta .btn {
+        width: 100%;
+        justify-content: center
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="svcp">
+    <div class="wash"></div>
+    <main>
+
+      <!-- ================= HERO ================= -->
+      <section class="hero" id="demo">
+        <div class="wrap">
+          <div class="hero-grid">
+            <div>
+              <p class="eyebrow">HIPAA-compliant, clinically grounded</p>
+              <h1>RAG chatbot development for healthcare: <span>HIPAA-compliant clinical &amp; patient AI</span></h1>
+              <p class="hero-sub">I design and build production-grade healthcare RAG pipelines and clinical decision support chatbots grounded in your EHR systems, medical guidelines, and clinical notes—with zero PHI exposure, sub-100ms hybrid search, and deterministic safety guardrails.</p>
+
+              <div class="creds">
+                <div class="cred"><span class="b" style="background:#0FA968" title="Experience"><svg width="15"
+                      height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 8v4l3 3" />
+                      <circle cx="12" cy="12" r="9" />
+                    </svg></span><span class="t"><i>Experience</i><b>5+ yrs healthcare AI</b></span></div>
+                <div class="cred"><span class="b" style="background:#2456E6" title="Security"><svg width="15" height="15"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg></span><span class="t"><i>Compliance</i><b>100% HIPAA &amp; BAA ready</b></span></div>
+                <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg width="14" height="14"
+                      viewBox="0 0 24 24" fill="none" stroke="#2456E6" stroke-width="2.4" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" />
+                    </svg></span><span class="t"><i>Turnaround</i><b>48h architecture spec</b></span></div>
+              </div>
+
+              <div class="hero-cta">
+                <a class="btn btn-primary" href="#lets-talk">Discuss your healthcare project <svg fill="none"
+                    stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M5 12h14M13 6l6 6-6 6"></path>
+                  </svg></a>
+                <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
+              </div>
+              <p class="live"><span class="pulse"></span> Zero model training on patient data, BAA signed before any data access</p>
+
+              <div class="trust">
+                <div><b data-count="5" data-suffix="+">0+</b><span>Years building healthcare AI</span></div>
+                <div><b data-count="100" data-suffix="%">0%</b><span>HIPAA &amp; PHI audit compliance</span></div>
+                <div><b>48h</b><span>To a written technical spec</span></div>
+              </div>
+            </div>
+
+            <!-- ===== SIGNATURE: Interactive Clinical Grounding & PHI Simulator ===== -->
+            <div class="viewer">
+              <div class="viewer-top">
+                <span class="t">clinical grounding preview, illustrative</span>
+                <span class="chip"><span class="d"></span>live simulation</span>
+              </div>
+              <canvas id="sigcanvas" aria-label="Clinical grounding flow simulation showing query de-identification, FHIR retrieval, vector search, and grounded response generation."></canvas>
+              <div class="modesw" role="tablist" aria-label="Clinical workflow">
+                <button role="tab" aria-selected="true" data-m="ehr" type="button">Clinical Notes &amp; EHR</button>
+                <button role="tab" aria-selected="false" data-m="guide" type="button">Medical Guidelines</button>
+                <button role="tab" aria-selected="false" data-m="rx" type="button">Formularies &amp; Rx</button>
+              </div>
+              <div class="metrics">
+                <div><b id="m1" class="sc-good">Active</b><span id="m1l">PHI Masking</span></div>
+                <div><b id="m2">100%</b><span id="m2l">Source Traceable</span></div>
+                <div><b id="m3" class="sc-good">Zero</b><span id="m3l">Hallucination Risk</span></div>
+              </div>
+              <div class="answerbox">
+                <span class="k">Grounded clinical output</span>
+                <p id="answer"></p>
+              </div>
+              <ul class="citelist" id="citelist"></ul>
+              <div class="viewer-foot" id="foot">Every response is strictly grounded in verified medical documents and de-identified patient data before generation.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= COMPLY STRIP ================= -->
+      <div class="comply">
+        <div class="wrap comply-in">
+          <div><span><b>100% HIPAA &amp; BAA compliant</b>Private VPC and on-premise deployments with zero data retention on model providers.</span></div>
+          <div><span><b>De-identified PHI processing</b>Automatic scrubbing of 18 HIPAA identifiers at the ingestion and query boundaries.</span></div>
+          <div><span><b>Evidence-backed citations</b>Every clinical recommendation cites specific medical guidelines, lab reports, or formulary entries.</span></div>
+          <div><span><b>Deterministic guardrails</b>Strict confidence thresholds with automatic clinician escalation for out-of-domain queries.</span></div>
+        </div>
+      </div>
+
+      <!-- ================= WHAT IS HEALTHCARE RAG ================= -->
+      <section id="what-is">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">Plain answer</p>
+            <h2>What is a RAG chatbot for healthcare?</h2>
+          </div>
+          <div class="tldr reveal">
+            <b>Definition</b>
+            <p>A healthcare RAG (Retrieval-Augmented Generation) chatbot is an AI system that combines medical-grade language models with a secure, real-time knowledge retrieval engine. It extracts relevant context from EHR records, clinical guidelines, radiology reports, and drug formularies before generating an answer. By grounding every response in verifiable medical sources, it eliminates hallucinations, maintains strict HIPAA compliance, and provides doctors and patients with evidence-backed answers.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- ================= SERVICES ================= -->
+      <section id="services">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">What I build</p>
+            <h2>Healthcare RAG development services</h2>
+            <p>Custom, HIPAA-compliant retrieval pipelines and conversational AI assistants built specifically for medical systems.</p>
+          </div>
+          <div class="grid g3 reveal">
+            <div class="card"><span class="n build">BUILD</span>
+              <h3>Clinical Decision Support Chatbots</h3>
+              <p>Physician-facing assistants that retrieve and cross-reference institutional protocols, PubMed literature, and UpToDate guidelines in seconds.</p>
+            </div>
+            <div class="card"><span class="n build">BUILD</span>
+              <h3>Patient Intake &amp; Triage Assistants</h3>
+              <p>24/7 patient-facing symptom intake chatbots that collect histories, match with clinical triage protocols, and route emergency cases immediately.</p>
+            </div>
+            <div class="card"><span class="n build">BUILD</span>
+              <h3>EHR &amp; Medical Record Q&amp;A (FHIR)</h3>
+              <p>Multi-document synthesis across longitudinal patient records, lab histories, and doctor notes using HL7/FHIR compliant retrieval pipelines.</p>
+            </div>
+            <div class="card"><span class="n build">BUILD</span>
+              <h3>Formulary &amp; Prescription Checkers</h3>
+              <p>Real-time drug-to-drug interaction checkers and insurance formulary lookup tools that help prescribers select covered, compatible medications.</p>
+            </div>
+            <div class="card"><span class="n advise">AUDIT</span>
+              <h3>Healthcare AI Red-Teaming &amp; Audits</h3>
+              <p>Rigorous evaluations for clinical accuracy, PHI leak vulnerabilities, prompt injection resistance, and hallucination boundary enforcement.</p>
+            </div>
+            <div class="card cta-card">
+              <h3>Need custom medical AI architecture?</h3>
+              <p>Try the clinical simulator widget above, or book a discovery session to scope your exact EHR integration.</p>
+              <a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Talk to an AI engineer</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- ================= CONSULTANT VS AGENCY ================= -->
+      <section class="soft" id="vs-agency">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">Direct access vs agency</p>
+            <h2>Independent healthcare AI engineer vs agency</h2>
+          </div>
+          <div class="tablewrap reveal">
+            <table>
+              <thead>
+                <tr>
+                  <th>Factor</th>
+                  <th class="col-me">Independent Healthcare AI Engineer (me)</th>
+                  <th>Generalist AI Outsourcing Agency</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Clinical &amp; PHI expertise</th>
+                  <td class="col-me">Direct specialization in HIPAA Safe Harbor, FHIR, and clinical RAG</td>
+                  <td>Generalist developers rotated across unrelated commercial verticals</td>
+                </tr>
+                <tr>
+                  <th scope="row">Security &amp; BAA accountability</th>
+                  <td class="col-me">Direct engineer signing BAA; zero third-party subcontractor exposure</td>
+                  <td>Complex subcontractor chains increasing data breach liability</td>
+                </tr>
+                <tr>
+                  <th scope="row">Deployment speed</th>
+                  <td class="col-me">Functional clinical POC in 2 to 3 weeks; production in 6 to 8 weeks</td>
+                  <td>3 to 6 months weighed down by account managers and discovery layers</td>
+                </tr>
+                <tr>
+                  <th scope="row">Cost structure</th>
+                  <td class="col-me">Transparent milestone pricing without agency overhead markups</td>
+                  <td>High monthly retainer overhead with billable hours for project managers</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout reveal">
+            <p>Direct access guarantees higher compliance rigor</p>
+            <p>In healthcare, a misconfigured vector chunk or unmasked PHI field can result in severe HIPAA violations. Working directly with the engineer writing the ingestion and retrieval code gives your clinical leadership complete architectural clarity and unbroken communication.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= USE CASES / SOLUTIONS ================= -->
+      <section id="use-cases">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">Industry context</p>
+            <h2>Where healthcare organizations deploy RAG</h2>
+            <p>Proven architectures tailored to hospitals, digital health platforms, and medical research institutes.</p>
+          </div>
+          <div class="grid g2 reveal">
+            <div class="card">
+              <span class="n comply">HOSPITALS &amp; HEALTH SYSTEMS</span>
+              <h3>Inpatient Triage &amp; Clinical Protocols</h3>
+              <p>Instant clinician lookup for ICU protocols, infection control guidelines, and post-op care steps without leaving the electronic chart.</p>
+              <ul>
+                <li>Integrated with Epic / Cerner via FHIR APIs</li>
+                <li>Clinician audit trail for every synthesized recommendation</li>
+                <li>Zero-retention local embedding models</li>
+              </ul>
+            </div>
+            <div class="card">
+              <span class="n comply">TELEHEALTH &amp; DIGITAL HEALTH</span>
+              <h3>Patient Intake &amp; Asynchronous Triage</h3>
+              <p>Automating intake questionnaires, extracting structured medical history, and pre-populating doctor consultation summaries.</p>
+              <ul>
+                <li>Automated 18-element PHI scrubber before LLM ingestion</li>
+                <li>24/7 symptom categorization and emergency flag triggers</li>
+                <li>Patient-friendly explanations of lab results and vitals</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- ================= PROCESS ================= -->
+      <section class="soft" id="process">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">How it gets built</p>
+            <h2>Healthcare RAG implementation process</h2>
+          </div>
+          <div class="steps reveal">
+            <details class="step" open>
+              <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
+                <h3>Clinical Discovery &amp; PHI Scoping</h3><span class="cv">+</span>
+              </summary>
+              <div class="body">Reviewing medical data sources, EHR integration endpoints, user roles, and HIPAA compliance requirements.</div>
+            </details>
+            <details class="step">
+              <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
+                <h3>Architecture &amp; Security Spec</h3><span class="cv">+</span>
+              </summary>
+              <div class="body">Delivering a written blueprint covering de-identification strategy, vector database isolation, and clinician escalation rules.</div>
+            </details>
+            <details class="step gate">
+              <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
+                <h3>Pipeline Build &amp; Masking Engine</h3><span class="cv">+</span>
+              </summary>
+              <div class="body">Building ingestion workers, FHIR connectors, embedding indexers, and confidence threshold guardrails.</div>
+            </details>
+            <details class="step">
+              <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
+                <h3>Clinical Evaluation &amp; Red-Teaming</h3><span class="cv">+</span>
+              </summary>
+              <div class="body">Testing against real medical query sets (MedQA/RAGAS benchmarks), validating citation accuracy, and verifying PHI zero-leakage.</div>
+            </details>
+            <details class="step">
+              <summary><span class="num">PHASE 05<span class="days">handoff</span></span>
+                <h3>Production Deployment &amp; Monitoring</h3><span class="cv">+</span>
+              </summary>
+              <div class="body">Deploying to your private VPC/on-premise servers with real-time audit logging, latency tracking, and support window.</div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= WHEN NOT HEALTHCARE RAG ================= -->
+      <section id="when-not">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">Clinical boundaries</p>
+            <h2>When a RAG chatbot is NOT the right choice</h2>
+          </div>
+          <div class="callout amber reveal" style="margin-top:0">
+            <p>Safety-first engineering in healthcare AI</p>
+            <p>A RAG chatbot is designed for clinical decision support, information retrieval, and patient navigation. It must <strong>never</strong> be deployed as an autonomous, unsupervised diagnostic authority for acute life-threatening emergencies. Any system offering medical guidance must enforce human-in-the-loop validation and unambiguous clinician oversight.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PRICING ================= -->
+      <section class="soft" id="pricing">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">Investment</p>
+            <h2>Pricing</h2>
+          </div>
+          <div class="tablewrap reveal">
+            <table>
+              <thead>
+                <tr>
+                  <th>Engagement type</th>
+                  <th class="col-me">What's included</th>
+                  <th>Typical investment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>HIPAA RAG Proof-of-Concept</td>
+                  <td class="col-me">De-identified retrieval pipeline on sample EHR/guidelines, safety eval report</td>
+                  <td>$2,500 to $6,000</td>
+                </tr>
+                <tr class="me-row">
+                  <td>Production Clinical RAG System</td>
+                  <td class="col-me">Full pipeline, FHIR integration, PHI scrubber, guardrails, VPC deployment</td>
+                  <td>$12,000 to $45,000</td>
+                </tr>
+                <tr>
+                  <td>Healthcare AI Safety Audit</td>
+                  <td class="col-me">Red-teaming for hallucination, prompt injection, and PHI exposure risks</td>
+                  <td>$2,000 to $5,000</td>
+                </tr>
+                <tr>
+                  <td>Hourly Medical AI Consulting</td>
+                  <td class="col-me">Architecture review, HIPAA compliance planning, retrieval strategy</td>
+                  <td>$100 to $200/hr</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Delivered projects include AI clinical feedback categorization and automated medical literature synthesis. Full case studies at <a href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
+        </div>
+      </section>
+
+      <!-- ================= FAQ ================= -->
+      <section id="faq">
+        <div class="wrap">
+          <div class="sec-head center reveal">
+            <p class="eyebrow">FAQ</p>
+            <h2>Frequently asked questions</h2>
+          </div>
+          <div class="faq reveal">
+            <details open>
+              <summary>How do you ensure HIPAA compliance in healthcare RAG systems?</summary>
+              <div class="a">HIPAA compliance is built into the architecture: automatic de-identification of all 18 PHI identifiers before embedding, isolated private VPC or on-premise deployments, end-to-end encryption at rest and in transit, zero data retention agreements with model providers, and signed BAAs.</div>
+            </details>
+            <details>
+              <summary>Can the RAG chatbot integrate with EHR systems like Epic or Cerner?</summary>
+              <div class="a">Yes. Retrieval pipelines connect via HL7/FHIR APIs and secure database connectors, pulling relevant clinical notes, lab results, and patient histories in real time while respecting role-based access control (RBAC).</div>
+            </details>
+            <details>
+              <summary>How does the system prevent medical hallucinations?</summary>
+              <div class="a">The system applies strict semantic chunking, cross-encoder reranking, and deterministic prompt constraints requiring exact citations from approved medical guidelines. When query confidence falls below a strict threshold, it triggers a defensive fallback with human clinician escalation.</div>
+            </details>
+            <details>
+              <summary>Do I need an agency or can an independent AI engineer build this?</summary>
+              <div class="a">Working directly with a specialized independent engineer ensures direct accountability, deeper compliance oversight, and 2-3x faster deployment without paying for agency account management layers.</div>
+            </details>
+            <details>
+              <summary>How much does a healthcare RAG chatbot cost to build?</summary>
+              <div class="a">A scoped HIPAA proof-of-concept starts at $2,500 to $6,000. A full production clinical RAG chatbot with EHR integration, guardrails, and compliance audits typically ranges from $12,000 to $45,000.</div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var page = document.querySelector('.svcp');
+      if (!page) return;
+
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+      page.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+      function countUp(el) {
+        var target = parseFloat(el.dataset.count), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+        var t0 = null, dur = 1300;
+        function step(ts) {
+          if (!t0) t0 = ts; var p = Math.min((ts - t0) / dur, 1); var e = 1 - Math.pow(1 - p, 3);
+          el.textContent = pre + Math.round(target * e) + suf; if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      var cio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } });
+      }, { threshold: .6 });
+      page.querySelectorAll('[data-count]').forEach(function (el) { cio.observe(el); });
+
+      page.querySelectorAll('.faq details').forEach(function (d) {
+        d.addEventListener('toggle', function () { if (d.open) { page.querySelectorAll('.faq details').forEach(function (o) { if (o !== d) o.open = false; }); } });
+      });
+    })();
+
+    (function () {
+      var page = document.querySelector('.svcp');
+      var canvas = document.getElementById('sigcanvas'), ctx = canvas.getContext('2d');
+      var workflow = 'ehr', t = 0, raf = null;
+
+      var workflows = {
+        ehr: {
+          q: 'Patient Discharge: Post-Op Care & Drug Interactions',
+          a: 'Per <b>Post-Op Cardiology Protocol v4</b> and <b>FHIR Patient Encounter #419</b>, patient [DE-IDENTIFIED] is prescribed Metoprolol 50mg BID. No contraindications found with current Lisinopril therapy. Patient scheduled for wound check in 7 days.',
+          cites: [['epic_fhir_encounter_419.json', '0.97'], ['cardiology_discharge_v4.pdf', '0.94'], ['drug_interaction_matrix.csv', '0.91']],
+          m1: '100% PHI Scrubbed', m2: '3 FHIR Nodes', m3: 'Zero'
+        },
+        guide: {
+          q: 'Clinical Protocol: STEMI Management in Triage',
+          a: 'According to <b>AHA/ACC STEMI Guidelines 2026</b>, initiate aspirin 325mg non-enteric chewable, high-flow O2 if SaO2 &lt; 90%, and acquire 12-lead ECG within 10 minutes of arrival. Immediate cath lab activation required for ST elevation &gt; 1mm in 2 contiguous leads.',
+          cites: [['aha_acc_stemi_2026.pdf', '0.99'], ['triage_escalation_sop.pdf', '0.95'], ['emergency_formulary.json', '0.89']],
+          m1: 'Non-PHI Protocol', m2: '4 Guidelines', m3: 'Zero'
+        },
+        rx: {
+          q: 'Formulary Check: Anticoagulant Prior Auth & Dosage',
+          a: 'Per <b>Hospital Tier-1 Formulary</b>, Apixaban (Eliquis) 5mg BID is preferred for non-valvular atrial fibrillation without prior authorization. Dose reduction to 2.5mg BID required if patient meets &ge; 2 criteria: age &ge; 80, weight &le; 60kg, serum creatinine &ge; 1.5 mg/dL.',
+          cites: [['hospital_formulary_2026.pdf', '0.98'], ['anticoagulation_dosing.pdf', '0.96'], ['payer_prior_auth_rules.csv', '0.88']],
+          m1: 'Formulary Grounded', m2: '3 Formularies', m3: 'Zero'
+        }
+      };
+
+      function resize() {
+        var r = canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = r.width * d; canvas.height = r.height * d;
+        ctx.setTransform(d, 0, 0, d, 0, 0);
+      }
+
+      var nodes = [
+        { x: .12, y: .5, label: 'Query / EHR' },
+        { x: .38, y: .5, label: 'PHI De-ID Gateway' },
+        { x: .65, y: .32, label: 'Clinical Vector DB' },
+        { x: .65, y: .68, label: 'FHIR / EHR Store' },
+        { x: .88, y: .5, label: 'Verified AI Output' }
+      ];
+
+      function draw() {
+        var r = canvas.getBoundingClientRect(), W = r.width, H = r.height;
+        ctx.clearRect(0, 0, W, H);
+
+        ctx.strokeStyle = 'rgba(36,86,230,.06)'; ctx.lineWidth = 1;
+        for (var gx = 0; gx <= W; gx += W / 8) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
+        for (var gy = 0; gy <= H; gy += H / 4) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
+
+        // Connecting lines
+        ctx.strokeStyle = 'rgba(36,86,230,.22)'; ctx.lineWidth = 1.6;
+        ctx.beginPath(); ctx.moveTo(nodes[0].x * W, nodes[0].y * H); ctx.lineTo(nodes[1].x * W, nodes[1].y * H); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(nodes[1].x * W, nodes[1].y * H); ctx.lineTo(nodes[2].x * W, nodes[2].y * H); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(nodes[1].x * W, nodes[1].y * H); ctx.lineTo(nodes[3].x * W, nodes[3].y * H); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(nodes[2].x * W, nodes[2].y * H); ctx.lineTo(nodes[4].x * W, nodes[4].y * H); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(nodes[3].x * W, nodes[3].y * H); ctx.lineTo(nodes[4].x * W, nodes[4].y * H); ctx.stroke();
+
+        // Pulsing data packets
+        var p1 = (t * .015) % 1;
+        ctx.beginPath();
+        ctx.arc(nodes[0].x * W + (nodes[1].x - nodes[0].x) * W * p1, nodes[0].y * H, 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#0FA968'; ctx.fill();
+
+        var p2 = (t * .015 + .3) % 1;
+        ctx.beginPath();
+        ctx.arc(nodes[1].x * W + (nodes[2].x - nodes[1].x) * W * p2, nodes[1].y * H + (nodes[2].y - nodes[1].y) * H * p2, 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#2456E6'; ctx.fill();
+
+        var p3 = (t * .015 + .6) % 1;
+        ctx.beginPath();
+        ctx.arc(nodes[2].x * W + (nodes[4].x - nodes[2].x) * W * p3, nodes[2].y * H + (nodes[4].y - nodes[2].y) * H * p3, 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#6D5EF6'; ctx.fill();
+
+        // Draw Nodes
+        nodes.forEach(function (n, idx) {
+          var nx = n.x * W, ny = n.y * H;
+          ctx.beginPath(); ctx.arc(nx, ny, idx === 1 ? 14 : 11, 0, Math.PI * 2);
+          ctx.fillStyle = idx === 1 ? 'rgba(15,169,104,.15)' : 'rgba(36,86,230,.12)'; ctx.fill();
+
+          ctx.beginPath(); ctx.arc(nx, ny, idx === 1 ? 7 : 5.5, 0, Math.PI * 2);
+          ctx.fillStyle = idx === 1 ? '#0FA968' : (idx === 4 ? '#6D5EF6' : '#2456E6'); ctx.fill();
+
+          ctx.fillStyle = '#48566E'; ctx.font = '600 10px "IBM Plex Mono",monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText(n.label, nx, ny + (idx === 2 ? -14 : 20));
+        });
+
+        t += 1; raf = requestAnimationFrame(draw);
+      }
+
+      function update() {
+        var d = workflows[workflow];
+        var m1 = document.getElementById('m1'), m2 = document.getElementById('m2'), m3 = document.getElementById('m3');
+        var cl = document.getElementById('citelist'), ans = document.getElementById('answer');
+        document.querySelector('.viewer-top .t').textContent = d.q;
+
+        ans.innerHTML = d.a;
+        m1.textContent = d.m1;
+        m2.textContent = d.m2;
+        m3.textContent = d.m3;
+
+        cl.innerHTML = d.cites.map(function (c) {
+          return '<li><span class="src">' + c[0] + '</span> <span class="rel">rel ' + c[1] + '</span></li>';
+        }).join('');
+      }
+
+      page.querySelectorAll('.modesw [role="tab"]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          page.querySelectorAll('.modesw [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
+          b.setAttribute('aria-selected', 'true'); workflow = b.dataset.m; t = 0; update();
+        });
+      });
+
+      window.addEventListener('resize', resize);
+      resize(); update();
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(); } else { draw(); cancelAnimationFrame(raf); }
+    })();
+  </script>
+</body>
+
+</html>

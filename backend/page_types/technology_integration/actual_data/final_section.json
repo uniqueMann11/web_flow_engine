@@ -1,0 +1,144 @@
+{
+  "process": {
+    "sec-head": {
+      "eyebrow": "How it gets built",
+      "h2": "Process"
+    },
+    "steps": [
+      {
+        "step": {
+          "num": "PHASE 01",
+          "days": "days 1 to 2",
+          "h3": "Discovery",
+          "body": "Understanding what the agent or pipeline needs to do, what tools or data it needs access to, and what \"working correctly\" looks like."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 02",
+          "days": "within 48h",
+          "h3": "Architecture spec",
+          "body": "A written spec covering state graph design, retrieval strategy, and tool integrations, delivered within 48 hours."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 03",
+          "days": "the decisive one",
+          "h3": "Build in milestones",
+          "body": "Core logic first, then tool integrations, then edge-case handling and guardrails."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 04",
+          "days": "before launch",
+          "h3": "Testing & evaluation",
+          "body": "Testing against realistic scenarios, including tool failures and edge cases."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 05",
+          "days": "handoff",
+          "h3": "Deployment & monitoring",
+          "body": "Production deployment with logging and tracing (LangSmith or equivalent) for full visibility into agent behavior."
+        }
+      }
+    ]
+  },
+  "when-not": {
+    "sec-head": {
+      "eyebrow": "Honest tool selection",
+      "h2": "When LangChain is not the right choice"
+    },
+    "callout": {
+      "p": [
+        "Direct architectural honesty upfront",
+        "Part of a proper LangChain engagement is an honest assessment of whether LangChain is even the right tool for your specific problem. If your actual need is narrower, purely high-quality document retrieval with no agentic behavior, LlamaIndex alone may be a simpler, lower-overhead choice. See the RAG framework development services page for the fuller comparison."
+      ]
+    }
+  },
+  "pricing": {
+    "sec-head": {
+      "eyebrow": "Investment",
+      "h2": "Pricing"
+    },
+    "tablewrap": {
+      "thead": [
+        "Engagement type",
+        "What's included",
+        "Typical investment"
+      ],
+      "tbody": [
+        {
+          "td": [
+            "Single tool/agent integration",
+            "One scoped agent or tool-calling workflow",
+            "$2,000 to $6,000"
+          ]
+        },
+        {
+          "td": [
+            "Full agentic system",
+            "Multi-step agent with state, tools, memory, guardrails",
+            "$8,000 to $30,000+"
+          ]
+        },
+        {
+          "td": [
+            "LangChain system audit",
+            "Review and improvement plan for an existing implementation",
+            "$1,000 to $3,000"
+          ]
+        },
+        {
+          "td": [
+            "Hourly consulting",
+            "Architecture review, debugging support",
+            "$75 to $150/hr"
+          ]
+        }
+      ]
+    },
+    "p": "Retrieval and generation-grounded systems built using this class of architecture include the AI Customer Feedback Classification pipeline and AI Video Summarizer. Full case studies at shreyans.tech/ai-case-studies."
+  },
+  "faq": {
+    "sec-head": {
+      "eyebrow": "FAQ",
+      "h2": "Frequently asked questions"
+    },
+    "faq": [
+      {
+        "faq-item": {
+          "faq-q": "What is the difference between LangChain and LangGraph?",
+          "faq-a": "LangChain is the broader framework providing composable building blocks. LangGraph is LangChain's graph-based agent framework, built for multi-step, stateful agent workflows with explicit control flow and checkpointing. For anything beyond a simple single-shot chain, LangGraph is the standard production approach."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "Do I need a LangChain agency, or can a freelance consultant handle my project?",
+          "faq-a": "Most LangChain projects are well within scope for a single experienced developer. An agency's advantage becomes relevant when a project needs multiple specialists across disciplines working simultaneously on a larger product."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "How much do LangChain development services cost?",
+          "faq-a": "A single scoped tool or agent integration typically runs $2,000 to $6,000. A full agentic system ranges from $8,000 to $30,000+ depending on complexity. Hourly consulting runs $75 to $150/hr."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "Is LangChain free to use?",
+          "faq-a": "Yes, LangChain and LangGraph are open-source and free under the MIT license. LangSmith, LangChain's observability platform, has a free tier with paid plans starting around $39/month per seat."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "When should I NOT use LangChain?",
+          "faq-a": "If your use case is purely high-quality document retrieval with no agentic or multi-step behavior needed, LlamaIndex alone is often a simpler, lower-overhead choice. LangChain earns its complexity when you need tool use, state management, or multi-step reasoning."
+        }
+      }
+    ]
+  }
+}

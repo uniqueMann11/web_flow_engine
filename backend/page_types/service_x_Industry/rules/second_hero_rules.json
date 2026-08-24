@@ -2,44 +2,49 @@
   "comply": {
     "comply-in": [
       {
-        "b": "Engineering principle or commitment title (e.g., 'Explicit state, not hidden', 'Tool failures handled'). Max 4-5 words.",
-        "span": "Technical explanation of the guarantee or practice. Max 1-2 sentences."
+        "b": "Core value proposition / compliance headline (e.g., '100% HIPAA & BAA compliant'). Max 5 words.",
+        "span": "Supporting explanation of technical integrity, data isolation, citation grounding, or deterministic guardrails. Max 18 words."
       }
     ]
   },
   "what-is": {
     "sec-head": {
-      "eyebrow": "Eyebrow label (e.g., 'Plain answer'). Max 3 words.",
-      "h2": "Direct question heading (e.g., 'What is LangChain?')."
+      "eyebrow": "Section eyebrow tag (e.g., 'Plain answer'). Max 3 words.",
+      "h2": "Direct question defining the service for the industry (e.g., 'What is a RAG chatbot for healthcare?'). Max 8 words."
     },
     "tldr": {
-      "b": "Tag label (e.g., 'Quick answer').",
+      "b": "Definition label (e.g., 'Definition').",
       "p": [
-        "Concise, authoritative explanation of the framework or core technology, its architecture (LCEL, LangGraph), capabilities, and ecosystem adoption. Exactly 2-3 sentences."
+        "Rigorous technical definition explaining the query-time retrieval mechanism over industry-specific documents, data protection safeguards, and why it prevents model hallucination without expensive model retraining. Exactly 1 paragraph."
       ]
     }
   },
   "vs-agency": {
     "sec-head": {
-      "eyebrow": "Eyebrow label (e.g., 'The honest comparison'). Max 3 words.",
-      "h2": "Comparison heading (e.g., 'LangChain consultant vs LangChain agency')."
+      "eyebrow": "Comparison eyebrow tag (e.g., 'Direct access vs agency'). Max 4 words.",
+      "h2": "Comparison heading (e.g., 'Independent healthcare AI engineer vs agency'). Max 7 words."
     },
     "tablewrap": {
       "thead": [
         "Header 1 (e.g., 'Factor')",
-        "Header 2 (e.g., 'Independent LangChain consultant (me)')",
-        "Header 3 (e.g., 'LangChain development agency')"
+        "Header 2 (e.g., 'Independent Healthcare AI Engineer (me)')",
+        "Header 3 (e.g., 'Generalist AI Outsourcing Agency')"
       ],
       "tbody": [
         {
-          "th": "Comparison dimension (e.g., 'Cost', 'Who builds it', 'Best for', 'Start time').",
+          "th": "Comparison dimension name (e.g., 'Clinical & PHI expertise', 'Security & BAA accountability', 'Deployment speed', 'Cost structure')",
           "td": [
-            "Assessment for Independent Consultant (direct access, speed, lower overhead).",
-            "Assessment for Development Agency (team overhead, management layer)."
+            "Independent specialized engineer advantage",
+            "Generalist agency drawback"
           ]
         }
       ]
     },
-    "p": "Contextual paragraph explaining when a direct senior developer is optimal vs when a full multi-disciplinary agency is required. Exactly 2 sentences."
+    "callout": {
+      "p": [
+        "Callout headline (e.g., 'Direct access guarantees higher compliance rigor'). Max 6 words.",
+        "Callout detailed explanation explaining why direct technical ownership eliminates handoff errors in regulated industries. Exactly 2 sentences."
+      ]
+    }
   }
 }

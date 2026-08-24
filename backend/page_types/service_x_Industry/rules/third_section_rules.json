@@ -1,40 +1,47 @@
 {
   "services": {
     "sec-head": {
-      "eyebrow": "Eyebrow label (e.g., 'What I build'). Max 3 words.",
-      "h2": "Services section heading (e.g., 'LangChain development services')."
+      "eyebrow": "Services eyebrow tag (e.g., 'What I build'). Max 3 words.",
+      "h2": "Services section heading (e.g., 'Healthcare RAG development services'). Max 5 words.",
+      "p": "Explanation of modular engineering layers and verifiable deliverables for the industry. Exactly 1 sentence."
     },
     "grid g3": [
       {
         "card": {
-          "n": "Service type badge (e.g., 'BUILD', 'AUDIT', 'OPTIMIZE'). 1 word uppercase.",
-          "h3": "Service offering title (e.g., 'RAG pipeline development', 'Multi-step agent development (LangGraph)').",
-          "p": "Detailed service description explaining the technical stack, state graphs, tools, and business deliverable. Exactly 1-2 sentences."
+          "n": "Action badge (e.g., 'BUILD', 'AUDIT', 'ADVISE'). Max 1 word.",
+          "h3": "Deliverable service name (e.g., 'Clinical Decision Support Chatbots', 'Patient Intake & Triage Assistants', 'EHR & Medical Record Q&A (FHIR)', 'Formulary & Prescription Checkers', 'Healthcare AI Red-Teaming & Audits'). Max 5 words.",
+          "p": "Comprehensive description of technical tasks, tooling choices, and performance impact for this service in the industry. Exactly 1-2 sentences."
         }
       },
       {
         "card cta-card": {
-          "h3": "CTA card headline addressing decision hesitation (e.g., 'Not sure LangChain is right?').",
-          "p": "Supportive offer text providing honest assessment before commitment.",
+          "h3": "CTA prompt (e.g., 'Need custom medical AI architecture?'). Max 5 words.",
+          "p": "Call to action text directing the user to explore the interactive demo or book a call. Exactly 1 sentence.",
           "btn-primary": {
-            "text": "CTA button label (e.g., 'Get an honest assessment'). Max 4 words.",
+            "text": "CTA button text (e.g., 'Talk to an AI engineer'). Max 4 words.",
             "url": "Anchor link (e.g., '#lets-talk')."
           }
         }
       }
     ]
   },
-  "engagement": {
+  "use-cases": {
     "sec-head": {
-      "eyebrow": "Eyebrow label (e.g., 'How we work together'). Max 4 words.",
-      "h2": "Section heading (e.g., 'Engagement models')."
+      "eyebrow": "Context eyebrow tag (e.g., 'Industry context'). Max 3 words.",
+      "h2": "Use-cases heading (e.g., 'Where healthcare organizations deploy RAG'). Max 6 words.",
+      "p": "Explanation of tailored deployment environments across industry verticals. Exactly 1 sentence."
     },
-    "grid g3": [
+    "grid g2": [
       {
         "card": {
-          "n": "Engagement model badge (e.g., 'PROJECT-BASED', 'HOURLY', 'RETAINER'). 1-2 words uppercase.",
-          "h3": "Engagement tier name (e.g., 'Fixed-price, milestone-based', 'Consulting', 'Dedicated monthly').",
-          "p": "Brief description of who this model is best suited for and scope. Exactly 1 sentence."
+          "n": "Industry sub-vertical badge (e.g., 'HOSPITALS & HEALTH SYSTEMS', 'TELEHEALTH & DIGITAL HEALTH'). Max 4 words.",
+          "h3": "Solution title (e.g., 'Inpatient Triage & Clinical Protocols', 'Patient Intake & Asynchronous Triage'). Max 5 words.",
+          "p": "Use case operational summary explaining the impact on workflows and efficiency. Exactly 1 sentence.",
+          "ul": [
+            "Technical bullet 1 (e.g., API/EHR integration)",
+            "Technical bullet 2 (e.g., Compliance/auditing standard)",
+            "Technical bullet 3 (e.g., Model privacy/security feature)"
+          ]
         }
       }
     ]

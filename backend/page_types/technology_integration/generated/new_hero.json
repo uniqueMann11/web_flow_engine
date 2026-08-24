@@ -1,0 +1,59 @@
+{
+  "hero": {
+    "eyebrow": "Throughput-optimized, not just deployed",
+    "h1": {
+      "h1": "vLLM deployment services:",
+      "span": "maximize GPU serving throughput"
+    },
+    "hero-sub": "vLLM has become the default inference engine for serving large language models in production, delivering up to 24x higher throughput than baseline transformers through PagedAttention and continuous batching. I deploy this correctly: optimized for your hardware, your model, and your cost per token, not a generic container that leaves GPU cycles on the table.",
+    "creds": [
+      {
+        "cred": {
+          "i": "Experience",
+          "b": "3+ yrs vLLM deployments"
+        }
+      },
+      {
+        "cred": {
+          "i": "Access",
+          "b": "Direct, no account manager"
+        }
+      },
+      {
+        "cred": {
+          "i": "Turnaround",
+          "b": "48h throughput benchmark"
+        }
+      }
+    ],
+    "hero-cta": [
+      {
+        "btn-primary": {
+          "text": "Talk to a vLLM engineer",
+          "url": "#lets-talk"
+        }
+      },
+      {
+        "btn-ghost": {
+          "text": "View deployment cases",
+          "url": "/ai-case-studies"
+        }
+      }
+    ],
+    "live": "Honest read included: whether vLLM is the right serving solution for your throughput and cost goals.",
+    "trust": [
+      {
+        "b": "38K+",
+        "span": "GitHub stars, vLLM"
+      },
+      {
+        "b": "24x",
+        "span": "Higher throughput vs baseline"
+      },
+      {
+        "b": "48h",
+        "span": "To a throughput benchmark report"
+      }
+    ]
+  }
+}

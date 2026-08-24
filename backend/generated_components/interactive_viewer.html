@@ -1,611 +1,269 @@
 <style>
 .viewer {
-    width: 100%;
-    max-width: 520px;
-    box-sizing: border-box;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--r);
-    box-shadow: var(--sh-md);
-    overflow: hidden;
-    font-family: var(--bodyf);
-    color: var(--body);
+  font-family: var(--bodyf);
+  width: 100%;
+  max-width: 520px;
+  box-sizing: border-box;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--sh-md);
+  overflow: hidden;
 }
 .viewer .vw-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--line-soft);
-    gap: 10px;
-    flex-wrap: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line-soft);
 }
-.viewer .vw-heading {
-    font-family: var(--disp);
-    font-size: 0.88rem;
-    font-weight: 700;
-    color: var(--ink);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    line-height: 1.3;
+.viewer .vw-top .t {
+  font-family: var(--disp);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
-.viewer .vw-heading svg {
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-    color: var(--blue);
+.viewer .vw-top .t svg { width: 16px; height: 16px; color: var(--blue); }
+.viewer .vw-status-badge {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s;
 }
-.viewer .vw-badge {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 999px;
-    background: var(--blue-tint);
-    color: var(--blue);
-    border: 1px solid rgba(36, 86, 230, 0.18);
-    white-space: nowrap;
-    flex-shrink: 0;
+.viewer .vw-status-badge.healthy {
+  background: var(--mint-tint);
+  color: var(--mint);
+  border: 1px solid rgba(15, 169, 104, 0.3);
+}
+.viewer .vw-body {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 .viewer .vw-pipeline {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    padding: 12px 18px 4px;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 14px 16px;
 }
-.viewer .vw-pstep {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-    flex: 1 1 0;
-    min-width: 0;
+.viewer .vw-pl-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
 }
-.viewer .vw-pstep-box {
-    background: var(--soft);
-    border: 1px solid var(--line-soft);
-    border-radius: var(--r-sm);
-    padding: 5px 8px;
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    font-weight: 600;
-    color: var(--ink);
-    text-align: center;
-    width: 100%;
-    box-sizing: border-box;
-    transition: background 0.2s, border-color 0.2s;
-    line-height: 1.3;
+.viewer .vw-pl-header span {
+  font-family: var(--disp);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink);
 }
-.viewer .vw-pstep.active .vw-pstep-box {
-    background: var(--blue-tint);
-    border-color: var(--blue);
-    color: var(--blue);
+.viewer .vw-pl-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
-.viewer .vw-pstep-label {
-    font-size: 0.55rem;
-    color: var(--muted);
-    font-family: var(--mono);
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
+.viewer .vw-pl-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
 }
-.viewer .vw-parrow {
-    flex: 0 0 auto;
-    color: var(--line);
-    font-size: 1rem;
-    font-weight: 300;
-    padding: 0 2px;
+.viewer .vw-pl-step.active {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px var(--blue-tint);
+  background: var(--tint);
 }
-.viewer .vw-chart-wrap {
-    margin: 10px 18px 8px;
-    background: var(--soft);
-    border: 1px solid var(--line-soft);
-    border-radius: var(--r-sm);
-    padding: 10px 12px 8px;
-    position: relative;
+.viewer .vw-pl-step svg { width: 16px; height: 16px; flex-shrink: 0; }
+.viewer .vw-pl-step .step-label {
+  flex: 1;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink);
 }
-.viewer .vw-chart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    color: var(--muted);
-    margin-bottom: 4px;
-    gap: 8px;
-    flex-wrap: wrap;
+.viewer .vw-pl-step .step-time {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--muted);
 }
-.viewer .vw-chart-header span:first-child {
-    font-weight: 600;
-    color: var(--ink-soft);
+.viewer .vw-step-detail {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 12px 14px;
+  min-height: 60px;
+  transition: opacity 0.2s;
 }
-.viewer .vw-chart-svg {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 4px;
-    cursor: default;
-    touch-action: manipulation;
+.viewer .vw-step-detail .detail-title {
+  font-family: var(--disp);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
 }
-.viewer .vw-chart-svg .vw-point {
-    cursor: pointer;
-    transition: opacity 0.2s;
+.viewer .vw-step-detail .detail-desc {
+  font-size: 0.72rem;
+  color: var(--body);
+  line-height: 1.4;
 }
-.viewer .vw-chart-svg .vw-point:hover .vw-dot {
-    opacity: 0.85;
+.viewer .vw-step-detail .detail-meta {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--muted);
 }
-.viewer .vw-chart-svg .vw-dot {
-    transition: r 0.25s, fill 0.25s;
+.viewer .vw-step-detail .detail-meta .meta-green { color: var(--mint); }
+.viewer .vw-step-detail .detail-meta .meta-blue { color: var(--blue); }
+.viewer .vw-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
 }
-.viewer .vw-chart-svg .vw-label {
-    font-family: var(--mono);
-    font-size: 7px;
-    font-weight: 600;
-    fill: var(--ink-soft);
-    pointer-events: none;
-    transition: fill 0.25s, font-size 0.25s;
+.viewer .vw-tile {
+  background: var(--soft);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-sm);
+  padding: 8px 10px;
+  text-align: center;
 }
-.viewer .vw-chart-svg .vw-point.selected .vw-label {
-    fill: var(--blue);
-    font-size: 8px;
-    font-weight: 700;
+.viewer .vw-tile-val {
+  font-family: var(--disp);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ink);
 }
-.viewer .vw-chart-svg .vw-ring {
-    fill: none;
-    stroke-width: 2.5;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-.viewer .vw-chart-svg .vw-point.selected .vw-ring {
-    opacity: 1;
-}
-.viewer .vw-chart-svg .vw-grid-line {
-    stroke: var(--line);
-    stroke-width: 0.5;
-    stroke-dasharray: 3 3;
-}
-.viewer .vw-chart-svg .vw-axis-label {
-    font-family: var(--mono);
-    font-size: 5.5px;
-    fill: var(--muted);
-}
-.viewer .vw-details {
-    padding: 0 18px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    min-height: 82px;
-    transition: min-height 0.3s;
-}
-.viewer .vw-details-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-.viewer .vw-details-word {
-    font-family: var(--disp);
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--ink);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.viewer .vw-details-word .vw-color-swatch {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    display: inline-block;
-}
-.viewer .vw-details-neighbor {
-    font-size: 0.7rem;
-    color: var(--muted);
-    font-family: var(--mono);
-    background: var(--soft);
-    padding: 3px 10px;
-    border-radius: 999px;
-    border: 1px solid var(--line-soft);
-}
-.viewer .vw-details-vec {
-    background: var(--soft);
-    border: 1px solid var(--line-soft);
-    border-radius: var(--r-sm);
-    padding: 8px 12px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 12px;
-    font-family: var(--mono);
-    font-size: 0.65rem;
-}
-.viewer .vw-details-vec .vw-vec-label {
-    color: var(--muted);
-    font-size: 0.58rem;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    font-weight: 600;
-}
-.viewer .vw-details-vec .vw-vec-vals {
-    color: var(--ink-soft);
-    word-break: break-all;
-    font-size: 0.65rem;
-}
-.viewer .vw-details-vec .vw-vec-dims {
-    color: var(--muted);
-    font-size: 0.6rem;
-    margin-left: auto;
-    white-space: nowrap;
+.viewer .vw-tile-lbl {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-top: 2px;
 }
 .viewer .vw-foot {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 18px;
-    border-top: 1px solid var(--line-soft);
-    background: var(--soft);
-    font-size: 0.7rem;
-    color: var(--muted);
-    gap: 10px;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  border-top: 1px solid var(--line-soft);
+  background: var(--soft);
+  font-size: 0.72rem;
+  color: var(--muted);
 }
-.viewer .vw-foot svg {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-    color: var(--blue);
-    opacity: 0.6;
-}
-.viewer .vw-foot span {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-@media (max-width: 460px) {
-    .viewer .vw-top {
-        padding: 10px 12px;
-    }
-    .viewer .vw-heading {
-        font-size: 0.78rem;
-    }
-    .viewer .vw-pipeline {
-        padding: 8px 12px 2px;
-        gap: 2px;
-    }
-    .viewer .vw-pstep-box {
-        font-size: 0.55rem;
-        padding: 4px 5px;
-    }
-    .viewer .vw-parrow {
-        font-size: 0.75rem;
-    }
-    .viewer .vw-chart-wrap {
-        margin: 6px 12px 6px;
-        padding: 6px 8px;
-    }
-    .viewer .vw-chart-header {
-        font-size: 0.52rem;
-    }
-    .viewer .vw-details {
-        padding: 0 12px 10px;
-        min-height: 70px;
-    }
-    .viewer .vw-details-word {
-        font-size: 0.95rem;
-    }
-    .viewer .vw-details-vec {
-        font-size: 0.58rem;
-        padding: 6px 10px;
-    }
-    .viewer .vw-foot {
-        padding: 8px 12px;
-        font-size: 0.62rem;
-    }
+@media (max-width: 480px) {
+  .viewer .vw-metrics-row { grid-template-columns: 1fr; }
 }
 </style>
-
 <div class="viewer">
-    <div class="vw-top">
-        <span class="vw-heading">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2a10 10 0 1 0 10 10"/>
-                <path d="M12 12 8 8"/>
-                <path d="M12 12 16 16"/>
-                <circle cx="12" cy="12" r="2.5"/>
-                <path d="M12 2v4"/>
-                <path d="M12 18v4"/>
-                <path d="M2 12h4"/>
-                <path d="M18 12h4"/>
-            </svg>
-            What Is a Vector Embedding?
-        </span>
-        <span class="vw-badge">GLOSSARY</span>
+  <div class="vw-top">
+    <span class="t">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="1"/><circle cx="8" cy="12" r="1"/><circle cx="8" cy="18" r="1"/></svg>
+      vLLM Request Pipeline
+    </span>
+    <div class="vw-status-badge healthy" id="vwStatus"><span>&#10003; Serving Active</span></div>
+  </div>
+  <div class="vw-body">
+    <div class="vw-pipeline">
+      <div class="vw-pl-header">
+        <span>Inference Steps</span>
+        <span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);">Click a step</span>
+      </div>
+      <div class="vw-pl-steps" id="vwSteps">
+        <div class="vw-pl-step active" data-step="0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span class="step-label">Tokenize & Input Prep</span>
+          <span class="step-time">1.2ms</span>
+        </div>
+        <div class="vw-pl-step" data-step="1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 8v8M8 12h8"/></svg>
+          <span class="step-label">KV Cache & PagedAttention</span>
+          <span class="step-time">3.7ms</span>
+        </div>
+        <div class="vw-pl-step" data-step="2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--mint)" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <span class="step-label">Continuous Batching</span>
+          <span class="step-time">0.9ms</span>
+        </div>
+        <div class="vw-pl-step" data-step="3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.29 7 12 12 20.71 7"/></svg>
+          <span class="step-label">GPU Decode & Output</span>
+          <span class="step-time">5.1ms</span>
+        </div>
+      </div>
     </div>
-
-    <div class="vw-pipeline" id="pipeline">
-        <div class="vw-pstep active" data-step="0">
-            <span class="vw-pstep-box">"king"</span>
-            <span class="vw-pstep-label">Text</span>
-        </div>
-        <span class="vw-parrow">→</span>
-        <div class="vw-pstep" data-step="1">
-            <span class="vw-pstep-box">[king]</span>
-            <span class="vw-pstep-label">Tokens</span>
-        </div>
-        <span class="vw-parrow">→</span>
-        <div class="vw-pstep" data-step="2">
-            <span class="vw-pstep-box">Embed</span>
-            <span class="vw-pstep-label">Model</span>
-        </div>
-        <span class="vw-parrow">→</span>
-        <div class="vw-pstep" data-step="3">
-            <span class="vw-pstep-box">[0.82, −0.31…]</span>
-            <span class="vw-pstep-label">Vector</span>
-        </div>
+    <div class="vw-step-detail" id="vwDetail">
+      <div class="detail-title" id="vwDetailTitle">Tokenize & Input Prep</div>
+      <div class="detail-desc" id="vwDetailDesc">Raw prompt is tokenized and packed into GPU-ready batches. Streaming prefix caching reduces redundant computation.</div>
+      <div class="detail-meta">
+        <span>Throughput: <span class="meta-green">3,400 tok/s</span></span>
+        <span>Cost per 1K tokens: <span class="meta-blue">$0.0021</span></span>
+      </div>
     </div>
-
-    <div class="vw-chart-wrap">
-        <div class="vw-chart-header">
-            <span>Semantic Vector Space (2D projection)</span>
-            <span>Click any word</span>
-        </div>
-        <svg class="vw-chart-svg" viewBox="0 0 360 240" preserveAspectRatio="xMidYMid meet" id="vectorPlot">
-            <!-- grid -->
-            <line class="vw-grid-line" x1="40" y1="40" x2="320" y2="40"/>
-            <line class="vw-grid-line" x1="40" y1="80" x2="320" y2="80"/>
-            <line class="vw-grid-line" x1="40" y1="120" x2="320" y2="120"/>
-            <line class="vw-grid-line" x1="40" y1="160" x2="320" y2="160"/>
-            <line class="vw-grid-line" x1="40" y1="200" x2="320" y2="200"/>
-            <line class="vw-grid-line" x1="40" y1="40" x2="40" y2="220"/>
-            <line class="vw-grid-line" x1="110" y1="40" x2="110" y2="220"/>
-            <line class="vw-grid-line" x1="180" y1="40" x2="180" y2="220"/>
-            <line class="vw-grid-line" x1="250" y1="40" x2="250" y2="220"/>
-            <line class="vw-grid-line" x1="320" y1="40" x2="320" y2="220"/>
-            <!-- axes -->
-            <text class="vw-axis-label" x="180" y="234" text-anchor="middle">Dimension 1</text>
-            <text class="vw-axis-label" x="18" y="130" text-anchor="middle" transform="rotate(-90,18,130)">Dimension 2</text>
-            <!-- points rendered via JS -->
-        </svg>
+    <div class="vw-metrics-row">
+      <div class="vw-tile">
+        <div class="vw-tile-val" id="vwMetricThru">3,400</div>
+        <div class="vw-tile-lbl">Output tok/s</div>
+      </div>
+      <div class="vw-tile">
+        <div class="vw-tile-val" id="vwMetricCost">$0.08</div>
+        <div class="vw-tile-lbl">Cost / 1K req</div>
+      </div>
+      <div class="vw-tile">
+        <div class="vw-tile-val" id="vwMetricLat">34ms</div>
+        <div class="vw-tile-lbl">P50 Latency</div>
+      </div>
     </div>
-
-    <div class="vw-details" id="details">
-        <div class="vw-details-top">
-            <div class="vw-details-word">
-                <span class="vw-color-swatch" id="swatch" style="background:var(--blue);"></span>
-                <span id="wordName">king</span>
-            </div>
-            <span class="vw-details-neighbor" id="neighborInfo">Nearest: queen</span>
-        </div>
-        <div class="vw-details-vec">
-            <span class="vw-vec-label">Vector</span>
-            <span class="vw-vec-vals" id="vecVals">[0.82, −0.31, 0.45, 0.12, 0.67]</span>
-            <span class="vw-vec-dims" id="vecDims">384 dim</span>
-        </div>
-    </div>
-
-    <div class="vw-foot">
-        <span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
-            </svg>
-            Each word maps to a unique coordinate in semantic space
-        </span>
-        <span>Similar words cluster together</span>
-    </div>
+  </div>
+  <div class="vw-foot">
+    <span>Self-hosted vLLM serving on 1x A100</span>
+    <span>64 concurrent requests</span>
+  </div>
 </div>
-
 <script>
-(function() {
-    var plot = document.getElementById('vectorPlot');
-    var wordName = document.getElementById('wordName');
-    var swatch = document.getElementById('swatch');
-    var neighborInfo = document.getElementById('neighborInfo');
-    var vecVals = document.getElementById('vecVals');
-    var vecDims = document.getElementById('vecDims');
-    var steps = document.querySelectorAll('.vw-pstep');
-
-    var words = [
-        { word: 'king', x: 68, y: 78, vec: [0.82, -0.31, 0.45, 0.12, 0.67], color: '#2456E6' },
-        { word: 'queen', x: 116, y: 92, vec: [0.79, -0.28, 0.52, 0.08, 0.71], color: '#2456E6' },
-        { word: 'man', x: 62, y: 158, vec: [0.61, -0.45, 0.12, 0.33, 0.28], color: '#6D5EF6' },
-        { word: 'woman', x: 110, y: 172, vec: [0.58, -0.42, 0.18, 0.29, 0.32], color: '#6D5EF6' },
-        { word: 'apple', x: 250, y: 198, vec: [0.12, 0.78, -0.34, 0.56, 0.08], color: '#0FA968' },
-        { word: 'orange', x: 298, y: 212, vec: [0.15, 0.82, -0.38, 0.52, 0.12], color: '#0FA968' },
-        { word: 'car', x: 218, y: 82, vec: [0.45, 0.12, 0.72, -0.28, 0.34], color: '#D97A18' },
-        { word: 'bus', x: 266, y: 96, vec: [0.48, 0.15, 0.68, -0.32, 0.30], color: '#D97A18' }
-    ];
-
-    var selectedIdx = 0;
-    var dotRadius = 5;
-    var ringRadius = 9;
-    var ringColor = 'rgba(36,86,230,0.5)';
-
-    function cosineSimilarity(a, b) {
-        var dot = 0, na = 0, nb = 0;
-        for (var i = 0; i < a.length; i++) {
-            dot += a[i] * b[i];
-            na += a[i] * a[i];
-            nb += b[i] * b[i];
-        }
-        return dot / (Math.sqrt(na) * Math.sqrt(nb));
-    }
-
-    function findNearest(idx) {
-        var best = -1, bestSim = -1;
-        for (var i = 0; i < words.length; i++) {
-            if (i === idx) continue;
-            var sim = cosineSimilarity(words[idx].vec, words[i].vec);
-            if (sim > bestSim) { bestSim = sim; best = i; }
-        }
-        return { index: best, similarity: bestSim };
-    }
-
-    function formatVec(vec) {
-        return '[' + vec.map(function(v) { return (v >= 0 ? ' ' : '') + v.toFixed(2); }).join(', ') + ']';
-    }
-
-    function renderPoints() {
-        var ns = 'http://www.w3.org/2000/svg';
-        // remove old points
-        var old = plot.querySelectorAll('.vw-point');
-        for (var i = old.length - 1; i >= 0; i--) old[i].remove();
-
-        for (var i = 0; i < words.length; i++) {
-            var w = words[i];
-            var g = document.createElementNS(ns, 'g');
-            g.setAttribute('class', 'vw-point' + (i === selectedIdx ? ' selected' : ''));
-            g.setAttribute('data-index', i);
-
-            var ring = document.createElementNS(ns, 'circle');
-            ring.setAttribute('class', 'vw-ring');
-            ring.setAttribute('cx', w.x);
-            ring.setAttribute('cy', w.y);
-            ring.setAttribute('r', ringRadius);
-            ring.setAttribute('stroke', w.color);
-            ring.setAttribute('opacity', i === selectedIdx ? '1' : '0');
-            g.appendChild(ring);
-
-            var dot = document.createElementNS(ns, 'circle');
-            dot.setAttribute('class', 'vw-dot');
-            dot.setAttribute('cx', w.x);
-            dot.setAttribute('cy', w.y);
-            dot.setAttribute('r', i === selectedIdx ? dotRadius + 1.5 : dotRadius);
-            dot.setAttribute('fill', w.color);
-            dot.setAttribute('stroke', i === selectedIdx ? '#fff' : 'none');
-            dot.setAttribute('stroke-width', i === selectedIdx ? '1.5' : '0');
-            g.appendChild(dot);
-
-            var label = document.createElementNS(ns, 'text');
-            label.setAttribute('class', 'vw-label');
-            label.setAttribute('x', w.x);
-            label.setAttribute('y', w.y - dotRadius - 4);
-            label.setAttribute('text-anchor', 'middle');
-            label.textContent = w.word;
-            g.appendChild(label);
-
-            g.addEventListener('click', (function(idx) {
-                return function(ev) {
-                    ev.stopPropagation();
-                    selectWord(idx);
-                };
-            })(i));
-
-            g.addEventListener('touchstart', (function(idx) {
-                return function(ev) {
-                    ev.preventDefault();
-                    selectWord(idx);
-                };
-            })(i), { passive: false });
-
-            plot.appendChild(g);
-        }
-    }
-
-    function selectWord(idx) {
-        if (idx === selectedIdx) return;
-        selectedIdx = idx;
-
-        // update points
-        var allPoints = plot.querySelectorAll('.vw-point');
-        for (var i = 0; i < allPoints.length; i++) {
-            var p = allPoints[i];
-            var index = parseInt(p.getAttribute('data-index'));
-            if (index === idx) {
-                p.classList.add('selected');
-                var ring = p.querySelector('.vw-ring');
-                if (ring) ring.setAttribute('opacity', '1');
-                var dot = p.querySelector('.vw-dot');
-                if (dot) {
-                    dot.setAttribute('r', dotRadius + 1.5);
-                    dot.setAttribute('stroke', '#fff');
-                    dot.setAttribute('stroke-width', '1.5');
-                }
-                var lbl = p.querySelector('.vw-label');
-                if (lbl) {
-                    lbl.setAttribute('font-size', '8');
-                    lbl.setAttribute('font-weight', '700');
-                }
-            } else {
-                p.classList.remove('selected');
-                var ring2 = p.querySelector('.vw-ring');
-                if (ring2) ring2.setAttribute('opacity', '0');
-                var dot2 = p.querySelector('.vw-dot');
-                if (dot2) {
-                    dot2.setAttribute('r', dotRadius);
-                    dot2.setAttribute('stroke', 'none');
-                    dot2.setAttribute('stroke-width', '0');
-                }
-                var lbl2 = p.querySelector('.vw-label');
-                if (lbl2) {
-                    lbl2.setAttribute('font-size', '7');
-                    lbl2.setAttribute('font-weight', '600');
-                }
-            }
-        }
-
-        // update details
-        var w = words[idx];
-        wordName.textContent = w.word;
-        swatch.style.background = w.color;
-        vecVals.textContent = formatVec(w.vec);
-        vecDims.textContent = '384 dim';
-
-        var nearest = findNearest(idx);
-        if (nearest.index >= 0) {
-            var simPct = Math.round(nearest.similarity * 100);
-            neighborInfo.textContent = 'Nearest: ' + words[nearest.index].word + ' (' + simPct + '% sim)';
-        }
-
-        // highlight pipeline step 3 (vector)
-        steps.forEach(function(s, si) {
-            s.classList.toggle('active', si === 3);
-        });
-    }
-
-    // initialize with first word selected
-    renderPoints();
-    selectWord(0);
-
-    // add a small stagger animation on load via opacity
-    var pts = plot.querySelectorAll('.vw-point');
-    for (var i = 0; i < pts.length; i++) {
-        (function(el, delay) {
-            el.style.opacity = '0';
-            el.style.transition = 'opacity 0.35s ease ' + delay + 's';
-            setTimeout(function() { el.style.opacity = '1'; }, 50);
-        })(pts[i], 0.08 * i);
-    }
-
-    // pipeline click interaction — clicking a step shows that phase
-    steps.forEach(function(el, idx) {
-        el.addEventListener('click', function() {
-            steps.forEach(function(s) { s.classList.remove('active'); });
-            el.classList.add('active');
-            if (idx === 3) {
-                // show vector of current selection
-                var w = words[selectedIdx];
-                vecVals.textContent = formatVec(w.vec);
-                vecDims.textContent = '384 dim';
-            } else if (idx === 0) {
-                var w2 = words[selectedIdx];
-                vecVals.textContent = '"' + w2.word + '"';
-                vecDims.textContent = '1 word';
-            } else if (idx === 1) {
-                var w3 = words[selectedIdx];
-                vecVals.textContent = '[' + w3.word + ']';
-                vecDims.textContent = '1 token';
-            } else if (idx === 2) {
-                var w4 = words[selectedIdx];
-                vecVals.textContent = 'Embedding model → ' + w4.word;
-                vecDims.textContent = 'encoder';
-            }
-        });
+(function(){
+  const steps = document.querySelectorAll('#vwSteps .vw-pl-step');
+  const detailTitle = document.getElementById('vwDetailTitle');
+  const detailDesc = document.getElementById('vwDetailDesc');
+  const detailMeta = document.querySelector('#vwDetail .detail-meta');
+  const metricThru = document.getElementById('vwMetricThru');
+  const metricCost = document.getElementById('vwMetricCost');
+  const metricLat = document.getElementById('vwMetricLat');
+  const statusBadge = document.getElementById('vwStatus');
+  const stepData = [
+    { title: 'Tokenize & Input Prep', desc: 'Raw prompt is tokenized and packed into GPU-ready batches. Streaming prefix caching reduces redundant computation.', meta: 'Throughput: <span class="meta-green">3,400 tok/s</span> | Cost per 1K tokens: <span class="meta-blue">$0.0021</span>', thru: '3,400', cost: '$0.08', lat: '34ms', status: 'Serving Active', cls: 'healthy' },
+    { title: 'KV Cache & PagedAttention', desc: 'PagedAttention dynamically allocates KV cache in 16KB blocks, eliminating fragmentation and enabling 2x memory efficiency over naive implementations.', meta: 'Cache hit rate: <span class="meta-green">87%</span> | KV block size: <span class="meta-blue">16KB</span>', thru: '2,800', cost: '$0.06', lat: '41ms', status: 'Cache Warm', cls: 'healthy' },
+    { title: 'Continuous Batching', desc: 'In-flight requests are dynamically added/removed from GPU batches every iteration. No padding waste — utilizations reach 95%+ on dense workload.', meta: 'Batch fill rate: <span class="meta-green">96%</span> | Max batch: <span class="meta-blue">128 seq</span>', thru: '4,100', cost: '$0.05', lat: '29ms', status: 'High Throughput', cls: 'healthy' },
+    { title: 'GPU Decode & Output', desc: 'Autoregressive decode with TensorRT-LLM kernels. FP16/INT8 quantized compute reduces VRAM usage by 40% without quality loss.', meta: 'GPU util: <span class="meta-green">92%</span> | Power: <span class="meta-blue">285W</span>', thru: '3,200', cost: '$0.09', lat: '52ms', status: 'Decoding', cls: 'healthy' },
+  ];
+  steps.forEach((step, idx) => {
+    step.addEventListener('click', function(){
+      steps.forEach(s => s.classList.remove('active'));
+      this.classList.add('active');
+      const d = stepData[idx];
+      detailTitle.textContent = d.title;
+      detailDesc.textContent = d.desc;
+      detailMeta.innerHTML = d.meta;
+      metricThru.textContent = d.thru;
+      metricCost.textContent = d.cost;
+      metricLat.textContent = d.lat;
+      statusBadge.innerHTML = '<span>&#10003; ' + d.status + '</span>';
+      statusBadge.className = 'vw-status-badge ' + d.cls;
     });
+  });
 })();
 </script>

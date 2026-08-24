@@ -1,36 +1,36 @@
 {
   "process": {
     "sec-head": {
-      "eyebrow": "Eyebrow label (e.g., 'How it gets built'). Max 3 words.",
-      "h2": "Process section heading (e.g., 'Process')."
+      "eyebrow": "Process eyebrow tag (e.g., 'How it gets built'). Max 4 words.",
+      "h2": "Process section heading (e.g., 'Healthcare RAG implementation process'). Max 5 words."
     },
     "steps": [
       {
         "step": {
-          "num": "Phase identifier (e.g., 'PHASE 01', 'PHASE 02').",
-          "days": "Timeframe badge (e.g., 'days 1 to 2', 'within 48h', 'the decisive one', 'before launch', 'handoff').",
-          "h3": "Milestone title (e.g., 'Discovery', 'Architecture spec', 'Build in milestones', 'Testing & evaluation', 'Deployment & monitoring').",
-          "body": "Detailed description of activities, state-graph design, integrations, and deliverables in this phase."
+          "num": "Phase indicator (e.g., 'PHASE 01', 'PHASE 02', 'PHASE 03', 'PHASE 04', 'PHASE 05').",
+          "days": "Phase duration (e.g., 'days 1 to 2', 'within 48h', 'the decisive one', 'before launch', 'handoff'). Max 3 words.",
+          "h3": "Phase title (e.g., 'Clinical Discovery & PHI Scoping', 'Architecture & Security Spec', 'Pipeline Build & Masking Engine', 'Clinical Evaluation & Red-Teaming', 'Production Deployment & Monitoring'). Max 5 words.",
+          "body": "Clear description of phase actions, deliverables, and compliance reviews. Exactly 1-2 sentences."
         }
       }
     ]
   },
   "when-not": {
     "sec-head": {
-      "eyebrow": "Eyebrow label (e.g., 'Honest tool selection'). Max 3 words.",
-      "h2": "Section heading (e.g., 'When LangChain is not the right choice')."
+      "eyebrow": "Boundaries eyebrow tag (e.g., 'Clinical boundaries'). Max 3 words.",
+      "h2": "When not section heading (e.g., 'When a RAG chatbot is NOT the right choice'). Max 8 words."
     },
     "callout": {
       "p": [
-        "Callout headline (e.g., 'Direct architectural honesty upfront'). Max 6-7 words.",
-        "Clear, honest advice describing scenarios where this framework or service is overkill and what simpler alternative to use instead."
+        "Callout subtitle (e.g., 'Safety-first engineering in healthcare AI'). Max 6 words.",
+        "Clear technical and ethical limitation stating where autonomous AI is forbidden and human clinicians must remain in the loop. Exactly 2-3 sentences."
       ]
     }
   },
   "pricing": {
     "sec-head": {
-      "eyebrow": "Eyebrow label (e.g., 'Investment'). Max 2 words.",
-      "h2": "Pricing heading (e.g., 'Pricing')."
+      "eyebrow": "Pricing eyebrow tag (e.g., 'Investment'). Max 3 words.",
+      "h2": "Pricing section heading (e.g., 'Pricing'). Max 3 words."
     },
     "tablewrap": {
       "thead": [
@@ -41,25 +41,25 @@
       "tbody": [
         {
           "td": [
-            "Tier or engagement name (e.g., 'Single tool/agent integration', 'Full agentic system', 'LangChain system audit', 'Hourly consulting').",
-            "Included deliverables and scope.",
-            "Investment range or rate (e.g., '$2,000 to $6,000', '$8,000 to $30,000+', '$75 to $150/hr')."
+            "Engagement model name (e.g., 'HIPAA RAG Proof-of-Concept', 'Production Clinical RAG System', 'Healthcare AI Safety Audit', 'Hourly Medical AI Consulting')",
+            "Scope summary detailing pipelines, security audits, or integrations included",
+            "Investment range (e.g., '$2,500 to $6,000', '$12,000 to $45,000', '$2,000 to $5,000', '$100 to $200/hr')"
           ]
         }
       ]
     },
-    "p": "Trust and case-study reference sentence directing prospects to real-world deployed work at shreyans.tech/ai-case-studies."
+    "p": "Case study proof statement and link. Exactly 1-2 sentences."
   },
   "faq": {
     "sec-head": {
-      "eyebrow": "Eyebrow label (e.g., 'FAQ'). Max 2 words.",
-      "h2": "Section heading (e.g., 'Frequently asked questions')."
+      "eyebrow": "FAQ eyebrow tag (e.g., 'FAQ').",
+      "h2": "FAQ section heading (e.g., 'Frequently asked questions')."
     },
     "faq": [
       {
         "faq-item": {
-          "faq-q": "Specific technical, architectural, or commercial question (e.g., 'What is the difference between LangChain and LangGraph?', 'When should I NOT use LangChain?').",
-          "faq-a": "Direct, authoritative, and nuanced answer addressing architecture, trade-offs, pricing, or developer requirements. Exactly 2-3 sentences."
+          "faq-q": "Frequently asked domain question addressing HIPAA/compliance, EHR/data integration, hallucination prevention, agency comparisons, or project costs. Max 12 words.",
+          "faq-a": "In-depth authoritative answer delivering clear technical and regulatory guidance. Exactly 2-4 sentences."
         }
       }
     ]

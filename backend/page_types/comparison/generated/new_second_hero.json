@@ -2,95 +2,95 @@
   "comply": {
     "comply-in": [
       {
-        "b": "Both methods, done right",
-        "span": "Semantic and keyword search, used for what each actually excels at\u2014meaning understanding vs. exact matching."
+        "b": "Three vectors, one truth",
+        "span": "Pinecone, Qdrant, and Weaviate each optimized for different workloads \u2014 we compare them honestly, not by hype."
       },
       {
         "b": "Recommendation in writing",
-        "span": "A specific search strategy, with the reasoning behind it, before any implementation begins."
+        "span": "A specific vector database choice, with the reasoning behind it, before any build begins."
       },
       {
         "b": "Hybrid when it earns it",
-        "span": "Combining vector embeddings with BM25 or TF-IDF in a single query, the standard 2026 pattern for robust retrieval."
+        "span": "Using Qdrant for low-latency retrieval and Weaviate for hybrid search, orchestrated via a single API layer."
       },
       {
         "b": "Honest, not default",
-        "span": "If your use case doesn't need the complexity of semantic search, I'll say so\u2014and recommend keyword search instead."
+        "span": "If your project doesn't need the complexity of a managed vector database, I'll say so."
       }
     ]
   },
   "what-is": {
     "sec-head": {
       "eyebrow": "Plain answer",
-      "h2": "What is Semantic Search? What is Keyword Search?"
+      "h2": "What is Pinecone? What is Qdrant? What is Weaviate?"
     },
     "tldr": {
       "b": "Quick answer",
       "p": [
-        "Semantic search uses vector embeddings and neural models to understand the meaning behind a query, matching conceptually related content even when no exact words match. Keyword search relies on exact term matching via algorithms like BM25 or TF-IDF, delivering fast, precise results when the query terms appear in the document. Both are fundamental retrieval methods, and the real decision comes down to whether your hardest problem is understanding intent or catching exact phrases\u2014and hybrid search combines them for the best of both worlds."
+        "Pinecone is a fully-managed vector database focused on ease-of-use, high availability, and low operational overhead. Qdrant is an open-source vector database engineered for high-performance filtering and low-latency queries, with a strong emphasis on Rust-based efficiency. Weaviate is an open-source vector database that integrates hybrid search (vector + keyword) natively, with built-in modules for vectorization and classification. All three are purpose-built for production vector search, but their architectural trade-offs make them suitable for different use cases."
       ]
     }
   },
   "comparison": {
     "sec-head": {
       "eyebrow": "The comparison",
-      "h2": "Search comparison: Semantic Search vs Keyword Search"
+      "h2": "Vector database comparison: Pinecone vs Qdrant"
     },
     "tablewrap": {
       "thead": [
         "Factor",
-        "Semantic Search",
-        "Keyword Search"
+        "Pinecone",
+        "Qdrant"
       ],
       "tbody": [
         {
           "th": "Primary strength",
           "td": [
-            "Understands meaning, synonyms, and context via embeddings",
-            "Fast exact match on literal terms and metadata"
+            "Managed simplicity, zero ops, automatic scaling",
+            "High-performance filtered search, Rust-based engine, fine-grained control"
           ]
         },
         {
           "th": "Best for",
           "td": [
-            "Content discovery, Q&A, chatbots, long-tail queries",
-            "E-commerce, product catalogs, structured fields, known IDs"
+            "Teams that want a turnkey vector database without managing infrastructure",
+            "Applications requiring complex filtering, low latency, and self-hosted or cloud deployment"
           ]
         },
         {
-          "th": "Indexing setup complexity",
+          "th": "Query latency (p99, 1M vectors)",
           "td": [
-            "Requires embedding model, vector database, and reindexing pipeline",
-            "Simple inverted index with TF-IDF or BM25; low overhead"
+            "~10ms (typical managed tier)",
+            "~5ms (optimized with HNSW and filtering)"
           ]
         },
         {
-          "th": "Query latency",
+          "th": "Indexing overhead",
           "td": [
-            "Higher due to embedding generation and ANN search (20\u201350ms typical)",
-            "Low (5\u201310ms) for direct index lookup and scoring"
+            "Minimal \u2014 fully managed, no tuning needed",
+            "Moderate \u2014 requires tuning of parameters (ef, M) for performance"
           ]
         },
         {
-          "th": "Context understanding",
+          "th": "Integration ecosystem",
           "td": [
-            "Handles synonyms, paraphrases, and misspellings naturally",
-            "Fails on misspelled or out-of-vocabulary terms unless fuzzy logic is added"
+            "Rich SDKs, LangChain, LlamaIndex, native support for OpenAI embeddings",
+            "SDKs, REST/gRPC, LangChain, LlamaIndex, custom embedding pipelines"
           ]
         },
         {
-          "th": "Exact match reliability",
+          "th": "Observability",
           "td": [
-            "May miss literal terms if embedding drifts or vectors are misaligned",
-            "Perfect for exact product codes, names, and boolean filters"
+            "Built-in monitoring and metrics in Pinecone console",
+            "Requires external monitoring (Prometheus, Grafana) for self-hosted; cloud version provides basic metrics"
           ]
         }
       ]
     },
     "callout": {
       "p": [
-        "The hybrid reality",
-        "Most production retrieval systems use both together: semantic search for understanding broad intent, and keyword search for precision on exact terms. This is the standard architecture I build when a project genuinely needs both recall and relevance\u2014and it's the foundation of Answer Engine Optimization (AEO) in 2026."
+        "The 2026 reality",
+        "Most production systems choose between Qdrant and Weaviate for self-hosted flexibility, or Pinecone for managed convenience. Weaviate stands out when hybrid search (BM25 + vector) is non-negotiable, while Qdrant excels in pure vector + filter workloads. The three-way decision ultimately depends on your tolerance for operational overhead and the importance of built-in keyword search."
       ]
     }
   }

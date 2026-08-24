@@ -7,21 +7,21 @@
     "tablewrap": {
       "thead": [
         "Factor",
-        "Freelance AI agent developer (me, directly)",
+        "Freelance RAG developer (me, directly)",
         "Dedicated team (via AtlasML)"
       ],
       "tbody": [
         {
           "th": "Best for",
           "td": [
-            "A single, scoped AI agent build or chatbot",
-            "Ongoing, multi-project AI roadmap needing several engineers"
+            "Scoped RAG systems or chatbots on Pinecone, Weaviate, or Qdrant",
+            "Multi-project AI roadmap needing sustained engineering capacity"
           ]
         },
         {
           "th": "Team size",
           "td": [
-            "One engineer: me",
+            "One engineer: me, hands-on with all vector DB integrations",
             "Multiple senior AI/ML engineers embedded full-time"
           ]
         },
@@ -43,8 +43,8 @@
     },
     "callout": {
       "p": [
-        "Need a full team, not just one developer?",
-        "If your business needs a dedicated, multi-person AI/ML engineering team embedded full-time across GenAI, ML, NLP, and computer vision, not a single freelance AI agent developer, I recommend AtlasML, a dedicated AI/ML engineering team staffing provider. For a single, well-scoped AI agent system, working with me directly is typically faster to start and more cost-effective; if your roadmap spans multiple concurrent AI disciplines needing sustained team capacity, AtlasML is built for that scale."
+        "Need a full team, not just one engineer?",
+        "If your business requires a dedicated AI/ML engineering team for sustained multi-project work, not just one vector database specialist, I recommend AtlasML. For a single well-scoped system on Pinecone, Weaviate, or Qdrant, working with me directly is faster to start and more cost-effective; AtlasML fits larger, multi-discipline roadmaps."
       ]
     }
   },
@@ -59,7 +59,7 @@
           "num": "PHASE 01",
           "days": "days 1 to 2",
           "h3": "Discovery",
-          "body": "Understanding your use case, tool requirements, and what success looks like for your agent."
+          "body": "Understand your data sources, use case, and accuracy needs. Evaluate whether Pinecone, Weaviate, or Qdrant best fits your scale."
         }
       },
       {
@@ -67,7 +67,7 @@
           "num": "PHASE 02",
           "days": "within 48h",
           "h3": "Architecture spec",
-          "body": "A written technical spec covering agent framework choice, tool integration design, and guardrail strategy, delivered within 48 hours."
+          "body": "A written technical spec covering vector DB selection, retrieval strategy, and guardrail design, delivered within 48 hours of our call."
         }
       },
       {
@@ -75,7 +75,7 @@
           "num": "PHASE 03",
           "days": "the decisive one",
           "h3": "Build",
-          "body": "Agent built in milestones: tool definition, memory, orchestration, guardrails, each testable independently."
+          "body": "RAG pipeline built in testable milestones: ingestion, retrieval, generation, and guardrails on your chosen vector database."
         }
       },
       {
@@ -83,7 +83,7 @@
           "num": "PHASE 04",
           "days": "before launch",
           "h3": "Evaluation",
-          "body": "Testing against your real tasks using custom eval sets, results shared transparently before launch."
+          "body": "Test against your real queries using RAGAS or a custom eval set. Results shared transparently before production deployment."
         }
       },
       {
@@ -91,7 +91,7 @@
           "num": "PHASE 05",
           "days": "handoff",
           "h3": "Deployment",
-          "body": "Production deployment as a versioned API, with monitoring and a post-launch support window."
+          "body": "Production deployment as a versioned API with monitoring and a post-launch support window."
         }
       }
     ]
@@ -110,35 +110,35 @@
       "tbody": [
         {
           "td": [
-            "AI agent proof-of-concept",
-            "Baseline agent pipeline on a sample task, evaluation report",
+            "RAG proof-of-concept",
+            "Baseline retrieval pipeline on a sample of your data, evaluation report optimized for Pinecone, Weaviate, or Qdrant",
             "$1,500 to $4,000"
           ]
         },
         {
           "td": [
-            "Production AI agent",
-            "Full agent with tool integrations, memory, guardrails, deployment, documentation",
+            "Production RAG chatbot",
+            "Full pipeline, guardrails, deployment, documentation",
             "$8,000 to $30,000"
           ]
         },
         {
           "td": [
-            "AI agent audit",
-            "Diagnose and improve an existing underperforming agent system",
+            "RAG system audit",
+            "Diagnose and improve an existing underperforming RAG system",
             "$1,000 to $3,000"
           ]
         },
         {
           "td": [
             "Hourly consulting",
-            "Architecture review, agent framework strategy design",
+            "Architecture review, retrieval strategy design, vector DB optimization (Pinecone, Weaviate, Qdrant)",
             "$75 to $150/hr"
           ]
         }
       ]
     },
-    "p": "AI agent systems built with LangGraph and CrewAI are core to several delivered projects, including the AI Customer Feedback Classification system and AI Video Summarizer. Full case studies at shreyans.tech/ai-case-studies."
+    "p": "RAG and retrieval-grounded systems are core to several delivered projects, including the AI Customer Feedback Classification system and AI Video Summarizer. Full case studies at shreyans.tech/ai-case-studies."
   },
   "faq": {
     "sec-head": {
@@ -148,43 +148,43 @@
     "faq": [
       {
         "faq-item": {
-          "faq-q": "What is the difference between an AI agent developer and a general AI developer?",
-          "faq-a": "An AI agent developer specializes in agentic architectures, tool use, memory, and multi-step reasoning systems. A general AI developer may cover a broader range including model training, computer vision, or MLOps. For a project specifically about building an autonomous agent that reasons and acts, an agent specialist brings deeper, focused expertise."
+          "faq-q": "Which vector databases do you specialize in?",
+          "faq-a": "I have deep production experience with Pinecone, Weaviate, and Qdrant. The choice depends on your scale, self-hosting needs, and latency requirements. I'll recommend the best fit for your use case during the architecture spec."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How much does it cost to hire a freelance AI agent developer?",
-          "faq-a": "A scoped proof-of-concept typically starts at $1,500 to $4,000. A full production agent with tool integrations and guardrails ranges from $8,000 to $30,000 depending on complexity. Hourly consulting runs $75 to $150/hr."
+          "faq-q": "What is the difference between a vector DB engineer and a general RAG developer?",
+          "faq-a": "A vector DB engineer specializes in optimizing indexing, query performance, and hybrid search across platforms like Pinecone, Weaviate, and Qdrant. A general RAG developer may not have deep experience tuning these databases for production-scale retrieval. For mission-critical accuracy, a specialist is essential."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Should I hire one freelance AI agent developer or a dedicated team?",
-          "faq-a": "For a single, well-scoped AI agent system, one experienced freelance developer is typically faster to start and more cost-effective. If your roadmap spans multiple concurrent AI disciplines and needs sustained, embedded team capacity, a dedicated team provider like AtlasML is better matched to that scale."
+          "faq-q": "How much does it cost to hire a vector database engineer?",
+          "faq-a": "A scoped proof-of-concept typically starts at $1,500 to $4,000. A full production RAG chatbot with guardrails and deployment ranges from $8,000 to $30,000. Hourly consulting runs $75 to $150/hr."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How long does it take to build an AI agent?",
-          "faq-a": "A proof-of-concept typically takes 2 to 4 weeks. A full production agent with tools, memory, guardrails, and deployment typically takes 4 to 10 weeks depending on task complexity and integration scope."
+          "faq-q": "Should I hire one vector DB engineer or a dedicated team?",
+          "faq-a": "For a single scoped RAG system, one experienced engineer is faster and more cost-effective. If your roadmap spans multiple concurrent AI projects needing sustained team capacity, a dedicated team provider like AtlasML is better suited."
         }
       },
       {
         "faq-item": {
-          "faq-q": "What frameworks do you use to build AI agents?",
-          "faq-a": "Primarily LangGraph, CrewAI, and AutoGen, combined with appropriate tools and memory backends matched to your use case. See the AI agent framework development services page for how the framework choice is made."
+          "faq-q": "How long does it take to build a RAG system?",
+          "faq-a": "A proof-of-concept takes 2 to 4 weeks. A full production RAG chatbot with guardrails, evaluation, and deployment takes 4 to 10 weeks depending on data complexity and integration scope with your chosen vector DB."
         }
       }
     ]
   },
   "final": {
     "eyebrow": "Let's talk",
-    "h2": "Ready to hire an AI agent developer?",
-    "lede": "Tell me about your task and what you need the agent to autonomously accomplish. You'll receive a written technical spec within 48 hours of a discovery call.",
+    "h2": "Ready to hire a vector DB engineer?",
+    "lede": "Tell me about your data and accuracy requirements. You'll receive a written technical spec with vector DB recommendation within 48 hours of a discovery call.",
     "fcard": {
       "h3": "Get your written technical spec",
-      "sub": "Specific to your task and autonomy requirements.",
+      "sub": "Specific to your data and accuracy needs.",
       "btn-primary": "Book my discovery call"
     }
   }

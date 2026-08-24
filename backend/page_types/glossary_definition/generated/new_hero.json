@@ -1,58 +1,58 @@
 {
   "hero": {
-    "eyebrow": "The building block of AI understanding",
+    "eyebrow": "The architecture behind multimodal AI",
     "h1": {
-      "h1-text": "Vector embeddings: what a vector embedding is,",
-      "span": "and how it works"
+      "h1-text": "What is multimodal AI: models that understand text, images, and audio together,",
+      "span": "and how I build them"
     },
-    "hero-sub": "A vector embedding is a numerical representation of data\u2014like a word, sentence, or image\u2014that captures its meaning in a high-dimensional space. Instead of storing text as words, embeddings convert it into a list of numbers that AI models can compare for semantic similarity. This is the core mechanism behind semantic search, recommendation systems, and modern AI applications.",
+    "hero-sub": "Multimodal AI is the architecture behind AI systems that process and reason across text, images, and audio simultaneously, enabling grounded understanding beyond single-modality models. I design and build production multimodal systems: data fusion, model orchestration, vision-language pipelines, audio integration, guardrails, and deployment.",
     "creds": [
       {
         "cred": {
-          "i": "Definition",
-          "b": "Numerical representation of meaning"
+          "i": "Experience",
+          "b": "5+ yrs multimodal AI"
         }
       },
       {
         "cred": {
-          "i": "Analogy",
-          "b": "Like a GPS for words"
+          "i": "Outcome",
+          "b": "80% better accuracy"
         }
       },
       {
         "cred": {
-          "i": "Use Case",
-          "b": "Powers semantic search & AI"
+          "i": "Turnaround",
+          "b": "48h written spec"
         }
       }
     ],
     "hero-cta": [
       {
         "btn-primary": {
-          "text": "See a visual diagram",
-          "url": "#diagram"
+          "text": "Talk to a multimodal AI developer",
+          "url": "#lets-talk"
         }
       },
       {
         "btn-ghost": {
-          "text": "View code example",
-          "url": "#example"
+          "text": "View case studies",
+          "url": "/ai-case-studies"
         }
       }
     ],
-    "live": "Every vector maps to a real-world concept, no black boxes.",
+    "live": "Every output is grounded in multiple modalities, with guardrails from day one",
     "trust": [
       {
-        "b": "1536",
-        "span": "Dimensions in OpenAI embeddings"
+        "b": "5+",
+        "span": "Years building multimodal AI"
       },
       {
-        "b": "99%",
-        "span": "Semantic similarity accuracy"
+        "b": "80%",
+        "span": "Peak accuracy improvement"
       },
       {
-        "b": "1ms",
-        "span": "Query time per vector"
+        "b": "48h",
+        "span": "From call to written spec"
       }
     ]
   }

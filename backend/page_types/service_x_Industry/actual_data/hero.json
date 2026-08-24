@@ -1,22 +1,22 @@
 {
   "hero": {
-    "eyebrow": "Production-grade, not a demo",
+    "eyebrow": "HIPAA-compliant, clinically grounded",
     "h1": {
-      "h1": "LangChain development services:",
-      "span": "production-grade agents and RAG pipelines"
+      "h1": "RAG chatbot development for healthcare:",
+      "span": "HIPAA-compliant clinical & patient AI"
     },
-    "hero-sub": "LangChain has become the default framework for building serious LLM applications: agents that use tools, maintain memory, and reason across multiple steps, not just single-shot chatbot replies. I build this correctly: production-grade, not a fragile demo that breaks the first time a tool call fails.",
+    "hero-sub": "I design and build production-grade healthcare RAG pipelines and clinical decision support chatbots grounded in your EHR systems, medical guidelines, and clinical notes—with zero PHI exposure, sub-100ms hybrid search, and deterministic safety guardrails.",
     "creds": [
       {
         "cred": {
           "i": "Experience",
-          "b": "5+ yrs LangChain/LangGraph"
+          "b": "5+ yrs healthcare AI"
         }
       },
       {
         "cred": {
-          "i": "Access",
-          "b": "Direct, no account manager"
+          "i": "Compliance",
+          "b": "100% HIPAA & BAA ready"
         }
       },
       {
@@ -29,7 +29,7 @@
     "hero-cta": [
       {
         "btn-primary": {
-          "text": "Talk to a LangChain developer",
+          "text": "Discuss your healthcare project",
           "url": "#lets-talk"
         }
       },
@@ -40,19 +40,19 @@
         }
       }
     ],
-    "live": "Honest read included: whether LangChain is even the right tool for it",
+    "live": "Zero model training on patient data, BAA signed before any data access",
     "trust": [
       {
-        "b": "119K+",
-        "span": "GitHub stars, LangChain"
+        "b": "5+",
+        "span": "Years building healthcare AI"
       },
       {
-        "b": "500+",
-        "span": "Integrations available"
+        "b": "100%",
+        "span": "HIPAA & PHI audit compliance"
       },
       {
         "b": "48h",
-        "span": "To a written architecture spec"
+        "span": "To a written technical spec"
       }
     ]
   }

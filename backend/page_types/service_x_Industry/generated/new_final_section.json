@@ -2,36 +2,60 @@
   "process": {
     "sec-head": {
       "eyebrow": "How it gets built",
-      "h2": "Process"
+      "h2": "Marketing content generation process"
     },
     "steps": [
       {
         "step": {
           "num": "PHASE 01",
           "days": "days 1 to 2",
-          "h3": "Discovery",
-          "body": "Understanding clinical workflows, identifying PHI data sources, defining retrieval scope, and establishing HIPAA compliance requirements for the RAG chatbot."
+          "h3": "Brand & Channel Discovery",
+          "body": "Auditing existing brand guidelines, content archives, and multi-channel distribution maps to define voice parameters and compliance rules."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 02",
+          "days": "within 48h",
+          "h3": "Content Strategy & Taxonomy",
+          "body": "Delivering a blueprint covering content pillars, persona segments, SEO keyword clusters, and cross-channel repurposing logic."
+        }
+      },
+      {
+        "step gate": {
+          "num": "PHASE 03",
+          "days": "the decisive one",
+          "h3": "Pipeline Build & QA Loop",
+          "body": "Building ingestion workers, template engines, brand-voice fine-tuned models, and a human-in-the-loop review gate for factual accuracy."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 04",
+          "days": "before launch",
+          "h3": "Multi-Channel QA & Tuning",
+          "body": "Testing output across email, social, blog, and ad formats; validating consistency, tone, and compliance with brand safety rules."
         }
       },
       {
         "step": {
           "num": "PHASE 05",
           "days": "handoff",
-          "h3": "Deployment & monitoring",
-          "body": "Production deployment with HIPAA-compliant logging and tracing for full visibility into chatbot behavior and PHI handling."
+          "h3": "Production Deployment & Monitoring",
+          "body": "Deploying to your existing CMS or marketing stack with real-time content performance dashboards, human override workflows, and support."
         }
       }
     ]
   },
   "when-not": {
     "sec-head": {
-      "eyebrow": "Honest tool selection",
-      "h2": "When LangChain is not the right choice"
+      "eyebrow": "Content boundaries",
+      "h2": "When generative AI is NOT the right choice"
     },
     "callout": {
       "p": [
-        "Direct architectural honesty upfront",
-        "Part of a proper RAG chatbot engagement is an honest assessment of whether a full agentic framework is even necessary for your healthcare use case. If your need is purely high-quality medical document retrieval with no multi-step reasoning or tool use, a simpler retrieval pipeline may be a lower-overhead, more auditable choice. See the RAG framework development services page for the fuller comparison."
+        "Responsible content creation in marketing",
+        "Generative AI for marketing content excels at scaling drafts, personalization, and rapid iteration. It must never be used for final legal disclaimers, regulated financial advice, or highly sensitive crisis communications without explicit human review and sign-off. Any automated system must enforce a human-in-the-loop QA gate for brand-critical assets."
       ]
     }
   },
@@ -49,35 +73,35 @@
       "tbody": [
         {
           "td": [
-            "HIPAA-compliant RAG chatbot",
-            "Secure PHI handling, clinical retrieval pipeline, and compliance documentation",
-            "$8,000 to $25,000"
+            "Generative AI Marketing Proof-of-Concept",
+            "Brand voice audit, sample content pipeline for one channel, human-in-loop QA demonstration",
+            "$2,500 to $6,000"
           ]
         },
         {
           "td": [
-            "Medical AI assistant",
-            "Multi-turn clinical assistant with PHI redaction, guardrails, and EHR integration",
-            "$15,000 to $40,000+"
+            "Production Content Automation System",
+            "Full multi-channel pipeline, brand voice engines, CMS integration, real-time QA dashboard",
+            "$12,000 to $45,000"
           ]
         },
         {
           "td": [
-            "Healthcare AI audit",
-            "HIPAA compliance review and improvement plan for an existing RAG implementation",
+            "Marketing Content Safety Audit",
+            "Red-teaming for brand tone drift, hallucination, and compliance gaps in generated content",
             "$2,000 to $5,000"
           ]
         },
         {
           "td": [
-            "Hourly consulting",
-            "Architecture review, compliance guidance, debugging support",
+            "Hourly Marketing AI Consulting",
+            "Strategy review, channel mapping, human-in-loop workflow design, cost optimization",
             "$100 to $200/hr"
           ]
         }
       ]
     },
-    "p": "Retrieval and generation-grounded systems built using this class of architecture include the AI Clinical Decision Support pipeline and Medical Documentation Summarizer. Full case studies at shreyans.tech/ai-case-studies."
+    "p": "Delivered projects include multi-channel content automation for e-commerce brands and compliance-safe copy generation. Full case studies at shreyans.tech/ai-case-studies."
   },
   "faq": {
     "sec-head": {
@@ -87,32 +111,32 @@
     "faq": [
       {
         "faq-item": {
-          "faq-q": "How does a RAG chatbot for healthcare handle PHI?",
-          "faq-a": "PHI is handled through strict access controls, data encryption at rest and in transit, and retrieval pipelines that redact or anonymize patient identifiers before sending data to the LLM. All logs and traces are also scrubbed of PHI to maintain HIPAA compliance."
+          "faq-q": "How do you maintain brand voice across channels with generative AI?",
+          "faq-a": "We fine-tune base models on your existing brand guidelines and content archives, then apply deterministic style rules per channel. A human-in-the-loop QA gate reviews every output for tone consistency before publication."
         }
       },
       {
         "faq-item": {
-          "faq-q": "What clinical use cases can a medical AI assistant support?",
-          "faq-a": "A medical AI assistant can support symptom triage, clinical decision support, medical literature retrieval, patient history summarization, and medication interaction checks, all while maintaining strict HIPAA compliance and clinical accuracy."
+          "faq-q": "Can the system integrate with existing marketing platforms like HubSpot or Salesforce?",
+          "faq-a": "Yes. We connect via APIs to your CMS, email service provider, and social scheduling tools. The pipeline can auto-populate drafts, suggest subject lines, and flag compliance issues while respecting your existing workflows."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How much does a HIPAA compliant chatbot cost?",
-          "faq-a": "A HIPAA-compliant RAG chatbot typically runs $8,000 to $25,000 for a secure clinical retrieval pipeline, while a full medical AI assistant with EHR integration ranges from $15,000 to $40,000+ depending on complexity."
+          "faq-q": "How does the system prevent factual hallucinations in marketing copy?",
+          "faq-a": "The system enforces source grounding: all claims about products, features, or pricing are pulled from a curated knowledge base. When confidence is low, the content is routed to a human reviewer for fact-checking before any distribution."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Is LangChain HIPAA compliant out of the box?",
-          "faq-a": "No, LangChain itself is not HIPAA compliant. Compliance is achieved through the deployment architecture, data handling practices, and access controls implemented in the RAG pipeline. We handle all of that during the build process."
+          "faq-q": "Do I need a content automation agency or can an independent engineer build this?",
+          "faq-a": "Working directly with a specialized independent engineer gives you direct accountability, faster iteration, and no bureaucratic overhead. You get hands-on tuning of brand voice and QA loops without paying for agency account management layers."
         }
       },
       {
         "faq-item": {
-          "faq-q": "When should I NOT use a RAG chatbot for healthcare?",
-          "faq-a": "If your use case is purely straightforward FAQ retrieval with no multi-step reasoning or clinical decision support, a simpler document search system may be more cost-effective and easier to audit. RAG earns its complexity when you need context-aware, evidence-based responses from diverse clinical sources."
+          "faq-q": "How much does a generative AI marketing system cost to build?",
+          "faq-a": "A scoped proof-of-concept for a single channel starts at $2,500 to $6,000. A full production system with multi-channel support, brand voice fine-tuning, and human-in-loop QA typically ranges from $12,000 to $45,000."
         }
       }
     ]

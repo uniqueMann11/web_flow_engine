@@ -1,0 +1,144 @@
+{
+  "process": {
+    "sec-head": {
+      "eyebrow": "How it gets built",
+      "h2": "Process"
+    },
+    "steps": [
+      {
+        "step": {
+          "num": "PHASE 01",
+          "days": "days 1 to 2",
+          "h3": "Discovery",
+          "body": "Understanding throughput targets, latency SLAs, GPU budget, and model requirements. We evaluate whether PagedAttention, tensor parallelism, or continuous batching best fit your serving load."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 02",
+          "days": "within 48h",
+          "h3": "Architecture spec",
+          "body": "A written spec covering GPU topology, KV cache sizing, scheduling strategy, and cost-per-token projections. Delivered within 48 hours."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 03",
+          "days": "the decisive one",
+          "h3": "Build in milestones",
+          "body": "Model loading first, then batching and parallelism config, then production-ready optimizations like speculative decoding and prefix caching."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 04",
+          "days": "before launch",
+          "h3": "Testing & evaluation",
+          "body": "Stress-testing with realistic request patterns, measuring throughput, latency tail, and GPU utilization. Comparing cost against managed API alternatives."
+        }
+      },
+      {
+        "step": {
+          "num": "PHASE 05",
+          "days": "handoff",
+          "h3": "Deployment & monitoring",
+          "body": "Production deployment with Prometheus/Grafana dashboards for throughput, memory pressure, and GPU metrics. Full logging for debugging and capacity planning."
+        }
+      }
+    ]
+  },
+  "when-not": {
+    "sec-head": {
+      "eyebrow": "Honest tool selection",
+      "h2": "When vLLM is not the right choice"
+    },
+    "callout": {
+      "p": [
+        "Direct architectural honesty upfront",
+        "If your workload is purely low-latency (<50ms) single-request inference with small models, a simpler solution like Hugging Face TGI or a direct ONNX runtime may be cheaper and easier. vLLM shines under high throughput, large models, and dynamic batching. For fully managed needs, consider OpenAI or Anthropic APIs instead of self-hosted LLM serving."
+      ]
+    }
+  },
+  "pricing": {
+    "sec-head": {
+      "eyebrow": "Investment",
+      "h2": "Pricing"
+    },
+    "tablewrap": {
+      "thead": [
+        "Engagement type",
+        "What's included",
+        "Typical investment"
+      ],
+      "tbody": [
+        {
+          "td": [
+            "Single model deployment",
+            "One model with basic batching and default scheduling",
+            "$2,500 to $7,000"
+          ]
+        },
+        {
+          "td": [
+            "Production serving setup",
+            "Multi-model, tensor parallelism, continuous batching, monitoring",
+            "$10,000 to $35,000+"
+          ]
+        },
+        {
+          "td": [
+            "vLLM system audit",
+            "Review of existing deployment, throughput bottlenecks, cost optimization",
+            "$1,500 to $4,000"
+          ]
+        },
+        {
+          "td": [
+            "Hourly consulting",
+            "Architecture review, GPU capacity planning, debugging support",
+            "$100 to $200/hr"
+          ]
+        }
+      ]
+    },
+    "p": "Real-world deployments include the AI Customer Feedback Classification pipeline and AI Video Summarizer. Full case studies at shreyans.tech/ai-case-studies."
+  },
+  "faq": {
+    "sec-head": {
+      "eyebrow": "FAQ",
+      "h2": "Frequently asked questions"
+    },
+    "faq": [
+      {
+        "faq-item": {
+          "faq-q": "What is the difference between vLLM and Hugging Face TGI?",
+          "faq-a": "vLLM uses PagedAttention for near-zero memory waste and higher throughput under concurrent requests. TGI supports simpler batching and is easier to set up for small models. vLLM is the better choice for large models and high-throughput serving."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "Do I need a vLLM consultant, or can I deploy it myself?",
+          "faq-a": "Basic deployment is straightforward, but optimizing throughput, GPU utilization, and cost per token often requires deep experience with scheduling, tensor parallelism, and KV cache sizing. A consultant accelerates production readiness and avoids costly mistakes."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "How much do vLLM deployment services cost?",
+          "faq-a": "A single model deployment typically runs $2,500 to $7,000. A full production serving setup ranges from $10,000 to $35,000+ depending on model size and parallelism. Hourly consulting is $100 to $200/hr."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "Is vLLM free to use?",
+          "faq-a": "Yes, vLLM is open-source under the Apache 2.0 license. There are no licensing fees, but you pay for GPU compute. Our services focus on maximizing throughput per GPU to reduce your serving costs."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "When should I NOT use vLLM?",
+          "faq-a": "If you need sub-50ms latency for single requests with small models, a simpler framework like TGI or ONNX Runtime may be more cost-effective. vLLM excels under high throughput, dynamic batching, and large model serving."
+        }
+      }
+    ]
+  }
+}

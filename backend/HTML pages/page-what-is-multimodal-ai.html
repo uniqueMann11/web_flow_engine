@@ -1,71 +1,124 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RAG Development Services | What Is Retrieval-Augmented Generation | Shreyans Padmani</title>
-  <meta name="robots" content="index, follow">
-  <meta name="robots" content="max-image-preview:large">
-  <meta name="author" content="Shreyans Padmani">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Shreyans Padmani">
-  <meta property="og:locale" content="en_US">
-  <meta name="description"
-    content="RAG development services: what retrieval-augmented generation is, how it works, and how I build production RAG systems, document ingestion, retrieval engineering, guardrails, and deployment.">
-  <meta name="keywords" content="what is RAG, retrieval augmented generation explained, RAG development services">
-  <link rel="canonical" href="https://shreyans.tech/what-is-rag" />
-  <meta property="og:title" content="RAG Development Services | What Is RAG — Shreyans Padmani">
-  <meta property="og:url" content="https://shreyans.tech/what-is-rag">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@shreyanspadmani">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet">
-  <link rel="shortcut icon" href="/assets/image/shreyans.png" type="image/x-icon">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/image/shreyans.png">
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <script type="application/ld+json">{
-      "@context": "https://schema.org",
-      "@graph": [
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>What Is Multimodal AI? | Shreyans Padmani</title>
+<meta content="index, follow" name="robots"/>
+<meta content="max-image-preview:large" name="robots"/>
+<meta content="Shreyans Padmani" name="author"/>
+<meta content="website" property="og:type"/>
+<meta content="Shreyans Padmani" property="og:site_name"/>
+<meta content="en_US" property="og:locale"/>
+<meta content="Multimodal AI is the architecture behind AI systems that process and reason across text, images, and audio simultaneously, enabling grounded understanding beyond single-modality models. I design and build production multimodal systems: data fusion, model orchestration, vision-language pipelines, audio integration, guardrails, and deployment." name="description"/>
+<meta content="what is multimodal AI, multimodal models explained, vision language" name="keywords"/>
+<link href="https://shreyans.tech/what-is-multimodal-ai" rel="canonical"/>
+<meta content="What Is Multimodal AI?" property="og:title"/>
+<meta content="https://shreyans.tech/what-is-multimodal-ai" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="@shreyanspadmani" name="twitter:site"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/image/shreyans.png" rel="shortcut icon" type="image/x-icon"/>
+<link href="/assets/image/shreyans.png" rel="apple-touch-icon" sizes="180x180"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "What Is Multimodal AI?",
+      "url": "https://shreyans.tech/what-is-multimodal-ai",
+      "provider": {
+        "@type": "Person",
+        "name": "Shreyans Padmani",
+        "url": "https://shreyans.tech"
+      }
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Retrieval-Augmented Generation",
+      "description": "Retrieval-augmented generation (RAG) is an AI architecture that improves large language model responses by retrieving relevant information from an external knowledge base at query time and inserting it into the model's context before it generates an answer, grounding each response in specific, current, and verifiable source content."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-          "@type": "Service",
-          "name": "RAG Development Services",
-          "url": "https://shreyans.tech/what-is-rag",
-          "provider": { "@type": "Person", "name": "Shreyans Padmani", "url": "https://shreyans.tech" }
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://shreyans.tech/"
         },
         {
-          "@type": "DefinedTerm",
-          "name": "Retrieval-Augmented Generation",
-          "description": "Retrieval-augmented generation (RAG) is an AI architecture that improves large language model responses by retrieving relevant information from an external knowledge base at query time and inserting it into the model's context before it generates an answer, grounding each response in specific, current, and verifiable source content."
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://shreyans.tech/hire-ai-developer"
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://shreyans.tech/" },
-            { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://shreyans.tech/hire-ai-developer" },
-            { "@type": "ListItem", "position": 3, "name": "RAG Development", "item": "https://shreyans.tech/services/rag-development" },
-            { "@type": "ListItem", "position": 4, "name": "What Is RAG", "item": "https://shreyans.tech/what-is-rag" }
-          ]
+          "@type": "ListItem",
+          "position": 3,
+          "name": "RAG Development",
+          "item": "https://shreyans.tech/services/rag-development"
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "What does RAG stand for?", "acceptedAnswer": { "@type": "Answer", "text": "RAG stands for retrieval-augmented generation, an AI architecture that retrieves relevant information before an LLM generates its response, rather than relying only on the model's training data." } },
-            { "@type": "Question", "name": "Is RAG the same as fine-tuning?", "acceptedAnswer": { "@type": "Answer", "text": "No. Fine-tuning changes a model's weights through additional training. RAG retrieves external information and adds it to the model's context at query time without changing the model. They solve different problems and are often used together." } },
-            { "@type": "Question", "name": "Does RAG eliminate AI hallucination?", "acceptedAnswer": { "@type": "Answer", "text": "RAG significantly reduces hallucination, typically 60 to 80% versus a bare LLM, by grounding responses in retrieved content, but does not eliminate it entirely. Guardrails and confidence thresholds are layered on top in every production system." } },
-            { "@type": "Question", "name": "How much does RAG development cost?", "acceptedAnswer": { "@type": "Answer", "text": "A proof-of-concept starts at $1,500 to $4,000. A full production RAG system ranges from $8,000 to $30,000 depending on complexity and data volume." } },
-            { "@type": "Question", "name": "How long does it take to build a RAG system?", "acceptedAnswer": { "@type": "Answer", "text": "A proof-of-concept typically takes 2 to 4 weeks. A full production system with guardrails, evaluation, and deployment typically takes 4 to 10 weeks depending on data complexity and integration scope." } }
-          ]
+          "@type": "ListItem",
+          "position": 4,
+          "name": "What Is Multimodal AI?",
+          "item": "https://shreyans.tech/what-is-multimodal-ai"
         }
       ]
-    }</script>
-
-  <style>
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is multimodal AI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Multimodal AI is a system that processes and combines multiple data types—text, images, audio, and video—to produce richer outputs than single-modality models. It enables applications like image captioning, video understanding, and voice assistants with visual context."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does multimodal AI work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It encodes each modality separately using specialized models, aligns them into a shared embedding space, and fuses the representations for joint reasoning. Common architectures include cross-attention transformers and early or late fusion strategies."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are common use cases?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Common use cases include visual question answering, video summarization, multimodal search, healthcare diagnostics, ecommerce product understanding, and accessibility tools for the visually impaired."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does multimodal AI development cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A proof-of-concept starts at $2,000 to $5,000. A full production system ranges from $10,000 to $40,000 depending on modality complexity and data volume. Contact for a fixed-price estimate specific to your use case."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to build a multimodal system?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A proof-of-concept typically takes 2 to 4 weeks. A full production system with evaluation and deployment typically takes 4 to 12 weeks depending on the number of modalities and integration requirements."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+<style>
     .svcp {
       --ink: #0A1222;
       --ink-soft: #1B2740;
@@ -1650,433 +1703,868 @@
         transform: none
       }
     }
-  </style>
+  
+.viewer {
+  width: 100%;
+  max-width: 520px;
+  box-sizing: border-box;
+  font-family: var(--bodyf, "Inter", system-ui, sans-serif);
+}
+.viewer .vw-card {
+  width: 100%;
+  background: var(--surface, #FFFFFF);
+  border: 1px solid var(--line, #E6ECF4);
+  border-radius: var(--r, 18px);
+  box-shadow: var(--sh-md, 0 14px 34px -16px rgba(10,18,34,0.22));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.viewer .vw-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line-soft, #EFF3F9);
+}
+.viewer .vw-top .t {
+  font-family: var(--disp, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink, #0A1222);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.viewer .vw-top .t svg {
+  width: 18px;
+  height: 18px;
+  color: var(--blue, #2456E6);
+  flex-shrink: 0;
+}
+.viewer .vw-chip {
+  font-family: var(--mono, "IBM Plex Mono", ui-monospace, monospace);
+  font-size: 0.6rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: var(--blue-tint, #E6EEFF);
+  color: var(--blue, #2456E6);
+  border: 1px solid rgba(36, 86, 230, 0.2);
+  white-space: nowrap;
+}
+.viewer .vw-body {
+  padding: 16px 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.viewer .vw-summary {
+  background: var(--tint, #EAF0FF);
+  border: 1px solid var(--blue-tint, #E6EEFF);
+  border-radius: var(--r-sm, 12px);
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.viewer .vw-summary svg {
+  width: 20px;
+  height: 20px;
+  color: var(--blue, #2456E6);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.viewer .vw-summary p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink-soft, #1B2740);
+  font-weight: 500;
+}
+.viewer .vw-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.viewer .vw-stat-tile {
+  background: var(--soft, #F4F8FD);
+  border: 1px solid var(--line-soft, #EFF3F9);
+  border-radius: var(--r-sm, 12px);
+  padding: 10px 8px;
+  text-align: center;
+  transition: background 0.2s;
+}
+.viewer .vw-stat-tile:hover {
+  background: var(--tint, #EAF0FF);
+}
+.viewer .vw-stat-tile .vw-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+.viewer .vw-stat-tile .vw-icon-wrap svg {
+  width: 18px;
+  height: 18px;
+}
+.viewer .vw-stat-tile .vw-stat-label {
+  font-family: var(--mono, "IBM Plex Mono", ui-monospace, monospace);
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: var(--muted, #6B7A93);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  display: block;
+  margin-bottom: 2px;
+}
+.viewer .vw-stat-tile .vw-stat-value {
+  font-family: var(--disp, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ink, #0A1222);
+  line-height: 1.3;
+}
+.viewer .vw-tab-bar {
+  display: flex;
+  gap: 4px;
+  background: var(--soft, #F4F8FD);
+  border-radius: 10px;
+  padding: 3px;
+  border: 1px solid var(--line-soft, #EFF3F9);
+}
+.viewer .vw-tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 7px 6px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  font-family: var(--bodyf, "Inter", system-ui, sans-serif);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--body, #48566E);
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1;
+}
+.viewer .vw-tab-btn svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.viewer .vw-tab-btn.active {
+  background: var(--surface, #FFFFFF);
+  box-shadow: var(--sh-sm, 0 1px 2px rgba(10,18,34,0.04));
+  color: var(--ink, #0A1222);
+}
+.viewer .vw-tab-btn.active[data-modality="text"] { color: var(--blue, #2456E6); }
+.viewer .vw-tab-btn.active[data-modality="image"] { color: var(--violet, #6D5EF6); }
+.viewer .vw-tab-btn.active[data-modality="audio"] { color: var(--mint, #0FA968); }
+.viewer .vw-tab-btn:not(.active):hover { color: var(--ink, #0A1222); background: rgba(255,255,255,0.5); }
+.viewer .vw-tab-content {
+  display: none;
+  background: var(--soft, #F4F8FD);
+  border: 1px solid var(--line-soft, #EFF3F9);
+  border-radius: var(--r-sm, 12px);
+  padding: 12px 14px;
+  animation: vw-fade-in 0.25s ease;
+  gap: 8px;
+}
+.viewer .vw-tab-content.open { display: flex; flex-direction: column; }
+@keyframes vw-fade-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+.viewer .vw-tab-content .vw-tc-head {
+  font-family: var(--disp, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink, #0A1222);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.viewer .vw-tab-content .vw-tc-head .vw-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.viewer .vw-tab-content p {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: var(--body, #48566E);
+}
+.viewer .vw-tab-content .vw-example-tag {
+  display: inline-block;
+  font-family: var(--mono, "IBM Plex Mono", ui-monospace, monospace);
+  font-size: 0.58rem;
+  padding: 3px 8px;
+  border-radius: 5px;
+  background: var(--surface, #FFFFFF);
+  border: 1px solid var(--line, #E6ECF4);
+  color: var(--muted, #6B7A93);
+  margin-top: 2px;
+  align-self: flex-start;
+}
+.viewer .vw-fusion {
+  background: var(--surface, #FFFFFF);
+  border: 1px solid var(--line, #E6ECF4);
+  border-radius: var(--r-sm, 12px);
+  padding: 12px 14px;
+}
+.viewer .vw-fusion-head {
+  font-family: var(--disp, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ink, #0A1222);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.viewer .vw-fusion-head svg {
+  width: 14px;
+  height: 14px;
+  color: var(--violet, #6D5EF6);
+}
+.viewer .vw-flow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  flex-wrap: nowrap;
+}
+.viewer .vw-flow-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-align: center;
+  min-width: 0;
+  flex-shrink: 1;
+}
+.viewer .vw-flow-node .vw-fn-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--soft, #F4F8FD);
+  border: 1px solid var(--line, #E6ECF4);
+  transition: all 0.2s;
+  cursor: default;
+}
+.viewer .vw-flow-node .vw-fn-icon svg {
+  width: 14px;
+  height: 14px;
+  color: var(--body, #48566E);
+}
+.viewer .vw-flow-node .vw-fn-label {
+  font-size: 0.5rem;
+  font-weight: 600;
+  color: var(--muted, #6B7A93);
+  font-family: var(--mono, "IBM Plex Mono", ui-monospace, monospace);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 56px;
+}
+.viewer .vw-flow-node.highlight .vw-fn-icon {
+  background: var(--violet-tint, #EDEAFE);
+  border-color: var(--violet, #6D5EF6);
+}
+.viewer .vw-flow-node.highlight .vw-fn-icon svg { color: var(--violet, #6D5EF6); }
+.viewer .vw-flow-arrow {
+  flex-shrink: 0;
+  color: var(--line, #E6ECF4);
+  display: flex;
+  align-items: center;
+}
+.viewer .vw-flow-arrow svg {
+  width: 12px;
+  height: 12px;
+}
+.viewer .vw-flow-arrow.pulse { color: var(--violet, #6D5EF6); }
+.viewer .vw-use-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.viewer .vw-use-item {
+  background: var(--soft, #F4F8FD);
+  border: 1px solid var(--line-soft, #EFF3F9);
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.viewer .vw-use-item:hover {
+  background: var(--tint, #EAF0FF);
+  border-color: var(--blue-tint, #E6EEFF);
+}
+.viewer .vw-use-item.active {
+  background: var(--blue-tint, #E6EEFF);
+  border-color: var(--blue, #2456E6);
+}
+.viewer .vw-use-item .vw-ui-title {
+  font-family: var(--disp, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--ink, #0A1222);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.viewer .vw-use-item .vw-ui-title svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+.viewer .vw-use-item .vw-ui-desc {
+  font-size: 0.63rem;
+  line-height: 1.4;
+  color: var(--body, #48566E);
+  display: none;
+}
+.viewer .vw-use-item.active .vw-ui-desc { display: block; animation: vw-fade-in 0.2s ease; }
+.viewer .vw-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  border-top: 1px solid var(--line-soft, #EFF3F9);
+  background: var(--soft, #F4F8FD);
+  font-size: 0.62rem;
+  color: var(--muted, #6B7A93);
+  font-family: var(--mono, "IBM Plex Mono", ui-monospace, monospace);
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.viewer .vw-foot span:last-child {
+  color: var(--body, #48566E);
+  font-weight: 500;
+}
+@media (max-width: 480px) {
+  .viewer .vw-top { padding: 12px 14px; flex-wrap: wrap; gap: 6px; }
+  .viewer .vw-top .t { font-size: 0.8rem; }
+  .viewer .vw-body { padding: 12px 14px; gap: 12px; }
+  .viewer .vw-stats-row { grid-template-columns: 1fr 1fr 1fr; gap: 5px; }
+  .viewer .vw-stat-tile .vw-stat-value { font-size: 0.7rem; }
+  .viewer .vw-tab-btn { font-size: 0.6rem; padding: 5px 4px; gap: 3px; }
+  .viewer .vw-tab-btn svg { width: 12px; height: 12px; }
+  .viewer .vw-flow-node .vw-fn-icon { width: 24px; height: 24px; }
+  .viewer .vw-flow-node .vw-fn-icon svg { width: 12px; height: 12px; }
+  .viewer .vw-flow-node .vw-fn-label { font-size: 0.45rem; max-width: 40px; }
+  .viewer .vw-flow-arrow svg { width: 10px; height: 10px; }
+  .viewer .vw-use-grid { grid-template-columns: 1fr; }
+  .viewer .vw-foot { font-size: 0.55rem; flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 380px) {
+  .viewer .vw-stats-row { grid-template-columns: 1fr; }
+  .viewer .vw-flow { flex-wrap: wrap; justify-content: center; }
+  .viewer .vw-flow-arrow { transform: rotate(90deg); }
+}
+</style>
 </head>
-
 <body>
-
-  <div class="svcp">
-    <div class="wash"></div>
-    <main>
-
-      <!-- ================= HERO ================= -->
-      <section class="hero" id="demo">
-        <div class="wrap">
-          <div class="hero-grid">
-            <div>
-              <p class="eyebrow">The architecture behind grounded AI</p>
-              <h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">RAG development services: what retrieval-augmented
-                generation is, <span>and how I build it</span></h1>
-              <p class="hero-sub">Retrieval-augmented generation is the architecture behind every AI system that needs
-                to answer accurately from your own data instead of guessing from general training knowledge. I design
-                and build production RAG systems: document ingestion, retrieval engineering, generation, guardrails, and
-                deployment.</p>
-
-              <div class="creds">
-                <div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg width="15"
-                      height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 8v4l3 3" />
-                      <circle cx="12" cy="12" r="9" />
-                    </svg></span><span class="t"><i>Experience</i><b>5+ yrs production RAG</b></span></div>
-                <div class="cred"><span class="b" style="background:#0FA968" title="Reduction"><svg width="15"
-                      height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M3 3v18h18" />
-                      <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14" />
-                    </svg></span><span class="t"><i>Outcome</i><b>60&ndash;80% less hallucination</b></span></div>
-                <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg width="14" height="14"
-                      viewBox="0 0 24 24" fill="none" stroke="#2456E6" stroke-width="2.4" stroke-linecap="round"
-                      stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M12 6v6l4 2" />
-                    </svg></span><span class="t"><i>Turnaround</i><b>48h written spec</b></span></div>
-              </div>
-
-              <div class="hero-cta">
-                <a class="btn btn-primary" href="#lets-talk">Talk to a RAG developer <svg fill="none"
-                    stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
-                    <path d="M5 12h14M13 6l6 6-6 6"></path>
-                  </svg></a>
-                <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
-              </div>
-              <p class="live"><span class="pulse"></span> Every answer traces to a source, guardrails included from day
-                one</p>
-
-              <div class="trust">
-                <div><b data-count="5" data-suffix="+">0+</b><span>Years building production RAG</span></div>
-                <div><b data-count="80" data-suffix="%">0%</b><span>Peak hallucination reduction</span></div>
-                <div><b>48h</b><span>From call to written spec</span></div>
-              </div>
-            </div>
-
-            <!-- ===== SIGNATURE: RAG vs Plain LLM vs Fine-Tuning ===== -->
-            <div class="viewer">
-              <div class="viewer-top">
-                <span class="t">grounding preview, illustrative</span>
-                <span class="chip"><span class="d"></span>live</span>
-              </div>
-              <canvas id="sigcanvas"
-                aria-label="Illustration comparing retrieval-augmented generation, a plain LLM, and a fine-tuned model. RAG retrieves matching document chunks and cites them. A plain LLM guesses with no source. A fine-tuned model answers in a trained style but without a live, checkable source."></canvas>
-              <div class="modesw" role="tablist" aria-label="Grounding mode">
-                <button role="tab" aria-selected="true" data-m="rag" type="button">RAG</button>
-                <button role="tab" aria-selected="false" data-m="bare" type="button">Plain LLM</button>
-                <button role="tab" aria-selected="false" data-m="finetune" type="button">Fine-tuned</button>
-              </div>
-              <div class="segs" role="tablist" aria-label="Business scenario">
-                <button role="tab" aria-selected="true" data-d="0" type="button">support policy</button>
-                <button role="tab" aria-selected="false" data-d="1" type="button">internal wiki</button>
-                <button role="tab" aria-selected="false" data-d="2" type="button">product catalog</button>
-              </div>
-              <div class="metrics">
-                <div><b id="m1" class="sc-good">Low</b><span id="m1l">Hallucination risk</span></div>
-                <div><b id="m2">4</b><span id="m2l">Chunks retrieved</span></div>
-                <div><b id="m3">Live docs</b><span id="m3l">Answer basis</span></div>
-              </div>
-              <div class="answerbox">
-                <span class="k">Generated answer</span>
-                <p id="answer"></p>
-              </div>
-              <ul class="citelist" id="citelist"></ul>
-              <div class="viewer-foot" id="foot">Switch modes to see what each approach actually gives you, and what it
-                can't.</div>
-            </div>
-          </div>
+<div class="svcp">
+<div class="wash"></div>
+<main>
+<!-- ================= HERO ================= -->
+<section class="hero" id="demo">
+<div class="wrap">
+<div class="hero-grid">
+<div>
+<p class="eyebrow">The architecture behind multimodal AI</p>
+<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">What is multimodal AI: models that understand text, images, and audio together, <span>and how I build them</span></h1>
+<p class="hero-sub">Multimodal AI is the architecture behind AI systems that process and reason across text, images, and audio simultaneously, enabling grounded understanding beyond single-modality models. I design and build production multimodal systems: data fusion, model orchestration, vision-language pipelines, audio integration, guardrails, and deployment.</p>
+<div class="creds">
+<div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<path d="M12 8v4l3 3"></path>
+<circle cx="12" cy="12" r="9"></circle>
+</svg></span><span class="t"><i>Experience</i><b>5+ yrs multimodal AI</b></span></div>
+<div class="cred"><span class="b" style="background:#0FA968" title="Reduction"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<path d="M3 3v18h18"></path>
+<path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14"></path>
+</svg></span><span class="t"><i>Outcome</i><b>80% better accuracy</b></span></div>
+<div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="14">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M12 6v6l4 2"></path>
+</svg></span><span class="t"><i>Turnaround</i><b>48h written spec</b></span></div>
+</div>
+<div class="hero-cta">
+<a class="btn btn-primary" href="#lets-talk">Talk to a multimodal AI developer <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M5 12h14M13 6l6 6-6 6"></path>
+</svg></a>
+<a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
+</div>
+<p class="live"><span class="pulse"></span> Every output is grounded in multiple modalities, with guardrails from day one</p>
+<div class="trust">
+<div><b data-count="5" data-suffix="+">5+</b><span>Years building multimodal AI</span></div>
+<div><b data-count="80" data-suffix="%">80%</b><span>Peak accuracy improvement</span></div>
+<div><b>48h</b><span>From call to written spec</span></div>
+</div>
+</div>
+<!-- ===== SIGNATURE: RAG vs Plain LLM vs Fine-Tuning ===== -->
+<div class="viewer">
+<div class="vw-card">
+<div class="vw-top">
+<span class="t">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path><path d="M3 12h3"></path><path d="M18 12h3"></path><path d="M12 3v3"></path><path d="M12 18v3"></path></svg>
+        What Is Multimodal AI?
+      </span>
+<span class="vw-chip">Definition</span>
+</div>
+<div class="vw-body">
+<!-- Definition summary -->
+<div class="vw-summary">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
+<p>Multimodal AI refers to artificial intelligence systems that simultaneously process and integrate multiple data types — text, images, and audio — to achieve richer understanding than any single modality alone.</p>
+</div>
+<!-- Modality stats -->
+<div class="vw-stats-row">
+<div class="vw-stat-tile" style="border-left: 3px solid var(--blue, #2456E6);">
+<div class="vw-icon-wrap">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color:var(--blue, #2456E6);" viewbox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" x2="15" y1="20" y2="20"></line><line x1="12" x2="12" y1="4" y2="20"></line></svg>
+</div>
+<span class="vw-stat-label">Text</span>
+<span class="vw-stat-value">Language &amp; Code</span>
+</div>
+<div class="vw-stat-tile" style="border-left: 3px solid var(--violet, #6D5EF6);">
+<div class="vw-icon-wrap">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color:var(--violet, #6D5EF6);" viewbox="0 0 24 24"><rect height="18" rx="2" ry="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+</div>
+<span class="vw-stat-label">Image</span>
+<span class="vw-stat-value">Vision &amp; Diagrams</span>
+</div>
+<div class="vw-stat-tile" style="border-left: 3px solid var(--mint, #0FA968);">
+<div class="vw-icon-wrap">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color:var(--mint, #0FA968);" viewbox="0 0 24 24"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+</div>
+<span class="vw-stat-label">Audio</span>
+<span class="vw-stat-value">Speech &amp; Sound</span>
+</div>
+</div>
+<!-- Modality Tabs -->
+<div class="vw-tab-bar">
+<button class="vw-tab-btn active" data-modality="text" id="tabText">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" x2="15" y1="20" y2="20"></line><line x1="12" x2="12" y1="4" y2="20"></line></svg>
+          Text
+        </button>
+<button class="vw-tab-btn" data-modality="image" id="tabImage">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="18" rx="2" ry="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          Image
+        </button>
+<button class="vw-tab-btn" data-modality="audio" id="tabAudio">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+          Audio
+        </button>
+</div>
+<!-- Tab content panels -->
+<div class="vw-tab-content open" data-modality="text" id="panelText">
+<div class="vw-tc-head">
+<span class="vw-dot" style="background:var(--blue, #2456E6);"></span>
+          Text Processing
         </div>
-      </section>
-
-      <!-- ================= COMPLY STRIP ================= -->
-      <div class="comply">
-        <div class="wrap comply-in">
-          <div><span><b>Grounded, not guessed</b>Every answer is retrieved from your own documents at query time, not
-              the model's fixed training memory.</span></div>
-          <div><span><b>Source-traceable</b>Each response can cite the exact document it came from, for review and for
-              trust.</span></div>
-          <div><span><b>Guardrails included</b>Confidence thresholds and a defensive "I don't know" fallback ship with
-              every build, not bolted on later.</span></div>
-          <div><span><b>No retraining required</b>Update the knowledge base, not the model. Documents change daily, RAG
-              keeps up without a training run.</span></div>
+<p>Encodes natural language, documents, code, and symbols into dense vector representations. Enables the model to understand syntax, semantics, and context across languages and domains.</p>
+<span class="vw-example-tag">Example: Summarizing a research paper with citations</span>
+</div>
+<div class="vw-tab-content" data-modality="image" id="panelImage">
+<div class="vw-tc-head">
+<span class="vw-dot" style="background:var(--violet, #6D5EF6);"></span>
+          Image Understanding
         </div>
-      </div>
-
-      <!-- ================= WHAT IS RAG (definition) ================= -->
-      <section id="what-is-rag">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">Plain answer</p>
-            <h2>What is RAG (retrieval-augmented generation)?</h2>
-          </div>
-          <div class="tldr reveal">
-            <b>Definition</b>
-            <p>Retrieval-augmented generation (RAG) is an AI architecture that improves large language model responses
-              by retrieving relevant information from an external knowledge base at query time and inserting it into the
-              model's context before it generates an answer. Instead of relying only on what the model learned during
-              training, a fixed and eventually outdated snapshot, RAG grounds each response in specific, current, and
-              verifiable source content, making answers more accurate, current, and traceable back to a source document.
-            </p>
-          </div>
+<p>Analyzes pixel data via vision transformers or CNNs to extract objects, spatial relationships, layouts, and visual semantics. Works with photos, diagrams, charts, and medical scans.</p>
+<span class="vw-example-tag">Example: Diagnosing anomalies from chest X‑ray images</span>
+</div>
+<div class="vw-tab-content" data-modality="audio" id="panelAudio">
+<div class="vw-tc-head">
+<span class="vw-dot" style="background:var(--mint, #0FA968);"></span>
+          Audio Perception
         </div>
-      </section>
-
-      <!-- ================= HOW RAG WORKS ================= -->
-      <section class="soft" id="how-it-works">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">Step by step</p>
-            <h2>How RAG works</h2>
-            <p>The same five-step pipeline animating in the signature panel above, applied to your own documents.</p>
-          </div>
-          <div class="grid g3 reveal" style="grid-template-columns:repeat(5,1fr)">
-            <div class="card" style="padding:20px"><span class="n">STEP 1</span>
-              <h3 style="font-size:.98rem">Query submitted</h3>
-              <p style="font-size:.84rem">A user asks a question in natural language.</p>
-            </div>
-            <div class="card" style="padding:20px"><span class="n">STEP 2</span>
-              <h3 style="font-size:.98rem">Query embedded</h3>
-              <p style="font-size:.84rem">Converted into a numerical embedding capturing its meaning.</p>
-            </div>
-            <div class="card" style="padding:20px"><span class="n">STEP 3</span>
-              <h3 style="font-size:.98rem">Vector search</h3>
-              <p style="font-size:.84rem">The system finds the most relevant chunks in a vector database.</p>
-            </div>
-            <div class="card" style="padding:20px"><span class="n">STEP 4</span>
-              <h3 style="font-size:.98rem">Context inserted</h3>
-              <p style="font-size:.84rem">Retrieved content joins the query in the LLM's context window.</p>
-            </div>
-            <div class="card" style="padding:20px"><span class="n build">STEP 5</span>
-              <h3 style="font-size:.98rem">Grounded answer</h3>
-              <p style="font-size:.84rem">The LLM generates a response with sources available to cite.</p>
-            </div>
-          </div>
+<p>Processes waveforms and spectrograms to recognize speech, speaker identity, tone, music, and environmental sounds. Often uses wav2vec or Whisper-style encoders for robust comprehension.</p>
+<span class="vw-example-tag">Example: Real-time meeting transcription with speaker diarization</span>
+</div>
+<!-- Multimodal Fusion Pipeline -->
+<div class="vw-fusion">
+<div class="vw-fusion-head">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon><line x1="12" x2="12" y1="22" y2="15.5"></line><polyline points="22 8.5 12 15.5 2 8.5"></polyline><polyline points="12 2 12 8.5"></polyline></svg>
+          Multimodal Fusion Pipeline
         </div>
-      </section>
-
-      <div class="rule"></div>
-
-      <!-- ================= RAG vs LLM vs FINE-TUNING ================= -->
-      <section id="comparison">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">The decision</p>
-            <h2>RAG vs plain LLM vs fine-tuning</h2>
-            <p>These are frequently combined: a fine-tuned model for task-specific behavior, grounded by RAG for current
+<div class="vw-flow">
+<div class="vw-flow-node highlight" id="fnInput">
+<div class="vw-fn-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+</div>
+<span class="vw-fn-label">Input</span>
+</div>
+<div class="vw-flow-arrow">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</div>
+<div class="vw-flow-node" id="fnText">
+<div class="vw-fn-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" x2="15" y1="20" y2="20"></line><line x1="12" x2="12" y1="4" y2="20"></line></svg>
+</div>
+<span class="vw-fn-label">Encoder</span>
+</div>
+<div class="vw-flow-arrow">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</div>
+<div class="vw-flow-node" id="fnFuse">
+<div class="vw-fn-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" x2="22" y1="12" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+</div>
+<span class="vw-fn-label">Fusion</span>
+</div>
+<div class="vw-flow-arrow">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</div>
+<div class="vw-flow-node" id="fnOut">
+<div class="vw-fn-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+</div>
+<span class="vw-fn-label">Output</span>
+</div>
+</div>
+</div>
+<!-- Use Cases -->
+<div style="display:flex; align-items:center; gap:6px; margin-bottom:2px;">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="width:14px;height:14px;color:var(--muted, #6B7A93);" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><line x1="3" x2="21" y1="9" y2="9"></line><line x1="9" x2="9" y1="21" y2="9"></line></svg>
+<span style="font-family:var(--disp, 'Plus Jakarta Sans', system-ui, sans-serif);font-size:0.72rem;font-weight:700;color:var(--ink, #0A1222);">Use Cases</span>
+</div>
+<div class="vw-use-grid">
+<div class="vw-use-item active" id="ucHealthcare">
+<div class="vw-ui-title">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color:var(--rose, #E11D48);" viewbox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+            Healthcare
+          </div>
+<div class="vw-ui-desc">Combine medical images with clinical notes for more accurate diagnosis and treatment recommendations.</div>
+</div>
+<div class="vw-use-item" id="ucEd">
+<div class="vw-ui-title">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color:var(--amber, #D97A18);" viewbox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            Education
+          </div>
+<div class="vw-ui-desc">Power interactive tutors that read textbooks, watch demonstrations, and respond to spoken questions.</div>
+</div>
+<div class="vw-use-item" id="ucCx">
+<div class="vw-ui-title">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color:var(--blue, #2456E6);" viewbox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Customer Service
+          </div>
+<div class="vw-ui-desc">Understand chat, uploaded screenshots, and voice tone to resolve issues with context-aware empathy.</div>
+</div>
+<div class="vw-use-item" id="ucCreative">
+<div class="vw-ui-title">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color:var(--violet, #6D5EF6);" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            Creative Tools
+          </div>
+<div class="vw-ui-desc">Generate video from a text script + reference images + voiceover — all aligned by a single multimodal model.</div>
+</div>
+</div>
+</div>
+<div class="vw-foot">
+<span>text + image + audio fusion</span>
+<span>core architecture: cross‑modal attention</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= COMPLY STRIP ================= -->
+<div class="comply">
+<div class="wrap comply-in">
+<div><span><b>Multi-modal grounding</b>Combines text, images, and audio for richer context understanding.</span></div>
+<div><span><b>Unified reasoning</b>Processes multiple data types in a single model architecture.</span></div>
+<div><span><b>Cross-modal retrieval</b>Finds relevant content across different modalities at query time.</span></div>
+<div><span><b>No retraining needed</b>Update with new data types without full model retraining.</span></div>
+</div>
+</div>
+<!-- ================= WHAT IS RAG (definition) ================= -->
+<section id="what-is-rag">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Plain answer</p>
+<h2>What is multimodal AI?</h2>
+</div>
+<div class="tldr reveal">
+<b>Definition</b>
+<p>Multimodal AI is an artificial intelligence system that processes and integrates multiple types of data—such as text, images, and audio—simultaneously within a unified architecture, enabling it to understand, reason, and generate responses that leverage the combined context of different modalities, leading to more human-like comprehension and more accurate, grounded outputs without requiring separate models per data type.</p>
+</div>
+</div>
+</section>
+<!-- ================= HOW RAG WORKS ================= -->
+<section class="soft" id="how-it-works">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Step by step</p>
+<h2>How multimodal AI works</h2>
+<p>The same five-step pipeline animating in the signature panel above, applied to your own documents.</p>
+</div>
+<div class="grid g3 reveal" style="grid-template-columns:repeat(5,1fr)">
+<div class="card" style="padding:20px"><span class="n">STEP 1</span>
+<h3 style="font-size:.98rem">Query submitted</h3>
+<p style="font-size:.84rem">A user submits a query that may include text, an image, or an audio clip.</p>
+</div>
+<div class="card" style="padding:20px"><span class="n">STEP 2</span>
+<h3 style="font-size:.98rem">Modalities embedded</h3>
+<p style="font-size:.84rem">Each modality is converted into a numerical embedding capturing its meaning.</p>
+</div>
+<div class="card" style="padding:20px"><span class="n">STEP 3</span>
+<h3 style="font-size:.98rem">Multimodal search</h3>
+<p style="font-size:.84rem">The system finds the most relevant chunks across all modalities in a vector database.</p>
+</div>
+<div class="card" style="padding:20px"><span class="n">STEP 4</span>
+<h3 style="font-size:.98rem">Context assembled</h3>
+<p style="font-size:.84rem">Retrieved content from all modalities joins the query in the model's context window.</p>
+</div>
+<div class="card" style="padding:20px"><span class="n build">STEP 5</span>
+<h3 style="font-size:.98rem">Grounded answer</h3>
+<p style="font-size:.84rem">The model generates a response that can include text, images, or audio with sources.</p>
+</div>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= RAG vs LLM vs FINE-TUNING ================= -->
+<section id="comparison">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">The decision</p>
+<h2>Multimodal AI vs. unimodal models</h2>
+<p>These are frequently combined: a fine-tuned model for task-specific behavior, grounded by RAG for current
               or proprietary data access.</p>
-          </div>
-          <div class="tablewrap reveal">
-            <table>
-              <thead>
-                <tr>
-                  <th>Factor</th>
-                  <th>Plain LLM</th>
-                  <th class="col-me">RAG</th>
-                  <th>Fine-tuning</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Knowledge source</th>
-                  <td>Fixed training data</td>
-                  <td class="col-me">Training data plus live retrievable content</td>
-                  <td>Training data plus new task-specific behavior</td>
-                </tr>
-                <tr>
-                  <th scope="row">Update process</th>
-                  <td>Requires retraining</td>
-                  <td class="col-me">Add or update documents, no retraining</td>
-                  <td>Requires retraining on new examples</td>
-                </tr>
-                <tr>
-                  <th scope="row">Best for</th>
-                  <td>General knowledge tasks</td>
-                  <td class="col-me">Domain-specific, current, or private data access</td>
-                  <td>Changing model style, tone, or task behavior</td>
-                </tr>
-                <tr>
-                  <th scope="row">Traceability</th>
-                  <td>No source citation</td>
-                  <td class="col-me">Can cite exact source document</td>
-                  <td>No source citation</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= SERVICES ================= -->
-      <section class="soft" id="services">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">What I build</p>
-            <h2>RAG development services</h2>
-            <p>Each layer of a production RAG pipeline, built and tested as its own verifiable stage.</p>
-          </div>
-          <div class="grid g3 reveal">
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Document ingestion &amp; chunking</h3>
-              <p>Building the pipeline that prepares your source content, PDFs, wikis, databases, support tickets, into
-                properly chunked, retrievable pieces. This step determines the ceiling on everything downstream.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Vector database architecture</h3>
-              <p>Selecting and configuring the right vector store (Pinecone, Weaviate, Qdrant, FAISS, pgvector) for your
-                scale, latency, and hosting requirements.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Retrieval engineering</h3>
-              <p>Building the retrieval layer: hybrid search (semantic plus keyword), metadata filtering, and reranking
-                to maximize the relevance of what gets passed to the LLM.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Generation &amp; guardrails</h3>
-              <p>Configuring the generation layer with grounding constraints, defensive fallback behavior, and
-                confidence thresholds so the system says "I do not know" instead of guessing.</p>
-            </div>
-            <div class="card"><span class="n advise">EVALUATE</span>
-              <h3>RAG evaluation</h3>
-              <p>Testing retrieval and generation quality against your real queries using RAGAS, DeepEval, or a custom
-                evaluation set, with results shared transparently before launch.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Production deployment</h3>
-              <p>Deploying the full RAG pipeline as a versioned, monitored API integrated with your product or internal
-                tools.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="rule"></div>
-
-      <!-- ================= WHY BUSINESSES NEED RAG ================= -->
-      <section id="why">
-        <div class="wrap">
-          <div class="grid g2 reveal">
-            <div class="sec-head" style="margin-bottom:0">
-              <p class="eyebrow">Why it matters</p>
-              <h2>Why businesses need RAG</h2>
-              <p>A plain LLM has no access to your private,
-                proprietary, or real-time information, and will either say it does not know or generate a
-                plausible-sounding but incorrect answer. RAG solves this directly by giving the model exactly the
-                information it needs, retrieved fresh at query time, without the cost and delay of retraining the model
-                every time your underlying information changes.</p>
-            </div>
-            <div class="card" style="align-self:start">
-              <span class="n">COMMON APPLICATIONS</span>
-              <h3 style="margin-bottom:4px">Where I've built RAG systems</h3>
-              <ul>
-                <li>Customer support chatbots grounded in product documentation and policies</li>
-                <li>Internal knowledge assistants for employee Q&amp;A over wikis and HR policies</li>
-                <li>Healthcare AI assistants grounded in clinical guidelines &mdash; <a href="/rag-chatbot-healthcare"
-                    style="font-weight:600">see the healthcare page</a></li>
-                <li>Legal and compliance research tools citing specific clauses or precedents</li>
-                <li>Ecommerce product Q&amp;A answering from a live product catalog</li>
-                <li>Enterprise search surfacing answers, not just links, across large repositories</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= PROCESS ================= -->
-      <section class="soft" id="process">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">How it gets built</p>
-            <h2>Process</h2>
-          </div>
-          <div class="steps reveal">
-            <details class="step" open>
-              <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
-                <h3>Discovery</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Understanding your data sources, use case, and what "accurate" needs to mean for your
-                application.</div>
-            </details>
-            <details class="step">
-              <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
-                <h3>Architecture spec</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">A written technical spec covering retrieval strategy, vector database choice, and
-                guardrail design, delivered within 48 hours.</div>
-            </details>
-            <details class="step gate">
-              <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
-                <h3>Build in milestones</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Ingestion, retrieval, generation, and guardrails built and tested as separate,
-                verifiable stages.</div>
-            </details>
-            <details class="step">
-              <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
-                <h3>Evaluation</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Testing against real queries with transparent results before launch.</div>
-            </details>
-            <details class="step">
-              <summary><span class="num">PHASE 05<span class="days">30 days plus</span></span>
-                <h3>Deployment &amp; support</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Production deployment with monitoring and a post-launch support window.</div>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <div class="rule"></div>
-
-      <!-- ================= PRICING ================= -->
-      <section id="pricing">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">Investment</p>
-            <h2>Pricing</h2>
-          </div>
-          <div class="tablewrap reveal">
-            <table>
-              <thead>
-                <tr>
-                  <th>Engagement type</th>
-                  <th class="col-me">What's included</th>
-                  <th>Typical investment</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>RAG proof-of-concept</td>
-                  <td class="col-me">Baseline retrieval pipeline on a data sample, evaluation report</td>
-                  <td>$1,500 to $4,000</td>
-                </tr>
-                <tr class="me-row">
-                  <td>Production RAG system</td>
-                  <td class="col-me">Full pipeline, guardrails, deployment, documentation</td>
-                  <td>$8,000 to $30,000</td>
-                </tr>
-                <tr>
-                  <td>RAG system audit</td>
-                  <td class="col-me">Diagnose and improve an underperforming existing system</td>
-                  <td>$1,000 to $3,000</td>
-                </tr>
-                <tr>
-                  <td>Hourly consulting</td>
-                  <td class="col-me">Architecture review, retrieval strategy design</td>
-                  <td>$75 to $150/hr</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Retrieval-grounded systems
+</div>
+<div class="tablewrap reveal">
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Plain LLM</th>
+<th class="col-me">Vision-Language Model</th>
+<th>Multimodal AI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Input types</th>
+<td>Text only</td>
+<td class="col-me">Text and images</td>
+<td>Text, images, and audio</td>
+</tr>
+<tr>
+<th scope="row">Data fusion</th>
+<td>No fusion</td>
+<td class="col-me">Early fusion of text and vision</td>
+<td>Late or cross-modal fusion of text, vision, and audio</td>
+</tr>
+<tr>
+<th scope="row">Best for</th>
+<td>General text tasks</td>
+<td class="col-me">Image captioning and visual Q&amp;A</td>
+<td>Rich content understanding, transcription, and generation</td>
+</tr>
+<tr>
+<th scope="row">Training complexity</th>
+<td>Low</td>
+<td class="col-me">Moderate</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- ================= SERVICES ================= -->
+<section class="soft" id="services">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">What I build</p>
+<h2>Multimodal AI services</h2>
+<p>Each layer of a production RAG pipeline, built and tested as its own verifiable stage.</p>
+</div>
+<div class="grid g3 reveal">
+<div class="card"><span class="n build">BUILD</span>
+<h3>Data preparation &amp; fusion</h3>
+<p>Building the pipeline that aligns and fuses diverse data sources—text, images, and audio—into a unified representation, ensuring no modality is lost.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Model architecture design</h3>
+<p>Selecting and configuring the right encoder-decoder architecture (e.g., CLIP, Flamingo, GATO) for your specific modality combinations and latency requirements.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Cross-modal retrieval</h3>
+<p>Building the retrieval layer: enabling text-to-image, image-to-text, and audio-to-text search with hybrid indexing and re-ranking for maximum relevance.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Generation &amp; grounding</h3>
+<p>Configuring the generation layer with multi-modal grounding constraints and confidence thresholds so the system provides accurate, context-aware responses.</p>
+</div>
+<div class="card"><span class="n advise">EVALUATE</span>
+<h3>Multimodal evaluation</h3>
+<p>Testing model performance across all modalities using benchmarks like VQA, MS-COCO, and custom metrics, with results shared transparently before launch.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Production deployment</h3>
+<p>Deploying the full multimodal pipeline as a versioned, monitored API integrated with your product or internal tools.</p>
+</div>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= WHY BUSINESSES NEED RAG ================= -->
+<section id="why">
+<div class="wrap">
+<div class="grid g2 reveal">
+<div class="sec-head" style="margin-bottom:0">
+<p class="eyebrow">Why it matters</p>
+<h2>Why multimodal AI matters</h2>
+<p>Standard AI models handle only one modality, but real-world data is inherently multimodal—text, images, and audio together. Multimodal AI fuses these inputs to deliver richer insights, higher accuracy, and more natural interactions without retraining for each data type.</p>
+</div>
+<div class="card" style="align-self:start">
+<span class="n">COMMON APPLICATIONS</span>
+<h3 style="margin-bottom:4px">Where multimodal AI excels</h3>
+<ul>
+<li>Image captioning and visual question answering</li>
+<li>Video summarization with audio and text alignment</li>
+<li>Multimodal search across images, documents, and speech</li>
+<li>Healthcare diagnostics combining scans, reports, and patient notes</li>
+<li>Ecommerce product understanding from images and descriptions</li>
+<li>Voice assistants with visual context for smarter responses</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= PROCESS ================= -->
+<section class="soft" id="process">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">How it gets built</p>
+<h2>Process</h2>
+</div>
+<div class="steps reveal">
+<details class="step" open="">
+<summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
+<h3>Discovery</h3><span class="cv">+</span>
+</summary>
+<div class="body">Assess available data types (text, image, audio) and define the fusion strategy for your specific use case.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
+<h3>Architecture spec</h3><span class="cv">+</span>
+</summary>
+<div class="body">Design the pipeline for encoding, aligning, and fusing different modalities into a unified representation.</div>
+</details>
+<details class="step gate">
+<summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
+<h3>Build in milestones</h3><span class="cv">+</span>
+</summary>
+<div class="body">Develop and test each modality encoder and fusion layer independently before integration.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 04<span class="days">before launch</span></span>
+<h3>Evaluation</h3><span class="cv">+</span>
+</summary>
+<div class="body">Test against cross-modal queries and measure accuracy, latency, and robustness across all inputs.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 05<span class="days">30 days plus</span></span>
+<h3>Deployment &amp; support</h3><span class="cv">+</span>
+</summary>
+<div class="body">Deploy with monitoring for drift and ongoing support for model updates and scaling.</div>
+</details>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= PRICING ================= -->
+<section id="pricing">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Investment</p>
+<h2>Pricing</h2>
+</div>
+<div class="tablewrap reveal">
+<table>
+<thead>
+<tr>
+<th>Engagement type</th>
+<th class="col-me">What's included</th>
+<th>Typical investment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multimodal proof-of-concept</td>
+<td class="col-me">Baseline pipeline on sample data, evaluation report</td>
+<td>$2,000 to $5,000</td>
+</tr>
+<tr class="me-row">
+<td>Production multimodal system</td>
+<td class="col-me">Full pipeline, guardrails, deployment, documentation</td>
+<td>$10,000 to $40,000</td>
+</tr>
+<tr>
+<td>Multimodal system audit</td>
+<td class="col-me">Diagnose and improve an existing system</td>
+<td>$1,500 to $4,000</td>
+</tr>
+<tr>
+<td>Hourly consulting</td>
+<td class="col-me">Architecture review, fusion strategy design</td>
+<td>$100 to $200/hr</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Retrieval-grounded systems
             delivered include the AI Customer Feedback Classification pipeline and AI Video Summarizer. Full case
             studies at <a href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
-        </div>
-      </section>
-
-      <!-- ================= FAQ ================= -->
-      <section class="soft" id="faq">
-        <div class="wrap">
-          <div class="sec-head center reveal">
-            <p class="eyebrow">FAQ</p>
-            <h2>Frequently asked questions</h2>
-          </div>
-          <div class="faq reveal">
-            <details open>
-              <summary>What does RAG stand for?</summary>
-              <div class="a">RAG stands for retrieval-augmented generation, an AI architecture that retrieves relevant
-                information before an LLM generates its response, rather than relying only on the model's training data.
-              </div>
-            </details>
-            <details>
-              <summary>Is RAG the same as fine-tuning?</summary>
-              <div class="a">No. Fine-tuning changes a model's weights through additional training. RAG retrieves
-                external information and adds it to the model's context at query time without changing the model. They
-                solve different problems and are often used together.</div>
-            </details>
-            <details>
-              <summary>Does RAG eliminate AI hallucination?</summary>
-              <div class="a">RAG significantly reduces hallucination, typically 60 to 80% versus a bare LLM, by
-                grounding responses in retrieved content, but does not eliminate it entirely. Guardrails and confidence
-                thresholds are layered on top in every production system I build.</div>
-            </details>
-            <details>
-              <summary>How much does RAG development cost?</summary>
-              <div class="a">A proof-of-concept starts at $1,500 to $4,000. A full production RAG system ranges from
-                $8,000 to $30,000 depending on complexity and data volume. Contact for a fixed-price estimate specific
-                to your use case.</div>
-            </details>
-            <details>
-              <summary>How long does it take to build a RAG system?</summary>
-              <div class="a">A proof-of-concept typically takes 2 to 4 weeks. A full production system with guardrails,
-                evaluation, and deployment typically takes 4 to 10 weeks depending on data complexity and integration
-                scope.</div>
-            </details>
-          </div>
-        </div>
-      </section>
-
-    </main>
-  </div>
-
-  <script>
+</div>
+</section>
+<!-- ================= FAQ ================= -->
+<section class="soft" id="faq">
+<div class="wrap">
+<div class="sec-head center reveal">
+<p class="eyebrow">FAQ</p>
+<h2>Frequently asked questions</h2>
+</div>
+<div class="faq reveal">
+<details open="">
+<summary>What is multimodal AI?</summary>
+<div class="a">Multimodal AI is a system that processes and combines multiple data types—text, images, audio, and video—to produce richer outputs than single-modality models. It enables applications like image captioning, video understanding, and voice assistants with visual context.</div>
+</details>
+<details>
+<summary>How does multimodal AI work?</summary>
+<div class="a">It encodes each modality separately using specialized models, aligns them into a shared embedding space, and fuses the representations for joint reasoning. Common architectures include cross-attention transformers and early or late fusion strategies.</div>
+</details>
+<details>
+<summary>What are common use cases?</summary>
+<div class="a">Common use cases include visual question answering, video summarization, multimodal search, healthcare diagnostics, ecommerce product understanding, and accessibility tools for the visually impaired.</div>
+</details>
+<details>
+<summary>How much does multimodal AI development cost?</summary>
+<div class="a">A proof-of-concept starts at $2,000 to $5,000. A full production system ranges from $10,000 to $40,000 depending on modality complexity and data volume. Contact for a fixed-price estimate specific to your use case.</div>
+</details>
+<details>
+<summary>How long does it take to build a multimodal system?</summary>
+<div class="a">A proof-of-concept typically takes 2 to 4 weeks. A full production system with evaluation and deployment typically takes 4 to 12 weeks depending on the number of modalities and integration requirements.</div>
+</details>
+</div>
+</div>
+</section>
+</main>
+</div>
+<script>
     (function () {
       var page = document.querySelector('.svcp');
       if (!page) return;
@@ -2124,7 +2612,7 @@
     })();
 
   </script>
-  <script>
+<script>
     (function () {
       var page = document.querySelector('.svcp');
       var canvas = document.getElementById('sigcanvas'), ctx = canvas.getContext('2d');
@@ -2278,6 +2766,61 @@
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(); } else { draw(); cancelAnimationFrame(raf); }
     })();
   </script>
-</body>
 
+<script>
+(function() {
+  // --- Tab system ---
+  var tabBtns = document.querySelectorAll('.viewer .vw-tab-btn');
+  var panels = document.querySelectorAll('.viewer .vw-tab-content');
+
+  function activateTab(modality) {
+    // deactivate all
+    tabBtns.forEach(function(b) { b.classList.remove('active'); });
+    panels.forEach(function(p) { p.classList.remove('open'); });
+    // activate matching
+    tabBtns.forEach(function(b) {
+      if (b.getAttribute('data-modality') === modality) b.classList.add('active');
+    });
+    panels.forEach(function(p) {
+      if (p.getAttribute('data-modality') === modality) p.classList.add('open');
+    });
+  }
+
+  tabBtns.forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      var mod = btn.getAttribute('data-modality');
+      activateTab(mod);
+    });
+  });
+
+  // --- Use case toggle ---
+  var useItems = document.querySelectorAll('.viewer .vw-use-item');
+  useItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      var wasActive = item.classList.contains('active');
+      // close all
+      useItems.forEach(function(i) { i.classList.remove('active'); });
+      if (!wasActive) item.classList.add('active');
+    });
+  });
+
+  // --- Flow pipeline highlight toggle (cosmetic interaction) ---
+  var flowNodes = document.querySelectorAll('.viewer .vw-flow-node');
+  var flowArrows = document.querySelectorAll('.viewer .vw-flow-arrow');
+  flowNodes.forEach(function(node) {
+    node.addEventListener('click', function() {
+      flowNodes.forEach(function(n) { n.classList.remove('highlight'); });
+      flowArrows.forEach(function(a) { a.classList.remove('pulse'); });
+      node.classList.add('highlight');
+      // pulse the arrow that follows (simple neighbour logic)
+      var idx = Array.prototype.indexOf.call(flowNodes, node);
+      if (idx < flowArrows.length) flowArrows[idx].classList.add('pulse');
+    });
+  });
+
+  // ensure first use case is active on load (already set in markup)
+  // ensure first tab is active (already set in markup)
+})();
+</script>
+</body>
 </html>

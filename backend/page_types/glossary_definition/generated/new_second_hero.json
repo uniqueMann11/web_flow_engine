@@ -2,75 +2,75 @@
   "comply": {
     "comply-in": [
       {
-        "b": "Meaning captured, not hashed",
-        "span": "The embedding maps similar words and concepts to nearby points in a high-dimensional space."
+        "b": "Multi-modal grounding",
+        "span": "Combines text, images, and audio for richer context understanding."
       },
       {
-        "b": "Context matters",
-        "span": "Same word in different sentences produces different vectors, so relationships stay precise."
+        "b": "Unified reasoning",
+        "span": "Processes multiple data types in a single model architecture."
       },
       {
-        "b": "Numbers represent semantics",
-        "span": "These lists of floats allow computers to measure meaning mathematically and find related content."
+        "b": "Cross-modal retrieval",
+        "span": "Finds relevant content across different modalities at query time."
       },
       {
-        "b": "Foundation for search",
-        "span": "Vector embeddings enable semantic search, clustering, and retrieval without exact keyword matches."
+        "b": "No retraining needed",
+        "span": "Update with new data types without full model retraining."
       }
     ]
   },
   "what-is": {
     "sec-head": {
-      "eyebrow": "Plain definition",
-      "h2": "What is a vector embedding?"
+      "eyebrow": "Plain answer",
+      "h2": "What is multimodal AI?"
     },
     "tldr": {
       "b": "Definition",
       "p": [
-        "A vector embedding is a numerical representation of data\u2014text, image, audio, or other content\u2014converted into a list of floating-point numbers (a vector) that captures its semantic meaning. Each coordinate in the vector represents abstract features learned by a machine learning model, so that similar concepts occupy nearby positions in a high-dimensional space. This mathematical encoding enables computers to compare meaning at scale, making vector embeddings the core building block for semantic search, retrieval-augmented generation, recommendation systems, and clustering."
+        "Multimodal AI is an artificial intelligence system that processes and integrates multiple types of data\u2014such as text, images, and audio\u2014simultaneously within a unified architecture, enabling it to understand, reason, and generate responses that leverage the combined context of different modalities, leading to more human-like comprehension and more accurate, grounded outputs without requiring separate models per data type."
       ]
     }
   },
   "how-it-works": {
     "sec-head": {
-      "eyebrow": "Concept walkthrough",
-      "h2": "Embedding in action",
-      "p": "The same transformation process illustrated in the interactive diagram, applied to a simple text example."
+      "eyebrow": "Step by step",
+      "h2": "How multimodal AI works",
+      "p": "The same five-step pipeline animating in the signature panel above, applied to your own multimodal data."
     },
     "grid g3": [
       {
         "card": {
           "n": "STEP 1",
-          "h3": "Text input",
-          "p": "A sentence or phrase, like 'the cat sat on the mat,' is fed into an embedding model."
+          "h3": "Query submitted",
+          "p": "A user submits a query that may include text, an image, or an audio clip."
         }
       },
       {
         "card": {
           "n": "STEP 2",
-          "h3": "Model encodes",
-          "p": "The model analyzes word order, synonyms, and context, producing a list of numbers like [0.12, -0.45, 0.89, ...]."
+          "h3": "Modalities embedded",
+          "p": "Each modality is converted into a numerical embedding capturing its meaning."
         }
       },
       {
         "card": {
           "n": "STEP 3",
-          "h3": "Vector produced",
-          "p": "The output is a high-dimensional vector\u2014often 768 or 1536 dimensions\u2014representing the meaning."
+          "h3": "Multimodal search",
+          "p": "The system finds the most relevant chunks across all modalities in a vector database."
         }
       },
       {
         "card": {
           "n": "STEP 4",
-          "h3": "Matched by distance",
-          "p": "Cosine similarity or dot product measures how close this vector is to other vectors in the database."
+          "h3": "Context assembled",
+          "p": "Retrieved content from all modalities joins the query in the model's context window."
         }
       },
       {
         "card": {
           "n": "STEP 5",
-          "h3": "Semantic retrieval",
-          "p": "The closest vectors return as results, finding content that means the same thing even with different words."
+          "h3": "Grounded answer",
+          "p": "The model generates a response that can include text, images, or audio with sources."
         }
       }
     ]

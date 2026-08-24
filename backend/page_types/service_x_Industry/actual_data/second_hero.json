@@ -2,77 +2,82 @@
   "comply": {
     "comply-in": [
       {
-        "b": "Explicit state, not hidden",
-        "span": "LangGraph state graphs with conditional edges and checkpointing, not implicit chain magic."
+        "b": "100% HIPAA & BAA compliant",
+        "span": "Private VPC and on-premise deployments with zero data retention on model providers."
       },
       {
-        "b": "Tool failures handled",
-        "span": "Retry logic, fallback paths, and human-in-the-loop checkpoints, built in from the start."
+        "b": "De-identified PHI processing",
+        "span": "Automatic scrubbing of 18 HIPAA identifiers at the ingestion and query boundaries."
       },
       {
-        "b": "Full tracing",
-        "span": "LangSmith or equivalent, so agent behavior in production is visible, not a black box."
+        "b": "Evidence-backed citations",
+        "span": "Every clinical recommendation cites specific medical guidelines, lab reports, or formulary entries."
       },
       {
-        "b": "Honest tool selection",
-        "span": "If LangChain is overkill for your case, I'll say so and recommend the simpler option."
+        "b": "Deterministic guardrails",
+        "span": "Strict confidence thresholds with automatic clinician escalation for out-of-domain queries."
       }
     ]
   },
   "what-is": {
     "sec-head": {
       "eyebrow": "Plain answer",
-      "h2": "What is LangChain?"
+      "h2": "What is a RAG chatbot for healthcare?"
     },
     "tldr": {
-      "b": "Quick answer",
+      "b": "Definition",
       "p": [
-        "LangChain is an open-source framework for building applications powered by large language models. It provides composable building blocks, chains, agents, tools, memory, and retrievers, connected via the LangChain Expression Language (LCEL). Its agent framework, LangGraph, adds explicit state management and conditional logic for multi-step, tool-using AI systems. LangChain is the most widely adopted framework of its kind, with roughly 119K GitHub stars and 500+ integrations."
+        "A healthcare RAG (Retrieval-Augmented Generation) chatbot is an AI system that combines medical-grade language models with a secure, real-time knowledge retrieval engine. It extracts relevant context from EHR records, clinical guidelines, radiology reports, and drug formularies before generating an answer. By grounding every response in verifiable medical sources, it eliminates hallucinations, maintains strict HIPAA compliance, and provides doctors and patients with evidence-backed answers."
       ]
     }
   },
   "vs-agency": {
     "sec-head": {
-      "eyebrow": "The honest comparison",
-      "h2": "LangChain consultant vs LangChain agency"
+      "eyebrow": "Direct access vs agency",
+      "h2": "Independent healthcare AI engineer vs agency"
     },
     "tablewrap": {
       "thead": [
         "Factor",
-        "Independent LangChain consultant (me)",
-        "LangChain development agency"
+        "Independent Healthcare AI Engineer (me)",
+        "Generalist AI Outsourcing Agency"
       ],
       "tbody": [
         {
-          "th": "Cost",
+          "th": "Clinical & PHI expertise",
           "td": [
-            "Lower, direct rate, no team overhead",
-            "Higher, includes team and account management"
+            "Direct specialization in HIPAA Safe Harbor, FHIR, and clinical RAG",
+            "Generalist developers rotated across unrelated commercial verticals"
           ]
         },
         {
-          "th": "Who builds it",
+          "th": "Security & BAA accountability",
           "td": [
-            "Me, directly, every time",
-            "Allocated team member, may change"
+            "Direct engineer signing BAA; zero third-party subcontractor exposure",
+            "Complex subcontractor chains increasing data breach liability"
           ]
         },
         {
-          "th": "Best for",
+          "th": "Deployment speed",
           "td": [
-            "Scoped agent or RAG builds, $2K to $30K range",
-            "Large, multi-disciplinary product builds"
+            "Functional clinical POC in 2 to 3 weeks; production in 6 to 8 weeks",
+            "3 to 6 months weighed down by account managers and discovery layers"
           ]
         },
         {
-          "th": "Start time",
+          "th": "Cost structure",
           "td": [
-            "48 to 72 hours",
-            "2 to 4 weeks typically"
+            "Transparent milestone pricing without agency overhead markups",
+            "High monthly retainer overhead with billable hours for project managers"
           ]
         }
       ]
     },
-    "p": "Most LangChain projects, a specific agent, a specific RAG pipeline, a specific tool integration, are well within scope for a single experienced developer working directly with you. An agency's advantage shows up when a project genuinely needs several specialists working in parallel on a larger product, not for the LangChain engineering itself."
+    "callout": {
+      "p": [
+        "Direct access guarantees higher compliance rigor",
+        "In healthcare, a misconfigured vector chunk or unmasked PHI field can result in severe HIPAA violations. Working directly with the engineer writing the ingestion and retrieval code gives your clinical leadership complete architectural clarity and unbroken communication."
+      ]
+    }
   }
 }

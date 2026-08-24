@@ -1,7 +1,7 @@
 """
 Service × Industry page-type compiler.
-Sections: hero · comply · what-is · vs-agency (table) · services · engagement · process · when-not · pricing · faq
-Template: langchain-development-services.html
+Sections: hero · comply · what-is · vs-agency (table) · services · use-cases · process · when-not · pricing · faq
+Template: rag-chatbot-healthcare.html
 """
 from .shared import (
     apply_hero, apply_comply, apply_what_is,
@@ -33,11 +33,13 @@ def apply(soup, hero_data, second_data, third_data, final_data):
     # ── 3. Third section ─────────────────────────────────────────
     if third_data:
         apply_services(soup, third_data)
-        where_sec = soup.find(id="where-wins") or soup.find("section", class_=lambda c: c and "where-wins" in c)
-        apply_card_grid_section(soup, where_sec, third_data.get("where-wins"))
-        eng_sec = soup.find(id="engagement") or soup.find("section", class_=lambda c: c and "engagement" in c)
-        apply_card_grid_section(soup, eng_sec, third_data.get("engagement"))
-        print("  [OK] Services & engagement section applied.")
+        use_sec = (
+            soup.find(id="use-cases")
+            or soup.find(id="solutions")
+            or soup.find("section", class_=lambda c: c and ("use-cases" in c or "solutions" in c))
+        )
+        apply_card_grid_section(soup, use_sec, third_data.get("use-cases", third_data.get("solutions")))
+        print("  [OK] Services & use-cases section applied.")
 
     # ── 4. Final section ─────────────────────────────────────────
     if final_data:

@@ -2,60 +2,60 @@
   "process": {
     "sec-head": {
       "eyebrow": "How it gets built",
-      "h2": "Process"
+      "h2": "Healthcare RAG implementation process"
     },
     "steps": [
       {
         "step": {
           "num": "PHASE 01",
           "days": "days 1 to 2",
-          "h3": "Discovery",
-          "body": "Understanding what the agent or pipeline needs to do, what tools or data it needs access to, and what \"working correctly\" looks like."
+          "h3": "Clinical Discovery & PHI Scoping",
+          "body": "Reviewing medical data sources, EHR integration endpoints, user roles, and HIPAA compliance requirements."
         }
       },
       {
         "step": {
           "num": "PHASE 02",
           "days": "within 48h",
-          "h3": "Architecture spec",
-          "body": "A written spec covering state graph design, retrieval strategy, and tool integrations, delivered within 48 hours."
+          "h3": "Architecture & Security Spec",
+          "body": "Delivering a written blueprint covering de-identification strategy, vector database isolation, and clinician escalation rules."
         }
       },
       {
-        "step": {
+        "step gate": {
           "num": "PHASE 03",
           "days": "the decisive one",
-          "h3": "Build in milestones",
-          "body": "Core logic first, then tool integrations, then edge-case handling and guardrails."
+          "h3": "Pipeline Build & Masking Engine",
+          "body": "Building ingestion workers, FHIR connectors, embedding indexers, and confidence threshold guardrails."
         }
       },
       {
         "step": {
           "num": "PHASE 04",
           "days": "before launch",
-          "h3": "Testing & evaluation",
-          "body": "Testing against realistic scenarios, including tool failures and edge cases."
+          "h3": "Clinical Evaluation & Red-Teaming",
+          "body": "Testing against real medical query sets (MedQA/RAGAS benchmarks), validating citation accuracy, and verifying PHI zero-leakage."
         }
       },
       {
         "step": {
           "num": "PHASE 05",
           "days": "handoff",
-          "h3": "Deployment & monitoring",
-          "body": "Production deployment with logging and tracing (LangSmith or equivalent) for full visibility into agent behavior."
+          "h3": "Production Deployment & Monitoring",
+          "body": "Deploying to your private VPC/on-premise servers with real-time audit logging, latency tracking, and support window."
         }
       }
     ]
   },
   "when-not": {
     "sec-head": {
-      "eyebrow": "Honest tool selection",
-      "h2": "When LangChain is not the right choice"
+      "eyebrow": "Clinical boundaries",
+      "h2": "When a RAG chatbot is NOT the right choice"
     },
     "callout": {
       "p": [
-        "Direct architectural honesty upfront",
-        "Part of a proper LangChain engagement is an honest assessment of whether LangChain is even the right tool for your specific problem. If your actual need is narrower, purely high-quality document retrieval with no agentic behavior, LlamaIndex alone may be a simpler, lower-overhead choice. See the RAG framework development services page for the fuller comparison."
+        "Safety-first engineering in healthcare AI",
+        "A RAG chatbot is designed for clinical decision support, information retrieval, and patient navigation. It must never be deployed as an autonomous, unsupervised diagnostic authority for acute life-threatening emergencies. Any system offering medical guidance must enforce human-in-the-loop validation and unambiguous clinician oversight."
       ]
     }
   },
@@ -73,35 +73,35 @@
       "tbody": [
         {
           "td": [
-            "Single tool/agent integration",
-            "One scoped agent or tool-calling workflow",
-            "$2,000 to $6,000"
+            "HIPAA RAG Proof-of-Concept",
+            "De-identified retrieval pipeline on sample EHR/guidelines, safety eval report",
+            "$2,500 to $6,000"
           ]
         },
         {
           "td": [
-            "Full agentic system",
-            "Multi-step agent with state, tools, memory, guardrails",
-            "$8,000 to $30,000+"
+            "Production Clinical RAG System",
+            "Full pipeline, FHIR integration, PHI scrubber, guardrails, VPC deployment",
+            "$12,000 to $45,000"
           ]
         },
         {
           "td": [
-            "LangChain system audit",
-            "Review and improvement plan for an existing implementation",
-            "$1,000 to $3,000"
+            "Healthcare AI Safety Audit",
+            "Red-teaming for hallucination, prompt injection, and PHI exposure risks",
+            "$2,000 to $5,000"
           ]
         },
         {
           "td": [
-            "Hourly consulting",
-            "Architecture review, debugging support",
-            "$75 to $150/hr"
+            "Hourly Medical AI Consulting",
+            "Architecture review, HIPAA compliance planning, retrieval strategy",
+            "$100 to $200/hr"
           ]
         }
       ]
     },
-    "p": "Retrieval and generation-grounded systems built using this class of architecture include the AI Customer Feedback Classification pipeline and AI Video Summarizer. Full case studies at shreyans.tech/ai-case-studies."
+    "p": "Delivered projects include AI clinical feedback categorization and automated medical literature synthesis. Full case studies at shreyans.tech/ai-case-studies."
   },
   "faq": {
     "sec-head": {
@@ -111,32 +111,32 @@
     "faq": [
       {
         "faq-item": {
-          "faq-q": "What is the difference between LangChain and LangGraph?",
-          "faq-a": "LangChain is the broader framework providing composable building blocks. LangGraph is LangChain's graph-based agent framework, built for multi-step, stateful agent workflows with explicit control flow and checkpointing. For anything beyond a simple single-shot chain, LangGraph is the standard production approach."
+          "faq-q": "How do you ensure HIPAA compliance in healthcare RAG systems?",
+          "faq-a": "HIPAA compliance is built into the architecture: automatic de-identification of all 18 PHI identifiers before embedding, isolated private VPC or on-premise deployments, end-to-end encryption at rest and in transit, zero data retention agreements with model providers, and signed BAAs."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Do I need a LangChain agency, or can a freelance consultant handle my project?",
-          "faq-a": "Most LangChain projects are well within scope for a single experienced developer. An agency's advantage becomes relevant when a project needs multiple specialists across disciplines working simultaneously on a larger product."
+          "faq-q": "Can the RAG chatbot integrate with EHR systems like Epic or Cerner?",
+          "faq-a": "Yes. Retrieval pipelines connect via HL7/FHIR APIs and secure database connectors, pulling relevant clinical notes, lab results, and patient histories in real time while respecting role-based access control (RBAC)."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How much do LangChain development services cost?",
-          "faq-a": "A single scoped tool or agent integration typically runs $2,000 to $6,000. A full agentic system ranges from $8,000 to $30,000+ depending on complexity. Hourly consulting runs $75 to $150/hr."
+          "faq-q": "How does the system prevent medical hallucinations?",
+          "faq-a": "The system applies strict semantic chunking, cross-encoder reranking, and deterministic prompt constraints requiring exact citations from approved medical guidelines. When query confidence falls below a strict threshold, it triggers a defensive fallback with human clinician escalation."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Is LangChain free to use?",
-          "faq-a": "Yes, LangChain and LangGraph are open-source and free under the MIT license. LangSmith, LangChain's observability platform, has a free tier with paid plans starting around $39/month per seat."
+          "faq-q": "Do I need an agency or can an independent AI engineer build this?",
+          "faq-a": "Working directly with a specialized independent engineer ensures direct accountability, deeper compliance oversight, and 2-3x faster deployment without paying for agency account management layers."
         }
       },
       {
         "faq-item": {
-          "faq-q": "When should I NOT use LangChain?",
-          "faq-a": "If your use case is purely high-quality document retrieval with no agentic or multi-step behavior needed, LlamaIndex alone is often a simpler, lower-overhead choice. LangChain earns its complexity when you need tool use, state management, or multi-step reasoning."
+          "faq-q": "How much does a healthcare RAG chatbot cost to build?",
+          "faq-a": "A scoped HIPAA proof-of-concept starts at $2,500 to $6,000. A full production clinical RAG chatbot with EHR integration, guardrails, and compliance audits typically ranges from $12,000 to $45,000."
         }
       }
     ]

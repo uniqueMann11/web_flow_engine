@@ -101,6 +101,7 @@ DIMENSION & STRUCTURE RULES:
 - Do NOT wrap in `<html>`, `<head>`, or `<body>`.
 - Do NOT write CSS comments (/* ... */) or HTML comments. Write clean, direct code only.
 - Responsive: ensure it looks crisp on mobile screens down to 320px.
+- Make whole widget in the light theame, no dark theame needed.
 
 OUTPUT RULES:
 - Return ONLY the raw HTML component string (with embedded `<style>` and `<script>`).
