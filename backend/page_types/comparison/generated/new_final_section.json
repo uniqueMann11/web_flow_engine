@@ -1,48 +1,48 @@
 {
   "process": {
     "sec-head": {
-      "eyebrow": "How it gets built",
-      "h2": "Engagement process"
+      "eyebrow": "How it's decided",
+      "h2": "Evaluation process"
     },
     "steps": [
       {
         "step": {
           "num": "PHASE 01",
           "days": "days 1 to 2",
-          "h3": "Discovery",
-          "body": "Understanding your data, use case, and whether the core challenge is retrieval quality, agentic behavior, or both."
+          "body": "We audit your data volume, query latency needs, and budget. We also test your documents against a long context model to measure baseline accuracy and cost per query.",
+          "h3": "Discovery"
         }
       },
       {
         "step": {
           "num": "PHASE 02",
           "days": "within 48h",
-          "h3": "Framework recommendation",
-          "body": "A written architecture spec with a specific framework recommendation and reasoning, delivered within 48 hours."
+          "body": "A written architecture spec comparing RAG vs long context for your use case, including projected token costs, retrieval accuracy trade-offs, and freshness requirements\u2014delivered within 48 hours.",
+          "h3": "Architecture comparison"
         }
       },
       {
         "step": {
           "num": "PHASE 03",
           "days": "the decisive one",
-          "h3": "Build",
-          "body": "Development in milestones, retrieval layer first if applicable, then orchestration and guardrails."
+          "body": "We build a proof-of-concept for both approaches using your real data. For RAG, we set up a retrieval pipeline with chunking and embedding. For long context, we prefill the prompt with your corpus and measure latency.",
+          "h3": "Build & benchmark"
         }
       },
       {
         "step": {
           "num": "PHASE 04",
           "days": "before launch",
-          "h3": "Evaluation",
-          "body": "Testing against your real queries and use cases using RAGAS or a custom eval set."
+          "body": "We run side-by-side evaluations on accuracy, cost per query (including input tokens), and freshness. We use RAGAS for RAG and custom eval for long context, then recommend the winner.",
+          "h3": "Evaluation"
         }
       },
       {
         "step": {
           "num": "PHASE 05",
           "days": "handoff",
-          "h3": "Deployment",
-          "body": "Production deployment with monitoring, tracing, and documentation for your team."
+          "body": "Production deployment of the chosen approach with monitoring for cost and latency, plus documentation for your team on when to switch strategies as models evolve.",
+          "h3": "Deployment"
         }
       }
     ]
@@ -61,29 +61,29 @@
       "tbody": [
         {
           "td": [
-            "Framework selection consulting",
-            "Written architecture recommendation and spec",
+            "Architecture comparison",
+            "Written spec comparing RAG vs long context for your data",
             "$500 to $1,500"
           ]
         },
         {
           "td": [
-            "LlamaIndex RAG build",
+            "RAG pipeline build",
             "Retrieval pipeline, ingestion, evaluation, deployment",
             "$8,000 to $25,000"
           ]
         },
         {
           "td": [
-            "LangChain/LangGraph agent build",
-            "Multi-step agent, tools, memory, guardrails, deployment",
-            "$8,000 to $30,000+"
+            "Long context integration",
+            "Prompt engineering, caching, cost optimization, deployment",
+            "$5,000 to $15,000"
           ]
         },
         {
           "td": [
-            "Hybrid architecture build",
-            "Both frameworks combined, full production system",
+            "Hybrid RAG + long context build",
+            "Both approaches combined with a routing layer, full production system",
             "$15,000 to $40,000+"
           ]
         }
@@ -98,32 +98,26 @@
     "faq": [
       {
         "faq-item": {
-          "faq-q": "Is LlamaIndex better than LangChain for RAG?",
-          "faq-a": "For pure retrieval-augmented generation over document corpora, LlamaIndex is generally the stronger choice: its default chunking, metadata filtering, and reranking are more production-calibrated out of the box. For RAG as part of a broader agent system, LangChain remains the stronger foundation."
+          "faq-q": "When should I choose RAG over long context windows?",
+          "faq-a": "Choose RAG when you need cost efficiency at scale (long context costs grow linearly with token count), real-time data freshness (RAG queries live databases), or when your documents exceed 1 million tokens\u2014long context models become prohibitively expensive and slow at that scale."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Can you build with both frameworks in one project?",
-          "faq-a": "Yes, this is the most common production pattern I build in 2026: LlamaIndex handling retrieval, wrapped as a tool inside a LangGraph agent for orchestration. This combines the strengths of both rather than forcing one framework to do both jobs."
+          "faq-q": "Are long context windows accurate enough to replace RAG?",
+          "faq-a": "In 2026, models like Gemini 1.5 Pro and GPT-4-128k show strong retrieval accuracy within 200k tokens, but accuracy degrades beyond that and costs can be 10x higher per query compared to RAG. For small, static knowledge bases under 100k tokens, long context is viable and simpler."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How do you decide which framework to recommend?",
-          "faq-a": "Based on where your hardest problem actually lives: if it is retrieval quality over a messy document corpus, LlamaIndex. If it is multi-step agent behavior, tool use, or memory, LangChain and LangGraph. The framework recommendation is delivered in writing with the reasoning, as part of the discovery process, before any build work begins."
+          "faq-q": "Can I use both RAG and long context together?",
+          "faq-a": "Yes, a hybrid pattern is common: use RAG to retrieve the top 10 most relevant chunks, then feed those into a long context window for reasoning. This balances cost and accuracy, and is the approach we recommend for most production systems in 2026."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Do I need a LangChain agency or can a freelance consultant handle this?",
-          "faq-a": "Most RAG and agent projects, a specific pipeline, agent, or integration, are well within scope for a single experienced developer working directly with you. An agency's advantage shows up on large, multi-disciplinary product builds needing several specialists in parallel, not on the RAG/LangChain engineering itself."
-        }
-      },
-      {
-        "faq-item": {
-          "faq-q": "How much does RAG framework development cost?",
-          "faq-a": "A framework selection consultation runs $500 to $1,500. A full LlamaIndex or LangChain build ranges from $8,000 to $30,000+ depending on complexity. A hybrid architecture combining both frameworks typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use case."
+          "faq-q": "How do I estimate the cost difference between RAG and long context?",
+          "faq-a": "For a 1M token corpus with 100 daily queries, RAG costs roughly $0.10\u2013$0.50/day in embeddings and retrieval, while long context costs $5\u2013$20/day in input tokens alone. We provide a detailed cost projection in the architecture comparison phase."
         }
       }
     ]

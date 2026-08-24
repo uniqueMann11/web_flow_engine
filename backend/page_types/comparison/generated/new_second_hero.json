@@ -2,95 +2,95 @@
   "comply": {
     "comply-in": [
       {
-        "b": "Three vectors, one truth",
-        "span": "Pinecone, Qdrant, and Weaviate each optimized for different workloads \u2014 we compare them honestly, not by hype."
+        "b": "Cost matters",
+        "span": "RAG queries are cheap per token retrieved; long context windows spike inference cost exponentially with input length. We'll calculate your actual cost per query."
       },
       {
-        "b": "Recommendation in writing",
-        "span": "A specific vector database choice, with the reasoning behind it, before any build begins."
+        "b": "Accuracy over hype",
+        "span": "Long context models often hallucinate on mid-document details; RAG with chunked retrieval maintains higher precision on specific facts. We measure both."
       },
       {
-        "b": "Hybrid when it earns it",
-        "span": "Using Qdrant for low-latency retrieval and Weaviate for hybrid search, orchestrated via a single API layer."
+        "b": "Freshness first",
+        "span": "RAG can pull live data or updated indexes without retraining; long context windows are static snapshots. We'll show the freshness trade-off in your use case."
       },
       {
-        "b": "Honest, not default",
-        "span": "If your project doesn't need the complexity of a managed vector database, I'll say so."
+        "b": "Hybrid when earned",
+        "span": "The winning 2026 pattern uses RAG for factual retrieval and long context for summarization of retrieved chunks. We only recommend this when it beats both pure approaches."
       }
     ]
   },
   "what-is": {
     "sec-head": {
       "eyebrow": "Plain answer",
-      "h2": "What is Pinecone? What is Qdrant? What is Weaviate?"
+      "h2": "What is RAG? What are Long Context Windows?"
     },
     "tldr": {
       "b": "Quick answer",
       "p": [
-        "Pinecone is a fully-managed vector database focused on ease-of-use, high availability, and low operational overhead. Qdrant is an open-source vector database engineered for high-performance filtering and low-latency queries, with a strong emphasis on Rust-based efficiency. Weaviate is an open-source vector database that integrates hybrid search (vector + keyword) natively, with built-in modules for vectorization and classification. All three are purpose-built for production vector search, but their architectural trade-offs make them suitable for different use cases."
+        "RAG (Retrieval-Augmented Generation) retrieves relevant document chunks before generating an answer, keeping cost low and data fresh. Long context windows let a model process entire documents\u2014up to millions of tokens\u2014in a single pass, but at higher cost and with accuracy risks on fine-grained details. The 2026 debate isn't about which is better, but when each (or a hybrid) wins on cost, accuracy, and freshness."
       ]
     }
   },
   "comparison": {
     "sec-head": {
       "eyebrow": "The comparison",
-      "h2": "Vector database comparison: Pinecone vs Qdrant"
+      "h2": "RAG vs Long Context Windows: A 2026 Showdown"
     },
     "tablewrap": {
       "thead": [
         "Factor",
-        "Pinecone",
-        "Qdrant"
+        "RAG (Retrieval-Augmented Generation)",
+        "Long Context Windows (Million-Token Models)"
       ],
       "tbody": [
         {
           "th": "Primary strength",
           "td": [
-            "Managed simplicity, zero ops, automatic scaling",
-            "High-performance filtered search, Rust-based engine, fine-grained control"
+            "Low-cost, precise retrieval from large or dynamic corpora",
+            "Single-pass processing of entire documents without indexing"
           ]
         },
         {
           "th": "Best for",
           "td": [
-            "Teams that want a turnkey vector database without managing infrastructure",
-            "Applications requiring complex filtering, low latency, and self-hosted or cloud deployment"
+            "Factual Q&A, real-time data, and cost-sensitive production systems",
+            "Document-level summarization, narrative analysis, and long-form reasoning"
           ]
         },
         {
-          "th": "Query latency (p99, 1M vectors)",
+          "th": "Cost per query",
           "td": [
-            "~10ms (typical managed tier)",
-            "~5ms (optimized with HNSW and filtering)"
+            "$0.001\u2013$0.01 per query (retrieval + small generation)",
+            "$0.10\u2013$0.50+ per query (depending on input length and model)"
           ]
         },
         {
-          "th": "Indexing overhead",
+          "th": "Accuracy",
           "td": [
-            "Minimal \u2014 fully managed, no tuning needed",
-            "Moderate \u2014 requires tuning of parameters (ef, M) for performance"
+            "High on specific facts, lower on cross-document synthesis",
+            "High on overall narrative, lower on mid-document precision and recall"
           ]
         },
         {
-          "th": "Integration ecosystem",
+          "th": "Freshness",
           "td": [
-            "Rich SDKs, LangChain, LlamaIndex, native support for OpenAI embeddings",
-            "SDKs, REST/gRPC, LangChain, LlamaIndex, custom embedding pipelines"
+            "Real-time updates via index refresh or live APIs",
+            "Static; requires costly retraining or re-prompting for new data"
           ]
         },
         {
-          "th": "Observability",
+          "th": "Latency",
           "td": [
-            "Built-in monitoring and metrics in Pinecone console",
-            "Requires external monitoring (Prometheus, Grafana) for self-hosted; cloud version provides basic metrics"
+            "~200\u2013500ms (retrieval + generation)",
+            "~1\u20135 seconds (for full context prefill and generation)"
           ]
         }
       ]
     },
     "callout": {
       "p": [
-        "The 2026 reality",
-        "Most production systems choose between Qdrant and Weaviate for self-hosted flexibility, or Pinecone for managed convenience. Weaviate stands out when hybrid search (BM25 + vector) is non-negotiable, while Qdrant excels in pure vector + filter workloads. The three-way decision ultimately depends on your tolerance for operational overhead and the importance of built-in keyword search."
+        "The 2026 verdict",
+        "Neither pure RAG nor pure long context wins universally. The standard production pattern is RAG for retrieval-heavy tasks and long context for summarization of retrieved chunks\u2014a hybrid that balances cost, accuracy, and freshness. The million-token model hype hasn't replaced retrieval; it's become a complementary tool in the retrieval stack."
       ]
     }
   }

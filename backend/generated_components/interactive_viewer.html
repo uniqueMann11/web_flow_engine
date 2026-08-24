@@ -1,23 +1,26 @@
 <style>
-.viewer {
-  font-family: var(--bodyf);
+.vw-card {
   width: 100%;
   max-width: 520px;
-  box-sizing: border-box;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--r);
   box-shadow: var(--sh-md);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--bodyf);
 }
-.viewer .vw-top {
+
+.vw-card .vw-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 14px 18px;
   border-bottom: 1px solid var(--line-soft);
 }
-.viewer .vw-top .t {
+
+.vw-card .vw-top .t {
   font-family: var(--disp);
   font-size: 0.88rem;
   font-weight: 700;
@@ -26,244 +29,508 @@
   align-items: center;
   gap: 8px;
 }
-.viewer .vw-top .t svg { width: 16px; height: 16px; color: var(--blue); }
-.viewer .vw-status-badge {
+
+.vw-card .vw-top .t svg { width: 16px; height: 16px; color: var(--blue); }
+
+.vw-card .vw-chip {
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.3s;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: var(--violet-tint);
+  color: var(--violet);
+  border: 1px solid rgba(109, 94, 246, 0.25);
 }
-.viewer .vw-status-badge.healthy {
-  background: var(--mint-tint);
-  color: var(--mint);
-  border: 1px solid rgba(15, 169, 104, 0.3);
-}
-.viewer .vw-body {
+
+.vw-card .vw-body {
   padding: 16px 18px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
-.viewer .vw-pipeline {
+
+.vw-card .vw-switch-rail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
   background: var(--soft);
-  border: 1px solid var(--line);
   border-radius: var(--r-sm);
-  padding: 14px 16px;
+  padding: 3px;
+  border: 1px solid var(--line-soft);
 }
-.viewer .vw-pl-header {
+
+.vw-card .vw-switch-btn {
+  font-family: var(--disp);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--body);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.18s;
+}
+
+.vw-card .vw-switch-btn svg { width: 14px; height: 14px; }
+
+.vw-card .vw-switch-btn.active {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--sh-sm);
+}
+
+.vw-card .vw-switch-btn:hover:not(.active) { color: var(--ink); }
+
+.vw-card .vw-compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.vw-card .vw-compare-card {
+  background: var(--soft);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-sm);
+  padding: 10px 12px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vw-card .vw-compare-card.highlighted {
+  border-color: var(--blue);
+  background: var(--blue-tint);
+}
+
+.vw-card .vw-compare-card .vw-cc-title {
+  font-family: var(--disp);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.vw-card .vw-compare-card .vw-cc-title svg { width: 12px; height: 12px; }
+
+.vw-card .vw-compare-card .vw-cc-metric {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  color: var(--body);
+  line-height: 1.5;
+  padding-left: 18px;
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+}
+
+.vw-card .vw-compare-card .vw-cc-metric .vw-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.vw-card .vw-compare-card .vw-cc-metric .vw-dot.green { background: var(--mint); }
+.vw-card .vw-compare-card .vw-cc-metric .vw-dot.amber { background: var(--amber); }
+.vw-card .vw-compare-card .vw-cc-metric .vw-dot.rose { background: var(--rose); }
+
+.vw-card .vw-compare-card .vw-cc-stat {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding-left: 18px;
+  margin-top: 2px;
+}
+
+.vw-card .vw-compare-card .vw-cc-stat .vw-sub {
+  font-size: 0.58rem;
+  font-weight: 500;
+  color: var(--muted);
+  font-family: var(--bodyf);
+}
+
+.vw-card .vw-verdict-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
-}
-.viewer .vw-pl-header span {
-  font-family: var(--disp);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--ink);
-}
-.viewer .vw-pl-steps {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.viewer .vw-pl-step {
-  display: flex;
-  align-items: center;
+  background: var(--violet-tint);
+  border: 1px solid rgba(109, 94, 246, 0.18);
+  border-radius: var(--r-sm);
+  padding: 10px 12px;
   gap: 10px;
-  padding: 8px 10px;
-  background: var(--surface);
-  border: 1px solid var(--line-soft);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
 }
-.viewer .vw-pl-step.active {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 2px var(--blue-tint);
-  background: var(--tint);
-}
-.viewer .vw-pl-step svg { width: 16px; height: 16px; flex-shrink: 0; }
-.viewer .vw-pl-step .step-label {
-  flex: 1;
-  font-size: 0.78rem;
+
+.vw-card .vw-verdict-bar .vw-vb-label {
+  font-family: var(--disp);
+  font-size: 0.68rem;
   font-weight: 600;
   color: var(--ink);
 }
-.viewer .vw-pl-step .step-time {
+
+.vw-card .vw-verdict-bar .vw-vb-value {
   font-family: var(--mono);
-  font-size: 0.65rem;
-  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--violet);
+  text-align: right;
 }
-.viewer .vw-step-detail {
+
+.vw-card .vw-verdict-bar .vw-vb-sub {
+  font-size: 0.6rem;
+  color: var(--body);
+  font-family: var(--bodyf);
+}
+
+.vw-card .vw-scenario-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.vw-card .vw-scenario-btn {
+  flex: 1;
+  min-width: 80px;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
   background: var(--surface);
+  color: var(--body);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+}
+
+.vw-card .vw-scenario-btn.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(36, 86, 230, 0.2);
+}
+
+.vw-card .vw-scenario-btn:hover:not(.active) { border-color: var(--blue); color: var(--blue); }
+
+.vw-card .vw-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: var(--soft);
   border: 1px solid var(--line);
   border-radius: var(--r-sm);
-  padding: 12px 14px;
-  min-height: 60px;
-  transition: opacity 0.2s;
-}
-.viewer .vw-step-detail .detail-title {
-  font-family: var(--disp);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 4px;
-}
-.viewer .vw-step-detail .detail-desc {
-  font-size: 0.72rem;
-  color: var(--body);
-  line-height: 1.4;
-}
-.viewer .vw-step-detail .detail-meta {
-  display: flex;
-  gap: 12px;
-  margin-top: 6px;
+  padding: 10px 12px;
   font-family: var(--mono);
-  font-size: 0.6rem;
-  color: var(--muted);
+  font-size: 0.68rem;
 }
-.viewer .vw-step-detail .detail-meta .meta-green { color: var(--mint); }
-.viewer .vw-step-detail .detail-meta .meta-blue { color: var(--blue); }
-.viewer .vw-metrics-row {
+
+.vw-card .vw-btn-action {
+  background: var(--blue);
+  color: #FFFFFF;
+  border: none;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.vw-card .vw-btn-action:hover { background: var(--blue-strong); }
+
+.vw-card .vw-btn-action:disabled { opacity: 0.5; pointer-events: none; }
+
+.vw-card .vw-metrics-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
 }
-.viewer .vw-tile {
+
+.vw-card .vw-tile {
   background: var(--soft);
   border: 1px solid var(--line-soft);
   border-radius: var(--r-sm);
-  padding: 8px 10px;
+  padding: 8px 8px;
   text-align: center;
 }
-.viewer .vw-tile-val {
+
+.vw-card .vw-tile-val {
   font-family: var(--disp);
   font-size: 1rem;
   font-weight: 800;
   color: var(--ink);
 }
-.viewer .vw-tile-lbl {
+
+.vw-card .vw-tile-lbl {
   font-family: var(--mono);
   font-size: 0.55rem;
   color: var(--muted);
   text-transform: uppercase;
-  margin-top: 2px;
+  letter-spacing: 0.02em;
 }
-.viewer .vw-foot {
+
+.vw-card .vw-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 18px;
   border-top: 1px solid var(--line-soft);
   background: var(--soft);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--muted);
+  gap: 8px;
+  flex-wrap: wrap;
 }
+
 @media (max-width: 480px) {
-  .viewer .vw-metrics-row { grid-template-columns: 1fr; }
+  .vw-card .vw-compare-grid { grid-template-columns: 1fr; }
+  .vw-card .vw-scenario-row { flex-direction: column; }
+  .vw-card .vw-metrics-row { grid-template-columns: 1fr 1fr; }
 }
 </style>
-<div class="viewer">
+
+<div class="vw-card">
   <div class="vw-top">
     <span class="t">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="1"/><circle cx="8" cy="12" r="1"/><circle cx="8" cy="18" r="1"/></svg>
-      vLLM Request Pipeline
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+      RAG vs Long Context
     </span>
-    <div class="vw-status-badge healthy" id="vwStatus"><span>&#10003; Serving Active</span></div>
+    <span class="vw-chip">2026 Comparison</span>
   </div>
+
   <div class="vw-body">
-    <div class="vw-pipeline">
-      <div class="vw-pl-header">
-        <span>Inference Steps</span>
-        <span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);">Click a step</span>
+    <!-- Toggle: RAG / Long Context -->
+    <div class="vw-switch-rail">
+      <button class="vw-switch-btn active" data-mode="rag" id="modeRag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        RAG
+      </button>
+      <button class="vw-switch-btn" data-mode="lc" id="modeLc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        Long Context
+      </button>
+    </div>
+
+    <!-- Comparison columns (updated by JS) -->
+    <div class="vw-compare-grid" id="compareGrid">
+      <div class="vw-compare-card highlighted" id="colRag">
+        <div class="vw-cc-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0FA968" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          RAG
+        </div>
+        <div class="vw-cc-metric"><span class="vw-dot green"></span> Cost per query</div>
+        <div class="vw-cc-stat">$0.0024 <span class="vw-sub">/ 100K tokens</span></div>
+        <div class="vw-cc-metric"><span class="vw-dot green"></span> Freshness</div>
+        <div class="vw-cc-stat">Real-time <span class="vw-sub">(index refresh)</span></div>
+        <div class="vw-cc-metric"><span class="vw-dot amber"></span> Accuracy (MMLU)</div>
+        <div class="vw-cc-stat">92.3% <span class="vw-sub">top-5</span></div>
       </div>
-      <div class="vw-pl-steps" id="vwSteps">
-        <div class="vw-pl-step active" data-step="0">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          <span class="step-label">Tokenize & Input Prep</span>
-          <span class="step-time">1.2ms</span>
+      <div class="vw-compare-card" id="colLc">
+        <div class="vw-cc-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#D97A18" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          Long Context
         </div>
-        <div class="vw-pl-step" data-step="1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 8v8M8 12h8"/></svg>
-          <span class="step-label">KV Cache & PagedAttention</span>
-          <span class="step-time">3.7ms</span>
-        </div>
-        <div class="vw-pl-step" data-step="2">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--mint)" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          <span class="step-label">Continuous Batching</span>
-          <span class="step-time">0.9ms</span>
-        </div>
-        <div class="vw-pl-step" data-step="3">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.29 7 12 12 20.71 7"/></svg>
-          <span class="step-label">GPU Decode & Output</span>
-          <span class="step-time">5.1ms</span>
-        </div>
+        <div class="vw-cc-metric"><span class="vw-dot rose"></span> Cost per query</div>
+        <div class="vw-cc-stat">$0.048 <span class="vw-sub">/ 1M tokens</span></div>
+        <div class="vw-cc-metric"><span class="vw-dot amber"></span> Freshness</div>
+        <div class="vw-cc-stat">Static <span class="vw-sub">(pre-loaded)</span></div>
+        <div class="vw-cc-metric"><span class="vw-dot green"></span> Accuracy (MMLU)</div>
+        <div class="vw-cc-stat">94.1% <span class="vw-sub">top-5</span></div>
       </div>
     </div>
-    <div class="vw-step-detail" id="vwDetail">
-      <div class="detail-title" id="vwDetailTitle">Tokenize & Input Prep</div>
-      <div class="detail-desc" id="vwDetailDesc">Raw prompt is tokenized and packed into GPU-ready batches. Streaming prefix caching reduces redundant computation.</div>
-      <div class="detail-meta">
-        <span>Throughput: <span class="meta-green">3,400 tok/s</span></span>
-        <span>Cost per 1K tokens: <span class="meta-blue">$0.0021</span></span>
-      </div>
+
+    <!-- Scenario selector -->
+    <div style="font-family: var(--disp); font-size: 0.7rem; font-weight: 600; color: var(--ink-soft);">Select Scenario:</div>
+    <div class="vw-scenario-row" id="scenarioRow">
+      <button class="vw-scenario-btn active" data-scenario="0">Customer Support</button>
+      <button class="vw-scenario-btn" data-scenario="1">Legal Review</button>
+      <button class="vw-scenario-btn" data-scenario="2">Code Assist</button>
     </div>
+
+    <!-- Verdict / Recommendation -->
+    <div class="vw-verdict-bar" id="verdictBar">
+      <div>
+        <div class="vw-vb-label" id="verdictLabel">Best for this task</div>
+        <div class="vw-vb-sub" id="verdictSub">RAG — lower cost, always fresh</div>
+      </div>
+      <div class="vw-vb-value" id="verdictValue">RAG</div>
+    </div>
+
+    <!-- Action & metrics -->
+    <div class="vw-action-bar">
+      <div>
+        <div style="font-weight: 700; color: var(--ink);">Simulate Query Comparison</div>
+        <div style="color: var(--muted); font-size: 0.62rem;">Runs sample query through both pipelines</div>
+      </div>
+      <button class="vw-btn-action" id="btnSimulate">Run Test</button>
+    </div>
+
     <div class="vw-metrics-row">
       <div class="vw-tile">
-        <div class="vw-tile-val" id="vwMetricThru">3,400</div>
-        <div class="vw-tile-lbl">Output tok/s</div>
+        <div class="vw-tile-val" style="color: var(--mint);" id="metricCost">$0.0024</div>
+        <div class="vw-tile-lbl">Cost (RAG)</div>
       </div>
       <div class="vw-tile">
-        <div class="vw-tile-val" id="vwMetricCost">$0.08</div>
-        <div class="vw-tile-lbl">Cost / 1K req</div>
+        <div class="vw-tile-val" id="metricLatency">0.38s</div>
+        <div class="vw-tile-lbl">Latency (avg)</div>
       </div>
       <div class="vw-tile">
-        <div class="vw-tile-val" id="vwMetricLat">34ms</div>
-        <div class="vw-tile-lbl">P50 Latency</div>
+        <div class="vw-tile-val" id="metricTokens">4.2K</div>
+        <div class="vw-tile-lbl">Input tokens</div>
       </div>
     </div>
   </div>
+
   <div class="vw-foot">
-    <span>Self-hosted vLLM serving on 1x A100</span>
-    <span>64 concurrent requests</span>
+    <span>Data: token pricing & accuracy as of Q1 2026</span>
+    <span>RAG = retrieval-augmented generation</span>
   </div>
 </div>
+
 <script>
-(function(){
-  const steps = document.querySelectorAll('#vwSteps .vw-pl-step');
-  const detailTitle = document.getElementById('vwDetailTitle');
-  const detailDesc = document.getElementById('vwDetailDesc');
-  const detailMeta = document.querySelector('#vwDetail .detail-meta');
-  const metricThru = document.getElementById('vwMetricThru');
-  const metricCost = document.getElementById('vwMetricCost');
-  const metricLat = document.getElementById('vwMetricLat');
-  const statusBadge = document.getElementById('vwStatus');
-  const stepData = [
-    { title: 'Tokenize & Input Prep', desc: 'Raw prompt is tokenized and packed into GPU-ready batches. Streaming prefix caching reduces redundant computation.', meta: 'Throughput: <span class="meta-green">3,400 tok/s</span> | Cost per 1K tokens: <span class="meta-blue">$0.0021</span>', thru: '3,400', cost: '$0.08', lat: '34ms', status: 'Serving Active', cls: 'healthy' },
-    { title: 'KV Cache & PagedAttention', desc: 'PagedAttention dynamically allocates KV cache in 16KB blocks, eliminating fragmentation and enabling 2x memory efficiency over naive implementations.', meta: 'Cache hit rate: <span class="meta-green">87%</span> | KV block size: <span class="meta-blue">16KB</span>', thru: '2,800', cost: '$0.06', lat: '41ms', status: 'Cache Warm', cls: 'healthy' },
-    { title: 'Continuous Batching', desc: 'In-flight requests are dynamically added/removed from GPU batches every iteration. No padding waste — utilizations reach 95%+ on dense workload.', meta: 'Batch fill rate: <span class="meta-green">96%</span> | Max batch: <span class="meta-blue">128 seq</span>', thru: '4,100', cost: '$0.05', lat: '29ms', status: 'High Throughput', cls: 'healthy' },
-    { title: 'GPU Decode & Output', desc: 'Autoregressive decode with TensorRT-LLM kernels. FP16/INT8 quantized compute reduces VRAM usage by 40% without quality loss.', meta: 'GPU util: <span class="meta-green">92%</span> | Power: <span class="meta-blue">285W</span>', thru: '3,200', cost: '$0.09', lat: '52ms', status: 'Decoding', cls: 'healthy' },
+(function() {
+  // --- canvas ---
+  const modeRag = document.getElementById('modeRag');
+  const modeLc = document.getElementById('modeLc');
+  const colRag = document.getElementById('colRag');
+  const colLc = document.getElementById('colLc');
+  const scenarioBtns = document.querySelectorAll('.vw-scenario-btn');
+  const verdictLabel = document.getElementById('verdictLabel');
+  const verdictSub = document.getElementById('verdictSub');
+  const verdictValue = document.getElementById('verdictValue');
+  const btnSimulate = document.getElementById('btnSimulate');
+  const metricCost = document.getElementById('metricCost');
+  const metricLatency = document.getElementById('metricLatency');
+  const metricTokens = document.getElementById('metricTokens');
+
+  // --- data per scenario ---
+  const scenarios = [
+    { // customer support
+      rag: { cost: '$0.0024', latency: '0.38s', tokens: '4.2K', freshness: 'Real-time', accuracy: '92.3%' },
+      lc:  { cost: '$0.048', latency: '1.2s', tokens: '380K', freshness: 'Static', accuracy: '94.1%' },
+      verdict: { label: 'Best for this task', sub: 'RAG — lower cost, always fresh', value: 'RAG' }
+    },
+    { // legal review
+      rag: { cost: '$0.008', latency: '0.9s', tokens: '22K', freshness: 'Real-time', accuracy: '91.7%' },
+      lc:  { cost: '$0.12', latency: '2.8s', tokens: '1.2M', freshness: 'Static', accuracy: '96.4%' },
+      verdict: { label: 'Best for this task', sub: 'Long Context — full doc precision', value: 'Long Context' }
+    },
+    { // code assist
+      rag: { cost: '$0.003', latency: '0.5s', tokens: '8K', freshness: 'Indexed repos', accuracy: '88.6%' },
+      lc:  { cost: '$0.06', latency: '1.7s', tokens: '640K', freshness: 'Pre-loaded', accuracy: '95.2%' },
+      verdict: { label: 'Best for this task', sub: 'Depends — RAG for speed, LC for large codebases', value: 'Mixed' }
+    }
   ];
-  steps.forEach((step, idx) => {
-    step.addEventListener('click', function(){
-      steps.forEach(s => s.classList.remove('active'));
-      this.classList.add('active');
-      const d = stepData[idx];
-      detailTitle.textContent = d.title;
-      detailDesc.textContent = d.desc;
-      detailMeta.innerHTML = d.meta;
-      metricThru.textContent = d.thru;
-      metricCost.textContent = d.cost;
-      metricLat.textContent = d.lat;
-      statusBadge.innerHTML = '<span>&#10003; ' + d.status + '</span>';
-      statusBadge.className = 'vw-status-badge ' + d.cls;
+
+  let currentMode = 'rag';
+  let currentScenario = 0;
+
+  function updateColumns(mode, scenarioIdx) {
+    const s = scenarios[scenarioIdx];
+    // highlight column
+    colRag.classList.toggle('highlighted', mode === 'rag');
+    colLc.classList.toggle('highlighted', mode === 'lc');
+
+    // update metrics in both columns (always show both)
+    const ragMetrics = colRag.querySelectorAll('.vw-cc-stat');
+    const lcMetrics = colLc.querySelectorAll('.vw-cc-stat');
+    // rag: cost, freshness, accuracy
+    ragMetrics[0].innerHTML = s.rag.cost + ' <span class="vw-sub">/ 100K tokens</span>';
+    ragMetrics[1].innerHTML = s.rag.freshness + ' <span class="vw-sub">(index refresh)</span>';
+    ragMetrics[2].innerHTML = s.rag.accuracy + ' <span class="vw-sub">top-5</span>';
+    // lc
+    lcMetrics[0].innerHTML = s.lc.cost + ' <span class="vw-sub">/ 1M tokens</span>';
+    lcMetrics[1].innerHTML = s.lc.freshness + ' <span class="vw-sub">(pre-loaded)</span>';
+    lcMetrics[2].innerHTML = s.lc.accuracy + ' <span class="vw-sub">top-5</span>';
+
+    // bottom metrics (show whichever mode is active)
+    const active = mode === 'rag' ? s.rag : s.lc;
+    metricCost.textContent = active.cost;
+    metricLatency.textContent = active.latency;
+    metricTokens.textContent = active.tokens;
+
+    // verdict
+    verdictLabel.textContent = s.verdict.label;
+    verdictSub.textContent = s.verdict.sub;
+    verdictValue.textContent = s.verdict.value;
+  }
+
+  function setMode(mode) {
+    currentMode = mode;
+    modeRag.classList.toggle('active', mode === 'rag');
+    modeLc.classList.toggle('active', mode === 'lc');
+    updateColumns(mode, currentScenario);
+  }
+
+  function setScenario(idx) {
+    currentScenario = idx;
+    scenarioBtns.forEach((btn, i) => btn.classList.toggle('active', i === idx));
+    updateColumns(currentMode, idx);
+  }
+
+  // mode toggles
+  modeRag.addEventListener('click', () => setMode('rag'));
+  modeLc.addEventListener('click', () => setMode('lc'));
+
+  // scenario
+  scenarioBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setScenario(parseInt(btn.dataset.scenario));
     });
   });
+
+  // simulate button – animate through metrics
+  btnSimulate.addEventListener('click', function() {
+    this.disabled = true;
+    this.textContent = 'Testing...';
+
+    const s = scenarios[currentScenario];
+    const steps = [
+      { cost: s.rag.cost, latency: s.rag.latency, tokens: s.rag.tokens },
+      { cost: s.lc.cost, latency: s.lc.latency, tokens: s.lc.tokens },
+      { cost: s.rag.cost, latency: s.rag.latency, tokens: s.rag.tokens },
+      { cost: s.lc.cost, latency: s.lc.latency, tokens: s.lc.tokens },
+    ];
+    let step = 0;
+    const interval = setInterval(() => {
+      const d = steps[step % steps.length];
+      metricCost.textContent = d.cost;
+      metricLatency.textContent = d.latency;
+      metricTokens.textContent = d.tokens;
+      step++;
+      if (step >= steps.length) {
+        clearInterval(interval);
+        // final state: show active mode
+        const active = currentMode === 'rag' ? s.rag : s.lc;
+        metricCost.textContent = active.cost;
+        metricLatency.textContent = active.latency;
+        metricTokens.textContent = active.tokens;
+        this.disabled = false;
+        this.textContent = 'Run Test';
+      }
+    }, 350);
+  });
+
+  // initial
+  setMode('rag');
+  setScenario(0);
 })();
 </script>

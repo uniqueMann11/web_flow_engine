@@ -1,50 +1,50 @@
 {
   "services": {
     "sec-head": {
-      "eyebrow": "What I offer",
-      "h2": "Vector database comparison services",
-      "p": "Hands-on consulting and implementation for your specific database evaluation, migration, or hybrid strategy."
+      "eyebrow": "What I build",
+      "h2": "RAG vs long context strategy services",
+      "p": "Architecture assessments and implementations matched to your cost, accuracy, and freshness requirements."
     },
     "grid g3": [
       {
         "card": {
           "n": "CONSULT",
-          "h3": "Vector database selection consulting",
-          "p": "An independent, architecture-driven assessment of your use case, data volume, latency requirements, and budget, resulting in a written recommendation: Pinecone, Qdrant, Weaviate, or a hybrid approach."
+          "h3": "RAG vs long context assessment",
+          "p": "An independent architecture evaluation comparing retrieval-augmented generation and extended context windows, resulting in a written recommendation with cost projections and accuracy benchmarks for your specific use case."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Pinecone production deployment",
-          "p": "End-to-end setup: pod sizing, index configuration, namespace management, and integration with LangChain or LlamaIndex for serverless or pod-based vector search at scale."
+          "h3": "RAG system development",
+          "p": "Retrieval-first builds with hierarchical chunking, auto-merging retrieval, and query synthesis for applications where sub-second latency, low cost per query, and real-time data freshness are critical."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Qdrant self-hosted optimization",
-          "p": "Hardware-aware deployment, HNSW tuning, quantization strategies, and multi-node clustering for sub\u201110ms p99 latency under 10M+ vectors."
+          "h3": "Long context window integration",
+          "p": "Implementation of million-token context systems using models like Gemini 1.5 Pro, optimized for single-document analysis and tasks where retrieval overhead is unacceptable."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Weaviate hybrid search architecture",
-          "p": "Configuring vector + keyword (BM25) hybrid search, module integration (text2vec, generative), and multi-tenancy for production RAG pipelines."
+          "h3": "Hybrid RAG-long context architecture",
+          "p": "A tiered system combining long context windows for primary document analysis with RAG for secondary retrieval, balancing cost and accuracy across diverse data sources."
         }
       },
       {
         "card": {
           "n": "AUDIT",
-          "h3": "Migration & benchmarking audits",
-          "p": "Quantitative comparison of recall, throughput, and cost across databases, with a migration roadmap and rollback plan for teams moving between Pinecone, Qdrant, or Weaviate."
+          "h3": "Cost and accuracy optimization audit",
+          "p": "Assessment of your existing pipeline to identify where long context windows or RAG can reduce costs by 30-60% while maintaining or improving answer accuracy and freshness."
         }
       },
       {
         "card cta-card": {
-          "h3": "Not sure which you need?",
-          "p": "Try the fit\u2011check widget above, or get it scoped properly.",
+          "h3": "Unsure which fits your data?",
+          "p": "Use the cost calculator above or book a scoping session.",
           "btn-primary": {
             "text": "Get a recommendation",
             "url": "#lets-talk"
@@ -56,30 +56,30 @@
   "where-wins": {
     "sec-head": {
       "eyebrow": "The honest breakdown",
-      "h2": "Where each database wins"
+      "h2": "RAG vs long context: where each wins"
     },
     "grid g2": [
       {
         "card": {
-          "n": "PINECONE WINS WHEN",
-          "h3": "Managed zero\u2011ops at scale is the priority",
+          "n": "RAG WINS WHEN",
+          "h3": "Cost and freshness are critical",
           "ul": [
-            "You need sub\u201150ms p99 query latency with zero infrastructure management \u2013 Pinecone\u2019s serverless offering auto\u2011scales from 0 to billions of vectors",
-            "Production deployments where downtime and ops overhead cost more than the per\u2011vector premium \u2013 built\u2011in pod\u2011level replication and multi\u2011region support",
-            "Tight integration with enterprise AI stacks: native LangChain, LlamaIndex, and OpenAI embeddings reduce integration code by 40\u201360%",
-            "Cost\u2011predictable workloads for high\u2011query\u2011volume applications \u2013 pod\u2011based pricing yields lower per\u2011query cost above ~10M queries/month"
+            "You need sub-second query latency: RAG retrieves only relevant chunks, avoiding the 3-10 second prefill delay of million-token contexts",
+            "Your data changes hourly: RAG indexes can be updated incrementally for pennies per update, while long context windows require full re-ingestion at $0.50-$2.00 per million tokens",
+            "Accuracy on multi-document synthesis: RAG with hierarchical retrieval achieves 15-25% better F1 scores on datasets like QASPER and HotpotQA compared to raw long context models",
+            "Budget is a constraint: RAG costs $0.01-$0.10 per query versus $0.20-$1.00 for processing a million-token context window"
           ]
         }
       },
       {
         "card": {
-          "n": "OPEN\u2011SOURCE WINS WHEN",
-          "h3": "Control, flexibility, and cost efficiency matter more",
+          "n": "LONG CONTEXT WINS WHEN",
+          "h3": "Simplicity and single-document depth matter",
           "ul": [
-            "Qdrant: the fastest HNSW index build times (2\u20133x faster than Weaviate on 1M vectors), with streaming filtering and full payload indexing \u2013 ideal for real\u2011time recommender systems",
-            "Weaviate: the only database with built\u2011in hybrid search (vector + BM25) and zero\u2011shot classification modules \u2013 best for knowledge\u2011base RAG where text search is equal to semantic search",
-            "Both Qdrant and Weaviate give you flat\u2011pricing, no egress fees, and the ability to run on\u2011prem or in any cloud \u2013 total cost of ownership can be 5\u201310x lower than Pinecone at 100M+ vectors",
-            "You need custom quantization, index tuning, or multi\u2011tenancy at the storage layer \u2013 open\u2011source allows deep kernel\u2011level optimisations that managed services restrict"
+            "You are analyzing a single long document (e.g., a 500-page contract, a codebase, a research paper): no retrieval infrastructure needed, just prompt engineering",
+            "Latency is acceptable at 5-15 seconds for first token: long context windows eliminate retrieval hops, reducing end-to-end complexity",
+            "You need perfect recall of document structure: models like Gemini 1.5 Pro achieve 99.7% recall on the 'needle in a haystack' test for contexts up to 1 million tokens",
+            "Your team lacks retrieval engineering expertise: long context windows reduce the stack to model + prompt, cutting development time by 40-60%"
           ]
         }
       }
