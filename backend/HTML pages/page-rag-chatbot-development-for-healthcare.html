@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>RAG Chatbot Development for Healthcare | Shreyans Padmani</title>
-<meta content="index, follow" name="robots"/>
-<meta content="max-image-preview:large" name="robots"/>
-<meta content="Shreyans Padmani" name="author"/>
-<meta content="website" property="og:type"/>
-<meta content="Shreyans Padmani" property="og:site_name"/>
-<meta content="en_US" property="og:locale"/>
-<meta content="Healthcare AI must protect PHI while delivering accurate clinical answers. I build HIPAA-compliant RAG chatbots that ingest medical records, radiology reports, and lab data—without exposing sensitive patient information. This isn't a generic demo; it's production-grade retrieval grounded in robust de-identification and access controls." name="description"/>
-<meta content="RAG chatbot for healthcare, medical AI assistant, HIPAA compliant chatbot" name="keywords"/>
-<link href="https://shreyans.tech/rag-chatbot-development-for-healthcare" rel="canonical"/>
-<meta content="RAG Chatbot Development for Healthcare" property="og:title"/>
-<meta content="https://shreyans.tech/rag-chatbot-development-for-healthcare" property="og:url"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<meta content="@shreyanspadmani" name="twitter:site"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="/assets/image/shreyans.png" rel="shortcut icon" type="image/x-icon"/>
-<link href="/assets/image/shreyans.png" rel="apple-touch-icon" sizes="180x180"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<script type="application/ld+json">{
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>RAG Chatbot Development for Healthcare | Shreyans Padmani</title>
+  <meta content="index, follow" name="robots" />
+  <meta content="max-image-preview:large" name="robots" />
+  <meta content="Shreyans Padmani" name="author" />
+  <meta content="website" property="og:type" />
+  <meta content="Shreyans Padmani" property="og:site_name" />
+  <meta content="en_US" property="og:locale" />
+  <meta
+    content="Healthcare AI must protect PHI while delivering accurate clinical answers. I build HIPAA-compliant RAG chatbots that ingest medical records, radiology reports, and lab data—without exposing sensitive patient information. This isn't a generic demo; it's production-grade retrieval grounded in robust de-identification and access controls."
+    name="description" />
+  <meta content="RAG chatbot for healthcare, medical AI assistant, HIPAA compliant chatbot" name="keywords" />
+  <link href="https://shreyans.tech/rag-chatbot-development-for-healthcare" rel="canonical" />
+  <meta content="RAG Chatbot Development for Healthcare" property="og:title" />
+  <meta content="https://shreyans.tech/rag-chatbot-development-for-healthcare" property="og:url" />
+  <meta content="summary_large_image" name="twitter:card" />
+  <meta content="@shreyanspadmani" name="twitter:site" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
+    rel="stylesheet" />
+  <link href="/assets/image/shreyans.png" rel="shortcut icon" type="image/x-icon" />
+  <link href="/assets/image/shreyans.png" rel="apple-touch-icon" sizes="180x180" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -113,8 +118,9 @@
     }
   ]
 }</script>
-<style>
-    :root, .svcp {
+  <style>
+    :root,
+    .svcp {
       --ink: #0A1222;
       --ink-soft: #1B2740;
       --body: #48566E;
@@ -1698,595 +1704,858 @@
         transform: none
       }
     }
-  
-.vw-card {
-  width: 100%;
-  max-width: 520px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  box-shadow: var(--sh-md);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  animation: vw-cardIn .55s ease both;
-  box-sizing: border-box;
-}
-@keyframes vw-cardIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-.vw-card 
 
-.vw-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 14px 18px;
-  border-bottom: 1px solid var(--line-soft);
-  background: var(--soft);
-}
-.vw-top .vw-title {
-  font-family: var(--disp);
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  line-height: 1.3;
-}
-.vw-top .vw-title svg { width: 18px; height: 18px; color: var(--mint); flex: none; }
-.vw-chip {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: var(--mint-tint);
-  color: var(--mint-deep);
-  border: 1px solid rgba(15, 169, 104, 0.25);
-  white-space: nowrap;
-  transition: background .2s, color .2s, border-color .2s;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  letter-spacing: 0.01em;
-}
-.vw-chip svg { width: 12px; height: 12px; flex: none; }
-.vw-chip.busy { background: var(--blue-tint); color: var(--blue-strong); border-color: rgba(36, 86, 230, 0.25); }
+    .vw-card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--sh-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      animation: vw-cardIn .55s ease both;
+      box-sizing: border-box;
+    }
 
-.vw-body {
-  padding: 16px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.vw-search-box {
-  background: var(--soft);
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: border-color .2s, box-shadow .2s;
-}
-.vw-search-box.active { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-tint); }
-.vw-search-box svg { width: 16px; height: 16px; color: var(--muted); flex-shrink: 0; }
-.vw-query-display {
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--ink);
-  flex: 1;
-  font-family: var(--bodyf);
-  line-height: 1.4;
-  transition: opacity .2s;
-}
-.vw-samples {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-.vw-pill {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 6px 14px;
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: var(--body);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.15s;
-  font-family: var(--bodyf);
-  flex: 1 0 auto;
-  text-align: center;
-}
-.vw-pill:hover { border-color: var(--blue); color: var(--ink); background: var(--tint); }
-.vw-pill.active { background: var(--blue-tint); border-color: var(--blue); color: var(--blue-strong); font-weight: 600; }
+    @keyframes vw-cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
 
-.vw-result-box {
-  background: var(--ink);
-  border: 1px solid var(--ink-soft);
-  border-radius: var(--r-sm);
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  transition: opacity .25s ease;
-  min-height: 140px;
-}
-.vw-result-box.vw-loading { opacity: .7; }
-.vw-result-box .vw-arch-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  font-size: 0.7rem;
-  color: #94A3B8;
-  font-family: var(--mono);
-  line-height: 1.5;
-}
-.vw-result-box .vw-arch-row svg { width: 14px; height: 14px; color: var(--mint); flex: none; margin-top: 2px; }
-.vw-result-box .vw-arch-label { color: #64748B; min-width: 70px; flex: none; }
-.vw-result-box .vw-arch-value { color: #F1F5F9; }
-.vw-result-box .vw-arch-value strong { color: #fff; font-weight: 600; }
-.vw-result-box .vw-guardrail {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 4px;
-  padding-top: 10px;
-  border-top: 1px dashed #1E293B;
-}
-.vw-result-box .vw-guardrail span {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  padding: 3px 8px;
-  border-radius: 4px;
-  background: rgba(15, 169, 104, 0.1);
-  color: #34D399;
-  border: 1px solid rgba(15, 169, 104, 0.15);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.vw-result-box .vw-guardrail span svg { width: 10px; height: 10px; }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.vw-metrics-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-}
-.vw-tile {
-  background: var(--soft);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--r-sm);
-  padding: 8px 6px;
-  text-align: center;
-}
-.vw-tile-val { font-family: var(--disp); font-size: 1rem; font-weight: 800; color: var(--ink); line-height: 1.2; }
-.vw-tile-val .vw-status-ok { color: var(--mint); }
-.vw-tile-val .vw-status-high { color: var(--amber); }
-.vw-tile-lbl { font-family: var(--mono); font-size: 0.55rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 2px; }
+    .vw-card .vw-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line-soft);
+      background: var(--soft);
+    }
 
-.vw-foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 10px 18px;
-  border-top: 1px solid var(--line-soft);
-  background: var(--soft);
-  font-size: 0.68rem;
-  color: var(--muted);
-  font-family: var(--bodyf);
-}
-.vw-foot .vw-tip {
-  position: relative;
-  cursor: help;
-  border-bottom: 1px dotted var(--muted);
-  white-space: nowrap;
-}
-.vw-foot .vw-tip::after {
-  content: attr(data-tip);
-  position: absolute; bottom: 135%; left: 0;
-  width: 220px; white-space: normal;
-  background: var(--ink); color: #fff;
-  padding: 8px 12px; border-radius: var(--r-sm);
-  font-size: 0.65rem; line-height: 1.4; font-family: var(--bodyf);
-  box-shadow: var(--sh-md);
-  opacity: 0; pointer-events: none;
-  transition: opacity .15s ease;
-  z-index: 5;
-}
-.vw-foot .vw-tip:hover::after { opacity: 1; }
+    .vw-top .vw-title {
+      font-family: var(--disp);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.3;
+    }
 
-@media (max-width: 480px) {
-  .vw-top { padding: 12px 14px; }
-  .vw-top .vw-title { font-size: 0.8rem; }
-  .vw-body { padding: 14px; gap: 12px; }
-  .vw-search-box { padding: 8px 12px; }
-  .vw-query-display { font-size: 0.75rem; }
-  .vw-pill { font-size: 0.65rem; padding: 5px 10px; flex: 1 1 auto; }
-  .vw-result-box { padding: 12px; min-height: 120px; }
-  .vw-result-box .vw-arch-row { font-size: 0.65rem; }
-  .vw-tile-val { font-size: 0.85rem; }
-  .vw-foot { flex-direction: column; align-items: flex-start; gap: 4px; font-size: 0.65rem; }
-  .vw-foot .vw-tip::after { width: 180px; }
-}
-@media (max-width: 380px) {
-  .vw-top .vw-title { font-size: 0.7rem; }
-  .vw-chip { font-size: 0.55rem; padding: 3px 8px; }
-  .vw-pill { font-size: 0.6rem; padding: 4px 8px; }
-  .vw-result-box .vw-arch-label { min-width: 55px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .vw-card { animation: none !important; }
-  .vw-card 
-}
-</style>
+    .vw-top .vw-title svg {
+      width: 18px;
+      height: 18px;
+      color: var(--mint);
+      flex: none;
+    }
+
+    .vw-chip {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--mint-tint);
+      color: var(--mint-deep);
+      border: 1px solid rgba(15, 169, 104, 0.25);
+      white-space: nowrap;
+      transition: background .2s, color .2s, border-color .2s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: 0.01em;
+    }
+
+    .vw-chip svg {
+      width: 12px;
+      height: 12px;
+      flex: none;
+    }
+
+    .vw-chip.busy {
+      background: var(--blue-tint);
+      color: var(--blue-strong);
+      border-color: rgba(36, 86, 230, 0.25);
+    }
+
+    .vw-body {
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .vw-search-box {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: var(--r-sm);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .vw-search-box.active {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-tint);
+    }
+
+    .vw-search-box svg {
+      width: 16px;
+      height: 16px;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .vw-query-display {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink);
+      flex: 1;
+      font-family: var(--bodyf);
+      line-height: 1.4;
+      transition: opacity .2s;
+    }
+
+    .vw-samples {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .vw-pill {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--body);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+      font-family: var(--bodyf);
+      flex: 1 0 auto;
+      text-align: center;
+    }
+
+    .vw-pill:hover {
+      border-color: var(--blue);
+      color: var(--ink);
+      background: var(--tint);
+    }
+
+    .vw-pill.active {
+      background: var(--blue-tint);
+      border-color: var(--blue);
+      color: var(--blue-strong);
+      font-weight: 600;
+    }
+
+    .vw-result-box {
+      background: var(--ink);
+      border: 1px solid var(--ink-soft);
+      border-radius: var(--r-sm);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: opacity .25s ease;
+      min-height: 140px;
+    }
+
+    .vw-result-box.vw-loading {
+      opacity: .7;
+    }
+
+    .vw-result-box .vw-arch-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.7rem;
+      color: #94A3B8;
+      font-family: var(--mono);
+      line-height: 1.5;
+    }
+
+    .vw-result-box .vw-arch-row svg {
+      width: 14px;
+      height: 14px;
+      color: var(--mint);
+      flex: none;
+      margin-top: 2px;
+    }
+
+    .vw-result-box .vw-arch-label {
+      color: #64748B;
+      min-width: 70px;
+      flex: none;
+    }
+
+    .vw-result-box .vw-arch-value {
+      color: #F1F5F9;
+    }
+
+    .vw-result-box .vw-arch-value strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .vw-result-box .vw-guardrail {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+      padding-top: 10px;
+      border-top: 1px dashed #1E293B;
+    }
+
+    .vw-result-box .vw-guardrail span {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(15, 169, 104, 0.1);
+      color: #34D399;
+      border: 1px solid rgba(15, 169, 104, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .vw-result-box .vw-guardrail span svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    .vw-metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .vw-tile {
+      background: var(--soft);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--r-sm);
+      padding: 8px 6px;
+      text-align: center;
+    }
+
+    .vw-tile-val {
+      font-family: var(--disp);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .vw-tile-val .vw-status-ok {
+      color: var(--mint);
+    }
+
+    .vw-tile-val .vw-status-high {
+      color: var(--amber);
+    }
+
+    .vw-tile-lbl {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 2px;
+    }
+
+    .vw-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 18px;
+      border-top: 1px solid var(--line-soft);
+      background: var(--soft);
+      font-size: 0.68rem;
+      color: var(--muted);
+      font-family: var(--bodyf);
+    }
+
+    .vw-foot .vw-tip {
+      position: relative;
+      cursor: help;
+      border-bottom: 1px dotted var(--muted);
+      white-space: nowrap;
+    }
+
+    .vw-foot .vw-tip::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: 135%;
+      left: 0;
+      width: 220px;
+      white-space: normal;
+      background: var(--ink);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: var(--r-sm);
+      font-size: 0.65rem;
+      line-height: 1.4;
+      font-family: var(--bodyf);
+      box-shadow: var(--sh-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .15s ease;
+      z-index: 5;
+    }
+
+    .vw-foot .vw-tip:hover::after {
+      opacity: 1;
+    }
+
+    @media (max-width: 480px) {
+      .vw-top {
+        padding: 12px 14px;
+      }
+
+      .vw-top .vw-title {
+        font-size: 0.8rem;
+      }
+
+      .vw-body {
+        padding: 14px;
+        gap: 12px;
+      }
+
+      .vw-search-box {
+        padding: 8px 12px;
+      }
+
+      .vw-query-display {
+        font-size: 0.75rem;
+      }
+
+      .vw-pill {
+        font-size: 0.65rem;
+        padding: 5px 10px;
+        flex: 1 1 auto;
+      }
+
+      .vw-result-box {
+        padding: 12px;
+        min-height: 120px;
+      }
+
+      .vw-result-box .vw-arch-row {
+        font-size: 0.65rem;
+      }
+
+      .vw-tile-val {
+        font-size: 0.85rem;
+      }
+
+      .vw-foot {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        font-size: 0.65rem;
+      }
+
+      .vw-foot .vw-tip::after {
+        width: 180px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .vw-top .vw-title {
+        font-size: 0.7rem;
+      }
+
+      .vw-chip {
+        font-size: 0.55rem;
+        padding: 3px 8px;
+      }
+
+      .vw-pill {
+        font-size: 0.6rem;
+        padding: 4px 8px;
+      }
+
+      .vw-result-box .vw-arch-label {
+        min-width: 55px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .vw-card {
+        animation: none !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<main class="svcp">
-<!-- ================= HERO ================= -->
-<section class="hero" id="demo">
-<div class="wrap">
-<div class="hero-grid">
-<div>
-<p class="eyebrow">HIPAA-ready, not checkbox</p>
-<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">RAG chatbot development for healthcare: <span>compliant clinical decision support</span></h1>
-<p class="hero-sub">Healthcare AI must protect PHI while delivering accurate clinical answers. I build HIPAA-compliant RAG chatbots that ingest medical records, radiology reports, and lab data—without exposing sensitive patient information. This isn't a generic demo; it's production-grade retrieval grounded in robust de-identification and access controls.</p>
-<div class="creds">
-<div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
-<path d="M12 8v4l3 3"></path>
-<circle cx="12" cy="12" r="9"></circle>
-</svg></span><span class="t"><i>Compliance</i><b>HIPAA security rule</b></span></div>
-<div class="cred"><span class="b" style="background:#0FA968" title="Direct"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
-<path d="M14 7h-4a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4M10 7h4a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-4M8 12h8"></path>
-</svg></span><span class="t"><i>Access</i><b>Direct, no account manager</b></span></div>
-<div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="14">
-<circle cx="12" cy="12" r="10"></circle>
-<path d="M12 6v6l4 2"></path>
-</svg></span><span class="t"><i>Turnaround</i><b>48h architecture spec</b></span></div>
-</div>
-<div class="hero-cta">
-<a class="btn btn-primary" href="#lets-talk">Talk to a medical AI developer <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
-<path d="M5 12h14M13 6l6 6-6 6"></path>
-</svg></a>
-<a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
-</div>
-<p class="live"><span class="pulse"></span> Honest read included: whether RAG is even appropriate for your clinical workflow.</p>
-<div class="trust">
-<div><b data-count="119" data-suffix="K+">119K+</b><span>GitHub stars, LangChain</span></div>
-<div><b data-count="500" data-suffix="+">500+</b><span>Integrations available</span></div>
-<div><b>48h</b><span>To a written architecture spec</span></div>
-</div>
-</div>
-<!-- ===== SIGNATURE: production agent vs fragile demo ===== -->
-<div class="viewer"><div class="vw-card">
-<div class="vw-top">
-<span class="vw-title">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-      RAG Compliance Engine
-    </span>
-<span class="vw-chip" id="statusChip">
-<svg fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-      HIPAA Active
-    </span>
-</div>
-<div class="vw-body">
-<div class="vw-search-box" id="searchBox">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
-<span class="vw-query-display" id="txtQuery">"What is the pre-admission medication list for John Doe?"</span>
-</div>
-<div class="vw-samples" id="pillGroup">
-<button class="vw-pill active" data-q="onboarding">Patient Onboarding</button>
-<button class="vw-pill" data-q="trial">Clinical Trial Match</button>
-<button class="vw-pill" data-q="interaction">Drug Interaction</button>
-</div>
-<div class="vw-result-box" id="resultBox">
-<div class="vw-arch-row">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"></path></svg>
-<span class="vw-arch-label">Source:</span>
-<span class="vw-arch-value" id="docSource">EHR / Patient_Records / John_Doe_Medication_2024.pdf</span>
-</div>
-<div class="vw-arch-row">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" x2="21" y1="20" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" x2="21" y1="15" y2="21"></line><line x1="3" x2="9" y1="3" y2="9"></line></svg>
-<span class="vw-arch-label">Strategy:</span>
-<span class="vw-arch-value" id="retrievalStrategy">Vector Search → PHI Redaction → Consent Check</span>
-</div>
-<div class="vw-arch-row">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path></svg>
-<span class="vw-arch-label">Answer:</span>
-<span class="vw-arch-value" id="ansText">Pre-admission medications: <strong>Metformin 500mg, Lisinopril 10mg.</strong> (PHI redacted from chat context).</span>
-</div>
-<div class="vw-guardrail" id="guardrailBox">
-<span><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> PHI Redaction</span>
-<span><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg> Consent Verified</span>
-<span><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0110 0v4"></path></svg> Audit Trail</span>
-</div>
-</div>
-<div class="vw-metrics-row">
-<div class="vw-tile">
-<div class="vw-tile-val"><span class="vw-status-ok" id="tileCompliance">✓ HIPAA</span></div>
-<div class="vw-tile-lbl">Compliance</div>
-</div>
-<div class="vw-tile">
-<div class="vw-tile-val" id="tileLatency">0.8s</div>
-<div class="vw-tile-lbl">Avg Latency</div>
-</div>
-<div class="vw-tile">
-<div class="vw-tile-val" id="tileTrace">100%</div>
-<div class="vw-tile-lbl">Source Trace</div>
-</div>
-</div>
-</div>
-<div class="vw-foot">
-<span class="vw-tip" data-tip="End-to-end encrypted pipeline. All PHI interactions are logged, redacted, and consent-verified for HIPAA compliance.">🔒 PHI Handling Protocol</span>
-<span>Trusted by 50+ healthcare institutions</span>
-</div>
-</div></div>
-</div>
-</div>
-</section>
-<!-- ================= COMPLY STRIP ================= -->
-<div class="comply">
-<div class="wrap comply-in">
-<div><span><b>HIPAA-compliant by design</b>Architected with signed BAAs, encrypted PHI at rest and in transit, and audit logging from day one, not retrofitted.</span></div>
-<div><span><b>PHI never leaks</b>All patient data stays within your controlled environment; no third-party model training or storage of protected health information.</span></div>
-<div><span><b>Clinical guardrails enforced</b>Built-in safety filters, human-in-the-loop for diagnosis outputs, and disclaimers per HIPAA Privacy Rule.</span></div>
-<div><span><b>Real compliance, not name-swap</b>Every integration and data flow validated against HIPAA Security Rule, 45 CFR 164, before deployment, not just labelled compliant.</span></div>
-</div>
-</div>
-<!-- ================= WHAT IS LANGCHAIN ================= -->
-<section id="what-is">
-<div class="wrap">
-<div class="sec-head reveal">
-<p class="eyebrow">Plain answer</p>
-<h2>What is a RAG chatbot for healthcare?</h2>
-</div>
-<div class="tldr reveal">
-<b>Quick answer</b>
-<p>A RAG chatbot for healthcare combines retrieval-augmented generation with large language models to answer clinical queries using only your approved medical knowledge base, like EHRs, clinical guidelines, or drug formularies. It retrieves relevant, de-identified documents before generating a response, ensuring PHI is never exposed to the model, and all outputs are auditable and compliant with HIPAA. This architecture powers use cases from patient intake triage to clinical decision support, delivering accurate, context-aware answers without compromising data privacy.</p>
-</div>
-</div>
-</section>
-<div class="rule"></div>
-<!-- ================= SERVICES ================= -->
-<section id="services">
-<div class="wrap">
-<div class="sec-head reveal">
-<p class="eyebrow">For Healthcare</p>
-<h2>RAG chatbot development for healthcare</h2>
-</div>
-<div class="grid g3 reveal">
-<div class="card"><span class="n build">BUILD</span>
-<h3>HIPAA-compliant RAG pipeline development</h3>
-<p>Retrieval-augmented generation pipelines built with LangChain and LlamaIndex, designed for clinical documents, research papers, and patient records while ensuring end-to-end HIPAA compliance through encrypted embeddings and access controls.</p>
-</div>
-<div class="card"><span class="n build">BUILD</span>
-<h3>Clinical decision support agents (LangGraph)</h3>
-<p>Multi-step agents using explicit state graphs and conditional edges for clinical workflows such as differential diagnosis, treatment planning, and medication checks, with built-in audit trails for HIPAA accountability.</p>
-</div>
-<div class="card"><span class="n build">BUILD</span>
-<h3>EHR &amp; medical API integrations</h3>
-<p>Systems that connect the LLM to electronic health records (EHR), lab systems, and provider APIs, enabling secure execution of actions like retrieving patient histories or scheduling follow-ups, all within HIPAA-compliant boundaries.</p>
-</div>
-<div class="card"><span class="n build">BUILD</span>
-<h3>Patient memory &amp; continuity systems</h3>
-<p>Chatbots that maintain clinical context across multiple encounters, storing summaries of prior visits, allergies, and medication lists while fully encrypting PHI and supporting patient consent management.</p>
-</div>
-<div class="card"><span class="n advise">AUDIT</span>
-<h3>HIPAA compliance audits &amp; migration</h3>
-<p>Review of existing LangChain implementations for PHI exposure risks, data handling gaps, and encryption practices, plus migration support to meet HIPAA Privacy and Security Rule requirements.</p>
-</div>
-<div class="card cta-card">
-<h3>Not sure about HIPAA compliance?</h3>
-<p>We provide an honest assessment of your current AI pipeline's compliance posture and what's needed.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get a compliance check</a>
-</div>
-</div>
-</div>
-</section>
-<!-- ================= CONSULTANT VS AGENCY ================= -->
-<section class="soft" id="vs-agency">
-<div class="wrap">
-<div class="sec-head reveal">
-<p class="eyebrow">The honest comparison</p>
-<h2>RAG chatbot developer vs healthcare AI agency</h2>
-</div>
-<div class="tablewrap reveal">
-<table>
-<thead>
-<tr>
-<th>Factor</th>
-<th class="col-me">Independent RAG chatbot developer (me)</th>
-<th>Healthcare AI development agency</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row">Cost</th>
-<td class="col-me">Lower, direct hourly or fixed-rate, no agency markup</td>
-<td>Higher, includes project managers, compliance lawyers, and overhead</td>
-</tr>
-<tr>
-<th scope="row">Who builds it</th>
-<td class="col-me">Me, directly, with 10+ years in healthcare software and LLMs</td>
-<td>Allocated junior team, often rotated across projects</td>
-</tr>
-<tr>
-<th scope="row">Best for</th>
-<td class="col-me">Scoped clinical RAG builds, $5K to $50K, with targeted PHI workflows</td>
-<td>Large enterprise EHR integrations or multi-department rollouts</td>
-</tr>
-<tr>
-<th scope="row">Start time</th>
-<td class="col-me">72 hours to first prototype with compliance review</td>
-<td>4 to 8 weeks for contract, scoping, and team allocation</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p class="reveal" style="margin-top:20px;color:var(--muted);font-size:.96rem">Most healthcare RAG chatbot projects, a specific clinical use case like triage, prior authorization, or drug lookup, are well within scope for a single senior developer who understands both LLM orchestration and HIPAA compliance. An agency's advantage only shows when a project requires parallel work across multiple clinical departments, extensive EHR system integration, or a full compliance audit team.</p>
-</div>
-</section>
-<!-- ================= ENGAGEMENT MODELS ================= -->
-<section id="engagement">
-<div class="wrap">
-<div class="sec-head reveal">
-<p class="eyebrow">How we work together</p>
-<h2>Engagement models</h2>
-</div>
-<div class="grid g3 reveal">
-<div class="card"><span class="n">PROJECT-BASED</span>
-<h3>Fixed-price, milestone-based</h3>
-<p>A scoped RAG chatbot build for healthcare delivered as a fixed-price, milestone-based engagement, including HIPAA compliance documentation.</p>
-</div>
-<div class="card"><span class="n">HOURLY</span>
-<h3>Consulting</h3>
-<p>Architecture review or debugging support for existing healthcare AI implementations, with focus on PHI security.</p>
-</div>
-<div class="card"><span class="n build">RETAINER</span>
-<h3>Dedicated monthly</h3>
-<p>Ongoing healthcare RAG development for businesses with a continuing AI roadmap, ensuring continuous compliance updates.</p>
-</div>
-</div>
-</div>
-</section>
-<div class="rule"></div>
-<!-- ================= PROCESS ================= -->
-<section class="soft" id="process">
-<div class="wrap">
-<div class="sec-head reveal">
-<p class="eyebrow">How it gets built</p>
-<h2>Process</h2>
-</div>
-<div class="steps reveal">
-<details class="step" open="">
-<summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
-<h3>Discovery</h3><span class="cv">+</span>
-</summary>
-<div class="body">Understanding clinical workflows, identifying PHI data sources, defining retrieval scope, and establishing HIPAA compliance requirements for the RAG chatbot.</div>
-</details>
-<details class="step">
-<summary><span class="num">PHASE 05<span class="days">handoff</span></span>
-<h3>Deployment &amp; monitoring</h3><span class="cv">+</span>
-</summary>
-<div class="body">Production deployment with HIPAA-compliant logging and tracing for full visibility into chatbot behavior and PHI handling.</div>
-</details>
-<details class="step gate">
-<summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
-<h3>Build in milestones</h3><span class="cv">+</span>
-</summary>
-<div class="body">Core logic first, then tool integrations, then edge-case handling and guardrails.</div>
-</details>
-<details class="step">
-<summary><span class="num">PHASE 04<span class="days">before launch</span></span>
-<h3>Testing &amp; evaluation</h3><span class="cv">+</span>
-</summary>
-<div class="body">Testing against realistic scenarios, including tool failures and edge cases.</div>
-</details>
-<details class="step">
-<summary><span class="num">PHASE 05<span class="days">handoff</span></span>
-<h3>Deployment &amp; monitoring</h3><span class="cv">+</span>
-</summary>
-<div class="body">Production deployment with logging and tracing (LangSmith or equivalent) for full
-                visibility into agent behavior.</div>
-</details>
-</div>
-</div>
-</section>
-<!-- ================= WHEN NOT LANGCHAIN ================= -->
-<section id="when-not">
-<div class="wrap">
-<div class="sec-head reveal">
-<p class="eyebrow">Honest tool selection</p>
-<h2>When LangChain is not the right choice</h2>
-</div>
-<div class="callout amber reveal" style="margin-top:0">
-<p>Direct architectural honesty upfront</p>
-<p>Part of a proper RAG chatbot engagement is an honest assessment of whether a full agentic framework is even necessary for your healthcare use case. If your need is purely high-quality medical document retrieval with no multi-step reasoning or tool use, a simpler retrieval pipeline may be a lower-overhead, more auditable choice. See the RAG framework development services page for the fuller comparison.</p>
-</div>
-</div>
-</section>
-<div class="rule"></div>
-<!-- ================= PRICING ================= -->
-<section class="soft" id="pricing">
-<div class="wrap">
-<div class="sec-head reveal">
-<p class="eyebrow">Investment</p>
-<h2>Pricing</h2>
-</div>
-<div class="tablewrap reveal">
-<table>
-<thead>
-<tr>
-<th>Engagement type</th>
-<th class="col-me">What's included</th>
-<th>Typical investment</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>HIPAA-compliant RAG chatbot</td>
-<td class="col-me">Secure PHI handling, clinical retrieval pipeline, and compliance documentation</td>
-<td>$8,000 to $25,000</td>
-</tr>
-<tr class="me-row">
-<td>Medical AI assistant</td>
-<td class="col-me">Multi-turn clinical assistant with PHI redaction, guardrails, and EHR integration</td>
-<td>$15,000 to $40,000+</td>
-</tr>
-<tr>
-<td>Healthcare AI audit</td>
-<td class="col-me">HIPAA compliance review and improvement plan for an existing RAG implementation</td>
-<td>$2,000 to $5,000</td>
-</tr>
-<tr>
-<td>Hourly consulting</td>
-<td class="col-me">Architecture review, compliance guidance, debugging support</td>
-<td>$100 to $200/hr</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Retrieval and
-            generation-grounded systems built using this class of architecture include the AI Customer Feedback
-            Classification pipeline and AI Video Summarizer. Full case studies at <a href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
-</div>
-</section>
-<!-- ================= FAQ ================= -->
-<section id="faq">
-<div class="wrap">
-<div class="sec-head center reveal">
-<p class="eyebrow">FAQ</p>
-<h2>Frequently asked questions</h2>
-</div>
-<div class="faq reveal">
-<details open="">
-<summary>How does a RAG chatbot for healthcare handle PHI?</summary>
-<div class="a">PHI is handled through strict access controls, data encryption at rest and in transit, and retrieval pipelines that redact or anonymize patient identifiers before sending data to the LLM. All logs and traces are also scrubbed of PHI to maintain HIPAA compliance.</div>
-</details>
-<details>
-<summary>What clinical use cases can a medical AI assistant support?</summary>
-<div class="a">A medical AI assistant can support symptom triage, clinical decision support, medical literature retrieval, patient history summarization, and medication interaction checks, all while maintaining strict HIPAA compliance and clinical accuracy.</div>
-</details>
-<details>
-<summary>How much does a HIPAA compliant chatbot cost?</summary>
-<div class="a">A HIPAA-compliant RAG chatbot typically runs $8,000 to $25,000 for a secure clinical retrieval pipeline, while a full medical AI assistant with EHR integration ranges from $15,000 to $40,000+ depending on complexity.</div>
-</details>
-<details>
-<summary>Is LangChain HIPAA compliant out of the box?</summary>
-<div class="a">No, LangChain itself is not HIPAA compliant. Compliance is achieved through the deployment architecture, data handling practices, and access controls implemented in the RAG pipeline. We handle all of that during the build process.</div>
-</details>
-<details>
-<summary>When should I NOT use a RAG chatbot for healthcare?</summary>
-<div class="a">If your use case is purely straightforward FAQ retrieval with no multi-step reasoning or clinical decision support, a simpler document search system may be more cost-effective and easier to audit. RAG earns its complexity when you need context-aware, evidence-based responses from diverse clinical sources.</div>
-</details>
-</div>
-</div>
-</section>
-</main>
-<script>
+  <main class="svcp">
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="demo">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">HIPAA-ready, not checkbox</p>
+            <h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">RAG chatbot development for healthcare: <span>compliant
+                clinical decision support</span></h1>
+            <p class="hero-sub">Healthcare AI must protect PHI while delivering accurate clinical answers. I build
+              HIPAA-compliant RAG chatbots that ingest medical records, radiology reports, and lab data—without exposing
+              sensitive patient information. This isn't a generic demo; it's production-grade retrieval grounded in
+              robust de-identification and access controls.</p>
+            <div class="creds">
+              <div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none"
+                    height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"
+                    viewBox="0 0 24 24" width="15">
+                    <path d="M12 8v4l3 3"></path>
+                    <circle cx="12" cy="12" r="9"></circle>
+                  </svg></span><span class="t"><i>Compliance</i><b>HIPAA security rule</b></span></div>
+              <div class="cred"><span class="b" style="background:#0FA968" title="Direct"><svg fill="none" height="15"
+                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"
+                    viewBox="0 0 24 24" width="15">
+                    <path d="M14 7h-4a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4M10 7h4a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-4M8 12h8">
+                    </path>
+                  </svg></span><span class="t"><i>Access</i><b>Direct, no account manager</b></span></div>
+              <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14"
+                    stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"
+                    viewBox="0 0 24 24" width="14">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 6v6l4 2"></path>
+                  </svg></span><span class="t"><i>Turnaround</i><b>48h architecture spec</b></span></div>
+            </div>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#lets-talk">Talk to a medical AI developer <svg fill="none"
+                  stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6"></path>
+                </svg></a>
+              <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
+            </div>
+            <p class="live"><span class="pulse"></span> Honest read included: whether RAG is even appropriate for your
+              clinical workflow.</p>
+            <div class="trust">
+              <div><b data-count="119" data-suffix="K+">119K+</b><span>GitHub stars, LangChain</span></div>
+              <div><b data-count="500" data-suffix="+">500+</b><span>Integrations available</span></div>
+              <div><b>48h</b><span>To a written architecture spec</span></div>
+            </div>
+          </div>
+          <!-- ===== SIGNATURE: production agent vs fragile demo ===== -->
+          <div class="viewer">
+            <div class="vw-card">
+              <div class="vw-top">
+                <span class="vw-title">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                  RAG Compliance Engine
+                </span>
+                <span class="vw-chip" id="statusChip">
+                  <svg fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  HIPAA Active
+                </span>
+              </div>
+              <div class="vw-body">
+                <div class="vw-search-box" id="searchBox">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+                  </svg>
+                  <span class="vw-query-display" id="txtQuery">"What is the pre-admission medication list for John
+                    Doe?"</span>
+                </div>
+                <div class="vw-samples" id="pillGroup">
+                  <button class="vw-pill active" data-q="onboarding">Patient Onboarding</button>
+                  <button class="vw-pill" data-q="trial">Clinical Trial Match</button>
+                  <button class="vw-pill" data-q="interaction">Drug Interaction</button>
+                </div>
+                <div class="vw-result-box" id="resultBox">
+                  <div class="vw-arch-row">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+                      <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"></path>
+                    </svg>
+                    <span class="vw-arch-label">Source:</span>
+                    <span class="vw-arch-value" id="docSource">EHR / Patient_Records /
+                      John_Doe_Medication_2024.pdf</span>
+                  </div>
+                  <div class="vw-arch-row">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+                      <polyline points="16 3 21 3 21 8"></polyline>
+                      <line x1="4" x2="21" y1="20" y2="3"></line>
+                      <polyline points="21 16 21 21 16 21"></polyline>
+                      <line x1="15" x2="21" y1="15" y2="21"></line>
+                      <line x1="3" x2="9" y1="3" y2="9"></line>
+                    </svg>
+                    <span class="vw-arch-label">Strategy:</span>
+                    <span class="vw-arch-value" id="retrievalStrategy">Vector Search → PHI Redaction → Consent
+                      Check</span>
+                  </div>
+                  <div class="vw-arch-row">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+                      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path>
+                    </svg>
+                    <span class="vw-arch-label">Answer:</span>
+                    <span class="vw-arch-value" id="ansText">Pre-admission medications: <strong>Metformin 500mg,
+                        Lisinopril 10mg.</strong> (PHI redacted from chat context).</span>
+                  </div>
+                  <div class="vw-guardrail" id="guardrailBox">
+                    <span><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                      </svg> PHI Redaction</span>
+                    <span><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+                        <path
+                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                        </path>
+                      </svg> Consent Verified</span>
+                    <span><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+                        <rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect>
+                        <path d="M7 11V7a5 5 0 0110 0v4"></path>
+                      </svg> Audit Trail</span>
+                  </div>
+                </div>
+                <div class="vw-metrics-row">
+                  <div class="vw-tile">
+                    <div class="vw-tile-val"><span class="vw-status-ok" id="tileCompliance">✓ HIPAA</span></div>
+                    <div class="vw-tile-lbl">Compliance</div>
+                  </div>
+                  <div class="vw-tile">
+                    <div class="vw-tile-val" id="tileLatency">0.8s</div>
+                    <div class="vw-tile-lbl">Avg Latency</div>
+                  </div>
+                  <div class="vw-tile">
+                    <div class="vw-tile-val" id="tileTrace">100%</div>
+                    <div class="vw-tile-lbl">Source Trace</div>
+                  </div>
+                </div>
+              </div>
+              <div class="vw-foot">
+                <span class="vw-tip"
+                  data-tip="End-to-end encrypted pipeline. All PHI interactions are logged, redacted, and consent-verified for HIPAA compliance.">🔒
+                  PHI Handling Protocol</span>
+                <span>Trusted by 50+ healthcare institutions</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ================= COMPLY STRIP ================= -->
+    <div class="comply">
+      <div class="wrap comply-in">
+        <div><span><b>HIPAA-compliant by design</b>Architected with signed BAAs, encrypted PHI at rest and in transit,
+            and audit logging from day one, not retrofitted.</span></div>
+        <div><span><b>PHI never leaks</b>All patient data stays within your controlled environment; no third-party model
+            training or storage of protected health information.</span></div>
+        <div><span><b>Clinical guardrails enforced</b>Built-in safety filters, human-in-the-loop for diagnosis outputs,
+            and disclaimers per HIPAA Privacy Rule.</span></div>
+        <div><span><b>Real compliance, not name-swap</b>Every integration and data flow validated against HIPAA Security
+            Rule, 45 CFR 164, before deployment, not just labelled compliant.</span></div>
+      </div>
+    </div>
+    <!-- ================= WHAT IS LANGCHAIN ================= -->
+    <section id="what-is">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Plain answer</p>
+          <h2>What is a RAG chatbot for healthcare?</h2>
+        </div>
+        <div class="tldr reveal">
+          <b>Quick answer</b>
+          <p>A RAG chatbot for healthcare combines retrieval-augmented generation with large language models to answer
+            clinical queries using only your approved medical knowledge base, like EHRs, clinical guidelines, or drug
+            formularies. It retrieves relevant, de-identified documents before generating a response, ensuring PHI is
+            never exposed to the model, and all outputs are auditable and compliant with HIPAA. This architecture powers
+            use cases from patient intake triage to clinical decision support, delivering accurate, context-aware
+            answers without compromising data privacy.</p>
+        </div>
+      </div>
+    </section>
+    <div class="rule"></div>
+    <!-- ================= SERVICES ================= -->
+    <section id="services">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">For Healthcare</p>
+          <h2>RAG chatbot development for healthcare</h2>
+        </div>
+        <div class="grid g3 reveal">
+          <div class="card"><span class="n build">BUILD</span>
+            <h3>HIPAA-compliant RAG pipeline development</h3>
+            <p>Retrieval-augmented generation pipelines built with LangChain and LlamaIndex, designed for clinical
+              documents, research papers, and patient records while ensuring end-to-end HIPAA compliance through
+              encrypted embeddings and access controls.</p>
+          </div>
+          <div class="card"><span class="n build">BUILD</span>
+            <h3>Clinical decision support agents (LangGraph)</h3>
+            <p>Multi-step agents using explicit state graphs and conditional edges for clinical workflows such as
+              differential diagnosis, treatment planning, and medication checks, with built-in audit trails for HIPAA
+              accountability.</p>
+          </div>
+          <div class="card"><span class="n build">BUILD</span>
+            <h3>EHR &amp; medical API integrations</h3>
+            <p>Systems that connect the LLM to electronic health records (EHR), lab systems, and provider APIs, enabling
+              secure execution of actions like retrieving patient histories or scheduling follow-ups, all within
+              HIPAA-compliant boundaries.</p>
+          </div>
+          <div class="card"><span class="n build">BUILD</span>
+            <h3>Patient memory &amp; continuity systems</h3>
+            <p>Chatbots that maintain clinical context across multiple encounters, storing summaries of prior visits,
+              allergies, and medication lists while fully encrypting PHI and supporting patient consent management.</p>
+          </div>
+          <div class="card"><span class="n advise">AUDIT</span>
+            <h3>HIPAA compliance audits &amp; migration</h3>
+            <p>Review of existing LangChain implementations for PHI exposure risks, data handling gaps, and encryption
+              practices, plus migration support to meet HIPAA Privacy and Security Rule requirements.</p>
+          </div>
+          <div class="card cta-card">
+            <h3>Not sure about HIPAA compliance?</h3>
+            <p>We provide an honest assessment of your current AI pipeline's compliance posture and what's needed.</p><a
+              class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get a compliance check</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ================= CONSULTANT VS AGENCY ================= -->
+    <section class="soft" id="vs-agency">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">The honest comparison</p>
+          <h2>RAG chatbot developer vs healthcare AI agency</h2>
+        </div>
+        <div class="tablewrap reveal">
+          <table>
+            <thead>
+              <tr>
+                <th>Factor</th>
+                <th class="col-me">Independent RAG chatbot developer (me)</th>
+                <th>Healthcare AI development agency</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Cost</th>
+                <td class="col-me">Lower, direct hourly or fixed-rate, no agency markup</td>
+                <td>Higher, includes project managers, compliance lawyers, and overhead</td>
+              </tr>
+              <tr>
+                <th scope="row">Who builds it</th>
+                <td class="col-me">Me, directly, with 10+ years in healthcare software and LLMs</td>
+                <td>Allocated junior team, often rotated across projects</td>
+              </tr>
+              <tr>
+                <th scope="row">Best for</th>
+                <td class="col-me">Scoped clinical RAG builds, $5K to $50K, with targeted PHI workflows</td>
+                <td>Large enterprise EHR integrations or multi-department rollouts</td>
+              </tr>
+              <tr>
+                <th scope="row">Start time</th>
+                <td class="col-me">72 hours to first prototype with compliance review</td>
+                <td>4 to 8 weeks for contract, scoping, and team allocation</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="reveal" style="margin-top:20px;color:var(--muted);font-size:.96rem">Most healthcare RAG chatbot
+          projects, a specific clinical use case like triage, prior authorization, or drug lookup, are well within scope
+          for a single senior developer who understands both LLM orchestration and HIPAA compliance. An agency's
+          advantage only shows when a project requires parallel work across multiple clinical departments, extensive EHR
+          system integration, or a full compliance audit team.</p>
+      </div>
+    </section>
+    <!-- ================= ENGAGEMENT MODELS ================= -->
+    <section id="engagement">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">How we work together</p>
+          <h2>Engagement models</h2>
+        </div>
+        <div class="grid g3 reveal">
+          <div class="card"><span class="n">PROJECT-BASED</span>
+            <h3>Fixed-price, milestone-based</h3>
+            <p>A scoped RAG chatbot build for healthcare delivered as a fixed-price, milestone-based engagement,
+              including HIPAA compliance documentation.</p>
+          </div>
+          <div class="card"><span class="n">HOURLY</span>
+            <h3>Consulting</h3>
+            <p>Architecture review or debugging support for existing healthcare AI implementations, with focus on PHI
+              security.</p>
+          </div>
+          <div class="card"><span class="n build">RETAINER</span>
+            <h3>Dedicated monthly</h3>
+            <p>Ongoing healthcare RAG development for businesses with a continuing AI roadmap, ensuring continuous
+              compliance updates.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="rule"></div>
+    <!-- ================= PROCESS ================= -->
+    <section class="soft" id="process">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">How it gets built</p>
+          <h2>Process</h2>
+        </div>
+        <div class="steps reveal">
+          <details class="step" open="">
+            <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
+              <h3>Discovery</h3><span class="cv">+</span>
+            </summary>
+            <div class="body">Understanding clinical workflows, identifying PHI data sources, defining retrieval scope,
+              and establishing HIPAA compliance requirements for the RAG chatbot.</div>
+          </details>
+          <details class="step">
+            <summary><span class="num">PHASE 05<span class="days">handoff</span></span>
+              <h3>Deployment &amp; monitoring</h3><span class="cv">+</span>
+            </summary>
+            <div class="body">Production deployment with HIPAA-compliant logging and tracing for full visibility into
+              chatbot behavior and PHI handling.</div>
+          </details>
+          <details class="step gate">
+            <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
+              <h3>Build in milestones</h3><span class="cv">+</span>
+            </summary>
+            <div class="body">Core logic first, then tool integrations, then edge-case handling and guardrails.</div>
+          </details>
+          <details class="step">
+            <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
+              <h3>Testing &amp; evaluation</h3><span class="cv">+</span>
+            </summary>
+            <div class="body">Testing against realistic scenarios, including tool failures and edge cases.</div>
+          </details>
+          <details class="step">
+            <summary><span class="num">PHASE 05<span class="days">handoff</span></span>
+              <h3>Deployment &amp; monitoring</h3><span class="cv">+</span>
+            </summary>
+            <div class="body">Production deployment with logging and tracing (LangSmith or equivalent) for full
+              visibility into agent behavior.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- ================= WHEN NOT LANGCHAIN ================= -->
+    <section id="when-not">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Honest tool selection</p>
+          <h2>When LangChain is not the right choice</h2>
+        </div>
+        <div class="callout amber reveal" style="margin-top:0">
+          <p>Direct architectural honesty upfront</p>
+          <p>Part of a proper RAG chatbot engagement is an honest assessment of whether a full agentic framework is even
+            necessary for your healthcare use case. If your need is purely high-quality medical document retrieval with
+            no multi-step reasoning or tool use, a simpler retrieval pipeline may be a lower-overhead, more auditable
+            choice. See the RAG framework development services page for the fuller comparison.</p>
+        </div>
+      </div>
+    </section>
+    <div class="rule"></div>
+    <!-- ================= PRICING ================= -->
+    <section class="soft" id="pricing">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Investment</p>
+          <h2>Pricing</h2>
+        </div>
+        <div class="tablewrap reveal">
+          <table>
+            <thead>
+              <tr>
+                <th>Engagement type</th>
+                <th class="col-me">What's included</th>
+                <th>Typical investment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>HIPAA-compliant RAG chatbot</td>
+                <td class="col-me">Secure PHI handling, clinical retrieval pipeline, and compliance documentation</td>
+                <td>$8,000 to $25,000</td>
+              </tr>
+              <tr class="me-row">
+                <td>Medical AI assistant</td>
+                <td class="col-me">Multi-turn clinical assistant with PHI redaction, guardrails, and EHR integration
+                </td>
+                <td>$15,000 to $40,000+</td>
+              </tr>
+              <tr>
+                <td>Healthcare AI audit</td>
+                <td class="col-me">HIPAA compliance review and improvement plan for an existing RAG implementation</td>
+                <td>$2,000 to $5,000</td>
+              </tr>
+              <tr>
+                <td>Hourly consulting</td>
+                <td class="col-me">Architecture review, compliance guidance, debugging support</td>
+                <td>$100 to $200/hr</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Retrieval and
+          generation-grounded systems built using this class of architecture include the AI Customer Feedback
+          Classification pipeline and AI Video Summarizer. Full case studies at <a
+            href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
+      </div>
+    </section>
+    <!-- ================= FAQ ================= -->
+    <section id="faq">
+      <div class="wrap">
+        <div class="sec-head center reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2>Frequently asked questions</h2>
+        </div>
+        <div class="faq reveal">
+          <details open="">
+            <summary>How does a RAG chatbot for healthcare handle PHI?</summary>
+            <div class="a">PHI is handled through strict access controls, data encryption at rest and in transit, and
+              retrieval pipelines that redact or anonymize patient identifiers before sending data to the LLM. All logs
+              and traces are also scrubbed of PHI to maintain HIPAA compliance.</div>
+          </details>
+          <details>
+            <summary>What clinical use cases can a medical AI assistant support?</summary>
+            <div class="a">A medical AI assistant can support symptom triage, clinical decision support, medical
+              literature retrieval, patient history summarization, and medication interaction checks, all while
+              maintaining strict HIPAA compliance and clinical accuracy.</div>
+          </details>
+          <details>
+            <summary>How much does a HIPAA compliant chatbot cost?</summary>
+            <div class="a">A HIPAA-compliant RAG chatbot typically runs $8,000 to $25,000 for a secure clinical
+              retrieval pipeline, while a full medical AI assistant with EHR integration ranges from $15,000 to $40,000+
+              depending on complexity.</div>
+          </details>
+          <details>
+            <summary>Is LangChain HIPAA compliant out of the box?</summary>
+            <div class="a">No, LangChain itself is not HIPAA compliant. Compliance is achieved through the deployment
+              architecture, data handling practices, and access controls implemented in the RAG pipeline. We handle all
+              of that during the build process.</div>
+          </details>
+          <details>
+            <summary>When should I NOT use a RAG chatbot for healthcare?</summary>
+            <div class="a">If your use case is purely straightforward FAQ retrieval with no multi-step reasoning or
+              clinical decision support, a simpler document search system may be more cost-effective and easier to
+              audit. RAG earns its complexity when you need context-aware, evidence-based responses from diverse
+              clinical sources.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
     (function () {
       var page = document.querySelector('.svcp');
       if (!page) return;
@@ -2334,7 +2603,7 @@
     })();
 
   </script>
-<script>
+  <script>
     (function () {
       var page = document.querySelector('.svcp');
       var canvas = document.getElementById('sigcanvas'), ctx = canvas.getContext('2d');
@@ -2451,103 +2720,104 @@
     })();
   </script>
 
-<script>
-(function() {
-  const pills = document.querySelectorAll("#pillGroup .vw-pill");
-  const txtQuery = document.getElementById("txtQuery");
-  const searchBox = document.getElementById("searchBox");
-  const resultBox = document.getElementById("resultBox");
-  const docSource = document.getElementById("docSource");
-  const retrievalStrategy = document.getElementById("retrievalStrategy");
-  const ansText = document.getElementById("ansText");
-  const guardrailBox = document.getElementById("guardrailBox");
-  const statusChip = document.getElementById("statusChip");
-  const tileCompliance = document.getElementById("tileCompliance");
-  const tileLatency = document.getElementById("tileLatency");
-  const tileTrace = document.getElementById("tileTrace");
+  <script>
+    (function () {
+      const pills = document.querySelectorAll("#pillGroup .vw-pill");
+      const txtQuery = document.getElementById("txtQuery");
+      const searchBox = document.getElementById("searchBox");
+      const resultBox = document.getElementById("resultBox");
+      const docSource = document.getElementById("docSource");
+      const retrievalStrategy = document.getElementById("retrievalStrategy");
+      const ansText = document.getElementById("ansText");
+      const guardrailBox = document.getElementById("guardrailBox");
+      const statusChip = document.getElementById("statusChip");
+      const tileCompliance = document.getElementById("tileCompliance");
+      const tileLatency = document.getElementById("tileLatency");
+      const tileTrace = document.getElementById("tileTrace");
 
-  const data = {
-    onboarding: {
-      q: '"What is the pre-admission medication list for John Doe?"',
-      source: 'EHR / Patient_Records / John_Doe_Medication_2024.pdf',
-      strategy: 'Vector Search → PHI Redaction → Consent Check',
-      ans: 'Pre-admission medications: <strong>Metformin 500mg, Lisinopril 10mg.</strong> (PHI redacted from chat context).',
-      guardrails: ['PHI Redaction', 'Consent Verified', 'Audit Trail'],
-      compliance: '✓ HIPAA',
-      latency: '0.8s',
-      trace: '100%'
-    },
-    trial: {
-      q: '"Find patients for Trial NCT-045 who fit the criteria."',
-      source: 'IRB_Protocols / EMR_Anonymized_2024 (De-identified)',
-      strategy: 'Structured Query → De-identification → Eligibility Scoring',
-      ans: '<strong>12 candidates</strong> match the criteria. (Identities withheld pending IRB approval).',
-      guardrails: ['De-identification', 'IRB Consent', 'Data Masking'],
-      compliance: '✓ HIPAA',
-      latency: '1.2s',
-      trace: '100%'
-    },
-    interaction: {
-      q: '"Check interaction between Warfarin and Ibuprofen."',
-      source: 'DrugBank_2024 / FDA_Adverse_Events / Clinical_Notes',
-      strategy: 'Knowledge Graph → Rule Engine → Clinical Alert',
-      ans: '<strong>Moderate interaction:</strong> Increased bleeding risk. Consider alternative analgesic (e.g., Acetaminophen).',
-      guardrails: ['Clinical Alert', 'Drug DB Verified', 'Interaction Score'],
-      compliance: '✓ HIPAA',
-      latency: '0.4s',
-      trace: '100%'
-    }
-  };
+      const data = {
+        onboarding: {
+          q: '"What is the pre-admission medication list for John Doe?"',
+          source: 'EHR / Patient_Records / John_Doe_Medication_2024.pdf',
+          strategy: 'Vector Search → PHI Redaction → Consent Check',
+          ans: 'Pre-admission medications: <strong>Metformin 500mg, Lisinopril 10mg.</strong> (PHI redacted from chat context).',
+          guardrails: ['PHI Redaction', 'Consent Verified', 'Audit Trail'],
+          compliance: '✓ HIPAA',
+          latency: '0.8s',
+          trace: '100%'
+        },
+        trial: {
+          q: '"Find patients for Trial NCT-045 who fit the criteria."',
+          source: 'IRB_Protocols / EMR_Anonymized_2024 (De-identified)',
+          strategy: 'Structured Query → De-identification → Eligibility Scoring',
+          ans: '<strong>12 candidates</strong> match the criteria. (Identities withheld pending IRB approval).',
+          guardrails: ['De-identification', 'IRB Consent', 'Data Masking'],
+          compliance: '✓ HIPAA',
+          latency: '1.2s',
+          trace: '100%'
+        },
+        interaction: {
+          q: '"Check interaction between Warfarin and Ibuprofen."',
+          source: 'DrugBank_2024 / FDA_Adverse_Events / Clinical_Notes',
+          strategy: 'Knowledge Graph → Rule Engine → Clinical Alert',
+          ans: '<strong>Moderate interaction:</strong> Increased bleeding risk. Consider alternative analgesic (e.g., Acetaminophen).',
+          guardrails: ['Clinical Alert', 'Drug DB Verified', 'Interaction Score'],
+          compliance: '✓ HIPAA',
+          latency: '0.4s',
+          trace: '100%'
+        }
+      };
 
-  function renderGuardrails(guards) {
-    const icons = {
-      'PHI Redaction': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-      'Consent Verified': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>',
-      'Audit Trail': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>',
-      'De-identification': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>',
-      'IRB Consent': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-      'Data Masking': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
-      'Clinical Alert': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
-      'Drug DB Verified': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>',
-      'Interaction Score': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>'
-    };
-    guardrailBox.innerHTML = guards.map(g => {
-      const icon = icons[g] || '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>';
-      return `<span>${icon} ${g}</span>`;
-    }).join('');
-  }
+      function renderGuardrails(guards) {
+        const icons = {
+          'PHI Redaction': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+          'Consent Verified': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>',
+          'Audit Trail': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>',
+          'De-identification': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>',
+          'IRB Consent': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+          'Data Masking': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
+          'Clinical Alert': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+          'Drug DB Verified': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>',
+          'Interaction Score': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>'
+        };
+        guardrailBox.innerHTML = guards.map(g => {
+          const icon = icons[g] || '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>';
+          return `<span>${icon} ${g}</span>`;
+        }).join('');
+      }
 
-  function selectScenario(pill) {
-    pills.forEach(b => b.classList.remove('active'));
-    pill.classList.add('active');
-    const key = pill.getAttribute('data-q');
-    const d = data[key];
-    if (!d) return;
+      function selectScenario(pill) {
+        pills.forEach(b => b.classList.remove('active'));
+        pill.classList.add('active');
+        const key = pill.getAttribute('data-q');
+        const d = data[key];
+        if (!d) return;
 
-    txtQuery.textContent = d.q;
-    searchBox.classList.add('active');
-    statusChip.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Processing…';
-    statusChip.classList.add('busy');
-    resultBox.classList.add('vw-loading');
+        txtQuery.textContent = d.q;
+        searchBox.classList.add('active');
+        statusChip.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Processing…';
+        statusChip.classList.add('busy');
+        resultBox.classList.add('vw-loading');
 
-    setTimeout(() => {
-      docSource.textContent = d.source;
-      retrievalStrategy.textContent = d.strategy;
-      ansText.innerHTML = d.ans;
-      renderGuardrails(d.guardrails);
-      tileCompliance.textContent = d.compliance;
-      tileLatency.textContent = d.latency;
-      tileTrace.textContent = d.trace;
+        setTimeout(() => {
+          docSource.textContent = d.source;
+          retrievalStrategy.textContent = d.strategy;
+          ansText.innerHTML = d.ans;
+          renderGuardrails(d.guardrails);
+          tileCompliance.textContent = d.compliance;
+          tileLatency.textContent = d.latency;
+          tileTrace.textContent = d.trace;
 
-      resultBox.classList.remove('vw-loading');
-      searchBox.classList.remove('active');
-      statusChip.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> HIPAA Active';
-      statusChip.classList.remove('busy');
-    }, 500);
-  }
+          resultBox.classList.remove('vw-loading');
+          searchBox.classList.remove('active');
+          statusChip.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> HIPAA Active';
+          statusChip.classList.remove('busy');
+        }, 500);
+      }
 
-  pills.forEach(p => p.addEventListener('click', function(e) { selectScenario(this); }));
-})();
-</script>
+      pills.forEach(p => p.addEventListener('click', function (e) { selectScenario(this); }));
+    })();
+  </script>
 </body>
+
 </html>
