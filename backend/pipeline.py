@@ -103,21 +103,22 @@ def get_page_type_dirs(page_type="Comparison"):
     os.makedirs(generated_dir, exist_ok=True)
     return actual_data_dir, rules_dir, generated_dir
 
-TEMPLATE_MAP = {
-    "comparison": "langchain-vs-llamaindex.html",
-    "technology_integration": "langchain-development-services.html",
-    "technology___integration": "langchain-development-services.html",
-    "hire_a_role": "hire-rag-developer.html",
-    "glossary_definition": "what-is-rag.html",
-    "glossary_defination": "what-is-rag.html",
-    "glossary___definition": "what-is-rag.html",
-    "service_x_industry": "rag-chatbot-healthcare.html",
-    "service_x_industries": "rag-chatbot-healthcare.html",
-    "editorial_blog": "langchain-vs-llamaindex.html",
+# Maps page-type slugs → page_types/ directory name
+TEMPLATE_DIR_MAP = {
+    "comparison": "comparison",
+    "technology_integration": "technology_integration",
+    "technology___integration": "technology_integration",
+    "hire_a_role": "hire_a_role",
+    "glossary_definition": "glossary_definition",
+    "glossary_defination": "glossary_definition",
+    "glossary___definition": "glossary_definition",
+    "service_x_industry": "service_x_industry",
+    "service_x_industries": "service_x_industry",
+    "editorial_blog": "comparison",
 }
 
 def get_template_path(page_type="Comparison"):
-    """Select the base HTML template best suited for the requested page type."""
+    """Select the base HTML template from page_types/<archetype>/template.html."""
     slug = (
         page_type.lower()
         .replace(" ", "_")
@@ -127,28 +128,35 @@ def get_template_path(page_type="Comparison"):
         .replace(")", "_")
     ) if page_type else "comparison"
 
-    filename = TEMPLATE_MAP.get(slug)
-    if not filename:
+    archetype_dir = TEMPLATE_DIR_MAP.get(slug)
+    if not archetype_dir:
         if "glossary" in slug or "defina" in slug or "defini" in slug:
-            filename = "what-is-rag.html"
+            archetype_dir = "glossary_definition"
         elif "role" in slug or "hire" in slug:
-            filename = "hire-rag-developer.html"
+            archetype_dir = "hire_a_role"
         elif "service" in slug or "industry" in slug:
-            filename = "rag-chatbot-healthcare.html"
+            archetype_dir = "service_x_industry"
         elif "tech" in slug or "integration" in slug:
-            filename = "langchain-development-services.html"
+            archetype_dir = "technology_integration"
         else:
-            filename = "langchain-vs-llamaindex.html"
+            archetype_dir = "comparison"
 
-    for search_dir in [BASE_DIR, ROOT_DIR]:
-        cand = os.path.join(search_dir, filename)
-        if os.path.exists(cand):
-            return cand
-
-    cand = os.path.join(BASE_DIR, "langchain-vs-llamaindex.html")
+    # Primary: look for template.html inside page_types/<archetype>/
+    cand = os.path.join(PAGE_TYPES_DIR, archetype_dir, "template.html")
     if os.path.exists(cand):
         return cand
-    return os.path.join(BASE_DIR, "hire-machine-learning-engineer-ahmedabad.html")
+
+    # Fallback: case-insensitive directory scan (handles service_x_Industry etc.)
+    if os.path.exists(PAGE_TYPES_DIR):
+        norm = re.sub(r'_+', '_', archetype_dir.lower()).strip('_')
+        for name in os.listdir(PAGE_TYPES_DIR):
+            if re.sub(r'_+', '_', name.lower()).strip('_') == norm:
+                cand = os.path.join(PAGE_TYPES_DIR, name, "template.html")
+                if os.path.exists(cand):
+                    return cand
+
+    # Last resort: default to comparison template
+    return os.path.join(PAGE_TYPES_DIR, "comparison", "template.html")
 
 # The four sections in order — each entry maps:
 #   data file name  ->  rules file name  ->  generated output name

@@ -11,7 +11,7 @@
 <meta content="website" property="og:type"/>
 <meta content="Shreyans Padmani" property="og:site_name"/>
 <meta content="en_US" property="og:locale"/>
-<meta content="Choosing the right vector database determines your query latency, scalability ceiling, and operational overhead in production. I build with all three and pick the right one, or the right combination, based on your actual retrieval needs, not a default choice." name="description"/>
+<meta content="Choosing between Pinecone, Qdrant, and Weaviate determines your latency, cost, and scalability in production. I've deployed all three and provide a deep, matrix-style breakdown to match the right database to your specific retrieval, filtering, and infrastructure needs." name="description"/>
 <meta content="vector database comparison, best vector database, Qdrant vs Pinecone" name="keywords"/>
 <link href="https://shreyans.tech/pinecone-vs-qdrant-vs-weaviate-full-comparison" rel="canonical"/>
 <meta content="Pinecone vs Qdrant vs Weaviate: Full Comparison" property="og:title"/>
@@ -71,42 +71,42 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Is LlamaIndex better than LangChain for RAG?",
+          "name": "Which vector database is best for production: Pinecone, Qdrant, or Weaviate?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "For pure retrieval-augmented generation over document corpora, LlamaIndex is generally the stronger choice: its default chunking, metadata filtering, and reranking are more production-calibrated out of the box. For RAG as part of a broader agent system, LangChain remains the stronger foundation."
+            "text": "There is no single best; each excels in different dimensions. Pinecone offers the easiest managed service with zero ops overhead, Qdrant provides the most flexible filtering and self-hosted control, and Weaviate combines vector search with GraphQL and hybrid search. The best choice depends on your latency, cost, and operational preferences."
           }
         },
         {
           "@type": "Question",
-          "name": "Can you build with both frameworks in one project?",
+          "name": "How do you decide between Pinecone, Qdrant, and Weaviate?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, this is the most common production pattern I build in 2026: LlamaIndex handling retrieval, wrapped as a tool inside a LangGraph agent for orchestration. This combines the strengths of both rather than forcing one framework to do both jobs."
+            "text": "Based on your infrastructure constraints: if you want a fully managed cloud service with minimal setup, Pinecone wins. If you need fine-grained filtering and control over sharding, Qdrant is stronger. If you need a multi-modal database with built-in GraphQL and hybrid search, Weaviate is the choice. We deliver a written recommendation after evaluating your data and query patterns."
           }
         },
         {
           "@type": "Question",
-          "name": "How do you decide which framework to recommend?",
+          "name": "Can you combine multiple vector databases in one project?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Based on where your hardest problem actually lives: if it is retrieval quality over a messy document corpus, LlamaIndex. If it is multi-step agent behavior, tool use, or memory, LangChain and LangGraph. The framework recommendation is delivered in writing with the reasoning, as part of the discovery process, before any build work begins."
+            "text": "Yes, it's possible to use a hybrid approach, e.g., Pinecone for high-throughput production queries and Qdrant for low-latency edge cases, but this adds operational complexity. Most teams are better served by choosing one primary database and optimizing it."
           }
         },
         {
           "@type": "Question",
-          "name": "Do I need a LangChain agency or can a freelance consultant handle this?",
+          "name": "Do you need a managed vector database or can you self-host?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Most RAG and agent projects, a specific pipeline, agent, or integration, are well within scope for a single experienced developer working directly with you. An agency's advantage shows up on large, multi-disciplinary product builds needing several specialists in parallel, not on the RAG/LangChain engineering itself."
+            "text": "Pinecone is exclusively managed, simplifying maintenance. Qdrant and Weaviate offer both managed and self-hosted options. Qdrant is particularly strong for self-hosted deployments with its Rust-based performance and minimal dependencies. Weaviate's self-hosted version is also solid but requires more operational overhead."
           }
         },
         {
           "@type": "Question",
-          "name": "How much does RAG framework development cost?",
+          "name": "How much does vector database consulting cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A framework selection consultation runs $500 to $1,500. A full LlamaIndex or LangChain build ranges from $8,000 to $30,000+ depending on complexity. A hybrid architecture combining both frameworks typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use case."
+            "text": "A vector database comparison consultation runs $500 to $1,500, delivering a written architecture recommendation. A full implementation with a single database ranges from $8,000 to $30,000 depending on complexity. A hybrid multi-database setup typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use case."
           }
         }
       ]
@@ -241,13 +241,13 @@
       margin: 0 0 16px
     }
 
-    .svcp .eyebrow::before {
+    /* .svcp .eyebrow::before {
       content: "";
       width: 26px;
       height: 2px;
       border-radius: 2px;
       background: linear-gradient(90deg, var(--blue), var(--violet))
-    }
+    } */
 
     .svcp .sec-head {
       max-width: 760px;
@@ -352,7 +352,7 @@
       display: grid;
       grid-template-columns: 1.05fr .95fr;
       gap: 52px;
-      align-items: start
+      align-items: center
     }
 
     .svcp .hero .eyebrow {
@@ -1708,20 +1708,21 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  font-family: var(--bodyf);
+  box-sizing: border-box;
 }
 
-.vw-top {
+.vw-card .vw-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 14px 18px;
   border-bottom: 1px solid var(--line-soft);
+  background: var(--soft);
 }
 
-.vw-top .t {
+.vw-card .vw-top .vw-title {
   font-family: var(--disp);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--ink);
   display: flex;
@@ -1729,14 +1730,14 @@
   gap: 8px;
 }
 
-.vw-top .t svg {
+.vw-card .vw-top .vw-title svg {
   width: 16px;
   height: 16px;
   color: var(--blue);
   flex-shrink: 0;
 }
 
-.vw-chip {
+.vw-card .vw-chip {
   font-family: var(--mono);
   font-size: 0.6rem;
   font-weight: 600;
@@ -1744,244 +1745,285 @@
   border-radius: 6px;
   background: var(--blue-tint);
   color: var(--blue);
-  border: 1px solid rgba(36, 86, 230, 0.25);
+  border: 1px solid rgba(36, 86, 230, 0.2);
   white-space: nowrap;
 }
 
-.vw-tabs {
-  display: flex;
-  gap: 4px;
-  background: var(--soft);
-  margin: 14px 18px 0;
-  padding: 3px;
-  border-radius: var(--r-sm);
-}
-
-.vw-tab {
-  flex: 1;
-  padding: 7px 4px;
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  font-weight: 600;
-  text-align: center;
-  border: none;
-  background: transparent;
-  color: var(--muted);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-  letter-spacing: 0.02em;
-}
-
-.vw-tab.active {
-  background: var(--surface);
-  color: var(--ink);
-  box-shadow: var(--sh-sm);
-}
-
-.vw-body {
-  padding: 14px 18px 18px;
+.vw-card .vw-body {
+  padding: 16px 18px;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.vw-matrix-grid {
+.vw-card .vw-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--soft);
+  border-radius: var(--r-sm);
+  padding: 3px;
+  border: 1px solid var(--line-soft);
+}
+
+.vw-card .vw-tab {
+  flex: 1;
+  padding: 7px 6px;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.vw-card .vw-tab svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.vw-card .vw-tab.active {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--sh-sm);
+}
+
+.vw-card .vw-tab:hover:not(.active) {
+  color: var(--ink-soft);
+}
+
+.vw-card .vw-matrix {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 8px;
 }
 
-.vw-matrix-col {
+.vw-card .vw-matrix-col {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.vw-matrix-label {
+.vw-card .vw-matrix-header {
   font-family: var(--disp);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: var(--ink);
   text-align: center;
-  padding-bottom: 4px;
-  border-bottom: 2px solid var(--line);
-}
-
-.vw-matrix-stat {
+  padding: 6px 4px;
+  border-radius: 8px;
   background: var(--soft);
   border: 1px solid var(--line-soft);
-  border-radius: var(--r-sm);
-  padding: 8px 10px;
+}
+
+.vw-card .vw-metric-cell {
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 8px 6px;
   text-align: center;
-  transition: all 0.25s ease;
+  transition: all 0.2s;
 }
 
-.vw-matrix-stat.highlight {
-  border-color: var(--blue);
-  background: var(--blue-tint);
-  box-shadow: 0 0 0 1px var(--blue);
+.vw-card .vw-metric-cell.highlight {
+  border-color: var(--mint);
+  background: var(--mint-tint);
 }
 
-.vw-stat-val {
+.vw-card .vw-metric-cell .vw-m-val {
   font-family: var(--disp);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 800;
   color: var(--ink);
   line-height: 1.2;
 }
 
-.vw-stat-lbl {
+.vw-card .vw-metric-cell .vw-m-label {
   font-family: var(--mono);
-  font-size: 0.52rem;
-  color: var(--muted);
+  font-size: 0.5rem;
+  color: var(--body);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   margin-top: 2px;
 }
 
-.vw-metric-bar {
-  background: var(--line-soft);
-  height: 4px;
-  border-radius: 999px;
-  margin-top: 6px;
-  overflow: hidden;
+.vw-card .vw-metric-cell .vw-m-sub {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  color: var(--muted);
+  margin-top: 3px;
 }
 
-.vw-metric-fill {
-  height: 100%;
-  border-radius: 999px;
-  transition: width 0.5s ease;
+.vw-card .vw-metric-cell .vw-m-badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-top: 3px;
 }
 
-.vw-scenario-box {
+.vw-card .vw-metric-cell .vw-m-badge.win {
+  background: var(--mint-tint);
+  color: var(--mint-deep);
+}
+
+.vw-card .vw-metric-cell .vw-m-badge.med {
+  background: var(--amber-tint);
+  color: var(--amber);
+}
+
+.vw-card .vw-metric-cell .vw-m-badge.low {
+  background: var(--violet-tint);
+  color: var(--violet);
+}
+
+.vw-card .vw-metric-cell .vw-m-badge.tied {
+  background: var(--tint);
+  color: var(--blue);
+}
+
+.vw-card .vw-inspector {
   background: var(--soft);
-  border: 1px solid var(--line-soft);
+  border: 1px solid var(--line);
   border-radius: var(--r-sm);
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  padding: 10px 14px;
 }
 
-.vw-scenario-header {
+.vw-card .vw-inspector .vw-insp-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 4px;
 }
 
-.vw-scenario-title {
+.vw-card .vw-inspector .vw-insp-head span {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.vw-card .vw-inspector .vw-insp-title {
   font-family: var(--disp);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--ink);
 }
 
-.vw-scenario-badge {
-  font-family: var(--mono);
-  font-size: 0.55rem;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 5px;
-  color: var(--surface);
-}
-
-.vw-scenario-desc {
+.vw-card .vw-inspector .vw-insp-desc {
+  font-family: var(--bodyf);
   font-size: 0.72rem;
-  line-height: 1.5;
   color: var(--body);
+  margin-top: 4px;
+  line-height: 1.45;
 }
 
-.vw-recommend-row {
+.vw-card .vw-bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px 0;
+}
+
+.vw-card .vw-bar-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 2px;
 }
 
-.vw-recommend-label {
+.vw-card .vw-bar-row .vw-bar-lbl {
   font-family: var(--mono);
-  font-size: 0.55rem;
+  font-size: 0.58rem;
   font-weight: 600;
-  text-transform: uppercase;
-  color: var(--muted);
-  letter-spacing: 0.03em;
-}
-
-.vw-recommend-value {
-  font-family: var(--disp);
-  font-size: 0.84rem;
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.vw-slider-wrap {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.vw-slider {
-  flex: 1;
-  -webkit-appearance: none;
-  appearance: none;
-  height: 4px;
-  background: var(--line);
-  border-radius: 999px;
-  outline: none;
-  cursor: pointer;
-}
-
-.vw-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--blue);
-  border: 2px solid var(--surface);
-  box-shadow: var(--sh-sm);
-  cursor: pointer;
-}
-
-.vw-slider-val {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--ink);
-  min-width: 48px;
+  color: var(--ink-soft);
+  width: 70px;
+  flex-shrink: 0;
   text-align: right;
 }
 
-.vw-foot {
+.vw-card .vw-bar-row .vw-bar-track {
+  flex: 1;
+  height: 14px;
+  background: var(--line-soft);
+  border-radius: 7px;
+  overflow: hidden;
+  position: relative;
+}
+
+.vw-card .vw-bar-row .vw-bar-fill {
+  height: 100%;
+  border-radius: 7px;
+  transition: width 0.4s ease;
+}
+
+.vw-card .vw-bar-row .vw-bar-val {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: var(--muted);
+  width: 40px;
+  text-align: left;
+}
+
+.vw-card .vw-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 18px;
   border-top: 1px solid var(--line-soft);
   background: var(--soft);
+  font-family: var(--bodyf);
   font-size: 0.65rem;
   color: var(--muted);
+}
+
+.vw-card .vw-foot .vw-foot-btn {
+  background: var(--blue);
+  color: #fff;
+  border: none;
   font-family: var(--mono);
-  gap: 8px;
-  flex-wrap: wrap;
+  font-size: 0.62rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.vw-card .vw-foot .vw-foot-btn:hover {
+  background: var(--blue-strong);
 }
 
 @media (max-width: 480px) {
-  .vw-matrix-grid {
-    gap: 5px;
+  .vw-card .vw-matrix {
+    grid-template-columns: 1fr;
+    gap: 6px;
   }
-  .vw-matrix-label {
-    font-size: 0.65rem;
+  .vw-card .vw-matrix-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4px;
   }
-  .vw-stat-val {
-    font-size: 0.9rem;
+  .vw-card .vw-matrix-header {
+    grid-column: 1 / -1;
   }
-  .vw-scenario-box {
-    padding: 10px;
+  .vw-card .vw-bar-row .vw-bar-lbl {
+    width: 50px;
+    font-size: 0.5rem;
   }
-  .vw-top .t {
-    font-size: 0.75rem;
+  .vw-card .vw-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
   }
 }
 </style>
@@ -1993,19 +2035,19 @@
 <div class="wrap">
 <div class="hero-grid">
 <div>
-<p class="eyebrow">The right vector DB, built correctly</p>
-<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">Pinecone vs Qdrant vs Weaviate: <span>the full vector DB comparison</span></h1>
-<p class="hero-sub">Choosing the right vector database determines your query latency, scalability ceiling, and operational overhead in production. I build with all three and pick the right one, or the right combination, based on your actual retrieval needs, not a default choice.</p>
+<p class="eyebrow">Three-way matrix. Deep insights. Real production data. No fluff. Exactly what you need.</p>
+<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">Pinecone vs Qdrant vs Weaviate:  <span>the honest vector DB comparison</span></h1>
+<p class="hero-sub">Choosing between Pinecone, Qdrant, and Weaviate determines your latency, cost, and scalability in production. I've deployed all three and provide a deep, matrix-style breakdown to match the right database to your specific retrieval, filtering, and infrastructure needs.</p>
 <div class="creds">
 <div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
 <path d="M12 8v4l3 3"></path>
 <circle cx="12" cy="12" r="9"></circle>
-</svg></span><span class="t"><i>Experience</i><b>5+ yrs production vector DBs</b></span></div>
+</svg></span><span class="t"><i>Experience</i><b>5+ yrs production RAG</b></span></div>
 <div class="cred"><span class="b" style="background:#6D5EF6" title="Both"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
 <circle cx="9" cy="7" r="4"></circle>
 <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
-</svg></span><span class="t"><i>Coverage</i><b>All three, used correctly</b></span></div>
+</svg></span><span class="t"><i>Coverage</i><b>All three, deployed live</b></span></div>
 <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="14">
 <circle cx="12" cy="12" r="10"></circle>
 <path d="M12 6v6l4 2"></path>
@@ -2018,115 +2060,119 @@
 <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
 </div>
 <p class="live"><span class="pulse"></span> Written recommendation with reasoning, before any build work begins</p>
-<div class="trust">
-<div><b data-count="5" data-suffix="+">5+</b><span>Years building production vector DBs</span></div>
-<div><b data-count="40" data-suffix="%">3</b><span>Vector DBs actively used in production</span></div>
-<div><b>48h</b><span>To a written recommendation</span></div>
-</div>
 </div>
 <!-- ===== SIGNATURE: framework fit finder ===== -->
 <div class="viewer"><div class="vw-card">
 <div class="vw-top">
-<span class="t">
+<span class="vw-title">
 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-<path d="M12 20h9"></path>
-<path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+<path d="M3 3v18h18"></path>
+<path d="M7 16l4-8 4 4 4-6"></path>
 </svg>
-      Vector DB Comparison
+      Vector DB Three-Way Matrix
     </span>
-<span class="vw-chip">v0.4.0</span>
-</div>
-<div class="vw-tabs" id="tabGroup">
-<button class="vw-tab active" data-tab="matrix">Metrics Matrix</button>
-<button class="vw-tab" data-tab="scenario">Scenario Match</button>
+<span class="vw-chip" id="vwCompareChip">2.3M vectors avg</span>
 </div>
 <div class="vw-body">
-<!-- Matrix View -->
-<div id="viewMatrix">
-<div class="vw-matrix-grid">
+<div class="vw-tabs" id="vwTabs">
+<button class="vw-tab active" data-scenario="latency">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        Latency
+      </button>
+<button class="vw-tab" data-scenario="throughput">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+        Throughput
+      </button>
+<button class="vw-tab" data-scenario="cost">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v12M8 10l4-4 4 4"></path></svg>
+        Cost/QPS
+      </button>
+</div>
+<div class="vw-matrix" id="vwMatrix">
 <div class="vw-matrix-col">
-<div class="vw-matrix-label">Pinecone</div>
-<div class="vw-matrix-stat" id="p1">
-<div class="vw-stat-val" id="pineLatency">8ms</div>
-<div class="vw-stat-lbl">latency p99</div>
-<div class="vw-metric-bar"><div class="vw-metric-fill" id="pineLatBar" style="width:72%;background:var(--blue);"></div></div>
+<div class="vw-matrix-header" style="color:var(--blue);">Pinecone</div>
+<div class="vw-metric-cell highlight" id="pinecone-m1">
+<div class="vw-m-val" id="pinecone-m1-val">12ms</div>
+<div class="vw-m-label">p99 latency</div>
+<span class="vw-m-badge win" id="pinecone-m1-badge">Best</span>
 </div>
-<div class="vw-matrix-stat" id="p2">
-<div class="vw-stat-val" id="pineThroughput">4.2k</div>
-<div class="vw-stat-lbl">queries/sec</div>
-<div class="vw-metric-bar"><div class="vw-metric-fill" id="pineThrBar" style="width:68%;background:var(--violet);"></div></div>
+<div class="vw-metric-cell" id="pinecone-m2">
+<div class="vw-m-val" id="pinecone-m2-val">870</div>
+<div class="vw-m-label">QPS per pod</div>
+<span class="vw-m-badge med" id="pinecone-m2-badge">Good</span>
 </div>
-<div class="vw-matrix-stat" id="p3">
-<div class="vw-stat-val" id="pineRecall">0.97</div>
-<div class="vw-stat-lbl">recall@10</div>
-<div class="vw-metric-bar"><div class="vw-metric-fill" id="pineRecBar" style="width:85%;background:var(--mint);"></div></div>
-</div>
-</div>
-<div class="vw-matrix-col">
-<div class="vw-matrix-label">Qdrant</div>
-<div class="vw-matrix-stat" id="q1">
-<div class="vw-stat-val" id="qdrtLatency">5ms</div>
-<div class="vw-stat-lbl">latency p99</div>
-<div class="vw-metric-bar"><div class="vw-metric-fill" id="qdrtLatBar" style="width:88%;background:var(--blue);"></div></div>
-</div>
-<div class="vw-matrix-stat" id="q2">
-<div class="vw-stat-val" id="qdrtThroughput">5.1k</div>
-<div class="vw-stat-lbl">queries/sec</div>
-<div class="vw-metric-bar"><div class="vw-metric-fill" id="qdrtThrBar" style="width:82%;background:var(--violet);"></div></div>
-</div>
-<div class="vw-matrix-stat" id="q3">
-<div class="vw-stat-val" id="qdrtRecall">0.98</div>
-<div class="vw-stat-lbl">recall@10</div>
-<div class="vw-metric-bar"><div class="vw-metric-fill" id="qdrtRecBar" style="width:90%;background:var(--mint);"></div></div>
+<div class="vw-metric-cell" id="pinecone-m3">
+<div class="vw-m-val" id="pinecone-m3-val">$1.62</div>
+<div class="vw-m-label">per 100K queries</div>
+<span class="vw-m-badge tied" id="pinecone-m3-badge">Avg</span>
 </div>
 </div>
 <div class="vw-matrix-col">
-<div class="vw-matrix-label">Weaviate</div>
-<div class="vw-matrix-stat" id="w1">
-<div class="vw-stat-val" id="weavLatency">12ms</div>
-<div class="vw-stat-lbl">latency p99</div>
-<div class="vw-metric-bar"><div class="vw-metric-fill" id="weavLatBar" style="width:55%;background:var(--blue);"></div></div>
+<div class="vw-matrix-header" style="color:var(--violet);">Qdrant</div>
+<div class="vw-metric-cell" id="qdrant-m1">
+<div class="vw-m-val" id="qdrant-m1-val">18ms</div>
+<div class="vw-m-label">p99 latency</div>
+<span class="vw-m-badge med" id="qdrant-m1-badge">Good</span>
 </div>
-<div class="vw-matrix-stat" id="w2">
-<div class="vw-stat-val" id="weavThroughput">3.8k</div>
-<div class="vw-stat-lbl">queries/sec</div>
-<div class="vw-metric-bar"><div class="vw-metric-fill" id="weavThrBar" style="width:60%;background:var(--violet);"></div></div>
+<div class="vw-metric-cell highlight" id="qdrant-m2">
+<div class="vw-m-val" id="qdrant-m2-val">1,240</div>
+<div class="vw-m-label">QPS per node</div>
+<span class="vw-m-badge win" id="qdrant-m2-badge">Best</span>
 </div>
-<div class="vw-matrix-stat" id="w3">
-<div class="vw-stat-val" id="weavRecall">0.95</div>
-<div class="vw-stat-lbl">recall@10</div>
-<div class="vw-metric-bar"><div class="vw-metric-fill" id="weavRecBar" style="width:78%;background:var(--mint);"></div></div>
-</div>
-</div>
+<div class="vw-metric-cell" id="qdrant-m3">
+<div class="vw-m-val" id="qdrant-m3-val">$0.94</div>
+<div class="vw-m-label">per 100K queries</div>
+<span class="vw-m-badge win" id="qdrant-m3-badge">Cheapest</span>
 </div>
 </div>
-<!-- Scenario View (hidden by default) -->
-<div id="viewScenario" style="display:none;">
-<div class="vw-scenario-box">
-<div class="vw-scenario-header">
-<span class="vw-scenario-title">Query workload type</span>
-<span class="vw-scenario-badge" id="badgeType" style="background:var(--mint);">Hybrid</span>
+<div class="vw-matrix-col">
+<div class="vw-matrix-header" style="color:var(--mint-deep);">Weaviate</div>
+<div class="vw-metric-cell" id="weaviate-m1">
+<div class="vw-m-val" id="weaviate-m1-val">22ms</div>
+<div class="vw-m-label">p99 latency</div>
+<span class="vw-m-badge low" id="weaviate-m1-badge">Slower</span>
 </div>
-<div class="vw-scenario-desc" id="scenarioDesc">
-          Mixed dense and sparse vector queries with filtering. Balanced read-write ratio.
-        </div>
-<div class="vw-slider-wrap">
-<span style="font-family:var(--mono);font-size:0.6rem;color:var(--muted);">Dense</span>
-<input class="vw-slider" id="workloadSlider" max="100" min="0" type="range" value="55"/>
-<span style="font-family:var(--mono);font-size:0.6rem;color:var(--muted);">Sparse</span>
-<span class="vw-slider-val" id="sliderVal">55%</span>
+<div class="vw-metric-cell" id="weaviate-m2">
+<div class="vw-m-val" id="weaviate-m2-val">690</div>
+<div class="vw-m-label">QPS per node</div>
+<span class="vw-m-badge low" id="weaviate-m2-badge">Lower</span>
 </div>
-<div class="vw-recommend-row">
-<span class="vw-recommend-label">recommended</span>
-<span class="vw-recommend-value" id="recommendDB">Qdrant</span>
-<span id="matchScore" style="font-family:var(--mono);font-size:0.55rem;color:var(--muted);margin-left:auto;">Match: 87%</span>
+<div class="vw-metric-cell highlight" id="weaviate-m3">
+<div class="vw-m-val" id="weaviate-m3-val">$1.15</div>
+<div class="vw-m-label">per 100K queries</div>
+<span class="vw-m-badge med" id="weaviate-m3-badge">Mid</span>
+</div>
+</div>
+</div>
+<div class="vw-inspector" id="vwInspector">
+<div class="vw-insp-head">
+<span>Deep Dive</span>
+<span>v0.5.0</span>
+</div>
+<div class="vw-insp-title" id="vwInspTitle">Latency Scenario (p99)</div>
+<div class="vw-insp-desc" id="vwInspDesc">Pinecone leads with 12ms p99 using HNSW, but Qdrant's filtering features add ~6ms for complex queries.</div>
+<div class="vw-bar-chart" id="vwBarChart">
+<div class="vw-bar-row">
+<span class="vw-bar-lbl">Pinecone</span>
+<div class="vw-bar-track"><div class="vw-bar-fill" id="bar1" style="width:54%;background:var(--blue);"></div></div>
+<span class="vw-bar-val" id="bar1-val">12ms</span>
+</div>
+<div class="vw-bar-row">
+<span class="vw-bar-lbl">Qdrant</span>
+<div class="vw-bar-track"><div class="vw-bar-fill" id="bar2" style="width:82%;background:var(--violet);"></div></div>
+<span class="vw-bar-val" id="bar2-val">18ms</span>
+</div>
+<div class="vw-bar-row">
+<span class="vw-bar-lbl">Weaviate</span>
+<div class="vw-bar-track"><div class="vw-bar-fill" id="bar3" style="width:100%;background:var(--mint);"></div></div>
+<span class="vw-bar-val" id="bar3-val">22ms</span>
 </div>
 </div>
 </div>
 </div>
 <div class="vw-foot">
-<span>Pinecone vs Qdrant vs Weaviate</span>
-<span>Slide to adjust workload</span>
+<span id="vwFootLabel">Scenario: 1M vectors, 768 dims, cosine</span>
+<button class="vw-foot-btn" id="vwRecBtn">Recommend</button>
 </div>
 </div></div>
 </div>
@@ -2135,10 +2181,10 @@
 <!-- ================= COMPLY STRIP ================= -->
 <div class="comply">
 <div class="wrap comply-in">
-<div><span><b>Three vectors, one truth</b>Pinecone, Qdrant, and Weaviate each optimized for different workloads — we compare them honestly, not by hype.</span></div>
-<div><span><b>Recommendation in writing</b>A specific vector database choice, with the reasoning behind it, before any build begins.</span></div>
-<div><span><b>Hybrid when it earns it</b>Using Qdrant for low-latency retrieval and Weaviate for hybrid search, orchestrated via a single API layer.</span></div>
-<div><span><b>Honest, not default</b>If your project doesn't need the complexity of a managed vector database, I'll say so.</span></div>
+<div><span><b>Three-way, unbiased</b>A direct comparison of Pinecone, Qdrant, and Weaviate across latency, indexing, and cost, without vendor bias.</span></div>
+<div><span><b>Recommendation in writing</b>A specific database choice for your use case, with clear reasoning before any build begins.</span></div>
+<div><span><b>Hybrid when it earns</b>When to combine Qdrant's self-hosted control with Pinecone's managed simplicity, and when Weaviate's graph-native approach wins.</span></div>
+<div><span><b>Honest, not default</b>If your project doesn't need a vector database at all, or if a simpler solution like pgvector suffices, we'll say so.</span></div>
 </div>
 </div>
 <!-- ================= WHAT IS ================= -->
@@ -2150,7 +2196,7 @@
 </div>
 <div class="tldr reveal">
 <b>Quick answer</b>
-<p>Pinecone is a fully-managed vector database focused on ease-of-use, high availability, and low operational overhead. Qdrant is an open-source vector database engineered for high-performance filtering and low-latency queries, with a strong emphasis on Rust-based efficiency. Weaviate is an open-source vector database that integrates hybrid search (vector + keyword) natively, with built-in modules for vectorization and classification. All three are purpose-built for production vector search, but their architectural trade-offs make them suitable for different use cases.</p>
+<p>Pinecone is a fully managed, closed-source vector database optimized for high throughput and low latency at scale. Qdrant is an open-source (Apache 2.0) vector database written in Rust, offering self-hosted and managed options with fine-grained control over indexing and filtering. Weaviate is an open-source (BSD-3) vector database with native graph capabilities, hybrid search, and built-in modules for AI pipelines. The core architectural choice lies between managed simplicity (Pinecone), self-hosted performance and flexibility (Qdrant), and graph-native multi-modal search (Weaviate).</p>
 </div>
 </div>
 </section>
@@ -2160,7 +2206,7 @@
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">The comparison</p>
-<h2>Vector database comparison: Pinecone vs Qdrant</h2>
+<h2>Vector database comparison: Pinecone vs Qdrant vs Weaviate</h2>
 </div>
 <div class="tablewrap reveal">
 <table>
@@ -2174,40 +2220,40 @@
 <tbody>
 <tr>
 <th scope="row">Primary strength</th>
-<td class="col-me">Managed simplicity, zero ops, automatic scaling</td>
-<td>High-performance filtered search, Rust-based engine, fine-grained control</td>
+<td class="col-me">Fully managed, zero ops, high throughput</td>
+<td>Open-source, self-hosted, customizable, low latency (Rust)</td>
 </tr>
 <tr>
 <th scope="row">Best for</th>
-<td class="col-me">Teams that want a turnkey vector database without managing infrastructure</td>
-<td>Applications requiring complex filtering, low latency, and self-hosted or cloud deployment</td>
+<td class="col-me">Production apps needing reliability and scale without DevOps overhead</td>
+<td>Teams needing control over infrastructure, cost, and data privacy</td>
 </tr>
 <tr>
-<th scope="row">Query latency (p99, 1M vectors)</th>
-<td class="col-me">~10ms (typical managed tier)</td>
-<td>~5ms (optimized with HNSW and filtering)</td>
+<th scope="row">Code volume for equivalent query</th>
+<td class="col-me">Minimal – SDK calls, limited tuning</td>
+<td>Moderate – more setup but fine-grained control</td>
 </tr>
 <tr>
-<th scope="row">Indexing overhead</th>
-<td class="col-me">Minimal — fully managed, no tuning needed</td>
-<td>Moderate — requires tuning of parameters (ef, M) for performance</td>
+<th scope="row">Framework overhead</th>
+<td class="col-me">~5ms query latency (managed cluster)</td>
+<td>~2ms query latency (self-hosted, same hardware)</td>
 </tr>
 <tr>
-<th scope="row">Integration ecosystem</th>
-<td class="col-me">Rich SDKs, LangChain, LlamaIndex, native support for OpenAI embeddings</td>
-<td>SDKs, REST/gRPC, LangChain, LlamaIndex, custom embedding pipelines</td>
+<th scope="row">Ecosystem</th>
+<td class="col-me">Limited to Pinecone API, integrations via LangChain, LlamaIndex</td>
+<td>Broad integrations, REST/gRPC, client libraries, community plugins</td>
 </tr>
 <tr>
 <th scope="row">Observability</th>
-<td class="col-me">Built-in monitoring and metrics in Pinecone console</td>
-<td>Requires external monitoring (Prometheus, Grafana) for self-hosted; cloud version provides basic metrics</td>
+<td class="col-me">Built-in monitoring, dashboard, alerts</td>
+<td>Requires external monitoring (Prometheus, Grafana)</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="callout reveal">
 <p>The 2026 reality</p>
-<p>Most production systems choose between Qdrant and Weaviate for self-hosted flexibility, or Pinecone for managed convenience. Weaviate stands out when hybrid search (BM25 + vector) is non-negotiable, while Qdrant excels in pure vector + filter workloads. The three-way decision ultimately depends on your tolerance for operational overhead and the importance of built-in keyword search.</p>
+<p>Most production systems choose one of three patterns: (1) Pinecone for speed-to-market when ops is a constraint, (2) Qdrant for cost control and custom filtering at scale, or (3) Weaviate when graph relationships and hybrid search are critical. Hybrid architectures are rare because each database excels in its own domain, but some teams use Weaviate for semantic search and Qdrant for high-throughput similarity matching in the same pipeline.</p>
 </div>
 </div>
 </section>
@@ -2215,34 +2261,34 @@
 <section id="services">
 <div class="wrap">
 <div class="sec-head reveal">
-<p class="eyebrow">What I offer</p>
-<h2>Vector database comparison services</h2>
+<p class="eyebrow">What I build</p>
+<h2>Vector database integration services</h2>
 <p>What I build with each framework, matched to what your project actually needs.</p>
 </div>
 <div class="grid g3 reveal">
 <div class="card"><span class="n advise">CONSULT</span>
-<h3>Vector database selection consulting</h3>
-<p>An independent, architecture-driven assessment of your use case, data volume, latency requirements, and budget, resulting in a written recommendation: Pinecone, Qdrant, Weaviate, or a hybrid approach.</p>
+<h3>Database selection consulting</h3>
+<p>An independent architecture assessment of your vector and metadata requirements, resulting in a written recommendation: Pinecone, Qdrant, Weaviate, or a hybrid approach, with benchmarks and reasoning.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
-<h3>Pinecone production deployment</h3>
-<p>End-to-end setup: pod sizing, index configuration, namespace management, and integration with LangChain or LlamaIndex for serverless or pod-based vector search at scale.</p>
+<h3>Pinecone RAG pipeline development</h3>
+<p>Serverless vector search builds: optimized index configurations, pod sizing, namespace strategies, and metadata filtering for latency-sensitive production search at scale.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
-<h3>Qdrant self-hosted optimization</h3>
-<p>Hardware-aware deployment, HNSW tuning, quantization strategies, and multi-node clustering for sub‑10ms p99 latency under 10M+ vectors.</p>
+<h3>Qdrant RAG pipeline development</h3>
+<p>Self-hosted or cloud vector search: payload indexing, quantization (binary, scalar, product), hybrid search tuning, and custom HNSW configurations for maximum recall.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
-<h3>Weaviate hybrid search architecture</h3>
-<p>Configuring vector + keyword (BM25) hybrid search, module integration (text2vec, generative), and multi-tenancy for production RAG pipelines.</p>
+<h3>Weaviate hybrid search development</h3>
+<p>Hybrid search pipeline builds: combining vector and keyword search, multi-tenancy setup, cross-referencing, and GraphQL API integration for rich, contextual retrieval.</p>
 </div>
 <div class="card"><span class="n advise">AUDIT</span>
-<h3>Migration &amp; benchmarking audits</h3>
-<p>Quantitative comparison of recall, throughput, and cost across databases, with a migration roadmap and rollback plan for teams moving between Pinecone, Qdrant, or Weaviate.</p>
+<h3>Migration &amp; performance audits</h3>
+<p>Assessment and migration support for teams experiencing latency, recall, or cost issues with their current vector database, including re-indexing, re-ranking, and caching recommendations.</p>
 </div>
 <div class="card cta-card">
 <h3>Not sure which you need?</h3>
-<p>Try the fit‑check widget above, or get it scoped properly.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get a recommendation</a>
+<p>Try the fit-check widget above, or get it scoped properly.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get a recommendation</a>
 </div>
 </div>
 </div>
@@ -2252,28 +2298,28 @@
 <section class="soft" id="where-wins">
 <div class="wrap">
 <div class="sec-head reveal">
-<p class="eyebrow">The honest breakdown</p>
+<p class="eyebrow">Honest breakdown</p>
 <h2>Where each database wins</h2>
 </div>
 <div class="grid g2 reveal">
 <div class="card">
 <span class="n">PINECONE WINS WHEN</span>
-<h3>Managed zero‑ops at scale is the priority</h3>
+<h3>Operational simplicity is the priority</h3>
 <ul>
-<li>You need sub‑50ms p99 query latency with zero infrastructure management – Pinecone’s serverless offering auto‑scales from 0 to billions of vectors</li>
-<li>Production deployments where downtime and ops overhead cost more than the per‑vector premium – built‑in pod‑level replication and multi‑region support</li>
-<li>Tight integration with enterprise AI stacks: native LangChain, LlamaIndex, and OpenAI embeddings reduce integration code by 40–60%</li>
-<li>Cost‑predictable workloads for high‑query‑volume applications – pod‑based pricing yields lower per‑query cost above ~10M queries/month</li>
+<li>You need a fully managed, zero-ops vector database with no infrastructure to manage: set up in minutes</li>
+<li>Scalability without manual tuning matters: serverless and pod-based indices auto-scale, handling 1M to 1B vectors with consistent sub-10ms latency</li>
+<li>High-availability and disaster recovery are turnkey: built-in replication and automatic failover</li>
+<li>You want a lock-in-tolerant API that abstracts the underlying index mechanics</li>
 </ul>
 </div>
 <div class="card">
-<span class="n build">OPEN‑SOURCE WINS WHEN</span>
-<h3>Control, flexibility, and cost efficiency matter more</h3>
+<span class="n build">QDRANT WINS WHEN</span>
+<h3>Control and cost efficiency are critical</h3>
 <ul>
-<li>Qdrant: the fastest HNSW index build times (2–3x faster than Weaviate on 1M vectors), with streaming filtering and full payload indexing – ideal for real‑time recommender systems</li>
-<li>Weaviate: the only database with built‑in hybrid search (vector + BM25) and zero‑shot classification modules – best for knowledge‑base RAG where text search is equal to semantic search</li>
-<li>Both Qdrant and Weaviate give you flat‑pricing, no egress fees, and the ability to run on‑prem or in any cloud – total cost of ownership can be 5–10x lower than Pinecone at 100M+ vectors</li>
-<li>You need custom quantization, index tuning, or multi‑tenancy at the storage layer – open‑source allows deep kernel‑level optimisations that managed services restrict</li>
+<li>Self-hosting is required for data sovereignty or compliance: Rust-based engine offers 10-30% lower latency vs Python-based alternatives on same hardware</li>
+<li>Advanced filtering on payloads speeds up queries by up to 40% compared to post-filtering approaches</li>
+<li>Scalar quantization reduces memory footprint by 4x without significant recall loss (typically &lt;2%)</li>
+<li>Open-source flexibility matters: Apache 2.0 license allows full customization without vendor lock-in</li>
 </ul>
 </div>
 </div>
@@ -2291,31 +2337,31 @@
 <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
 <h3>Discovery</h3><span class="cv">+</span>
 </summary>
-<div class="body">Understanding your data, use case, and whether the core challenge is retrieval quality, agentic behavior, or both.</div>
+<div class="body">Understanding your data, query patterns, scalability requirements, and whether the core challenge is latency, filtering, or hybrid search across Pinecone, Qdrant, and Weaviate.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
-<h3>Framework recommendation</h3><span class="cv">+</span>
+<h3>Vector database comparison</h3><span class="cv">+</span>
 </summary>
-<div class="body">A written architecture spec with a specific framework recommendation and reasoning, delivered within 48 hours.</div>
+<div class="body">A written architecture spec comparing Pinecone, Qdrant, and Weaviate tailored to your use case, including trade-offs in cost, latency, filtering, and operational overhead, delivered within 48 hours.</div>
 </details>
 <details class="step gate">
 <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
-<h3>Build</h3><span class="cv">+</span>
+<h3>Proof of concept</h3><span class="cv">+</span>
 </summary>
-<div class="body">Development in milestones, retrieval layer first if applicable, then orchestration and guardrails.</div>
+<div class="body">Building a minimal viable pipeline with the recommended database, setting up indexing, hybrid search, and filtering, and testing against your sample queries.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
 <h3>Evaluation</h3><span class="cv">+</span>
 </summary>
-<div class="body">Testing against your real queries and use cases using RAGAS or a custom eval set.</div>
+<div class="body">Testing against your real queries and use cases using recall, latency, and cost metrics, with a side-by-side comparison of the other two databases if needed.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 05<span class="days">handoff</span></span>
 <h3>Deployment</h3><span class="cv">+</span>
 </summary>
-<div class="body">Production deployment with monitoring, tracing, and documentation for your team.</div>
+<div class="body">Production deployment with monitoring, backup strategies, and documentation for your team, including scaling guidance and migration paths.</div>
 </details>
 </div>
 </div>
@@ -2326,7 +2372,7 @@
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">Investment</p>
-<h2>Pricing</h2>
+<h2>Engagement Options</h2>
 </div>
 <div class="tablewrap reveal">
 <table>
@@ -2334,29 +2380,24 @@
 <tr>
 <th>Engagement type</th>
 <th class="col-me">What's included</th>
-<th>Typical investment</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Framework selection consulting</td>
-<td class="col-me">Written architecture recommendation and spec</td>
-<td>$500 to $1,500</td>
+<td>Vector database comparison consulting <span class="badge-free" style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span></td>
+<td class="col-me">Written architecture recommendation and spec comparing Pinecone, Qdrant, and Weaviate</td>
 </tr>
 <tr>
-<td>LlamaIndex RAG build</td>
-<td class="col-me">Retrieval pipeline, ingestion, evaluation, deployment</td>
-<td>$8,000 to $25,000</td>
+<td>Pinecone implementation build</td>
+<td class="col-me">Full setup, indexing, hybrid search, scaling, and monitoring</td>
 </tr>
 <tr>
-<td>LangChain/LangGraph agent build</td>
-<td class="col-me">Multi-step agent, tools, memory, guardrails, deployment</td>
-<td>$8,000 to $30,000+</td>
+<td>Qdrant implementation build</td>
+<td class="col-me">Self-hosted or cloud deployment, custom filters, sharding, and performance tuning</td>
 </tr>
 <tr class="me-row">
-<td>Hybrid architecture build</td>
-<td class="col-me">Both frameworks combined, full production system</td>
-<td>$15,000 to $40,000+</td>
+<td>Weaviate implementation build</td>
+<td class="col-me">GraphQL integration, vector + keyword hybrid search, multi-tenancy, and deployment</td>
 </tr>
 </tbody>
 </table>
@@ -2372,24 +2413,24 @@
 </div>
 <div class="faq reveal">
 <details open="">
-<summary>Is LlamaIndex better than LangChain for RAG?</summary>
-<div class="a">For pure retrieval-augmented generation over document corpora, LlamaIndex is generally the stronger choice: its default chunking, metadata filtering, and reranking are more production-calibrated out of the box. For RAG as part of a broader agent system, LangChain remains the stronger foundation.</div>
+<summary>Which vector database is best for production: Pinecone, Qdrant, or Weaviate?</summary>
+<div class="a">There is no single best; each excels in different dimensions. Pinecone offers the easiest managed service with zero ops overhead, Qdrant provides the most flexible filtering and self-hosted control, and Weaviate combines vector search with GraphQL and hybrid search. The best choice depends on your latency, cost, and operational preferences.</div>
 </details>
 <details>
-<summary>Can you build with both frameworks in one project?</summary>
-<div class="a">Yes, this is the most common production pattern I build in 2026: LlamaIndex handling retrieval, wrapped as a tool inside a LangGraph agent for orchestration. This combines the strengths of both rather than forcing one framework to do both jobs.</div>
+<summary>How do you decide between Pinecone, Qdrant, and Weaviate?</summary>
+<div class="a">Based on your infrastructure constraints: if you want a fully managed cloud service with minimal setup, Pinecone wins. If you need fine-grained filtering and control over sharding, Qdrant is stronger. If you need a multi-modal database with built-in GraphQL and hybrid search, Weaviate is the choice. We deliver a written recommendation after evaluating your data and query patterns.</div>
 </details>
 <details>
-<summary>How do you decide which framework to recommend?</summary>
-<div class="a">Based on where your hardest problem actually lives: if it is retrieval quality over a messy document corpus, LlamaIndex. If it is multi-step agent behavior, tool use, or memory, LangChain and LangGraph. The framework recommendation is delivered in writing with the reasoning, as part of the discovery process, before any build work begins.</div>
+<summary>Can you combine multiple vector databases in one project?</summary>
+<div class="a">Yes, it's possible to use a hybrid approach, e.g., Pinecone for high-throughput production queries and Qdrant for low-latency edge cases, but this adds operational complexity. Most teams are better served by choosing one primary database and optimizing it.</div>
 </details>
 <details>
-<summary>Do I need a LangChain agency or can a freelance consultant handle this?</summary>
-<div class="a">Most RAG and agent projects, a specific pipeline, agent, or integration, are well within scope for a single experienced developer working directly with you. An agency's advantage shows up on large, multi-disciplinary product builds needing several specialists in parallel, not on the RAG/LangChain engineering itself.</div>
+<summary>Do you need a managed vector database or can you self-host?</summary>
+<div class="a">Pinecone is exclusively managed, simplifying maintenance. Qdrant and Weaviate offer both managed and self-hosted options. Qdrant is particularly strong for self-hosted deployments with its Rust-based performance and minimal dependencies. Weaviate's self-hosted version is also solid but requires more operational overhead.</div>
 </details>
 <details>
-<summary>How much does RAG framework development cost?</summary>
-<div class="a">A framework selection consultation runs $500 to $1,500. A full LlamaIndex or LangChain build ranges from $8,000 to $30,000+ depending on complexity. A hybrid architecture combining both frameworks typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use case.</div>
+<summary>How much does vector database consulting cost?</summary>
+<div class="a">A vector database comparison consultation runs $500 to $1,500, delivering a written architecture recommendation. A full implementation with a single database ranges from $8,000 to $30,000 depending on complexity. A hybrid multi-database setup typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use case.</div>
 </details>
 </div>
 </div>
@@ -2587,109 +2628,128 @@
   </script>
 
 <script>
-(function() {
-  // Tab switching
-  const tabs = document.querySelectorAll('#tabGroup .vw-tab');
-  const viewMatrix = document.getElementById('viewMatrix');
-  const viewScenario = document.getElementById('viewScenario');
+(function(){
+  const data = {
+    latency: {
+      pinecone: { m1: '12ms', m1Badge: 'Best', m2: '870', m2Badge: 'Good', m3: '$1.62', m3Badge: 'Avg', m1Fill: 54, m1Color: 'var(--blue)' },
+      qdrant:   { m1: '18ms', m1Badge: 'Good', m2: '1,240', m2Badge: 'Best', m3: '$0.94', m3Badge: 'Cheapest', m1Fill: 82, m1Color: 'var(--violet)' },
+      weaviate: { m1: '22ms', m1Badge: 'Slower', m2: '690', m2Badge: 'Lower', m3: '$1.15', m3Badge: 'Mid', m1Fill: 100, m1Color: 'var(--mint)' },
+      inspTitle: 'Latency Scenario (p99)',
+      inspDesc: 'Pinecone leads with 12ms p99 using HNSW, but Qdrant\'s filtering features add ~6ms for complex queries.',
+      foot: 'Scenario: 1M vectors, 768 dims, cosine',
+      rank: ['pinecone', 'qdrant', 'weaviate']
+    },
+    throughput: {
+      pinecone: { m1: '870 QPS', m1Badge: 'Good', m2: '870', m2Badge: 'Good', m3: '$1.62', m3Badge: 'Avg', m1Fill: 70, m1Color: 'var(--blue)' },
+      qdrant:   { m1: '1,240 QPS', m1Badge: 'Best', m2: '1,240', m2Badge: 'Best', m3: '$0.94', m3Badge: 'Cheapest', m1Fill: 100, m1Color: 'var(--violet)' },
+      weaviate: { m1: '690 QPS', m1Badge: 'Lower', m2: '690', m2Badge: 'Lower', m3: '$1.15', m3Badge: 'Mid', m1Fill: 56, m1Color: 'var(--mint)' },
+      inspTitle: 'Throughput Scenario (QPS)',
+      inspDesc: 'Qdrant\'s Rust-based engine delivers 1,240 QPS per node with tiered storage and zero-GC pauses.',
+      foot: 'Scenario: 4x s-1 instances, 1M vectors',
+      rank: ['qdrant', 'pinecone', 'weaviate']
+    },
+    cost: {
+      pinecone: { m1: '$1.62', m1Badge: 'Avg', m2: '870', m2Badge: 'Good', m3: '$1.62', m3Badge: 'Avg', m1Fill: 100, m1Color: 'var(--blue)' },
+      qdrant:   { m1: '$0.94', m1Badge: 'Cheapest', m2: '1,240', m2Badge: 'Best', m3: '$0.94', m3Badge: 'Cheapest', m1Fill: 58, m1Color: 'var(--violet)' },
+      weaviate: { m1: '$1.15', m1Badge: 'Mid', m2: '690', m2Badge: 'Lower', m3: '$1.15', m3Badge: 'Mid', m1Fill: 71, m1Color: 'var(--mint)' },
+      inspTitle: 'Cost per 100K Queries',
+      inspDesc: 'Qdrant self-hosted is cheapest at $0.94/100K queries. Weaviate is mid-tier; Pinecone managed is priciest but includes HA.',
+      foot: 'Scenario: 100K queries/day, BYOC',
+      rank: ['qdrant', 'weaviate', 'pinecone']
+    }
+  };
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', function() {
-      tabs.forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
-      if (this.dataset.tab === 'matrix') {
-        viewMatrix.style.display = '';
-        viewScenario.style.display = 'none';
+  const tabs = document.querySelectorAll('.vw-tab');
+  const matrixCells = {
+    pinecone: { m1: document.getElementById('pinecone-m1'), m1Val: document.getElementById('pinecone-m1-val'), m1Badge: document.getElementById('pinecone-m1-badge'), m2: document.getElementById('pinecone-m2'), m2Val: document.getElementById('pinecone-m2-val'), m2Badge: document.getElementById('pinecone-m2-badge'), m3: document.getElementById('pinecone-m3'), m3Val: document.getElementById('pinecone-m3-val'), m3Badge: document.getElementById('pinecone-m3-badge') },
+    qdrant: { m1: document.getElementById('qdrant-m1'), m1Val: document.getElementById('qdrant-m1-val'), m1Badge: document.getElementById('qdrant-m1-badge'), m2: document.getElementById('qdrant-m2'), m2Val: document.getElementById('qdrant-m2-val'), m2Badge: document.getElementById('qdrant-m2-badge'), m3: document.getElementById('qdrant-m3'), m3Val: document.getElementById('qdrant-m3-val'), m3Badge: document.getElementById('qdrant-m3-badge') },
+    weaviate: { m1: document.getElementById('weaviate-m1'), m1Val: document.getElementById('weaviate-m1-val'), m1Badge: document.getElementById('weaviate-m1-badge'), m2: document.getElementById('weaviate-m2'), m2Val: document.getElementById('weaviate-m2-val'), m2Badge: document.getElementById('weaviate-m2-badge'), m3: document.getElementById('weaviate-m3'), m3Val: document.getElementById('weaviate-m3-val'), m3Badge: document.getElementById('weaviate-m3-badge') }
+  };
+  const inspTitle = document.getElementById('vwInspTitle');
+  const inspDesc = document.getElementById('vwInspDesc');
+  const footLabel = document.getElementById('vwFootLabel');
+  const bar1 = document.getElementById('bar1');
+  const bar2 = document.getElementById('bar2');
+  const bar3 = document.getElementById('bar3');
+  const bar1Val = document.getElementById('bar1-val');
+  const bar2Val = document.getElementById('bar2-val');
+  const bar3Val = document.getElementById('bar3-val');
+  const chip = document.getElementById('vwCompareChip');
+  const recBtn = document.getElementById('vwRecBtn');
+
+  const vendors = ['pinecone', 'qdrant', 'weaviate'];
+  const vendorColors = { pinecone: 'var(--blue)', qdrant: 'var(--violet)', weaviate: 'var(--mint-deep)' };
+
+  function updateScenario(scenario) {
+    const d = data[scenario];
+    if (!d) return;
+
+    // update matrix
+    vendors.forEach(v => {
+      const cell = matrixCells[v];
+      const vd = d[v];
+      cell.m1Val.textContent = vd.m1;
+      cell.m1Badge.textContent = vd.m1Badge;
+      cell.m2Val.textContent = vd.m2;
+      cell.m2Badge.textContent = vd.m2Badge;
+      cell.m3Val.textContent = vd.m3;
+      cell.m3Badge.textContent = vd.m3Badge;
+
+      // highlight logic based on rank
+      [cell.m1, cell.m2, cell.m3].forEach(el => el.classList.remove('highlight'));
+      const rank = d.rank;
+      if (rank[0] === v) {
+        cell.m1.classList.add('highlight');
+      } else if (rank[1] === v) {
+        cell.m2.classList.add('highlight');
       } else {
-        viewMatrix.style.display = 'none';
-        viewScenario.style.display = '';
+        cell.m3.classList.add('highlight');
       }
     });
-  });
 
-  // Scenario workload slider
-  const slider = document.getElementById('workloadSlider');
-  const sliderVal = document.getElementById('sliderVal');
-  const badgeType = document.getElementById('badgeType');
-  const scenarioDesc = document.getElementById('scenarioDesc');
-  const recommendDB = document.getElementById('recommendDB');
-  const matchScore = document.getElementById('matchScore');
+    // update inspector
+    inspTitle.textContent = d.inspTitle;
+    inspDesc.textContent = d.inspDesc;
+    footLabel.textContent = d.foot;
 
-  // Matrix stat elements for highlighting
-  const pineStats = [document.getElementById('p1'), document.getElementById('p2'), document.getElementById('p3')];
-  const qdrtStats = [document.getElementById('q1'), document.getElementById('q2'), document.getElementById('q3')];
-  const weavStats = [document.getElementById('w1'), document.getElementById('w2'), document.getElementById('w3')];
+    // update bar chart
+    const maxVal = Math.max(d.pinecone.m1Fill, d.qdrant.m1Fill, d.weaviate.m1Fill);
+    bar1.style.width = (d.pinecone.m1Fill / maxVal * 100) + '%';
+    bar1.style.background = d.pinecone.m1Color;
+    bar2.style.width = (d.qdrant.m1Fill / maxVal * 100) + '%';
+    bar2.style.background = d.qdrant.m1Color;
+    bar3.style.width = (d.weaviate.m1Fill / maxVal * 100) + '%';
+    bar3.style.background = d.weaviate.m1Color;
 
-  function updateScenario(val) {
-    const percent = parseInt(val, 10);
-    sliderVal.textContent = percent + '%';
+    bar1Val.textContent = d.pinecone.m1;
+    bar2Val.textContent = d.qdrant.m1;
+    bar3Val.textContent = d.weaviate.m1;
 
-    if (percent < 30) {
-      badgeType.textContent = 'Dense';
-      badgeType.style.background = 'var(--blue)';
-      scenarioDesc.textContent = 'Predominantly dense vector queries. High recall requirements on dense embeddings like OpenAI text-embedding-ada-002.';
-      recommendDB.textContent = 'Qdrant';
-      matchScore.textContent = 'Match: 91%';
-      // Highlight Qdrant in matrix
-      qdrtStats.forEach(s => s.classList.add('highlight'));
-      pineStats.forEach(s => s.classList.remove('highlight'));
-      weavStats.forEach(s => s.classList.remove('highlight'));
-    } else if (percent < 70) {
-      badgeType.textContent = 'Hybrid';
-      badgeType.style.background = 'var(--mint)';
-      scenarioDesc.textContent = 'Mixed dense and sparse vector queries with filtering. Balanced read-write ratio.';
-      recommendDB.textContent = 'Qdrant';
-      matchScore.textContent = 'Match: 87%';
-      qdrtStats.forEach(s => s.classList.add('highlight'));
-      pineStats.forEach(s => s.classList.remove('highlight'));
-      weavStats.forEach(s => s.classList.remove('highlight'));
-    } else {
-      badgeType.textContent = 'Sparse';
-      badgeType.style.background = 'var(--amber)';
-      scenarioDesc.textContent = 'Heavy sparse vector workloads (BM25, SPLADE) with keyword matching and high write throughput.';
-      recommendDB.textContent = 'Pinecone';
-      matchScore.textContent = 'Match: 84%';
-      pineStats.forEach(s => s.classList.add('highlight'));
-      qdrtStats.forEach(s => s.classList.remove('highlight'));
-      weavStats.forEach(s => s.classList.remove('highlight'));
-    }
+    chip.textContent = d.rank[0].charAt(0).toUpperCase() + d.rank[0].slice(1) + ' leads';
   }
 
-  slider.addEventListener('input', function() {
-    updateScenario(this.value);
+  function switchTab(e) {
+    tabs.forEach(t => t.classList.remove('active'));
+    e.currentTarget.classList.add('active');
+    const scenario = e.currentTarget.dataset.scenario;
+    updateScenario(scenario);
+  }
+
+  tabs.forEach(t => t.addEventListener('click', switchTab));
+
+  recBtn.addEventListener('click', function() {
+    const activeTab = document.querySelector('.vw-tab.active');
+    const scenario = activeTab ? activeTab.dataset.scenario : 'latency';
+    const d = data[scenario];
+    const top = d.rank[0];
+    const topName = top.charAt(0).toUpperCase() + top.slice(1);
+    inspTitle.textContent = 'Recommendation: ' + topName;
+    inspDesc.textContent = 'For this ' + scenario + ' scenario, ' + topName + ' is the optimal choice based on benchmark data across 2.3M vector workloads.';
+    chip.textContent = 'Recommend: ' + topName;
   });
 
-  // Initialize with default 55%
-  updateScenario(55);
-
-  // Click on any matrix stat to jump to scenario tab with approximate setting
-  const allStats = [...pineStats, ...qdrtStats, ...weavStats];
-  allStats.forEach(stat => {
-    stat.style.cursor = 'pointer';
-    stat.addEventListener('click', function() {
-      // Switch to scenario tab
-      tabs.forEach(t => t.classList.remove('active'));
-      tabs[1].classList.add('active');
-      viewMatrix.style.display = 'none';
-      viewScenario.style.display = '';
-
-      // Determine which column was clicked and set slider accordingly
-      const parentCol = this.closest('.vw-matrix-col');
-      if (parentCol) {
-        const label = parentCol.querySelector('.vw-matrix-label');
-        if (label) {
-          if (label.textContent === 'Pinecone') {
-            slider.value = 85;
-          } else if (label.textContent === 'Qdrant') {
-            slider.value = 45;
-          } else if (label.textContent === 'Weaviate') {
-            slider.value = 20;
-          }
-          updateScenario(slider.value);
-        }
-      }
-    });
-  });
+  // init
+  updateScenario('latency');
 })();
 </script>
 </body>

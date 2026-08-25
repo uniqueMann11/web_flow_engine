@@ -1655,411 +1655,414 @@
 
 <body>
 
-    <main class="svcp">
+  <main class="svcp">
 
-      <!-- ================= HERO ================= -->
-      <section class="hero" id="demo">
-        <div class="wrap">
-          <div class="hero-grid">
-            <div>
-              <p class="eyebrow">The architecture behind grounded AI</p>
-              <h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">RAG development services: what retrieval-augmented
-                generation is, <span>and how I build it</span></h1>
-              <p class="hero-sub">Retrieval-augmented generation is the architecture behind every AI system that needs
-                to answer accurately from your own data instead of guessing from general training knowledge. I design
-                and build production RAG systems: document ingestion, retrieval engineering, generation, guardrails, and
-                deployment.</p>
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="demo">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">The architecture behind grounded AI</p>
+            <h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">RAG development services: what retrieval-augmented
+              generation is, <span>and how I build it</span></h1>
+            <p class="hero-sub">Retrieval-augmented generation is the architecture behind every AI system that needs
+              to answer accurately from your own data instead of guessing from general training knowledge. I design
+              and build production RAG systems: document ingestion, retrieval engineering, generation, guardrails, and
+              deployment.</p>
 
-              <div class="creds">
-                <div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg width="15"
-                      height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 8v4l3 3" />
-                      <circle cx="12" cy="12" r="9" />
-                    </svg></span><span class="t"><i>Experience</i><b>5+ yrs production RAG</b></span></div>
-                <div class="cred"><span class="b" style="background:#0FA968" title="Reduction"><svg width="15"
-                      height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M3 3v18h18" />
-                      <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14" />
-                    </svg></span><span class="t"><i>Outcome</i><b>60&ndash;80% less hallucination</b></span></div>
-                <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg width="14" height="14"
-                      viewBox="0 0 24 24" fill="none" stroke="#2456E6" stroke-width="2.4" stroke-linecap="round"
-                      stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M12 6v6l4 2" />
-                    </svg></span><span class="t"><i>Turnaround</i><b>48h written spec</b></span></div>
-              </div>
-
-              <div class="hero-cta">
-                <a class="btn btn-primary" href="#lets-talk">Talk to a RAG developer <svg fill="none"
-                    stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
-                    <path d="M5 12h14M13 6l6 6-6 6"></path>
-                  </svg></a>
-                <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
-              </div>
-              <p class="live"><span class="pulse"></span> Every answer traces to a source, guardrails included from day
-                one</p>
+            <div class="creds">
+              <div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg width="15"
+                    height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 8v4l3 3" />
+                    <circle cx="12" cy="12" r="9" />
+                  </svg></span><span class="t"><i>Experience</i><b>5+ yrs production RAG</b></span></div>
+              <div class="cred"><span class="b" style="background:#0FA968" title="Reduction"><svg width="15" height="15"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M3 3v18h18" />
+                    <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14" />
+                  </svg></span><span class="t"><i>Outcome</i><b>60&ndash;80% less hallucination</b></span></div>
+              <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg width="14" height="14"
+                    viewBox="0 0 24 24" fill="none" stroke="#2456E6" stroke-width="2.4" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" />
+                  </svg></span><span class="t"><i>Turnaround</i><b>48h written spec</b></span></div>
             </div>
 
-            <!-- ===== SIGNATURE: RAG vs Plain LLM vs Fine-Tuning ===== -->
-            <div class="viewer">
-              <div class="viewer-top">
-                <span class="t">grounding preview, illustrative</span>
-                <span class="chip"><span class="d"></span>live</span>
-              </div>
-              <canvas id="sigcanvas"
-                aria-label="Illustration comparing retrieval-augmented generation, a plain LLM, and a fine-tuned model. RAG retrieves matching document chunks and cites them. A plain LLM guesses with no source. A fine-tuned model answers in a trained style but without a live, checkable source."></canvas>
-              <div class="modesw" role="tablist" aria-label="Grounding mode">
-                <button role="tab" aria-selected="true" data-m="rag" type="button">RAG</button>
-                <button role="tab" aria-selected="false" data-m="bare" type="button">Plain LLM</button>
-                <button role="tab" aria-selected="false" data-m="finetune" type="button">Fine-tuned</button>
-              </div>
-              <div class="segs" role="tablist" aria-label="Business scenario">
-                <button role="tab" aria-selected="true" data-d="0" type="button">support policy</button>
-                <button role="tab" aria-selected="false" data-d="1" type="button">internal wiki</button>
-                <button role="tab" aria-selected="false" data-d="2" type="button">product catalog</button>
-              </div>
-              <div class="metrics">
-                <div><b id="m1" class="sc-good">Low</b><span id="m1l">Hallucination risk</span></div>
-                <div><b id="m2">4</b><span id="m2l">Chunks retrieved</span></div>
-                <div><b id="m3">Live docs</b><span id="m3l">Answer basis</span></div>
-              </div>
-              <div class="answerbox">
-                <span class="k">Generated answer</span>
-                <p id="answer"></p>
-              </div>
-              <ul class="citelist" id="citelist"></ul>
-              <div class="viewer-foot" id="foot">Switch modes to see what each approach actually gives you, and what it
-                can't.</div>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#lets-talk">Talk to a RAG developer <svg fill="none"
+                  stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6"></path>
+                </svg></a>
+              <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
             </div>
+            <p class="live"><span class="pulse"></span> Every answer traces to a source, guardrails included from day
+              one</p>
           </div>
-        </div>
-      </section>
 
-      <!-- ================= COMPLY STRIP ================= -->
-      <div class="comply">
-        <div class="wrap comply-in">
-          <div><span><b>Grounded, not guessed</b>Every answer is retrieved from your own documents at query time, not
-              the model's fixed training memory.</span></div>
-          <div><span><b>Source-traceable</b>Each response can cite the exact document it came from, for review and for
-              trust.</span></div>
-          <div><span><b>Guardrails included</b>Confidence thresholds and a defensive "I don't know" fallback ship with
-              every build, not bolted on later.</span></div>
-          <div><span><b>No retraining required</b>Update the knowledge base, not the model. Documents change daily, RAG
-              keeps up without a training run.</span></div>
+          <!-- ===== SIGNATURE: RAG vs Plain LLM vs Fine-Tuning ===== -->
+          <div class="viewer">
+            <div class="viewer-top">
+              <span class="t">grounding preview, illustrative</span>
+              <span class="chip"><span class="d"></span>live</span>
+            </div>
+            <canvas id="sigcanvas"
+              aria-label="Illustration comparing retrieval-augmented generation, a plain LLM, and a fine-tuned model. RAG retrieves matching document chunks and cites them. A plain LLM guesses with no source. A fine-tuned model answers in a trained style but without a live, checkable source."></canvas>
+            <div class="modesw" role="tablist" aria-label="Grounding mode">
+              <button role="tab" aria-selected="true" data-m="rag" type="button">RAG</button>
+              <button role="tab" aria-selected="false" data-m="bare" type="button">Plain LLM</button>
+              <button role="tab" aria-selected="false" data-m="finetune" type="button">Fine-tuned</button>
+            </div>
+            <div class="segs" role="tablist" aria-label="Business scenario">
+              <button role="tab" aria-selected="true" data-d="0" type="button">support policy</button>
+              <button role="tab" aria-selected="false" data-d="1" type="button">internal wiki</button>
+              <button role="tab" aria-selected="false" data-d="2" type="button">product catalog</button>
+            </div>
+            <div class="metrics">
+              <div><b id="m1" class="sc-good">Low</b><span id="m1l">Hallucination risk</span></div>
+              <div><b id="m2">4</b><span id="m2l">Chunks retrieved</span></div>
+              <div><b id="m3">Live docs</b><span id="m3l">Answer basis</span></div>
+            </div>
+            <div class="answerbox">
+              <span class="k">Generated answer</span>
+              <p id="answer"></p>
+            </div>
+            <ul class="citelist" id="citelist"></ul>
+            <div class="viewer-foot" id="foot">Switch modes to see what each approach actually gives you, and what it
+              can't.</div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- ================= WHAT IS RAG (definition) ================= -->
-      <section id="what-is-rag">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">Plain answer</p>
-            <h2>What is RAG (retrieval-augmented generation)?</h2>
+    <!-- ================= COMPLY STRIP ================= -->
+    <div class="comply">
+      <div class="wrap comply-in">
+        <div><span><b>Grounded, not guessed</b>Every answer is retrieved from your own documents at query time, not
+            the model's fixed training memory.</span></div>
+        <div><span><b>Source-traceable</b>Each response can cite the exact document it came from, for review and for
+            trust.</span></div>
+        <div><span><b>Guardrails included</b>Confidence thresholds and a defensive "I don't know" fallback ship with
+            every build, not bolted on later.</span></div>
+        <div><span><b>No retraining required</b>Update the knowledge base, not the model. Documents change daily, RAG
+            keeps up without a training run.</span></div>
+      </div>
+    </div>
+
+    <!-- ================= WHAT IS RAG (definition) ================= -->
+    <section id="what-is-rag">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Plain answer</p>
+          <h2>What is RAG (retrieval-augmented generation)?</h2>
+        </div>
+        <div class="tldr reveal">
+          <b>Definition</b>
+          <p>Retrieval-augmented generation (RAG) is an AI architecture that improves large language model responses
+            by retrieving relevant information from an external knowledge base at query time and inserting it into the
+            model's context before it generates an answer. Instead of relying only on what the model learned during
+            training, a fixed and eventually outdated snapshot, RAG grounds each response in specific, current, and
+            verifiable source content, making answers more accurate, current, and traceable back to a source document.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HOW RAG WORKS ================= -->
+    <section class="soft" id="how-it-works">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Step by step</p>
+          <h2>How RAG works</h2>
+          <p>The same five-step pipeline animating in the signature panel above, applied to your own documents.</p>
+        </div>
+        <div class="grid g3 reveal" style="grid-template-columns:repeat(5,1fr)">
+          <div class="card" style="padding:20px"><span class="n">STEP 1</span>
+            <h3 style="font-size:.98rem">Query submitted</h3>
+            <p style="font-size:.84rem">A user asks a question in natural language.</p>
           </div>
-          <div class="tldr reveal">
-            <b>Definition</b>
-            <p>Retrieval-augmented generation (RAG) is an AI architecture that improves large language model responses
-              by retrieving relevant information from an external knowledge base at query time and inserting it into the
-              model's context before it generates an answer. Instead of relying only on what the model learned during
-              training, a fixed and eventually outdated snapshot, RAG grounds each response in specific, current, and
-              verifiable source content, making answers more accurate, current, and traceable back to a source document.
-            </p>
+          <div class="card" style="padding:20px"><span class="n">STEP 2</span>
+            <h3 style="font-size:.98rem">Query embedded</h3>
+            <p style="font-size:.84rem">Converted into a numerical embedding capturing its meaning.</p>
+          </div>
+          <div class="card" style="padding:20px"><span class="n">STEP 3</span>
+            <h3 style="font-size:.98rem">Vector search</h3>
+            <p style="font-size:.84rem">The system finds the most relevant chunks in a vector database.</p>
+          </div>
+          <div class="card" style="padding:20px"><span class="n">STEP 4</span>
+            <h3 style="font-size:.98rem">Context inserted</h3>
+            <p style="font-size:.84rem">Retrieved content joins the query in the LLM's context window.</p>
+          </div>
+          <div class="card" style="padding:20px"><span class="n build">STEP 5</span>
+            <h3 style="font-size:.98rem">Grounded answer</h3>
+            <p style="font-size:.84rem">The LLM generates a response with sources available to cite.</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- ================= HOW RAG WORKS ================= -->
-      <section class="soft" id="how-it-works">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">Step by step</p>
-            <h2>How RAG works</h2>
-            <p>The same five-step pipeline animating in the signature panel above, applied to your own documents.</p>
+    <div class="rule"></div>
+
+    <!-- ================= RAG vs LLM vs FINE-TUNING ================= -->
+    <section id="comparison">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">The decision</p>
+          <h2>RAG vs plain LLM vs fine-tuning</h2>
+          <p>These are frequently combined: a fine-tuned model for task-specific behavior, grounded by RAG for current
+            or proprietary data access.</p>
+        </div>
+        <div class="tablewrap reveal">
+          <table>
+            <thead>
+              <tr>
+                <th>Factor</th>
+                <th>Plain LLM</th>
+                <th class="col-me">RAG</th>
+                <th>Fine-tuning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Knowledge source</th>
+                <td>Fixed training data</td>
+                <td class="col-me">Training data plus live retrievable content</td>
+                <td>Training data plus new task-specific behavior</td>
+              </tr>
+              <tr>
+                <th scope="row">Update process</th>
+                <td>Requires retraining</td>
+                <td class="col-me">Add or update documents, no retraining</td>
+                <td>Requires retraining on new examples</td>
+              </tr>
+              <tr>
+                <th scope="row">Best for</th>
+                <td>General knowledge tasks</td>
+                <td class="col-me">Domain-specific, current, or private data access</td>
+                <td>Changing model style, tone, or task behavior</td>
+              </tr>
+              <tr>
+                <th scope="row">Traceability</th>
+                <td>No source citation</td>
+                <td class="col-me">Can cite exact source document</td>
+                <td>No source citation</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SERVICES ================= -->
+    <section class="soft" id="services">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">What I build</p>
+          <h2>RAG development services</h2>
+          <p>Each layer of a production RAG pipeline, built and tested as its own verifiable stage.</p>
+        </div>
+        <div class="grid g3 reveal">
+          <div class="card"><span class="n build">BUILD</span>
+            <h3>Document ingestion &amp; chunking</h3>
+            <p>Building the pipeline that prepares your source content, PDFs, wikis, databases, support tickets, into
+              properly chunked, retrievable pieces. This step determines the ceiling on everything downstream.</p>
           </div>
-          <div class="grid g3 reveal" style="grid-template-columns:repeat(5,1fr)">
-            <div class="card" style="padding:20px"><span class="n">STEP 1</span>
-              <h3 style="font-size:.98rem">Query submitted</h3>
-              <p style="font-size:.84rem">A user asks a question in natural language.</p>
-            </div>
-            <div class="card" style="padding:20px"><span class="n">STEP 2</span>
-              <h3 style="font-size:.98rem">Query embedded</h3>
-              <p style="font-size:.84rem">Converted into a numerical embedding capturing its meaning.</p>
-            </div>
-            <div class="card" style="padding:20px"><span class="n">STEP 3</span>
-              <h3 style="font-size:.98rem">Vector search</h3>
-              <p style="font-size:.84rem">The system finds the most relevant chunks in a vector database.</p>
-            </div>
-            <div class="card" style="padding:20px"><span class="n">STEP 4</span>
-              <h3 style="font-size:.98rem">Context inserted</h3>
-              <p style="font-size:.84rem">Retrieved content joins the query in the LLM's context window.</p>
-            </div>
-            <div class="card" style="padding:20px"><span class="n build">STEP 5</span>
-              <h3 style="font-size:.98rem">Grounded answer</h3>
-              <p style="font-size:.84rem">The LLM generates a response with sources available to cite.</p>
-            </div>
+          <div class="card"><span class="n build">BUILD</span>
+            <h3>Vector database architecture</h3>
+            <p>Selecting and configuring the right vector store (Pinecone, Weaviate, Qdrant, FAISS, pgvector) for your
+              scale, latency, and hosting requirements.</p>
+          </div>
+          <div class="card"><span class="n build">BUILD</span>
+            <h3>Retrieval engineering</h3>
+            <p>Building the retrieval layer: hybrid search (semantic plus keyword), metadata filtering, and reranking
+              to maximize the relevance of what gets passed to the LLM.</p>
+          </div>
+          <div class="card"><span class="n build">BUILD</span>
+            <h3>Generation &amp; guardrails</h3>
+            <p>Configuring the generation layer with grounding constraints, defensive fallback behavior, and
+              confidence thresholds so the system says "I do not know" instead of guessing.</p>
+          </div>
+          <div class="card"><span class="n advise">EVALUATE</span>
+            <h3>RAG evaluation</h3>
+            <p>Testing retrieval and generation quality against your real queries using RAGAS, DeepEval, or a custom
+              evaluation set, with results shared transparently before launch.</p>
+          </div>
+          <div class="card"><span class="n build">BUILD</span>
+            <h3>Production deployment</h3>
+            <p>Deploying the full RAG pipeline as a versioned, monitored API integrated with your product or internal
+              tools.</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <div class="rule"></div>
+    <div class="rule"></div>
 
-      <!-- ================= RAG vs LLM vs FINE-TUNING ================= -->
-      <section id="comparison">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">The decision</p>
-            <h2>RAG vs plain LLM vs fine-tuning</h2>
-            <p>These are frequently combined: a fine-tuned model for task-specific behavior, grounded by RAG for current
-              or proprietary data access.</p>
+    <!-- ================= WHY BUSINESSES NEED RAG ================= -->
+    <section id="why">
+      <div class="wrap">
+        <div class="grid g2 reveal">
+          <div class="sec-head" style="margin-bottom:0">
+            <p class="eyebrow">Why it matters</p>
+            <h2>Why businesses need RAG</h2>
+            <p>A plain LLM has no access to your private,
+              proprietary, or real-time information, and will either say it does not know or generate a
+              plausible-sounding but incorrect answer. RAG solves this directly by giving the model exactly the
+              information it needs, retrieved fresh at query time, without the cost and delay of retraining the model
+              every time your underlying information changes.</p>
           </div>
-          <div class="tablewrap reveal">
-            <table>
-              <thead>
-                <tr>
-                  <th>Factor</th>
-                  <th>Plain LLM</th>
-                  <th class="col-me">RAG</th>
-                  <th>Fine-tuning</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Knowledge source</th>
-                  <td>Fixed training data</td>
-                  <td class="col-me">Training data plus live retrievable content</td>
-                  <td>Training data plus new task-specific behavior</td>
-                </tr>
-                <tr>
-                  <th scope="row">Update process</th>
-                  <td>Requires retraining</td>
-                  <td class="col-me">Add or update documents, no retraining</td>
-                  <td>Requires retraining on new examples</td>
-                </tr>
-                <tr>
-                  <th scope="row">Best for</th>
-                  <td>General knowledge tasks</td>
-                  <td class="col-me">Domain-specific, current, or private data access</td>
-                  <td>Changing model style, tone, or task behavior</td>
-                </tr>
-                <tr>
-                  <th scope="row">Traceability</th>
-                  <td>No source citation</td>
-                  <td class="col-me">Can cite exact source document</td>
-                  <td>No source citation</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="card" style="align-self:start">
+            <span class="n">COMMON APPLICATIONS</span>
+            <h3 style="margin-bottom:4px">Where I've built RAG systems</h3>
+            <ul>
+              <li>Customer support chatbots grounded in product documentation and policies</li>
+              <li>Internal knowledge assistants for employee Q&amp;A over wikis and HR policies</li>
+              <li>Healthcare AI assistants grounded in clinical guidelines &mdash; <a href="/rag-chatbot-healthcare"
+                  style="font-weight:600">see the healthcare page</a></li>
+              <li>Legal and compliance research tools citing specific clauses or precedents</li>
+              <li>Ecommerce product Q&amp;A answering from a live product catalog</li>
+              <li>Enterprise search surfacing answers, not just links, across large repositories</li>
+            </ul>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- ================= SERVICES ================= -->
-      <section class="soft" id="services">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">What I build</p>
-            <h2>RAG development services</h2>
-            <p>Each layer of a production RAG pipeline, built and tested as its own verifiable stage.</p>
-          </div>
-          <div class="grid g3 reveal">
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Document ingestion &amp; chunking</h3>
-              <p>Building the pipeline that prepares your source content, PDFs, wikis, databases, support tickets, into
-                properly chunked, retrievable pieces. This step determines the ceiling on everything downstream.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Vector database architecture</h3>
-              <p>Selecting and configuring the right vector store (Pinecone, Weaviate, Qdrant, FAISS, pgvector) for your
-                scale, latency, and hosting requirements.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Retrieval engineering</h3>
-              <p>Building the retrieval layer: hybrid search (semantic plus keyword), metadata filtering, and reranking
-                to maximize the relevance of what gets passed to the LLM.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Generation &amp; guardrails</h3>
-              <p>Configuring the generation layer with grounding constraints, defensive fallback behavior, and
-                confidence thresholds so the system says "I do not know" instead of guessing.</p>
-            </div>
-            <div class="card"><span class="n advise">EVALUATE</span>
-              <h3>RAG evaluation</h3>
-              <p>Testing retrieval and generation quality against your real queries using RAGAS, DeepEval, or a custom
-                evaluation set, with results shared transparently before launch.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Production deployment</h3>
-              <p>Deploying the full RAG pipeline as a versioned, monitored API integrated with your product or internal
-                tools.</p>
-            </div>
-          </div>
+    <!-- ================= PROCESS ================= -->
+    <section class="soft" id="process">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">How it gets built</p>
+          <h2>Process</h2>
         </div>
-      </section>
+        <div class="steps reveal">
+          <details class="step" open>
+            <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
+              <h3>Discovery</h3><span class="cv">+</span>
+            </summary>
+            <div class="body">Understanding your data sources, use case, and what "accurate" needs to mean for your
+              application.</div>
+          </details>
+          <details class="step">
+            <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
+              <h3>Architecture spec</h3><span class="cv">+</span>
+            </summary>
+            <div class="body">A written technical spec covering retrieval strategy, vector database choice, and
+              guardrail design, delivered within 48 hours.</div>
+          </details>
+          <details class="step gate">
+            <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
+              <h3>Build in milestones</h3><span class="cv">+</span>
+            </summary>
+            <div class="body">Ingestion, retrieval, generation, and guardrails built and tested as separate,
+              verifiable stages.</div>
+          </details>
+          <details class="step">
+            <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
+              <h3>Evaluation</h3><span class="cv">+</span>
+            </summary>
+            <div class="body">Testing against real queries with transparent results before launch.</div>
+          </details>
+          <details class="step">
+            <summary><span class="num">PHASE 05<span class="days">30 days plus</span></span>
+              <h3>Deployment &amp; support</h3><span class="cv">+</span>
+            </summary>
+            <div class="body">Production deployment with monitoring and a post-launch support window.</div>
+          </details>
+        </div>
+      </div>
+    </section>
 
-      <div class="rule"></div>
+    <div class="rule"></div>
 
-      <!-- ================= WHY BUSINESSES NEED RAG ================= -->
-      <section id="why">
-        <div class="wrap">
-          <div class="grid g2 reveal">
-            <div class="sec-head" style="margin-bottom:0">
-              <p class="eyebrow">Why it matters</p>
-              <h2>Why businesses need RAG</h2>
-              <p>A plain LLM has no access to your private,
-                proprietary, or real-time information, and will either say it does not know or generate a
-                plausible-sounding but incorrect answer. RAG solves this directly by giving the model exactly the
-                information it needs, retrieved fresh at query time, without the cost and delay of retraining the model
-                every time your underlying information changes.</p>
+    <!-- ================= PRICING ================= -->
+    <section id="pricing">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Investment</p>
+          <h2>Engagement Options</h2>
+        </div>
+        <div class="tablewrap reveal">
+          <table>
+            <thead>
+              <tr>
+                <th>Engagement type</th>
+                <th class="col-me">What's included</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>RAG proof-of-concept <span class="badge-free"
+                    style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span>
+                </td>
+                <td class="col-me">Baseline retrieval pipeline on a data sample, evaluation report</td>
+              </tr>
+              <tr class="me-row">
+                <td>Production RAG system</td>
+                <td class="col-me">Full pipeline, guardrails, deployment, documentation</td>
+              </tr>
+              <tr>
+                <td>RAG system audit</td>
+                <td class="col-me">Diagnose and improve an underperforming existing system</td>
+              </tr>
+              <tr>
+                <td>Hourly consulting</td>
+                <td class="col-me">Architecture review, retrieval strategy design</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Retrieval-grounded systems
+          delivered include the AI Customer Feedback Classification pipeline and AI Video Summarizer. Full case
+          studies at <a href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="soft" id="faq">
+      <div class="wrap">
+        <div class="sec-head center reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2>Frequently asked questions</h2>
+        </div>
+        <div class="faq reveal">
+          <details open>
+            <summary>What does RAG stand for?</summary>
+            <div class="a">RAG stands for retrieval-augmented generation, an AI architecture that retrieves relevant
+              information before an LLM generates its response, rather than relying only on the model's training data.
             </div>
-            <div class="card" style="align-self:start">
-              <span class="n">COMMON APPLICATIONS</span>
-              <h3 style="margin-bottom:4px">Where I've built RAG systems</h3>
-              <ul>
-                <li>Customer support chatbots grounded in product documentation and policies</li>
-                <li>Internal knowledge assistants for employee Q&amp;A over wikis and HR policies</li>
-                <li>Healthcare AI assistants grounded in clinical guidelines &mdash; <a href="/rag-chatbot-healthcare"
-                    style="font-weight:600">see the healthcare page</a></li>
-                <li>Legal and compliance research tools citing specific clauses or precedents</li>
-                <li>Ecommerce product Q&amp;A answering from a live product catalog</li>
-                <li>Enterprise search surfacing answers, not just links, across large repositories</li>
-              </ul>
-            </div>
-          </div>
+          </details>
+          <details>
+            <summary>Is RAG the same as fine-tuning?</summary>
+            <div class="a">No. Fine-tuning changes a model's weights through additional training. RAG retrieves
+              external information and adds it to the model's context at query time without changing the model. They
+              solve different problems and are often used together.</div>
+          </details>
+          <details>
+            <summary>Does RAG eliminate AI hallucination?</summary>
+            <div class="a">RAG significantly reduces hallucination, typically 60 to 80% versus a bare LLM, by
+              grounding responses in retrieved content, but does not eliminate it entirely. Guardrails and confidence
+              thresholds are layered on top in every production system I build.</div>
+          </details>
+          <details>
+            <summary>How much does RAG development cost?</summary>
+            <div class="a">A proof-of-concept starts at $1,500 to $4,000. A full production RAG system ranges from
+              $8,000 to $30,000 depending on complexity and data volume. Contact for a fixed-price estimate specific
+              to your use case.</div>
+          </details>
+          <details>
+            <summary>How long does it take to build a RAG system?</summary>
+            <div class="a">A proof-of-concept typically takes 2 to 4 weeks. A full production system with guardrails,
+              evaluation, and deployment typically takes 4 to 10 weeks depending on data complexity and integration
+              scope.</div>
+          </details>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- ================= PROCESS ================= -->
-      <section class="soft" id="process">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">How it gets built</p>
-            <h2>Process</h2>
-          </div>
-          <div class="steps reveal">
-            <details class="step" open>
-              <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
-                <h3>Discovery</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Understanding your data sources, use case, and what "accurate" needs to mean for your
-                application.</div>
-            </details>
-            <details class="step">
-              <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
-                <h3>Architecture spec</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">A written technical spec covering retrieval strategy, vector database choice, and
-                guardrail design, delivered within 48 hours.</div>
-            </details>
-            <details class="step gate">
-              <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
-                <h3>Build in milestones</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Ingestion, retrieval, generation, and guardrails built and tested as separate,
-                verifiable stages.</div>
-            </details>
-            <details class="step">
-              <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
-                <h3>Evaluation</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Testing against real queries with transparent results before launch.</div>
-            </details>
-            <details class="step">
-              <summary><span class="num">PHASE 05<span class="days">30 days plus</span></span>
-                <h3>Deployment &amp; support</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Production deployment with monitoring and a post-launch support window.</div>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <div class="rule"></div>
-
-      <!-- ================= PRICING ================= -->
-      <section id="pricing">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">Investment</p>
-            <h2>Engagement Options</h2>
-          </div>
-          <div class="tablewrap reveal">
-            <table>
-              <thead>
-                <tr>
-                  <th>Engagement type</th>
-                  <th class="col-me">What's included</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>RAG proof-of-concept <span class="badge-free" style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span></td>
-                  <td class="col-me">Baseline retrieval pipeline on a data sample, evaluation report</td>
-                </tr>
-                <tr class="me-row">
-                  <td>Production RAG system</td>
-                  <td class="col-me">Full pipeline, guardrails, deployment, documentation</td>
-                </tr>
-                <tr>
-                  <td>RAG system audit</td>
-                  <td class="col-me">Diagnose and improve an underperforming existing system</td>
-                </tr>
-                <tr>
-                  <td>Hourly consulting</td>
-                  <td class="col-me">Architecture review, retrieval strategy design</td>                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Retrieval-grounded systems
-            delivered include the AI Customer Feedback Classification pipeline and AI Video Summarizer. Full case
-            studies at <a href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
-        </div>
-      </section>
-
-      <!-- ================= FAQ ================= -->
-      <section class="soft" id="faq">
-        <div class="wrap">
-          <div class="sec-head center reveal">
-            <p class="eyebrow">FAQ</p>
-            <h2>Frequently asked questions</h2>
-          </div>
-          <div class="faq reveal">
-            <details open>
-              <summary>What does RAG stand for?</summary>
-              <div class="a">RAG stands for retrieval-augmented generation, an AI architecture that retrieves relevant
-                information before an LLM generates its response, rather than relying only on the model's training data.
-              </div>
-            </details>
-            <details>
-              <summary>Is RAG the same as fine-tuning?</summary>
-              <div class="a">No. Fine-tuning changes a model's weights through additional training. RAG retrieves
-                external information and adds it to the model's context at query time without changing the model. They
-                solve different problems and are often used together.</div>
-            </details>
-            <details>
-              <summary>Does RAG eliminate AI hallucination?</summary>
-              <div class="a">RAG significantly reduces hallucination, typically 60 to 80% versus a bare LLM, by
-                grounding responses in retrieved content, but does not eliminate it entirely. Guardrails and confidence
-                thresholds are layered on top in every production system I build.</div>
-            </details>
-            <details>
-              <summary>How much does RAG development cost?</summary>
-              <div class="a">A proof-of-concept starts at $1,500 to $4,000. A full production RAG system ranges from
-                $8,000 to $30,000 depending on complexity and data volume. Contact for a fixed-price estimate specific
-                to your use case.</div>
-            </details>
-            <details>
-              <summary>How long does it take to build a RAG system?</summary>
-              <div class="a">A proof-of-concept typically takes 2 to 4 weeks. A full production system with guardrails,
-                evaluation, and deployment typically takes 4 to 10 weeks depending on data complexity and integration
-                scope.</div>
-            </details>
-          </div>
-        </div>
-      </section>
-
-    </main>
+  </main>
 
   <script>
     (function () {
@@ -2108,7 +2111,7 @@
       });
     })();
 
- 
+
     (function () {
       var page = document.querySelector('.svcp');
       var canvas = document.getElementById('sigcanvas'), ctx = canvas.getContext('2d');

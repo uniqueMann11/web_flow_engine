@@ -2,49 +2,49 @@
   "services": {
     "sec-head": {
       "eyebrow": "What I build",
-      "h2": "RAG vs long context strategy services",
-      "p": "Architecture assessments and implementations matched to your cost, accuracy, and freshness requirements."
+      "h2": "Search paradigm comparison services",
+      "p": "What I build to clarify when semantic, keyword, or hybrid search fits your retrieval needs."
     },
     "grid g3": [
       {
         "card": {
           "n": "CONSULT",
-          "h3": "RAG vs long context assessment",
-          "p": "An independent architecture evaluation comparing retrieval-augmented generation and extended context windows, resulting in a written recommendation with cost projections and accuracy benchmarks for your specific use case."
+          "h3": "Search architecture consulting",
+          "p": "An independent audit of your search requirements and data characteristics, resulting in a written recommendation: semantic, keyword, hybrid, or a custom combination with benchmarks."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "RAG system development",
-          "p": "Retrieval-first builds with hierarchical chunking, auto-merging retrieval, and query synthesis for applications where sub-second latency, low cost per query, and real-time data freshness are critical."
+          "h3": "Semantic search system development",
+          "p": "Embedding-based retrieval with vector databases: dense passage indexing, approximate nearest neighbor search, and relevance scoring for understanding user intent beyond exact matches."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Long context window integration",
-          "p": "Implementation of million-token context systems using models like Gemini 1.5 Pro, optimized for single-document analysis and tasks where retrieval overhead is unacceptable."
+          "h3": "Keyword & full-text search pipelines",
+          "p": "BM25 and inverted index implementations: tokenization, stemming, stop-word handling, and ranked retrieval for precise term-matching scenarios like legal or technical documentation."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Hybrid RAG-long context architecture",
-          "p": "A tiered system combining long context windows for primary document analysis with RAG for secondary retrieval, balancing cost and accuracy across diverse data sources."
+          "h3": "Hybrid search (semantic + keyword)",
+          "p": "Reciprocal rank fusion (RRF) or weighted blending of semantic and keyword results, balancing intent understanding with exact-match precision, configurable per query type."
         }
       },
       {
         "card": {
           "n": "AUDIT",
-          "h3": "Cost and accuracy optimization audit",
-          "p": "Assessment of your existing pipeline to identify where long context windows or RAG can reduce costs by 30-60% while maintaining or improving answer accuracy and freshness."
+          "h3": "Search failure analysis & rectification",
+          "p": "Systematic diagnosis of search failures: identifying when semantic search misses critical keywords or keyword search misses synonyms, then building hybrid mitigations."
         }
       },
       {
         "card cta-card": {
-          "h3": "Unsure which fits your data?",
-          "p": "Use the cost calculator above or book a scoping session.",
+          "h3": "Uncertain which search method?",
+          "p": "Run the quick fit-check above, or let's scope it properly.",
           "btn-primary": {
             "text": "Get a recommendation",
             "url": "#lets-talk"
@@ -56,30 +56,30 @@
   "where-wins": {
     "sec-head": {
       "eyebrow": "The honest breakdown",
-      "h2": "RAG vs long context: where each wins"
+      "h2": "Where each search method wins"
     },
     "grid g2": [
       {
         "card": {
-          "n": "RAG WINS WHEN",
-          "h3": "Cost and freshness are critical",
+          "n": "SEMANTIC SEARCH WINS WHEN",
+          "h3": "Understanding intent trumps exact terms",
           "ul": [
-            "You need sub-second query latency: RAG retrieves only relevant chunks, avoiding the 3-10 second prefill delay of million-token contexts",
-            "Your data changes hourly: RAG indexes can be updated incrementally for pennies per update, while long context windows require full re-ingestion at $0.50-$2.00 per million tokens",
-            "Accuracy on multi-document synthesis: RAG with hierarchical retrieval achieves 15-25% better F1 scores on datasets like QASPER and HotpotQA compared to raw long context models",
-            "Budget is a constraint: RAG costs $0.01-$0.10 per query versus $0.20-$1.00 for processing a million-token context window"
+            "User queries use synonyms, paraphrases, or natural language: semantic search captures meaning with 15-30% better recall than keyword-only approaches",
+            "High query variability: embedding similarity handles diverse phrasings without manual synonym expansion",
+            "Sparse keyword matches lead to zero results: semantic search retrieves relevant documents even when no exact terms align",
+            "You need to surface conceptually related content, not just literal matches, for discovery or recommendation use cases"
           ]
         }
       },
       {
         "card": {
-          "n": "LONG CONTEXT WINS WHEN",
-          "h3": "Simplicity and single-document depth matter",
+          "n": "KEYWORD SEARCH WINS WHEN",
+          "h3": "Precise terms define relevance",
           "ul": [
-            "You are analyzing a single long document (e.g., a 500-page contract, a codebase, a research paper): no retrieval infrastructure needed, just prompt engineering",
-            "Latency is acceptable at 5-15 seconds for first token: long context windows eliminate retrieval hops, reducing end-to-end complexity",
-            "You need perfect recall of document structure: models like Gemini 1.5 Pro achieve 99.7% recall on the 'needle in a haystack' test for contexts up to 1 million tokens",
-            "Your team lacks retrieval engineering expertise: long context windows reduce the stack to model + prompt, cutting development time by 40-60%"
+            "Searching for unique identifiers, codes, or proper nouns: BM25 achieves near-perfect precision for specific terms like part numbers or legal citations",
+            "Domain-specific jargon or rare terms: keyword search directly matches without embedding noise or dilution from vector similarity",
+            "Low-latency requirements: inverted index lookups are 2-5x faster than embedding generation + ANN search",
+            "Hybrid search is essential when both fail: RRF blending yields 20-30% higher NDCG@10 on diverse query sets compared to either method alone"
           ]
         }
       }

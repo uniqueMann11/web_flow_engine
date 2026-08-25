@@ -11,7 +11,7 @@
 <meta content="website" property="og:type"/>
 <meta content="Shreyans Padmani" property="og:site_name"/>
 <meta content="en_US" property="og:locale"/>
-<meta content="Choosing between GPT-4 and Claude determines your per-task cost, context window limits, and production reliability. I evaluate both models task-by-task—coding, reasoning, summarization—and recommend based on actual performance and cost, not hype. You get an honest, data-driven recommendation before any integration begins." name="description"/>
+<meta content="Choosing between LangChain and LlamaIndex determines how much you spend, how fast it ships, and how well it performs in production. I build with both frameworks and pick the right one, or the right combination, based on your actual retrieval and orchestration needs, not a default toolkit." name="description"/>
 <meta content="GPT-4 vs Claude, Claude vs GPT comparison, enterprise LLM choice" name="keywords"/>
 <link href="https://shreyans.tech/gpt-4-vs-claude-for-enterprise-apps" rel="canonical"/>
 <meta content="GPT-4 vs Claude for Enterprise Apps" property="og:title"/>
@@ -71,42 +71,42 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Is GPT-4 better than Claude for code generation?",
+          "name": "Is LlamaIndex better than LangChain for RAG?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "GPT-4 generally excels at multi-language code generation and debugging due to broader training data, while Claude is strong for complex code reasoning and explanation tasks. The best choice depends on your specific language stack and whether you prioritize output speed or detailed analysis."
+            "text": "For pure retrieval-augmented generation over document corpora, LlamaIndex is generally the stronger choice: its default chunking, metadata filtering, and reranking are more production-calibrated out of the box. For RAG as part of a broader agent system, LangChain remains the stronger foundation."
           }
         },
         {
           "@type": "Question",
-          "name": "Which model has a larger context window?",
+          "name": "Can you build with both frameworks in one project?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Claude offers a 200K token context window, significantly larger than GPT-4's 32K or 128K options, making Claude the better choice for processing large documents or long conversation histories. However, GPT-4 remains more cost-effective for tasks under 32K tokens."
+            "text": "Yes, this is the most common production pattern I build in 2026: LlamaIndex handling retrieval, wrapped as a tool inside a LangGraph agent for orchestration. This combines the strengths of both rather than forcing one framework to do both jobs."
           }
         },
         {
           "@type": "Question",
-          "name": "How do costs compare between GPT-4 and Claude for enterprise apps?",
+          "name": "How do you decide which framework to recommend?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "GPT-4 is generally more expensive per token for both input and output, though pricing varies by tier and volume. Claude offers lower per-token costs, especially for long-context tasks, making it a more budget-friendly option for high-volume applications."
+            "text": "Based on where your hardest problem actually lives: if it is retrieval quality over a messy document corpus, LlamaIndex. If it is multi-step agent behavior, tool use, or memory, LangChain and LangGraph. The framework recommendation is delivered in writing with the reasoning, as part of the discovery process, before any build work begins."
           }
         },
         {
           "@type": "Question",
-          "name": "Can I use both GPT-4 and Claude in one application?",
+          "name": "Do I need a LangChain agency or can a freelance consultant handle this?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, a dual-model architecture routes tasks to the best-suited model—GPT-4 for code generation and Claude for long-document analysis—optimizing both performance and cost. This is a common production pattern for complex enterprise apps."
+            "text": "Most RAG and agent projects, a specific pipeline, agent, or integration, are well within scope for a single experienced developer working directly with you. An agency's advantage shows up on large, multi-disciplinary product builds needing several specialists in parallel, not on the RAG/LangChain engineering itself."
           }
         },
         {
           "@type": "Question",
-          "name": "How do I decide between GPT-4 and Claude for my enterprise app?",
+          "name": "How much does RAG framework development cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The decision hinges on your primary task: choose GPT-4 for code generation and structured outputs, or Claude for long-context analysis and cost-sensitive workloads. A written recommendation with reasoning is delivered as part of the discovery process."
+            "text": "A framework selection consultation runs $500 to $1,500. A full LlamaIndex or LangChain build ranges from $8,000 to $30,000+ depending on complexity. A hybrid architecture combining both frameworks typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use case."
           }
         }
       ]
@@ -114,7 +114,7 @@
   ]
 }</script>
 <style>
-    .svcp {
+    :root, .svcp {
       --ink: #0A1222;
       --ink-soft: #1B2740;
       --body: #48566E;
@@ -241,13 +241,13 @@
       margin: 0 0 16px
     }
 
-    .svcp .eyebrow::before {
+    /* .svcp .eyebrow::before {
       content: "";
       width: 26px;
       height: 2px;
       border-radius: 2px;
       background: linear-gradient(90deg, var(--blue), var(--violet))
-    }
+    } */
 
     .svcp .sec-head {
       max-width: 760px;
@@ -352,7 +352,7 @@
       display: grid;
       grid-template-columns: 1.05fr .95fr;
       gap: 52px;
-      align-items: start
+      align-items: center
     }
 
     .svcp .hero .eyebrow {
@@ -1697,62 +1697,7 @@
         transform: none
       }
     }
-  
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--bodyf);background:#F0F4FA;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-.vw-card{width:100%;max-width:520px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh-lg);overflow:hidden;display:flex;flex-direction:column}
-.vw-top{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line-soft);gap:8px}
-.vw-top .t{font-family:var(--disp);font-size:0.85rem;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:7px;line-height:1.3}
-.vw-top .t svg{width:15px;height:15px;flex-shrink:0}
-.vw-top .t svg .blue{color:var(--blue)}
-.vw-top .t svg .violet{color:var(--violet)}
-.vw-badge{font-family:var(--mono);font-size:0.6rem;font-weight:600;padding:3px 10px;border-radius:6px;background:var(--tint);color:var(--blue);border:1px solid var(--line);white-space:nowrap;letter-spacing:0.01em}
-.vw-body{padding:14px 18px 12px;display:flex;flex-direction:column;gap:12px}
-.vw-tabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
-.vw-tab-btn{background:var(--soft);border:1px solid var(--line);border-radius:var(--r-sm);padding:6px 4px;font-family:var(--mono);font-size:0.62rem;font-weight:600;color:var(--muted);cursor:pointer;text-align:center;transition:all 0.15s;letter-spacing:-0.01em;line-height:1.4}
-.vw-tab-btn:hover{border-color:var(--blue);color:var(--ink)}
-.vw-tab-btn.active{background:var(--blue-tint);border-color:var(--blue);color:var(--blue-strong)}
-.vw-compare{display:flex;flex-direction:column;gap:10px}
-.vw-metric{display:flex;flex-direction:column;gap:3px}
-.vw-metric-label{display:flex;justify-content:space-between;align-items:center;font-size:0.65rem;font-weight:600;color:var(--body);padding:0 2px;font-family:var(--bodyf);letter-spacing:0.01em;text-transform:uppercase}
-.vw-metric-label span:last-child{font-weight:400;color:var(--muted);font-size:0.6rem;text-transform:none}
-.vw-model-row{display:flex;align-items:center;gap:5px;padding:2px 0}
-.vw-model-name{font-family:var(--mono);font-size:0.6rem;font-weight:600;width:44px;flex-shrink:0;text-align:right;letter-spacing:-0.01em}
-.vw-model-name.gpt{color:var(--blue)}
-.vw-model-name.claude{color:var(--violet)}
-.vw-bar-wrap{flex:1;height:10px;background:var(--line-soft);border-radius:5px;overflow:hidden;position:relative}
-.vw-bar{height:100%;border-radius:5px;transition:width 0.5s cubic-bezier(0.22,1,0.36,1);min-width:2%}
-.vw-bar.gpt{background:linear-gradient(90deg,var(--blue),var(--blue-strong))}
-.vw-bar.claude{background:linear-gradient(90deg,var(--violet),#5a4ad6)}
-.vw-metric-val{font-family:var(--mono);font-size:0.62rem;font-weight:600;width:52px;flex-shrink:0;text-align:right;color:var(--ink);letter-spacing:-0.01em}
-.vw-summary{background:var(--soft);border:1px solid var(--line);border-radius:var(--r-sm);padding:8px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:2px}
-.vw-summary-left{display:flex;align-items:center;gap:7px}
-.vw-summary-icon{width:18px;height:18px;flex-shrink:0}
-.vw-summary-text{font-size:0.72rem;font-weight:600;color:var(--ink);line-height:1.4}
-.vw-summary-text small{display:block;font-weight:400;color:var(--muted);font-size:0.62rem;margin-top:1px}
-.vw-summary-chip{font-family:var(--mono);font-size:0.6rem;font-weight:600;padding:3px 9px;border-radius:6px;white-space:nowrap;flex-shrink:0}
-.vw-foot{display:flex;align-items:center;justify-content:space-between;padding:9px 18px;border-top:1px solid var(--line-soft);background:var(--soft);font-size:0.6rem;color:var(--muted);gap:8px;flex-wrap:wrap}
-.vw-foot span{display:flex;align-items:center;gap:5px}
-.vw-foot svg{width:12px;height:12px;flex-shrink:0;color:var(--muted)}
-@media(max-width:480px){
-.vw-top .t{font-size:0.78rem}
-.vw-tab-btn{font-size:0.55rem;padding:5px 3px}
-.vw-model-name{width:38px;font-size:0.55rem}
-.vw-metric-val{width:44px;font-size:0.55rem}
-.vw-summary-text{font-size:0.65rem}
-.vw-summary-text small{font-size:0.55rem}
-.vw-body{padding:10px 14px 8px;gap:10px}
-.vw-top{padding:10px 14px}
-.vw-foot{padding:7px 14px;font-size:0.55rem}
-}
-@media(max-width:380px){
-.vw-model-name{width:32px;font-size:0.5rem}
-.vw-metric-val{width:38px;font-size:0.5rem}
-.vw-tab-btn{font-size:0.5rem;padding:4px 2px}
-.vw-top .t{font-size:0.7rem}
-.vw-metric-label{font-size:0.58rem}
-}
-</style>
+  </style>
 </head>
 <body>
 <main class="svcp">
@@ -1761,94 +1706,70 @@ body{font-family:var(--bodyf);background:#F0F4FA;min-height:100vh;display:flex;a
 <div class="wrap">
 <div class="hero-grid">
 <div>
-<p class="eyebrow">The honest comparison, built on tasks</p>
-<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">GPT-4 vs Claude for enterprise apps: <span>the right enterprise LLM</span></h1>
-<p class="hero-sub">Choosing between GPT-4 and Claude determines your per-task cost, context window limits, and production reliability. I evaluate both models task-by-task—coding, reasoning, summarization—and recommend based on actual performance and cost, not hype. You get an honest, data-driven recommendation before any integration begins.</p>
+<p class="eyebrow">The right framework, built correctly</p>
+<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">LangChain vs LlamaIndex development services: <span>the right RAG framework</span></h1>
+<p class="hero-sub">Choosing between LangChain and LlamaIndex determines how much you spend, how fast it ships, and how well it performs in production. I build with both frameworks and pick the right one, or the right combination, based on your actual retrieval and orchestration needs, not a default toolkit.</p>
 <div class="creds">
 <div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
 <path d="M12 8v4l3 3"></path>
 <circle cx="12" cy="12" r="9"></circle>
-</svg></span><span class="t"><i>Experience</i><b>5+ yrs LLM production</b></span></div>
+</svg></span><span class="t"><i>Experience</i><b>5+ yrs production RAG</b></span></div>
 <div class="cred"><span class="b" style="background:#6D5EF6" title="Both"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
 <circle cx="9" cy="7" r="4"></circle>
 <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
-</svg></span><span class="t"><i>Coverage</i><b>Both models, tested thoroughly</b></span></div>
+</svg></span><span class="t"><i>Coverage</i><b>Both frameworks, used correctly</b></span></div>
 <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="14">
 <circle cx="12" cy="12" r="10"></circle>
 <path d="M12 6v6l4 2"></path>
-</svg></span><span class="t"><i>Turnaround</i><b>48h task-by-task eval</b></span></div>
+</svg></span><span class="t"><i>Turnaround</i><b>48h architecture rec.</b></span></div>
 </div>
 <div class="hero-cta">
-<a class="btn btn-primary" href="#lets-talk">Get a model recommendation <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+<a class="btn btn-primary" href="#lets-talk">Get a framework recommendation <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
 <path d="M5 12h14M13 6l6 6-6 6"></path>
 </svg></a>
 <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
 </div>
-<p class="live"><span class="pulse"></span> Written recommendation with task-by-task scoring, before any build work begins.</p>
-<div class="trust">
-<div><b data-count="5" data-suffix="+">5+</b><span>Years evaluating LLMs in production</span></div>
-<div><b data-count="40" data-suffix="%">40%</b><span>Cost variance across tasks</span></div>
-<div><b>48h</b><span>To a written recommendation</span></div>
-</div>
+<p class="live"><span class="pulse"></span> Written recommendation with reasoning, before any build work begins</p>
 </div>
 <!-- ===== SIGNATURE: framework fit finder ===== -->
-<div class="viewer"><div class="vw-card">
-<div class="vw-top">
-<span class="t">
-<svg fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 24 24">
-<rect fill="var(--blue-tint)" height="8" rx="1.5" stroke="var(--blue)" width="8" x="3" y="3"></rect>
-<rect fill="var(--violet-tint)" height="8" rx="1.5" stroke="var(--violet)" width="8" x="13" y="3"></rect>
-<rect fill="var(--blue-tint)" height="8" rx="1.5" stroke="var(--blue)" width="8" x="3" y="13"></rect>
-<rect fill="var(--violet-tint)" height="8" rx="1.5" stroke="var(--violet)" width="8" x="13" y="13"></rect>
-</svg>
-      GPT-4 <span style="color:var(--muted);font-weight:400;font-size:0.7rem">vs</span> Claude · Enterprise
-    </span>
-<span class="vw-badge">Task-by-task</span>
+<div class="viewer">
+<div class="viewer-top">
+<span class="t">framework fit, illustrative</span>
+<span class="chip"><span class="d"></span>live</span>
 </div>
-<div class="vw-body">
-<div class="vw-tabs" role="tablist">
-<button class="vw-tab-btn active" data-scenario="code-gen">Code Gen</button>
-<button class="vw-tab-btn" data-scenario="doc-qa">Document QA</button>
-<button class="vw-tab-btn" data-scenario="support">Customer Support</button>
+<canvas aria-label="Illustration contrasting LangChain's agent state graph, with tool calls and conditional loops, against LlamaIndex's hierarchical retrieval tree, with a highlighted retrieved path." id="sigcanvas"></canvas>
+<div aria-label="Framework" class="modesw" role="tablist">
+<button aria-selected="true" data-m="langchain" role="tab" type="button">LangChain (LangGraph)</button>
+<button aria-selected="false" data-m="llamaindex" role="tab" type="button">LlamaIndex</button>
 </div>
-<div class="vw-compare" id="vwCompare">
-<!-- populated by JS -->
+<div aria-label="Project scenario" class="segs" role="tablist">
+<button aria-selected="true" data-d="0" role="tab" type="button">agentic support bot</button>
+<button aria-selected="false" data-d="1" role="tab" type="button">document Q&amp;A</button>
+<button aria-selected="false" data-d="2" role="tab" type="button">legal / code corpus</button>
 </div>
-<div class="vw-summary" id="vwSummary">
-<div class="vw-summary-left">
-<svg class="vw-summary-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
-<path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="var(--amber-tint)" stroke="var(--amber)"></path>
-</svg>
-<div class="vw-summary-text" id="summaryText">
-          GPT-4 recommended for Code Gen
-          <small>Superior code quality and reasoning</small>
+<div class="metrics">
+<div><b id="m1">~14ms</b><span id="m1l">Framework overhead</span></div>
+<div><b id="m2">Baseline</b><span id="m2l">Code volume</span></div>
+<div><b id="m3">500+</b><span id="m3l">Integrations</span></div>
 </div>
+<div class="answerbox">
+<span class="k" id="verdict">FIT CHECK</span>
+<p id="answer"></p>
 </div>
-<span class="vw-summary-chip" id="summaryChip" style="background:var(--blue-tint);color:var(--blue)">GPT-4</span>
+<div class="viewer-foot" id="foot">Pick a scenario, then toggle the framework to see whether it's a strong
+                fit or you'd be fighting the tool.</div>
 </div>
-</div>
-<div class="vw-foot">
-<span>
-<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-      Updated Q3 2024
-    </span>
-<span>
-<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-      Enterprise-grade data
-    </span>
-</div>
-</div></div>
 </div>
 </div>
 </section>
 <!-- ================= COMPLY STRIP ================= -->
 <div class="comply">
 <div class="wrap comply-in">
-<div><span><b>Task-specific evaluation</b>We evaluate GPT-4 and Claude on each task type—coding, reasoning, creative—not on hype.</span></div>
-<div><span><b>Cost transparency</b>We provide real per-token costs at scale, including input caching and batch discounts.</span></div>
-<div><span><b>Context-window aware</b>We account for context window differences (128K vs 200K) and how they affect long-document tasks.</span></div>
-<div><span><b>Honest, not default</b>If your enterprise app doesn't need the complexity of both, we'll recommend the one that fits.</span></div>
+<div><span><b>Both frameworks, done right</b>LangChain, LangGraph, and LlamaIndex, used for what each is actually built for.</span></div>
+<div><span><b>Recommendation in writing</b>A specific framework choice, with the reasoning behind it, before any build begins.</span></div>
+<div><span><b>Hybrid when it earns it</b>LlamaIndex retrieval wrapped as a tool inside a LangGraph agent, the standard 2026 pattern.</span></div>
+<div><span><b>Honest, not default</b>If your project doesn't need the complexity of one framework, I'll say so.</span></div>
 </div>
 </div>
 <!-- ================= WHAT IS ================= -->
@@ -1856,11 +1777,11 @@ body{font-family:var(--bodyf);background:#F0F4FA;min-height:100vh;display:flex;a
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">Plain answer</p>
-<h2>What is GPT-4? What is Claude?</h2>
+<h2>What is LangChain? What is LlamaIndex?</h2>
 </div>
 <div class="tldr reveal">
 <b>Quick answer</b>
-<p>GPT-4 from OpenAI is a multimodal LLM with strong reasoning, coding, and creative writing, priced per token with a 128K context window. Claude from Anthropic is a safety-focused LLM with a 200K context window, excelling in long-context reasoning, structured output, and coding. Both are state-of-the-art, and the choice for enterprise apps depends on task specifics, cost sensitivity, and context requirements.</p>
+<p>LangChain is a broad LLM application framework built around composable chains, agents, tools, and memory, with LangGraph as its production agent orchestration layer. LlamaIndex is a focused data framework for LLMs, purpose-built for ingesting, indexing, and querying document corpora via retrieval-augmented generation. Both are open-source, MIT-licensed, and by 2026 both frameworks handle RAG and agents to some degree, the real choice is about where your project's hardest problem actually lives.</p>
 </div>
 </div>
 </section>
@@ -1870,54 +1791,54 @@ body{font-family:var(--bodyf);background:#F0F4FA;min-height:100vh;display:flex;a
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">The comparison</p>
-<h2>GPT-4 vs Claude: Enterprise LLM Comparison</h2>
+<h2>Framework comparison: LangChain vs LlamaIndex</h2>
 </div>
 <div class="tablewrap reveal">
 <table>
 <thead>
 <tr>
 <th>Factor</th>
-<th class="col-me">GPT-4 (OpenAI)</th>
-<th>Claude (Anthropic)</th>
+<th class="col-me">LangChain (via LangGraph)</th>
+<th>LlamaIndex</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <th scope="row">Primary strength</th>
-<td class="col-me">Broad reasoning, coding, multimodal, large plugin ecosystem</td>
-<td>Long-context precision, safety, structured output, cost efficiency</td>
+<td class="col-me">Multi-step agent orchestration, state, tools, memory</td>
+<td>Retrieval quality: chunking, indexing, query synthesis</td>
 </tr>
 <tr>
 <th scope="row">Best for</th>
-<td class="col-me">General-purpose assistants, multimodal apps, creative tasks</td>
-<td>Long-document analysis, coding, compliance-heavy workflows</td>
+<td class="col-me">Agentic systems where RAG is one component</td>
+<td>Retrieval-first products where document Q&amp;A is the core</td>
 </tr>
 <tr>
-<th scope="row">Task performance (coding)</th>
-<td class="col-me">Strong on Python, JavaScript; good with tool use</td>
-<td>Superior on structured code generation, complex logic, debugging</td>
+<th scope="row">Code volume for equivalent RAG</th>
+<td class="col-me">Baseline</td>
+<td>30 to 40% less code</td>
 </tr>
 <tr>
-<th scope="row">Cost per million tokens</th>
-<td class="col-me">~$10 input, $30 output (GPT-4 Turbo)</td>
-<td>~$8 input, $24 output (Claude 3.5 Sonnet); cheaper Haiku model available</td>
+<th scope="row">Framework overhead</th>
+<td class="col-me">~14ms (LangGraph)</td>
+<td>~6ms</td>
 </tr>
 <tr>
-<th scope="row">Context window</th>
-<td class="col-me">128K tokens</td>
-<td>200K tokens</td>
+<th scope="row">Ecosystem</th>
+<td class="col-me">500+ integrations, most mature agent tooling</td>
+<td>300+ connectors, native document parsing via LlamaParse</td>
 </tr>
 <tr>
-<th scope="row">Ecosystem &amp; API</th>
-<td class="col-me">Extensive plugins, function calling, Vision, DALL-E integration</td>
-<td>Tool use, JSON mode, Computer use, Claude API for enterprise</td>
+<th scope="row">Observability</th>
+<td class="col-me">LangSmith (first-party, paid tiers)</td>
+<td>Typically requires third-party tracing</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="callout reveal">
-<p>The 2026 enterprise reality</p>
-<p>Most production systems use both models: GPT-4 for creative/vision tasks, Claude for long-context coding and document processing. Hybrid patterns are common, routing based on task type and cost. The best enterprise LLM choice is not a single model but a smart orchestration of strengths.</p>
+<p>The 2026 reality</p>
+<p>Most production systems use both together: LlamaIndex handling ingestion, indexing, and retrieval, with LangGraph orchestrating the broader multi-step agent logic around it. This is the standard architecture I build when a project genuinely needs both retrieval quality and agentic behavior.</p>
 </div>
 </div>
 </section>
@@ -1925,34 +1846,34 @@ body{font-family:var(--bodyf);background:#F0F4FA;min-height:100vh;display:flex;a
 <section id="services">
 <div class="wrap">
 <div class="sec-head reveal">
-<p class="eyebrow">What I do</p>
-<h2>Enterprise LLM integration services</h2>
+<p class="eyebrow">What I build</p>
+<h2>RAG framework development services</h2>
 <p>What I build with each framework, matched to what your project actually needs.</p>
 </div>
 <div class="grid g3 reveal">
 <div class="card"><span class="n advise">CONSULT</span>
-<h3>LLM selection consulting</h3>
-<p>Independent assessment of your use case, data, and requirements, resulting in a written recommendation: GPT-4, Claude, or both, with cost and performance rationale.</p>
+<h3>Framework selection consulting</h3>
+<p>An independent architecture assessment of your use case, data, and requirements, resulting in a written recommendation: LangChain, LlamaIndex, or both, with the reasoning behind it.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
-<h3>GPT-4 enterprise integration</h3>
-<p>Custom integration of GPT-4 for your applications: API setup, prompt engineering, fine-tuning, and production deployment with focus on reliability and cost optimization.</p>
+<h3>LlamaIndex RAG development</h3>
+<p>Retrieval-first builds: document ingestion, hierarchical chunking, auto-merging retrieval, and query synthesis for document-heavy applications where answer accuracy from your corpus is the product.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
-<h3>Claude enterprise integration</h3>
-<p>Custom integration of Claude for your applications: API setup, prompt engineering, context window optimization, and deployment with emphasis on safety and long-context tasks.</p>
+<h3>LangChain &amp; LangGraph agent development</h3>
+<p>Multi-step agent systems: tool use, conversational memory, state management, and human-in-the-loop checkpoints for AI that takes actions, not just answers questions.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
-<h3>Hybrid GPT-4 + Claude architecture</h3>
-<p>Leverage both models in a routing system: use GPT-4 for creative tasks, Claude for long-context analysis, and orchestrate based on cost and performance benchmarks.</p>
+<h3>Hybrid architecture (both frameworks)</h3>
+<p>LlamaIndex as the retrieval layer wrapped as a tool inside a LangGraph agent, combining best-in-class retrieval with production-grade orchestration in one system.</p>
 </div>
 <div class="card"><span class="n advise">AUDIT</span>
-<h3>Migration &amp; model audits</h3>
-<p>Assessment and migration support for teams switching between GPT-4 and Claude, or optimizing existing implementations for cost and latency.</p>
+<h3>Migration &amp; framework audits</h3>
+<p>Assessment and migration support for teams that chose the wrong framework early and are hitting friction, or need to add agentic capability to an existing retrieval-only system.</p>
 </div>
 <div class="card cta-card">
-<h3>Not sure which model fits your enterprise?</h3>
-<p>Use the comparison above or get a tailored recommendation.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get a recommendation</a>
+<h3>Not sure which you need?</h3>
+<p>Try the fit-check widget above, or get it scoped properly.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get a recommendation</a>
 </div>
 </div>
 </div>
@@ -1963,27 +1884,27 @@ body{font-family:var(--bodyf);background:#F0F4FA;min-height:100vh;display:flex;a
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">The honest breakdown</p>
-<h2>Where each model wins</h2>
+<h2>Where each framework wins</h2>
 </div>
 <div class="grid g2 reveal">
 <div class="card">
-<span class="n">GPT-4 WINS WHEN</span>
-<h3>Creative generation &amp; complex reasoning</h3>
+<span class="n">LLAMAINDEX WINS WHEN</span>
+<h3>Retrieval quality is the bottleneck</h3>
 <ul>
-<li>Complex creative tasks: GPT-4 excels at generating high-quality human-like text, storytelling, and creative problem-solving.</li>
-<li>Multi-step reasoning: GPT-4 performs better on tasks requiring logical deduction and step-by-step analysis (e.g., math problems, code debugging).</li>
-<li>Cost-effective for short outputs: GPT-4 Turbo costs ~$0.01/1k input and $0.03/1k output, making it cheaper for short prompts compared to Claude's minimum per-token cost.</li>
-<li>Wide ecosystem: GPT-4 has extensive third-party integrations, plugins, and support for tools like embeddings and functions for complex workflows.</li>
+<li>Retrieval quality is the primary bottleneck, not orchestration complexity</li>
+<li>You need complex multi-document reasoning: tree index and response synthesizers produce roughly 10 to 15% better answers on multi-source synthesis benchmarks</li>
+<li>Your documents are hierarchically structured (legal, code, technical manuals): composable indices produce roughly 15 to 25% better answers</li>
+<li>You want to ship faster with less code and lower latency overhead</li>
 </ul>
 </div>
 <div class="card">
-<span class="n build">CLAUDE WINS WHEN</span>
-<h3>Long-context analysis &amp; safety-critical tasks</h3>
+<span class="n build">LANGCHAIN WINS WHEN</span>
+<h3>RAG is one piece of a larger agent</h3>
 <ul>
-<li>Long-context tasks: Claude's 200k token context window handles entire documents, codebases, or conversations without truncation, outperforming GPT-4 on summarization, legal review, and query-answering over long texts.</li>
-<li>Safety and alignment: Claude has stronger safety guardrails and is less prone to generating harmful or biased content, making it preferrable in regulated industries.</li>
-<li>Cost efficiency for long inputs: Claude 3.5 Sonnet costs ~$0.003/1k input and $0.015/1k output, significantly cheaper than GPT-4 Turbo for long prompts that require full context.</li>
-<li>Native document understanding: Claude can analyze uploaded files (PDF, images) directly, simplifying workflows for document-heavy enterprises without additional preprocessing.</li>
+<li>RAG is one component of a larger agentic system, not the whole product</li>
+<li>You need tool use, multi-step reasoning, or persistent memory across a conversation</li>
+<li>Human-in-the-loop checkpoints matter: LangGraph has native checkpointing and interrupt/resume support</li>
+<li>First-party observability (LangSmith) is a requirement, not an afterthought</li>
 </ul>
 </div>
 </div>
@@ -1993,33 +1914,33 @@ body{font-family:var(--bodyf);background:#F0F4FA;min-height:100vh;display:flex;a
 <section id="process">
 <div class="wrap">
 <div class="sec-head reveal">
-<p class="eyebrow">Evaluation process</p>
-<h2>GPT-4 vs Claude engagement</h2>
+<p class="eyebrow">How it gets built</p>
+<h2>Engagement process</h2>
 </div>
 <div class="steps reveal">
 <details class="step" open="">
 <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
 <h3>Discovery</h3><span class="cv">+</span>
 </summary>
-<div class="body">Understanding your enterprise app's specific tasks—code generation, document analysis, or customer support—and the cost constraints that matter.</div>
+<div class="body">Understanding your data, use case, and whether the core challenge is retrieval quality, agentic behavior, or both.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
-<h3>Model recommendation</h3><span class="cv">+</span>
+<h3>Framework recommendation</h3><span class="cv">+</span>
 </summary>
-<div class="body">A written architecture spec with a specific GPT-4 or Claude recommendation and reasoning, delivered within 48 hours.</div>
+<div class="body">A written architecture spec with a specific framework recommendation and reasoning, delivered within 48 hours.</div>
 </details>
 <details class="step gate">
 <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
 <h3>Build</h3><span class="cv">+</span>
 </summary>
-<div class="body">Development in milestones, starting with task-specific prompt engineering and context window optimization, then integration and guardrails.</div>
+<div class="body">Development in milestones, retrieval layer first if applicable, then orchestration and guardrails.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
 <h3>Evaluation</h3><span class="cv">+</span>
 </summary>
-<div class="body">Testing against your real queries and use cases using a custom eval set that measures accuracy, latency, and cost per task.</div>
+<div class="body">Testing against your real queries and use cases using RAGAS or a custom eval set.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 05<span class="days">handoff</span></span>
@@ -2036,7 +1957,7 @@ body{font-family:var(--bodyf);background:#F0F4FA;min-height:100vh;display:flex;a
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">Investment</p>
-<h2>Pricing</h2>
+<h2>Engagement Options</h2>
 </div>
 <div class="tablewrap reveal">
 <table>
@@ -2044,29 +1965,24 @@ body{font-family:var(--bodyf);background:#F0F4FA;min-height:100vh;display:flex;a
 <tr>
 <th>Engagement type</th>
 <th class="col-me">What's included</th>
-<th>Typical investment</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Model selection consulting</td>
+<td>Framework selection consulting <span class="badge-free" style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span></td>
 <td class="col-me">Written architecture recommendation and spec</td>
-<td>$500 to $1,500</td>
 </tr>
 <tr>
-<td>GPT-4 enterprise build</td>
-<td class="col-me">Task-specific prompt engineering, context optimization, deployment</td>
-<td>$8,000 to $25,000</td>
+<td>LlamaIndex RAG build</td>
+<td class="col-me">Retrieval pipeline, ingestion, evaluation, deployment</td>
 </tr>
 <tr>
-<td>Claude enterprise build</td>
-<td class="col-me">Long-context retrieval, agentic behavior, guardrails, deployment</td>
-<td>$8,000 to $25,000</td>
+<td>LangChain/LangGraph agent build</td>
+<td class="col-me">Multi-step agent, tools, memory, guardrails, deployment</td>
 </tr>
 <tr class="me-row">
-<td>Dual-model architecture build</td>
-<td class="col-me">Both models combined for task-specific routing, full production system</td>
-<td>$15,000 to $40,000+</td>
+<td>Hybrid architecture build</td>
+<td class="col-me">Both frameworks combined, full production system</td>
 </tr>
 </tbody>
 </table>
@@ -2082,24 +1998,24 @@ body{font-family:var(--bodyf);background:#F0F4FA;min-height:100vh;display:flex;a
 </div>
 <div class="faq reveal">
 <details open="">
-<summary>Is GPT-4 better than Claude for code generation?</summary>
-<div class="a">GPT-4 generally excels at multi-language code generation and debugging due to broader training data, while Claude is strong for complex code reasoning and explanation tasks. The best choice depends on your specific language stack and whether you prioritize output speed or detailed analysis.</div>
+<summary>Is LlamaIndex better than LangChain for RAG?</summary>
+<div class="a">For pure retrieval-augmented generation over document corpora, LlamaIndex is generally the stronger choice: its default chunking, metadata filtering, and reranking are more production-calibrated out of the box. For RAG as part of a broader agent system, LangChain remains the stronger foundation.</div>
 </details>
 <details>
-<summary>Which model has a larger context window?</summary>
-<div class="a">Claude offers a 200K token context window, significantly larger than GPT-4's 32K or 128K options, making Claude the better choice for processing large documents or long conversation histories. However, GPT-4 remains more cost-effective for tasks under 32K tokens.</div>
+<summary>Can you build with both frameworks in one project?</summary>
+<div class="a">Yes, this is the most common production pattern I build in 2026: LlamaIndex handling retrieval, wrapped as a tool inside a LangGraph agent for orchestration. This combines the strengths of both rather than forcing one framework to do both jobs.</div>
 </details>
 <details>
-<summary>How do costs compare between GPT-4 and Claude for enterprise apps?</summary>
-<div class="a">GPT-4 is generally more expensive per token for both input and output, though pricing varies by tier and volume. Claude offers lower per-token costs, especially for long-context tasks, making it a more budget-friendly option for high-volume applications.</div>
+<summary>How do you decide which framework to recommend?</summary>
+<div class="a">Based on where your hardest problem actually lives: if it is retrieval quality over a messy document corpus, LlamaIndex. If it is multi-step agent behavior, tool use, or memory, LangChain and LangGraph. The framework recommendation is delivered in writing with the reasoning, as part of the discovery process, before any build work begins.</div>
 </details>
 <details>
-<summary>Can I use both GPT-4 and Claude in one application?</summary>
-<div class="a">Yes, a dual-model architecture routes tasks to the best-suited model—GPT-4 for code generation and Claude for long-document analysis—optimizing both performance and cost. This is a common production pattern for complex enterprise apps.</div>
+<summary>Do I need a LangChain agency or can a freelance consultant handle this?</summary>
+<div class="a">Most RAG and agent projects, a specific pipeline, agent, or integration, are well within scope for a single experienced developer working directly with you. An agency's advantage shows up on large, multi-disciplinary product builds needing several specialists in parallel, not on the RAG/LangChain engineering itself.</div>
 </details>
 <details>
-<summary>How do I decide between GPT-4 and Claude for my enterprise app?</summary>
-<div class="a">The decision hinges on your primary task: choose GPT-4 for code generation and structured outputs, or Claude for long-context analysis and cost-sensitive workloads. A written recommendation with reasoning is delivered as part of the discovery process.</div>
+<summary>How much does RAG framework development cost?</summary>
+<div class="a">A framework selection consultation runs $500 to $1,500. A full LlamaIndex or LangChain build ranges from $8,000 to $30,000+ depending on complexity. A hybrid architecture combining both frameworks typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use case.</div>
 </details>
 </div>
 </div>
@@ -2295,128 +2211,5 @@ body{font-family:var(--bodyf);background:#F0F4FA;min-height:100vh;display:flex;a
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(); } else { draw(); cancelAnimationFrame(raf); }
     })();
   </script>
-
-<script>
-(function(){
-  const data={
-    "code-gen":{
-      label:"Code Generation",
-      metrics:[
-        {key:"cost",label:"Cost per 1K tokens",unit:"$/1K",lowerBetter:true,gpt4:0.030,claude:0.015},
-        {key:"context",label:"Context window",unit:"K",lowerBetter:false,gpt4:32,claude:100},
-        {key:"latency",label:"Latency (avg)",unit:"s",lowerBetter:true,gpt4:1.2,claude:0.8},
-        {key:"quality",label:"Quality score",unit:"/100",lowerBetter:false,gpt4:94,claude:89}
-      ],
-      winner:"GPT-4",
-      winnerColor:"var(--blue)",
-      winnerBg:"var(--blue-tint)",
-      reason:"Superior code quality and reasoning"
-    },
-    "doc-qa":{
-      label:"Document QA",
-      metrics:[
-        {key:"cost",label:"Cost per 1K tokens",unit:"$/1K",lowerBetter:true,gpt4:0.030,claude:0.015},
-        {key:"context",label:"Context window",unit:"K",lowerBetter:false,gpt4:32,claude:100},
-        {key:"latency",label:"Latency (avg)",unit:"s",lowerBetter:true,gpt4:1.5,claude:1.0},
-        {key:"quality",label:"Accuracy score",unit:"/100",lowerBetter:false,gpt4:90,claude:95}
-      ],
-      winner:"Claude",
-      winnerColor:"var(--violet)",
-      winnerBg:"var(--violet-tint)",
-      reason:"Higher accuracy with 100K context for long docs"
-    },
-    "support":{
-      label:"Customer Support",
-      metrics:[
-        {key:"cost",label:"Cost per 1K tokens",unit:"$/1K",lowerBetter:true,gpt4:0.030,claude:0.015},
-        {key:"context",label:"Context window",unit:"K",lowerBetter:false,gpt4:32,claude:100},
-        {key:"latency",label:"Latency (avg)",unit:"s",lowerBetter:true,gpt4:0.9,claude:0.7},
-        {key:"quality",label:"Satisfaction score",unit:"/100",lowerBetter:false,gpt4:89,claude:92}
-      ],
-      winner:"Claude",
-      winnerColor:"var(--violet)",
-      winnerBg:"var(--violet-tint)",
-      reason:"Lower cost, faster responses, higher satisfaction"
-    }
-  };
-
-  const container=document.getElementById("vwCompare");
-  const summaryText=document.getElementById("summaryText");
-  const summaryChip=document.getElementById("summaryChip");
-  const tabBtns=document.querySelectorAll(".vw-tab-btn");
-
-  function renderScenario(scenarioKey){
-    const d=data[scenarioKey];
-    if(!d)return;
-    let html="";
-    d.metrics.forEach((m,i)=>{
-      const gptVal=m.gpt4;
-      const claudeVal=m.claude;
-      let maxVal=Math.max(gptVal,claudeVal);
-      if(maxVal===0)maxVal=1;
-      const gptPct=Math.min((gptVal/maxVal)*100,100);
-      const claudePct=Math.min((claudeVal/maxVal)*100,100);
-      let gptBarPct=gptPct;
-      let claudeBarPct=claudePct;
-      if(m.lowerBetter){
-        const invGpt=Math.min((1-(gptVal/(maxVal*1.2)))*100,100);
-        const invClaude=Math.min((1-(claudeVal/(maxVal*1.2)))*100,100);
-        gptBarPct=Math.max(invGpt,5);
-        claudeBarPct=Math.max(invClaude,5);
-      }else{
-        gptBarPct=Math.max(gptPct,2);
-        claudeBarPct=Math.max(claudePct,2);
-      }
-      const gptDisplay=m.lowerBetter?`$${gptVal.toFixed(3)}`:
-                         m.key==="context"?`${gptVal}K`:
-                         m.key==="latency"?`${gptVal.toFixed(1)}s`:
-                         `${gptVal}`;
-      const claudeDisplay=m.lowerBetter?`$${claudeVal.toFixed(3)}`:
-                          m.key==="context"?`${claudeVal}K`:
-                          m.key==="latency"?`${claudeVal.toFixed(1)}s`:
-                          `${claudeVal}`;
-      const unitStr=m.unit||"";
-      const labelHint=m.lowerBetter?"↓ lower is better":"↑ higher is better";
-      html+=`
-        <div class="vw-metric">
-          <div class="vw-metric-label">
-            <span>${m.label}</span>
-            <span>${labelHint}</span>
-          </div>
-          <div class="vw-model-row">
-            <span class="vw-model-name gpt">GPT-4</span>
-            <div class="vw-bar-wrap"><div class="vw-bar gpt" style="width:${gptBarPct}%"></div></div>
-            <span class="vw-metric-val">${gptDisplay}</span>
-          </div>
-          <div class="vw-model-row">
-            <span class="vw-model-name claude">Claude</span>
-            <div class="vw-bar-wrap"><div class="vw-bar claude" style="width:${claudeBarPct}%"></div></div>
-            <span class="vw-metric-val">${claudeDisplay}</span>
-          </div>
-        </div>
-      `;
-    });
-    container.innerHTML=html;
-
-    summaryText.innerHTML=`${d.winner} recommended for ${d.label}<small>${d.reason}</small>`;
-    summaryChip.textContent=d.winner;
-    summaryChip.style.background=d.winnerBg;
-    summaryChip.style.color=d.winnerColor;
-
-    tabBtns.forEach(b=>{
-      b.classList.toggle("active",b.getAttribute("data-scenario")===scenarioKey);
-    });
-  }
-
-  tabBtns.forEach(btn=>{
-    btn.addEventListener("click",function(){
-      const key=this.getAttribute("data-scenario");
-      renderScenario(key);
-    });
-  });
-
-  renderScenario("code-gen");
-})();
-</script>
 </body>
 </html>

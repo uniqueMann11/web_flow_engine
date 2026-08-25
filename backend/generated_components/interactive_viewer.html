@@ -1,5 +1,5 @@
 <style>
-.vw-card {
+.viewer {
   width: 100%;
   max-width: 520px;
   background: var(--surface);
@@ -7,20 +7,24 @@
   border-radius: var(--r);
   box-shadow: var(--sh-md);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
   font-family: var(--bodyf);
+  color: var(--body);
+  animation: viewerIn .55s ease both;
 }
-
-.vw-card .vw-top {
+@keyframes viewerIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.viewer * { box-sizing: border-box; }
+.viewer .vw-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   padding: 14px 18px;
   border-bottom: 1px solid var(--line-soft);
 }
-
-.vw-card .vw-top .t {
+.viewer .vw-title {
   font-family: var(--disp);
   font-size: 0.88rem;
   font-weight: 700;
@@ -29,508 +33,508 @@
   align-items: center;
   gap: 8px;
 }
-
-.vw-card .vw-top .t svg { width: 16px; height: 16px; color: var(--blue); }
-
-.vw-card .vw-chip {
+.viewer .vw-title svg {
+  width: 18px;
+  height: 18px;
+  color: var(--blue);
+  flex: none;
+}
+.viewer .vw-badge {
   font-family: var(--mono);
   font-size: 0.66rem;
   font-weight: 600;
   padding: 3px 9px;
   border-radius: 6px;
-  background: var(--violet-tint);
-  color: var(--violet);
-  border: 1px solid rgba(109, 94, 246, 0.25);
+  background: var(--mint-tint);
+  color: var(--mint-deep);
+  border: 1px solid rgba(11, 125, 78, 0.25);
+  white-space: nowrap;
+  transition: background .2s, color .2s, border-color .2s;
 }
-
-.vw-card .vw-body {
+.viewer .vw-body {
   padding: 16px 18px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
-
-.vw-card .vw-switch-rail {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
+.viewer .vw-search-box {
   background: var(--soft);
+  border: 1px solid var(--line);
   border-radius: var(--r-sm);
-  padding: 3px;
-  border: 1px solid var(--line-soft);
-}
-
-.vw-card .vw-switch-btn {
-  font-family: var(--disp);
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 8px 10px;
-  border: none;
-  border-radius: 10px;
-  background: transparent;
-  color: var(--body);
-  cursor: pointer;
+  padding: 10px 14px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 5px;
-  transition: all 0.18s;
+  gap: 10px;
+  transition: border-color .2s, box-shadow .2s;
 }
-
-.vw-card .vw-switch-btn svg { width: 14px; height: 14px; }
-
-.vw-card .vw-switch-btn.active {
-  background: var(--surface);
-  color: var(--ink);
-  box-shadow: var(--sh-sm);
-}
-
-.vw-card .vw-switch-btn:hover:not(.active) { color: var(--ink); }
-
-.vw-card .vw-compare-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-
-.vw-card .vw-compare-card {
-  background: var(--soft);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--r-sm);
-  padding: 10px 12px;
-  min-height: 100px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.vw-card .vw-compare-card.highlighted {
-  border-color: var(--blue);
-  background: var(--blue-tint);
-}
-
-.vw-card .vw-compare-card .vw-cc-title {
-  font-family: var(--disp);
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.vw-card .vw-compare-card .vw-cc-title svg { width: 12px; height: 12px; }
-
-.vw-card .vw-compare-card .vw-cc-metric {
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  color: var(--body);
-  line-height: 1.5;
-  padding-left: 18px;
-  display: flex;
-  gap: 6px;
-  align-items: baseline;
-}
-
-.vw-card .vw-compare-card .vw-cc-metric .vw-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+.viewer .vw-search-box svg {
+  width: 16px;
+  height: 16px;
+  color: var(--muted);
   flex-shrink: 0;
-  margin-top: 4px;
 }
-
-.vw-card .vw-compare-card .vw-cc-metric .vw-dot.green { background: var(--mint); }
-.vw-card .vw-compare-card .vw-cc-metric .vw-dot.amber { background: var(--amber); }
-.vw-card .vw-compare-card .vw-cc-metric .vw-dot.rose { background: var(--rose); }
-
-.vw-card .vw-compare-card .vw-cc-stat {
-  font-family: var(--mono);
-  font-size: 0.9rem;
-  font-weight: 700;
+.viewer .vw-query-display {
+  font-size: 0.82rem;
+  font-weight: 600;
   color: var(--ink);
-  padding-left: 18px;
-  margin-top: 2px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
-.vw-card .vw-compare-card .vw-cc-stat .vw-sub {
-  font-size: 0.58rem;
+.viewer .vw-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.viewer .vw-scenarios {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+.viewer .vw-scenario {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 0.7rem;
   font-weight: 500;
   color: var(--muted);
-  font-family: var(--bodyf);
-}
-
-.vw-card .vw-verdict-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--violet-tint);
-  border: 1px solid rgba(109, 94, 246, 0.18);
-  border-radius: var(--r-sm);
-  padding: 10px 12px;
-  gap: 10px;
-}
-
-.vw-card .vw-verdict-bar .vw-vb-label {
-  font-family: var(--disp);
-  font-size: 0.68rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.vw-card .vw-verdict-bar .vw-vb-value {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: var(--violet);
-  text-align: right;
-}
-
-.vw-card .vw-verdict-bar .vw-vb-sub {
-  font-size: 0.6rem;
-  color: var(--body);
-  font-family: var(--bodyf);
-}
-
-.vw-card .vw-scenario-row {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.vw-card .vw-scenario-btn {
-  flex: 1;
-  min-width: 80px;
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  font-weight: 600;
-  padding: 5px 8px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
-  color: var(--body);
   cursor: pointer;
-  text-align: center;
-  transition: all 0.15s;
-}
-
-.vw-card .vw-scenario-btn.active {
-  background: var(--blue);
-  border-color: var(--blue);
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(36, 86, 230, 0.2);
-}
-
-.vw-card .vw-scenario-btn:hover:not(.active) { border-color: var(--blue); color: var(--blue); }
-
-.vw-card .vw-action-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  background: var(--soft);
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-  padding: 10px 12px;
-  font-family: var(--mono);
-  font-size: 0.68rem;
-}
-
-.vw-card .vw-btn-action {
-  background: var(--blue);
-  color: #FFFFFF;
-  border: none;
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  font-weight: 600;
-  padding: 8px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.15s;
   white-space: nowrap;
+  transition: all 0.15s;
+  font-family: var(--bodyf);
 }
-
-.vw-card .vw-btn-action:hover { background: var(--blue-strong); }
-
-.vw-card .vw-btn-action:disabled { opacity: 0.5; pointer-events: none; }
-
-.vw-card .vw-metrics-row {
+.viewer .vw-scenario:hover { border-color: var(--blue); color: var(--ink); }
+.viewer .vw-scenario.active {
+  background: var(--blue-tint);
+  border-color: var(--blue);
+  color: var(--blue-strong);
+  font-weight: 600;
+}
+.viewer .vw-methods {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
 }
-
-.vw-card .vw-tile {
+.viewer .vw-method {
   background: var(--soft);
   border: 1px solid var(--line-soft);
   border-radius: var(--r-sm);
-  padding: 8px 8px;
+  padding: 10px 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--bodyf);
+}
+.viewer .vw-method:hover { border-color: var(--line); }
+.viewer .vw-method.active {
+  background: var(--surface);
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px var(--blue-tint);
+}
+.viewer .vw-method-icon {
+  width: 20px;
+  height: 20px;
+  margin: 0 auto 4px;
+  color: var(--muted);
+  transition: color .15s;
+}
+.viewer .vw-method.active .vw-method-icon { color: var(--blue); }
+.viewer .vw-method-name {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.viewer .vw-method-desc {
+  font-size: 0.58rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.viewer .vw-method.active .vw-method-name { color: var(--blue-strong); }
+.viewer .vw-results {
+  background: var(--soft);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-sm);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 130px;
+  transition: background .2s;
+}
+.viewer .vw-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 6px;
+}
+.viewer .vw-result-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--line);
+  animation: resultSlide .25s ease both;
+}
+@keyframes resultSlide {
+  from { opacity: 0; transform: translateX(-6px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.viewer .vw-result-item:last-child { border-bottom: none; }
+.viewer .vw-result-rank {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--muted);
+  min-width: 18px;
+  text-align: center;
+  margin-top: 1px;
+}
+.viewer .vw-result-content {
+  flex: 1;
+  min-width: 0;
+}
+.viewer .vw-result-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.viewer .vw-result-snippet {
+  font-size: 0.66rem;
+  color: var(--body);
+  line-height: 1.4;
+  margin-top: 2px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.viewer .vw-result-score {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--blue);
+  white-space: nowrap;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--blue-tint);
+}
+.viewer .vw-result-score.high { background: var(--mint-tint); color: var(--mint-deep); }
+.viewer .vw-result-score.medium { background: var(--amber-tint); color: var(--amber); }
+.viewer .vw-result-score.low { background: rgba(225, 29, 72, 0.1); color: var(--rose); }
+.viewer .vw-empty {
+  text-align: center;
+  padding: 16px 0;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.viewer .vw-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.viewer .vw-tile {
+  background: var(--soft);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-sm);
+  padding: 8px 6px;
   text-align: center;
 }
-
-.vw-card .vw-tile-val {
+.viewer .vw-tile-val {
   font-family: var(--disp);
   font-size: 1rem;
   font-weight: 800;
   color: var(--ink);
+  line-height: 1.2;
+  transition: color .2s;
 }
-
-.vw-card .vw-tile-lbl {
+.viewer .vw-tile-lbl {
   font-family: var(--mono);
-  font-size: 0.55rem;
+  font-size: 0.52rem;
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  margin-top: 2px;
 }
-
-.vw-card .vw-foot {
+.viewer .vw-tile-val.good { color: var(--mint); }
+.viewer .vw-tile-val.warn { color: var(--amber); }
+.viewer .vw-tile-val.bad { color: var(--rose); }
+.viewer .vw-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   padding: 10px 18px;
   border-top: 1px solid var(--line-soft);
   background: var(--soft);
   font-size: 0.7rem;
   color: var(--muted);
-  gap: 8px;
-  flex-wrap: wrap;
 }
-
+.viewer .vw-tip {
+  position: relative;
+  cursor: help;
+  border-bottom: 1px dotted var(--muted);
+  white-space: nowrap;
+}
+.viewer .vw-tip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: 135%;
+  left: 0;
+  width: 220px;
+  white-space: normal;
+  background: var(--ink);
+  color: #fff;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 0.62rem;
+  line-height: 1.35;
+  font-family: var(--bodyf);
+  box-shadow: var(--sh-md);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s ease;
+  z-index: 5;
+}
+.viewer .vw-tip:hover::after { opacity: 1; }
 @media (max-width: 480px) {
-  .vw-card .vw-compare-grid { grid-template-columns: 1fr; }
-  .vw-card .vw-scenario-row { flex-direction: column; }
-  .vw-card .vw-metrics-row { grid-template-columns: 1fr 1fr; }
+  .viewer .vw-tile-val { font-size: 0.85rem; }
+  .viewer .vw-metrics { grid-template-columns: repeat(2, 1fr); }
+  .viewer .vw-tip { max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .viewer { animation: none !important; }
+  .viewer .vw-result-item { animation: none !important; }
+  .viewer .vw-method, .viewer .vw-badge, .viewer .vw-search-box { transition: none !important; }
 }
 </style>
-
-<div class="vw-card">
+<div class="viewer">
   <div class="vw-top">
-    <span class="t">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
-      RAG vs Long Context
+    <span class="vw-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      Semantic vs Keyword Search
     </span>
-    <span class="vw-chip">2026 Comparison</span>
+    <span class="vw-badge" id="methodBadge">Hybrid Ready</span>
   </div>
-
   <div class="vw-body">
-    <!-- Toggle: RAG / Long Context -->
-    <div class="vw-switch-rail">
-      <button class="vw-switch-btn active" data-mode="rag" id="modeRag">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-        RAG
-      </button>
-      <button class="vw-switch-btn" data-mode="lc" id="modeLc">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-        Long Context
-      </button>
+    <div class="vw-search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <span class="vw-query-display" id="queryDisplay">"renew passport"</span>
     </div>
-
-    <!-- Comparison columns (updated by JS) -->
-    <div class="vw-compare-grid" id="compareGrid">
-      <div class="vw-compare-card highlighted" id="colRag">
-        <div class="vw-cc-title">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0FA968" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-          RAG
-        </div>
-        <div class="vw-cc-metric"><span class="vw-dot green"></span> Cost per query</div>
-        <div class="vw-cc-stat">$0.0024 <span class="vw-sub">/ 100K tokens</span></div>
-        <div class="vw-cc-metric"><span class="vw-dot green"></span> Freshness</div>
-        <div class="vw-cc-stat">Real-time <span class="vw-sub">(index refresh)</span></div>
-        <div class="vw-cc-metric"><span class="vw-dot amber"></span> Accuracy (MMLU)</div>
-        <div class="vw-cc-stat">92.3% <span class="vw-sub">top-5</span></div>
-      </div>
-      <div class="vw-compare-card" id="colLc">
-        <div class="vw-cc-title">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#D97A18" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-          Long Context
-        </div>
-        <div class="vw-cc-metric"><span class="vw-dot rose"></span> Cost per query</div>
-        <div class="vw-cc-stat">$0.048 <span class="vw-sub">/ 1M tokens</span></div>
-        <div class="vw-cc-metric"><span class="vw-dot amber"></span> Freshness</div>
-        <div class="vw-cc-stat">Static <span class="vw-sub">(pre-loaded)</span></div>
-        <div class="vw-cc-metric"><span class="vw-dot green"></span> Accuracy (MMLU)</div>
-        <div class="vw-cc-stat">94.1% <span class="vw-sub">top-5</span></div>
+    <div>
+      <div class="vw-label">Query Scenario</div>
+      <div class="vw-scenarios">
+        <button class="vw-scenario active" data-s="exact">"renew passport"</button>
+        <button class="vw-scenario" data-s="vague">"feeling stressed at work"</button>
+        <button class="vw-scenario" data-s="hybrid">"best budget laptop 2025"</button>
       </div>
     </div>
-
-    <!-- Scenario selector -->
-    <div style="font-family: var(--disp); font-size: 0.7rem; font-weight: 600; color: var(--ink-soft);">Select Scenario:</div>
-    <div class="vw-scenario-row" id="scenarioRow">
-      <button class="vw-scenario-btn active" data-scenario="0">Customer Support</button>
-      <button class="vw-scenario-btn" data-scenario="1">Legal Review</button>
-      <button class="vw-scenario-btn" data-scenario="2">Code Assist</button>
-    </div>
-
-    <!-- Verdict / Recommendation -->
-    <div class="vw-verdict-bar" id="verdictBar">
-      <div>
-        <div class="vw-vb-label" id="verdictLabel">Best for this task</div>
-        <div class="vw-vb-sub" id="verdictSub">RAG — lower cost, always fresh</div>
+    <div>
+      <div class="vw-label">Search Method</div>
+      <div class="vw-methods">
+        <button class="vw-method active" data-m="keyword">
+          <svg class="vw-method-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
+          <div class="vw-method-name">Keyword</div>
+          <div class="vw-method-desc">Exact match</div>
+        </button>
+        <button class="vw-method" data-m="semantic">
+          <svg class="vw-method-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 7.07 17.07L12 22l-7.07-2.93A10 10 0 0 1 12 2z"/><path d="M8 12l2 2 4-4"/></svg>
+          <div class="vw-method-name">Semantic</div>
+          <div class="vw-method-desc">Meaning & intent</div>
+        </button>
+        <button class="vw-method" data-m="hybrid">
+          <svg class="vw-method-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <div class="vw-method-name">Hybrid</div>
+          <div class="vw-method-desc">Best of both</div>
+        </button>
       </div>
-      <div class="vw-vb-value" id="verdictValue">RAG</div>
     </div>
-
-    <!-- Action & metrics -->
-    <div class="vw-action-bar">
-      <div>
-        <div style="font-weight: 700; color: var(--ink);">Simulate Query Comparison</div>
-        <div style="color: var(--muted); font-size: 0.62rem;">Runs sample query through both pipelines</div>
+    <div class="vw-results" id="resultsArea">
+      <div class="vw-results-header">
+        <span>Top Results</span>
+        <span id="resultCount">3 documents</span>
       </div>
-      <button class="vw-btn-action" id="btnSimulate">Run Test</button>
+      <div id="resultList"></div>
     </div>
-
-    <div class="vw-metrics-row">
+    <div class="vw-metrics">
       <div class="vw-tile">
-        <div class="vw-tile-val" style="color: var(--mint);" id="metricCost">$0.0024</div>
-        <div class="vw-tile-lbl">Cost (RAG)</div>
+        <div class="vw-tile-val" id="metricPrecision">94%</div>
+        <div class="vw-tile-lbl">Precision</div>
       </div>
       <div class="vw-tile">
-        <div class="vw-tile-val" id="metricLatency">0.38s</div>
-        <div class="vw-tile-lbl">Latency (avg)</div>
+        <div class="vw-tile-val" id="metricRecall">72%</div>
+        <div class="vw-tile-lbl">Recall</div>
       </div>
       <div class="vw-tile">
-        <div class="vw-tile-val" id="metricTokens">4.2K</div>
-        <div class="vw-tile-lbl">Input tokens</div>
+        <div class="vw-tile-val" id="metricLatency">0.2s</div>
+        <div class="vw-tile-lbl">Latency</div>
+      </div>
+      <div class="vw-tile">
+        <div class="vw-tile-val" id="metricRelevance">High</div>
+        <div class="vw-tile-lbl">Relevance</div>
       </div>
     </div>
   </div>
-
   <div class="vw-foot">
-    <span>Data: token pricing & accuracy as of Q1 2026</span>
-    <span>RAG = retrieval-augmented generation</span>
+    <span class="vw-tip" data-tip="Hybrid search combines keyword precision with semantic understanding, making it the AEO standard for modern search engines.">Why hybrid wins for AEO</span>
+    <span>Toggle scenarios to compare</span>
   </div>
 </div>
-
 <script>
 (function() {
-  // --- canvas ---
-  const modeRag = document.getElementById('modeRag');
-  const modeLc = document.getElementById('modeLc');
-  const colRag = document.getElementById('colRag');
-  const colLc = document.getElementById('colLc');
-  const scenarioBtns = document.querySelectorAll('.vw-scenario-btn');
-  const verdictLabel = document.getElementById('verdictLabel');
-  const verdictSub = document.getElementById('verdictSub');
-  const verdictValue = document.getElementById('verdictValue');
-  const btnSimulate = document.getElementById('btnSimulate');
-  const metricCost = document.getElementById('metricCost');
-  const metricLatency = document.getElementById('metricLatency');
-  const metricTokens = document.getElementById('metricTokens');
-
-  // --- data per scenario ---
-  const scenarios = [
-    { // customer support
-      rag: { cost: '$0.0024', latency: '0.38s', tokens: '4.2K', freshness: 'Real-time', accuracy: '92.3%' },
-      lc:  { cost: '$0.048', latency: '1.2s', tokens: '380K', freshness: 'Static', accuracy: '94.1%' },
-      verdict: { label: 'Best for this task', sub: 'RAG — lower cost, always fresh', value: 'RAG' }
-    },
-    { // legal review
-      rag: { cost: '$0.008', latency: '0.9s', tokens: '22K', freshness: 'Real-time', accuracy: '91.7%' },
-      lc:  { cost: '$0.12', latency: '2.8s', tokens: '1.2M', freshness: 'Static', accuracy: '96.4%' },
-      verdict: { label: 'Best for this task', sub: 'Long Context — full doc precision', value: 'Long Context' }
-    },
-    { // code assist
-      rag: { cost: '$0.003', latency: '0.5s', tokens: '8K', freshness: 'Indexed repos', accuracy: '88.6%' },
-      lc:  { cost: '$0.06', latency: '1.7s', tokens: '640K', freshness: 'Pre-loaded', accuracy: '95.2%' },
-      verdict: { label: 'Best for this task', sub: 'Depends — RAG for speed, LC for large codebases', value: 'Mixed' }
-    }
-  ];
-
-  let currentMode = 'rag';
-  let currentScenario = 0;
-
-  function updateColumns(mode, scenarioIdx) {
-    const s = scenarios[scenarioIdx];
-    // highlight column
-    colRag.classList.toggle('highlighted', mode === 'rag');
-    colLc.classList.toggle('highlighted', mode === 'lc');
-
-    // update metrics in both columns (always show both)
-    const ragMetrics = colRag.querySelectorAll('.vw-cc-stat');
-    const lcMetrics = colLc.querySelectorAll('.vw-cc-stat');
-    // rag: cost, freshness, accuracy
-    ragMetrics[0].innerHTML = s.rag.cost + ' <span class="vw-sub">/ 100K tokens</span>';
-    ragMetrics[1].innerHTML = s.rag.freshness + ' <span class="vw-sub">(index refresh)</span>';
-    ragMetrics[2].innerHTML = s.rag.accuracy + ' <span class="vw-sub">top-5</span>';
-    // lc
-    lcMetrics[0].innerHTML = s.lc.cost + ' <span class="vw-sub">/ 1M tokens</span>';
-    lcMetrics[1].innerHTML = s.lc.freshness + ' <span class="vw-sub">(pre-loaded)</span>';
-    lcMetrics[2].innerHTML = s.lc.accuracy + ' <span class="vw-sub">top-5</span>';
-
-    // bottom metrics (show whichever mode is active)
-    const active = mode === 'rag' ? s.rag : s.lc;
-    metricCost.textContent = active.cost;
-    metricLatency.textContent = active.latency;
-    metricTokens.textContent = active.tokens;
-
-    // verdict
-    verdictLabel.textContent = s.verdict.label;
-    verdictSub.textContent = s.verdict.sub;
-    verdictValue.textContent = s.verdict.value;
-  }
-
-  function setMode(mode) {
-    currentMode = mode;
-    modeRag.classList.toggle('active', mode === 'rag');
-    modeLc.classList.toggle('active', mode === 'lc');
-    updateColumns(mode, currentScenario);
-  }
-
-  function setScenario(idx) {
-    currentScenario = idx;
-    scenarioBtns.forEach((btn, i) => btn.classList.toggle('active', i === idx));
-    updateColumns(currentMode, idx);
-  }
-
-  // mode toggles
-  modeRag.addEventListener('click', () => setMode('rag'));
-  modeLc.addEventListener('click', () => setMode('lc'));
-
-  // scenario
-  scenarioBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      setScenario(parseInt(btn.dataset.scenario));
-    });
-  });
-
-  // simulate button – animate through metrics
-  btnSimulate.addEventListener('click', function() {
-    this.disabled = true;
-    this.textContent = 'Testing...';
-
-    const s = scenarios[currentScenario];
-    const steps = [
-      { cost: s.rag.cost, latency: s.rag.latency, tokens: s.rag.tokens },
-      { cost: s.lc.cost, latency: s.lc.latency, tokens: s.lc.tokens },
-      { cost: s.rag.cost, latency: s.rag.latency, tokens: s.rag.tokens },
-      { cost: s.lc.cost, latency: s.lc.latency, tokens: s.lc.tokens },
-    ];
-    let step = 0;
-    const interval = setInterval(() => {
-      const d = steps[step % steps.length];
-      metricCost.textContent = d.cost;
-      metricLatency.textContent = d.latency;
-      metricTokens.textContent = d.tokens;
-      step++;
-      if (step >= steps.length) {
-        clearInterval(interval);
-        // final state: show active mode
-        const active = currentMode === 'rag' ? s.rag : s.lc;
-        metricCost.textContent = active.cost;
-        metricLatency.textContent = active.latency;
-        metricTokens.textContent = active.tokens;
-        this.disabled = false;
-        this.textContent = 'Run Test';
+  const data = {
+    exact: {
+      keyword: {
+        results: [
+          { title: "Passport Renewal Application Form", snippet: "Download DS-82 form for passport renewal by mail. Valid for adults with previous passport issued within last 15 years.", score: 97, rank: 1 },
+          { title: "Schedule Passport Appointment", snippet: "Book an appointment at your nearest passport acceptance facility. Walk-ins limited.", score: 94, rank: 2 },
+          { title: "Passport Renewal Fees & Processing", snippet: "Current passport renewal fee is $130. Standard processing takes 6-8 weeks.", score: 89, rank: 3 }
+        ],
+        precision: 94, recall: 72, latency: "0.2s", relevance: "High", count: "3 documents"
+      },
+      semantic: {
+        results: [
+          { title: "How to Renew Your U.S. Passport", snippet: "Step-by-step guide for renewing your passport. Check eligibility, complete form DS-82, submit photo and fee.", score: 91, rank: 1 },
+          { title: "Passport Services Overview", snippet: "Find information on passport applications, renewals, name changes, and expedited service options.", score: 85, rank: 2 },
+          { title: "Travel Document Requirements", snippet: "All travelers need valid passport. Renewal recommended 9 months before expiration for international travel.", score: 76, rank: 3 }
+        ],
+        precision: 84, recall: 88, latency: "0.5s", relevance: "High", count: "3 documents"
+      },
+      hybrid: {
+        results: [
+          { title: "Passport Renewal Application Form", snippet: "Download DS-82 form for passport renewal by mail. Valid for adults with previous passport issued within last 15 years.", score: 98, rank: 1 },
+          { title: "How to Renew Your U.S. Passport", snippet: "Step-by-step guide for renewing your passport. Check eligibility, complete form DS-82, submit photo and fee.", score: 95, rank: 2 },
+          { title: "Schedule Passport Appointment", snippet: "Book an appointment at your nearest passport acceptance facility. Walk-ins limited.", score: 92, rank: 3 }
+        ],
+        precision: 95, recall: 91, latency: "0.4s", relevance: "High", count: "3 documents"
       }
-    }, 350);
-  });
-
-  // initial
-  setMode('rag');
-  setScenario(0);
+    },
+    vague: {
+      keyword: {
+        results: [
+          { title: "Employee Stress Management Policy", snippet: "Company policy on workplace stress. Includes EAP resources and manager referral procedures.", score: 43, rank: 1 },
+          { title: "Workplace Safety Guidelines", snippet: "OSHA compliance manual for office environments. Section 5 covers ergonomic stress.", score: 21, rank: 2 }
+        ],
+        precision: 32, recall: 15, latency: "0.1s", relevance: "Low", count: "2 documents"
+      },
+      semantic: {
+        results: [
+          { title: "Coping with Work Anxiety: A Guide", snippet: "Practical strategies for managing workplace stress. Includes breathing exercises, boundary setting, and when to seek help.", score: 94, rank: 1 },
+          { title: "Employee Mental Health Resources", snippet: "Confidential counseling services available 24/7. Free therapy sessions for all employees and their families.", score: 91, rank: 2 },
+          { title: "Work-Life Balance Best Practices", snippet: "How to set boundaries, prioritize tasks, and avoid burnout. Tips from organizational psychologists.", score: 87, rank: 3 },
+          { title: "Signs of Workplace Burnout", snippet: "Recognize early warning signs: exhaustion, cynicism, reduced performance. Prevention strategies included.", score: 84, rank: 4 }
+        ],
+        precision: 89, recall: 94, latency: "0.6s", relevance: "High", count: "4 documents"
+      },
+      hybrid: {
+        results: [
+          { title: "Coping with Work Anxiety: A Guide", snippet: "Practical strategies for managing workplace stress. Includes breathing exercises, boundary setting, and when to seek help.", score: 96, rank: 1 },
+          { title: "Employee Mental Health Resources", snippet: "Confidential counseling services available 24/7. Free therapy sessions for all employees and their families.", score: 93, rank: 2 },
+          { title: "Work-Life Balance Best Practices", snippet: "How to set boundaries, prioritize tasks, and avoid burnout. Tips from organizational psychologists.", score: 89, rank: 3 },
+          { title: "Employee Stress Management Policy", snippet: "Company policy on workplace stress. Includes EAP resources and manager referral procedures.", score: 85, rank: 4 }
+        ],
+        precision: 91, recall: 96, latency: "0.5s", relevance: "High", count: "4 documents"
+      }
+    },
+    hybrid: {
+      keyword: {
+        results: [
+          { title: "Best Budget Laptops 2025 — Top Picks", snippet: "Our experts tested 50+ laptops under $1000. Find the best value for your money with detailed benchmarks.", score: 96, rank: 1 },
+          { title: "Laptop Buying Guide 2025", snippet: "What to look for in a budget laptop: processor, RAM, storage, display quality. Price comparisons included.", score: 88, rank: 2 },
+          { title: "Budget Laptop Deals & Discounts", snippet: "Current sales on budget laptops from Dell, HP, Lenovo, Acer. Save up to 40% this season.", score: 82, rank: 3 }
+        ],
+        precision: 89, recall: 65, latency: "0.2s", relevance: "Medium", count: "3 documents"
+      },
+      semantic: {
+        results: [
+          { title: "Top Affordable Laptops for Students", snippet: "Best budget-friendly laptops for college. Lightweight, long battery life, under $700. Includes Chromebook picks.", score: 92, rank: 1 },
+          { title: "Best Budget Laptops 2025 — Top Picks", snippet: "Our experts tested 50+ laptops under $1000. Find the best value for your money with detailed benchmarks.", score: 90, rank: 2 },
+          { title: "Value for Money: Best Laptops Reviewed", snippet: "Which laptops offer the best specs for the price. Performance per dollar ranking for 2025 models.", score: 86, rank: 3 },
+          { title: "Budget Gaming Laptops Under $800", snippet: "Affordable gaming laptops that don't compromise on performance. RTX 3050 and above.", score: 79, rank: 4 }
+        ],
+        precision: 87, recall: 91, latency: "0.5s", relevance: "High", count: "4 documents"
+      },
+      hybrid: {
+        results: [
+          { title: "Best Budget Laptops 2025 — Top Picks", snippet: "Our experts tested 50+ laptops under $1000. Find the best value for your money with detailed benchmarks.", score: 99, rank: 1 },
+          { title: "Top Affordable Laptops for Students", snippet: "Best budget-friendly laptops for college. Lightweight, long battery life, under $700. Includes Chromebook picks.", score: 95, rank: 2 },
+          { title: "Laptop Buying Guide 2025", snippet: "What to look for in a budget laptop: processor, RAM, storage, display quality. Price comparisons included.", score: 91, rank: 3 },
+          { title: "Value for Money: Best Laptops Reviewed", snippet: "Which laptops offer the best specs for the price. Performance per dollar ranking for 2025 models.", score: 88, rank: 4 }
+        ],
+        precision: 93, recall: 94, latency: "0.4s", relevance: "High", count: "4 documents"
+      }
+    }
+  };
+  var scenarioBtns = document.querySelectorAll('.viewer .vw-scenario');
+  var methodBtns = document.querySelectorAll('.viewer .vw-method');
+  var resultList = document.getElementById('resultList');
+  var resultCount = document.getElementById('resultCount');
+  var queryDisplay = document.getElementById('queryDisplay');
+  var metricPrecision = document.getElementById('metricPrecision');
+  var metricRecall = document.getElementById('metricRecall');
+  var metricLatency = document.getElementById('metricLatency');
+  var metricRelevance = document.getElementById('metricRelevance');
+  var methodBadge = document.getElementById('methodBadge');
+  var currentScenario = 'exact';
+  var currentMethod = 'keyword';
+  var queryMap = { exact: '"renew passport"', vague: '"feeling stressed at work"', hybrid: '"best budget laptop 2025"' };
+  function render() {
+    var d = data[currentScenario][currentMethod];
+    if (!d) return;
+    queryDisplay.textContent = queryMap[currentScenario];
+    var items = '';
+    for (var i = 0; i < d.results.length; i++) {
+      var r = d.results[i];
+      var scoreClass = r.score >= 90 ? 'high' : r.score >= 70 ? 'medium' : 'low';
+      items += '<div class="vw-result-item" style="animation-delay:' + (i * 0.05) + 's"><div class="vw-result-rank">' + r.rank + '</div><div class="vw-result-content"><div class="vw-result-title">' + r.title + '</div><div class="vw-result-snippet">' + r.snippet + '</div></div><div class="vw-result-score ' + scoreClass + '">' + r.score + '%</div></div>';
+    }
+    resultList.innerHTML = items;
+    resultCount.textContent = d.count;
+    metricPrecision.textContent = d.precision + '%';
+    metricPrecision.className = 'vw-tile-val ' + (d.precision >= 90 ? 'good' : d.precision >= 70 ? 'warn' : 'bad');
+    metricRecall.textContent = d.recall + '%';
+    metricRecall.className = 'vw-tile-val ' + (d.recall >= 90 ? 'good' : d.recall >= 70 ? 'warn' : 'bad');
+    metricLatency.textContent = d.latency;
+    metricLatency.className = 'vw-tile-val';
+    metricRelevance.textContent = d.relevance;
+    metricRelevance.className = 'vw-tile-val ' + (d.relevance === 'High' ? 'good' : d.relevance === 'Medium' ? 'warn' : 'bad');
+    var methodName = currentMethod.charAt(0).toUpperCase() + currentMethod.slice(1);
+    methodBadge.textContent = methodName + ' Mode';
+    if (currentMethod === 'keyword') { methodBadge.style.background = 'var(--amber-tint)'; methodBadge.style.color = 'var(--amber)'; methodBadge.style.borderColor = 'rgba(217, 122, 24, 0.25)'; }
+    else if (currentMethod === 'semantic') { methodBadge.style.background = 'var(--violet-tint)'; methodBadge.style.color = 'var(--violet)'; methodBadge.style.borderColor = 'rgba(109, 94, 246, 0.25)'; }
+    else { methodBadge.style.background = 'var(--mint-tint)'; methodBadge.style.color = 'var(--mint-deep)'; methodBadge.style.borderColor = 'rgba(11, 125, 78, 0.25)'; }
+  }
+  function selectScenario(btn) {
+    for (var i = 0; i < scenarioBtns.length; i++) scenarioBtns[i].classList.remove('active');
+    btn.classList.add('active');
+    currentScenario = btn.getAttribute('data-s');
+    render();
+  }
+  function selectMethod(btn) {
+    for (var i = 0; i < methodBtns.length; i++) methodBtns[i].classList.remove('active');
+    btn.classList.add('active');
+    currentMethod = btn.getAttribute('data-m');
+    render();
+  }
+  for (var i = 0; i < scenarioBtns.length; i++) {
+    scenarioBtns[i].addEventListener('click', function() { selectScenario(this); });
+  }
+  for (var i = 0; i < methodBtns.length; i++) {
+    methodBtns[i].addEventListener('click', function() { selectMethod(this); });
+  }
+  render();
 })();
 </script>

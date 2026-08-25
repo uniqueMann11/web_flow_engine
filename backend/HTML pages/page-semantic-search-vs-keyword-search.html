@@ -11,7 +11,7 @@
 <meta content="website" property="og:type"/>
 <meta content="Shreyans Padmani" property="og:site_name"/>
 <meta content="en_US" property="og:locale"/>
-<meta content="Choosing between semantic and keyword search defines your retrieval accuracy, latency, and ability to answer user intent. Semantic search excels at synonyms and context but fails on exact matches and rare terms. Keyword search is fast and precise but misses meaning — hybrid search combines both for robust answer engine optimization (AEO)." name="description"/>
+<meta content="Choosing between semantic search and keyword search determines how much you spend, how fast results appear, and how well your system handles ambiguous queries. I build with both and apply hybrid search where each fails, ensuring production-grade retrieval that answers questions your users actually ask." name="description"/>
 <meta content="semantic search vs keyword search, vector search vs full text, hybrid search" name="keywords"/>
 <link href="https://shreyans.tech/semantic-search-vs-keyword-search" rel="canonical"/>
 <meta content="Semantic Search vs Keyword Search" property="og:title"/>
@@ -71,42 +71,42 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "When does pure keyword search outperform semantic search?",
+          "name": "When does keyword search fail?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Keyword search wins with exact product codes, SKUs, or short queries where precision on specific terms matters more than conceptual understanding. It fails when users phrase queries differently than the document's language."
+            "text": "Keyword search fails on synonyms, context, and natural language queries. It cannot handle 'how to fix a leaky faucet' if the content uses 'tap'. Semantic search handles these but can fail on exact model numbers or rare terms."
           }
         },
         {
           "@type": "Question",
-          "name": "When does pure semantic search outperform keyword search?",
+          "name": "When does semantic search fail?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Semantic search excels with natural language queries, synonyms, and vague concepts, but fails on rare terms or when the embedding model isn't fine-tuned on your domain. It also struggles with queries requiring exact substring matching."
+            "text": "Semantic search fails on rare acronyms, misspellings, and exact phrasing where meaning changes. For example, Apple (fruit) vs Apple (company) – keyword search can be tuned with field weighting."
           }
         },
         {
           "@type": "Question",
-          "name": "What is hybrid search and why use it?",
+          "name": "Is hybrid search always better?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Hybrid search combines vector and keyword indices, typically with a reranker to merge results. It's the Answer Engine Optimization staple because it covers both exact and conceptual queries, reducing failure modes of either approach."
+            "text": "Hybrid search combines BM25 and vector scores with reranking, covering the blind spots of both. It's the recommended approach for production systems, though it adds complexity and latency."
           }
         },
         {
           "@type": "Question",
-          "name": "How do I benchmark the right approach for my data?",
+          "name": "How do you decide the hybrid ratio?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Create a query set with labeled relevance judgments, then run both pure keyword and pure semantic searches. Measure precision, recall, and the number of queries where each returns zero relevant results. The approach with fewer failures wins."
+            "text": "The ratio of keyword to semantic weight depends on your data. We run a grid search over your test queries to find the optimal balance, typically 0.3 to 0.5 keyword weight."
           }
         },
         {
           "@type": "Question",
-          "name": "What does a hybrid search build cost?",
+          "name": "How much does hybrid search implementation cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A hybrid system combining vector and full-text indices with reranking runs $12,000 to $30,000, including ingestion, evaluation, and deployment. Contact for a fixed estimate specific to your data size and query patterns."
+            "text": "A consultation is free. A keyword-only optimization ranges $2,000–$5,000. Semantic search implementation $8,000–$15,000. Hybrid architecture $15,000–$30,000 depending on data volume and complexity."
           }
         }
       ]
@@ -241,13 +241,13 @@
       margin: 0 0 16px
     }
 
-    .svcp .eyebrow::before {
+    /* .svcp .eyebrow::before {
       content: "";
       width: 26px;
       height: 2px;
       border-radius: 2px;
       background: linear-gradient(90deg, var(--blue), var(--violet))
-    }
+    } */
 
     .svcp .sec-head {
       max-width: 760px;
@@ -352,7 +352,7 @@
       display: grid;
       grid-template-columns: 1.05fr .95fr;
       gap: 52px;
-      align-items: start
+      align-items: center
     }
 
     .svcp .hero .eyebrow {
@@ -1698,27 +1698,32 @@
       }
     }
   
-.vw-card {
+.viewer {
   width: 100%;
   max-width: 520px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--r);
-  box-shadow: var(--sh-lg);
+  box-shadow: var(--sh-md);
   overflow: hidden;
   font-family: var(--bodyf);
-  display: flex;
-  flex-direction: column;
+  color: var(--body);
+  animation: viewerIn .55s ease both;
 }
-.vw-card .vw-top {
+@keyframes viewerIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.viewer 
+.viewer .vw-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   padding: 14px 18px;
   border-bottom: 1px solid var(--line-soft);
-  background: var(--soft);
 }
-.vw-card .vw-top .vw-title {
+.viewer .vw-title {
   font-family: var(--disp);
   font-size: 0.88rem;
   font-weight: 700;
@@ -1727,181 +1732,292 @@
   align-items: center;
   gap: 8px;
 }
-.vw-card .vw-top .vw-title svg {
-  width: 16px;
-  height: 16px;
+.viewer .vw-title svg {
+  width: 18px;
+  height: 18px;
   color: var(--blue);
-  stroke-width: 2.2;
+  flex: none;
 }
-.vw-card .vw-badge {
+.viewer .vw-badge {
   font-family: var(--mono);
-  font-size: 0.6rem;
+  font-size: 0.66rem;
   font-weight: 600;
-  padding: 3px 10px;
+  padding: 3px 9px;
   border-radius: 6px;
-  background: var(--blue-tint);
-  color: var(--blue);
-  border: 1px solid rgba(36,86,230,0.2);
+  background: var(--mint-tint);
+  color: var(--mint-deep);
+  border: 1px solid rgba(11, 125, 78, 0.25);
+  white-space: nowrap;
+  transition: background .2s, color .2s, border-color .2s;
 }
-.vw-card .vw-tabs {
-  display: flex;
-  gap: 4px;
-  padding: 8px 18px 0;
-  background: var(--surface);
-}
-.vw-card .vw-tab {
-  font-family: var(--bodyf);
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 7px 16px;
-  border-radius: 8px 8px 0 0;
-  border: 1px solid var(--line);
-  border-bottom: none;
-  cursor: pointer;
-  background: var(--soft);
-  color: var(--muted);
-  transition: all 0.2s;
-  outline: none;
-}
-.vw-card .vw-tab.active {
-  background: var(--surface);
-  color: var(--blue);
-  border-color: var(--blue);
-  box-shadow: 0 -1px 0 var(--surface);
-}
-.vw-card .vw-body {
-  padding: 16px 18px 18px;
+.viewer .vw-body {
+  padding: 16px 18px;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
-.vw-card .vw-grid-status {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-.vw-card .vw-status-card {
+.viewer .vw-search-box {
+  background: var(--soft);
   border: 1px solid var(--line);
   border-radius: var(--r-sm);
-  padding: 12px 14px;
-  background: var(--soft);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: border-color .2s, box-shadow .2s;
 }
-.vw-card .vw-status-card .vw-s-label {
+.viewer .vw-search-box svg {
+  width: 16px;
+  height: 16px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.viewer .vw-query-display {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.viewer .vw-label {
   font-family: var(--mono);
   font-size: 0.6rem;
-  text-transform: uppercase;
-  color: var(--muted);
-  letter-spacing: 0.3px;
-  margin-bottom: 4px;
-}
-.vw-card .vw-status-card .vw-s-score {
-  font-family: var(--disp);
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: var(--ink);
-}
-.vw-card .vw-status-card .vw-s-score.green { color: var(--mint); }
-.vw-card .vw-status-card .vw-s-score.rose { color: var(--rose); }
-.vw-card .vw-status-card .vw-s-score.amber { color: var(--amber); }
-.vw-card .vw-status-card .vw-s-desc {
-  font-size: 0.7rem;
-  color: var(--body);
-  margin-top: 3px;
-  line-height: 1.4;
-}
-.vw-card .vw-comparison-chart {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 14px;
-  background: var(--soft);
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-}
-.vw-card .vw-bar-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.vw-card .vw-bar-label {
-  font-family: var(--mono);
-  font-size: 0.62rem;
   font-weight: 600;
-  color: var(--ink-soft);
-  min-width: 52px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
 }
-.vw-card .vw-bar-track {
-  flex: 1;
-  height: 18px;
-  background: var(--line);
-  border-radius: 4px;
-  overflow: hidden;
-  position: relative;
-}
-.vw-card .vw-bar-fill {
-  height: 100%;
-  border-radius: 4px;
-  transition: width 0.45s ease;
+.viewer .vw-scenarios {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 6px;
-  font-family: var(--mono);
-  font-size: 0.55rem;
-  font-weight: 700;
-  color: var(--surface);
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
 }
-.vw-card .vw-bar-fill.semantic { background: var(--mint); }
-.vw-card .vw-bar-fill.keyword { background: var(--blue); }
-.vw-card .vw-bar-fill.hybrid { background: var(--violet); }
-.vw-card .vw-metrics-grid {
+.viewer .vw-scenario {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+  font-family: var(--bodyf);
+}
+.viewer .vw-scenario:hover { border-color: var(--blue); color: var(--ink); }
+.viewer .vw-scenario.active {
+  background: var(--blue-tint);
+  border-color: var(--blue);
+  color: var(--blue-strong);
+  font-weight: 600;
+}
+.viewer .vw-methods {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
 }
-.vw-card .vw-metric-box {
-  text-align: center;
-  padding: 8px 6px;
-  background: var(--surface);
+.viewer .vw-method {
+  background: var(--soft);
   border: 1px solid var(--line-soft);
   border-radius: var(--r-sm);
+  padding: 10px 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--bodyf);
 }
-.vw-card .vw-metric-box .vw-m-val {
+.viewer .vw-method:hover { border-color: var(--line); }
+.viewer .vw-method.active {
+  background: var(--surface);
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px var(--blue-tint);
+}
+.viewer .vw-method-icon {
+  width: 20px;
+  height: 20px;
+  margin: 0 auto 4px;
+  color: var(--muted);
+  transition: color .15s;
+}
+.viewer .vw-method.active .vw-method-icon { color: var(--blue); }
+.viewer .vw-method-name {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.viewer .vw-method-desc {
+  font-size: 0.58rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.viewer .vw-method.active .vw-method-name { color: var(--blue-strong); }
+.viewer .vw-results {
+  background: var(--soft);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-sm);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 130px;
+  transition: background .2s;
+}
+.viewer .vw-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 6px;
+}
+.viewer .vw-result-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--line);
+  animation: resultSlide .25s ease both;
+}
+@keyframes resultSlide {
+  from { opacity: 0; transform: translateX(-6px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.viewer .vw-result-item:last-child { border-bottom: none; }
+.viewer .vw-result-rank {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--muted);
+  min-width: 18px;
+  text-align: center;
+  margin-top: 1px;
+}
+.viewer .vw-result-content {
+  flex: 1;
+  min-width: 0;
+}
+.viewer .vw-result-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.viewer .vw-result-snippet {
+  font-size: 0.66rem;
+  color: var(--body);
+  line-height: 1.4;
+  margin-top: 2px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.viewer .vw-result-score {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--blue);
+  white-space: nowrap;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--blue-tint);
+}
+.viewer .vw-result-score.high { background: var(--mint-tint); color: var(--mint-deep); }
+.viewer .vw-result-score.medium { background: var(--amber-tint); color: var(--amber); }
+.viewer .vw-result-score.low { background: rgba(225, 29, 72, 0.1); color: var(--rose); }
+.viewer .vw-empty {
+  text-align: center;
+  padding: 16px 0;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.viewer .vw-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.viewer .vw-tile {
+  background: var(--soft);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-sm);
+  padding: 8px 6px;
+  text-align: center;
+}
+.viewer .vw-tile-val {
   font-family: var(--disp);
   font-size: 1rem;
   font-weight: 800;
   color: var(--ink);
+  line-height: 1.2;
+  transition: color .2s;
 }
-.vw-card .vw-metric-box .vw-m-val.blue { color: var(--blue); }
-.vw-card .vw-metric-box .vw-m-val.mint { color: var(--mint); }
-.vw-card .vw-metric-box .vw-m-val.violet { color: var(--violet); }
-.vw-card .vw-metric-box .vw-m-label {
+.viewer .vw-tile-lbl {
   font-family: var(--mono);
-  font-size: 0.55rem;
+  font-size: 0.52rem;
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.2px;
   margin-top: 2px;
 }
-.vw-card .vw-foot {
+.viewer .vw-tile-val.good { color: var(--mint); }
+.viewer .vw-tile-val.warn { color: var(--amber); }
+.viewer .vw-tile-val.bad { color: var(--rose); }
+.viewer .vw-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   padding: 10px 18px;
   border-top: 1px solid var(--line-soft);
   background: var(--soft);
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   color: var(--muted);
 }
-.vw-card .vw-foot .vw-aeo {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  color: var(--violet);
-  font-weight: 600;
+.viewer .vw-tip {
+  position: relative;
+  cursor: help;
+  border-bottom: 1px dotted var(--muted);
+  white-space: nowrap;
 }
+.viewer .vw-tip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: 135%;
+  left: 0;
+  width: 220px;
+  white-space: normal;
+  background: var(--ink);
+  color: #fff;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 0.62rem;
+  line-height: 1.35;
+  font-family: var(--bodyf);
+  box-shadow: var(--sh-md);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s ease;
+  z-index: 5;
+}
+.viewer .vw-tip:hover::after { opacity: 1; }
 @media (max-width: 480px) {
-  .vw-card .vw-grid-status { grid-template-columns: 1fr; }
-  .vw-card .vw-metrics-grid { grid-template-columns: 1fr 1fr; }
+  .viewer .vw-tile-val { font-size: 0.85rem; }
+  .viewer .vw-metrics { grid-template-columns: repeat(2, 1fr); }
+  .viewer .vw-tip { max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .viewer { animation: none !important; }
+  .viewer .vw-result-item { animation: none !important; }
+  .viewer .vw-method, .viewer .vw-badge, .viewer .vw-search-box { transition: none !important; }
 }
 </style>
 </head>
@@ -1912,117 +2028,115 @@
 <div class="wrap">
 <div class="hero-grid">
 <div>
-<p class="eyebrow">Semantic vs keyword: when each fails</p>
-<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">Semantic search vs keyword search: <span>when each fails, hybrid wins</span></h1>
-<p class="hero-sub">Choosing between semantic and keyword search defines your retrieval accuracy, latency, and ability to answer user intent. Semantic search excels at synonyms and context but fails on exact matches and rare terms. Keyword search is fast and precise but misses meaning — hybrid search combines both for robust answer engine optimization (AEO).</p>
+<p class="eyebrow">When each fails, hybrid wins</p>
+<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">Semantic Search vs Keyword Search: <span>the hybrid answer</span></h1>
+<p class="hero-sub">Choosing between semantic search and keyword search determines how much you spend, how fast results appear, and how well your system handles ambiguous queries. I build with both and apply hybrid search where each fails, ensuring production-grade retrieval that answers questions your users actually ask.</p>
 <div class="creds">
 <div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
 <path d="M12 8v4l3 3"></path>
 <circle cx="12" cy="12" r="9"></circle>
-</svg></span><span class="t"><i>Experience</i><b>10+ yrs search systems</b></span></div>
+</svg></span><span class="t"><i>Experience</i><b>5+ yrs production search</b></span></div>
 <div class="cred"><span class="b" style="background:#6D5EF6" title="Both"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
 <circle cx="9" cy="7" r="4"></circle>
 <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
-</svg></span><span class="t"><i>Coverage</i><b>Semantic &amp; keyword expertise</b></span></div>
+</svg></span><span class="t"><i>Coverage</i><b>Both methods, used correctly</b></span></div>
 <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="14">
 <circle cx="12" cy="12" r="10"></circle>
 <path d="M12 6v6l4 2"></path>
-</svg></span><span class="t"><i>Turnaround</i><b>72h hybrid audit</b></span></div>
+</svg></span><span class="t"><i>Turnaround</i><b>48h search architecture rec.</b></span></div>
 </div>
 <div class="hero-cta">
-<a class="btn btn-primary" href="#lets-talk">Get hybrid search plan <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+<a class="btn btn-primary" href="#lets-talk">Get a search recommendation <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
 <path d="M5 12h14M13 6l6 6-6 6"></path>
 </svg></a>
 <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
 </div>
-<p class="live"><span class="pulse"></span> Free written audit: where semantic fails, where keyword fails, and your hybrid path.</p>
-<div class="trust">
-<div><b data-count="5" data-suffix="+">10+</b><span>Years building search systems</span></div>
-<div><b data-count="40" data-suffix="%">97%</b><span>Recall with hybrid search</span></div>
-<div><b>72h</b><span>To a hybrid architecture plan</span></div>
-</div>
+<p class="live"><span class="pulse"></span> Written recommendation with reasoning, before any build work begins</p>
 </div>
 <!-- ===== SIGNATURE: framework fit finder ===== -->
-<div class="viewer"><div class="vw-card">
+<div class="viewer">
 <div class="vw-top">
 <span class="vw-title">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path><path d="M8 11h6"></path><path d="M11 8v6"></path></svg>
-      Search Engine Comparison
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+      Semantic vs Keyword Search
     </span>
-<span class="vw-badge">AEO Ready</span>
-</div>
-<div class="vw-tabs" id="vwTabContainer">
-<button class="vw-tab active" data-mode="all">Hybrid View</button>
-<button class="vw-tab" data-mode="semantic">Semantic</button>
-<button class="vw-tab" data-mode="keyword">Keyword</button>
+<span class="vw-badge" id="methodBadge">Hybrid Ready</span>
 </div>
 <div class="vw-body">
-<!-- Status Cards: fail conditions -->
-<div class="vw-grid-status">
-<div class="vw-status-card">
-<div class="vw-s-label">Semantic fails when</div>
-<div class="vw-s-score amber" id="vwSemFailScore">Rare Terms</div>
-<div class="vw-s-desc">Low frequency keywords, abbreviations, or domain-specific jargon cause embedding drift.</div>
+<div class="vw-search-box">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
+<span class="vw-query-display" id="queryDisplay">"renew passport"</span>
 </div>
-<div class="vw-status-card">
-<div class="vw-s-label">Keyword fails when</div>
-<div class="vw-s-score rose" id="vwKwFailScore">Synonym Gap</div>
-<div class="vw-s-desc">User intent uses synonyms, typos, or natural language – exact match misses 60%+.</div>
-</div>
-</div>
-<!-- Comparison bars -->
-<div class="vw-comparison-chart" id="vwChart">
-<div class="vw-bar-row">
-<span class="vw-bar-label">Precision</span>
-<div class="vw-bar-track">
-<div class="vw-bar-fill semantic" id="vwBarPrec" style="width: 82%">82%</div>
+<div>
+<div class="vw-label">Query Scenario</div>
+<div class="vw-scenarios">
+<button class="vw-scenario active" data-s="exact">"renew passport"</button>
+<button class="vw-scenario" data-s="vague">"feeling stressed at work"</button>
+<button class="vw-scenario" data-s="hybrid">"best budget laptop 2025"</button>
 </div>
 </div>
-<div class="vw-bar-row">
-<span class="vw-bar-label">Recall</span>
-<div class="vw-bar-track">
-<div class="vw-bar-fill hybrid" id="vwBarRecall" style="width: 76%">76%</div>
+<div>
+<div class="vw-label">Search Method</div>
+<div class="vw-methods">
+<button class="vw-method active" data-m="keyword">
+<svg class="vw-method-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><path d="M9 9h6M9 13h6M9 17h4"></path></svg>
+<div class="vw-method-name">Keyword</div>
+<div class="vw-method-desc">Exact match</div>
+</button>
+<button class="vw-method" data-m="semantic">
+<svg class="vw-method-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 2a10 10 0 0 1 7.07 17.07L12 22l-7.07-2.93A10 10 0 0 1 12 2z"></path><path d="M8 12l2 2 4-4"></path></svg>
+<div class="vw-method-name">Semantic</div>
+<div class="vw-method-desc">Meaning &amp; intent</div>
+</button>
+<button class="vw-method" data-m="hybrid">
+<svg class="vw-method-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+<div class="vw-method-name">Hybrid</div>
+<div class="vw-method-desc">Best of both</div>
+</button>
 </div>
 </div>
-<div class="vw-bar-row">
-<span class="vw-bar-label">Latency</span>
-<div class="vw-bar-track">
-<div class="vw-bar-fill keyword" id="vwBarLat" style="width: 52%">52ms</div>
+<div class="vw-results" id="resultsArea">
+<div class="vw-results-header">
+<span>Top Results</span>
+<span id="resultCount">3 documents</span>
 </div>
+<div id="resultList"></div>
 </div>
+<div class="vw-metrics">
+<div class="vw-tile">
+<div class="vw-tile-val" id="metricPrecision">94%</div>
+<div class="vw-tile-lbl">Precision</div>
 </div>
-<!-- Metric boxes -->
-<div class="vw-metrics-grid">
-<div class="vw-metric-box">
-<div class="vw-m-val blue" id="vwMet1">0.34</div>
-<div class="vw-m-label">Keyword F1</div>
+<div class="vw-tile">
+<div class="vw-tile-val" id="metricRecall">72%</div>
+<div class="vw-tile-lbl">Recall</div>
 </div>
-<div class="vw-metric-box">
-<div class="vw-m-val mint" id="vwMet2">0.71</div>
-<div class="vw-m-label">Semantic F1</div>
+<div class="vw-tile">
+<div class="vw-tile-val" id="metricLatency">0.2s</div>
+<div class="vw-tile-lbl">Latency</div>
 </div>
-<div class="vw-metric-box">
-<div class="vw-m-val violet" id="vwMet3">0.83</div>
-<div class="vw-m-label">Hybrid F1</div>
+<div class="vw-tile">
+<div class="vw-tile-val" id="metricRelevance">High</div>
+<div class="vw-tile-lbl">Relevance</div>
 </div>
 </div>
 </div>
 <div class="vw-foot">
-<span>Hybrid: Semantic + BM25 rerank</span>
-<span class="vw-aeo">AEO Optimized</span>
+<span class="vw-tip" data-tip="Hybrid search combines keyword precision with semantic understanding, making it the AEO standard for modern search engines.">Why hybrid wins for AEO</span>
+<span>Toggle scenarios to compare</span>
 </div>
-</div></div>
+</div>
 </div>
 </div>
 </section>
 <!-- ================= COMPLY STRIP ================= -->
 <div class="comply">
 <div class="wrap comply-in">
-<div><span><b>Both methods, done right</b>Semantic and keyword search, used for what each actually excels at—meaning understanding vs. exact matching.</span></div>
-<div><span><b>Recommendation in writing</b>A specific search strategy, with the reasoning behind it, before any implementation begins.</span></div>
-<div><span><b>Hybrid when it earns it</b>Combining vector embeddings with BM25 or TF-IDF in a single query, the standard 2026 pattern for robust retrieval.</span></div>
-<div><span><b>Honest, not default</b>If your use case doesn't need the complexity of semantic search, I'll say so—and recommend keyword search instead.</span></div>
+<div><span><b>Both methods, used right</b>Semantic search for meaning, keyword search for exact matches, used where each excels.</span></div>
+<div><span><b>Recommendation with reason</b>A clear recommendation based on domain, data type, and query patterns.</span></div>
+<div><span><b>Hybrid when it matters</b>Hybrid search blends vector and inverted index, the standard pattern for balanced retrieval.</span></div>
+<div><span><b>Honest about weaknesses</b>If your use case doesn't benefit from hybrid, I'll explain why.</span></div>
 </div>
 </div>
 <!-- ================= WHAT IS ================= -->
@@ -2034,7 +2148,7 @@
 </div>
 <div class="tldr reveal">
 <b>Quick answer</b>
-<p>Semantic search uses vector embeddings and neural models to understand the meaning behind a query, matching conceptually related content even when no exact words match. Keyword search relies on exact term matching via algorithms like BM25 or TF-IDF, delivering fast, precise results when the query terms appear in the document. Both are fundamental retrieval methods, and the real decision comes down to whether your hardest problem is understanding intent or catching exact phrases—and hybrid search combines them for the best of both worlds.</p>
+<p>Semantic search uses vector embeddings to understand query intent and meaning, excelling at synonyms and conceptual matches. Keyword search matches exact terms against an inverted index, ideal for structured lookups and rare terms. Both are open-source (e.g., Elasticsearch, Pinecone), and the real decision hinges on whether your queries need meaning or precision.</p>
 </div>
 </div>
 </section>
@@ -2044,54 +2158,54 @@
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">The comparison</p>
-<h2>Search comparison: Semantic Search vs Keyword Search</h2>
+<h2>Comparison: Semantic Search vs Keyword Search</h2>
 </div>
 <div class="tablewrap reveal">
 <table>
 <thead>
 <tr>
 <th>Factor</th>
-<th class="col-me">Semantic Search</th>
-<th>Keyword Search</th>
+<th class="col-me">Semantic Search (Vector)</th>
+<th>Keyword Search (Full-Text)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<th scope="row">Primary strength</th>
-<td class="col-me">Understands meaning, synonyms, and context via embeddings</td>
-<td>Fast exact match on literal terms and metadata</td>
+<th scope="row">Matching technique</th>
+<td class="col-me">Dense vector similarity (cosine, dot product)</td>
+<td>Exact term and inverted index matching</td>
 </tr>
 <tr>
 <th scope="row">Best for</th>
-<td class="col-me">Content discovery, Q&amp;A, chatbots, long-tail queries</td>
-<td>E-commerce, product catalogs, structured fields, known IDs</td>
+<td class="col-me">Ambiguous queries, synonyms, language understanding</td>
+<td>Precise term lookup, structured queries, IDs</td>
 </tr>
 <tr>
-<th scope="row">Indexing setup complexity</th>
-<td class="col-me">Requires embedding model, vector database, and reindexing pipeline</td>
-<td>Simple inverted index with TF-IDF or BM25; low overhead</td>
+<th scope="row">Implementation complexity</th>
+<td class="col-me">Requires embeddings model, vector DB, tuning</td>
+<td>Built into most databases (Elasticsearch, Postgres)</td>
 </tr>
 <tr>
 <th scope="row">Query latency</th>
-<td class="col-me">Higher due to embedding generation and ANN search (20–50ms typical)</td>
-<td>Low (5–10ms) for direct index lookup and scoring</td>
+<td class="col-me">Typically 5–20ms for vector search (depends on index)</td>
+<td>1–5ms for term search over inverted index</td>
 </tr>
 <tr>
-<th scope="row">Context understanding</th>
-<td class="col-me">Handles synonyms, paraphrases, and misspellings naturally</td>
-<td>Fails on misspelled or out-of-vocabulary terms unless fuzzy logic is added</td>
+<th scope="row">Ecosystem maturity</th>
+<td class="col-me">Rapidly growing (Pinecone, Weaviate, Milvus)</td>
+<td>Mature (Lucene, Elasticsearch, Solr)</td>
 </tr>
 <tr>
-<th scope="row">Exact match reliability</th>
-<td class="col-me">May miss literal terms if embedding drifts or vectors are misaligned</td>
-<td>Perfect for exact product codes, names, and boolean filters</td>
+<th scope="row">When it fails</th>
+<td class="col-me">Rare terms, exact code snippets, out-of-vocabulary</td>
+<td>Synonyms, misspellings, conceptual similarity</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="callout reveal">
-<p>The hybrid reality</p>
-<p>Most production retrieval systems use both together: semantic search for understanding broad intent, and keyword search for precision on exact terms. This is the standard architecture I build when a project genuinely needs both recall and relevance—and it's the foundation of Answer Engine Optimization (AEO) in 2026.</p>
+<p>The hybrid solution</p>
+<p>Production search systems increasingly combine both: keyword search for exact high-precision results and semantic search for recall on ambiguous queries. Hybrid search (e.g., reciprocal rank fusion) is the standard architecture when neither approach alone satisfies.</p>
 </div>
 </div>
 </section>
@@ -2099,34 +2213,34 @@
 <section id="services">
 <div class="wrap">
 <div class="sec-head reveal">
-<p class="eyebrow">Search services</p>
-<h2>Search implementation services</h2>
+<p class="eyebrow">What I build</p>
+<h2>Search paradigm comparison services</h2>
 <p>What I build with each framework, matched to what your project actually needs.</p>
 </div>
 <div class="grid g3 reveal">
 <div class="card"><span class="n advise">CONSULT</span>
-<h3>Search strategy consulting</h3>
-<p>An independent assessment of your data, user queries, and performance requirements, resulting in a recommendation: semantic, keyword, or hybrid, with benchmarks.</p>
+<h3>Search architecture consulting</h3>
+<p>An independent audit of your search requirements and data characteristics, resulting in a written recommendation: semantic, keyword, hybrid, or a custom combination with benchmarks.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
-<h3>Semantic search development</h3>
-<p>Vector search implementation using embeddings, ANN indexes, and reranking for understanding user intent and handling synonyms.</p>
+<h3>Semantic search system development</h3>
+<p>Embedding-based retrieval with vector databases: dense passage indexing, approximate nearest neighbor search, and relevance scoring for understanding user intent beyond exact matches.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
-<h3>Keyword search development</h3>
-<p>Full-text search with BM25, inverted indexes, and advanced query parsing for exact matches and structured queries.</p>
+<h3>Keyword &amp; full-text search pipelines</h3>
+<p>BM25 and inverted index implementations: tokenization, stemming, stop-word handling, and ranked retrieval for precise term-matching scenarios like legal or technical documentation.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
-<h3>Hybrid search architecture</h3>
-<p>Combining semantic and keyword search with fusion algorithms (RRF, weighted scoring) to maximize recall and precision.</p>
+<h3>Hybrid search (semantic + keyword)</h3>
+<p>Reciprocal rank fusion (RRF) or weighted blending of semantic and keyword results, balancing intent understanding with exact-match precision, configurable per query type.</p>
 </div>
 <div class="card"><span class="n advise">AUDIT</span>
-<h3>Search performance audit</h3>
-<p>Audit of existing search systems to identify failure points, measure latency, recall, and precision, and recommend improvements.</p>
+<h3>Search failure analysis &amp; rectification</h3>
+<p>Systematic diagnosis of search failures: identifying when semantic search misses critical keywords or keyword search misses synonyms, then building hybrid mitigations.</p>
 </div>
 <div class="card cta-card">
-<h3>Not sure which search approach you need?</h3>
-<p>Try the comparison above, or get a personalized recommendation.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get a recommendation</a>
+<h3>Uncertain which search method?</h3>
+<p>Run the quick fit-check above, or let's scope it properly.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get a recommendation</a>
 </div>
 </div>
 </div>
@@ -2137,27 +2251,27 @@
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">The honest breakdown</p>
-<h2>Where each search approach wins</h2>
+<h2>Where each search method wins</h2>
 </div>
 <div class="grid g2 reveal">
 <div class="card">
 <span class="n">SEMANTIC SEARCH WINS WHEN</span>
-<h3>Understanding user intent is critical</h3>
+<h3>Understanding intent trumps exact terms</h3>
 <ul>
-<li>User queries are natural language, conversational, or contain synonyms: semantic search captures meaning, not just words.</li>
-<li>Keyword search fails on ambiguous or long-tail queries: semantic search bridges vocabulary gaps and returns relevant results even with no exact match.</li>
-<li>But semantic search fails on precise numeric filters, product codes, or proper names: vector similarity can miss exact matches.</li>
-<li>Hybrid search solves this by combining semantic recall with keyword precision, using reciprocal rank fusion (RRF) to blend scores.</li>
+<li>User queries use synonyms, paraphrases, or natural language: semantic search captures meaning with 15-30% better recall than keyword-only approaches</li>
+<li>High query variability: embedding similarity handles diverse phrasings without manual synonym expansion</li>
+<li>Sparse keyword matches lead to zero results: semantic search retrieves relevant documents even when no exact terms align</li>
+<li>You need to surface conceptually related content, not just literal matches, for discovery or recommendation use cases</li>
 </ul>
 </div>
 <div class="card">
 <span class="n build">KEYWORD SEARCH WINS WHEN</span>
-<h3>Exact matching and structured queries matter</h3>
+<h3>Precise terms define relevance</h3>
 <ul>
-<li>Queries contain unique identifiers, SKUs, or exact phrases where precision is paramount: BM25 and inverted indexes guarantee exact matches.</li>
-<li>Semantic search fails on rare terms or out-of-domain vocabulary: embeddings may not distinguish subtle differences, returning false positives.</li>
-<li>But keyword search fails on synonymy, misspellings, and natural language: it cannot understand that 'car' and 'automobile' are the same.</li>
-<li>Hybrid search combines both: keyword handles exact matches, semantic handles intent, and fusion ensures no trade-off in recall or precision.</li>
+<li>Searching for unique identifiers, codes, or proper nouns: BM25 achieves near-perfect precision for specific terms like part numbers or legal citations</li>
+<li>Domain-specific jargon or rare terms: keyword search directly matches without embedding noise or dilution from vector similarity</li>
+<li>Low-latency requirements: inverted index lookups are 2-5x faster than embedding generation + ANN search</li>
+<li>Hybrid search is essential when both fail: RRF blending yields 20-30% higher NDCG@10 on diverse query sets compared to either method alone</li>
 </ul>
 </div>
 </div>
@@ -2167,39 +2281,39 @@
 <section id="process">
 <div class="wrap">
 <div class="sec-head reveal">
-<p class="eyebrow">The analysis path</p>
-<h2>Your search evaluation</h2>
+<p class="eyebrow">How it's evaluated</p>
+<h2>Evaluation process</h2>
 </div>
 <div class="steps reveal">
 <details class="step" open="">
-<summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
-<h3>Audit your current search</h3><span class="cv">+</span>
+<summary><span class="num">PHASE 01<span class="days">day 1</span></span>
+<h3>Data Audit</h3><span class="cv">+</span>
 </summary>
-<div class="body">We analyze your existing keyword or semantic search setup, identifying failures: zero-result queries, irrelevant results, or high bounce rates.</div>
+<div class="body">Inventory your existing search data, user queries, and content structure to identify where keyword search fails and where semantic search introduces noise.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
-<h3>Architecture recommendation</h3><span class="cv">+</span>
+<h3>Failure Analysis</h3><span class="cv">+</span>
 </summary>
-<div class="body">A written spec detailing whether pure semantic, pure keyword, or a hybrid search approach fits your data and user intent.</div>
+<div class="body">A written report detailing specific scenarios where pure keyword or pure semantic search fails, with a recommendation for hybrid architecture.</div>
 </details>
 <details class="step gate">
 <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
-<h3>Build the retrieval layer</h3><span class="cv">+</span>
+<h3>Pilot Build</h3><span class="cv">+</span>
 </summary>
-<div class="body">Implementation of the chosen approach: vector embeddings, inverted index, or a hybrid orchestrator with reranking.</div>
+<div class="body">Build a hybrid search pipeline combining BM25 and vector embeddings, with fallback logic and reranking.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
-<h3>Eval with query sets</h3><span class="cv">+</span>
+<h3>Evaluation</h3><span class="cv">+</span>
 </summary>
-<div class="body">Testing against your real queries using precision, recall, and NDCG metrics to identify edge cases where each model fails.</div>
+<div class="body">Test the hybrid system against edge cases – exact match, synonyms, misspellings, and ambiguous queries – using your real data.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 05<span class="days">handoff</span></span>
-<h3>Deploy &amp; monitor</h3><span class="cv">+</span>
+<h3>Deployment</h3><span class="cv">+</span>
 </summary>
-<div class="body">Production deployment with fallback logic, query analysis, and a dashboard to track retrieval failure modes over time.</div>
+<div class="body">Deploy with monitoring, A/B test against the old search, and hand over documentation for your team.</div>
 </details>
 </div>
 </div>
@@ -2210,7 +2324,7 @@
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">Investment</p>
-<h2>Pricing</h2>
+<h2>Engagement Options</h2>
 </div>
 <div class="tablewrap reveal">
 <table>
@@ -2218,29 +2332,24 @@
 <tr>
 <th>Engagement type</th>
 <th class="col-me">What's included</th>
-<th>Typical investment</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Search architecture audit</td>
-<td class="col-me">Review of current search setup, failure analysis, and written recommendation</td>
-<td>$1,000 to $2,500</td>
+<td>Search strategy consultation <span class="badge-free" style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span></td>
+<td class="col-me">Written analysis of your search gaps and hybrid recommendation</td>
 </tr>
 <tr>
-<td>Pure semantic search build</td>
-<td class="col-me">Embedding pipeline, vector index, and retrieval implementation</td>
-<td>$6,000 to $18,000</td>
+<td>Keyword-only search optimization</td>
+<td class="col-me">Tuning BM25, stop words, and synonym expansion</td>
 </tr>
 <tr>
-<td>Hybrid search system</td>
-<td class="col-me">Combined vector and full-text indices, reranking, and fallback logic</td>
-<td>$12,000 to $30,000</td>
+<td>Semantic search implementation</td>
+<td class="col-me">Vector embeddings, reranking, and query understanding</td>
 </tr>
 <tr class="me-row">
-<td>Custom eval and monitoring</td>
-<td class="col-me">Query set creation, eval framework, and production monitoring dashboard</td>
-<td>$4,000 to $10,000</td>
+<td>Hybrid search architecture</td>
+<td class="col-me">Combined BM25 + vector, with fallback and evaluation</td>
 </tr>
 </tbody>
 </table>
@@ -2256,24 +2365,24 @@
 </div>
 <div class="faq reveal">
 <details open="">
-<summary>When does pure keyword search outperform semantic search?</summary>
-<div class="a">Keyword search wins with exact product codes, SKUs, or short queries where precision on specific terms matters more than conceptual understanding. It fails when users phrase queries differently than the document's language.</div>
+<summary>When does keyword search fail?</summary>
+<div class="a">Keyword search fails on synonyms, context, and natural language queries. It cannot handle 'how to fix a leaky faucet' if the content uses 'tap'. Semantic search handles these but can fail on exact model numbers or rare terms.</div>
 </details>
 <details>
-<summary>When does pure semantic search outperform keyword search?</summary>
-<div class="a">Semantic search excels with natural language queries, synonyms, and vague concepts, but fails on rare terms or when the embedding model isn't fine-tuned on your domain. It also struggles with queries requiring exact substring matching.</div>
+<summary>When does semantic search fail?</summary>
+<div class="a">Semantic search fails on rare acronyms, misspellings, and exact phrasing where meaning changes. For example, Apple (fruit) vs Apple (company) – keyword search can be tuned with field weighting.</div>
 </details>
 <details>
-<summary>What is hybrid search and why use it?</summary>
-<div class="a">Hybrid search combines vector and keyword indices, typically with a reranker to merge results. It's the Answer Engine Optimization staple because it covers both exact and conceptual queries, reducing failure modes of either approach.</div>
+<summary>Is hybrid search always better?</summary>
+<div class="a">Hybrid search combines BM25 and vector scores with reranking, covering the blind spots of both. It's the recommended approach for production systems, though it adds complexity and latency.</div>
 </details>
 <details>
-<summary>How do I benchmark the right approach for my data?</summary>
-<div class="a">Create a query set with labeled relevance judgments, then run both pure keyword and pure semantic searches. Measure precision, recall, and the number of queries where each returns zero relevant results. The approach with fewer failures wins.</div>
+<summary>How do you decide the hybrid ratio?</summary>
+<div class="a">The ratio of keyword to semantic weight depends on your data. We run a grid search over your test queries to find the optimal balance, typically 0.3 to 0.5 keyword weight.</div>
 </details>
 <details>
-<summary>What does a hybrid search build cost?</summary>
-<div class="a">A hybrid system combining vector and full-text indices with reranking runs $12,000 to $30,000, including ingestion, evaluation, and deployment. Contact for a fixed estimate specific to your data size and query patterns.</div>
+<summary>How much does hybrid search implementation cost?</summary>
+<div class="a">A consultation is free. A keyword-only optimization ranges $2,000–$5,000. Semantic search implementation $8,000–$15,000. Hybrid architecture $15,000–$30,000 depending on data volume and complexity.</div>
 </details>
 </div>
 </div>
@@ -2472,92 +2581,147 @@
 
 <script>
 (function() {
-  var container = document.getElementById('vwTabContainer');
-  if (!container) return;
-  var tabs = container.querySelectorAll('.vw-tab');
-  var barPrec = document.getElementById('vwBarPrec');
-  var barRecall = document.getElementById('vwBarRecall');
-  var barLat = document.getElementById('vwBarLat');
-  var semFail = document.getElementById('vwSemFailScore');
-  var kwFail = document.getElementById('vwKwFailScore');
-  var met1 = document.getElementById('vwMet1');
-  var met2 = document.getElementById('vwMet2');
-  var met3 = document.getElementById('vwMet3');
-
-  var data = {
-    all: {
-      prec: { val: 82, color: 'semantic' },
-      recall: { val: 76, color: 'hybrid' },
-      lat: { val: 52, color: 'keyword' },
-      semFail: 'Rare Terms',
-      kwFail: 'Synonym Gap',
-      m1: '0.34',
-      m2: '0.71',
-      m3: '0.83',
-      m1class: 'blue',
-      m2class: 'mint',
-      m3class: 'violet'
+  const data = {
+    exact: {
+      keyword: {
+        results: [
+          { title: "Passport Renewal Application Form", snippet: "Download DS-82 form for passport renewal by mail. Valid for adults with previous passport issued within last 15 years.", score: 97, rank: 1 },
+          { title: "Schedule Passport Appointment", snippet: "Book an appointment at your nearest passport acceptance facility. Walk-ins limited.", score: 94, rank: 2 },
+          { title: "Passport Renewal Fees & Processing", snippet: "Current passport renewal fee is $130. Standard processing takes 6-8 weeks.", score: 89, rank: 3 }
+        ],
+        precision: 94, recall: 72, latency: "0.2s", relevance: "High", count: "3 documents"
+      },
+      semantic: {
+        results: [
+          { title: "How to Renew Your U.S. Passport", snippet: "Step-by-step guide for renewing your passport. Check eligibility, complete form DS-82, submit photo and fee.", score: 91, rank: 1 },
+          { title: "Passport Services Overview", snippet: "Find information on passport applications, renewals, name changes, and expedited service options.", score: 85, rank: 2 },
+          { title: "Travel Document Requirements", snippet: "All travelers need valid passport. Renewal recommended 9 months before expiration for international travel.", score: 76, rank: 3 }
+        ],
+        precision: 84, recall: 88, latency: "0.5s", relevance: "High", count: "3 documents"
+      },
+      hybrid: {
+        results: [
+          { title: "Passport Renewal Application Form", snippet: "Download DS-82 form for passport renewal by mail. Valid for adults with previous passport issued within last 15 years.", score: 98, rank: 1 },
+          { title: "How to Renew Your U.S. Passport", snippet: "Step-by-step guide for renewing your passport. Check eligibility, complete form DS-82, submit photo and fee.", score: 95, rank: 2 },
+          { title: "Schedule Passport Appointment", snippet: "Book an appointment at your nearest passport acceptance facility. Walk-ins limited.", score: 92, rank: 3 }
+        ],
+        precision: 95, recall: 91, latency: "0.4s", relevance: "High", count: "3 documents"
+      }
     },
-    semantic: {
-      prec: { val: 91, color: 'semantic' },
-      recall: { val: 54, color: 'semantic' },
-      lat: { val: 68, color: 'semantic' },
-      semFail: 'Rare Terms',
-      kwFail: 'Not Applicable',
-      m1: '0.71',
-      m2: '0.89',
-      m3: '0.62',
-      m1class: 'mint',
-      m2class: 'mint',
-      m3class: 'blue'
+    vague: {
+      keyword: {
+        results: [
+          { title: "Employee Stress Management Policy", snippet: "Company policy on workplace stress. Includes EAP resources and manager referral procedures.", score: 43, rank: 1 },
+          { title: "Workplace Safety Guidelines", snippet: "OSHA compliance manual for office environments. Section 5 covers ergonomic stress.", score: 21, rank: 2 }
+        ],
+        precision: 32, recall: 15, latency: "0.1s", relevance: "Low", count: "2 documents"
+      },
+      semantic: {
+        results: [
+          { title: "Coping with Work Anxiety: A Guide", snippet: "Practical strategies for managing workplace stress. Includes breathing exercises, boundary setting, and when to seek help.", score: 94, rank: 1 },
+          { title: "Employee Mental Health Resources", snippet: "Confidential counseling services available 24/7. Free therapy sessions for all employees and their families.", score: 91, rank: 2 },
+          { title: "Work-Life Balance Best Practices", snippet: "How to set boundaries, prioritize tasks, and avoid burnout. Tips from organizational psychologists.", score: 87, rank: 3 },
+          { title: "Signs of Workplace Burnout", snippet: "Recognize early warning signs: exhaustion, cynicism, reduced performance. Prevention strategies included.", score: 84, rank: 4 }
+        ],
+        precision: 89, recall: 94, latency: "0.6s", relevance: "High", count: "4 documents"
+      },
+      hybrid: {
+        results: [
+          { title: "Coping with Work Anxiety: A Guide", snippet: "Practical strategies for managing workplace stress. Includes breathing exercises, boundary setting, and when to seek help.", score: 96, rank: 1 },
+          { title: "Employee Mental Health Resources", snippet: "Confidential counseling services available 24/7. Free therapy sessions for all employees and their families.", score: 93, rank: 2 },
+          { title: "Work-Life Balance Best Practices", snippet: "How to set boundaries, prioritize tasks, and avoid burnout. Tips from organizational psychologists.", score: 89, rank: 3 },
+          { title: "Employee Stress Management Policy", snippet: "Company policy on workplace stress. Includes EAP resources and manager referral procedures.", score: 85, rank: 4 }
+        ],
+        precision: 91, recall: 96, latency: "0.5s", relevance: "High", count: "4 documents"
+      }
     },
-    keyword: {
-      prec: { val: 73, color: 'keyword' },
-      recall: { val: 32, color: 'keyword' },
-      lat: { val: 38, color: 'keyword' },
-      semFail: 'Not Applicable',
-      kwFail: 'Synonym Gap',
-      m1: '0.42',
-      m2: '0.30',
-      m3: '0.28',
-      m1class: 'blue',
-      m2class: 'rose',
-      m3class: 'blue'
+    hybrid: {
+      keyword: {
+        results: [
+          { title: "Best Budget Laptops 2025 — Top Picks", snippet: "Our experts tested 50+ laptops under $1000. Find the best value for your money with detailed benchmarks.", score: 96, rank: 1 },
+          { title: "Laptop Buying Guide 2025", snippet: "What to look for in a budget laptop: processor, RAM, storage, display quality. Price comparisons included.", score: 88, rank: 2 },
+          { title: "Budget Laptop Deals & Discounts", snippet: "Current sales on budget laptops from Dell, HP, Lenovo, Acer. Save up to 40% this season.", score: 82, rank: 3 }
+        ],
+        precision: 89, recall: 65, latency: "0.2s", relevance: "Medium", count: "3 documents"
+      },
+      semantic: {
+        results: [
+          { title: "Top Affordable Laptops for Students", snippet: "Best budget-friendly laptops for college. Lightweight, long battery life, under $700. Includes Chromebook picks.", score: 92, rank: 1 },
+          { title: "Best Budget Laptops 2025 — Top Picks", snippet: "Our experts tested 50+ laptops under $1000. Find the best value for your money with detailed benchmarks.", score: 90, rank: 2 },
+          { title: "Value for Money: Best Laptops Reviewed", snippet: "Which laptops offer the best specs for the price. Performance per dollar ranking for 2025 models.", score: 86, rank: 3 },
+          { title: "Budget Gaming Laptops Under $800", snippet: "Affordable gaming laptops that don't compromise on performance. RTX 3050 and above.", score: 79, rank: 4 }
+        ],
+        precision: 87, recall: 91, latency: "0.5s", relevance: "High", count: "4 documents"
+      },
+      hybrid: {
+        results: [
+          { title: "Best Budget Laptops 2025 — Top Picks", snippet: "Our experts tested 50+ laptops under $1000. Find the best value for your money with detailed benchmarks.", score: 99, rank: 1 },
+          { title: "Top Affordable Laptops for Students", snippet: "Best budget-friendly laptops for college. Lightweight, long battery life, under $700. Includes Chromebook picks.", score: 95, rank: 2 },
+          { title: "Laptop Buying Guide 2025", snippet: "What to look for in a budget laptop: processor, RAM, storage, display quality. Price comparisons included.", score: 91, rank: 3 },
+          { title: "Value for Money: Best Laptops Reviewed", snippet: "Which laptops offer the best specs for the price. Performance per dollar ranking for 2025 models.", score: 88, rank: 4 }
+        ],
+        precision: 93, recall: 94, latency: "0.4s", relevance: "High", count: "4 documents"
+      }
     }
   };
-
-  function activate(mode) {
-    var d = data[mode];
+  var scenarioBtns = document.querySelectorAll('.viewer .vw-scenario');
+  var methodBtns = document.querySelectorAll('.viewer .vw-method');
+  var resultList = document.getElementById('resultList');
+  var resultCount = document.getElementById('resultCount');
+  var queryDisplay = document.getElementById('queryDisplay');
+  var metricPrecision = document.getElementById('metricPrecision');
+  var metricRecall = document.getElementById('metricRecall');
+  var metricLatency = document.getElementById('metricLatency');
+  var metricRelevance = document.getElementById('metricRelevance');
+  var methodBadge = document.getElementById('methodBadge');
+  var currentScenario = 'exact';
+  var currentMethod = 'keyword';
+  var queryMap = { exact: '"renew passport"', vague: '"feeling stressed at work"', hybrid: '"best budget laptop 2025"' };
+  function render() {
+    var d = data[currentScenario][currentMethod];
     if (!d) return;
-    barPrec.style.width = d.prec.val + '%';
-    barPrec.textContent = d.prec.val + '%';
-    barPrec.className = 'vw-bar-fill ' + d.prec.color;
-    barRecall.style.width = d.recall.val + '%';
-    barRecall.textContent = d.recall.val + '%';
-    barRecall.className = 'vw-bar-fill ' + d.recall.color;
-    barLat.style.width = d.lat.val + '%';
-    barLat.textContent = d.lat.val + 'ms';
-    barLat.className = 'vw-bar-fill ' + d.lat.color;
-    semFail.textContent = d.semFail;
-    kwFail.textContent = d.kwFail;
-    met1.textContent = d.m1;
-    met1.className = 'vw-m-val ' + d.m1class;
-    met2.textContent = d.m2;
-    met2.className = 'vw-m-val ' + d.m2class;
-    met3.textContent = d.m3;
-    met3.className = 'vw-m-val ' + d.m3class;
-    tabs.forEach(function(t) {
-      t.classList.remove('active');
-      if (t.dataset.mode === mode) t.classList.add('active');
-    });
+    queryDisplay.textContent = queryMap[currentScenario];
+    var items = '';
+    for (var i = 0; i < d.results.length; i++) {
+      var r = d.results[i];
+      var scoreClass = r.score >= 90 ? 'high' : r.score >= 70 ? 'medium' : 'low';
+      items += '<div class="vw-result-item" style="animation-delay:' + (i * 0.05) + 's"><div class="vw-result-rank">' + r.rank + '</div><div class="vw-result-content"><div class="vw-result-title">' + r.title + '</div><div class="vw-result-snippet">' + r.snippet + '</div></div><div class="vw-result-score ' + scoreClass + '">' + r.score + '%</div></div>';
+    }
+    resultList.innerHTML = items;
+    resultCount.textContent = d.count;
+    metricPrecision.textContent = d.precision + '%';
+    metricPrecision.className = 'vw-tile-val ' + (d.precision >= 90 ? 'good' : d.precision >= 70 ? 'warn' : 'bad');
+    metricRecall.textContent = d.recall + '%';
+    metricRecall.className = 'vw-tile-val ' + (d.recall >= 90 ? 'good' : d.recall >= 70 ? 'warn' : 'bad');
+    metricLatency.textContent = d.latency;
+    metricLatency.className = 'vw-tile-val';
+    metricRelevance.textContent = d.relevance;
+    metricRelevance.className = 'vw-tile-val ' + (d.relevance === 'High' ? 'good' : d.relevance === 'Medium' ? 'warn' : 'bad');
+    var methodName = currentMethod.charAt(0).toUpperCase() + currentMethod.slice(1);
+    methodBadge.textContent = methodName + ' Mode';
+    if (currentMethod === 'keyword') { methodBadge.style.background = 'var(--amber-tint)'; methodBadge.style.color = 'var(--amber)'; methodBadge.style.borderColor = 'rgba(217, 122, 24, 0.25)'; }
+    else if (currentMethod === 'semantic') { methodBadge.style.background = 'var(--violet-tint)'; methodBadge.style.color = 'var(--violet)'; methodBadge.style.borderColor = 'rgba(109, 94, 246, 0.25)'; }
+    else { methodBadge.style.background = 'var(--mint-tint)'; methodBadge.style.color = 'var(--mint-deep)'; methodBadge.style.borderColor = 'rgba(11, 125, 78, 0.25)'; }
   }
-
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      var mode = this.dataset.mode;
-      activate(mode);
-    });
-  });
+  function selectScenario(btn) {
+    for (var i = 0; i < scenarioBtns.length; i++) scenarioBtns[i].classList.remove('active');
+    btn.classList.add('active');
+    currentScenario = btn.getAttribute('data-s');
+    render();
+  }
+  function selectMethod(btn) {
+    for (var i = 0; i < methodBtns.length; i++) methodBtns[i].classList.remove('active');
+    btn.classList.add('active');
+    currentMethod = btn.getAttribute('data-m');
+    render();
+  }
+  for (var i = 0; i < scenarioBtns.length; i++) {
+    scenarioBtns[i].addEventListener('click', function() { selectScenario(this); });
+  }
+  for (var i = 0; i < methodBtns.length; i++) {
+    methodBtns[i].addEventListener('click', function() { selectMethod(this); });
+  }
+  render();
 })();
 </script>
 </body>

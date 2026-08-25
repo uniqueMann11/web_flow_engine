@@ -1,7 +1,7 @@
 """
 Comparison page-type compiler.
 Sections: hero · comply · what-is · comparison (table) · services · where-wins · process · pricing · faq
-Template: langchain-vs-llamaindex.html
+Template: page_types/comparison/template.html
 """
 from .shared import (
     apply_hero, apply_comply, apply_what_is,

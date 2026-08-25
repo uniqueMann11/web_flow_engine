@@ -1,7 +1,7 @@
 """
 Service × Industry page-type compiler.
 Sections: hero · comply · what-is · vs-agency (table) · services · use-cases · process · when-not · pricing · faq
-Template: rag-chatbot-healthcare.html
+Template: page_types/service_x_industry/template.html
 """
 from .shared import (
     apply_hero, apply_comply, apply_what_is,

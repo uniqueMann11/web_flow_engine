@@ -1,6 +1,6 @@
 """
 Glossary / Definition page-type compiler.
-Compiles generated data into the what-is-rag.html template.
+Compiles generated data into the page_types/glossary_definition/template.html template.
 """
 from .shared import (
     apply_hero, apply_comply, apply_what_is,

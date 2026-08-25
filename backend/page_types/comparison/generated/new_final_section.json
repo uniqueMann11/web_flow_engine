@@ -1,48 +1,48 @@
 {
   "process": {
     "sec-head": {
-      "eyebrow": "How it's decided",
+      "eyebrow": "How it's evaluated",
       "h2": "Evaluation process"
     },
     "steps": [
       {
         "step": {
           "num": "PHASE 01",
-          "days": "days 1 to 2",
-          "body": "We audit your data volume, query latency needs, and budget. We also test your documents against a long context model to measure baseline accuracy and cost per query.",
-          "h3": "Discovery"
+          "days": "day 1",
+          "h3": "Data Audit",
+          "body": "Inventory your existing search data, user queries, and content structure to identify where keyword search fails and where semantic search introduces noise."
         }
       },
       {
         "step": {
           "num": "PHASE 02",
           "days": "within 48h",
-          "body": "A written architecture spec comparing RAG vs long context for your use case, including projected token costs, retrieval accuracy trade-offs, and freshness requirements\u2014delivered within 48 hours.",
-          "h3": "Architecture comparison"
+          "h3": "Failure Analysis",
+          "body": "A written report detailing specific scenarios where pure keyword or pure semantic search fails, with a recommendation for hybrid architecture."
         }
       },
       {
         "step": {
           "num": "PHASE 03",
           "days": "the decisive one",
-          "body": "We build a proof-of-concept for both approaches using your real data. For RAG, we set up a retrieval pipeline with chunking and embedding. For long context, we prefill the prompt with your corpus and measure latency.",
-          "h3": "Build & benchmark"
+          "h3": "Pilot Build",
+          "body": "Build a hybrid search pipeline combining BM25 and vector embeddings, with fallback logic and reranking."
         }
       },
       {
         "step": {
           "num": "PHASE 04",
           "days": "before launch",
-          "body": "We run side-by-side evaluations on accuracy, cost per query (including input tokens), and freshness. We use RAGAS for RAG and custom eval for long context, then recommend the winner.",
-          "h3": "Evaluation"
+          "h3": "Evaluation",
+          "body": "Test the hybrid system against edge cases \u2013 exact match, synonyms, misspellings, and ambiguous queries \u2013 using your real data."
         }
       },
       {
         "step": {
           "num": "PHASE 05",
           "days": "handoff",
-          "body": "Production deployment of the chosen approach with monitoring for cost and latency, plus documentation for your team on when to switch strategies as models evolve.",
-          "h3": "Deployment"
+          "h3": "Deployment",
+          "body": "Deploy with monitoring, A/B test against the old search, and hand over documentation for your team."
         }
       }
     ]
@@ -60,26 +60,26 @@
       "tbody": [
         {
           "td": [
-            "Architecture comparison <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
-            "Written spec comparing RAG vs long context for your data"
+            "Search strategy consultation <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
+            "Written analysis of your search gaps and hybrid recommendation"
           ]
         },
         {
           "td": [
-            "RAG pipeline build",
-            "Retrieval pipeline, ingestion, evaluation, deployment"
+            "Keyword-only search optimization",
+            "Tuning BM25, stop words, and synonym expansion"
           ]
         },
         {
           "td": [
-            "Long context integration",
-            "Prompt engineering, caching, cost optimization, deployment"
+            "Semantic search implementation",
+            "Vector embeddings, reranking, and query understanding"
           ]
         },
         {
           "td": [
-            "Hybrid RAG + long context build",
-            "Both approaches combined with a routing layer, full production system"
+            "Hybrid search architecture",
+            "Combined BM25 + vector, with fallback and evaluation"
           ]
         }
       ]
@@ -93,26 +93,32 @@
     "faq": [
       {
         "faq-item": {
-          "faq-q": "When should I choose RAG over long context windows?",
-          "faq-a": "Choose RAG when you need cost efficiency at scale (long context costs grow linearly with token count), real-time data freshness (RAG queries live databases), or when your documents exceed 1 million tokens\u2014long context models become prohibitively expensive and slow at that scale."
+          "faq-q": "When does keyword search fail?",
+          "faq-a": "Keyword search fails on synonyms, context, and natural language queries. It cannot handle 'how to fix a leaky faucet' if the content uses 'tap'. Semantic search handles these but can fail on exact model numbers or rare terms."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Are long context windows accurate enough to replace RAG?",
-          "faq-a": "In 2026, models like Gemini 1.5 Pro and GPT-4-128k show strong retrieval accuracy within 200k tokens, but accuracy degrades beyond that and costs can be 10x higher per query compared to RAG. For small, static knowledge bases under 100k tokens, long context is viable and simpler."
+          "faq-q": "When does semantic search fail?",
+          "faq-a": "Semantic search fails on rare acronyms, misspellings, and exact phrasing where meaning changes. For example, Apple (fruit) vs Apple (company) \u2013 keyword search can be tuned with field weighting."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Can I use both RAG and long context together?",
-          "faq-a": "Yes, a hybrid pattern is common: use RAG to retrieve the top 10 most relevant chunks, then feed those into a long context window for reasoning. This balances cost and accuracy, and is the approach we recommend for most production systems in 2026."
+          "faq-q": "Is hybrid search always better?",
+          "faq-a": "Hybrid search combines BM25 and vector scores with reranking, covering the blind spots of both. It's the recommended approach for production systems, though it adds complexity and latency."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How do I estimate the cost difference between RAG and long context?",
-          "faq-a": "For a 1M token corpus with 100 daily queries, RAG costs roughly $0.10\u2013$0.50/day in embeddings and retrieval, while long context costs $5\u2013$20/day in input tokens alone. We provide a detailed cost projection in the architecture comparison phase."
+          "faq-q": "How do you decide the hybrid ratio?",
+          "faq-a": "The ratio of keyword to semantic weight depends on your data. We run a grid search over your test queries to find the optimal balance, typically 0.3 to 0.5 keyword weight."
+        }
+      },
+      {
+        "faq-item": {
+          "faq-q": "How much does hybrid search implementation cost?",
+          "faq-a": "A consultation is free. A keyword-only optimization ranges $2,000\u2013$5,000. Semantic search implementation $8,000\u2013$15,000. Hybrid architecture $15,000\u2013$30,000 depending on data volume and complexity."
         }
       }
     ]

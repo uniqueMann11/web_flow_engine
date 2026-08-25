@@ -1,6 +1,6 @@
 """
 Hire-a-Role page-type compiler.
-Extracts and applies generated data to the hire-rag-developer.html template.
+Extracts and applies generated data to the page_types/hire_a_role/template.html template.
 """
 from .shared import (
     apply_hero, apply_comply, apply_what_is,

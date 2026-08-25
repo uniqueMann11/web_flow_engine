@@ -1,7 +1,7 @@
 """
 Technology / Integration page-type compiler.
 Sections: hero · comply · what-is · vs-agency (table) · services · engagement · process · when-not · pricing · faq
-Template: langchain-development-services.html
+Template: page_types/technology_integration/template.html
 """
 from .shared import (
     apply_hero, apply_comply, apply_what_is,

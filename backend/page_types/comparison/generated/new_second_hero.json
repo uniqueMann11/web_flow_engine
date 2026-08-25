@@ -2,95 +2,95 @@
   "comply": {
     "comply-in": [
       {
-        "b": "Cost matters",
-        "span": "RAG queries are cheap per token retrieved; long context windows spike inference cost exponentially with input length. We'll calculate your actual cost per query."
+        "b": "Both methods, used right",
+        "span": "Semantic search for meaning, keyword search for exact matches, used where each excels."
       },
       {
-        "b": "Accuracy over hype",
-        "span": "Long context models often hallucinate on mid-document details; RAG with chunked retrieval maintains higher precision on specific facts. We measure both."
+        "b": "Recommendation with reason",
+        "span": "A clear recommendation based on domain, data type, and query patterns."
       },
       {
-        "b": "Freshness first",
-        "span": "RAG can pull live data or updated indexes without retraining; long context windows are static snapshots. We'll show the freshness trade-off in your use case."
+        "b": "Hybrid when it matters",
+        "span": "Hybrid search blends vector and inverted index, the standard pattern for balanced retrieval."
       },
       {
-        "b": "Hybrid when earned",
-        "span": "The winning 2026 pattern uses RAG for factual retrieval and long context for summarization of retrieved chunks. We only recommend this when it beats both pure approaches."
+        "b": "Honest about weaknesses",
+        "span": "If your use case doesn't benefit from hybrid, I'll explain why."
       }
     ]
   },
   "what-is": {
     "sec-head": {
       "eyebrow": "Plain answer",
-      "h2": "What is RAG? What are Long Context Windows?"
+      "h2": "What is Semantic Search? What is Keyword Search?"
     },
     "tldr": {
       "b": "Quick answer",
       "p": [
-        "RAG (Retrieval-Augmented Generation) retrieves relevant document chunks before generating an answer, keeping cost low and data fresh. Long context windows let a model process entire documents\u2014up to millions of tokens\u2014in a single pass, but at higher cost and with accuracy risks on fine-grained details. The 2026 debate isn't about which is better, but when each (or a hybrid) wins on cost, accuracy, and freshness."
+        "Semantic search uses vector embeddings to understand query intent and meaning, excelling at synonyms and conceptual matches. Keyword search matches exact terms against an inverted index, ideal for structured lookups and rare terms. Both are open-source (e.g., Elasticsearch, Pinecone), and the real decision hinges on whether your queries need meaning or precision."
       ]
     }
   },
   "comparison": {
     "sec-head": {
       "eyebrow": "The comparison",
-      "h2": "RAG vs Long Context Windows: A 2026 Showdown"
+      "h2": "Comparison: Semantic Search vs Keyword Search"
     },
     "tablewrap": {
       "thead": [
         "Factor",
-        "RAG (Retrieval-Augmented Generation)",
-        "Long Context Windows (Million-Token Models)"
+        "Semantic Search (Vector)",
+        "Keyword Search (Full-Text)"
       ],
       "tbody": [
         {
-          "th": "Primary strength",
+          "th": "Matching technique",
           "td": [
-            "Low-cost, precise retrieval from large or dynamic corpora",
-            "Single-pass processing of entire documents without indexing"
+            "Dense vector similarity (cosine, dot product)",
+            "Exact term and inverted index matching"
           ]
         },
         {
           "th": "Best for",
           "td": [
-            "Factual Q&A, real-time data, and cost-sensitive production systems",
-            "Document-level summarization, narrative analysis, and long-form reasoning"
+            "Ambiguous queries, synonyms, language understanding",
+            "Precise term lookup, structured queries, IDs"
           ]
         },
         {
-          "th": "Cost per query",
+          "th": "Implementation complexity",
           "td": [
-            "$0.001\u2013$0.01 per query (retrieval + small generation)",
-            "$0.10\u2013$0.50+ per query (depending on input length and model)"
+            "Requires embeddings model, vector DB, tuning",
+            "Built into most databases (Elasticsearch, Postgres)"
           ]
         },
         {
-          "th": "Accuracy",
+          "th": "Query latency",
           "td": [
-            "High on specific facts, lower on cross-document synthesis",
-            "High on overall narrative, lower on mid-document precision and recall"
+            "Typically 5\u201320ms for vector search (depends on index)",
+            "1\u20135ms for term search over inverted index"
           ]
         },
         {
-          "th": "Freshness",
+          "th": "Ecosystem maturity",
           "td": [
-            "Real-time updates via index refresh or live APIs",
-            "Static; requires costly retraining or re-prompting for new data"
+            "Rapidly growing (Pinecone, Weaviate, Milvus)",
+            "Mature (Lucene, Elasticsearch, Solr)"
           ]
         },
         {
-          "th": "Latency",
+          "th": "When it fails",
           "td": [
-            "~200\u2013500ms (retrieval + generation)",
-            "~1\u20135 seconds (for full context prefill and generation)"
+            "Rare terms, exact code snippets, out-of-vocabulary",
+            "Synonyms, misspellings, conceptual similarity"
           ]
         }
       ]
     },
     "callout": {
       "p": [
-        "The 2026 verdict",
-        "Neither pure RAG nor pure long context wins universally. The standard production pattern is RAG for retrieval-heavy tasks and long context for summarization of retrieved chunks\u2014a hybrid that balances cost, accuracy, and freshness. The million-token model hype hasn't replaced retrieval; it's become a complementary tool in the retrieval stack."
+        "The hybrid solution",
+        "Production search systems increasingly combine both: keyword search for exact high-precision results and semantic search for recall on ambiguous queries. Hybrid search (e.g., reciprocal rank fusion) is the standard architecture when neither approach alone satisfies."
       ]
     }
   }

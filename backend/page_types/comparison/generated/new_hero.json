@@ -1,35 +1,35 @@
 {
   "hero": {
-    "eyebrow": "The right retrieval strategy",
+    "eyebrow": "When each fails, hybrid wins",
     "h1": {
-      "h1": "RAG vs Long Context Windows:",
-      "span": "the 2026 decision"
+      "h1": "Semantic Search vs Keyword Search:",
+      "span": "the hybrid answer"
     },
-    "hero-sub": "Choosing between RAG and long context windows determines your cost per query, answer accuracy, and data freshness. I assess both architectures and recommend the optimal approach based on your throughput, latency, and update frequency\u2014not a default choice.",
+    "hero-sub": "Choosing between semantic search and keyword search determines how much you spend, how fast results appear, and how well your system handles ambiguous queries. I build with both and apply hybrid search where each fails, ensuring production-grade retrieval that answers questions your users actually ask.",
     "creds": [
       {
         "cred": {
           "i": "Experience",
-          "b": "5+ yrs production RAG"
+          "b": "5+ yrs production search"
         }
       },
       {
         "cred": {
           "i": "Coverage",
-          "b": "Both RAG and long context"
+          "b": "Both methods, used correctly"
         }
       },
       {
         "cred": {
           "i": "Turnaround",
-          "b": "48h architecture rec."
+          "b": "48h search architecture rec."
         }
       }
     ],
     "hero-cta": [
       {
         "btn-primary": {
-          "text": "Get a strategy recommendation",
+          "text": "Get a search recommendation",
           "url": "#lets-talk"
         }
       },
@@ -44,11 +44,11 @@
     "trust": [
       {
         "b": "5+",
-        "span": "Years building production RAG"
+        "span": "Years building production search"
       },
       {
         "b": "40%",
-        "span": "Cost reduction potential"
+        "span": "Higher recall with hybrid"
       },
       {
         "b": "48h",
