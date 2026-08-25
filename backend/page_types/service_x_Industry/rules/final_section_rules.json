@@ -30,20 +30,18 @@
   "pricing": {
     "sec-head": {
       "eyebrow": "Pricing eyebrow tag (e.g., 'Investment'). Max 3 words.",
-      "h2": "Pricing section heading (e.g., 'Pricing'). Max 3 words."
+      "h2": "Pricing section heading (e.g., 'Engagement Options'). Max 3 words."
     },
     "tablewrap": {
       "thead": [
         "Header 1 (e.g., 'Engagement type')",
-        "Header 2 (e.g., 'What\\'s included')",
-        "Header 3 (e.g., 'Typical investment')"
+        "Header 2 (e.g., 'What\\'s included')"
       ],
       "tbody": [
         {
           "td": [
-            "Engagement model name (e.g., 'HIPAA RAG Proof-of-Concept', 'Production Clinical RAG System', 'Healthcare AI Safety Audit', 'Hourly Medical AI Consulting')",
-            "Scope summary detailing pipelines, security audits, or integrations included",
-            "Investment range (e.g., '$2,500 to $6,000', '$12,000 to $45,000', '$2,000 to $5,000', '$100 to $200/hr')"
+            "Engagement model name with optional free badge (e.g., 'HIPAA RAG Proof-of-Concept <span class=\"badge-free\">Free</span>', 'Production Clinical RAG System', 'Healthcare AI Safety Audit', 'Hourly Medical AI Consulting')",
+            "Scope summary detailing pipelines, security audits, or integrations included"
           ]
         }
       ]

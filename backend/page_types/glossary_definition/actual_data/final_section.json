@@ -69,41 +69,36 @@
   "pricing": {
     "sec-head": {
       "eyebrow": "Investment",
-      "h2": "Pricing"
+      "h2": "Engagement Options"
     },
     "tablewrap": {
       "thead": [
         "Engagement type",
-        "What's included",
-        "Typical investment"
+        "What's included"
       ],
       "tbody": [
         {
           "td": [
-            "RAG proof-of-concept",
-            "Baseline retrieval pipeline on a data sample, evaluation report",
-            "$1,500 to $4,000"
+            "RAG proof-of-concept <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
+            "Baseline retrieval pipeline on a data sample, evaluation report"
           ]
         },
         {
           "td": [
             "Production RAG system",
-            "Full pipeline, guardrails, deployment, documentation",
-            "$8,000 to $30,000"
+            "Full pipeline, guardrails, deployment, documentation"
           ]
         },
         {
           "td": [
             "RAG system audit",
-            "Diagnose and improve an underperforming existing system",
-            "$1,000 to $3,000"
+            "Diagnose and improve an underperforming existing system"
           ]
         },
         {
           "td": [
             "Hourly consulting",
-            "Architecture review, retrieval strategy design",
-            "$75 to $150/hr"
+            "Architecture review, retrieval strategy design"
           ]
         }
       ]

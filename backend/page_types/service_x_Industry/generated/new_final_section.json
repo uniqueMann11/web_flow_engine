@@ -62,41 +62,36 @@
   "pricing": {
     "sec-head": {
       "eyebrow": "Investment",
-      "h2": "Pricing"
+      "h2": "Engagement Options"
     },
     "tablewrap": {
       "thead": [
         "Engagement type",
-        "What's included",
-        "Typical investment"
+        "What's included"
       ],
       "tbody": [
         {
           "td": [
-            "Generative AI Marketing Proof-of-Concept",
-            "Brand voice audit, sample content pipeline for one channel, human-in-loop QA demonstration",
-            "$2,500 to $6,000"
+            "Generative AI Marketing Proof-of-Concept <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
+            "Brand voice audit, sample content pipeline for one channel, human-in-loop QA demonstration"
           ]
         },
         {
           "td": [
             "Production Content Automation System",
-            "Full multi-channel pipeline, brand voice engines, CMS integration, real-time QA dashboard",
-            "$12,000 to $45,000"
+            "Full multi-channel pipeline, brand voice engines, CMS integration, real-time QA dashboard"
           ]
         },
         {
           "td": [
             "Marketing Content Safety Audit",
-            "Red-teaming for brand tone drift, hallucination, and compliance gaps in generated content",
-            "$2,000 to $5,000"
+            "Red-teaming for brand tone drift, hallucination, and compliance gaps in generated content"
           ]
         },
         {
           "td": [
             "Hourly Marketing AI Consulting",
-            "Strategy review, channel mapping, human-in-loop workflow design, cost optimization",
-            "$100 to $200/hr"
+            "Strategy review, channel mapping, human-in-loop workflow design, cost optimization"
           ]
         }
       ]

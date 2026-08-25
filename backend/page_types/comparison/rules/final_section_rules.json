@@ -18,20 +18,18 @@
   "pricing": {
     "sec-head": {
       "eyebrow": "Eyebrow label (e.g., 'Investment'). Max 3 words.",
-      "h2": "Pricing section heading (e.g., 'Pricing')."
+      "h2": "Pricing section heading (e.g., 'Engagement Options')."
     },
     "tablewrap": {
       "thead": [
         "Header 1 (e.g., 'Engagement type')",
-        "Header 2 (e.g., 'What\\'s included')",
-        "Header 3 (e.g., 'Typical investment')"
+        "Header 2 (e.g., 'What\\'s included')"
       ],
       "tbody": [
         {
           "td": [
-            "Engagement type name.",
-            "Included scope.",
-            "Pricing range (e.g., '$500 to $1,500', '$8,000 to $25,000')."
+            "Engagement type name with optional free badge (e.g., 'Framework selection consulting <span class=\"badge-free\">Free</span>').",
+            "Included scope."
           ]
         }
       ]

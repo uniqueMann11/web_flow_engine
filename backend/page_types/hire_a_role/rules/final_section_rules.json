@@ -46,20 +46,18 @@
   "pricing": {
     "sec-head": {
       "eyebrow": "Pricing eyebrow tag (e.g., 'Investment'). Max 3 words.",
-      "h2": "Pricing section heading (e.g., 'Pricing'). Max 3 words."
+      "h2": "Pricing section heading (e.g., 'Engagement Options'). Max 3 words."
     },
     "tablewrap": {
       "thead": [
         "Header 1 (e.g., 'Engagement type')",
-        "Header 2 (e.g., 'What\\'s included')",
-        "Header 3 (e.g., 'Typical investment')"
+        "Header 2 (e.g., 'What\\'s included')"
       ],
       "tbody": [
         {
           "td": [
-            "Engagement model name (e.g., 'RAG proof-of-concept', 'Production RAG chatbot', 'RAG system audit', 'Hourly consulting')",
-            "Scope and deliverables summary",
-            "Price range or rate (e.g., '$1,500 to $4,000', '$8,000 to $30,000', '$1,000 to $3,000', '$75 to $150/hr')"
+            "Engagement model name with optional free badge (e.g., 'RAG proof-of-concept <span class=\"badge-free\">Free</span>', 'Production RAG chatbot', 'RAG system audit', 'Hourly consulting')",
+            "Scope and deliverables summary"
           ]
         }
       ]

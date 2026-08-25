@@ -69,41 +69,36 @@
   "pricing": {
     "sec-head": {
       "eyebrow": "Investment",
-      "h2": "Pricing"
+      "h2": "Engagement Options"
     },
     "tablewrap": {
       "thead": [
         "Engagement type",
-        "What's included",
-        "Typical investment"
+        "What's included"
       ],
       "tbody": [
         {
           "td": [
-            "Multimodal proof-of-concept",
-            "Baseline pipeline on sample data, evaluation report",
-            "$2,000 to $5,000"
+            "Multimodal proof-of-concept <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
+            "Baseline pipeline on sample data, evaluation report"
           ]
         },
         {
           "td": [
             "Production multimodal system",
-            "Full pipeline, guardrails, deployment, documentation",
-            "$10,000 to $40,000"
+            "Full pipeline, guardrails, deployment, documentation"
           ]
         },
         {
           "td": [
             "Multimodal system audit",
-            "Diagnose and improve an existing system",
-            "$1,500 to $4,000"
+            "Diagnose and improve an existing system"
           ]
         },
         {
           "td": [
             "Hourly consulting",
-            "Architecture review, fusion strategy design",
-            "$100 to $200/hr"
+            "Architecture review, fusion strategy design"
           ]
         }
       ]

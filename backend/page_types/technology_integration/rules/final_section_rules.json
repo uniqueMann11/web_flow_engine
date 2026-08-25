@@ -30,20 +30,18 @@
   "pricing": {
     "sec-head": {
       "eyebrow": "Eyebrow label (e.g., 'Investment'). Max 2 words.",
-      "h2": "Pricing heading (e.g., 'Pricing')."
+      "h2": "Pricing heading (e.g., 'Engagement Options')."
     },
     "tablewrap": {
       "thead": [
         "Header 1 (e.g., 'Engagement type')",
-        "Header 2 (e.g., 'What\\'s included')",
-        "Header 3 (e.g., 'Typical investment')"
+        "Header 2 (e.g., 'What\\'s included')"
       ],
       "tbody": [
         {
           "td": [
-            "Tier or engagement name (e.g., 'Single tool/agent integration', 'Full agentic system', 'LangChain system audit', 'Hourly consulting').",
-            "Included deliverables and scope.",
-            "Investment range or rate (e.g., '$2,000 to $6,000', '$8,000 to $30,000+', '$75 to $150/hr')."
+            "Tier or engagement name with optional free badge (e.g., 'Single tool/agent integration <span class=\"badge-free\">Free</span>', 'Full agentic system', 'LangChain system audit', 'Hourly consulting').",
+            "Included deliverables and scope."
           ]
         }
       ]

@@ -7,7 +7,14 @@ from bs4 import BeautifulSoup
 def set_text(el, text):
     """Set the direct text content of a BeautifulSoup element."""
     if el and text is not None:
-        el.string = str(text)
+        str_text = str(text)
+        if "<" in str_text and ">" in str_text:
+            el.clear()
+            frag = BeautifulSoup(str_text, "html.parser")
+            for child in list(frag.contents):
+                el.append(child)
+        else:
+            el.string = str_text
 
 
 def set_href(el, url):
@@ -311,16 +318,25 @@ def apply_pricing(soup, final_data):
     if tw_price and "tablewrap" in pr_data:
         tw = pr_data["tablewrap"]
         th_els = tw_price.select("thead th")
-        for i, th_txt in enumerate(tw.get("thead", [])):
+        thead_list = tw.get("thead", [])
+        for i, th_txt in enumerate(thead_list):
             if i < len(th_els):
                 set_text(th_els[i], th_txt)
+        if len(thead_list) < len(th_els):
+            for extra_th in th_els[len(thead_list):]:
+                extra_th.decompose()
+
         tr_els = tw_price.select("tbody tr")
         for i, row in enumerate(tw.get("tbody", [])):
             if i < len(tr_els):
                 tds = tr_els[i].find_all("td")
-                for j, val in enumerate(row.get("td", [])):
+                row_tds = row.get("td", [])
+                for j, val in enumerate(row_tds):
                     if j < len(tds):
                         set_text(tds[j], val)
+                if len(row_tds) < len(tds):
+                    for extra_td in tds[len(row_tds):]:
+                        extra_td.decompose()
 
 
 def apply_faq(soup, final_data):

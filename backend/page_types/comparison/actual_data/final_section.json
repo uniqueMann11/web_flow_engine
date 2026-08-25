@@ -50,41 +50,36 @@
   "pricing": {
     "sec-head": {
       "eyebrow": "Investment",
-      "h2": "Pricing"
+      "h2": "Engagement Options"
     },
     "tablewrap": {
       "thead": [
         "Engagement type",
-        "What's included",
-        "Typical investment"
+        "What's included"
       ],
       "tbody": [
         {
           "td": [
-            "Framework selection consulting",
-            "Written architecture recommendation and spec",
-            "$500 to $1,500"
+            "Framework selection consulting <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
+            "Written architecture recommendation and spec"
           ]
         },
         {
           "td": [
             "LlamaIndex RAG build",
-            "Retrieval pipeline, ingestion, evaluation, deployment",
-            "$8,000 to $25,000"
+            "Retrieval pipeline, ingestion, evaluation, deployment"
           ]
         },
         {
           "td": [
             "LangChain/LangGraph agent build",
-            "Multi-step agent, tools, memory, guardrails, deployment",
-            "$8,000 to $30,000+"
+            "Multi-step agent, tools, memory, guardrails, deployment"
           ]
         },
         {
           "td": [
             "Hybrid architecture build",
-            "Both frameworks combined, full production system",
-            "$15,000 to $40,000+"
+            "Both frameworks combined, full production system"
           ]
         }
       ]

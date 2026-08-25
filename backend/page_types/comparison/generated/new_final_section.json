@@ -50,41 +50,36 @@
   "pricing": {
     "sec-head": {
       "eyebrow": "Investment",
-      "h2": "Pricing"
+      "h2": "Engagement Options"
     },
     "tablewrap": {
       "thead": [
         "Engagement type",
-        "What's included",
-        "Typical investment"
+        "What's included"
       ],
       "tbody": [
         {
           "td": [
-            "Architecture comparison",
-            "Written spec comparing RAG vs long context for your data",
-            "$500 to $1,500"
+            "Architecture comparison <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
+            "Written spec comparing RAG vs long context for your data"
           ]
         },
         {
           "td": [
             "RAG pipeline build",
-            "Retrieval pipeline, ingestion, evaluation, deployment",
-            "$8,000 to $25,000"
+            "Retrieval pipeline, ingestion, evaluation, deployment"
           ]
         },
         {
           "td": [
             "Long context integration",
-            "Prompt engineering, caching, cost optimization, deployment",
-            "$5,000 to $15,000"
+            "Prompt engineering, caching, cost optimization, deployment"
           ]
         },
         {
           "td": [
             "Hybrid RAG + long context build",
-            "Both approaches combined with a routing layer, full production system",
-            "$15,000 to $40,000+"
+            "Both approaches combined with a routing layer, full production system"
           ]
         }
       ]
