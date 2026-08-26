@@ -56,7 +56,9 @@ if IS_VERCEL:
 else:
     HTML_PAGES_DIR = os.path.join(BACKEND_DIR, "HTML pages")
 
+GENERATED_IMAGES_DIR = os.path.join(BACKEND_DIR, "generated_images")
 os.makedirs(HTML_PAGES_DIR, exist_ok=True)
+os.makedirs(GENERATED_IMAGES_DIR, exist_ok=True)
 
 # Load environment variables from .env file (for local dev)
 load_dotenv(os.path.join(BASE_DIR, ".env"))
@@ -79,6 +81,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Serve generated images as static files
+app.mount("/generated_images", StaticFiles(directory=GENERATED_IMAGES_DIR), name="generated_images")
+
 # =============================================================================
 # 4. DATA MODELS & TOPIC PRESETS
 # =============================================================================
@@ -92,6 +97,7 @@ class PipelineRequest(BaseModel):
     output_filename: Optional[str] = None
     skip_generate: bool = False
     skip_widget: bool = False
+    skip_images: bool = False
     sample_widget: Optional[str] = None
     # Backward compatibility
     role: Optional[str] = None
@@ -410,6 +416,8 @@ async def run_pipeline(req: PipelineRequest):
         cmd.append("--skip-generate")
     if req.skip_widget:
         cmd.append("--skip-widget")
+    if req.skip_images:
+        cmd.append("--skip-images")
     if req.sample_widget:
         cmd.extend(["--sample-widget", req.sample_widget])
 
@@ -505,6 +513,8 @@ async def run_pipeline_stream(req: PipelineRequest):
         cmd.append("--skip-generate")
     if req.skip_widget:
         cmd.append("--skip-widget")
+    if req.skip_images:
+        cmd.append("--skip-images")
     if req.sample_widget:
         cmd.extend(["--sample-widget", req.sample_widget])
 

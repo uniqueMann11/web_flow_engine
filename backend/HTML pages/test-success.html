@@ -1,72 +1,120 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RAG Development Services | What Is Retrieval-Augmented Generation | Shreyans Padmani</title>
-  <meta name="robots" content="index, follow">
-  <meta name="robots" content="max-image-preview:large">
-  <meta name="author" content="Shreyans Padmani">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Shreyans Padmani">
-  <meta property="og:locale" content="en_US">
-  <meta name="description"
-    content="RAG development services: what retrieval-augmented generation is, how it works, and how I build production RAG systems, document ingestion, retrieval engineering, guardrails, and deployment.">
-  <meta name="keywords" content="what is RAG, retrieval augmented generation explained, RAG development services">
-  <link rel="canonical" href="https://shreyans.tech/what-is-rag" />
-  <meta property="og:title" content="RAG Development Services | What Is RAG — Shreyans Padmani">
-  <meta property="og:url" content="https://shreyans.tech/what-is-rag">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@shreyanspadmani">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet">
-  <link rel="shortcut icon" href="/assets/image/shreyans.png" type="image/x-icon">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/image/shreyans.png">
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <script type="application/ld+json">{
-      "@context": "https://schema.org",
-      "@graph": [
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Test Fail Fast Success | Shreyans Padmani</title>
+<meta content="index, follow" name="robots"/>
+<meta content="max-image-preview:large" name="robots"/>
+<meta content="Shreyans Padmani" name="author"/>
+<meta content="website" property="og:type"/>
+<meta content="Shreyans Padmani" property="og:site_name"/>
+<meta content="en_US" property="og:locale"/>
+<meta content="Choosing between LangChain and LlamaIndex determines how much you spend, how fast it ships, and how well it performs in production. I build with both frameworks and pick the right one, or the right combination, based on your actual retrieval and orchestration needs, not a default toolkit." name="description"/>
+<meta content="Test Fail Fast Success" name="keywords"/>
+<link href="https://shreyans.tech/test-fail-fast-success" rel="canonical"/>
+<meta content="Test Fail Fast Success" property="og:title"/>
+<meta content="https://shreyans.tech/test-fail-fast-success" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="@shreyanspadmani" name="twitter:site"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/image/shreyans.png" rel="shortcut icon" type="image/x-icon"/>
+<link href="/assets/image/shreyans.png" rel="apple-touch-icon" sizes="180x180"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Test Fail Fast Success",
+      "url": "https://shreyans.tech/test-fail-fast-success",
+      "provider": {
+        "@type": "Person",
+        "name": "Shreyans Padmani",
+        "url": "https://shreyans.tech"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-          "@type": "Service",
-          "name": "RAG Development Services",
-          "url": "https://shreyans.tech/what-is-rag",
-          "provider": { "@type": "Person", "name": "Shreyans Padmani", "url": "https://shreyans.tech" }
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://shreyans.tech/"
         },
         {
-          "@type": "DefinedTerm",
-          "name": "Retrieval-Augmented Generation",
-          "description": "Retrieval-augmented generation (RAG) is an AI architecture that improves large language model responses by retrieving relevant information from an external knowledge base at query time and inserting it into the model's context before it generates an answer, grounding each response in specific, current, and verifiable source content."
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://shreyans.tech/hire-ai-developer"
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://shreyans.tech/" },
-            { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://shreyans.tech/hire-ai-developer" },
-            { "@type": "ListItem", "position": 3, "name": "RAG Development", "item": "https://shreyans.tech/services/rag-development" },
-            { "@type": "ListItem", "position": 4, "name": "What Is RAG", "item": "https://shreyans.tech/what-is-rag" }
-          ]
+          "@type": "ListItem",
+          "position": 3,
+          "name": "RAG Development",
+          "item": "https://shreyans.tech/services/rag-development"
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "What does RAG stand for?", "acceptedAnswer": { "@type": "Answer", "text": "RAG stands for retrieval-augmented generation, an AI architecture that retrieves relevant information before an LLM generates its response, rather than relying only on the model's training data." } },
-            { "@type": "Question", "name": "Is RAG the same as fine-tuning?", "acceptedAnswer": { "@type": "Answer", "text": "No. Fine-tuning changes a model's weights through additional training. RAG retrieves external information and adds it to the model's context at query time without changing the model. They solve different problems and are often used together." } },
-            { "@type": "Question", "name": "Does RAG eliminate AI hallucination?", "acceptedAnswer": { "@type": "Answer", "text": "RAG significantly reduces hallucination, typically 60 to 80% versus a bare LLM, by grounding responses in retrieved content, but does not eliminate it entirely. Guardrails and confidence thresholds are layered on top in every production system." } },
-            { "@type": "Question", "name": "How much does RAG development cost?", "acceptedAnswer": { "@type": "Answer", "text": "A proof-of-concept starts at $1,500 to $4,000. A full production RAG system ranges from $8,000 to $30,000 depending on complexity and data volume." } },
-            { "@type": "Question", "name": "How long does it take to build a RAG system?", "acceptedAnswer": { "@type": "Answer", "text": "A proof-of-concept typically takes 2 to 4 weeks. A full production system with guardrails, evaluation, and deployment typically takes 4 to 10 weeks depending on data complexity and integration scope." } }
-          ]
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Test Fail Fast Success",
+          "item": "https://shreyans.tech/test-fail-fast-success"
         }
       ]
-    }</script>
-
-  <style>
-    .svcp {
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is RAG cheaper than long-context windows in 2026?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "At scale, yes. RAG typically costs 10-100x less per query because it only sends relevant chunks to the model, while long-context models charge for every token in the prompt—even irrelevant ones. For low-volume, high-complexity queries, long-context may be more cost-effective despite higher per-query cost."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When does long-context beat RAG on accuracy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Long-context wins when the answer requires synthesizing information across many documents or when retrieval fails due to ambiguous queries. However, with good chunking and reranking, RAG often matches or exceeds long-context accuracy at a fraction of the cost."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I handle data freshness with long-context models?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Long-context models are static—they only know what's in the prompt. For fresh data, you either need to inject updated context into every prompt (expensive) or use RAG to retrieve the latest information from a live source. Most production systems in 2026 use a hybrid: long-context for reasoning, RAG for freshness."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use both RAG and long-context in one system?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, and that's the recommended pattern. Use RAG to fetch relevant chunks, then use a long-context model to reason over them together with your instructions. This gives you the cost savings of retrieval with the synthesis power of long-context models."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does it cost to build a RAG or long-context system?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A free architecture assessment is available. Full RAG builds range from $8,000 to $30,000+, long-context optimization from $5,000 to $20,000, and hybrid systems from $15,000 to $40,000+, depending on complexity and data volume. Contact for a fixed-price quote."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+<style>
+    :root, .svcp {
       --ink: #0A1222;
       --ink-soft: #1B2740;
       --body: #48566E;
@@ -192,6 +240,7 @@
       color: var(--blue);
       margin: 0 0 16px
     }
+
 
     .svcp .sec-head {
       max-width: 760px;
@@ -1017,7 +1066,6 @@
       color: #AEBEDC;
       margin-bottom: 8px
     }
-
     .svcp .tablewrap {
       overflow-x: auto;
       border: 1px solid var(--line);
@@ -1701,432 +1749,342 @@
     }
   </style>
 </head>
-
 <body>
-
-  <main class="svcp">
-
-    <!-- ================= HERO ================= -->
-    <section class="hero" id="demo">
-      <div class="wrap">
-        <div class="hero-grid">
-          <div>
-            <p class="eyebrow">The architecture behind grounded AI</p>
-            <h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">RAG development services: what retrieval-augmented
-              generation is, <span>and how I build it</span></h1>
-            <p class="hero-sub">Retrieval-augmented generation is the architecture behind every AI system that needs
-              to answer accurately from your own data instead of guessing from general training knowledge. I design
-              and build production RAG systems: document ingestion, retrieval engineering, generation, guardrails, and
-              deployment.</p>
-
-            <div class="creds">
-              <div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg width="15"
-                    height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 8v4l3 3" />
-                    <circle cx="12" cy="12" r="9" />
-                  </svg></span><span class="t"><i>Experience</i><b>5+ yrs production RAG</b></span></div>
-              <div class="cred"><span class="b" style="background:#0FA968" title="Reduction"><svg width="15" height="15"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="M3 3v18h18" />
-                    <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14" />
-                  </svg></span><span class="t"><i>Outcome</i><b>60&ndash;80% less hallucination</b></span></div>
-              <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg width="14" height="14"
-                    viewBox="0 0 24 24" fill="none" stroke="#2456E6" stroke-width="2.4" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M12 6v6l4 2" />
-                  </svg></span><span class="t"><i>Turnaround</i><b>48h written spec</b></span></div>
-            </div>
-
-            <div class="hero-cta">
-              <a class="btn btn-primary" href="#lets-talk">Talk to a RAG developer <svg fill="none"
-                  stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
-                  <path d="M5 12h14M13 6l6 6-6 6"></path>
-                </svg></a>
-              <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
-            </div>
-            <p class="live"><span class="pulse"></span> Every answer traces to a source, guardrails included from day
-              one</p>
-          </div>
-
-          <!-- ===== SIGNATURE: RAG vs Plain LLM vs Fine-Tuning ===== -->
-          <div class="viewer">
-            <div class="viewer-top">
-              <span class="t">grounding preview, illustrative</span>
-              <span class="chip"><span class="d"></span>live</span>
-            </div>
-            <canvas id="sigcanvas"
-              aria-label="Illustration comparing retrieval-augmented generation, a plain LLM, and a fine-tuned model. RAG retrieves matching document chunks and cites them. A plain LLM guesses with no source. A fine-tuned model answers in a trained style but without a live, checkable source."></canvas>
-            <div class="modesw" role="tablist" aria-label="Grounding mode">
-              <button role="tab" aria-selected="true" data-m="rag" type="button">RAG</button>
-              <button role="tab" aria-selected="false" data-m="bare" type="button">Plain LLM</button>
-              <button role="tab" aria-selected="false" data-m="finetune" type="button">Fine-tuned</button>
-            </div>
-            <div class="segs" role="tablist" aria-label="Business scenario">
-              <button role="tab" aria-selected="true" data-d="0" type="button">support policy</button>
-              <button role="tab" aria-selected="false" data-d="1" type="button">internal wiki</button>
-              <button role="tab" aria-selected="false" data-d="2" type="button">product catalog</button>
-            </div>
-            <div class="metrics">
-              <div><b id="m1" class="sc-good">Low</b><span id="m1l">Hallucination risk</span></div>
-              <div><b id="m2">4</b><span id="m2l">Chunks retrieved</span></div>
-              <div><b id="m3">Live docs</b><span id="m3l">Answer basis</span></div>
-            </div>
-            <div class="answerbox">
-              <span class="k">Generated answer</span>
-              <p id="answer"></p>
-            </div>
-            <ul class="citelist" id="citelist"></ul>
-            <div class="viewer-foot" id="foot">Switch modes to see what each approach actually gives you, and what it
-              can't.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= COMPLY STRIP ================= -->
-    <div class="comply">
-      <div class="wrap comply-in">
-        <div><span><b>Grounded, not guessed</b>Every answer is retrieved from your own documents at query time, not
-            the model's fixed training memory.</span></div>
-        <div><span><b>Source-traceable</b>Each response can cite the exact document it came from, for review and for
-            trust.</span></div>
-        <div><span><b>Guardrails included</b>Confidence thresholds and a defensive "I don't know" fallback ship with
-            every build, not bolted on later.</span></div>
-        <div><span><b>No retraining required</b>Update the knowledge base, not the model. Documents change daily, RAG
-            keeps up without a training run.</span></div>
-      </div>
-    </div>
-
-    <!-- ================= WHAT IS RAG (definition) ================= -->
-    <section id="what-is-rag">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">Plain answer</p>
-          <h2>What is RAG (retrieval-augmented generation)?</h2>
-        </div>
-        <div class="what-is-wrap reveal">
-          <div class="what-is-media">
-            <!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
-            <div class="img-placeholder" aria-label="Image placeholder">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                <circle cx="9" cy="9" r="2"/>
-                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-              </svg>
-              <span>Image Placeholder (1:1)</span>
-            </div>
-          </div>
-          <div class="tldr">
-            <b>Definition</b>
-            <p>Retrieval-augmented generation (RAG) is an AI architecture that improves large language model responses
-              by retrieving relevant information from an external knowledge base at query time and inserting it into the
-              model's context before it generates an answer. Instead of relying only on what the model learned during
-              training, a fixed and eventually outdated snapshot, RAG grounds each response in specific, current, and
-              verifiable source content, making answers more accurate, current, and traceable back to a source document.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= HOW RAG WORKS ================= -->
-    <section class="soft" id="how-it-works">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">Step by step</p>
-          <h2>How RAG works</h2>
-          <p>The same five-step pipeline animating in the signature panel above, applied to your own documents.</p>
-        </div>
-        <div class="grid g3 reveal" style="grid-template-columns:repeat(5,1fr)">
-          <div class="card" style="padding:20px"><span class="n">STEP 1</span>
-            <h3 style="font-size:.98rem">Query submitted</h3>
-            <p style="font-size:.84rem">A user asks a question in natural language.</p>
-          </div>
-          <div class="card" style="padding:20px"><span class="n">STEP 2</span>
-            <h3 style="font-size:.98rem">Query embedded</h3>
-            <p style="font-size:.84rem">Converted into a numerical embedding capturing its meaning.</p>
-          </div>
-          <div class="card" style="padding:20px"><span class="n">STEP 3</span>
-            <h3 style="font-size:.98rem">Vector search</h3>
-            <p style="font-size:.84rem">The system finds the most relevant chunks in a vector database.</p>
-          </div>
-          <div class="card" style="padding:20px"><span class="n">STEP 4</span>
-            <h3 style="font-size:.98rem">Context inserted</h3>
-            <p style="font-size:.84rem">Retrieved content joins the query in the LLM's context window.</p>
-          </div>
-          <div class="card" style="padding:20px"><span class="n build">STEP 5</span>
-            <h3 style="font-size:.98rem">Grounded answer</h3>
-            <p style="font-size:.84rem">The LLM generates a response with sources available to cite.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="rule"></div>
-
-    <!-- ================= RAG vs LLM vs FINE-TUNING ================= -->
-    <section id="comparison">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">The decision</p>
-          <h2>RAG vs plain LLM vs fine-tuning</h2>
-          <p>These are frequently combined: a fine-tuned model for task-specific behavior, grounded by RAG for current
-            or proprietary data access.</p>
-        </div>
-        <div class="tablewrap reveal">
-          <table>
-            <thead>
-              <tr>
-                <th>Factor</th>
-                <th>Plain LLM</th>
-                <th class="col-me">RAG</th>
-                <th>Fine-tuning</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Knowledge source</th>
-                <td>Fixed training data</td>
-                <td class="col-me">Training data plus live retrievable content</td>
-                <td>Training data plus new task-specific behavior</td>
-              </tr>
-              <tr>
-                <th scope="row">Update process</th>
-                <td>Requires retraining</td>
-                <td class="col-me">Add or update documents, no retraining</td>
-                <td>Requires retraining on new examples</td>
-              </tr>
-              <tr>
-                <th scope="row">Best for</th>
-                <td>General knowledge tasks</td>
-                <td class="col-me">Domain-specific, current, or private data access</td>
-                <td>Changing model style, tone, or task behavior</td>
-              </tr>
-              <tr>
-                <th scope="row">Traceability</th>
-                <td>No source citation</td>
-                <td class="col-me">Can cite exact source document</td>
-                <td>No source citation</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= SERVICES ================= -->
-    <section class="soft" id="services">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">What I build</p>
-          <h2>RAG development services</h2>
-          <p>Each layer of a production RAG pipeline, built and tested as its own verifiable stage.</p>
-        </div>
-        <div class="grid g3 reveal">
-          <div class="card"><span class="n build">BUILD</span>
-            <h3>Document ingestion &amp; chunking</h3>
-            <p>Building the pipeline that prepares your source content, PDFs, wikis, databases, support tickets, into
-              properly chunked, retrievable pieces. This step determines the ceiling on everything downstream.</p>
-          </div>
-          <div class="card"><span class="n build">BUILD</span>
-            <h3>Vector database architecture</h3>
-            <p>Selecting and configuring the right vector store (Pinecone, Weaviate, Qdrant, FAISS, pgvector) for your
-              scale, latency, and hosting requirements.</p>
-          </div>
-          <div class="card"><span class="n build">BUILD</span>
-            <h3>Retrieval engineering</h3>
-            <p>Building the retrieval layer: hybrid search (semantic plus keyword), metadata filtering, and reranking
-              to maximize the relevance of what gets passed to the LLM.</p>
-          </div>
-          <div class="card"><span class="n build">BUILD</span>
-            <h3>Generation &amp; guardrails</h3>
-            <p>Configuring the generation layer with grounding constraints, defensive fallback behavior, and
-              confidence thresholds so the system says "I do not know" instead of guessing.</p>
-          </div>
-          <div class="card"><span class="n advise">EVALUATE</span>
-            <h3>RAG evaluation</h3>
-            <p>Testing retrieval and generation quality against your real queries using RAGAS, DeepEval, or a custom
-              evaluation set, with results shared transparently before launch.</p>
-          </div>
-          <div class="card"><span class="n build">BUILD</span>
-            <h3>Production deployment</h3>
-            <p>Deploying the full RAG pipeline as a versioned, monitored API integrated with your product or internal
-              tools.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="rule"></div>
-
-    <!-- ================= WHY BUSINESSES NEED RAG ================= -->
-    <section id="why">
-      <div class="wrap">
-        <div class="grid g2 reveal">
-          <div class="sec-head" style="margin-bottom:0">
-            <p class="eyebrow">Why it matters</p>
-            <h2>Why businesses need RAG</h2>
-            <p>A plain LLM has no access to your private,
-              proprietary, or real-time information, and will either say it does not know or generate a
-              plausible-sounding but incorrect answer. RAG solves this directly by giving the model exactly the
-              information it needs, retrieved fresh at query time, without the cost and delay of retraining the model
-              every time your underlying information changes.</p>
-          </div>
-          <div class="card" style="align-self:start">
-            <span class="n">COMMON APPLICATIONS</span>
-            <h3 style="margin-bottom:4px">Where I've built RAG systems</h3>
-            <ul>
-              <li>Customer support chatbots grounded in product documentation and policies</li>
-              <li>Internal knowledge assistants for employee Q&amp;A over wikis and HR policies</li>
-              <li>Healthcare AI assistants grounded in clinical guidelines &mdash; <a href="/rag-chatbot-healthcare"
-                  style="font-weight:600">see the healthcare page</a></li>
-              <li>Legal and compliance research tools citing specific clauses or precedents</li>
-              <li>Ecommerce product Q&amp;A answering from a live product catalog</li>
-              <li>Enterprise search surfacing answers, not just links, across large repositories</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= PROCESS ================= -->
-    <section class="soft" id="process">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">How it gets built</p>
-          <h2>Process</h2>
-        </div>
-        <div class="steps reveal">
-          <details class="step" open>
-            <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
-              <h3>Discovery</h3><span class="cv">+</span>
-            </summary>
-            <div class="body">Understanding your data sources, use case, and what "accurate" needs to mean for your
-              application.</div>
-          </details>
-          <details class="step">
-            <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
-              <h3>Architecture spec</h3><span class="cv">+</span>
-            </summary>
-            <div class="body">A written technical spec covering retrieval strategy, vector database choice, and
-              guardrail design, delivered within 48 hours.</div>
-          </details>
-          <details class="step gate">
-            <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
-              <h3>Build in milestones</h3><span class="cv">+</span>
-            </summary>
-            <div class="body">Ingestion, retrieval, generation, and guardrails built and tested as separate,
-              verifiable stages.</div>
-          </details>
-          <details class="step">
-            <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
-              <h3>Evaluation</h3><span class="cv">+</span>
-            </summary>
-            <div class="body">Testing against real queries with transparent results before launch.</div>
-          </details>
-          <details class="step">
-            <summary><span class="num">PHASE 05<span class="days">30 days plus</span></span>
-              <h3>Deployment &amp; support</h3><span class="cv">+</span>
-            </summary>
-            <div class="body">Production deployment with monitoring and a post-launch support window.</div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <div class="rule"></div>
-
-    <!-- ================= PRICING ================= -->
-    <section id="pricing">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">Investment</p>
-          <h2>Engagement Options</h2>
-        </div>
-        <div class="tablewrap reveal">
-          <table>
-            <thead>
-              <tr>
-                <th>Engagement type</th>
-                <th class="col-me">What's included</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>RAG proof-of-concept <span class="badge-free"
-                    style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span>
-                </td>
-                <td class="col-me">Baseline retrieval pipeline on a data sample, evaluation report</td>
-              </tr>
-              <tr class="me-row">
-                <td>Production RAG system</td>
-                <td class="col-me">Full pipeline, guardrails, deployment, documentation</td>
-              </tr>
-              <tr>
-                <td>RAG system audit</td>
-                <td class="col-me">Diagnose and improve an underperforming existing system</td>
-              </tr>
-              <tr>
-                <td>Hourly consulting</td>
-                <td class="col-me">Architecture review, retrieval strategy design</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Retrieval-grounded systems
-          delivered include the AI Customer Feedback Classification pipeline and AI Video Summarizer. Full case
-          studies at <a href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
-      </div>
-    </section>
-
-    <!-- ================= FAQ ================= -->
-    <section class="soft" id="faq">
-      <div class="wrap">
-        <div class="sec-head center reveal">
-          <p class="eyebrow">FAQ</p>
-          <h2>Frequently asked questions</h2>
-        </div>
-        <div class="faq reveal">
-          <details open>
-            <summary>What does RAG stand for?</summary>
-            <div class="a">RAG stands for retrieval-augmented generation, an AI architecture that retrieves relevant
-              information before an LLM generates its response, rather than relying only on the model's training data.
-            </div>
-          </details>
-          <details>
-            <summary>Is RAG the same as fine-tuning?</summary>
-            <div class="a">No. Fine-tuning changes a model's weights through additional training. RAG retrieves
-              external information and adds it to the model's context at query time without changing the model. They
-              solve different problems and are often used together.</div>
-          </details>
-          <details>
-            <summary>Does RAG eliminate AI hallucination?</summary>
-            <div class="a">RAG significantly reduces hallucination, typically 60 to 80% versus a bare LLM, by
-              grounding responses in retrieved content, but does not eliminate it entirely. Guardrails and confidence
-              thresholds are layered on top in every production system I build.</div>
-          </details>
-          <details>
-            <summary>How much does RAG development cost?</summary>
-            <div class="a">A proof-of-concept starts at $1,500 to $4,000. A full production RAG system ranges from
-              $8,000 to $30,000 depending on complexity and data volume. Contact for a fixed-price estimate specific
-              to your use case.</div>
-          </details>
-          <details>
-            <summary>How long does it take to build a RAG system?</summary>
-            <div class="a">A proof-of-concept typically takes 2 to 4 weeks. A full production system with guardrails,
-              evaluation, and deployment typically takes 4 to 10 weeks depending on data complexity and integration
-              scope.</div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <script>
+<main class="svcp">
+<!-- ================= HERO ================= -->
+<section class="hero" id="demo">
+<div class="wrap">
+<div class="hero-grid">
+<div>
+<p class="eyebrow">The right framework, built correctly</p>
+<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">LangChain vs LlamaIndex development services: <span>the right RAG framework</span></h1>
+<p class="hero-sub">Choosing between LangChain and LlamaIndex determines how much you spend, how fast it ships, and how well it performs in production. I build with both frameworks and pick the right one, or the right combination, based on your actual retrieval and orchestration needs, not a default toolkit.</p>
+<div class="creds">
+<div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<path d="M12 8v4l3 3"></path>
+<circle cx="12" cy="12" r="9"></circle>
+</svg></span><span class="t"><i>Experience</i><b>5+ yrs production RAG</b></span></div>
+<div class="cred"><span class="b" style="background:#6D5EF6" title="Both"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+<circle cx="9" cy="7" r="4"></circle>
+<path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
+</svg></span><span class="t"><i>Coverage</i><b>Both frameworks, used correctly</b></span></div>
+<div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="14">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M12 6v6l4 2"></path>
+</svg></span><span class="t"><i>Turnaround</i><b>48h architecture rec.</b></span></div>
+</div>
+<div class="hero-cta">
+<a class="btn btn-primary" href="#lets-talk">Get a framework recommendation <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M5 12h14M13 6l6 6-6 6"></path>
+</svg></a>
+<a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
+</div>
+<p class="live"><span class="pulse"></span> Written recommendation with reasoning, before any build work begins</p>
+</div>
+<!-- ===== SIGNATURE: framework fit finder ===== -->
+<div class="viewer">
+<div class="viewer-top">
+<span class="t">framework fit, illustrative</span>
+<span class="chip"><span class="d"></span>live</span>
+</div>
+<canvas aria-label="Illustration contrasting LangChain's agent state graph, with tool calls and conditional loops, against LlamaIndex's hierarchical retrieval tree, with a highlighted retrieved path." id="sigcanvas"></canvas>
+<div aria-label="Framework" class="modesw" role="tablist">
+<button aria-selected="true" data-m="langchain" role="tab" type="button">LangChain (LangGraph)</button>
+<button aria-selected="false" data-m="llamaindex" role="tab" type="button">LlamaIndex</button>
+</div>
+<div aria-label="Project scenario" class="segs" role="tablist">
+<button aria-selected="true" data-d="0" role="tab" type="button">agentic support bot</button>
+<button aria-selected="false" data-d="1" role="tab" type="button">document Q&amp;A</button>
+<button aria-selected="false" data-d="2" role="tab" type="button">legal / code corpus</button>
+</div>
+<div class="metrics">
+<div><b id="m1">~14ms</b><span id="m1l">Framework overhead</span></div>
+<div><b id="m2">Baseline</b><span id="m2l">Code volume</span></div>
+<div><b id="m3">500+</b><span id="m3l">Integrations</span></div>
+</div>
+<div class="answerbox">
+<span class="k" id="verdict">FIT CHECK</span>
+<p id="answer"></p>
+</div>
+<div class="viewer-foot" id="foot">Pick a scenario, then toggle the framework to see whether it's a strong
+                fit or you'd be fighting the tool.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= COMPLY STRIP ================= -->
+<div class="comply">
+<div class="wrap comply-in">
+<div><span><b>Both approaches, evaluated</b>A clear cost, accuracy, and freshness trade-off analysis for RAG vs long-context windows, grounded in 2026 benchmarks.</span></div>
+<div><span><b>Recommendation in writing</b>A specific architecture choice—RAG hybrid with long-context fallback—with the reasoning behind it, before any build begins.</span></div>
+<div><span><b>Hybrid when it earns</b>Small context windows (under 16K tokens) use RAG; large context windows (1M+ tokens) rely on long-context, with a trigger threshold for freshness-based retrievals.</span></div>
+<div><span><b>Honest, not default</b>If your project's data is static and under 100K tokens, long-context alone is cheaper and simpler. I'll say so.</span></div>
+</div>
+</div>
+<!-- ================= WHAT IS ================= -->
+<section id="what-is">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Plain answer</p>
+<h2>What is RAG? What is long context?</h2>
+</div>
+<div class="what-is-wrap reveal">
+<div class="what-is-media">
+<!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
+<div aria-label="Image placeholder" class="img-placeholder">
+<svg fill="none" height="40" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="40">
+<rect height="18" rx="2" ry="2" width="18" x="3" y="3"></rect>
+<circle cx="9" cy="9" r="2"></circle>
+<path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+</svg>
+<span>Image Placeholder (1:1)</span>
+</div>
+</div>
+<div class="tldr">
+<b>Quick answer</b>
+<p>RAG (Retrieval-Augmented Generation) retrieves external knowledge from a vector database and inserts it into an LLM's context window dynamically. Long-context windows extend the LLM's native memory to accept 100K+ tokens of raw data directly. Both are open patterns by 2026, but RAG remains ~40% cheaper for production at scale, while long-context offers zero retrieval latency and higher accuracy on single-source document Q&amp;A.</p>
+</div>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= COMPARISON TABLE ================= -->
+<section class="soft" id="comparison">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">The comparison</p>
+<h2>Architecture comparison: RAG vs Long Context</h2>
+</div>
+<div class="tablewrap reveal">
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th class="col-me">RAG (Vector Retrieval + LLM)</th>
+<th>Long Context (Native 1M+ Token Models)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Primary strength</th>
+<td class="col-me">Freshness, cost efficiency, and handling large-scale heterogenous data</td>
+<td>Zero retrieval overhead, highest accuracy on static document comprehension</td>
+</tr>
+<tr>
+<th scope="row">Best for</th>
+<td class="col-me">Real-time, multi-source, or frequently updated knowledge bases</td>
+<td>Single-document deep analysis, legal contracts, or book summaries</td>
+</tr>
+<tr>
+<th scope="row">Cost per 1K queries</th>
+<td class="col-me">$0.15–$0.40 (embedding + retrieval + generation)</td>
+<td>$1.50–$3.00 (full generation on expanded context)</td>
+</tr>
+<tr>
+<th scope="row">Accuracy (needle-in-haystack)</th>
+<td class="col-me">~94% with top-tier reranking</td>
+<td>~87–91% on 1M-token tests (2026 models)</td>
+</tr>
+<tr>
+<th scope="row">Latency per query</th>
+<td class="col-me">~200–400ms (retrieval + generation)</td>
+<td>~500ms–2s (prefill on large context)</td>
+</tr>
+<tr>
+<th scope="row">Freshness (source updates)</th>
+<td class="col-me">Real-time (re-index within seconds)</td>
+<td>Requires full re-contextualization (minutes to hours)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="callout reveal">
+<p>The 2026 reality</p>
+<p>Neither wins alone for all cases. The optimal architecture uses RAG as the default retrieval path for real-time and cost-sensitive queries, with a long-context fallback when accuracy on a single document is critical. I build hybrid systems that dynamically switch based on query intent, source count, and freshness requirements.</p>
+</div>
+</div>
+</section>
+<!-- ================= SERVICES ================= -->
+<section id="services">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">What I build</p>
+<h2>RAG vs long context evaluation services</h2>
+<p>What I build with each framework, matched to what your project actually needs.</p>
+</div>
+<div class="grid g3 reveal">
+<div class="card"><span class="n advise">CONSULT</span>
+<h3>Architecture selection consulting</h3>
+<p>An independent evaluation of your use case—data volume, latency budget, update frequency—resulting in a written recommendation: RAG, long context, or a hybrid, with cost and accuracy trade-offs quantified.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>RAG pipeline development</h3>
+<p>Retrieval-first builds with chunking, embedding, and re-ranking optimized for freshness and low cost. Ideal for dynamic knowledge bases where documents update frequently.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Long context window integration</h3>
+<p>Systems designed to leverage million-token models (Gemini 1.5, Claude 3) with prompt compression, sliding windows, and context caching to maximize accuracy per token dollar.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Hybrid architecture (RAG + long context)</h3>
+<p>A tiered approach: RAG for large, dynamic corpora and long context for single-document deep dives or conversation history, routing queries by scope and freshness needs.</p>
+</div>
+<div class="card"><span class="n advise">AUDIT</span>
+<h3>Migration &amp; cost optimization audits</h3>
+<p>Assessment for teams currently locked into one approach, identifying where switching or augmenting could reduce latency, improve answer quality, or cut inference costs by 30–50%.</p>
+</div>
+<div class="card cta-card">
+<h3>Not sure which you need?</h3>
+<p>Try the fit-check widget above, or get it scoped properly.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get a recommendation</a>
+</div>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= WHERE EACH WINS ================= -->
+<section class="soft" id="where-wins">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">The honest breakdown</p>
+<h2>Where each approach wins</h2>
+</div>
+<div class="grid g2 reveal">
+<div class="card">
+<span class="n">RAG WINS WHEN</span>
+<h3>Cost, freshness, or scale is the priority</h3>
+<ul>
+<li>Your knowledge base exceeds 100k tokens and updates daily: RAG costs ~$0.002 per query vs $0.10+ for long context at 1M tokens</li>
+<li>Freshness is critical—RAG retrieves the latest indexed content instantly; long context requires re-embedding or re-prompting with new data</li>
+<li>Accuracy on narrow, factoid questions: retrieval precision (top-5 recall &gt;95%) beats long context's tendency to hallucinate on peripheral details</li>
+<li>You need to serve many users with low latency—RAG's sub-second retrieval keeps user experience snappy without burning GPU cycles on massive prompts</li>
+</ul>
+</div>
+<div class="card">
+<span class="n build">LONG CONTEXT WINS WHEN</span>
+<h3>Simplicity and deep reasoning matter more than cost</h3>
+<ul>
+<li>Your use case involves a single long document (e.g., 500-page contract, entire codebase) where retrieval fragmentation would lose context</li>
+<li>Accuracy on multi-hop reasoning across a single source: long context models achieve 15–20% better F1 on narrative QA benchmarks vs RAG pipelines</li>
+<li>You can tolerate higher per-query cost and slower response times for guaranteed coherence and no retrieval errors</li>
+<li>The knowledge base changes rarely—long context avoids the overhead of chunking, indexing, and maintaining a vector store</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= PROCESS ================= -->
+<section id="process">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">How it gets built</p>
+<h2>Engagement process</h2>
+</div>
+<div class="steps reveal">
+<details class="step" open="">
+<summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
+<h3>Discovery</h3><span class="cv">+</span>
+</summary>
+<div class="body">We audit your existing pipeline, data sources, and query patterns to determine whether your bottleneck is retrieval quality, context utilization, or cost-per-query. We also benchmark your current latency and accuracy to establish a baseline.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
+<h3>Architecture recommendation</h3><span class="cv">+</span>
+</summary>
+<div class="body">A written spec detailing whether RAG, long-context, or a hybrid approach fits your workload. Includes cost projections at your query volume, expected accuracy gains, and a data freshness strategy—delivered within 48 hours.</div>
+</details>
+<details class="step gate">
+<summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
+<h3>Build</h3><span class="cv">+</span>
+</summary>
+<div class="body">We implement the chosen architecture in milestones: retrieval and indexing first for RAG, prompt compaction and context management for long-context, then orchestration, caching, and guardrails.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 04<span class="days">before launch</span></span>
+<h3>Evaluation</h3><span class="cv">+</span>
+</summary>
+<div class="body">We stress-test against your real queries, measuring accuracy, latency, and cost per query. We compare RAG vs long-context performance on your own documents, using custom eval sets or RAGAS to validate factual recall and freshness.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 05<span class="days">handoff</span></span>
+<h3>Deployment</h3><span class="cv">+</span>
+</summary>
+<div class="body">Production rollout with monitoring for token spend, retrieval hit rate, and response quality. We provide runbooks and documentation so your team can maintain and tune the system as your data evolves.</div>
+</details>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= PRICING ================= -->
+<section class="soft" id="pricing">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Investment</p>
+<h2>Engagement Options</h2>
+</div>
+<div class="tablewrap reveal">
+<table>
+<thead>
+<tr>
+<th>Engagement type</th>
+<th class="col-me">What's included</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAG vs long-context assessment <span class="badge-free" style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span></td>
+<td class="col-me">Written architecture recommendation with cost and accuracy projections</td>
+</tr>
+<tr>
+<td>RAG pipeline build</td>
+<td class="col-me">Retrieval, ingestion, reranking, evaluation, and deployment</td>
+</tr>
+<tr>
+<td>Long-context optimization</td>
+<td class="col-me">Context compaction, prompt caching, and cost tuning for million-token models</td>
+</tr>
+<tr class="me-row">
+<td>Hybrid RAG + long-context system</td>
+<td class="col-me">Combined architecture that dynamically switches between retrieval and long-context based on query type, cost, and freshness requirements</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- ================= FAQ ================= -->
+<section id="faq">
+<div class="wrap">
+<div class="sec-head center reveal">
+<p class="eyebrow">FAQ</p>
+<h2>Frequently asked questions</h2>
+</div>
+<div class="faq reveal">
+<details open="">
+<summary>Is RAG cheaper than long-context windows in 2026?</summary>
+<div class="a">At scale, yes. RAG typically costs 10-100x less per query because it only sends relevant chunks to the model, while long-context models charge for every token in the prompt—even irrelevant ones. For low-volume, high-complexity queries, long-context may be more cost-effective despite higher per-query cost.</div>
+</details>
+<details>
+<summary>When does long-context beat RAG on accuracy?</summary>
+<div class="a">Long-context wins when the answer requires synthesizing information across many documents or when retrieval fails due to ambiguous queries. However, with good chunking and reranking, RAG often matches or exceeds long-context accuracy at a fraction of the cost.</div>
+</details>
+<details>
+<summary>How do I handle data freshness with long-context models?</summary>
+<div class="a">Long-context models are static—they only know what's in the prompt. For fresh data, you either need to inject updated context into every prompt (expensive) or use RAG to retrieve the latest information from a live source. Most production systems in 2026 use a hybrid: long-context for reasoning, RAG for freshness.</div>
+</details>
+<details>
+<summary>Can I use both RAG and long-context in one system?</summary>
+<div class="a">Yes, and that's the recommended pattern. Use RAG to fetch relevant chunks, then use a long-context model to reason over them together with your instructions. This gives you the cost savings of retrieval with the synthesis power of long-context models.</div>
+</details>
+<details>
+<summary>What does it cost to build a RAG or long-context system?</summary>
+<div class="a">A free architecture assessment is available. Full RAG builds range from $8,000 to $30,000+, long-context optimization from $5,000 to $20,000, and hybrid systems from $15,000 to $40,000+, depending on complexity and data volume. Contact for a fixed-price quote.</div>
+</details>
+</div>
+</div>
+</section>
+</main>
+<script>
     (function () {
       var page = document.querySelector('.svcp');
       if (!page) return;
@@ -2173,50 +2131,33 @@
       });
     })();
 
-
+ 
     (function () {
       var page = document.querySelector('.svcp');
       var canvas = document.getElementById('sigcanvas'), ctx = canvas.getContext('2d');
-      var mode = 'rag', domain = 0, t = 0, raf = null;
+      var mode = 'langchain', domain = 0, t = 0, raf = null;
 
       var domains = [
         {
-          seg: 'support policy',
-          rag: {
-            q: 'What is our refund window for enterprise plans?',
-            a: 'Per your <b>Enterprise Terms v3</b>, enterprise plans carry a 30-day refund window from the invoice date; anything past that routes to a manual review queue.',
-            cites: [['enterprise_terms_v3.pdf', '0.95'], ['billing_policy.md', '0.87'], ['plan_comparison.pdf', '0.80']]
-          },
-          bare: { a: '<span class="warn">Unverified:</span> Most SaaS refund windows run 14 to 30 days. (A generic industry guess, not your actual policy.)' },
-          finetune: { a: '<span class="good">Tone-matched:</span> replies fluently in your brand voice, but the refund-window figure itself is whatever pattern was frozen into the weights at the last training run, not today\'s policy.' }
+          seg: 'agentic support bot',
+          good: 'langchain',
+          langchain: '<b>Good fit.</b> LangGraph handles the multi-step flow: check order status, call the refund API, escalate on failure, with explicit state and checkpointing between each step.',
+          llamaindex: '<b>Possible, but not the tool for this.</b> LlamaIndex has no native state machine for multi-step tool calls, you would still need an agent layer wrapped around it.'
         },
         {
-          seg: 'internal wiki',
-          rag: {
-            q: 'What is the approval process for expenses over $5,000?',
-            a: 'Per the <b>Finance Approval Matrix</b>, spend above $5,000 requires director sign-off plus a two-day finance review before the PO is issued.',
-            cites: [['finance_approval_matrix.pdf', '0.93'], ['procurement_policy.md', '0.85'], ['finance_faq.pdf', '0.79']]
-          },
-          bare: { a: '<span class="warn">Unverified:</span> Usually needs manager approval above a few thousand dollars. (No specific threshold, no named approver, invented.)' },
-          finetune: { a: '<span class="good">Tone-matched:</span> sounds like your finance team, but the $5,000 threshold and approver name are whatever was true when the model was last fine-tuned.' }
+          seg: 'document Q&A',
+          good: 'llamaindex',
+          llamaindex: '<b>Good fit.</b> LlamaIndex\'s default chunking, metadata filtering, and reranking are production-calibrated out of the box for exactly this.',
+          langchain: '<b>Possible, but heavier than it needs to be.</b> LangChain can do RAG, but for pure document Q&amp;A you\'re writing more retrieval plumbing than LlamaIndex needs.'
         },
         {
-          seg: 'product catalog',
-          rag: {
-            q: 'Is the XR-200 compatible with the older mounting kit?',
-            a: 'Per the <b>XR-200 spec sheet</b>, it requires the v2 mounting kit; the original kit is not compatible without the v2 adapter plate.',
-            cites: [['xr200_spec_sheet.pdf', '0.96'], ['mounting_kit_v2.pdf', '0.88'], ['compat_matrix.csv', '0.82']]
-          },
-          bare: { a: '<span class="warn">Unverified:</span> Probably compatible, most mounts are similar across a product line. (No spec lookup, no real answer.)' },
-          finetune: { a: '<span class="good">Tone-matched:</span> answers helpfully and on-brand, but for a product launched after the last fine-tune, it has no idea the XR-200 exists.' }
+          seg: 'legal / code corpus',
+          good: 'llamaindex',
+          llamaindex: '<b>Good fit.</b> Composable indices and tree structures produce roughly 15 to 25% better answers on hierarchically structured documents like legal contracts or codebases.',
+          langchain: '<b>Workable, but you\'d be rebuilding LlamaIndex by hand.</b> Most teams pair LlamaIndex for retrieval with LangGraph for orchestration instead of forcing one framework to do both jobs.'
         }];
 
       function resize() { var r = canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2); canvas.width = r.width * d; canvas.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
-
-      var pts = []; (function seed() {
-        var rng = 17; function rnd() { rng = (rng * 9301 + 49297) % 233280; return rng / 233280; }
-        for (var i = 0; i < 24; i++) { pts.push({ x: .12 + rnd() * .76, y: .16 + rnd() * .7, r: 2 + rnd() * 2 }); }
-      })();
 
       function draw() {
         var r = canvas.getBoundingClientRect(), W = r.width, H = r.height;
@@ -2225,54 +2166,69 @@
         for (var gx = 0; gx <= W; gx += W / 8) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
         for (var gy = 0; gy <= H; gy += H / 5) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
 
-        var q = { x: W * .16, y: H * .5 };
-        pts.forEach(function (p) { ctx.beginPath(); ctx.arc(p.x * W, p.y * H, p.r, 0, Math.PI * 2); ctx.fillStyle = 'rgba(107,122,147,.28)'; ctx.fill(); });
-
-        if (mode === 'rag') {
-          var targets = [{ x: W * .62, y: H * .26 }, { x: W * .74, y: H * .44 }, { x: W * .68, y: H * .66 }, { x: W * .82, y: H * .58 }];
-          targets.forEach(function (tp, i) {
-            var prog = Math.min(1, Math.max(0, (t - i * 10) / 40));
-            var mx = q.x + (tp.x - q.x) * prog, my = q.y + (tp.y - q.y) * prog;
-            var grad = ctx.createLinearGradient(q.x, q.y, tp.x, tp.y);
-            grad.addColorStop(0, 'rgba(36,86,230,.7)'); grad.addColorStop(1, 'rgba(109,94,246,.25)');
-            ctx.strokeStyle = grad; ctx.lineWidth = 1.6;
-            ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(mx, my); ctx.stroke();
-            var pp = (t * .02 + i * .25) % 1;
-            ctx.beginPath(); ctx.arc(q.x + (tp.x - q.x) * pp, q.y + (tp.y - q.y) * pp, 2.6, 0, Math.PI * 2); ctx.fillStyle = 'rgba(15,169,104,.9)'; ctx.fill();
-          });
-          targets.forEach(function (tp) {
-            ctx.beginPath(); ctx.arc(tp.x, tp.y, 7, 0, Math.PI * 2); ctx.fillStyle = 'rgba(15,169,104,.16)'; ctx.fill();
-            ctx.beginPath(); ctx.arc(tp.x, tp.y, 4, 0, Math.PI * 2); ctx.fillStyle = '#0FA968'; ctx.fill();
-          });
-          ctx.fillStyle = 'rgba(15,169,104,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
-          ctx.fillText('retrieved \u00b7 grounded', W * .58, H * .14);
-        } else if (mode === 'bare') {
-          var wob = Math.sin(t * .05) * 6;
-          ctx.strokeStyle = 'rgba(225,29,72,.35)'; ctx.lineWidth = 1.4; ctx.setLineDash([4, 4]);
-          ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(W * .7 + wob, H * .4); ctx.stroke(); ctx.setLineDash([]);
-          ctx.beginPath(); ctx.arc(W * .7 + wob, H * .4, 5, 0, Math.PI * 2); ctx.fillStyle = 'rgba(225,29,72,.7)'; ctx.fill();
-          ctx.fillStyle = 'rgba(225,29,72,.85)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
-          ctx.fillText('no retrieval \u00b7 ungrounded', W * .5, H * .14);
-        } else {
-          var mnode = { x: W * .62, y: H * .44 };
-          ctx.strokeStyle = 'rgba(109,94,246,.5)'; ctx.lineWidth = 1.6;
-          ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(mnode.x, mnode.y); ctx.stroke();
-          ctx.beginPath(); ctx.arc(mnode.x, mnode.y, 16, 0, Math.PI * 2); ctx.fillStyle = 'rgba(109,94,246,.14)'; ctx.fill();
-          ctx.beginPath(); ctx.arc(mnode.x, mnode.y, 9, 0, Math.PI * 2); ctx.fillStyle = '#6D5EF6'; ctx.fill();
-          for (var i = 0; i < 3; i++) {
-            var ang = t * .03 + i * (Math.PI * 2 / 3); var ox = mnode.x + Math.cos(ang) * 26, oy = mnode.y + Math.sin(ang) * 26;
-            ctx.beginPath(); ctx.arc(ox, oy, 2.4, 0, Math.PI * 2); ctx.fillStyle = 'rgba(109,94,246,.6)'; ctx.fill();
+        if (mode === 'langchain') {
+          var nodes = {
+            start: { x: W * .13, y: H * .5, label: 'Start' },
+            tool: { x: W * .42, y: H * .28, label: 'Tool call' },
+            cond: { x: W * .68, y: H * .5, label: 'Condition' },
+            mem: { x: W * .42, y: H * .74, label: 'Memory' },
+            end: { x: W * .9, y: H * .28, label: 'Respond' }
+          };
+          function edge(a, b, style) {
+            ctx.strokeStyle = style || 'rgba(109,94,246,.55)'; ctx.lineWidth = 1.6;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
           }
+          edge(nodes.start, nodes.tool); edge(nodes.tool, nodes.cond); edge(nodes.cond, nodes.end);
+          edge(nodes.cond, nodes.mem, 'rgba(109,94,246,.3)'); edge(nodes.mem, nodes.tool, 'rgba(109,94,246,.3)');
+          var path = [nodes.start, nodes.tool, nodes.cond, nodes.mem, nodes.tool, nodes.cond, nodes.end];
+          var total = path.length - 1; var pp = (t * .012) % total; var seg = Math.floor(pp), f = pp - seg;
+          var a = path[seg], b = path[Math.min(seg + 1, path.length - 1)];
+          var px = a.x + (b.x - a.x) * f, py = a.y + (b.y - a.y) * f;
+          ctx.beginPath(); ctx.arc(px, py, 3, 0, Math.PI * 2); ctx.fillStyle = '#6D5EF6'; ctx.fill();
+          Object.keys(nodes).forEach(function (k) {
+            var n = nodes[k]; var isEnd = (k === 'end');
+            ctx.beginPath(); ctx.arc(n.x, n.y, isEnd ? 9 : 7, 0, Math.PI * 2);
+            ctx.fillStyle = isEnd ? '#6D5EF6' : '#fff'; ctx.fill();
+            ctx.lineWidth = 2; ctx.strokeStyle = '#6D5EF6'; ctx.stroke();
+            ctx.fillStyle = '#1B2740'; ctx.font = '600 10px "IBM Plex Mono",monospace';
+            ctx.fillText(n.label, n.x - 16, n.y - 14);
+          });
           ctx.fillStyle = 'rgba(109,94,246,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
-          ctx.fillText('trained into weights \u00b7 static', W * .5, H * .14);
+          ctx.fillText('state graph \u00b7 stateful loop', W * .5, H * .92);
+        } else {
+          var root = { x: W * .12, y: H * .5 };
+          var secs = [{ x: W * .44, y: H * .28 }, { x: W * .44, y: H * .72 }];
+          var leaves = [{ x: W * .8, y: H * .14 }, { x: W * .8, y: H * .36 }, { x: W * .8, y: H * .62 }, { x: W * .8, y: H * .86 }];
+          var hi = 2; 
+          function edge(a, b, on) {
+            ctx.strokeStyle = on ? 'rgba(15,169,104,.75)' : 'rgba(107,122,147,.28)'; ctx.lineWidth = on ? 1.8 : 1.2;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          }
+          edge(root, secs[0], false); edge(root, secs[1], true);
+          edge(secs[0], leaves[0], false); edge(secs[0], leaves[1], false);
+          edge(secs[1], leaves[2], true); edge(secs[1], leaves[3], false);
+          var pp = (t * .02) % 1;
+          var mx = root.x + (secs[1].x - root.x) * Math.min(pp * 2, 1);
+          var my = root.y + (secs[1].y - root.y) * Math.min(pp * 2, 1);
+          if (pp < .5) { ctx.beginPath(); ctx.arc(mx, my, 2.6, 0, Math.PI * 2); ctx.fillStyle = '#0FA968'; ctx.fill(); }
+          else {
+            var f2 = (pp - .5) * 2; var mx2 = secs[1].x + (leaves[2].x - secs[1].x) * f2, my2 = secs[1].y + (leaves[2].y - secs[1].y) * f2;
+            ctx.beginPath(); ctx.arc(mx2, my2, 2.6, 0, Math.PI * 2); ctx.fillStyle = '#0FA968'; ctx.fill();
+          }
+          [root].concat(secs).forEach(function (n, i) {
+            ctx.beginPath(); ctx.arc(n.x, n.y, 7, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill();
+            ctx.lineWidth = 2; ctx.strokeStyle = i === 0 ? '#2456E6' : 'rgba(107,122,147,.5)'; ctx.stroke();
+          });
+          leaves.forEach(function (n, i) {
+            var on = (i === hi);
+            ctx.beginPath(); ctx.arc(n.x, n.y, on ? 7 : 5, 0, Math.PI * 2);
+            ctx.fillStyle = on ? '#0FA968' : 'rgba(107,122,147,.35)'; ctx.fill();
+          });
+          ctx.fillStyle = '#1B2740'; ctx.font = '600 10px "IBM Plex Mono",monospace';
+          ctx.fillText('root', root.x - 10, root.y - 14);
+          ctx.fillStyle = 'rgba(15,169,104,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
+          ctx.fillText('hierarchical index \u00b7 retrieved leaf highlighted', W * .32, H * .92);
         }
-
-        var pr = 6 + Math.sin(t * .08) * 1.4;
-        ctx.beginPath(); ctx.arc(q.x, q.y, pr + 7, 0, Math.PI * 2); ctx.fillStyle = 'rgba(36,86,230,.14)'; ctx.fill();
-        ctx.beginPath(); ctx.arc(q.x, q.y, pr, 0, Math.PI * 2); ctx.fillStyle = '#2456E6'; ctx.fill();
-        ctx.fillStyle = '#1B2740'; ctx.font = '600 11px "IBM Plex Mono",monospace';
-        ctx.fillText('query', q.x - 16, q.y + 22);
-
         t += 1; raf = requestAnimationFrame(draw);
       }
 
@@ -2280,33 +2236,24 @@
         var d = domains[domain];
         var m1 = document.getElementById('m1'), m2 = document.getElementById('m2'), m3 = document.getElementById('m3');
         var m1l = document.getElementById('m1l'), m2l = document.getElementById('m2l'), m3l = document.getElementById('m3l');
-        var cl = document.getElementById('citelist'), foot = document.getElementById('foot'), ans = document.getElementById('answer');
-        document.querySelector('.viewer-top .t').textContent = d.rag.q;
-        if (mode === 'rag') {
-          ans.innerHTML = d.rag.a;
-          m1.textContent = 'Low'; m1.className = 'sc-good'; m1l.textContent = 'Hallucination risk';
-          m2.textContent = '4'; m2l.textContent = 'Chunks retrieved';
-          m3.textContent = 'Live docs'; m3l.textContent = 'Answer basis';
-          cl.classList.remove('empty');
-          cl.innerHTML = d.rag.cites.map(function (c) { return '<li><span class="src">' + c[0] + '</span> <span class="rel">rel ' + c[1] + '</span></li>'; }).join('');
-          foot.textContent = 'Every answer traces back to the exact document it was generated from, that traceability is what a compliance or accuracy review depends on.';
-        } else if (mode === 'bare') {
-          ans.innerHTML = d.bare.a;
-          m1.textContent = 'High'; m1.className = 'sc-bad'; m1l.textContent = 'Hallucination risk';
-          m2.textContent = '0'; m2l.textContent = 'Chunks retrieved';
-          m3.textContent = 'Training only'; m3l.textContent = 'Answer basis';
-          cl.classList.add('empty');
-          cl.innerHTML = '<li>No sources retrieved, answer cannot be verified</li>';
-          foot.textContent = 'Faster, but nothing to cite and nothing to check. This is the exact failure mode RAG exists to prevent.';
+        var ans = document.getElementById('answer'), verdict = document.getElementById('verdict'), foot = document.getElementById('foot');
+        document.querySelector('.viewer-top .t').textContent = 'scenario: ' + d.seg;
+        if (mode === 'langchain') {
+          m1.textContent = '~14ms'; m1l.textContent = 'Framework overhead';
+          m2.textContent = 'Baseline'; m2l.textContent = 'Code volume';
+          m3.textContent = '500+'; m3l.textContent = 'Integrations';
         } else {
-          ans.innerHTML = d.finetune.a;
-          m1.textContent = 'Med'; m1.className = ''; m1l.textContent = 'Staleness risk';
-          m2.textContent = 'Yes'; m2l.textContent = 'Retrain to update';
-          m3.textContent = 'Model weights'; m3l.textContent = 'Answer basis';
-          cl.classList.add('empty');
-          cl.innerHTML = '<li>No live source, behavior is frozen at training time</li>';
-          foot.textContent = 'Fine-tuning changes how the model answers, tone, format, task, not what it currently knows. That is exactly why RAG and fine-tuning are often combined.';
+          m1.textContent = '~6ms'; m1l.textContent = 'Framework overhead';
+          m2.textContent = '-30 to 40%'; m2l.textContent = 'Code volume';
+          m3.textContent = '300+'; m3l.textContent = 'Connectors';
         }
+        ans.innerHTML = d[mode];
+        var isGood = d.good === mode;
+        verdict.textContent = isGood ? 'STRONG FIT' : 'WORTH A SECOND LOOK';
+        verdict.style.color = isGood ? 'var(--mint-deep)' : 'var(--amber)';
+        foot.textContent = isGood
+          ? 'This is the framework this scenario is built for.'
+          : 'It can be made to work, but you would be fighting the tool more than you need to.';
       }
 
       page.querySelectorAll('.modesw [role="tab"]').forEach(function (b) {
@@ -2318,7 +2265,7 @@
       page.querySelectorAll('.segs [role="tab"]').forEach(function (b) {
         b.addEventListener('click', function () {
           page.querySelectorAll('.segs [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
-          b.setAttribute('aria-selected', 'true'); domain = +b.dataset.d; t = 0; update();
+          b.setAttribute('aria-selected', 'true'); domain = +b.dataset.d; update();
         });
       });
 
@@ -2328,5 +2275,4 @@
     })();
   </script>
 </body>
-
 </html>

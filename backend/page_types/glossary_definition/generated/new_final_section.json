@@ -2,19 +2,19 @@
   "why": {
     "sec-head": {
       "eyebrow": "Why it matters",
-      "h2": "Why multimodal AI matters",
-      "p": "Standard AI models handle only one modality, but real-world data is inherently multimodal\u2014text, images, and audio together. Multimodal AI fuses these inputs to deliver richer insights, higher accuracy, and more natural interactions without retraining for each data type."
+      "h2": "What is a system prompt",
+      "p": "A system prompt is a set of instructions given to an LLM at the start of a conversation to define its behavior, tone, constraints, and role. Without a carefully crafted system prompt, the model may default to generic responses, ignore important context, or produce unsafe outputs\u2014making it the single most important lever for controlling LLM output quality."
     },
     "card": {
-      "n": "COMMON APPLICATIONS",
-      "h3": "Where multimodal AI excels",
+      "n": "EXAMPLES",
+      "h3": "System prompt use cases",
       "ul": [
-        "Image captioning and visual question answering",
-        "Video summarization with audio and text alignment",
-        "Multimodal search across images, documents, and speech",
-        "Healthcare diagnostics combining scans, reports, and patient notes",
-        "Ecommerce product understanding from images and descriptions",
-        "Voice assistants with visual context for smarter responses"
+        "Customer support chatbots with personality and tone instructions",
+        "Internal knowledge assistants with role-based instructions",
+        "Creative writing assistants with style guidelines",
+        "Code generation with language and framework constraints",
+        "Educational tutors with Socratic method prompts",
+        "Content moderation with safety rules"
       ]
     }
   },
@@ -29,31 +29,31 @@
           "num": "PHASE 01",
           "days": "days 1 to 2",
           "h3": "Discovery",
-          "body": "Assess available data types (text, image, audio) and define the fusion strategy for your specific use case."
+          "body": "Understanding the desired behavior, target audience, and edge cases that the system prompt must handle."
         }
       },
       {
         "step": {
           "num": "PHASE 02",
           "days": "within 48h",
-          "h3": "Architecture spec",
-          "body": "Design the pipeline for encoding, aligning, and fusing different modalities into a unified representation."
+          "h3": "Drafting",
+          "body": "Writing an initial system prompt document with clear instructions, role definitions, and output format constraints."
         }
       },
       {
         "step": {
           "num": "PHASE 03",
           "days": "the decisive one",
-          "h3": "Build in milestones",
-          "body": "Develop and test each modality encoder and fusion layer independently before integration."
+          "h3": "Testing",
+          "body": "Running the prompt against a diverse set of test queries and evaluating consistency, safety, and accuracy."
         }
       },
       {
         "step": {
           "num": "PHASE 04",
           "days": "before launch",
-          "h3": "Evaluation",
-          "body": "Test against cross-modal queries and measure accuracy, latency, and robustness across all inputs."
+          "h3": "Refinement",
+          "body": "Iterating on the prompt based on test failures, adding guardrails, and optimizing for edge cases."
         }
       },
       {
@@ -61,7 +61,7 @@
           "num": "PHASE 05",
           "days": "30 days plus",
           "h3": "Deployment & support",
-          "body": "Deploy with monitoring for drift and ongoing support for model updates and scaling."
+          "body": "Versioning the final prompt, integrating into the application, and monitoring performance post-launch."
         }
       }
     ]
@@ -79,31 +79,31 @@
       "tbody": [
         {
           "td": [
-            "Multimodal proof-of-concept <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
-            "Baseline pipeline on sample data, evaluation report"
+            "System prompt consultation <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
+            "Baseline prompt draft and evaluation report"
           ]
         },
         {
           "td": [
-            "Production multimodal system",
-            "Full pipeline, guardrails, deployment, documentation"
+            "Production system prompt suite",
+            "Full prompt suite, versioning, testing, documentation"
           ]
         },
         {
           "td": [
-            "Multimodal system audit",
-            "Diagnose and improve an existing system"
+            "System prompt audit",
+            "Diagnose and improve existing prompts"
           ]
         },
         {
           "td": [
             "Hourly consulting",
-            "Architecture review, fusion strategy design"
+            "Prompt strategy, edge case analysis"
           ]
         }
       ]
     },
-    "p": "Multimodal systems delivered include the AI Video Summarizer and Image Captioning pipeline. Full case studies at shreyans.tech/ai-case-studies."
+    "p": "System prompt deliverables include tone-adaptive customer support agents and role-based code assistants. Full case studies at shreyans.tech/ai-case-studies."
   },
   "faq": {
     "sec-head": {
@@ -113,32 +113,32 @@
     "faq": [
       {
         "faq-item": {
-          "faq-q": "What is multimodal AI?",
-          "faq-a": "Multimodal AI is a system that processes and combines multiple data types\u2014text, images, audio, and video\u2014to produce richer outputs than single-modality models. It enables applications like image captioning, video understanding, and voice assistants with visual context."
+          "faq-q": "What is a system prompt?",
+          "faq-a": "A system prompt is a block of instructions that sets the initial context and behavior for an LLM. It defines the model's role, constraints, tone, and rules for generating responses, making it the primary tool for shaping output quality and consistency."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How does multimodal AI work?",
-          "faq-a": "It encodes each modality separately using specialized models, aligns them into a shared embedding space, and fuses the representations for joint reasoning. Common architectures include cross-attention transformers and early or late fusion strategies."
+          "faq-q": "How is a system prompt different from a user prompt?",
+          "faq-a": "A system prompt is set by the developer and remains constant across a conversation, while a user prompt changes per interaction. The system prompt provides overarching instructions, whereas user prompts are the specific queries the model responds to. Both are essential for controlled LLM behavior."
         }
       },
       {
         "faq-item": {
-          "faq-q": "What are common use cases?",
-          "faq-a": "Common use cases include visual question answering, video summarization, multimodal search, healthcare diagnostics, ecommerce product understanding, and accessibility tools for the visually impaired."
+          "faq-q": "Can system prompts prevent hallucination?",
+          "faq-a": "System prompts can reduce hallucination by instructing the model to stay within certain boundaries or cite sources, but they do not eliminate it entirely. Grounding with retrieved information (RAG) or using guardrails is often needed for critical applications."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How much does multimodal AI development cost?",
-          "faq-a": "A proof-of-concept starts at $2,000 to $5,000. A full production system ranges from $10,000 to $40,000 depending on modality complexity and data volume. Contact for a fixed-price estimate specific to your use case."
+          "faq-q": "How much does system prompt development cost?",
+          "faq-a": "A basic consultation and draft starts at $500 to $1,500. A full production system prompt suite with testing and versioning ranges from $3,000 to $10,000 depending on complexity. Contact for a fixed-price estimate specific to your use case."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How long does it take to build a multimodal system?",
-          "faq-a": "A proof-of-concept typically takes 2 to 4 weeks. A full production system with evaluation and deployment typically takes 4 to 12 weeks depending on the number of modalities and integration requirements."
+          "faq-q": "How long does it take to develop a system prompt?",
+          "faq-a": "A simple system prompt can be drafted in 1 to 2 days. Refining for production use typically takes 1 to 3 weeks, including testing, edge case handling, and integration into the application."
         }
       }
     ]

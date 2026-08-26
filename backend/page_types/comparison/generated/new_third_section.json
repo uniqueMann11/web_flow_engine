@@ -2,49 +2,49 @@
   "services": {
     "sec-head": {
       "eyebrow": "What I build",
-      "h2": "Search paradigm comparison services",
-      "p": "What I build to clarify when semantic, keyword, or hybrid search fits your retrieval needs."
+      "h2": "RAG vs long context evaluation services",
+      "p": "Architecture assessments and builds tailored to your cost, accuracy, and freshness requirements."
     },
     "grid g3": [
       {
         "card": {
           "n": "CONSULT",
-          "h3": "Search architecture consulting",
-          "p": "An independent audit of your search requirements and data characteristics, resulting in a written recommendation: semantic, keyword, hybrid, or a custom combination with benchmarks."
+          "h3": "Architecture selection consulting",
+          "p": "An independent evaluation of your use case\u2014data volume, latency budget, update frequency\u2014resulting in a written recommendation: RAG, long context, or a hybrid, with cost and accuracy trade-offs quantified."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Semantic search system development",
-          "p": "Embedding-based retrieval with vector databases: dense passage indexing, approximate nearest neighbor search, and relevance scoring for understanding user intent beyond exact matches."
+          "h3": "RAG pipeline development",
+          "p": "Retrieval-first builds with chunking, embedding, and re-ranking optimized for freshness and low cost. Ideal for dynamic knowledge bases where documents update frequently."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Keyword & full-text search pipelines",
-          "p": "BM25 and inverted index implementations: tokenization, stemming, stop-word handling, and ranked retrieval for precise term-matching scenarios like legal or technical documentation."
+          "h3": "Long context window integration",
+          "p": "Systems designed to leverage million-token models (Gemini 1.5, Claude 3) with prompt compression, sliding windows, and context caching to maximize accuracy per token dollar."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Hybrid search (semantic + keyword)",
-          "p": "Reciprocal rank fusion (RRF) or weighted blending of semantic and keyword results, balancing intent understanding with exact-match precision, configurable per query type."
+          "h3": "Hybrid architecture (RAG + long context)",
+          "p": "A tiered approach: RAG for large, dynamic corpora and long context for single-document deep dives or conversation history, routing queries by scope and freshness needs."
         }
       },
       {
         "card": {
           "n": "AUDIT",
-          "h3": "Search failure analysis & rectification",
-          "p": "Systematic diagnosis of search failures: identifying when semantic search misses critical keywords or keyword search misses synonyms, then building hybrid mitigations."
+          "h3": "Migration & cost optimization audits",
+          "p": "Assessment for teams currently locked into one approach, identifying where switching or augmenting could reduce latency, improve answer quality, or cut inference costs by 30\u201350%."
         }
       },
       {
         "card cta-card": {
-          "h3": "Uncertain which search method?",
-          "p": "Run the quick fit-check above, or let's scope it properly.",
+          "h3": "Not sure which you need?",
+          "p": "Try the fit-check widget above, or get it scoped properly.",
           "btn-primary": {
             "text": "Get a recommendation",
             "url": "#lets-talk"
@@ -56,30 +56,30 @@
   "where-wins": {
     "sec-head": {
       "eyebrow": "The honest breakdown",
-      "h2": "Where each search method wins"
+      "h2": "Where each approach wins"
     },
     "grid g2": [
       {
         "card": {
-          "n": "SEMANTIC SEARCH WINS WHEN",
-          "h3": "Understanding intent trumps exact terms",
+          "n": "RAG WINS WHEN",
+          "h3": "Cost, freshness, or scale is the priority",
           "ul": [
-            "User queries use synonyms, paraphrases, or natural language: semantic search captures meaning with 15-30% better recall than keyword-only approaches",
-            "High query variability: embedding similarity handles diverse phrasings without manual synonym expansion",
-            "Sparse keyword matches lead to zero results: semantic search retrieves relevant documents even when no exact terms align",
-            "You need to surface conceptually related content, not just literal matches, for discovery or recommendation use cases"
+            "Your knowledge base exceeds 100k tokens and updates daily: RAG costs ~$0.002 per query vs $0.10+ for long context at 1M tokens",
+            "Freshness is critical\u2014RAG retrieves the latest indexed content instantly; long context requires re-embedding or re-prompting with new data",
+            "Accuracy on narrow, factoid questions: retrieval precision (top-5 recall >95%) beats long context's tendency to hallucinate on peripheral details",
+            "You need to serve many users with low latency\u2014RAG's sub-second retrieval keeps user experience snappy without burning GPU cycles on massive prompts"
           ]
         }
       },
       {
         "card": {
-          "n": "KEYWORD SEARCH WINS WHEN",
-          "h3": "Precise terms define relevance",
+          "n": "LONG CONTEXT WINS WHEN",
+          "h3": "Simplicity and deep reasoning matter more than cost",
           "ul": [
-            "Searching for unique identifiers, codes, or proper nouns: BM25 achieves near-perfect precision for specific terms like part numbers or legal citations",
-            "Domain-specific jargon or rare terms: keyword search directly matches without embedding noise or dilution from vector similarity",
-            "Low-latency requirements: inverted index lookups are 2-5x faster than embedding generation + ANN search",
-            "Hybrid search is essential when both fail: RRF blending yields 20-30% higher NDCG@10 on diverse query sets compared to either method alone"
+            "Your use case involves a single long document (e.g., 500-page contract, entire codebase) where retrieval fragmentation would lose context",
+            "Accuracy on multi-hop reasoning across a single source: long context models achieve 15\u201320% better F1 on narrative QA benchmarks vs RAG pipelines",
+            "You can tolerate higher per-query cost and slower response times for guaranteed coherence and no retrieval errors",
+            "The knowledge base changes rarely\u2014long context avoids the overhead of chunking, indexing, and maintaining a vector store"
           ]
         }
       }

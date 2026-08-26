@@ -1,53 +1,50 @@
 {
   "services": {
     "sec-head": {
-      "eyebrow": "Vector DB services",
-      "h2": "Vector database engineering services"
+      "eyebrow": "What I offer",
+      "h2": "OpenAI API integration services"
     },
     "grid g3": [
       {
         "card": {
           "n": "BUILD",
-          "h3": "Vector DB architecture design",
-          "p": "Design and deploy production-grade vector databases on Pinecone, Weaviate, or Qdrant with optimal index configuration, sharding, and scaling."
+          "h3": "Chat completion integration",
+          "p": "Seamless integration of GPT-4o and GPT-4 Turbo into your product, with streaming, function calling, and structured JSON output."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Migration & integration",
-          "p": "Seamlessly migrate existing search or recommendation systems to vector databases, integrating with your current infrastructure."
+          "h3": "Embeddings pipeline development",
+          "p": "Production-grade text-embedding-3-small and text-embedding-3-large pipelines for semantic search and retrieval."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Hybrid search implementation",
-          "p": "Combine dense vector search with keyword and metadata filtering for more accurate and flexible retrieval."
+          "h3": "Assistants API implementation",
+          "p": "Custom assistants with code interpreter, file search, and tool use, deployed via the Assistants API for automated workflows."
+        }
+      },
+      {
+        "card": {
+          "n": "BUILD",
+          "h3": "Fine-tuning & model customization",
+          "p": "Fine-tuning GPT-4o-mini and GPT-3.5 on your domain data to improve accuracy and reduce latency and token costs."
         }
       },
       {
         "card": {
           "n": "AUDIT",
-          "h3": "Index performance tuning",
-          "p": "Audit and optimize vector index parameters\u2014HNSW, IVF, quantization\u2014to balance recall, latency, and cost."
+          "h3": "API integration audit & optimization",
+          "p": "Diagnosing rate limits, latency spikes, and token waste in existing OpenAI integrations, with immediate improvements."
         }
       },
       {
         "card": {
-          "n": "AUDIT",
-          "h3": "Vector DB health check",
-          "p": "Comprehensive review of your vector database setup, including ingestion pipelines, query patterns, and monitoring."
-        }
-      },
-      {
-        "card cta-card": {
-          "h3": "Need a custom solution?",
-          "p": "Let's discuss your vector DB requirements and get a tailored plan.",
-          "btn-primary": {
-            "text": "Get in touch",
-            "url": "#lets-talk"
-          }
+          "n": "ADVISE",
+          "h3": "API architecture & scaling strategy",
+          "p": "Advising on connection pooling, retry logic, batch processing, and multi-model strategies for enterprise-grade scale."
         }
       }
     ]
@@ -55,7 +52,7 @@
   "stack": {
     "sec-head": {
       "eyebrow": "Tooling",
-      "h2": "Vector DB tech stack"
+      "h2": "Tech stack & ecosystem"
     },
     "stack-tabs": [
       {

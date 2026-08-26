@@ -2,95 +2,95 @@
   "comply": {
     "comply-in": [
       {
-        "b": "Both methods, used right",
-        "span": "Semantic search for meaning, keyword search for exact matches, used where each excels."
+        "b": "Both approaches, evaluated",
+        "span": "A clear cost, accuracy, and freshness trade-off analysis for RAG vs long-context windows, grounded in 2026 benchmarks."
       },
       {
-        "b": "Recommendation with reason",
-        "span": "A clear recommendation based on domain, data type, and query patterns."
+        "b": "Recommendation in writing",
+        "span": "A specific architecture choice\u2014RAG hybrid with long-context fallback\u2014with the reasoning behind it, before any build begins."
       },
       {
-        "b": "Hybrid when it matters",
-        "span": "Hybrid search blends vector and inverted index, the standard pattern for balanced retrieval."
+        "b": "Hybrid when it earns",
+        "span": "Small context windows (under 16K tokens) use RAG; large context windows (1M+ tokens) rely on long-context, with a trigger threshold for freshness-based retrievals."
       },
       {
-        "b": "Honest about weaknesses",
-        "span": "If your use case doesn't benefit from hybrid, I'll explain why."
+        "b": "Honest, not default",
+        "span": "If your project's data is static and under 100K tokens, long-context alone is cheaper and simpler. I'll say so."
       }
     ]
   },
   "what-is": {
     "sec-head": {
       "eyebrow": "Plain answer",
-      "h2": "What is Semantic Search? What is Keyword Search?"
+      "h2": "What is RAG? What is long context?"
     },
     "tldr": {
       "b": "Quick answer",
       "p": [
-        "Semantic search uses vector embeddings to understand query intent and meaning, excelling at synonyms and conceptual matches. Keyword search matches exact terms against an inverted index, ideal for structured lookups and rare terms. Both are open-source (e.g., Elasticsearch, Pinecone), and the real decision hinges on whether your queries need meaning or precision."
+        "RAG (Retrieval-Augmented Generation) retrieves external knowledge from a vector database and inserts it into an LLM's context window dynamically. Long-context windows extend the LLM's native memory to accept 100K+ tokens of raw data directly. Both are open patterns by 2026, but RAG remains ~40% cheaper for production at scale, while long-context offers zero retrieval latency and higher accuracy on single-source document Q&A."
       ]
     }
   },
   "comparison": {
     "sec-head": {
       "eyebrow": "The comparison",
-      "h2": "Comparison: Semantic Search vs Keyword Search"
+      "h2": "Architecture comparison: RAG vs Long Context"
     },
     "tablewrap": {
       "thead": [
         "Factor",
-        "Semantic Search (Vector)",
-        "Keyword Search (Full-Text)"
+        "RAG (Vector Retrieval + LLM)",
+        "Long Context (Native 1M+ Token Models)"
       ],
       "tbody": [
         {
-          "th": "Matching technique",
+          "th": "Primary strength",
           "td": [
-            "Dense vector similarity (cosine, dot product)",
-            "Exact term and inverted index matching"
+            "Freshness, cost efficiency, and handling large-scale heterogenous data",
+            "Zero retrieval overhead, highest accuracy on static document comprehension"
           ]
         },
         {
           "th": "Best for",
           "td": [
-            "Ambiguous queries, synonyms, language understanding",
-            "Precise term lookup, structured queries, IDs"
+            "Real-time, multi-source, or frequently updated knowledge bases",
+            "Single-document deep analysis, legal contracts, or book summaries"
           ]
         },
         {
-          "th": "Implementation complexity",
+          "th": "Cost per 1K queries",
           "td": [
-            "Requires embeddings model, vector DB, tuning",
-            "Built into most databases (Elasticsearch, Postgres)"
+            "$0.15\u2013$0.40 (embedding + retrieval + generation)",
+            "$1.50\u2013$3.00 (full generation on expanded context)"
           ]
         },
         {
-          "th": "Query latency",
+          "th": "Accuracy (needle-in-haystack)",
           "td": [
-            "Typically 5\u201320ms for vector search (depends on index)",
-            "1\u20135ms for term search over inverted index"
+            "~94% with top-tier reranking",
+            "~87\u201391% on 1M-token tests (2026 models)"
           ]
         },
         {
-          "th": "Ecosystem maturity",
+          "th": "Latency per query",
           "td": [
-            "Rapidly growing (Pinecone, Weaviate, Milvus)",
-            "Mature (Lucene, Elasticsearch, Solr)"
+            "~200\u2013400ms (retrieval + generation)",
+            "~500ms\u20132s (prefill on large context)"
           ]
         },
         {
-          "th": "When it fails",
+          "th": "Freshness (source updates)",
           "td": [
-            "Rare terms, exact code snippets, out-of-vocabulary",
-            "Synonyms, misspellings, conceptual similarity"
+            "Real-time (re-index within seconds)",
+            "Requires full re-contextualization (minutes to hours)"
           ]
         }
       ]
     },
     "callout": {
       "p": [
-        "The hybrid solution",
-        "Production search systems increasingly combine both: keyword search for exact high-precision results and semantic search for recall on ambiguous queries. Hybrid search (e.g., reciprocal rank fusion) is the standard architecture when neither approach alone satisfies."
+        "The 2026 reality",
+        "Neither wins alone for all cases. The optimal architecture uses RAG as the default retrieval path for real-time and cost-sensitive queries, with a long-context fallback when accuracy on a single document is critical. I build hybrid systems that dynamically switch based on query intent, source count, and freshness requirements."
       ]
     }
   }

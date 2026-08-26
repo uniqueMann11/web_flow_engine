@@ -1,58 +1,58 @@
 {
   "hero": {
-    "eyebrow": "The architecture behind multimodal AI",
+    "eyebrow": "The invisible instruction layer",
     "h1": {
-      "h1-text": "What is multimodal AI: models that understand text, images, and audio together,",
-      "span": "and how I build them"
+      "h1-text": "What is a system prompt? definition,",
+      "span": "role, and examples"
     },
-    "hero-sub": "Multimodal AI is the architecture behind AI systems that process and reason across text, images, and audio simultaneously, enabling grounded understanding beyond single-modality models. I design and build production multimodal systems: data fusion, model orchestration, vision-language pipelines, audio integration, guardrails, and deployment.",
+    "hero-sub": "A system prompt is the set of initial instructions that defines an AI model's behavior, constraints, and output format before any user interaction. It grounds the model in a specific role, knowledge boundary, and safety guardrails, preventing it from guessing or drifting beyond your intended use case.",
     "creds": [
       {
         "cred": {
-          "i": "Experience",
-          "b": "5+ yrs multimodal AI"
+          "i": "Definition",
+          "b": "Core AI instruction set"
         }
       },
       {
         "cred": {
-          "i": "Outcome",
-          "b": "80% better accuracy"
+          "i": "Role",
+          "b": "Behavior & constraint control"
         }
       },
       {
         "cred": {
-          "i": "Turnaround",
-          "b": "48h written spec"
+          "i": "Example",
+          "b": "ChatGPT's 'you are a helpful assistant'"
         }
       }
     ],
     "hero-cta": [
       {
         "btn-primary": {
-          "text": "Talk to a multimodal AI developer",
+          "text": "Get expert prompt engineering",
           "url": "#lets-talk"
         }
       },
       {
         "btn-ghost": {
-          "text": "View case studies",
-          "url": "/ai-case-studies"
+          "text": "See prompt examples",
+          "url": "/prompt-examples"
         }
       }
     ],
-    "live": "Every output is grounded in multiple modalities, with guardrails from day one",
+    "live": "Every system prompt enforces role, tone, and safety from the first token",
     "trust": [
       {
-        "b": "5+",
-        "span": "Years building multimodal AI"
+        "b": "1",
+        "span": "Core instruction layer"
       },
       {
-        "b": "80%",
-        "span": "Peak accuracy improvement"
+        "b": "100%",
+        "span": "Behavior defined upfront"
       },
       {
-        "b": "48h",
-        "span": "From call to written spec"
+        "b": "0",
+        "span": "Guessing without guardrails"
       }
     ]
   }

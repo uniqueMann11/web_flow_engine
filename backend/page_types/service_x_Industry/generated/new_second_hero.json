@@ -2,81 +2,81 @@
   "comply": {
     "comply-in": [
       {
-        "b": "100% brand voice adherence",
-        "span": "Every output is checked against your brand guidelines before delivery."
+        "b": "Open weights: zero vendor lock-in",
+        "span": "Self-host open models in your VPC with full fine-tuning and inference control."
       },
       {
-        "b": "FTC & industry regulation compliant",
-        "span": "Automatic screening for disallowed claims, disclaimers, and endorsement rules."
+        "b": "No per-token API charges",
+        "span": "Pay for GPU infrastructure, not per-token usage. Costs scale predictably with your own capacity."
       },
       {
-        "b": "GDPR & CCPA compliant processing",
-        "span": "No customer data is used for model training; all data isolated per client."
+        "b": "Full data ownership and privacy",
+        "span": "Training data, prompts, and outputs stay in your infrastructure. No provider data retention or review."
       },
       {
-        "b": "Human-in-loop quality assurance",
-        "span": "Every piece passes through a trained editor before publishing."
+        "b": "Fine-tune at any scale",
+        "span": "LoRA, QLoRA, and full fine-tuning on open weights deliver custom behavior without API constraints."
       }
     ]
   },
   "what-is": {
     "sec-head": {
       "eyebrow": "Plain answer",
-      "h2": "What is generative AI for marketing content?"
+      "h2": "Hugging Face vs OpenAI for custom models?"
     },
     "tldr": {
-      "b": "Definition",
+      "b": "The verdict",
       "p": [
-        "A generative AI marketing content system combines large language models with a real-time retrieval engine that pulls brand voice guidelines, channel-specific formatting rules, and regulatory compliance checklists before generating each piece of content. By grounding every output in verified marketing assets and human review checkpoints, it eliminates off-brand messaging, maintains consistency across email, social, web, and print, and avoids the cost of continuous model retraining."
+        "The difference between Hugging Face and OpenAI for custom models is a build versus buy decision. Hugging Face open weights give you self-serve fine-tuning and complete control over custom model hosting \u2014 your VPC, on-premises, or a dedicated GPU cluster \u2014 with full data ownership and no per-token fees. OpenAI delivers powerful managed APIs with convenient fine-tuning endpoints, but locks you into closed weights, per-token costs, and provider-controlled infrastructure. Building on Hugging Face wins when you need tailored behavior, strict data privacy, or predictable cost at scale; buying OpenAI wins when you prioritize velocity and zero infrastructure maintenance."
       ]
     }
   },
   "vs-agency": {
     "sec-head": {
-      "eyebrow": "Direct access vs agency",
-      "h2": "Independent marketing AI engineer vs agency"
+      "eyebrow": "Build vs buy",
+      "h2": "Hugging Face open weights vs OpenAI API"
     },
     "tablewrap": {
       "thead": [
         "Factor",
-        "Independent Marketing AI Engineer (me)",
-        "Generalist Content Automation Agency"
+        "Build: Hugging Face Open Weights",
+        "Buy: OpenAI Managed API"
       ],
       "tbody": [
         {
-          "th": "Brand voice & content expertise",
+          "th": "Model customization",
           "td": [
-            "Direct specialization in brand voice, tone, and channel-specific content strategies",
-            "Generalist developers rotated across unrelated industries and content types"
+            "Download open weights and fine-tune with LoRA, QLoRA, or full fine-tuning. You control the architecture, dataset splits, and evaluation loop.",
+            "Limited to OpenAI's fine-tuning API surface. No access to weights, logits, or internal model representations."
           ]
         },
         {
-          "th": "Data security & compliance",
+          "th": "Cost & pricing model",
           "td": [
-            "Direct engineer signing data processing agreements; zero third-party exposure",
-            "Complex subcontractor chains increasing risk of data leakage and non-compliance"
+            "Predictable GPU infrastructure costs with zero per-token fees. Models are free to download; you pay only for compute.",
+            "Per-token charges on every inference call plus separate training fees. Costs grow linearly with usage and scale."
           ]
         },
         {
-          "th": "Deployment speed",
+          "th": "Data privacy & ownership",
           "td": [
-            "Functional content workflow POC in 2-3 weeks; full deployment in 6-8 weeks",
-            "3-6 months weighed down by account managers and discovery phases"
+            "Self-host in your VPC or on-premises. Training data, prompts, and outputs never leave your infrastructure.",
+            "Prompts and outputs traverse OpenAI's API and are subject to their retention and safety-review policies."
           ]
         },
         {
-          "th": "Cost structure",
+          "th": "Deployment flexibility",
           "td": [
-            "Transparent milestone pricing without agency overhead markups",
-            "High monthly retainer with billable hours for project managers and layers"
+            "Deploy to any GPU cloud, your own data center, or edge devices. No vendor approval or API keys required.",
+            "Deploy on OpenAI's cloud only. No air-gapped, VPC, or on-premises option for their closed models."
           ]
         }
       ]
     },
     "callout": {
       "p": [
-        "Direct access guarantees brand consistency",
-        "In marketing, a misaligned tone or off-brand message can damage customer trust. Working directly with the engineer who designs the generation pipeline gives your marketing leadership complete control over voice and quality."
+        "Open weights means total control",
+        "With open weights, every layer from tokenizer to deployment checkpoint is inspectable and modifiable, so your roadmap is never blocked by a vendor's release schedule. Buying API access trades this leverage for convenience, leaving custom model decisions in the hands of a provider."
       ]
     }
   }

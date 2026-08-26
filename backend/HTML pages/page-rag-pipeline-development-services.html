@@ -1,66 +1,119 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LangChain Development Services | Production-Grade Agents &amp; RAG Pipelines | Shreyans Padmani</title>
-  <meta name="robots" content="index, follow">
-  <meta name="robots" content="max-image-preview:large">
-  <meta name="author" content="Shreyans Padmani">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Shreyans Padmani">
-  <meta property="og:locale" content="en_US">
-  <meta name="description"
-    content="LangChain development services: production-grade agents and RAG pipelines built with LangGraph, tool use, memory, and checkpointing, not a fragile demo that breaks on the first tool failure.">
-  <meta name="keywords" content="LangChain development services, LangChain agency, LangChain consultant">
-  <link rel="canonical" href="https://shreyans.tech/langchain-development-services" />
-  <meta property="og:title" content="LangChain Development Services — Shreyans Padmani">
-  <meta property="og:url" content="https://shreyans.tech/langchain-development-services">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@shreyanspadmani">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet">
-  <link rel="shortcut icon" href="/assets/image/shreyans.png" type="image/x-icon">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/image/shreyans.png">
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <script type="application/ld+json">{
-      "@context": "https://schema.org",
-      "@graph": [
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RAG Pipeline Development Services | Shreyans Padmani</title>
+<meta content="index, follow" name="robots"/>
+<meta content="max-image-preview:large" name="robots"/>
+<meta content="Shreyans Padmani" name="author"/>
+<meta content="website" property="og:type"/>
+<meta content="Shreyans Padmani" property="og:site_name"/>
+<meta content="en_US" property="og:locale"/>
+<meta content="RAG pipeline development goes beyond simple Q&amp;A: it requires building a complete end-to-end system from document ingestion, chunking, embedding, retrieval, to generation. I build these correctly—production-grade, not a fragile demo that breaks at the first real-world query." name="description"/>
+<meta content="RAG pipeline development, RAG build agency, retrieval pipeline" name="keywords"/>
+<link href="https://shreyans.tech/rag-pipeline-development-services" rel="canonical"/>
+<meta content="RAG Pipeline Development Services" property="og:title"/>
+<meta content="https://shreyans.tech/rag-pipeline-development-services" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="@shreyanspadmani" name="twitter:site"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/image/shreyans.png" rel="shortcut icon" type="image/x-icon"/>
+<link href="/assets/image/shreyans.png" rel="apple-touch-icon" sizes="180x180"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "RAG Pipeline Development Services",
+      "url": "https://shreyans.tech/rag-pipeline-development-services",
+      "provider": {
+        "@type": "Person",
+        "name": "Shreyans Padmani",
+        "url": "https://shreyans.tech"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-          "@type": "Service",
-          "name": "LangChain Development Services",
-          "url": "https://shreyans.tech/langchain-development-services",
-          "provider": { "@type": "Person", "name": "Shreyans Padmani", "url": "https://shreyans.tech" }
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://shreyans.tech/"
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://shreyans.tech/" },
-            { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://shreyans.tech/hire-ai-developer" },
-            { "@type": "ListItem", "position": 3, "name": "RAG Development", "item": "https://shreyans.tech/services/rag-development" },
-            { "@type": "ListItem", "position": 4, "name": "LangChain Development Services", "item": "https://shreyans.tech/langchain-development-services" }
-          ]
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://shreyans.tech/hire-ai-developer"
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "What is the difference between LangChain and LangGraph?", "acceptedAnswer": { "@type": "Answer", "text": "LangChain is the broader framework providing composable building blocks. LangGraph is LangChain's graph-based agent framework, built for multi-step, stateful agent workflows with explicit control flow and checkpointing. For anything beyond a simple single-shot chain, LangGraph is the standard production approach." } },
-            { "@type": "Question", "name": "Do I need a LangChain agency, or can a freelance consultant handle my project?", "acceptedAnswer": { "@type": "Answer", "text": "Most LangChain projects are well within scope for a single experienced developer. An agency's advantage becomes relevant when a project needs multiple specialists across disciplines working simultaneously on a larger product." } },
-            { "@type": "Question", "name": "How much do LangChain development services cost?", "acceptedAnswer": { "@type": "Answer", "text": "A single scoped tool or agent integration typically runs $2,000 to $6,000. A full agentic system ranges from $8,000 to $30,000+ depending on complexity. Hourly consulting runs $75 to $150/hr." } },
-            { "@type": "Question", "name": "Is LangChain free to use?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, LangChain and LangGraph are open-source and free under the MIT license. LangSmith, LangChain's observability platform, has a free tier with paid plans starting around $39/month per seat." } },
-            { "@type": "Question", "name": "When should I NOT use LangChain?", "acceptedAnswer": { "@type": "Answer", "text": "If your use case is purely high-quality document retrieval with no agentic or multi-step behavior needed, LlamaIndex alone is often a simpler, lower-overhead choice. LangChain earns its complexity when you need tool use, state management, or multi-step reasoning." } }
-          ]
+          "@type": "ListItem",
+          "position": 3,
+          "name": "RAG Development",
+          "item": "https://shreyans.tech/services/rag-development"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "RAG Pipeline Development Services",
+          "item": "https://shreyans.tech/rag-pipeline-development-services"
         }
       ]
-    }</script>
-
-  <style>
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the difference between LangChain and LangGraph?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "LangChain is the broader framework providing composable building blocks. LangGraph is LangChain's graph-based agent framework, built for multi-step, stateful agent workflows with explicit control flow and checkpointing. For anything beyond a simple single-shot chain, LangGraph is the standard production approach."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a LangChain agency, or can a freelance consultant handle my project?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most LangChain projects are well within scope for a single experienced developer. An agency's advantage becomes relevant when a project needs multiple specialists across disciplines working simultaneously on a larger product."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much do LangChain development services cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A single scoped tool or agent integration typically runs $2,000 to $6,000. A full agentic system ranges from $8,000 to $30,000+ depending on complexity. Hourly consulting runs $75 to $150/hr."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is LangChain free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, LangChain and LangGraph are open-source and free under the MIT license. LangSmith, LangChain's observability platform, has a free tier with paid plans starting around $39/month per seat."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should I NOT use LangChain?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If your use case is purely high-quality document retrieval with no agentic or multi-step behavior needed, LlamaIndex alone is often a simpler, lower-overhead choice. LangChain earns its complexity when you need tool use, state management, or multi-step reasoning."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+<style>
     :root, .svcp {
       --ink: #0A1222;
       --ink-soft: #1B2740;
@@ -1712,418 +1765,593 @@
         transform: none
       }
     }
-  </style>
+  
+.vw-card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--sh-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.vw-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.vw-top .t {
+  font-family: var(--disp);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.vw-top .t svg { width: 18px; height: 18px; color: var(--blue); }
+.vw-chip {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: var(--mint-tint);
+  color: var(--mint);
+  border: 1px solid rgba(15, 169, 104, 0.25);
+  white-space: nowrap;
+}
+.vw-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; }
+.vw-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.vw-tab-btn {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 8px 10px;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+}
+.vw-tab-btn:hover { border-color: var(--blue); color: var(--ink); }
+.vw-tab-btn.active { background: var(--tint); border-color: var(--blue); color: var(--blue); }
+
+.vw-pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.vw-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: all 0.15s;
+  background: var(--surface);
+}
+.vw-step:hover { border-color: var(--blue); background: var(--tint); }
+.vw-step.active { border-color: var(--blue); background: var(--tint); box-shadow: 0 0 0 1px var(--blue); }
+.vw-step-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.vw-step-info { flex: 1; min-width: 0; }
+.vw-step-title {
+  font-family: var(--disp);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.vw-step-desc {
+  font-size: 0.62rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.vw-step-arrow { color: var(--line); transition: transform 0.15s; flex-shrink: 0; }
+.vw-step.active .vw-step-arrow { color: var(--blue); transform: rotate(0deg); }
+
+.vw-focus {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 100px;
+  transition: min-height 0.2s;
+}
+.vw-focus-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.vw-focus-title {
+  font-family: var(--disp);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.vw-focus-badge {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.vw-focus-config {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 12px;
+}
+.vw-focus-config-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  padding: 2px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.vw-focus-config-item span:first-child { color: var(--muted); }
+.vw-focus-config-item span:last-child { font-family: var(--mono); color: var(--ink); font-weight: 500; }
+.vw-focus-desc {
+  font-size: 0.68rem;
+  color: var(--body);
+  line-height: 1.4;
+  padding-top: 4px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.vw-metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.vw-tile {
+  background: var(--soft);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-sm);
+  padding: 8px 10px;
+  text-align: center;
+}
+.vw-tile-val {
+  font-family: var(--disp);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+.vw-tile-lbl {
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.vw-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  border-top: 1px solid var(--line-soft);
+  background: var(--soft);
+  font-size: 0.62rem;
+  color: var(--muted);
+}
+
+@media (max-width: 480px) {
+  .vw-body { padding: 12px 14px; }
+  .vw-top { padding: 12px 14px; }
+  .vw-top .t { font-size: 0.8rem; }
+  .vw-step { padding: 8px 10px; }
+  .vw-step-title { font-size: 0.7rem; }
+  .vw-step-desc { font-size: 0.55rem; }
+  .vw-focus { padding: 10px; min-height: 80px; }
+  .vw-focus-title { font-size: 0.7rem; }
+  .vw-focus-config-item { font-size: 0.6rem; }
+  .vw-tile-val { font-size: 0.85rem; }
+}
+</style>
 </head>
-
 <body>
-    <main class="svcp">
-
-      <!-- ================= HERO ================= -->
-      <section class="hero" id="demo">
-        <div class="wrap">
-          <div class="hero-grid">
-            <div>
-              <p class="eyebrow">Production-grade, not a demo</p>
-              <h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">LangChain development services: <span>production-grade
-                  agents and RAG pipelines</span></h1>
-              <p class="hero-sub">LangChain has become the default framework for building serious LLM applications:
-                agents that use tools, maintain memory, and reason across multiple steps, not just single-shot chatbot
-                replies. I build this correctly: production-grade, not a fragile demo that breaks the first time a tool
-                call fails.</p>
-
-              <div class="creds">
-                <div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg width="15"
-                      height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 8v4l3 3" />
-                      <circle cx="12" cy="12" r="9" />
-                    </svg></span><span class="t"><i>Experience</i><b>5+ yrs LangChain/LangGraph</b></span></div>
-                <div class="cred"><span class="b" style="background:#0FA968" title="Direct"><svg width="15" height="15"
-                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
-                      stroke-linejoin="round">
-                      <path d="M14 7h-4a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4M10 7h4a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-4M8 12h8" />
-                    </svg></span><span class="t"><i>Access</i><b>Direct, no account manager</b></span></div>
-                <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg width="14" height="14"
-                      viewBox="0 0 24 24" fill="none" stroke="#2456E6" stroke-width="2.4" stroke-linecap="round"
-                      stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M12 6v6l4 2" />
-                    </svg></span><span class="t"><i>Turnaround</i><b>48h architecture spec</b></span></div>
-              </div>
-
-              <div class="hero-cta">
-                <a class="btn btn-primary" href="#lets-talk">Talk to a LangChain developer <svg fill="none"
-                    stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
-                    <path d="M5 12h14M13 6l6 6-6 6"></path>
-                  </svg></a>
-                <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
-              </div>
-              <p class="live"><span class="pulse"></span> Honest read included: whether LangChain is even the right tool
-                for it</p>
-            </div>
-
-            <!-- ===== SIGNATURE: production agent vs fragile demo ===== -->
-            <div class="viewer">
-              <div class="viewer-top">
-                <span class="t">agent reliability, illustrative</span>
-                <span class="chip"><span class="d"></span>live</span>
-              </div>
-              <canvas id="sigcanvas"
-                aria-label="Illustration comparing a production-grade LangGraph agent, with tool calls, conditional retries, human checkpoints, and a clean respond state, against a fragile single-shot demo agent that dead-ends the moment a tool call fails."></canvas>
-              <div class="modesw" role="tablist" aria-label="Build quality">
-                <button role="tab" aria-selected="true" data-m="prod" type="button">Production build</button>
-                <button role="tab" aria-selected="false" data-m="demo" type="button">Fragile demo</button>
-              </div>
-              <div class="segs" role="tablist" aria-label="Failure scenario">
-                <button role="tab" aria-selected="true" data-d="0" type="button">API times out</button>
-                <button role="tab" aria-selected="false" data-d="1" type="button">bad tool output</button>
-                <button role="tab" aria-selected="false" data-d="2" type="button">needs human OK</button>
-              </div>
-              <div class="metrics">
-                <div><b id="m1" class="sc-good">Retry + fallback</b><span>On tool failure</span></div>
-                <div><b id="m2">Checkpointed</b><span>State handling</span></div>
-                <div><b id="m3">Logged</b><span>LangSmith tracing</span></div>
-              </div>
-              <div class="answerbox">
-                <span class="k">What happens next</span>
-                <p id="answer"></p>
-              </div>
-              <div class="viewer-foot" id="foot">Toggle to "Fragile demo" and pick a failure scenario, this is what most
-                LangChain tutorials skip.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= COMPLY STRIP ================= -->
-      <div class="comply">
-        <div class="wrap comply-in">
-          <div><span><b>Explicit state, not hidden</b>LangGraph state graphs with conditional edges and checkpointing,
-              not implicit chain magic.</span></div>
-          <div><span><b>Tool failures handled</b>Retry logic, fallback paths, and human-in-the-loop checkpoints, built
-              in from the start.</span></div>
-          <div><span><b>Full tracing</b>LangSmith or equivalent, so agent behavior in production is visible, not a black
-              box.</span></div>
-          <div><span><b>Honest tool selection</b>If LangChain is overkill for your case, I'll say so and recommend the
-              simpler option.</span></div>
-        </div>
-      </div>
-
-      <!-- ================= WHAT IS LANGCHAIN ================= -->
-      <section id="what-is">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">Plain answer</p>
-            <h2>What is LangChain?</h2>
-          </div>
-          <div class="what-is-wrap reveal">
-            <div class="what-is-media">
-              <!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
-              <div class="img-placeholder" aria-label="Image placeholder">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                  <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                  <circle cx="9" cy="9" r="2"/>
-                  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-                </svg>
-                <span>Image Placeholder (1:1)</span>
-              </div>
-            </div>
-            <div class="tldr">
-              <b>Quick answer</b>
-              <p>LangChain is an open-source framework for building applications powered by large language models. It
-                provides composable building blocks, chains, agents, tools, memory, and retrievers, connected via the
-                LangChain Expression Language (LCEL). Its agent framework, LangGraph, adds explicit state management and
-                conditional logic for multi-step, tool-using AI systems. LangChain is the most widely adopted framework of
-                its kind, with roughly 119K GitHub stars and 500+ integrations.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="rule"></div>
-
-      <!-- ================= SERVICES ================= -->
-      <section id="services">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">What I build</p>
-            <h2>LangChain development services</h2>
-          </div>
-          <div class="grid g3 reveal">
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>RAG pipeline development</h3>
-              <p>Retrieval-augmented generation pipelines using LangChain's retriever and chain primitives, paired with
-                LlamaIndex for the retrieval layer when document-heavy retrieval quality is the priority.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Multi-step agent development (LangGraph)</h3>
-              <p>Agents that take multiple actions in sequence, call external tools and APIs, and adapt based on
-                intermediate results, built with explicit state graphs, conditional edges, and checkpointing.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Tool-using &amp; function-calling systems</h3>
-              <p>Systems that connect an LLM to your actual business tools: databases, internal APIs, third-party
-                services, so the AI can take real actions, not just generate text.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Conversational memory systems</h3>
-              <p>Chatbots and assistants that maintain context across a conversation or across sessions, tuned to your
-                specific need: short-term context, long-term preference memory, or both.</p>
-            </div>
-            <div class="card"><span class="n advise">AUDIT</span>
-              <h3>LangChain system audits &amp; migration</h3>
-              <p>Review and improvement of an existing LangChain implementation, or migration support for teams adding
-                agentic capability to a retrieval-only system.</p>
-            </div>
-            <div class="card cta-card">
-              <h3>Not sure LangChain is right?</h3>
-              <p>Part of the engagement is an honest read on whether it's even the right tool.</p><a
-                class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get an honest
-                assessment</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= CONSULTANT VS AGENCY ================= -->
-      <section class="soft" id="vs-agency">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">The honest comparison</p>
-            <h2>LangChain consultant vs LangChain agency</h2>
-          </div>
-          <div class="tablewrap reveal">
-            <table>
-              <thead>
-                <tr>
-                  <th>Factor</th>
-                  <th class="col-me">Independent LangChain consultant (me)</th>
-                  <th>LangChain development agency</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Cost</th>
-                  <td class="col-me">Lower, direct rate, no team overhead</td>
-                  <td>Higher, includes team and account management</td>
-                </tr>
-                <tr>
-                  <th scope="row">Who builds it</th>
-                  <td class="col-me">Me, directly, every time</td>
-                  <td>Allocated team member, may change</td>
-                </tr>
-                <tr>
-                  <th scope="row">Best for</th>
-                  <td class="col-me">Scoped agent or RAG builds, $2K to $30K range</td>
-                  <td>Large, multi-disciplinary product builds</td>
-                </tr>
-                <tr>
-                  <th scope="row">Start time</th>
-                  <td class="col-me">48 to 72 hours</td>
-                  <td>2 to 4 weeks typically</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="reveal" style="margin-top:20px;color:var(--muted);font-size:.96rem">Most LangChain projects, a
-            specific agent, a specific RAG pipeline, a specific tool integration, are well within scope for a single
-            experienced developer working directly with you. An agency's advantage shows up when a project genuinely
-            needs several specialists working in parallel on a larger product, not for the LangChain engineering itself.
-          </p>
-        </div>
-      </section>
-
-      <!-- ================= ENGAGEMENT MODELS ================= -->
-      <section id="engagement">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">How we work together</p>
-            <h2>Engagement models</h2>
-          </div>
-          <div class="grid g3 reveal">
-            <div class="card"><span class="n">PROJECT-BASED</span>
-              <h3>Fixed-price, milestone-based</h3>
-              <p>A scoped LangChain build delivered as a fixed-price, milestone-based engagement.</p>
-            </div>
-            <div class="card"><span class="n">HOURLY</span>
-              <h3>Consulting</h3>
-              <p>Architecture review or debugging support for an existing implementation.</p>
-            </div>
-            <div class="card"><span class="n build">RETAINER</span>
-              <h3>Dedicated monthly</h3>
-              <p>Ongoing LangChain development for businesses with a continuing agentic AI roadmap.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="rule"></div>
-
-      <!-- ================= PROCESS ================= -->
-      <section class="soft" id="process">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">How it gets built</p>
-            <h2>Process</h2>
-          </div>
-          <div class="steps reveal">
-            <details class="step" open>
-              <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
-                <h3>Discovery</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Understanding what the agent or pipeline needs to do, what tools or data it needs access
-                to, and what "working correctly" looks like.</div>
-            </details>
-            <details class="step">
-              <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
-                <h3>Architecture spec</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">A written spec covering state graph design, retrieval strategy, and tool integrations,
-                delivered within 48 hours.</div>
-            </details>
-            <details class="step gate">
-              <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
-                <h3>Build in milestones</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Core logic first, then tool integrations, then edge-case handling and guardrails.</div>
-            </details>
-            <details class="step">
-              <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
-                <h3>Testing &amp; evaluation</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Testing against realistic scenarios, including tool failures and edge cases.</div>
-            </details>
-            <details class="step">
-              <summary><span class="num">PHASE 05<span class="days">handoff</span></span>
-                <h3>Deployment &amp; monitoring</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Production deployment with logging and tracing (LangSmith or equivalent) for full
-                visibility into agent behavior.</div>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= WHEN NOT LANGCHAIN ================= -->
-      <section id="when-not">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">Honest tool selection</p>
-            <h2>When LangChain is not the right choice</h2>
-          </div>
-          <div class="when-not-wrap reveal">
-            <div class="callout amber" style="margin-top:0">
-              <p>Direct architectural honesty upfront</p>
-              <p>Part of a proper LangChain engagement is an honest assessment of whether LangChain is even the right tool
-                for your specific problem. If your actual need is narrower, purely high-quality document retrieval with no
-                agentic behavior, LlamaIndex alone may be a simpler, lower-overhead choice. See the <a
-                  href="/langchain-vs-llamaindex">RAG framework development services page</a> for the fuller comparison.
-              </p>
-            </div>
-            <div class="when-not-media">
-              <!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
-              <div class="img-placeholder" aria-label="Image placeholder">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                  <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                  <circle cx="9" cy="9" r="2"/>
-                  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-                </svg>
-                <span>Image Placeholder (1:1)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="rule"></div>
-
-      <!-- ================= PRICING ================= -->
-      <section class="soft" id="pricing">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">Investment</p>
-            <h2>Engagement Options</h2>
-          </div>
-          <div class="tablewrap reveal">
-            <table>
-              <thead>
-                <tr>
-                  <th>Engagement type</th>
-                  <th class="col-me">What's included</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Single tool/agent integration <span class="badge-free" style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span></td>
-                  <td class="col-me">One scoped agent or tool-calling workflow</td>
-                </tr>
-                <tr class="me-row">
-                  <td>Full agentic system</td>
-                  <td class="col-me">Multi-step agent with state, tools, memory, guardrails</td>
-                </tr>
-                <tr>
-                  <td>LangChain system audit</td>
-                  <td class="col-me">Review and improvement plan for an existing implementation</td>
-                </tr>
-                <tr>
-                  <td>Hourly consulting</td>
-                  <td class="col-me">Architecture review, debugging support</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Retrieval and
+<main class="svcp">
+<!-- ================= HERO ================= -->
+<section class="hero" id="demo">
+<div class="wrap">
+<div class="hero-grid">
+<div>
+<p class="eyebrow">Full pipeline: ingest to answer</p>
+<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">RAG pipeline development services: <span>production-grade ingest to answer</span></h1>
+<p class="hero-sub">RAG pipeline development goes beyond simple Q&amp;A: it requires building a complete end-to-end system from document ingestion, chunking, embedding, retrieval, to generation. I build these correctly—production-grade, not a fragile demo that breaks at the first real-world query.</p>
+<div class="creds">
+<div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<path d="M12 8v4l3 3"></path>
+<circle cx="12" cy="12" r="9"></circle>
+</svg></span><span class="t"><i>Experience</i><b>5+ yrs LangChain/LangGraph</b></span></div>
+<div class="cred"><span class="b" style="background:#0FA968" title="Direct"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<path d="M14 7h-4a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4M10 7h4a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-4M8 12h8"></path>
+</svg></span><span class="t"><i>Access</i><b>Direct, no account manager</b></span></div>
+<div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="14">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M12 6v6l4 2"></path>
+</svg></span><span class="t"><i>Turnaround</i><b>48h architecture spec</b></span></div>
+</div>
+<div class="hero-cta">
+<a class="btn btn-primary" href="#lets-talk">Talk to a RAG developer <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M5 12h14M13 6l6 6-6 6"></path>
+</svg></a>
+<a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
+</div>
+<p class="live"><span class="pulse"></span> Honest read included: whether a full RAG pipeline is even the right fit.</p>
+</div>
+<!-- ===== SIGNATURE: production agent vs fragile demo ===== -->
+<div class="viewer"><div class="vw-card">
+<div class="vw-top">
+<span class="t">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33"></path><path d="M4.6 15a1.65 1.65 0 0 1-.33 1.82l-.06.06a2 2 0 0 0 2.83 2.83l.06-.06a1.65 1.65 0 0 1 1.82-.33"></path><path d="M4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33"></path><path d="M19.4 9a1.65 1.65 0 0 1 .33-1.82l.06-.06a2 2 0 0 0-2.83-2.83l-.06.06a1.65 1.65 0 0 1-1.82.33"></path></svg>
+      RAG Pipeline Orchestrator
+    </span>
+<span class="vw-chip">Production Ready</span>
+</div>
+<div class="vw-body">
+<div class="vw-tabs" role="tablist">
+<button class="vw-tab-btn active" data-p="standard">Standard RAG</button>
+<button class="vw-tab-btn" data-p="advanced">Advanced Hybrid</button>
+</div>
+<div class="vw-pipeline" id="pipelineContainer">
+<div class="vw-step" data-step="ingest">
+<span class="vw-step-indicator" style="background: var(--blue);"></span>
+<div class="vw-step-info">
+<div class="vw-step-title">Ingest</div>
+<div class="vw-step-desc" id="descIngest">Load &amp; parse documents</div>
+</div>
+<svg class="vw-step-arrow" fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</div>
+<div class="vw-step" data-step="chunk">
+<span class="vw-step-indicator" style="background: var(--violet);"></span>
+<div class="vw-step-info">
+<div class="vw-step-title">Chunk &amp; Embed</div>
+<div class="vw-step-desc" id="descChunk">Split text &amp; vectorize</div>
+</div>
+<svg class="vw-step-arrow" fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</div>
+<div class="vw-step" data-step="store">
+<span class="vw-step-indicator" style="background: var(--mint);"></span>
+<div class="vw-step-info">
+<div class="vw-step-title">Vector Store</div>
+<div class="vw-step-desc" id="descStore">Index vectors for retrieval</div>
+</div>
+<svg class="vw-step-arrow" fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</div>
+<div class="vw-step" data-step="retrieve">
+<span class="vw-step-indicator" style="background: var(--amber);"></span>
+<div class="vw-step-info">
+<div class="vw-step-title">Retrieve</div>
+<div class="vw-step-desc" id="descRetrieve">Query context &amp; rerank</div>
+</div>
+<svg class="vw-step-arrow" fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</div>
+<div class="vw-step" data-step="generate">
+<span class="vw-step-indicator" style="background: var(--rose);"></span>
+<div class="vw-step-info">
+<div class="vw-step-title">Generate</div>
+<div class="vw-step-desc" id="descGenerate">Augment &amp; produce answer</div>
+</div>
+<svg class="vw-step-arrow" fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</div>
+</div>
+<div class="vw-focus" id="focusPanel">
+<div class="vw-focus-header">
+<span class="vw-focus-title" id="focusTitle">Ingest</span>
+<span class="vw-focus-badge" id="focusBadge">0.1s</span>
+</div>
+<div class="vw-focus-config" id="focusConfig">
+<div class="vw-focus-config-item"><span>Source</span><span>Confluence, S3</span></div>
+<div class="vw-focus-config-item"><span>Strategy</span><span>Markdown parse</span></div>
+<div class="vw-focus-config-item"><span>Chunk Size</span><span>1000 chars</span></div>
+<div class="vw-focus-config-item"><span>Overlap</span><span>10%</span></div>
+</div>
+<div class="vw-focus-desc" id="focusDesc">Load documents from connected sources and parse into structured markdown.</div>
+</div>
+<div class="vw-metrics-row">
+<div class="vw-tile">
+<div class="vw-tile-val" id="mLatency" style="color: var(--blue);">2.1s</div>
+<div class="vw-tile-lbl">Latency</div>
+</div>
+<div class="vw-tile">
+<div class="vw-tile-val" id="mTokens">2,400</div>
+<div class="vw-tile-lbl">Chunks</div>
+</div>
+<div class="vw-tile">
+<div class="vw-tile-val" id="mCost" style="color: var(--mint);">$0.003</div>
+<div class="vw-tile-lbl">Cost / Query</div>
+</div>
+</div>
+</div>
+<div class="vw-foot">
+<span>Ingest ⟿ Answer in seconds</span>
+<span>Enterprise security &amp; audit logs</span>
+</div>
+</div></div>
+</div>
+</div>
+</section>
+<!-- ================= COMPLY STRIP ================= -->
+<div class="comply">
+<div class="wrap comply-in">
+<div><span><b>Ingest to answer</b>Every pipeline covers the full data journey: document parsing, chunking, embedding, retrieval, and LLM generation. No gaps.</span></div>
+<div><span><b>Chunking strategy tuned</b>Semantic chunking with overlap, not fixed token splits, to preserve context and improve retrieval accuracy.</span></div>
+<div><span><b>Retrieval tested for precision</b>Hybrid search (dense + sparse) and re-ranking are evaluated and tuned per dataset for production recall.</span></div>
+<div><span><b>Observability built in</b>LangSmith tracing across every stage — ingestion, retrieval, generation — so pipeline behavior is fully visible.</span></div>
+</div>
+</div>
+<!-- ================= WHAT IS LANGCHAIN ================= -->
+<section id="what-is">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Plain answer</p>
+<h2>What is a RAG pipeline?</h2>
+</div>
+<div class="what-is-wrap reveal">
+<div class="what-is-media">
+<!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
+<img alt="Section: what-is; Eyebrow: Plain answer; Heading: What is a RAG pipeline?" loading="lazy" src="/generated_images/rag-pipeline-development-services-1-hero_architecture.jpg"/>
+</div>
+<div class="tldr">
+<b>Quick answer</b>
+<p>A RAG pipeline is a production system that ingests documents, chunks them, embeds them into a vector store, retrieves relevant context at query time, and passes that context to an LLM to generate grounded answers. It covers the full stack from data ingestion to final generation, with tuning at every stage for accuracy, latency, and cost.</p>
+</div>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= SERVICES ================= -->
+<section id="services">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">What I build</p>
+<h2>RAG pipeline development services</h2>
+</div>
+<div class="grid g3 reveal">
+<div class="card"><span class="n build">BUILD</span>
+<h3>RAG pipeline development</h3>
+<p>Full ingest-to-answer RAG pipelines using LangChain's retriever and chain primitives, paired with LlamaIndex for document-heavy retrieval quality, covering chunking, embedding, hybrid search, and answer generation.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Multi-step agent development (LangGraph)</h3>
+<p>Agents that orchestrate multiple retrieval steps, re-rank results, and call external tools based on intermediate findings, built with explicit state graphs and checkpointing for production reliability.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Tool-using &amp; function-calling systems</h3>
+<p>Systems that connect your RAG pipeline to live business tools—databases, internal APIs, third-party services—so the AI can fetch real-time data and take actions beyond static text generation.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Conversational memory systems</h3>
+<p>Chatbots and assistants that maintain context across a conversation or across sessions, tuned to your specific need: short-term context, long-term preference memory, or both.</p>
+</div>
+<div class="card"><span class="n advise">AUDIT</span>
+<h3>LangChain system audits &amp; migration</h3>
+<p>Review and improvement of an existing RAG implementation, or migration support for teams adding agentic capability to a retrieval-only pipeline.</p>
+</div>
+<div class="card cta-card">
+<h3>Not sure where to start?</h3>
+<p>Part of the engagement is an honest read on whether RAG is even the right fit for your data and use case.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get an honest assessment</a>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= CONSULTANT VS AGENCY ================= -->
+<section class="soft" id="vs-agency">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">The honest comparison</p>
+<h2>RAG pipeline consultant vs RAG build agency</h2>
+</div>
+<div class="tablewrap reveal">
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th class="col-me">Independent RAG pipeline consultant (me)</th>
+<th>RAG build agency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Cost</th>
+<td class="col-me">Lower, direct rate, no team overhead</td>
+<td>Higher, includes team and account management</td>
+</tr>
+<tr>
+<th scope="row">Who builds it</th>
+<td class="col-me">Me, directly, every time</td>
+<td>Allocated team member, may change</td>
+</tr>
+<tr>
+<th scope="row">Best for</th>
+<td class="col-me">Scoped full-pipeline builds, $3K to $30K range</td>
+<td>Large, multi-disciplinary product builds</td>
+</tr>
+<tr>
+<th scope="row">Start time</th>
+<td class="col-me">48 to 72 hours</td>
+<td>2 to 4 weeks typically</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="reveal" style="margin-top:20px;color:var(--muted);font-size:.96rem">Most RAG pipeline projects — a specific ingestion strategy, a retrieval optimization, a full production pipeline — are well within scope for a single experienced developer working directly with you. An agency's advantage shows up when a project genuinely needs several specialists working in parallel on a larger product, not for the RAG engineering itself.</p>
+</div>
+</section>
+<!-- ================= ENGAGEMENT MODELS ================= -->
+<section id="engagement">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">How we work together</p>
+<h2>Engagement models</h2>
+</div>
+<div class="grid g3 reveal">
+<div class="card"><span class="n">PROJECT-BASED</span>
+<h3>Fixed-price, milestone-based</h3>
+<p>A scoped RAG pipeline build delivered as a fixed-price, milestone-based engagement with clear deliverables from ingest to answer.</p>
+</div>
+<div class="card"><span class="n">HOURLY</span>
+<h3>Consulting</h3>
+<p>Architecture review or debugging support for an existing RAG implementation, including retrieval quality analysis and pipeline optimization.</p>
+</div>
+<div class="card"><span class="n build">RETAINER</span>
+<h3>Dedicated monthly</h3>
+<p>Ongoing RAG pipeline development for businesses with a continuing AI roadmap requiring iterative improvement and new data source integration.</p>
+</div>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= PROCESS ================= -->
+<section class="soft" id="process">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">How it gets built</p>
+<h2>Process</h2>
+</div>
+<div class="steps reveal">
+<details class="step" open="">
+<summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
+<h3>Discovery</h3><span class="cv">+</span>
+</summary>
+<div class="body">We map your data sources, establish chunking strategies, and define the retrieval logic and generation requirements for the full pipeline from ingest to answer.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
+<h3>Architecture spec</h3><span class="cv">+</span>
+</summary>
+<div class="body">A written spec covering document parsing, embedding model selection, vector store topology, and retrieval strategies, delivered within 48 hours.</div>
+</details>
+<details class="step gate">
+<summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
+<h3>Build in milestones</h3><span class="cv">+</span>
+</summary>
+<div class="body">Ingestion pipeline and embedding indexing first, then retrieval and generation logic, then guardrails and evaluation harnesses.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 04<span class="days">before launch</span></span>
+<h3>Testing &amp; evaluation</h3><span class="cv">+</span>
+</summary>
+<div class="body">End-to-end testing against held-out queries, measuring retrieval precision, generation faithfulness, and latency under realistic loads.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 05<span class="days">handoff</span></span>
+<h3>Deployment &amp; monitoring</h3><span class="cv">+</span>
+</summary>
+<div class="body">Production deployment with logging and tracing (LangSmith or equivalent) for full visibility into retrieval and generation behavior across the pipeline.</div>
+</details>
+</div>
+</div>
+</section>
+<!-- ================= WHEN NOT LANGCHAIN ================= -->
+<section id="when-not">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Honest tool selection</p>
+<h2>When LangChain is not the right choice</h2>
+</div>
+<div class="when-not-wrap reveal">
+<div class="callout amber" style="margin-top:0">
+<p>Direct architectural honesty upfront</p>
+<p>Part of a proper RAG pipeline development engagement is an honest assessment of whether LangChain is even the right tool for your specific retrieval needs. If your actual need is a simpler, single-model retrieval setup with no multi-step orchestration, a dedicated RAG build agency using a lightweight framework may be a simpler, lower-overhead choice.</p>
+</div>
+<div class="when-not-media">
+<!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
+<img alt="Section: when-not; Eyebrow: Honest tool selection; Heading: When LangChain is not the right choice" loading="lazy" src="/generated_images/rag-pipeline-development-services-2-hero_architecture.jpg"/>
+</div>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= PRICING ================= -->
+<section class="soft" id="pricing">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Investment</p>
+<h2>Engagement Options</h2>
+</div>
+<div class="tablewrap reveal">
+<table>
+<thead>
+<tr>
+<th>Engagement type</th>
+<th class="col-me">What's included</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single tool/agent integration <span class="badge-free" style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span></td>
+<td class="col-me">One scoped agent or tool-calling workflow</td>
+</tr>
+<tr class="me-row">
+<td>Full agentic system</td>
+<td class="col-me">Multi-step agent with state, tools, memory, guardrails</td>
+</tr>
+<tr>
+<td>LangChain system audit</td>
+<td class="col-me">Review and improvement plan for an existing implementation</td>
+</tr>
+<tr>
+<td>Hourly consulting</td>
+<td class="col-me">Architecture review, debugging support</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Retrieval and
             generation-grounded systems built using this class of architecture include the AI Customer Feedback
-            Classification pipeline and AI Video Summarizer. Full case studies at <a
-              href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
-        </div>
-      </section>
-
-      <!-- ================= FAQ ================= -->
-      <section id="faq">
-        <div class="wrap">
-          <div class="sec-head center reveal">
-            <p class="eyebrow">FAQ</p>
-            <h2>Frequently asked questions</h2>
-          </div>
-          <div class="faq reveal">
-            <details open>
-              <summary>What is the difference between LangChain and LangGraph?</summary>
-              <div class="a">LangChain is the broader framework providing composable building blocks. LangGraph is
-                LangChain's graph-based agent framework, built for multi-step, stateful agent workflows with explicit
-                control flow and checkpointing. For anything beyond a simple single-shot chain, LangGraph is the
-                standard production approach.</div>
-            </details>
-            <details>
-              <summary>Do I need a LangChain agency, or can a freelance consultant handle my project?</summary>
-              <div class="a">Most LangChain projects are well within scope for a single experienced developer. An
-                agency's advantage becomes relevant when a project needs multiple specialists across disciplines working
-                simultaneously on a larger product.</div>
-            </details>
-            <details>
-              <summary>How much do LangChain development services cost?</summary>
-              <div class="a">A single scoped tool or agent integration typically runs $2,000 to $6,000. A full agentic
-                system ranges from $8,000 to $30,000+ depending on complexity. Hourly consulting runs $75 to $150/hr.
-              </div>
-            </details>
-            <details>
-              <summary>Is LangChain free to use?</summary>
-              <div class="a">Yes, LangChain and LangGraph are open-source and free under the MIT license. LangSmith,
-                LangChain's observability platform, has a free tier with paid plans starting around $39/month per seat.
-              </div>
-            </details>
-            <details>
-              <summary>When should I NOT use LangChain?</summary>
-              <div class="a">If your use case is purely high-quality document retrieval with no agentic or multi-step
-                behavior needed, LlamaIndex alone is often a simpler, lower-overhead choice. LangChain earns its
-                complexity when you need tool use, state management, or multi-step reasoning.</div>
-            </details>
-          </div>
-        </div>
-      </section>
-
-    </main>
-  <script>
+            Classification pipeline and AI Video Summarizer. Full case studies at <a href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
+</div>
+</section>
+<!-- ================= FAQ ================= -->
+<section id="faq">
+<div class="wrap">
+<div class="sec-head center reveal">
+<p class="eyebrow">FAQ</p>
+<h2>Frequently asked questions</h2>
+</div>
+<div class="faq reveal">
+<details open="">
+<summary>What is the difference between LangChain and LangGraph?</summary>
+<div class="a">LangChain is the broader framework providing composable building blocks. LangGraph is LangChain's graph-based agent framework, built for multi-step, stateful agent workflows with explicit control flow and checkpointing. For anything beyond a simple single-shot chain, LangGraph is the standard production approach.</div>
+</details>
+<details>
+<summary>Do I need a LangChain agency, or can a freelance consultant handle my project?</summary>
+<div class="a">Most LangChain projects are well within scope for a single experienced developer. An agency's advantage becomes relevant when a project needs multiple specialists across disciplines working simultaneously on a larger product.</div>
+</details>
+<details>
+<summary>How much do LangChain development services cost?</summary>
+<div class="a">A single scoped tool or agent integration typically runs $2,000 to $6,000. A full agentic system ranges from $8,000 to $30,000+ depending on complexity. Hourly consulting runs $75 to $150/hr.</div>
+</details>
+<details>
+<summary>Is LangChain free to use?</summary>
+<div class="a">Yes, LangChain and LangGraph are open-source and free under the MIT license. LangSmith, LangChain's observability platform, has a free tier with paid plans starting around $39/month per seat.</div>
+</details>
+<details>
+<summary>When should I NOT use LangChain?</summary>
+<div class="a">If your use case is purely high-quality document retrieval with no agentic or multi-step behavior needed, LlamaIndex alone is often a simpler, lower-overhead choice. LangChain earns its complexity when you need tool use, state management, or multi-step reasoning.</div>
+</details>
+</div>
+</div>
+</section>
+</main>
+<script>
     (function () {
       var page = document.querySelector('.svcp');
       if (!page) return;
@@ -2171,7 +2399,7 @@
     })();
 
   </script>
-  <script>
+<script>
     (function () {
       var page = document.querySelector('.svcp');
       var canvas = document.getElementById('sigcanvas'), ctx = canvas.getContext('2d');
@@ -2287,6 +2515,226 @@
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(); } else { draw(); cancelAnimationFrame(raf); }
     })();
   </script>
-</body>
+<script>
+(function() {
+  const data = {
+    standard: {
+      steps: {
+        ingest: {
+          title: "Ingest",
+          desc: "Load & parse documents",
+          color: "var(--blue)",
+          badge: "0.1s",
+          config: [
+            { k: "Source", v: "Confluence, S3" },
+            { k: "Strategy", v: "Markdown parse" },
+            { k: "Chunk Size", v: "1000 chars" },
+            { k: "Overlap", v: "10%" }
+          ],
+          detail: "Load documents from connected sources and parse into structured markdown."
+        },
+        chunk: {
+          title: "Chunk & Embed",
+          desc: "Split text & vectorize",
+          color: "var(--violet)",
+          badge: "0.4s",
+          config: [
+            { k: "Model", v: "text-embedding-ada-002" },
+            { k: "Dimensions", v: "1536" },
+            { k: "Chunks", v: "2,400" },
+            { k: "Batch Size", v: "100" }
+          ],
+          detail: "Split documents into semantic chunks and generate vector embeddings."
+        },
+        store: {
+          title: "Vector Store",
+          desc: "Index vectors for retrieval",
+          color: "var(--mint)",
+          badge: "0.1s",
+          config: [
+            { k: "Provider", v: "Pinecone" },
+            { k: "Index Type", v: "Pod index" },
+            { k: "Metric", v: "Cosine" },
+            { k: "Replicas", v: "2" }
+          ],
+          detail: "Store vector embeddings in a scalable index for fast approximate nearest neighbor search."
+        },
+        retrieve: {
+          title: "Retrieve",
+          desc: "Query context & rerank",
+          color: "var(--amber)",
+          badge: "0.3s",
+          config: [
+            { k: "Top-K", v: "4 chunks" },
+            { k: "Reranker", v: "None" },
+            { k: "Similarity", v: "0.82 threshold" },
+            { k: "Strategy", v: "MMR" }
+          ],
+          detail: "Retrieve relevant context using dense vector search and diversity re-ranking."
+        },
+        generate: {
+          title: "Generate",
+          desc: "Augment & produce answer",
+          color: "var(--rose)",
+          badge: "1.2s",
+          config: [
+            { k: "LLM", v: "GPT-4o-mini" },
+            { k: "Max Tokens", v: "500" },
+            { k: "Temperature", v: "0.1" },
+            { k: "Guardrails", v: "No" }
+          ],
+          detail: "Combine query with retrieved context and generate a grounded, traceable answer."
+        }
+      },
+      metrics: { latency: "2.1s", tokens: "2,400", cost: "$0.003" }
+    },
+    advanced: {
+      steps: {
+        ingest: {
+          title: "Ingest",
+          desc: "Multi-format parsing & vision",
+          color: "var(--blue)",
+          badge: "0.2s",
+          config: [
+            { k: "Source", v: "Unstructured API, Vision" },
+            { k: "Strategy", v: "Semantic parse" },
+            { k: "Chunk Size", v: "512 chars" },
+            { k: "Overlap", v: "15%" }
+          ],
+          detail: "Extract text and vision content from complex documents using Unstructured API."
+        },
+        chunk: {
+          title: "Chunk & Embed",
+          desc: "Semantic chunking & voyage-2",
+          color: "var(--violet)",
+          badge: "0.8s",
+          config: [
+            { k: "Model", v: "voyage-2" },
+            { k: "Dimensions", v: "1024" },
+            { k: "Chunks", v: "4,100" },
+            { k: "Batch Size", v: "50" }
+          ],
+          detail: "Use semantic splitting to form coherent passages and embed with voyage-2."
+        },
+        store: {
+          title: "Vector Store",
+          desc: "Hybrid index (dense + sparse)",
+          color: "var(--mint)",
+          badge: "0.1s",
+          config: [
+            { k: "Provider", v: "Weaviate" },
+            { k: "Index Type", v: "Hybrid HNSW" },
+            { k: "Metric", v: "Cosine + BM25" },
+            { k: "Replicas", v: "3" }
+          ],
+          detail: "Leverage a hybrid vector store combining dense embeddings with sparse keyword indexing."
+        },
+        retrieve: {
+          title: "Retrieve",
+          desc: "Hybrid search + RRR",
+          color: "var(--amber)",
+          badge: "0.9s",
+          config: [
+            { k: "Top-K", v: "8 chunks" },
+            { k: "Reranker", v: "Cohere Rerank" },
+            { k: "Similarity", v: "0.75 threshold" },
+            { k: "Strategy", v: "RRF fusion" }
+          ],
+          detail: "Perform hybrid retrieval (dense + sparse), fusion via RRF, and rerank for precision."
+        },
+        generate: {
+          title: "Generate",
+          desc: "Augment & guardrail enforce",
+          color: "var(--rose)",
+          badge: "2.8s",
+          config: [
+            { k: "LLM", v: "GPT-4o" },
+            { k: "Max Tokens", v: "1024" },
+            { k: "Temperature", v: "0.05" },
+            { k: "Guardrails", v: "NeMo Guardrails" }
+          ],
+          detail: "Generate final answer with strict guardrails for safety, factuality, and brand voice."
+        }
+      },
+      metrics: { latency: "4.8s", tokens: "4,100", cost: "$0.012" }
+    }
+  };
 
+  const tabBtns = document.querySelectorAll(".vw-tab-btn");
+  const steps = document.querySelectorAll(".vw-step");
+  const focusTitle = document.getElementById("focusTitle");
+  const focusBadge = document.getElementById("focusBadge");
+  const focusConfig = document.getElementById("focusConfig");
+  const focusDesc = document.getElementById("focusDesc");
+  const mLatency = document.getElementById("mLatency");
+  const mTokens = document.getElementById("mTokens");
+  const mCost = document.getElementById("mCost");
+  const descIngest = document.getElementById("descIngest");
+  const descChunk = document.getElementById("descChunk");
+  const descStore = document.getElementById("descStore");
+  const descRetrieve = document.getElementById("descRetrieve");
+  const descGenerate = document.getElementById("descGenerate");
+
+  let currentMode = "standard";
+  let currentStep = "ingest";
+
+  function updateUI(modeKey, stepKey) {
+    const modeData = data[modeKey];
+    const stepData = modeData.steps[stepKey];
+
+    // Update step descriptions
+    descIngest.textContent = modeData.steps.ingest.desc;
+    descChunk.textContent = modeData.steps.chunk.desc;
+    descStore.textContent = modeData.steps.store.desc;
+    descRetrieve.textContent = modeData.steps.retrieve.desc;
+    descGenerate.textContent = modeData.steps.generate.desc;
+
+    // Update active step
+    steps.forEach(s => s.classList.remove("active"));
+    document.querySelector(`.vw-step[data-step="${stepKey}"]`).classList.add("active");
+
+    // Update focus panel
+    focusTitle.textContent = stepData.title;
+    focusBadge.textContent = stepData.badge;
+    focusBadge.style.background = stepData.color + "20";
+    focusBadge.style.color = stepData.color;
+    let configHTML = "";
+    stepData.config.forEach(item => {
+      configHTML += `<div class="vw-focus-config-item"><span>${item.k}</span><span>${item.v}</span></div>`;
+    });
+    focusConfig.innerHTML = configHTML;
+    focusDesc.textContent = stepData.detail;
+
+    // Update metrics
+    mLatency.textContent = modeData.metrics.latency;
+    mTokens.textContent = modeData.metrics.tokens;
+    mCost.textContent = modeData.metrics.cost;
+  }
+
+  // Tab switching
+  tabBtns.forEach(btn => {
+    btn.addEventListener("click", function() {
+      tabBtns.forEach(b => b.classList.remove("active"));
+      this.classList.add("active");
+      currentMode = this.getAttribute("data-p");
+      // Reset to first step of the mode
+      currentStep = "ingest";
+      updateUI(currentMode, currentStep);
+    });
+  });
+
+  // Step clicking
+  steps.forEach(step => {
+    step.addEventListener("click", function() {
+      const stepKey = this.getAttribute("data-step");
+      currentStep = stepKey;
+      updateUI(currentMode, currentStep);
+    });
+  });
+
+  // Initial load
+  updateUI(currentMode, currentStep);
+})();
+</script>
+</body>
 </html>

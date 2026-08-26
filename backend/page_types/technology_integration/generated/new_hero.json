@@ -1,16 +1,16 @@
 {
   "hero": {
-    "eyebrow": "Throughput-optimized, not just deployed",
+    "eyebrow": "Full pipeline: ingest to answer",
     "h1": {
-      "h1": "vLLM deployment services:",
-      "span": "maximize GPU serving throughput"
+      "h1": "RAG pipeline development services:",
+      "span": "production-grade ingest to answer"
     },
-    "hero-sub": "vLLM has become the default inference engine for serving large language models in production, delivering up to 24x higher throughput than baseline transformers through PagedAttention and continuous batching. I deploy this correctly: optimized for your hardware, your model, and your cost per token, not a generic container that leaves GPU cycles on the table.",
+    "hero-sub": "RAG pipeline development goes beyond simple Q&A: it requires building a complete end-to-end system from document ingestion, chunking, embedding, retrieval, to generation. I build these correctly\u2014production-grade, not a fragile demo that breaks at the first real-world query.",
     "creds": [
       {
         "cred": {
           "i": "Experience",
-          "b": "3+ yrs vLLM deployments"
+          "b": "5+ yrs LangChain/LangGraph"
         }
       },
       {
@@ -22,37 +22,37 @@
       {
         "cred": {
           "i": "Turnaround",
-          "b": "48h throughput benchmark"
+          "b": "48h architecture spec"
         }
       }
     ],
     "hero-cta": [
       {
         "btn-primary": {
-          "text": "Talk to a vLLM engineer",
+          "text": "Talk to a RAG developer",
           "url": "#lets-talk"
         }
       },
       {
         "btn-ghost": {
-          "text": "View deployment cases",
+          "text": "View case studies",
           "url": "/ai-case-studies"
         }
       }
     ],
-    "live": "Honest read included: whether vLLM is the right serving solution for your throughput and cost goals.",
+    "live": "Honest read included: whether a full RAG pipeline is even the right fit.",
     "trust": [
       {
-        "b": "38K+",
-        "span": "GitHub stars, vLLM"
+        "b": "119K+",
+        "span": "GitHub stars, LangChain"
       },
       {
-        "b": "24x",
-        "span": "Higher throughput vs baseline"
+        "b": "500+",
+        "span": "Integrations available"
       },
       {
         "b": "48h",
-        "span": "To a throughput benchmark report"
+        "span": "To a written architecture spec"
       }
     ]
   }

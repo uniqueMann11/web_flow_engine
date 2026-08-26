@@ -1,48 +1,48 @@
 {
   "comparison": {
     "sec-head": {
-      "eyebrow": "The decision",
-      "h2": "Multimodal AI vs. unimodal models",
-      "p": "These are frequently combined: a multimodal model for rich understanding, grounded by unimodal specialists for precision on a single data type."
+      "eyebrow": "The breakdown",
+      "h2": "System prompts vs other methods",
+      "p": "System prompts are often combined with fine-tuning and RAG for task-specific behavior grounded in current data."
     },
     "tablewrap": {
       "thead": [
         "Factor",
         "Plain LLM",
-        "Vision-Language Model",
-        "Multimodal AI"
+        "RAG",
+        "System prompts"
       ],
       "tbody": [
         {
-          "th": "Input types",
+          "th": "Knowledge source",
           "td": [
-            "Text only",
-            "Text and images",
-            "Text, images, and audio"
+            "Fixed training data",
+            "Training data plus live retrievable content",
+            "Training data plus explicit instructions"
           ]
         },
         {
-          "th": "Data fusion",
+          "th": "Update process",
           "td": [
-            "No fusion",
-            "Early fusion of text and vision",
-            "Late or cross-modal fusion of text, vision, and audio"
+            "Requires retraining",
+            "Add or update documents, no retraining",
+            "Edit the prompt text, no retraining"
           ]
         },
         {
           "th": "Best for",
           "td": [
-            "General text tasks",
-            "Image captioning and visual Q&A",
-            "Rich content understanding, transcription, and generation"
+            "General knowledge tasks",
+            "Domain-specific, current, or private data access",
+            "Constraining behavior, tone, and format"
           ]
         },
         {
-          "th": "Training complexity",
+          "th": "Traceability",
           "td": [
-            "Low",
-            "Moderate",
-            "High"
+            "No source citation",
+            "Can cite exact source document",
+            "Clear from the provided instructions"
           ]
         }
       ]
@@ -51,50 +51,50 @@
   "services": {
     "sec-head": {
       "eyebrow": "What I build",
-      "h2": "Multimodal AI services",
-      "p": "Each layer of a production multimodal pipeline, built and tested as its own verifiable stage."
+      "h2": "System prompt services",
+      "p": "Each stage of system prompt development, tested and refined for reliable, on-brand outputs."
     },
     "grid g3": [
       {
         "card": {
-          "n": "BUILD",
-          "h3": "Data preparation & fusion",
-          "p": "Building the pipeline that aligns and fuses diverse data sources\u2014text, images, and audio\u2014into a unified representation, ensuring no modality is lost."
+          "n": "DEFINE",
+          "h3": "Goal & persona definition",
+          "p": "Articulating the AI's objective, target audience, and persona attributes to shape its fundamental behavior and responses."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Model architecture design",
-          "p": "Selecting and configuring the right encoder-decoder architecture (e.g., CLIP, Flamingo, GATO) for your specific modality combinations and latency requirements."
+          "h3": "Context & constraint drafting",
+          "p": "Writing explicit context boundaries, format specifications, guardrails, and 'do not' rules that the model must follow with zero ambiguity."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Cross-modal retrieval",
-          "p": "Building the retrieval layer: enabling text-to-image, image-to-text, and audio-to-text search with hybrid indexing and re-ranking for maximum relevance."
+          "h3": "Example & few-shot inclusion",
+          "p": "Crafting representative input-output pairs and role-playing examples within the prompt to demonstrate desired output structure and reasoning."
         }
       },
       {
         "card": {
-          "n": "BUILD",
-          "h3": "Generation & grounding",
-          "p": "Configuring the generation layer with multi-modal grounding constraints and confidence thresholds so the system provides accurate, context-aware responses."
+          "n": "TEST",
+          "h3": "Edge case & adversarial testing",
+          "p": "Probing the prompt with jailbreak attempts, contradictory instructions, and off-topic queries to ensure directive adherence."
         }
       },
       {
         "card": {
-          "n": "EVALUATE",
-          "h3": "Multimodal evaluation",
-          "p": "Testing model performance across all modalities using benchmarks like VQA, MS-COCO, and custom metrics, with results shared transparently before launch."
+          "n": "REFINE",
+          "h3": "Iteration & performance tuning",
+          "p": "A/B testing prompt variants against your KPIs and refining language, examples, and constraints to improve consistency and relevance."
         }
       },
       {
         "card": {
-          "n": "BUILD",
-          "h3": "Production deployment",
-          "p": "Deploying the full multimodal pipeline as a versioned, monitored API integrated with your product or internal tools."
+          "n": "DEPLOY",
+          "h3": "Production versioning & monitoring",
+          "p": "Packaging your system prompt into a versioned artifact, integrated with your API, and monitored for drift and output failures."
         }
       }
     ]

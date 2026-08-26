@@ -2,21 +2,21 @@
   "hero": {
     "eyebrow": "Direct access, no account layer",
     "h1": {
-      "h1-text": "Hire a vector database engineer:",
-      "span": "freelance vector DB expert for hire"
+      "h1-text": "Hire an OpenAI API developer:",
+      "span": "freelance OpenAI integration engineer"
     },
-    "hero-sub": "I am Shreyans Padmani, a freelance vector database engineer specializing in Pinecone, Weaviate, and Qdrant. I design and build high-performance vector search pipelines, RAG systems, and AI knowledge assistants, then deploy them to production with monitoring, scaling, and integration your business requires.",
+    "hero-sub": "I am Shreyans Padmani, a freelance OpenAI API developer and integration specialist. I design, build, and deploy production\u2011grade OpenAI API integrations\u2014from chat completions to assistants and embeddings\u2014with a proven track record of 20+ successful integrations, strict rate\u2011limit handling, and seamless deployment to your existing stack.",
     "creds": [
       {
         "cred": {
           "i": "Experience",
-          "b": "5+ yrs AI & ML systems"
+          "b": "5+ yrs API & AI systems"
         }
       },
       {
         "cred": {
           "i": "Delivered",
-          "b": "20+ projects shipped"
+          "b": "20+ integrations shipped"
         }
       },
       {
@@ -44,11 +44,11 @@
     "trust": [
       {
         "b": "5+",
-        "span": "Years building AI & ML systems"
+        "span": "Years building API integrations"
       },
       {
         "b": "20+",
-        "span": "Projects shipped to production"
+        "span": "Integrations shipped to production"
       },
       {
         "b": "48h",
