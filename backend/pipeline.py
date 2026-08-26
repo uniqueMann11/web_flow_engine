@@ -20,6 +20,7 @@ import sys
 import json
 import argparse
 import subprocess
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Ensure UTF-8 output formatting on Windows CMD/PowerShell
 if hasattr(sys.stdout, "reconfigure"):
@@ -578,47 +579,84 @@ def main():
         output_path = os.path.join(HTML_PAGES_DIR, os.path.basename(output_html))
 
     try:
-        # ── Step 1: Generate content for each section ──
+        # ── Phase 1: Concurrent Content Generation & Hero Viewer Widget ──
         actual_data_dir, rules_dir, gen_dir = get_page_type_dirs(args.page_type)
+        tmp_widget_path = os.path.join(BASE_DIR, "generated_components", "interactive_viewer.html")
 
-        if not args.skip_generate:
+        if not args.skip_generate or (not args.skip_widget and not os.path.exists(tmp_widget_path)):
             print("\n" + "="*60)
-            print("  STEP 1: Generating content via LLM")
+            print("  PHASE 1: Concurrent Content & Widget Generation via LLM")
             print("="*60)
 
             os.makedirs(gen_dir, exist_ok=True)
+            futures = {}
 
-            for i, section in enumerate(SECTIONS, 1):
-                data_path = os.path.join(actual_data_dir, section["data"])
-                rules_path = os.path.join(rules_dir, section["rules"])
-                output_path_json = os.path.join(gen_dir, section["output"])
+            with ThreadPoolExecutor(max_workers=5) as executor:
+                # 1. Schedule all 4 Section LLM Generations in parallel
+                if not args.skip_generate:
+                    for i, section in enumerate(SECTIONS, 1):
+                        data_path = os.path.join(actual_data_dir, section["data"])
+                        rules_path = os.path.join(rules_dir, section["rules"])
+                        output_path_json = os.path.join(gen_dir, section["output"])
 
-                if not os.path.exists(data_path):
-                    raise FileNotFoundError(f"Section data file missing: {data_path}")
-                if not os.path.exists(rules_path):
-                    raise FileNotFoundError(f"Section rules file missing: {rules_path}")
+                        if not os.path.exists(data_path):
+                            raise FileNotFoundError(f"Section data file missing: {data_path}")
+                        if not os.path.exists(rules_path):
+                            raise FileNotFoundError(f"Section rules file missing: {rules_path}")
 
-                sec_title = section.get("name", f"Section {i}")
-                generate_section(
-                    page_title=args.page_title,
-                    page_type=args.page_type,
-                    primary_keyword=args.primary_keyword,
-                    secondary_keyword=args.secondary_keyword,
-                    content_angle=args.content_angle,
-                    model=args.model,
-                    data_path=data_path,
-                    rules_path=rules_path,
-                    output_path_json=output_path_json,
-                    step_num=i,
-                    total_steps=len(SECTIONS),
-                    section_title=sec_title
-                )
+                        sec_title = section.get("name", f"Section {i}")
+                        f = executor.submit(
+                            generate_section,
+                            page_title=args.page_title,
+                            page_type=args.page_type,
+                            primary_keyword=args.primary_keyword,
+                            secondary_keyword=args.secondary_keyword,
+                            content_angle=args.content_angle,
+                            model=args.model,
+                            data_path=data_path,
+                            rules_path=rules_path,
+                            output_path_json=output_path_json,
+                            step_num=i,
+                            total_steps=len(SECTIONS),
+                            section_title=sec_title
+                        )
+                        futures[f] = f"Section {i} ({sec_title})"
+
+                # 2. Schedule Hero Viewer Widget LLM Generation in parallel
+                if not args.skip_widget and (not args.skip_generate or not os.path.exists(tmp_widget_path)):
+                    print("  [DISPATCH] Hero viewer widget generation queued in parallel...")
+                    f_w = executor.submit(
+                        generate_viewer,
+                        page_title          = args.page_title,
+                        page_type           = args.page_type,
+                        primary_keyword     = args.primary_keyword,
+                        secondary_keyword   = args.secondary_keyword,
+                        content_angle       = args.content_angle,
+                        sample_widget_path  = args.sample_widget,
+                        model               = args.model,
+                        output_path         = tmp_widget_path,
+                    )
+                    futures[f_w] = "Hero Interactive Viewer Widget"
+
+                # 3. Track all tasks in real-time — fail fast if any task errors out
+                for fut in as_completed(futures):
+                    task_label = futures[fut]
+                    try:
+                        fut.result()
+                    except Exception as exc:
+                        print(f"\n  [FATAL ERROR] Parallel task '{task_label}' failed: {exc}")
+                        # Immediately cancel remaining tasks
+                        for other_f in futures:
+                            other_f.cancel()
+                        raise RuntimeError(f"Concurrent task '{task_label}' failed: {exc}") from exc
+
+            print("\n  ✓ All parallel LLM generation tasks completed successfully.")
         else:
             print("\n  Skipping LLM generation (--skip-generate). Using existing generated/ files.")
 
-        # ── Step 2: Compile final HTML ──
+        # ── Phase 2: Compile Final HTML Template (< 50ms) ──
         print("\n" + "="*60)
-        print("  STEP 2: Compiling HTML")
+        print("  PHASE 2: Compiling HTML Template")
         print("="*60)
 
         compile_html(
@@ -630,31 +668,14 @@ def main():
             output_path=output_path
         )
 
-        # ── Step 3: Hero Viewer Widget Generation & Injection ──
+        # ── Phase 3: Hero Viewer Widget DOM Injection (< 10ms) ──
         if not args.skip_widget:
             print("\n" + "="*60)
-            print("  STEP 3: Hero Viewer Widget Generation & Injection")
+            print("  PHASE 3: Injecting Hero Viewer Widget")
             print("="*60)
 
-            tmp_widget_path = os.path.join(BASE_DIR, "generated_components", "interactive_viewer.html")
-
-            if not args.skip_generate or not os.path.exists(tmp_widget_path):
-                print("  Generating page-specific hero viewer widget via LLM...")
-                generate_viewer(
-                    page_title          = args.page_title,
-                    page_type           = args.page_type,
-                    primary_keyword     = args.primary_keyword,
-                    secondary_keyword   = args.secondary_keyword,
-                    content_angle       = args.content_angle,
-                    sample_widget_path  = args.sample_widget,
-                    model               = args.model,
-                    output_path         = tmp_widget_path,
-                )
-            else:
-                print(f"  Using existing hero widget file: {tmp_widget_path}")
-
             if not os.path.exists(tmp_widget_path):
-                raise FileNotFoundError(f"Hero viewer widget file not generated: {tmp_widget_path}")
+                raise FileNotFoundError(f"Hero viewer widget file not found: {tmp_widget_path}")
 
             with open(tmp_widget_path, "r", encoding="utf-8") as f:
                 widget_html = f.read()
@@ -666,10 +687,10 @@ def main():
                 f.write(updated_html)
             print(f"  ✓ Hero viewer widget injected into: {output_path}")
 
-        # ── Step 4: Image Generation & Placeholder Replacement ──
+        # ── Phase 4: Parallel Image Generation & Placeholder Replacement ──
         if not getattr(args, 'skip_images', False):
             print("\n" + "="*60)
-            print("  STEP 4: Image Generation & Placeholder Replacement")
+            print("  PHASE 4: Parallel Image Generation & Placeholder Replacement")
             print("="*60)
 
             _replace_image_placeholders(
@@ -712,9 +733,8 @@ def _replace_image_placeholders(
     content_angle,
 ):
     """
-    Scan the compiled HTML for all .img-placeholder elements, generate an image
-    for each via VModel API, download locally, and replace the placeholder with
-    an <img> tag.
+    Scan the compiled HTML for all .img-placeholder elements, generate images
+    in parallel via VModel API, download locally, and replace placeholders with <img> tags.
     """
     if not os.path.exists(output_path):
         raise FileNotFoundError(f"Output HTML not found for image placeholder replacement: {output_path}")
@@ -729,25 +749,21 @@ def _replace_image_placeholders(
         print("  No .img-placeholder elements found — nothing to generate.")
         return
 
-    print(f"  Found {len(placeholders)} image placeholder(s). Generating images...")
+    print(f"  Found {len(placeholders)} image placeholder(s). Preparing parallel generation...")
     slug = re.sub(r"[^\w\-]+", "-", page_title.lower()).strip("-")
-    modified = False
 
+    tasks = []
     for idx, placeholder in enumerate(placeholders):
-        print(f"\n  ── Placeholder {idx + 1}/{len(placeholders)} ──")
-
-        # 1. Extract aspect ratio from the <span> text inside the placeholder
-        aspect_ratio = "1:1"  # default
+        # 1. Extract aspect ratio
+        aspect_ratio = "1:1"
         span = placeholder.find("span")
         if span and span.get_text():
             span_text = span.get_text(strip=True)
-            # Look for patterns like (1:1), (16:9), (4:3)
             ar_match = re.search(r"\((\d+:\d+)\)", span_text)
             if ar_match:
                 aspect_ratio = ar_match.group(1)
-        print(f"     Aspect ratio: {aspect_ratio}")
 
-        # 2. Extract section context from surrounding HTML
+        # 2. Extract section context
         section_context_parts = []
         parent_section = placeholder.find_parent("section")
         if parent_section:
@@ -761,60 +777,81 @@ def _replace_image_placeholders(
             if h2:
                 section_context_parts.append(f"Heading: {h2.get_text(strip=True)}")
         section_context = "; ".join(section_context_parts)
-        print(f"     Context: {section_context or '(none)'}")
 
-        # 3. Determine image type from section context
-        image_type = "hero_architecture"  # default
+        # 3. Determine image type
+        image_type = "hero_architecture"
         context_lower = section_context.lower()
         if any(kw in context_lower for kw in ["security", "compliance", "architecture", "technical"]):
             image_type = "technical_security"
         elif any(kw in context_lower for kw in ["workflow", "process", "how", "step"]):
             image_type = "workflow_ui"
 
-        # 4. Build save path
+        # 4. Save path
         suffix = f"-{idx + 1}" if len(placeholders) > 1 else ""
         filename = f"{slug}{suffix}-{image_type}.jpg"
         save_path = os.path.join(GENERATED_IMAGES_DIR, filename)
 
-        # 5. Generate and download image
-        local_path = generate_for_placeholder(
-            page_title=page_title,
-            page_type=page_type,
-            primary_keyword=primary_keyword,
-            secondary_keywords=secondary_keyword,
-            content_angle_notes=content_angle,
-            section_context=section_context,
-            image_type=image_type,
-            aspect_ratio=aspect_ratio,
-            save_path=save_path,
-        )
+        print(f"  [QUEUE] Placeholder #{idx + 1}: {section_context or '(overview)'} | ratio: {aspect_ratio} | type: {image_type}")
 
-        if not local_path or not os.path.exists(local_path):
-            raise RuntimeError(f"Image generation/download failed for placeholder #{idx + 1} (type: {image_type}, aspect: {aspect_ratio})")
+        tasks.append({
+            "idx": idx,
+            "placeholder": placeholder,
+            "aspect_ratio": aspect_ratio,
+            "section_context": section_context,
+            "image_type": image_type,
+            "filename": filename,
+            "save_path": save_path,
+        })
 
-        # 6. Build the <img> tag and replace the placeholder
-        img_src = f"/generated_images/{filename}"
-        alt_text = section_context or page_title
+    # 5. Generate and download all images in parallel
+    img_futures = {}
+    with ThreadPoolExecutor(max_workers=len(tasks)) as img_executor:
+        for t in tasks:
+            fut = img_executor.submit(
+                generate_for_placeholder,
+                page_title=page_title,
+                page_type=page_type,
+                primary_keyword=primary_keyword,
+                secondary_keywords=secondary_keyword,
+                content_angle_notes=content_angle,
+                section_context=t["section_context"],
+                image_type=t["image_type"],
+                aspect_ratio=t["aspect_ratio"],
+                save_path=t["save_path"],
+            )
+            img_futures[fut] = t
+
+        for fut in as_completed(img_futures):
+            t = img_futures[fut]
+            try:
+                local_path = fut.result()
+                if not local_path or not os.path.exists(local_path):
+                    raise RuntimeError(f"Image download failed for placeholder #{t['idx'] + 1} ({t['filename']})")
+                t["local_path"] = local_path
+                print(f"  ✓ Image ready for placeholder #{t['idx'] + 1} -> {local_path}")
+            except Exception as exc:
+                for other_f in img_futures:
+                    other_f.cancel()
+                raise RuntimeError(f"Image generation failed for placeholder #{t['idx'] + 1}: {exc}") from exc
+
+    # 6. Replace all placeholder DOM elements with <img> tags
+    for t in tasks:
+        img_src = f"/generated_images/{t['filename']}"
+        alt_text = t["section_context"] or page_title
         img_tag = soup.new_tag(
             "img",
             src=img_src,
             alt=alt_text,
             loading="lazy",
         )
+        t["placeholder"].replace_with(img_tag)
 
-        # Replace the .img-placeholder div with the <img> tag
-        placeholder.replace_with(img_tag)
-        modified = True
-        print(f"     ✓ Placeholder replaced with <img src=\"{img_src}\" />")
-
-    if modified:
-        html_out = str(soup)
-        # Fix SVG case-sensitivity mangled by BeautifulSoup
-        html_out = html_out.replace("<lineargradient", "<linearGradient").replace("</lineargradient>", "</linearGradient>")
-        html_out = html_out.replace("viewbox=", "viewBox=")
-        with open(output_path, "w", encoding="utf-8") as f:
-            f.write(html_out)
-        print(f"\n  ✓ All image placeholders processed. HTML updated: {output_path}")
+    html_out = str(soup)
+    html_out = html_out.replace("<lineargradient", "<linearGradient").replace("</lineargradient>", "</linearGradient>")
+    html_out = html_out.replace("viewbox=", "viewBox=")
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(html_out)
+    print(f"\n  ✓ All image placeholders replaced in parallel. HTML updated: {output_path}")
 
 
 if __name__ == "__main__":

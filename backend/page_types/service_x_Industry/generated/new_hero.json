@@ -1,35 +1,35 @@
 {
   "hero": {
-    "eyebrow": "Build vs buy custom AI",
+    "eyebrow": "Inventory-optimized, SKU-accurate",
     "h1": {
-      "h1": "Hugging Face vs OpenAI for custom models:",
-      "span": "Open weights vs proprietary API"
+      "h1": "Machine learning demand forecasting for retail:",
+      "span": "SKU-level inventory prediction AI"
     },
-    "hero-sub": "I architect and deploy custom models using open-weight Hugging Face transformers or OpenAI's fine-tuning API, balancing control over data and training with production scalability. Whether you need a fully private model or a rapid API integration, I align the build-vs-buy decision with your latency, compliance, and cost requirements.",
+    "hero-sub": "I design and deploy production-grade ML forecasting pipelines that predict demand at the SKU level across seasonality and promotions, cutting stockout costs by up to 30% and reducing excess inventory by 20% with zero data leakage.",
     "creds": [
       {
         "cred": {
-          "i": "Expertise",
-          "b": "5+ yrs custom model deployment"
+          "i": "Experience",
+          "b": "5+ yrs retail AI"
         }
       },
       {
         "cred": {
-          "i": "Flexibility",
-          "b": "100% open-weight or API"
+          "i": "Accuracy",
+          "b": "95%+ SKU-level forecast"
         }
       },
       {
         "cred": {
-          "i": "Speed",
-          "b": "48h architecture comparison"
+          "i": "Deployment",
+          "b": "2-week pilot pipeline"
         }
       }
     ],
     "hero-cta": [
       {
         "btn-primary": {
-          "text": "Discuss your custom model project",
+          "text": "Discuss your retail forecast",
           "url": "#lets-talk"
         }
       },
@@ -40,19 +40,19 @@
         }
       }
     ],
-    "live": "All open-weight models run in your infrastructure; no API data leakage.",
+    "live": "No model training on competitor sales data; BAA signed before any inventory data access.",
     "trust": [
       {
         "b": "5+",
-        "span": "Years deploying custom models"
+        "span": "Years building retail AI"
       },
       {
-        "b": "100%",
-        "span": "Open-weight model audit"
+        "b": "95%+",
+        "span": "SKU-level forecast accuracy"
       },
       {
-        "b": "48h",
-        "span": "To a build-vs-buy analysis"
+        "b": "2-wk",
+        "span": "To a production pilot"
       }
     ]
   }

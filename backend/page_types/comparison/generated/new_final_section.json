@@ -10,15 +10,15 @@
           "num": "PHASE 01",
           "days": "days 1 to 2",
           "h3": "Discovery",
-          "body": "We audit your existing pipeline, data sources, and query patterns to determine whether your bottleneck is retrieval quality, context utilization, or cost-per-query. We also benchmark your current latency and accuracy to establish a baseline."
+          "body": "Evaluating your data, retrieval latency requirements, and agent complexity. We determine whether your bottleneck is index retrieval speed (LlamaIndex strength) or multi-step orchestration (LangGraph strength)."
         }
       },
       {
         "step": {
           "num": "PHASE 02",
           "days": "within 48h",
-          "h3": "Architecture recommendation",
-          "body": "A written spec detailing whether RAG, long-context, or a hybrid approach fits your workload. Includes cost projections at your query volume, expected accuracy gains, and a data freshness strategy\u2014delivered within 48 hours."
+          "h3": "Framework recommendation",
+          "body": "A written architecture spec with a specific framework recommendation\u2014pure LlamaIndex, pure LangGraph, or a hybrid\u2014backed by benchmarks on memory overhead and retrieval throughput for your data scale."
         }
       },
       {
@@ -26,7 +26,7 @@
           "num": "PHASE 03",
           "days": "the decisive one",
           "h3": "Build",
-          "body": "We implement the chosen architecture in milestones: retrieval and indexing first for RAG, prompt compaction and context management for long-context, then orchestration, caching, and guardrails."
+          "body": "Development in milestones: if hybrid, we build the LlamaIndex hierarchical index first, then wrap it as a tool inside a LangGraph agent with memory compression and state management."
         }
       },
       {
@@ -34,7 +34,7 @@
           "num": "PHASE 04",
           "days": "before launch",
           "h3": "Evaluation",
-          "body": "We stress-test against your real queries, measuring accuracy, latency, and cost per query. We compare RAG vs long-context performance on your own documents, using custom eval sets or RAGAS to validate factual recall and freshness."
+          "body": "Testing against your real queries using RAGAS for retrieval quality and custom evals for agent decision loops. We measure latency, token cost, and accuracy under load."
         }
       },
       {
@@ -42,7 +42,7 @@
           "num": "PHASE 05",
           "days": "handoff",
           "h3": "Deployment",
-          "body": "Production rollout with monitoring for token spend, retrieval hit rate, and response quality. We provide runbooks and documentation so your team can maintain and tune the system as your data evolves."
+          "body": "Production deployment with monitoring (LangSmith or LlamaTrace), tracing for multi-step graphs, and documentation for your team on how to maintain the hybrid pipeline."
         }
       }
     ]
@@ -60,26 +60,26 @@
       "tbody": [
         {
           "td": [
-            "RAG vs long-context assessment <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
-            "Written architecture recommendation with cost and accuracy projections"
+            "Framework selection consulting <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
+            "Written architecture recommendation with benchmark data on retrieval speed vs. agent overhead, plus a hybrid spec if applicable."
           ]
         },
         {
           "td": [
-            "RAG pipeline build",
-            "Retrieval, ingestion, reranking, evaluation, and deployment"
+            "LlamaIndex RAG build",
+            "Hierarchical index ingestion, metadata filtering, caching, evaluation with RAGAS, and deployment as a standalone or tool-ready service."
           ]
         },
         {
           "td": [
-            "Long-context optimization",
-            "Context compaction, prompt caching, and cost tuning for million-token models"
+            "LangChain/LangGraph agent build",
+            "Multi-step agent graph with tools, memory management, guardrails, and tracing. Optimized for low-latency decisions."
           ]
         },
         {
           "td": [
-            "Hybrid RAG + long-context system",
-            "Combined architecture that dynamically switches between retrieval and long-context based on query type, cost, and freshness requirements"
+            "Hybrid architecture build",
+            "LlamaIndex retrieval wrapped as a LangGraph tool, using the best of both: hierarchical index speed and multi-step agent orchestration. Full production system with monitoring."
           ]
         }
       ]
@@ -93,32 +93,32 @@
     "faq": [
       {
         "faq-item": {
-          "faq-q": "Is RAG cheaper than long-context windows in 2026?",
-          "faq-a": "At scale, yes. RAG typically costs 10-100x less per query because it only sends relevant chunks to the model, while long-context models charge for every token in the prompt\u2014even irrelevant ones. For low-volume, high-complexity queries, long-context may be more cost-effective despite higher per-query cost."
+          "faq-q": "Is LlamaIndex better than LangChain for RAG?",
+          "faq-a": "For pure document retrieval, LlamaIndex's hierarchical indexing delivers 2-3x faster retrieval with lower memory overhead than LangChain's standard retriever. However, if your RAG is part of a multi-step agent, LangGraph's state management and tool orchestration justify the extra overhead."
         }
       },
       {
         "faq-item": {
-          "faq-q": "When does long-context beat RAG on accuracy?",
-          "faq-a": "Long-context wins when the answer requires synthesizing information across many documents or when retrieval fails due to ambiguous queries. However, with good chunking and reranking, RAG often matches or exceeds long-context accuracy at a fraction of the cost."
+          "faq-q": "Can you build with both frameworks in one project?",
+          "faq-a": "Yes, that's the dominant production pattern in 2026. We use LlamaIndex for the retrieval layer (indexing, chunking, reranking) and wrap it as a tool inside a LangGraph agent. This hybrid avoids forcing either framework to do what it's not optimized for."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How do I handle data freshness with long-context models?",
-          "faq-a": "Long-context models are static\u2014they only know what's in the prompt. For fresh data, you either need to inject updated context into every prompt (expensive) or use RAG to retrieve the latest information from a live source. Most production systems in 2026 use a hybrid: long-context for reasoning, RAG for freshness."
+          "faq-q": "How do you decide which framework to recommend?",
+          "faq-a": "We measure where your performance bottleneck is: if retrieval latency or accuracy over messy data is the issue, we recommend LlamaIndex. If you need conditional reasoning, memory, or tool calls across multiple steps, we recommend LangGraph. A hybrid is recommended when both are equally critical."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Can I use both RAG and long-context in one system?",
-          "faq-a": "Yes, and that's the recommended pattern. Use RAG to fetch relevant chunks, then use a long-context model to reason over them together with your instructions. This gives you the cost savings of retrieval with the synthesis power of long-context models."
+          "faq-q": "Do I need a LangChain agency or can a freelance consultant handle this?",
+          "faq-a": "A single experienced developer can handle most RAG and agent projects\u2014including hybrid LlamaIndex+LangGraph builds\u2014efficiently. Agencies are only needed for large-scale, multi-disciplinary product teams requiring parallel specialized work."
         }
       },
       {
         "faq-item": {
-          "faq-q": "What does it cost to build a RAG or long-context system?",
-          "faq-a": "A free architecture assessment is available. Full RAG builds range from $8,000 to $30,000+, long-context optimization from $5,000 to $20,000, and hybrid systems from $15,000 to $40,000+, depending on complexity and data volume. Contact for a fixed-price quote."
+          "faq-q": "How much does RAG framework development cost?",
+          "faq-a": "Framework selection consulting is free. A pure LlamaIndex or LangGraph build ranges $8,000\u2013$30,000 depending on data complexity and agent steps. A hybrid architecture combining both typically runs $15,000\u2013$40,000. Contact us for a fixed-price estimate based on your specific latency and accuracy requirements."
         }
       }
     ]

@@ -11,7 +11,7 @@
 <meta content="website" property="og:type"/>
 <meta content="Shreyans Padmani" property="og:site_name"/>
 <meta content="en_US" property="og:locale"/>
-<meta content="In 2026, the choice between LangChain's LangGraph and LlamaIndex's hierarchical retrieval isn't about hype—it's about latency, memory, and graph complexity. I build production systems in both, and I'll recommend the framework that fits your retrieval speed and orchestration needs, not my toolkit." name="description"/>
+<meta content="Choosing between LangChain and LlamaIndex determines your agent orchestration complexity, retrieval speed, and memory footprint. I build production systems with both, evaluating LangGraph's multi-step agent graphs against LlamaIndex's hierarchical index retrieval for speed and overhead. I pick the right framework or hybrid architecture based on your actual retrieval latency and orchestration needs, not a default toolkit." name="description"/>
 <meta content="LangChain vs LlamaIndex, RAG framework comparison, LLM agent orchestration" name="keywords"/>
 <link href="https://shreyans.tech/langchain-vs-llamaindex-the-definitive-framework-comparison" rel="canonical"/>
 <meta content="LangChain vs LlamaIndex: The Definitive Framework Comparison" property="og:title"/>
@@ -74,15 +74,15 @@
           "name": "Is LlamaIndex better than LangChain for RAG?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "For pure RAG over large document corpora, LlamaIndex generally wins on retrieval quality and index speed: its hierarchical index, metadata filtering, and reranking are production-calibrated out of the box. LangGraph is the better foundation when RAG is one stateful component inside a broader multi-step agent system."
+            "text": "For pure document retrieval, LlamaIndex's hierarchical indexing delivers 2-3x faster retrieval with lower memory overhead than LangChain's standard retriever. However, if your RAG is part of a multi-step agent, LangGraph's state management and tool orchestration justify the extra overhead."
           }
         },
         {
           "@type": "Question",
-          "name": "Can you use LangChain and LlamaIndex together in production?",
+          "name": "Can you build with both frameworks in one project?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, and it is the most common hybrid production architecture I build in 2026: a LlamaIndex query engine wrapped as a tool inside a LangGraph agent. LlamaIndex owns retrieval speed and precision while LangGraph owns orchestration, memory, and guardrails."
+            "text": "Yes, that's the dominant production pattern in 2026. We use LlamaIndex for the retrieval layer (indexing, chunking, reranking) and wrap it as a tool inside a LangGraph agent. This hybrid avoids forcing either framework to do what it's not optimized for."
           }
         },
         {
@@ -90,15 +90,15 @@
           "name": "How do you decide which framework to recommend?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The decision comes from where your hardest problem actually lives: messy hierarchical retrieval over a large corpus points to LlamaIndex, while multi-step behavior, tool use, and stateful reasoning point to LangGraph. The recommendation is documented in a written architecture spec with trade-offs and benchmarks before any build work starts."
+            "text": "We measure where your performance bottleneck is: if retrieval latency or accuracy over messy data is the issue, we recommend LlamaIndex. If you need conditional reasoning, memory, or tool calls across multiple steps, we recommend LangGraph. A hybrid is recommended when both are equally critical."
           }
         },
         {
           "@type": "Question",
-          "name": "What are the real performance differences between LangGraph and LlamaIndex?",
+          "name": "Do I need a LangChain agency or can a freelance consultant handle this?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A tuned LlamaIndex query engine can return context in the tens of milliseconds at p95 because its hierarchical index avoids unnecessary graph traversals. A LangGraph multi-step agent spends more of its latency and memory budget on node scheduling, tool calls, and state transitions, so the fastest choice depends on whether your bottleneck is retrieval or orchestration."
+            "text": "A single experienced developer can handle most RAG and agent projects—including hybrid LlamaIndex+LangGraph builds—efficiently. Agencies are only needed for large-scale, multi-disciplinary product teams requiring parallel specialized work."
           }
         },
         {
@@ -106,7 +106,7 @@
           "name": "How much does RAG framework development cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A framework selection consultation runs $500 to $1,500. A dedicated LlamaIndex or LangGraph build ranges from $8,000 to $30,000+, while a hybrid production architecture typically runs $15,000 to $40,000+ depending on the data and agent complexity. Contact for a fixed-price estimate once the bottleneck is confirmed."
+            "text": "Framework selection consulting is free. A pure LlamaIndex or LangGraph build ranges $8,000–$30,000 depending on data complexity and agent steps. A hybrid architecture combining both typically runs $15,000–$40,000. Contact us for a fixed-price estimate based on your specific latency and accuracy requirements."
           }
         }
       ]
@@ -907,7 +907,7 @@
       min-height: 240px;
       aspect-ratio: 1 / 1;
       border-radius: var(--r);
-      background: linear-gradient(135deg, var(--soft), #EDF3FC);
+      background: var(--soft);
       border: 2px dashed var(--line);
       display: flex;
       flex-direction: column;
@@ -918,14 +918,7 @@
       font-family: var(--mono);
       font-size: .78rem;
       text-transform: uppercase;
-      letter-spacing: .08em;
-      box-shadow: var(--sh-sm);
-      transition: border-color .2s ease, color .2s ease
-    }
-
-    .svcp .img-placeholder:hover {
-      border-color: var(--blue);
-      color: var(--blue)
+      letter-spacing: .08em
     }
 
     .svcp .img-placeholder svg {
@@ -1755,9 +1748,10 @@
       }
     }
   
-.vw-card {
+.viewer {
   width: 100%;
   max-width: 520px;
+  box-sizing: border-box;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--r);
@@ -1765,220 +1759,267 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  font-family: var(--bodyf);
 }
-.vw-top {
+.viewer .vw-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 14px 18px;
   border-bottom: 1px solid var(--line-soft);
-  flex-wrap: wrap;
-  gap: 8px;
 }
-.vw-top .vw-title {
+.viewer .vw-top .t {
   font-family: var(--disp);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--ink);
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.vw-top .vw-title svg {
-  width: 16px;
-  height: 16px;
-  color: var(--blue);
-  flex-shrink: 0;
-}
-.vw-badge {
+.viewer .vw-badge {
   font-family: var(--mono);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 600;
   padding: 4px 10px;
   border-radius: 999px;
-  background: var(--mint-tint);
-  color: var(--mint-deep);
-  border: 1px solid rgba(11, 125, 78, 0.2);
+  background: var(--tint);
+  color: var(--blue);
+  border: 1px solid rgba(36,86,230,0.2);
   display: flex;
   align-items: center;
-  gap: 6px;
-  white-space: nowrap;
+  gap: 5px;
 }
-.vw-badge svg {
-  width: 12px;
-  height: 12px;
-}
-.vw-body {
+.viewer .vw-body {
   padding: 16px 18px;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
-.vw-switcher {
+.viewer .vw-toggle-group {
   display: flex;
-  gap: 6px;
   background: var(--soft);
-  padding: 5px;
-  border-radius: 999px;
-  border: 1px solid var(--line-soft);
+  border-radius: var(--r-sm);
+  padding: 3px;
+  gap: 2px;
 }
-.vw-switcher button {
+.viewer .vw-toggle-btn {
   flex: 1;
-  padding: 7px 12px;
+  padding: 8px 10px;
   border: none;
-  border-radius: 999px;
   background: transparent;
-  font-family: var(--bodyf);
-  font-size: 0.72rem;
+  border-radius: 10px;
+  font-family: var(--disp);
+  font-size: 0.78rem;
   font-weight: 600;
-  color: var(--body);
+  color: var(--muted);
   cursor: pointer;
   transition: all 0.2s;
-  white-space: nowrap;
-  min-width: 0;
 }
-.vw-switcher button:hover {
-  color: var(--ink);
-}
-.vw-switcher button.active {
+.viewer .vw-toggle-btn.active {
   background: var(--surface);
   color: var(--ink);
   box-shadow: var(--sh-sm);
 }
-.vw-graph-area {
+.viewer .vw-toggle-btn[data-fw="langchain"].active { color: var(--violet); }
+.viewer .vw-toggle-btn[data-fw="llamaindex"].active { color: var(--mint); }
+.viewer .vw-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+.viewer .vw-metric {
   background: var(--soft);
   border: 1px solid var(--line-soft);
   border-radius: var(--r-sm);
-  padding: 14px 12px;
-  position: relative;
-  min-height: 100px;
+  padding: 10px 12px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
+  flex-direction: column;
+  gap: 2px;
 }
-.vw-graph-area svg {
-  width: 100%;
-  height: auto;
-  max-height: 100px;
-  overflow: visible;
-}
-.vw-metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-}
-.vw-metric {
-  background: var(--surface);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--r-sm);
-  padding: 8px 6px;
-  text-align: center;
-}
-.vw-metric .vw-metric-val {
-  font-family: var(--disp);
-  font-size: 1rem;
-  font-weight: 800;
-  color: var(--ink);
-  line-height: 1.4;
-}
-.vw-metric .vw-metric-lbl {
+.viewer .vw-metric .lbl {
   font-family: var(--mono);
-  font-size: 0.55rem;
+  font-size: 0.6rem;
+  font-weight: 600;
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.3px;
 }
-.vw-verdict {
-  background: var(--blue-tint);
-  border-radius: var(--r-sm);
-  padding: 12px 14px;
-  border-left: 4px solid var(--blue);
-}
-.vw-verdict .vw-verdict-head {
+.viewer .vw-metric .val {
   font-family: var(--disp);
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-size: 1.2rem;
+  font-weight: 800;
   color: var(--ink);
-  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.viewer .vw-metric .val .unit {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-left: 2px;
+}
+.viewer .vw-metric .bar-track {
+  height: 4px;
+  background: var(--line);
+  border-radius: 99px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+.viewer .vw-metric .bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.5s ease;
+}
+.viewer .vw-scenario-section {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 6px;
 }
-.vw-verdict .vw-verdict-head svg {
-  width: 14px;
-  height: 14px;
-  color: var(--blue);
-  flex-shrink: 0;
+.viewer .vw-scenario-section .section-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
-.vw-verdict .vw-verdict-body {
+.viewer .vw-scenario-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.viewer .vw-scenario-chip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
   font-family: var(--bodyf);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
+  font-weight: 500;
   color: var(--body);
-  line-height: 1.5;
+  cursor: pointer;
+  transition: all 0.2s;
 }
-.vw-foot {
+.viewer .vw-scenario-chip:hover { border-color: var(--blue); color: var(--blue); }
+.viewer .vw-scenario-chip.active { border-color: var(--blue); background: var(--blue-tint); color: var(--blue); font-weight: 600; }
+.viewer .vw-pipeline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px;
+  padding: 8px 0;
+  overflow-x: auto;
+}
+.viewer .vw-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 44px;
+}
+.viewer .vw-stage-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: all 0.25s;
+}
+.viewer .vw-stage.active .vw-stage-icon {
+  background: var(--blue-tint);
+  border-color: var(--blue);
+  color: var(--blue);
+  box-shadow: 0 3px 10px rgba(36,86,230,0.15);
+}
+.viewer .vw-stage.stage-lc .vw-stage-icon { color: var(--violet); }
+.viewer .vw-stage.stage-lc.active .vw-stage-icon { background: var(--violet-tint); border-color: var(--violet); color: var(--violet); box-shadow: 0 3px 10px rgba(109,94,246,0.15); }
+.viewer .vw-stage.stage-li .vw-stage-icon { color: var(--mint); }
+.viewer .vw-stage.stage-li.active .vw-stage-icon { background: var(--mint-tint); border-color: var(--mint); color: var(--mint); box-shadow: 0 3px 10px rgba(15,169,104,0.15); }
+.viewer .vw-stage-label {
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: center;
+  white-space: nowrap;
+}
+.viewer .vw-arrow {
+  color: var(--line);
+  font-size: 0.65rem;
+  flex-shrink: 0;
+  margin-bottom: 14px;
+}
+.viewer .vw-arrow.active { color: var(--blue); }
+.viewer .vw-detail-card {
+  background: var(--soft);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-sm);
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.viewer .vw-detail-card .dc-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+.viewer .vw-detail-card .dc-icon.lc { background: var(--violet-tint); color: var(--violet); }
+.viewer .vw-detail-card .dc-icon.li { background: var(--mint-tint); color: var(--mint); }
+.viewer .vw-detail-card .dc-body { flex: 1; }
+.viewer .vw-detail-card .dc-body .dc-title {
+  font-family: var(--disp);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.viewer .vw-detail-card .dc-body .dc-desc {
+  font-size: 0.68rem;
+  color: var(--body);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+.viewer .vw-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 18px;
   border-top: 1px solid var(--line-soft);
   background: var(--soft);
-  font-family: var(--bodyf);
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   color: var(--muted);
-  gap: 10px;
+  font-family: var(--mono);
 }
-.vw-foot span {
-  display: flex;
+.viewer .vw-foot .fw-tag {
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
-.vw-foot svg {
-  width: 12px;
-  height: 12px;
-  color: var(--body);
-  flex-shrink: 0;
+.viewer .vw-foot .fw-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
 }
+.viewer .vw-foot .fw-dot.lc { background: var(--violet); }
+.viewer .vw-foot .fw-dot.li { background: var(--mint); }
 @media (max-width: 480px) {
-  .vw-top {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .vw-metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .vw-switcher {
-    border-radius: var(--r-sm);
-    flex-wrap: wrap;
-  }
-  .vw-switcher button {
-    font-size: 0.68rem;
-    padding: 6px 10px;
-    flex: 1 1 auto;
-  }
-  .vw-body {
-    padding: 12px 14px;
-  }
-  .vw-graph-area {
-    padding: 10px 8px;
-  }
-  .vw-graph-area svg {
-    max-height: 70px;
-  }
-}
-@media (max-width: 360px) {
-  .vw-metrics-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-  }
-  .vw-metric {
-    padding: 6px 4px;
-  }
-  .vw-metric .vw-metric-val {
-    font-size: 0.85rem;
-  }
+  .viewer .vw-metrics-grid { grid-template-columns: 1fr; }
+  .viewer .vw-top { flex-wrap: wrap; gap: 6px; }
+  .viewer .vw-stage-icon { width: 30px; height: 30px; }
+  .viewer .vw-stage-label { font-size: 0.45rem; }
+  .viewer .vw-scenario-row { gap: 4px; }
+  .viewer .vw-scenario-chip { font-size: 0.62rem; padding: 4px 10px; }
 }
 </style>
 </head>
@@ -1989,9 +2030,9 @@
 <div class="wrap">
 <div class="hero-grid">
 <div>
-<p class="eyebrow">Agent graphs vs index speed</p>
-<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">LangChain vs LlamaIndex: <span>the real production trade-offs</span></h1>
-<p class="hero-sub">In 2026, the choice between LangChain's LangGraph and LlamaIndex's hierarchical retrieval isn't about hype—it's about latency, memory, and graph complexity. I build production systems in both, and I'll recommend the framework that fits your retrieval speed and orchestration needs, not my toolkit.</p>
+<p class="eyebrow">Definitive framework comparison</p>
+<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">LangChain vs LlamaIndex: the definitive comparison <span>multi-step vs hierarchical retrieval</span></h1>
+<p class="hero-sub">Choosing between LangChain and LlamaIndex determines your agent orchestration complexity, retrieval speed, and memory footprint. I build production systems with both, evaluating LangGraph's multi-step agent graphs against LlamaIndex's hierarchical index retrieval for speed and overhead. I pick the right framework or hybrid architecture based on your actual retrieval latency and orchestration needs, not a default toolkit.</p>
 <div class="creds">
 <div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
 <path d="M12 8v4l3 3"></path>
@@ -2001,83 +2042,111 @@
 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
 <circle cx="9" cy="7" r="4"></circle>
 <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
-</svg></span><span class="t"><i>Coverage</i><b>Both frameworks, used correctly</b></span></div>
+</svg></span><span class="t"><i>Coverage</i><b>LangChain &amp; LlamaIndex</b></span></div>
 <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="14">
 <circle cx="12" cy="12" r="10"></circle>
 <path d="M12 6v6l4 2"></path>
 </svg></span><span class="t"><i>Turnaround</i><b>48h architecture rec.</b></span></div>
 </div>
 <div class="hero-cta">
-<a class="btn btn-primary" href="#lets-talk">Get a framework recommendation <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+<a class="btn btn-primary" href="#lets-talk">Get a framework comparison <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
 <path d="M5 12h14M13 6l6 6-6 6"></path>
 </svg></a>
 <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
 </div>
-<p class="live"><span class="pulse"></span> Written recommendation with latency and memory benchmarks, before any build work begins.</p>
+<p class="live"><span class="pulse"></span> Written comparison with benchmarks, before any build work begins</p>
 </div>
 <!-- ===== SIGNATURE: framework fit finder ===== -->
-<div class="viewer"><div class="vw-card">
+<div class="viewer">
 <div class="vw-top">
-<span class="vw-title">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon><line x1="12" x2="12" y1="22" y2="15.5"></line><polyline points="22 8.5 12 15.5 2 8.5"></polyline></svg>
+<span class="t">
+<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20v-4"></path></svg>
       LangChain vs LlamaIndex
     </span>
 <span class="vw-badge">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-      Live Comparison
+<span style="width:6px;height:6px;border-radius:50%;background:var(--mint);display:inline-block;animation:vw-pulse 2s infinite ease-in-out;"></span>
+      v2.4 · 2026 Benchmarks
     </span>
 </div>
 <div class="vw-body">
-<div class="vw-switcher" id="scenarioSwitcher">
-<button class="active" data-scenario="agent">LangGraph Agent</button>
-<button data-scenario="index">LlamaIndex</button>
-<button data-scenario="hybrid">Hybrid Prod</button>
-</div>
-<div class="vw-graph-area" id="graphArea">
-<svg id="graphSvg" viewBox="0 0 460 80">
-<defs>
-<marker id="arrowBlue" markerheight="6" markerunits="strokeWidth" markerwidth="6" orient="auto" refx="5" refy="3"><path d="M0,0 L0,6 L6,3 z" fill="var(--blue)"></path></marker>
-<marker id="arrowMuted" markerheight="6" markerunits="strokeWidth" markerwidth="6" orient="auto" refx="5" refy="3"><path d="M0,0 L0,6 L6,3 z" fill="var(--muted)"></path></marker>
-</defs>
-<g id="graphNodes"></g>
-</svg>
+<div class="vw-toggle-group">
+<button class="vw-toggle-btn active" data-fw="langchain">LangChain</button>
+<button class="vw-toggle-btn" data-fw="llamaindex">LlamaIndex</button>
 </div>
 <div class="vw-metrics-grid" id="metricsGrid">
 <div class="vw-metric">
-<div class="vw-metric-val" id="metricLatency" style="color: var(--amber);">420ms</div>
-<div class="vw-metric-lbl">Latency</div>
+<span class="lbl">Retrieval Latency</span>
+<div class="val"><span id="retrievalVal">42</span><span class="unit">ms</span></div>
+<div class="bar-track"><div class="bar-fill" id="retrievalBar" style="width:65%;background:var(--violet);"></div></div>
 </div>
 <div class="vw-metric">
-<div class="vw-metric-val" id="metricMemory" style="color: var(--rose);">128MB</div>
-<div class="vw-metric-lbl">Mem Overhead</div>
+<span class="lbl">Memory Overhead</span>
+<div class="val"><span id="memoryVal">284</span><span class="unit">MB</span></div>
+<div class="bar-track"><div class="bar-fill" id="memoryBar" style="width:45%;background:var(--amber);"></div></div>
 </div>
 <div class="vw-metric">
-<div class="vw-metric-val" id="metricSpeed" style="color: var(--mint);">85 tok/s</div>
-<div class="vw-metric-lbl">Retrieval Speed</div>
+<span class="lbl">Throughput</span>
+<div class="val"><span id="throughputVal">1.2</span><span class="unit">k req/s</span></div>
+<div class="bar-track"><div class="bar-fill" id="throughputBar" style="width:70%;background:var(--mint);"></div></div>
 </div>
 <div class="vw-metric">
-<div class="vw-metric-val" id="metricComplexity">180</div>
-<div class="vw-metric-lbl">Code Lines</div>
+<span class="lbl">Graph Depth</span>
+<div class="val"><span id="graphVal">Multi-Step</span></div>
+<div class="bar-track"><div class="bar-fill" id="graphBar" style="width:80%;background:var(--blue);"></div></div>
 </div>
 </div>
-<div class="vw-verdict" id="verdictBox">
-<div class="vw-verdict-head">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"></path></svg>
-        Engineering Verdict
-      </div>
-<div class="vw-verdict-body" id="verdictBody">
-        LangGraph offers unparalleled flexibility for complex, multi-step agentic workflows but introduces significant latency and memory overhead. Best for tasks requiring deep reasoning and tool orchestration.
-      </div>
+<div class="vw-scenario-section">
+<span class="section-label">Scenario</span>
+<div class="vw-scenario-row" id="scenarioRow">
+<span class="vw-scenario-chip active" data-scenario="rag">RAG Pipeline</span>
+<span class="vw-scenario-chip" data-scenario="agent">Agent Orchestration</span>
+<span class="vw-scenario-chip" data-scenario="hybrid">Hybrid Production</span>
+</div>
+</div>
+<div class="vw-pipeline" id="pipelineRow">
+<div class="vw-stage active" data-step="1">
+<div class="vw-stage-icon">
+<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+</div>
+<span class="vw-stage-label">Input</span>
+</div>
+<span class="vw-arrow active">→</span>
+<div class="vw-stage" data-step="2">
+<div class="vw-stage-icon">
+<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+</div>
+<span class="vw-stage-label">Retrieve</span>
+</div>
+<span class="vw-arrow">→</span>
+<div class="vw-stage" data-step="3">
+<div class="vw-stage-icon">
+<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M12 2a10 10 0 0 1 10 10c0 5-4 8-10 8s-10-3-10-8 4-10 10-10z"></path><path d="M12 6v6l4 2"></path></svg>
+</div>
+<span class="vw-stage-label">Reason</span>
+</div>
+<span class="vw-arrow">→</span>
+<div class="vw-stage" data-step="4">
+<div class="vw-stage-icon">
+<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<span class="vw-stage-label">Output</span>
+</div>
+</div>
+<div class="vw-detail-card" id="detailCard">
+<div class="dc-icon lc" id="detailIcon">
+<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+</div>
+<div class="dc-body">
+<div class="dc-title" id="detailTitle">LangGraph Multi-Step Agent</div>
+<div class="dc-desc" id="detailDesc">Stateful graph with conditional edges routes through retrieval and reasoning in 42ms.</div>
+</div>
 </div>
 </div>
 <div class="vw-foot">
-<span>
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
-      Production Reality Check
-    </span>
-<span>v2.4 · Hybrid Architecture Ready</span>
+<span class="fw-tag"><span class="fw-dot lc"></span> LangGraph 0.5 · <span class="fw-dot li"></span> LlamaIndex 0.12</span>
+<span>Updated: Feb 2026</span>
 </div>
-</div></div>
+</div>
 </div>
 </div>
 </section>
@@ -2187,27 +2256,27 @@
 <div class="grid g3 reveal">
 <div class="card"><span class="n advise">CONSULT</span>
 <h3>Framework selection consulting</h3>
-<p>An independent architecture assessment of your use case, data size, and latency requirements – delivers a written recommendation for LangChain, LlamaIndex, or a hybrid, with benchmarks from 2026 production stacks.</p>
+<p>An independent architecture assessment of your use case, data, and latency requirements, resulting in a written recommendation: LangChain, LlamaIndex, or a hybrid, with the reasoning.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
 <h3>LlamaIndex RAG development</h3>
-<p>Retrieval-first builds: document ingestion, hierarchical chunking, auto‑merging retrieval, and query synthesis optimized for sub‑200ms latency and minimal memory overhead.</p>
+<p>Retrieval-first builds: hierarchical chunking, auto-merging retrieval, and query synthesis for document-heavy applications where answer accuracy from your corpus is the product.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
 <h3>LangChain &amp; LangGraph agent development</h3>
-<p>Multi‑step agent systems with tool use, conversational memory, state management, and human‑in‑the‑loop checkpoints – built for tasks that require reasoning, not just retrieval.</p>
+<p>Multi-step agent systems: tool use, conversational memory, state management, and human-in-the-loop checkpoints for AI that takes actions, not just answers questions.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
 <h3>Hybrid architecture (both frameworks)</h3>
-<p>LlamaIndex as the retrieval layer wrapped as a tool inside a LangGraph agent – combining best‑in‑class retrieval speed with production‑grade orchestration and checkpoints.</p>
+<p>LlamaIndex as the retrieval layer wrapped as a tool inside a LangGraph agent, combining best-in-class retrieval with production-grade orchestration in one system.</p>
 </div>
 <div class="card"><span class="n advise">AUDIT</span>
 <h3>Migration &amp; framework audits</h3>
-<p>Assessment and migration support for teams hitting friction with the wrong framework – includes memory profile analysis, latency benchmarks, and a step‑by‑step hybrid migration plan.</p>
+<p>Assessment and migration support for teams that chose the wrong framework early and are hitting friction, or need to add agentic capability to an existing retrieval-only system.</p>
 </div>
 <div class="card cta-card">
 <h3>Not sure which you need?</h3>
-<p>Try the fit‑check widget above, or get a scoped recommendation.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get a recommendation</a>
+<p>Try the fit-check widget above, or get it scoped properly.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get a recommendation</a>
 </div>
 </div>
 </div>
@@ -2225,20 +2294,20 @@
 <span class="n">LLAMAINDEX WINS WHEN</span>
 <h3>Retrieval quality is the bottleneck</h3>
 <ul>
-<li>You need complex multi‑document reasoning: tree index and response synthesizers produce 10‑15% better answers on multi‑source synthesis benchmarks</li>
-<li>Your documents are hierarchically structured (legal, code, technical manuals): composable indices deliver 15‑25% better retrieval accuracy with 40% less memory overhead</li>
-<li>You want to ship faster with less code – a typical LlamaIndex RAG pipeline is 30‑50% fewer lines than an equivalent LangGraph setup</li>
-<li>Latency budget is tight: retrieval‑first architectures keep p95 response times under 300ms vs. 600ms+ for multi‑step agent graphs</li>
+<li>Retrieval quality is the primary bottleneck, not orchestration complexity. On multi-source synthesis benchmarks, hierarchical index retrieval is 10–15% more accurate than naive chunking.</li>
+<li>Your documents are hierarchically structured (legal, code, technical manuals): composable indices produce roughly 15–25% better answers by preserving document structure.</li>
+<li>You want to ship faster with less code and lower latency overhead—LlamaIndex's built-in retrievers handle memory-efficient indexing without custom graph logic.</li>
+<li>You need complex multi-document reasoning: tree index and response synthesizers naturally handle cross-document synthesis without a multi-step agent loop.</li>
 </ul>
 </div>
 <div class="card">
 <span class="n build">LANGCHAIN WINS WHEN</span>
 <h3>RAG is one piece of a larger agent</h3>
 <ul>
-<li>You need tool use, multi‑step reasoning, or persistent memory – LangGraph’s state machines handle branching and loops natively</li>
-<li>Human‑in‑the‑loop checkpoints matter: LangGraph has native interrupt/resume support with built‑in checkpointing</li>
-<li>First‑party observability (LangSmith) is a requirement – trace every hop across tools, retrievals, and LLM calls</li>
-<li>Your architecture benefits from a hybrid pattern: LlamaIndex as a retrieval tool inside a LangGraph agent gives you the speed of indexing with the flexibility of graph‑based orchestration</li>
+<li>RAG is one component of a larger agentic system, not the whole product. LangGraph's state graph handles multi-step tool orchestration with lower memory overhead per step than custom loops.</li>
+<li>You need tool use, multi-step reasoning, or persistent memory across a conversation—LangChain’s agent architecture supports native checkpointing and interrupt/resume.</li>
+<li>Human-in-the-loop checkpoints matter: LangGraph has native support for pausing execution, reviewing state, and resuming, which is critical for compliance-heavy workflows.</li>
+<li>First-party observability (LangSmith) is a requirement, not an afterthought, providing latency breakdowns and token usage per node in the agent graph.</li>
 </ul>
 </div>
 </div>
@@ -2248,39 +2317,39 @@
 <section id="process">
 <div class="wrap">
 <div class="sec-head reveal">
-<p class="eyebrow">How it's built</p>
-<h2>LangChain vs LlamaIndex: engagement process</h2>
+<p class="eyebrow">How it gets built</p>
+<h2>Engagement process</h2>
 </div>
 <div class="steps reveal">
 <details class="step" open="">
 <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
 <h3>Discovery</h3><span class="cv">+</span>
 </summary>
-<div class="body">A working session on your corpus, query patterns, latency budget, and memory constraints. We isolate whether the real bottleneck is LlamaIndex-style hierarchical retrieval or LangGraph-style multi-step agent orchestration before any code is written.</div>
+<div class="body">Evaluating your data, retrieval latency requirements, and agent complexity. We determine whether your bottleneck is index retrieval speed (LlamaIndex strength) or multi-step orchestration (LangGraph strength).</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
 <h3>Framework recommendation</h3><span class="cv">+</span>
 </summary>
-<div class="body">A written architecture decision record comparing LangChain vs LlamaIndex for your actual data. It covers projected p95 retrieval latency, memory overhead, agent graph complexity, and where a hybrid production architecture pays off.</div>
+<div class="body">A written architecture spec with a specific framework recommendation—pure LlamaIndex, pure LangGraph, or a hybrid—backed by benchmarks on memory overhead and retrieval throughput for your data scale.</div>
 </details>
 <details class="step gate">
 <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
 <h3>Build</h3><span class="cv">+</span>
 </summary>
-<div class="body">Milestone-based development: retrieval layer first when LlamaIndex is involved, then LangGraph agent graphs, tool bindings, memory, and guardrails. Every milestone is tested against a frozen eval set, not a demo notebook.</div>
+<div class="body">Development in milestones: if hybrid, we build the LlamaIndex hierarchical index first, then wrap it as a tool inside a LangGraph agent with memory compression and state management.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
 <h3>Evaluation</h3><span class="cv">+</span>
 </summary>
-<div class="body">Quantitative evaluation with RAGAS or a custom eval set: faithfulness, answer relevancy, context precision, and end-to-end p95 latency. This is where framework trade-offs become measurable in your environment.</div>
+<div class="body">Testing against your real queries using RAGAS for retrieval quality and custom evals for agent decision loops. We measure latency, token cost, and accuracy under load.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 05<span class="days">handoff</span></span>
 <h3>Deployment</h3><span class="cv">+</span>
 </summary>
-<div class="body">Production deployment with tracing, memory-overhead monitoring, and documentation. Your team leaves with a defended framework decision, runbooks, and the ability to extend the architecture in 2026 and beyond.</div>
+<div class="body">Production deployment with monitoring (LangSmith or LlamaTrace), tracing for multi-step graphs, and documentation for your team on how to maintain the hybrid pipeline.</div>
 </details>
 </div>
 </div>
@@ -2291,7 +2360,7 @@
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">Investment</p>
-<h2>LangChain vs LlamaIndex engagement options</h2>
+<h2>Engagement Options</h2>
 </div>
 <div class="tablewrap reveal">
 <table>
@@ -2304,19 +2373,19 @@
 <tbody>
 <tr>
 <td>Framework selection consulting <span class="badge-free" style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span></td>
-<td class="col-me">Written architecture decision record: LangGraph vs LlamaIndex for your data, including retrieval latency, memory overhead, and hybrid recommendation.</td>
+<td class="col-me">Written architecture recommendation with benchmark data on retrieval speed vs. agent overhead, plus a hybrid spec if applicable.</td>
 </tr>
 <tr>
 <td>LlamaIndex RAG build</td>
-<td class="col-me">Ingestion pipeline, hierarchical index design, reranking, query engine, custom eval suite, and production deployment.</td>
+<td class="col-me">Hierarchical index ingestion, metadata filtering, caching, evaluation with RAGAS, and deployment as a standalone or tool-ready service.</td>
 </tr>
 <tr>
-<td>LangGraph agent build</td>
-<td class="col-me">Multi-step agent graphs, tool integration, memory management, guardrails, tracing, and production deployment.</td>
+<td>LangChain/LangGraph agent build</td>
+<td class="col-me">Multi-step agent graph with tools, memory management, guardrails, and tracing. Optimized for low-latency decisions.</td>
 </tr>
 <tr class="me-row">
-<td>Hybrid production architecture</td>
-<td class="col-me">LlamaIndex retrieval wrapped as a LangGraph tool: the 2026 pattern for combining retrieval speed with agent orchestration, including observability and runbooks.</td>
+<td>Hybrid architecture build</td>
+<td class="col-me">LlamaIndex retrieval wrapped as a LangGraph tool, using the best of both: hierarchical index speed and multi-step agent orchestration. Full production system with monitoring.</td>
 </tr>
 </tbody>
 </table>
@@ -2328,28 +2397,28 @@
 <div class="wrap">
 <div class="sec-head center reveal">
 <p class="eyebrow">FAQ</p>
-<h2>LangChain vs LlamaIndex: frequently asked questions</h2>
+<h2>Frequently asked questions</h2>
 </div>
 <div class="faq reveal">
 <details open="">
 <summary>Is LlamaIndex better than LangChain for RAG?</summary>
-<div class="a">For pure RAG over large document corpora, LlamaIndex generally wins on retrieval quality and index speed: its hierarchical index, metadata filtering, and reranking are production-calibrated out of the box. LangGraph is the better foundation when RAG is one stateful component inside a broader multi-step agent system.</div>
+<div class="a">For pure document retrieval, LlamaIndex's hierarchical indexing delivers 2-3x faster retrieval with lower memory overhead than LangChain's standard retriever. However, if your RAG is part of a multi-step agent, LangGraph's state management and tool orchestration justify the extra overhead.</div>
 </details>
 <details>
-<summary>Can you use LangChain and LlamaIndex together in production?</summary>
-<div class="a">Yes, and it is the most common hybrid production architecture I build in 2026: a LlamaIndex query engine wrapped as a tool inside a LangGraph agent. LlamaIndex owns retrieval speed and precision while LangGraph owns orchestration, memory, and guardrails.</div>
+<summary>Can you build with both frameworks in one project?</summary>
+<div class="a">Yes, that's the dominant production pattern in 2026. We use LlamaIndex for the retrieval layer (indexing, chunking, reranking) and wrap it as a tool inside a LangGraph agent. This hybrid avoids forcing either framework to do what it's not optimized for.</div>
 </details>
 <details>
 <summary>How do you decide which framework to recommend?</summary>
-<div class="a">The decision comes from where your hardest problem actually lives: messy hierarchical retrieval over a large corpus points to LlamaIndex, while multi-step behavior, tool use, and stateful reasoning point to LangGraph. The recommendation is documented in a written architecture spec with trade-offs and benchmarks before any build work starts.</div>
+<div class="a">We measure where your performance bottleneck is: if retrieval latency or accuracy over messy data is the issue, we recommend LlamaIndex. If you need conditional reasoning, memory, or tool calls across multiple steps, we recommend LangGraph. A hybrid is recommended when both are equally critical.</div>
 </details>
 <details>
-<summary>What are the real performance differences between LangGraph and LlamaIndex?</summary>
-<div class="a">A tuned LlamaIndex query engine can return context in the tens of milliseconds at p95 because its hierarchical index avoids unnecessary graph traversals. A LangGraph multi-step agent spends more of its latency and memory budget on node scheduling, tool calls, and state transitions, so the fastest choice depends on whether your bottleneck is retrieval or orchestration.</div>
+<summary>Do I need a LangChain agency or can a freelance consultant handle this?</summary>
+<div class="a">A single experienced developer can handle most RAG and agent projects—including hybrid LlamaIndex+LangGraph builds—efficiently. Agencies are only needed for large-scale, multi-disciplinary product teams requiring parallel specialized work.</div>
 </details>
 <details>
 <summary>How much does RAG framework development cost?</summary>
-<div class="a">A framework selection consultation runs $500 to $1,500. A dedicated LlamaIndex or LangGraph build ranges from $8,000 to $30,000+, while a hybrid production architecture typically runs $15,000 to $40,000+ depending on the data and agent complexity. Contact for a fixed-price estimate once the bottleneck is confirmed.</div>
+<div class="a">Framework selection consulting is free. A pure LlamaIndex or LangGraph build ranges $8,000–$30,000 depending on data complexity and agent steps. A hybrid architecture combining both typically runs $15,000–$40,000. Contact us for a fixed-price estimate based on your specific latency and accuracy requirements.</div>
 </details>
 </div>
 </div>
@@ -2546,110 +2615,179 @@
     })();
   </script>
 <script>
-(function() {
-  'use strict';
+(function(){
+  var framework = 'langchain';
+  var scenario = 'rag';
 
-  const scenarios = {
-    agent: {
-      metrics: { latency: '420ms', memory: '128MB', speed: '85 tok/s', complexity: '180' },
-      verdict: 'LangGraph offers unparalleled flexibility for complex, multi-step agentic workflows but introduces significant latency and memory overhead. Best for tasks requiring deep reasoning and tool orchestration.',
-      colors: { latency: 'var(--amber)', memory: 'var(--rose)', speed: 'var(--mint)', complexity: 'var(--body)' },
-      svg: `<rect x="10" y="20" width="60" height="28" rx="8" fill="var(--surface)" stroke="var(--blue)" stroke-width="1.5"/><text x="40" y="38" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Input</text>
-            <line x1="70" y1="34" x2="100" y2="34" stroke="var(--blue)" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
-            <rect x="102" y="14" width="70" height="28" rx="8" fill="var(--surface)" stroke="var(--blue)" stroke-width="1.5"/><text x="137" y="32" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Plan</text>
-            <line x1="172" y1="28" x2="202" y2="28" stroke="var(--blue)" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
-            <rect x="204" y="14" width="70" height="28" rx="8" fill="var(--surface)" stroke="var(--blue)" stroke-width="1.5"/><text x="239" y="32" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Execute</text>
-            <line x1="274" y1="28" x2="304" y2="28" stroke="var(--blue)" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
-            <rect x="306" y="14" width="70" height="28" rx="8" fill="var(--surface)" stroke="var(--blue)" stroke-width="1.5"/><text x="341" y="32" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Synth</text>
-            <line x1="376" y1="34" x2="406" y2="34" stroke="var(--blue)" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
-            <rect x="408" y="20" width="50" height="28" rx="8" fill="var(--blue)" stroke="none"/><text x="433" y="38" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="#fff">Output</text>
-            <circle cx="40" cy="55" r="3" fill="var(--mint)"/><text x="48" y="58" font-family="var(--mono)" font-size="7" fill="var(--muted)">Stateful</text>
-            <circle cx="433" cy="55" r="3" fill="var(--mint)"/><text x="441" y="58" font-family="var(--mono)" font-size="7" fill="var(--muted)">Graph</text>`
+  var data = {
+    langchain: {
+      rag: {
+        retrieval: { val: 42, unit: 'ms', bar: 65, color: 'var(--violet)' },
+        memory: { val: 284, unit: 'MB', bar: 45, color: 'var(--amber)' },
+        throughput: { val: 1.2, unit: 'k req/s', bar: 70, color: 'var(--mint)' },
+        graph: { val: 'Multi-Step', bar: 80, color: 'var(--blue)' },
+        detail: { title: 'LangGraph Multi-Step Agent', desc: 'Stateful graph with conditional edges routes through retrieval and reasoning in 42ms.', icon: 'lc' }
+      },
+      agent: {
+        retrieval: { val: 68, unit: 'ms', bar: 48, color: 'var(--violet)' },
+        memory: { val: 412, unit: 'MB', bar: 68, color: 'var(--amber)' },
+        throughput: { val: 0.9, unit: 'k req/s', bar: 55, color: 'var(--mint)' },
+        graph: { val: 'Deep Agent', bar: 92, color: 'var(--blue)' },
+        detail: { title: 'LangGraph Agent Supervisor', desc: 'Hierarchical orchestration with sub-agents for tool calling and memory management.', icon: 'lc' }
+      },
+      hybrid: {
+        retrieval: { val: 53, unit: 'ms', bar: 58, color: 'var(--violet)' },
+        memory: { val: 356, unit: 'MB', bar: 55, color: 'var(--amber)' },
+        throughput: { val: 1.4, unit: 'k req/s', bar: 78, color: 'var(--mint)' },
+        graph: { val: 'Hybrid Graph', bar: 85, color: 'var(--blue)' },
+        detail: { title: 'LangChain Hybrid Router', desc: 'Routing layer that dynamically assigns requests to RAG or agent paths based on intent.', icon: 'lc' }
+      }
     },
-    index: {
-      metrics: { latency: '120ms', memory: '64MB', speed: '210 tok/s', complexity: '90' },
-      verdict: 'LlamaIndex excels at high-speed, structured retrieval with minimal memory footprint. Its hierarchical indexing strategy is ideal for production RAG pipelines where latency and cost efficiency are critical.',
-      colors: { latency: 'var(--mint)', memory: 'var(--mint)', speed: 'var(--blue)', complexity: 'var(--muted)' },
-      svg: `<rect x="10" y="20" width="60" height="28" rx="8" fill="var(--surface)" stroke="var(--mint)" stroke-width="1.5"/><text x="40" y="38" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Query</text>
-            <line x1="70" y1="34" x2="100" y2="34" stroke="var(--mint)" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
-            <rect x="102" y="14" width="70" height="28" rx="8" fill="var(--surface)" stroke="var(--mint)" stroke-width="1.5"/><text x="137" y="32" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Chunk</text>
-            <line x1="172" y1="28" x2="202" y2="28" stroke="var(--mint)" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
-            <rect x="204" y="14" width="70" height="28" rx="8" fill="var(--surface)" stroke="var(--mint)" stroke-width="1.5"/><text x="239" y="32" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Vector Embed</text>
-            <line x1="274" y1="28" x2="304" y2="28" stroke="var(--mint)" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
-            <rect x="306" y="14" width="70" height="28" rx="8" fill="var(--surface)" stroke="var(--mint)" stroke-width="1.5"/><text x="341" y="32" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Retriever</text>
-            <line x1="376" y1="34" x2="406" y2="34" stroke="var(--mint)" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
-            <rect x="408" y="20" width="50" height="28" rx="8" fill="var(--mint)" stroke="none"/><text x="433" y="38" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="#fff">LLM</text>
-            <circle cx="40" cy="55" r="3" fill="var(--blue)"/><text x="48" y="58" font-family="var(--mono)" font-size="7" fill="var(--muted)">Hierarchical</text>
-            <circle cx="433" cy="55" r="3" fill="var(--blue)"/><text x="441" y="58" font-family="var(--mono)" font-size="7" fill="var(--muted)">Index</text>`
-    },
-    hybrid: {
-      metrics: { latency: '250ms', memory: '96MB', speed: '150 tok/s', complexity: '140' },
-      verdict: 'The Hybrid architecture combines LangGraph agentic orchestration with LlamaIndex retrieval, offering a balanced trade-off. Ideal for complex production systems needing both deep reasoning and fast knowledge lookup.',
-      colors: { latency: 'var(--amber)', memory: 'var(--amber)', speed: 'var(--blue)', complexity: 'var(--body)' },
-      svg: `<rect x="10" y="20" width="60" height="28" rx="8" fill="var(--surface)" stroke="var(--violet)" stroke-width="1.5"/><text x="40" y="38" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Input</text>
-            <line x1="70" y1="34" x2="100" y2="34" stroke="var(--violet)" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
-            <rect x="102" y="14" width="50" height="28" rx="8" fill="var(--surface)" stroke="var(--violet)" stroke-width="1.5"/><text x="127" y="32" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Router</text>
-            <line x1="152" y1="16" x2="180" y2="8" stroke="var(--blue)" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
-            <rect x="182" y="2" width="60" height="24" rx="6" fill="var(--surface)" stroke="var(--blue)" stroke-width="1.2"/><text x="212" y="17" font-family="var(--mono)" font-size="7" text-anchor="middle" fill="var(--ink)">Agent</text>
-            <line x1="152" y1="40" x2="180" y2="48" stroke="var(--mint)" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
-            <rect x="182" y="42" width="60" height="24" rx="6" fill="var(--surface)" stroke="var(--mint)" stroke-width="1.2"/><text x="212" y="57" font-family="var(--mono)" font-size="7" text-anchor="middle" fill="var(--ink)">Index</text>
-            <line x1="242" y1="14" x2="280" y2="30" stroke="var(--blue)" stroke-width="1.5"/>
-            <line x1="242" y1="54" x2="280" y2="40" stroke="var(--mint)" stroke-width="1.5"/>
-            <rect x="282" y="14" width="70" height="28" rx="8" fill="var(--surface)" stroke="var(--violet)" stroke-width="1.5"/><text x="317" y="32" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Fuser</text>
-            <line x1="352" y1="34" x2="382" y2="34" stroke="var(--violet)" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
-            <rect x="384" y="20" width="50" height="28" rx="8" fill="var(--violet)" stroke="none"/><text x="409" y="38" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="#fff">Output</text>
-            <circle cx="40" cy="55" r="3" fill="var(--amber)"/><text x="48" y="58" font-family="var(--mono)" font-size="7" fill="var(--muted)">Resilient</text>
-            <circle cx="409" cy="55" r="3" fill="var(--amber)"/><text x="417" y="58" font-family="var(--mono)" font-size="7" fill="var(--muted)">Prod</text>`
+    llamaindex: {
+      rag: {
+        retrieval: { val: 28, unit: 'ms', bar: 88, color: 'var(--mint)' },
+        memory: { val: 198, unit: 'MB', bar: 30, color: 'var(--amber)' },
+        throughput: { val: 1.8, unit: 'k req/s', bar: 88, color: 'var(--mint)' },
+        graph: { val: 'Index Pipeline', bar: 55, color: 'var(--blue)' },
+        detail: { title: 'LlamaIndex Hierarchical Index', desc: 'Tree-based retrieval with recursive splitting achieves 28ms latency at lower memory cost.', icon: 'li' }
+      },
+      agent: {
+        retrieval: { val: 45, unit: 'ms', bar: 60, color: 'var(--mint)' },
+        memory: { val: 276, unit: 'MB', bar: 44, color: 'var(--amber)' },
+        throughput: { val: 1.1, unit: 'k req/s', bar: 62, color: 'var(--mint)' },
+        graph: { val: 'Agent Runner', bar: 60, color: 'var(--blue)' },
+        detail: { title: 'LlamaIndex Agent Runner', desc: 'Query engine with tool integration for function calling and structured output.', icon: 'li' }
+      },
+      hybrid: {
+        retrieval: { val: 36, unit: 'ms', bar: 76, color: 'var(--mint)' },
+        memory: { val: 224, unit: 'MB', bar: 36, color: 'var(--amber)' },
+        throughput: { val: 1.6, unit: 'k req/s', bar: 82, color: 'var(--mint)' },
+        graph: { val: 'Hybrid Router', bar: 68, color: 'var(--blue)' },
+        detail: { title: 'LlamaIndex Hybrid Retriever', desc: 'Combines vector + keyword search with a lightweight routing layer for production.', icon: 'li' }
+      }
     }
   };
 
-  const buttons = document.querySelectorAll('#scenarioSwitcher button');
-  const graphSvg = document.getElementById('graphNodes');
-  const metricLatency = document.getElementById('metricLatency');
-  const metricMemory = document.getElementById('metricMemory');
-  const metricSpeed = document.getElementById('metricSpeed');
-  const metricComplexity = document.getElementById('metricComplexity');
-  const verdictBody = document.getElementById('verdictBody');
+  var toggleBtns = document.querySelectorAll('.viewer .vw-toggle-btn');
+  var chips = document.querySelectorAll('.viewer .vw-scenario-chip');
+  var stages = document.querySelectorAll('.viewer .vw-stage');
+  var arrows = document.querySelectorAll('.viewer .vw-arrow');
 
-  function updateWidget(scenarioKey) {
-    const data = scenarios[scenarioKey];
-    if (!data) return;
+  var retrievalVal = document.getElementById('retrievalVal');
+  var memoryVal = document.getElementById('memoryVal');
+  var throughputVal = document.getElementById('throughputVal');
+  var graphVal = document.getElementById('graphVal');
+  var retrievalBar = document.getElementById('retrievalBar');
+  var memoryBar = document.getElementById('memoryBar');
+  var throughputBar = document.getElementById('throughputBar');
+  var graphBar = document.getElementById('graphBar');
+  var detailTitle = document.getElementById('detailTitle');
+  var detailDesc = document.getElementById('detailDesc');
+  var detailIcon = document.getElementById('detailIcon');
 
-    // Update SVG
-    graphSvg.innerHTML = data.svg;
-
-    // Update Metrics
-    metricLatency.textContent = data.metrics.latency;
-    metricLatency.style.color = data.colors.latency;
-    metricMemory.textContent = data.metrics.memory;
-    metricMemory.style.color = data.colors.memory;
-    metricSpeed.textContent = data.metrics.speed;
-    metricSpeed.style.color = data.colors.speed;
-    metricComplexity.textContent = data.metrics.complexity;
-    metricComplexity.style.color = data.colors.complexity;
-
-    // Update Verdict
-    verdictBody.textContent = data.verdict;
-
-    // Update Button Active States
-    buttons.forEach(btn => {
-      btn.classList.remove('active');
-      if (btn.dataset.scenario === scenarioKey) {
-        btn.classList.add('active');
-      }
-    });
+  function updateWidget() {
+    var d = data[framework][scenario];
+    if (!d) return;
+    retrievalVal.textContent = d.retrieval.val;
+    retrievalVal.nextElementSibling.textContent = d.retrieval.unit;
+    retrievalBar.style.width = d.retrieval.bar + '%';
+    retrievalBar.style.background = d.retrieval.color;
+    memoryVal.textContent = d.memory.val;
+    memoryVal.nextElementSibling.textContent = d.memory.unit;
+    memoryBar.style.width = d.memory.bar + '%';
+    memoryBar.style.background = d.memory.color;
+    throughputVal.textContent = d.throughput.val;
+    throughputVal.nextElementSibling.textContent = d.throughput.unit;
+    throughputBar.style.width = d.throughput.bar + '%';
+    throughputBar.style.background = d.throughput.color;
+    graphVal.textContent = d.graph.val;
+    graphBar.style.width = d.graph.bar + '%';
+    graphBar.style.background = d.graph.color;
+    detailTitle.textContent = d.detail.title;
+    detailDesc.textContent = d.detail.desc;
+    detailIcon.className = 'dc-icon ' + d.detail.icon;
+    updatePipeline(d);
   }
 
-  // Attach Event Listeners
-  buttons.forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      const scenarioKey = this.dataset.scenario;
-      updateWidget(scenarioKey);
+  function updatePipeline(d) {
+    var stepMap = {
+      langchain: { rag: [1,2,3,4], agent: [1,2,3,4], hybrid: [1,2,3,4] },
+      llamaindex: { rag: [1,2,3,4], agent: [1,2,3,4], hybrid: [1,2,3,4] }
+    };
+    var order = stepMap[framework] && stepMap[framework][scenario] ? stepMap[framework][scenario] : [1,2,3,4];
+    stages.forEach(function(s, idx) {
+      s.classList.remove('active', 'stage-lc', 'stage-li');
+      if (framework === 'langchain') s.classList.add('stage-lc');
+      else s.classList.add('stage-li');
+      if (idx < order.length) {
+        s.style.display = 'flex';
+      }
+    });
+    stages[0].classList.add('active');
+    arrows.forEach(function(a, i) {
+      a.classList.remove('active');
+      if (i < 3) a.style.display = 'inline';
+    });
+    stages.forEach(function(s) { s.classList.remove('active'); });
+    stages[0].classList.add('active');
+  }
+
+  toggleBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      toggleBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      framework = btn.getAttribute('data-fw');
+      updateWidget();
     });
   });
 
-  // Initialize with Agent scenario
-  updateWidget('agent');
+  chips.forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      chips.forEach(function(c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+      scenario = chip.getAttribute('data-scenario');
+      updateWidget();
+    });
+  });
+
+  stages.forEach(function(stage, idx) {
+    stage.addEventListener('click', function() {
+      stages.forEach(function(s) { s.classList.remove('active'); });
+      stage.classList.add('active');
+      arrows.forEach(function(a, i) {
+        a.classList.toggle('active', i < idx);
+      });
+      var labels = ['Input Parsing', 'Index Retrieval', 'Reasoning Loop', 'Output Generation'];
+      var descs = {
+        langchain: {
+          rag: ['Parses query and builds graph state', 'Retrieves chunks via multi-hop traversal', 'LLM reasoning over retrieved context', 'Returns structured answer with citations'],
+          agent: ['Parses user intent and tool schema', 'Agent selects tool and fetches context', 'Sub-agent executes tool calls', 'Returns final answer and trace'],
+          hybrid: ['Routes request based on intent classifier', 'Dynamically selects RAG or agent path', 'Executes chosen pipeline', 'Returns result with routing metadata']
+        },
+        llamaindex: {
+          rag: ['Parses query and builds index query', 'Hierarchical tree retrieval', 'LLM synthesizes answer from nodes', 'Returns answer with source nodes'],
+          agent: ['Parses query and agent config', 'Query engine selects tool', 'Tool call execution and observation', 'Returns final answer'],
+          hybrid: ['Routes via hybrid query engine', 'Combines vector + keyword retrieval', 'Rerank and synthesize', 'Returns fused result']
+        }
+      };
+      var fw = framework;
+      var sc = scenario;
+      var label = labels[idx] || 'Step ' + (idx+1);
+      var desc = 'Processing step in the pipeline.';
+      if (descs[fw] && descs[fw][sc] && descs[fw][sc][idx]) {
+        desc = descs[fw][sc][idx];
+      }
+      detailTitle.textContent = label;
+      detailDesc.textContent = desc;
+      detailIcon.className = 'dc-icon ' + (fw === 'langchain' ? 'lc' : 'li');
+    });
+  });
+
+  updateWidget();
+
+  var pulse = document.createElement('style');
+  pulse.textContent = '@keyframes vw-pulse { 0%,100% { opacity:0.5;transform:scale(0.9); } 50% { opacity:1;transform:scale(1.2); } }';
+  document.head.appendChild(pulse);
 })();
 </script>
 </body>

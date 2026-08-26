@@ -2,43 +2,43 @@
   "services": {
     "sec-head": {
       "eyebrow": "What I build",
-      "h2": "RAG vs long context evaluation services",
-      "p": "Architecture assessments and builds tailored to your cost, accuracy, and freshness requirements."
+      "h2": "RAG framework development services",
+      "p": "I build with each framework, matched to your project's actual retrieval or orchestration bottleneck."
     },
     "grid g3": [
       {
         "card": {
           "n": "CONSULT",
-          "h3": "Architecture selection consulting",
-          "p": "An independent evaluation of your use case\u2014data volume, latency budget, update frequency\u2014resulting in a written recommendation: RAG, long context, or a hybrid, with cost and accuracy trade-offs quantified."
+          "h3": "Framework selection consulting",
+          "p": "An independent architecture assessment of your use case, data, and latency requirements, resulting in a written recommendation: LangChain, LlamaIndex, or a hybrid, with the reasoning."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "RAG pipeline development",
-          "p": "Retrieval-first builds with chunking, embedding, and re-ranking optimized for freshness and low cost. Ideal for dynamic knowledge bases where documents update frequently."
+          "h3": "LlamaIndex RAG development",
+          "p": "Retrieval-first builds: hierarchical chunking, auto-merging retrieval, and query synthesis for document-heavy applications where answer accuracy from your corpus is the product."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Long context window integration",
-          "p": "Systems designed to leverage million-token models (Gemini 1.5, Claude 3) with prompt compression, sliding windows, and context caching to maximize accuracy per token dollar."
+          "h3": "LangChain & LangGraph agent development",
+          "p": "Multi-step agent systems: tool use, conversational memory, state management, and human-in-the-loop checkpoints for AI that takes actions, not just answers questions."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Hybrid architecture (RAG + long context)",
-          "p": "A tiered approach: RAG for large, dynamic corpora and long context for single-document deep dives or conversation history, routing queries by scope and freshness needs."
+          "h3": "Hybrid architecture (both frameworks)",
+          "p": "LlamaIndex as the retrieval layer wrapped as a tool inside a LangGraph agent, combining best-in-class retrieval with production-grade orchestration in one system."
         }
       },
       {
         "card": {
           "n": "AUDIT",
-          "h3": "Migration & cost optimization audits",
-          "p": "Assessment for teams currently locked into one approach, identifying where switching or augmenting could reduce latency, improve answer quality, or cut inference costs by 30\u201350%."
+          "h3": "Migration & framework audits",
+          "p": "Assessment and migration support for teams that chose the wrong framework early and are hitting friction, or need to add agentic capability to an existing retrieval-only system."
         }
       },
       {
@@ -56,30 +56,30 @@
   "where-wins": {
     "sec-head": {
       "eyebrow": "The honest breakdown",
-      "h2": "Where each approach wins"
+      "h2": "Where each framework wins"
     },
     "grid g2": [
       {
         "card": {
-          "n": "RAG WINS WHEN",
-          "h3": "Cost, freshness, or scale is the priority",
+          "n": "LLAMAINDEX WINS WHEN",
+          "h3": "Retrieval quality is the bottleneck",
           "ul": [
-            "Your knowledge base exceeds 100k tokens and updates daily: RAG costs ~$0.002 per query vs $0.10+ for long context at 1M tokens",
-            "Freshness is critical\u2014RAG retrieves the latest indexed content instantly; long context requires re-embedding or re-prompting with new data",
-            "Accuracy on narrow, factoid questions: retrieval precision (top-5 recall >95%) beats long context's tendency to hallucinate on peripheral details",
-            "You need to serve many users with low latency\u2014RAG's sub-second retrieval keeps user experience snappy without burning GPU cycles on massive prompts"
+            "Retrieval quality is the primary bottleneck, not orchestration complexity. On multi-source synthesis benchmarks, hierarchical index retrieval is 10\u201315% more accurate than naive chunking.",
+            "Your documents are hierarchically structured (legal, code, technical manuals): composable indices produce roughly 15\u201325% better answers by preserving document structure.",
+            "You want to ship faster with less code and lower latency overhead\u2014LlamaIndex's built-in retrievers handle memory-efficient indexing without custom graph logic.",
+            "You need complex multi-document reasoning: tree index and response synthesizers naturally handle cross-document synthesis without a multi-step agent loop."
           ]
         }
       },
       {
         "card": {
-          "n": "LONG CONTEXT WINS WHEN",
-          "h3": "Simplicity and deep reasoning matter more than cost",
+          "n": "LANGCHAIN WINS WHEN",
+          "h3": "RAG is one piece of a larger agent",
           "ul": [
-            "Your use case involves a single long document (e.g., 500-page contract, entire codebase) where retrieval fragmentation would lose context",
-            "Accuracy on multi-hop reasoning across a single source: long context models achieve 15\u201320% better F1 on narrative QA benchmarks vs RAG pipelines",
-            "You can tolerate higher per-query cost and slower response times for guaranteed coherence and no retrieval errors",
-            "The knowledge base changes rarely\u2014long context avoids the overhead of chunking, indexing, and maintaining a vector store"
+            "RAG is one component of a larger agentic system, not the whole product. LangGraph's state graph handles multi-step tool orchestration with lower memory overhead per step than custom loops.",
+            "You need tool use, multi-step reasoning, or persistent memory across a conversation\u2014LangChain\u2019s agent architecture supports native checkpointing and interrupt/resume.",
+            "Human-in-the-loop checkpoints matter: LangGraph has native support for pausing execution, reviewing state, and resuming, which is critical for compliance-heavy workflows.",
+            "First-party observability (LangSmith) is a requirement, not an afterthought, providing latency breakdowns and token usage per node in the agent graph."
           ]
         }
       }
