@@ -11,16 +11,14 @@
   flex-direction: column;
   box-sizing: border-box;
 }
-
-.vw-top {
+.vw-card .vw-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 14px 18px;
   border-bottom: 1px solid var(--line-soft);
 }
-
-.vw-top .vw-label {
+.vw-card .vw-top .t {
   font-family: var(--disp);
   font-size: 0.88rem;
   font-weight: 700;
@@ -29,451 +27,319 @@
   align-items: center;
   gap: 8px;
 }
-
-.vw-top .vw-label svg {
-  width: 18px;
-  height: 18px;
-  color: var(--blue);
-}
-
-.vw-toggle-group {
-  display: flex;
-  gap: 3px;
-  background: var(--soft);
-  border-radius: 8px;
-  padding: 3px;
-}
-
-.vw-toggle-btn {
+.vw-card .vw-status-pill {
   font-family: var(--mono);
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  color: var(--muted);
-  background: transparent;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--mint-tint);
+  color: var(--mint);
+  border: 1px solid rgba(15, 169, 104, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-
-.vw-toggle-btn.active {
-  background: var(--surface);
-  color: var(--blue);
-  box-shadow: var(--sh-sm);
+.vw-card .vw-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 8px var(--mint);
+  animation: vw-pulse 2s infinite ease-in-out;
 }
-
-.vw-body {
+@keyframes vw-pulse { 0%, 100% { opacity: 0.6; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1.2); } }
+.vw-card .vw-body {
   padding: 16px 18px;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
-
-.vw-comparison-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.vw-platform-card {
-  background: var(--soft);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--r-sm);
-  padding: 14px;
-  transition: all 0.3s;
-}
-
-.vw-platform-card.highlighted {
-  border-color: var(--blue);
-  background: var(--blue-tint);
-  box-shadow: 0 0 0 2px rgba(36, 86, 230, 0.12);
-}
-
-.vw-platform-name {
-  font-family: var(--disp);
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--ink);
+.vw-card .vw-pipeline {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 10px;
+  justify-content: space-between;
+  gap: 4px;
 }
-
-.vw-platform-name svg {
-  width: 14px;
-  height: 14px;
-}
-
-.vw-platform-name .hf { color: var(--amber); }
-.vw-platform-name .oa { color: var(--mint); }
-
-.vw-metric-list {
+.vw-card .vw-stage {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-}
-
-.vw-metric-item {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  font-size: 0.7rem;
-}
-
-.vw-metric-label {
-  color: var(--body);
-  font-family: var(--bodyf);
-}
-
-.vw-metric-value {
-  font-family: var(--mono);
-  font-weight: 600;
-  color: var(--ink);
-  font-size: 0.72rem;
-}
-
-.vw-badge {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.vw-badge.blue-bg {
-  background: var(--blue-tint);
-  color: var(--blue);
-}
-
-.vw-badge.green-bg {
-  background: var(--mint-tint);
-  color: var(--mint);
-}
-
-.vw-badge.amber-bg {
-  background: var(--amber-tint);
-  color: var(--amber);
-}
-
-.vw-scenario-box {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-  padding: 12px 14px;
-}
-
-.vw-scenario-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.vw-scenario-title {
-  font-family: var(--disp);
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.vw-scenario-controls {
-  display: flex;
-  gap: 4px;
-}
-
-.vw-sc-btn {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  color: var(--muted);
+  gap: 5px;
   cursor: pointer;
+}
+.vw-card .vw-stage-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--r-sm);
+  background: var(--soft);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue);
   transition: all 0.2s;
 }
-
-.vw-sc-btn.active {
-  background: var(--blue-tint);
+.vw-card .vw-stage-icon svg { width: 18px; height: 18px; }
+.vw-card .vw-stage:hover .vw-stage-icon {
+  background: var(--tint);
   border-color: var(--blue);
-  color: var(--blue);
+  transform: translateY(-2px);
 }
-
-.vw-recommendation {
+.vw-card .vw-stage.active .vw-stage-icon {
+  background: var(--blue);
+  color: #FFFFFF;
+  border-color: var(--blue);
+  box-shadow: 0 4px 12px rgba(36, 86, 230, 0.3);
+}
+.vw-card .vw-stage-title {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: center;
+  white-space: nowrap;
+}
+.vw-card .vw-stage.active .vw-stage-title {
+  color: var(--blue-strong);
+  font-weight: 700;
+}
+.vw-card .vw-arrow {
+  color: var(--line);
+  font-size: 0.75rem;
+  margin-top: -16px;
+}
+.vw-card .vw-arrow.highlight {
+  color: var(--blue);
+  animation: vw-slide 0.8s infinite;
+}
+@keyframes vw-slide { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
+.vw-card .vw-action-card {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  background: var(--tint);
-  border-radius: var(--r-sm);
-  font-size: 0.75rem;
-  color: var(--ink-soft);
+  justify-content: space-between;
 }
-
-.vw-recommendation svg {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-  color: var(--blue);
-}
-
-.vw-recommendation .rec-bold {
-  font-weight: 700;
+.vw-card .vw-act-left h4 {
   font-family: var(--disp);
+  font-size: 0.82rem;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.3;
 }
-
-.vw-metrics-row {
+.vw-card .vw-act-left p {
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin: 2px 0 0;
+}
+.vw-card .vw-btn-action {
+  background: var(--blue);
+  color: #FFFFFF;
+  border: none;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.vw-card .vw-btn-action:hover { background: var(--blue-strong); }
+.vw-card .vw-btn-action:disabled { opacity: 0.5; cursor: not-allowed; }
+.vw-card .vw-metrics-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
 }
-
-.vw-tile {
+.vw-card .vw-tile {
   background: var(--soft);
   border: 1px solid var(--line-soft);
   border-radius: var(--r-sm);
-  padding: 8px 10px;
+  padding: 8px 6px;
   text-align: center;
 }
-
-.vw-tile-val {
+.vw-card .vw-tile-val {
   font-family: var(--disp);
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 800;
   color: var(--ink);
-  transition: color 0.3s;
 }
-
-.vw-tile-lbl {
+.vw-card .vw-tile-lbl {
   font-family: var(--mono);
   font-size: 0.55rem;
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.3px;
-  margin-top: 3px;
+  margin-top: 2px;
 }
-
-.vw-foot {
+.vw-card .vw-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 18px;
   border-top: 1px solid var(--line-soft);
-  background: var(--soft);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: var(--muted);
 }
-
 @media (max-width: 480px) {
-  .vw-comparison-grid {
-    grid-template-columns: 1fr;
-  }
-  .vw-metrics-row {
-    grid-template-columns: 1fr;
-  }
+  .vw-card .vw-metrics-row { grid-template-columns: repeat(2, 1fr); }
+  .vw-card .vw-stage-icon { width: 34px; height: 34px; }
+  .vw-card .vw-stage-title { font-size: 0.52rem; }
 }
 </style>
 
 <div class="vw-card">
   <div class="vw-top">
-    <span class="vw-label">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 20V10" /><path d="M18 20V4" /><path d="M6 20v-4" />
-      </svg>
-      HF vs OpenAI
+    <span class="t">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      SKU Forecast Engine
     </span>
-    <div class="vw-toggle-group">
-      <button class="vw-toggle-btn active" data-view="build">Build</button>
-      <button class="vw-toggle-btn" data-view="buy">Buy</button>
+    <div class="vw-status-pill">
+      <span class="vw-dot"></span>
+      <span id="txtLiveLatency">Live · 4.3ms Inference</span>
     </div>
   </div>
 
   <div class="vw-body">
-    <!-- Platform Comparison -->
-    <div class="vw-comparison-grid">
-      <div class="vw-platform-card" id="hfCard">
-        <div class="vw-platform-name">
-          <svg class="hf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-          </svg>
-          Hugging Face
-          <span class="vw-badge amber-bg">open weights</span>
+    <div class="vw-pipeline">
+      <div class="vw-stage active" data-stage="1">
+        <div class="vw-stage-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         </div>
-        <div class="vw-metric-list">
-          <div class="vw-metric-item">
-            <span class="vw-metric-label">Inference latency</span>
-            <span class="vw-metric-value" id="hfLatency">~120ms</span>
-          </div>
-          <div class="vw-metric-item">
-            <span class="vw-metric-label">Monthly cost (1K req/d)</span>
-            <span class="vw-metric-value" id="hfCost">$240</span>
-          </div>
-          <div class="vw-metric-item">
-            <span class="vw-metric-label">Model control</span>
-            <span class="vw-metric-value vw-badge green-bg">full</span>
-          </div>
-        </div>
+        <span class="vw-stage-title">1. SKU Intake</span>
       </div>
-
-      <div class="vw-platform-card" id="oaCard">
-        <div class="vw-platform-name">
-          <svg class="oa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
-          </svg>
-          OpenAI
-          <span class="vw-badge blue-bg">API</span>
+      <span class="vw-arrow">&rarr;</span>
+      <div class="vw-stage" data-stage="2">
+        <div class="vw-stage-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
         </div>
-        <div class="vw-metric-list">
-          <div class="vw-metric-item">
-            <span class="vw-metric-label">Inference latency</span>
-            <span class="vw-metric-value" id="oaLatency">~340ms</span>
-          </div>
-          <div class="vw-metric-item">
-            <span class="vw-metric-label">Monthly cost (1K req/d)</span>
-            <span class="vw-metric-value" id="oaCost">$720</span>
-          </div>
-          <div class="vw-metric-item">
-            <span class="vw-metric-label">Model control</span>
-            <span class="vw-metric-value vw-badge amber-bg">limited</span>
-          </div>
+        <span class="vw-stage-title">2. Seasonality</span>
+      </div>
+      <span class="vw-arrow">&rarr;</span>
+      <div class="vw-stage" data-stage="3">
+        <div class="vw-stage-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
         </div>
+        <span class="vw-stage-title">3. Model Predict</span>
+      </div>
+      <span class="vw-arrow">&rarr;</span>
+      <div class="vw-stage" data-stage="4">
+        <div class="vw-stage-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <span class="vw-stage-title">4. Stockout Cost</span>
       </div>
     </div>
 
-    <!-- Scenario Selector -->
-    <div class="vw-scenario-box">
-      <div class="vw-scenario-header">
-        <span class="vw-scenario-title">Test by use case</span>
-        <div class="vw-scenario-controls">
-          <button class="vw-sc-btn active" data-scenario="fine-tune">Fine-tune</button>
-          <button class="vw-sc-btn" data-scenario="real-time">Real-time</button>
-          <button class="vw-sc-btn" data-scenario="compliance">Compliance</button>
-        </div>
+    <div class="vw-action-card">
+      <div class="vw-act-left">
+        <h4 id="stageTitle">Stage 1: SKU Data Intake</h4>
+        <p id="stageDesc">Clean item-level history for 12,400 SKUs loaded in 2.1ms</p>
       </div>
-
-      <div class="vw-recommendation" id="recBox">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/>
-        </svg>
-        <span id="recText"><span class="rec-bold">Recommended:</span> Hugging Face — fine-tuning requires full weight access and lower latency.</span>
-      </div>
+      <button class="vw-btn-action" id="btnTestServing">Run Forecast</button>
     </div>
 
-    <!-- Metrics Row -->
     <div class="vw-metrics-row">
       <div class="vw-tile">
-        <div class="vw-tile-val" id="metricLatency" style="color: var(--mint);">120ms</div>
-        <div class="vw-tile-lbl">Best Latency</div>
+        <div class="vw-tile-val" id="valLatency" style="color: var(--blue);">4.3 ms</div>
+        <div class="vw-tile-lbl">Prediction Speed</div>
       </div>
       <div class="vw-tile">
-        <div class="vw-tile-val" id="metricCost" style="color: var(--blue);">$240</div>
-        <div class="vw-tile-lbl">Best Cost</div>
+        <div class="vw-tile-val" id="valAccuracy">94.2%</div>
+        <div class="vw-tile-lbl">Forecast Accuracy</div>
       </div>
       <div class="vw-tile">
-        <div class="vw-tile-val" id="metricControl" style="color: var(--mint);">Full</div>
-        <div class="vw-tile-lbl">Model Control</div>
+        <div class="vw-tile-val" id="valStockoutReduction">-32%</div>
+        <div class="vw-tile-lbl">Stockout Reduction</div>
+      </div>
+      <div class="vw-tile">
+        <div class="vw-tile-val">12.4K</div>
+        <div class="vw-tile-lbl">SKUs Modeled</div>
       </div>
     </div>
   </div>
 
   <div class="vw-foot">
-    <span>Build vs buy — 3 scenarios compared</span>
-    <span>Open weights vs API lock-in</span>
+    <span>Prophet + XGBoost Hybrid </span>
+    <span id="footStatus">Seasonality: Weekly Lifting YOY +18%</span>
   </div>
 </div>
 
 <script>
-(function() {
-  const toggleBtns = document.querySelectorAll('.vw-toggle-btn');
-  const scBtns = document.querySelectorAll('.vw-sc-btn');
-  const hfCard = document.getElementById('hfCard');
-  const oaCard = document.getElementById('oaCard');
-  const hfLatency = document.getElementById('hfLatency');
-  const hfCost = document.getElementById('hfCost');
-  const oaLatency = document.getElementById('oaLatency');
-  const oaCost = document.getElementById('oaCost');
-  const metricLatency = document.getElementById('metricLatency');
-  const metricCost = document.getElementById('metricCost');
-  const metricControl = document.getElementById('metricControl');
-  const recText = document.getElementById('recText');
+(function () {
+  var card = document.querySelector('.vw-card');
+  var stages = card.querySelectorAll('.vw-stage');
+  var stageTitle = card.querySelector('#stageTitle');
+  var stageDesc = card.querySelector('#stageDesc');
+  var btn = card.querySelector('#btnTestServing');
+  var valLatency = card.querySelector('#valLatency');
+  var valAccuracy = card.querySelector('#valAccuracy');
+  var valStockoutReduction = card.querySelector('#valStockoutReduction');
+  var txtLive = card.querySelector('#txtLiveLatency');
+  var footStatus = card.querySelector('#footStatus');
 
-  let currentView = 'build';
-  let currentScenario = 'fine-tune';
-
-  // Data for each scenario
-  const scenarioData = {
-    'fine-tune': {
-      build: { hfLat: '~120ms', hfCost: '$240', oaLat: '~340ms', oaCost: '$720', bestLat: '120ms', bestCost: '$240', control: 'Full', rec: '<span class="rec-bold">Recommended:</span> Hugging Face — fine-tuning requires full weight access and lower latency.' },
-      buy: { hfLat: 'N/A', hfCost: '$0', oaLat: '~340ms', oaCost: '$720', bestLat: '340ms', bestCost: '$720', control: 'Limited', rec: '<span class="rec-bold">Recommended:</span> OpenAI — no infra setup, pay per call for fine-tuned models.' }
-    },
-    'real-time': {
-      build: { hfLat: '~95ms', hfCost: '$180', oaLat: '~420ms', oaCost: '$900', bestLat: '95ms', bestCost: '$180', control: 'Full', rec: '<span class="rec-bold">Recommended:</span> Hugging Face — self-hosted GPUs deliver sub-100ms inference.' },
-      buy: { hfLat: 'N/A', hfCost: '$0', oaLat: '~420ms', oaCost: '$900', bestLat: '420ms', bestCost: '$900', control: 'Limited', rec: '<span class="rec-bold">Recommended:</span> OpenAI — zero ops, scales instantly for real-time APIs.' }
-    },
-    'compliance': {
-      build: { hfLat: '~150ms', hfCost: '$300', oaLat: '~380ms', oaCost: '$1,100', bestLat: '150ms', bestCost: '$300', control: 'Full', rec: '<span class="rec-bold">Recommended:</span> Hugging Face — data never leaves your VPC; full audit trail.' },
-      buy: { hfLat: 'N/A', hfCost: '$0', oaLat: '~380ms', oaCost: '$1,100', bestLat: '380ms', bestCost: '$1,100', control: 'Limited', rec: '<span class="rec-bold">Recommended:</span> OpenAI — SOC 2 compliant, but data passes through their API.' }
-    }
+  var info = {
+    '1': { title: 'Stage 1: SKU Data Intake', desc: 'Clean item-level history for 12,400 SKUs loaded in 2.1ms' },
+    '2': { title: 'Stage 2: Seasonality Analysis', desc: 'Weekly, monthly & holiday patterns extracted across 52 weeks' },
+    '3': { title: 'Stage 3: Model Predict', desc: 'Prophet + XGBoost hybrid outputs 26-week demand forecast' },
+    '4': { title: 'Stage 4: Stockout Cost', desc: '$1.2M annual stockout risk identified; optimal reorder points computed' }
   };
 
-  function updateWidget() {
-    const data = scenarioData[currentScenario][currentView];
-    hfLatency.textContent = data.hfLat;
-    hfCost.textContent = data.hfCost;
-    oaLatency.textContent = data.oaLat;
-    oaCost.textContent = data.oaCost;
-    metricLatency.textContent = data.bestLat;
-    metricCost.textContent = data.bestCost;
-    metricControl.textContent = data.control;
-    recText.innerHTML = data.rec;
+  stages.forEach(function(s) {
+    s.addEventListener('click', function() {
+      stages.forEach(function(st) { st.classList.remove('active'); });
+      s.classList.add('active');
+      var k = s.getAttribute('data-stage');
+      if (info[k]) {
+        stageTitle.textContent = info[k].title;
+        stageDesc.textContent = info[k].desc;
+      }
+    });
+  });
 
-    // Highlight the recommended platform
-    const recLower = recText.textContent.toLowerCase();
-    if (recLower.includes('hugging face')) {
-      hfCard.classList.add('highlighted');
-      oaCard.classList.remove('highlighted');
-    } else {
-      oaCard.classList.add('highlighted');
-      hfCard.classList.remove('highlighted');
-    }
-
-    // Set metric colors based on which platform is best
-    if (recLower.includes('hugging face')) {
-      metricLatency.style.color = 'var(--mint)';
-      metricCost.style.color = 'var(--blue)';
-      metricControl.style.color = 'var(--mint)';
-    } else {
-      metricLatency.style.color = 'var(--amber)';
-      metricCost.style.color = 'var(--amber)';
-      metricControl.style.color = 'var(--amber)';
-    }
+  function updateMetrics() {
+    var ms = (3.2 + Math.random() * 3.8).toFixed(1);
+    var acc = (93.5 + Math.random() * 2.2).toFixed(1);
+    var stockRed = (28 + Math.floor(Math.random() * 12)).toFixed(0);
+    valLatency.textContent = ms + ' ms';
+    valAccuracy.textContent = acc + '%';
+    valStockoutReduction.textContent = '-' + stockRed + '%';
+    txtLive.textContent = 'Live \u00B7 ' + ms + 'ms Inference';
+    var seasons = ['Holiday Peak', 'Back-to-School Lift', 'Summer Slowdown', 'Weekly Lifting YOY +18%', 'Month-End Spike'];
+    footStatus.textContent = 'Seasonality: ' + seasons[Math.floor(Math.random() * seasons.length)];
   }
 
-  toggleBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      toggleBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentView = btn.dataset.view;
-      updateWidget();
-    });
-  });
+  setInterval(updateMetrics, 2800);
 
-  scBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      scBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentScenario = btn.dataset.scenario;
-      updateWidget();
-    });
+  btn.addEventListener('click', function() {
+    btn.disabled = true;
+    btn.textContent = 'Forecasting...';
+    var step = 0;
+    var arrows = card.querySelectorAll('.vw-arrow');
+    var interval = setInterval(function() {
+      stages.forEach(function(s) { s.classList.remove('active'); });
+      stages[step].classList.add('active');
+      var k = stages[step].getAttribute('data-stage');
+      stageTitle.textContent = info[k].title;
+      stageDesc.textContent = info[k].desc;
+      if (step > 0 && arrows[step - 1]) arrows[step - 1].classList.add('highlight');
+      step++;
+      if (step >= stages.length) {
+        clearInterval(interval);
+        setTimeout(function() {
+          arrows.forEach(function(a) { a.classList.remove('highlight'); });
+          btn.disabled = false;
+          btn.textContent = 'Run Forecast';
+          stageTitle.textContent = 'Forecast Complete: 94.2% Accuracy';
+          stageDesc.textContent = '12,400 SKUs predicted — stockout risk reduced by 32% across retail network';
+          updateMetrics();
+        }, 500);
+      }
+    }, 300);
   });
-
-  // Initialize
-  updateWidget();
 })();
 </script>

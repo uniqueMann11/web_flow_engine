@@ -2,51 +2,51 @@
   "services": {
     "sec-head": {
       "eyebrow": "What I build",
-      "h2": "Custom model build vs buy",
-      "p": "Architecting and deploying open-weight models from Hugging Face or fine-tuned OpenAI models tailored to your data and compliance needs."
+      "h2": "ML demand forecasting services",
+      "p": "Custom, inventory-optimized pipelines and SKU-level predictive models built specifically for retail operations."
     },
     "grid g3": [
       {
         "card": {
           "n": "BUILD",
-          "h3": "Hugging Face open-weight fine-tuning",
-          "p": "Fine-tuning Llama, Mistral, or BERT on your proprietary data with LoRA adapters, achieving 95%+ domain accuracy while keeping weights on your infrastructure and audit logs local."
+          "h3": "SKU-Level Demand Forecasts",
+          "p": "Granular forecasting models that predict unit demand per SKU, factoring in seasonality, promotions, and historical sell-through patterns."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "OpenAI custom model fine-tuning",
-          "p": "Fine-tuning GPT-4o or GPT-4-turbo on your labeled datasets via OpenAI\u2019s API, reducing latency to under 500ms per inference while inheriting their managed infrastructure and compliance certifications."
+          "h3": "Stockout & Overstock Alerts",
+          "p": "Real-time alerting systems that flag imminent stockouts or excess inventory using prediction intervals and service level targets."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Hybrid model orchestration pipelines",
-          "p": "Routing simple queries to OpenAI for speed and complex domain tasks to a fine-tuned Hugging Face model, cutting total inference cost by 40% with a single orchestration layer."
+          "h3": "Seasonal & Trend Decomposition",
+          "p": "Multivariate time-series decomposition that isolates base trend, holiday spikes, and calendar effects for accurate seasonal planning."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Custom model hosting & deployment",
-          "p": "Deploying open-weight models on your VPC or edge with Kubernetes and ONNX runtime, achieving sub-100ms inference at 10K QPS without sending data to third-party APIs."
+          "h3": "Replenishment Order Recommenders",
+          "p": "Automated order quantity suggestions that balance lead time variability, safety stock policy, and predicted demand volatility."
         }
       },
       {
         "card": {
           "n": "AUDIT",
-          "h3": "Model selection & cost analysis",
-          "p": "Comparing total cost of ownership\u2014compute, storage, fine-tuning, and inference\u2014for Hugging Face vs OpenAI across your specific use case, delivering a build-or-buy recommendation with break-even timelines."
+          "h3": "Forecast Accuracy & Gap Audits",
+          "p": "Rigorous backtesting against historical data to measure WAPE, bias, and forecast value added across product hierarchies."
         }
       },
       {
         "card cta-card": {
-          "h3": "Need a custom model decision?",
-          "p": "Use the interactive cost simulator above or book a discovery session to get your build vs buy analysis.",
+          "h3": "Need custom retail AI?",
+          "p": "Try the forecasting simulator above, or book a discovery session to scope your exact inventory setup.",
           "btn-primary": {
-            "text": "Talk to an AI engineer",
+            "text": "Talk to an ML engineer",
             "url": "#lets-talk"
           }
         }
@@ -56,31 +56,31 @@
   "use-cases": {
     "sec-head": {
       "eyebrow": "Industry context",
-      "h2": "Where build vs buy matters most",
-      "p": "Critical decision scenarios for regulated industries, high-volume inference, and proprietary data environments."
+      "h2": "Where retailers deploy demand AI",
+      "p": "Proven architectures tailored to omnichannel retailers, grocery chains, and fashion brands."
     },
     "grid g2": [
       {
         "card": {
-          "n": "HEALTHCARE & LIFE SCIENCES",
-          "h3": "HIPAA-compliant clinical NLP",
-          "p": "Fine-tuning open-weight models on de-identified patient notes for diagnosis coding, reducing PHI exposure risk to zero while maintaining 98% accuracy on ICD-10 mapping.",
+          "n": "GROCERY & CPG",
+          "h3": "Perishable & Promotional Planning",
+          "p": "Hourly-level forecasts for fresh items and lift estimation for BOGO promotions to reduce shrinkage and waste.",
           "ul": [
-            "Open-weight models deployed on-prem or in HIPAA-eligible cloud",
-            "Audit trail for every fine-tuned weight and inference log",
-            "Zero data egress to third-party APIs"
+            "Integrated with ERP (SAP / Oracle) via EDI or API",
+            "Audit trail for every forecast revision and reorder signal",
+            "Local embedding models trained on store-cluster transaction history"
           ]
         }
       },
       {
         "card": {
-          "n": "FINTECH & INSURANCE",
-          "h3": "Fraud detection & underwriting",
-          "p": "Fine-tuning OpenAI models on proprietary transaction patterns for real-time fraud scoring, reducing false positives by 30% without building custom infrastructure.",
+          "n": "FASHION & HARDWARE",
+          "h3": "Style-Size Curve & Replenishment",
+          "p": "SKU-level predictions for variants (size, color) and lifecycle-stage replenishment across seasonal collections.",
           "ul": [
-            "OpenAI fine-tuning with SOC 2 Type II compliance",
-            "Sub-200ms inference for real-time transaction screening",
-            "Hybrid fallback to open-weight models for high-sensitivity cases"
+            "Automated outlier detection for slow-movers and flash rises",
+            "Safety stock optimization by SKU profit margin and stockout cost",
+            "Twenty-four hour retrain schedule on point-of-sale data streams"
           ]
         }
       }

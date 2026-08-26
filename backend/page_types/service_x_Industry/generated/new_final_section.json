@@ -1,61 +1,61 @@
 {
   "process": {
     "sec-head": {
-      "eyebrow": "How it gets built",
-      "h2": "Custom model build process"
+      "eyebrow": "How it's built",
+      "h2": "Retail forecasting build process"
     },
     "steps": [
       {
         "step": {
           "num": "PHASE 01",
-          "days": "days 1 to 2",
-          "h3": "Requirement & Data Audit",
-          "body": "Analyzing your data, use case, latency constraints, and compliance needs to determine if open weights or API fine-tuning fits best."
+          "days": "days 1-3",
+          "h3": "Data Audit & SKU Discovery",
+          "body": "Reviewing historical sales data, seasonal patterns, and promotional calendars for each SKU to establish forecast baselines."
         }
       },
       {
         "step": {
           "num": "PHASE 02",
           "days": "within 48h",
-          "h3": "Architecture & Vendor Spec",
-          "body": "Delivering a blueprint comparing Hugging Face open-weight deployment vs OpenAI API costs, infrastructure overhead, and security isolation."
+          "h3": "Model Selection & Feature Engineering",
+          "body": "Selecting the optimal ML algorithm (Prophet, LightGBM, or hybrid) and engineering features for seasonality and trend decomposition."
         }
       },
       {
         "step gate": {
           "num": "PHASE 03",
-          "days": "the decisive one",
-          "h3": "Model Selection & Test Bench",
-          "body": "Running controlled benchmarks on accuracy, latency, throughput, and custom fine-tuning ROI for your specific industry domain."
+          "days": "the core phase",
+          "h3": "Pipeline Build & Training",
+          "body": "Building ingestion workers for real-time inventory feeds, training models on historical data with holdout validation for SKU-level accuracy."
         }
       },
       {
         "step": {
           "num": "PHASE 04",
-          "days": "before launch",
-          "h3": "Fine-Tuning & Evaluation",
-          "body": "Executing distributed fine-tuning, evaluation on private test sets, and hallucination red-teaming for production readiness."
+          "days": "before pilot",
+          "h3": "Backtesting & Stockout Cost Analysis",
+          "body": "Running rigorous backtests against actual demand to measure forecast error and quantify potential stockout cost savings."
         }
       },
       {
         "step": {
           "num": "PHASE 05",
           "days": "handoff",
-          "h3": "Deployment & Monitoring Setup",
-          "body": "Deploying to your infrastructure with inference monitoring, cost tracking, and model versioning for ongoing optimization."
+          "h3": "Deployment & Monitoring Dashboard",
+          "body": "Deploying to production with live prediction endpoints, and a dashboard for monitoring forecast drift and retraining triggers."
         }
       }
     ]
   },
   "when-not": {
     "sec-head": {
-      "eyebrow": "Build vs buy",
-      "h2": "When custom model hosting is NOT the right choice"
+      "eyebrow": "Forecasting boundaries",
+      "h2": "When ML forecasting is not the right choice"
     },
     "callout": {
       "p": [
-        "Strategically choose your AI path",
-        "Custom model hosting excels for data privacy, low latency, and domain specialization. But if your use case requires minimal customization, rapid prototyping, or variable workloads, OpenAI's API provides faster iteration and lower upfront infrastructure overhead. The decision hinges on long-term cost scale, regulatory requirements, and internal MLOps maturity."
+        "Forecasting has its limits",
+        "Demand forecasting is designed for patterns with sufficient historical data and recognizable seasonality. It is not suited for one-time product launches or chaotic supply chain disruptions where human judgment and buffer stock are essential. Any deployment must patch in human override for promotional blips and unforeseen demand shifts."
       ]
     }
   },
@@ -72,31 +72,31 @@
       "tbody": [
         {
           "td": [
-            "Custom Model Proof-of-Concept <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
-            "Architecture comparison, benchmark report, and fine-tuning feasibility assessment"
+            "SKU-Level PoC <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
+            "Single-SKU forecast pipeline on your historical data, accuracy benchmark report"
           ]
         },
         {
           "td": [
-            "Full Custom Model Deployment",
-            "Open-weight fine-tuning, inference pipeline, monitoring, and ongoing optimization"
+            "Production Demand Forecasting System",
+            "Full ML pipeline with seasonality decomposition, stockout alerts, and inventory optimization"
           ]
         },
         {
           "td": [
-            "AI Vendor Risk & Cost Audit",
-            "ROI analysis comparing Hugging Face vs OpenAI, latency benchmarks, and compliance review"
+            "Inventory Optimization Audit",
+            "Analyze current forecast accuracy, identify stockout costs, prioritize SKVs for ML implementation"
           ]
         },
         {
           "td": [
-            "Hourly AI Strategy Consulting",
-            "Architecture review, model selection, deployment planning, and cost optimization"
+            "Hourly Forecasting Consulting",
+            "Model evaluation, feature design, architectural review, retraining strategy"
           ]
         }
       ]
     },
-    "p": "Delivered projects include custom fine-tuned language models and vendor migration analyses. Full case studies at shreyans.tech/ai-case-studies."
+    "p": "Delivered projects include SKU-level forecasting for omni-channel retailers resulting in 20% stockout reduction. Full case studies at shreyans.tech/ai-case-studies."
   },
   "faq": {
     "sec-head": {
@@ -106,32 +106,32 @@
     "faq": [
       {
         "faq-item": {
-          "faq-q": "When should I choose Hugging Face over OpenAI for custom models?",
-          "faq-a": "Choose Hugging Face when you need data sovereignty, sub-500ms inference latency, or deep model customization. OpenAI is better for rapid prototyping, variable loads, and teams without ML infrastructure."
+          "faq-q": "How do you ensure forecast accuracy at the SKU level?",
+          "faq-a": "We use a hybrid model combining statistical seasonality decomposition (Prophet) and gradient-boosted trees for residual learning. Cross-validation and backtesting against holdout periods ensure reliability. Continuous drift monitoring triggers retraining when accuracy drops below thresholds."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How do I compare costs between self-hosting and API usage?",
-          "faq-a": "Self-hosting has higher upfront GPU cost but lower per-token price at scale. A detailed cost model includes inference volume, batch size, GPU type, and energy costs to find your break-even point."
+          "faq-q": "How do you handle seasonal and promotional spikes?",
+          "faq-a": "Seasonal features are explicitly engineered using Fourier terms and holiday indicators. Promotional events are modeled as external regressors with decay effects. The model learns price elasticity and markdown sensitivity from historical promotion cycles."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Can I fine-tune open weights models for my specific industry?",
-          "faq-a": "Yes, open-weight models like Llama 3.1 or Mistral can be fine-tuned on proprietary data using LoRA or full-parameter methods, achieving domain-specific accuracy comparable to proprietary APIs."
+          "faq-q": "Can you quantify stockout cost for ROI justification?",
+          "faq-a": "We calculate stockout cost using lost contribution margin plus expedited fulfillment expenses. By backtesting historical out-of-stocks against missed sales, we project potential revenue recovered through improved forecast accuracy. This provides a clear ROI for the investment."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Do I need an agency or can an independent engineer build this?",
-          "faq-a": "Working directly with a specialized independent engineer ensures direct accountability, faster decisions, and lower costs without agency overhead layers or account management fees."
+          "faq-q": "Do I need my own data science team to use this?",
+          "faq-a": "No. I handle the entire pipeline from data ingestion to model deployment. You just need access to your historical demand data and inventory records. I provide documentation and training for your in-house team to interpret forecasts and trigger actions."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How much does custom model hosting cost to implement?",
-          "faq-a": "A scoped proof-of-concept starts at $3,000 to $7,000. Full production deployment with fine-tuning, inference, and monitoring typically ranges from $15,000 to $50,000 depending on model size and infrastructure needs."
+          "faq-q": "How much does a retail demand forecasting system cost?",
+          "faq-a": "A single-SKU proof-of-concept starts at $2,500 to $6,000. A full production system for 100+ SKUs with real-time feeds, stockout alerts, and dashboard typically ranges from $12,000 to $40,000."
         }
       }
     ]

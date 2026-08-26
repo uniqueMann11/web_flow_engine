@@ -2,81 +2,81 @@
   "comply": {
     "comply-in": [
       {
-        "b": "Open weights: zero vendor lock-in",
-        "span": "Self-host open models in your VPC with full fine-tuning and inference control."
+        "b": "SKU-level demand precision",
+        "span": "Predicts unit sales per SKU, per store, per day, reducing stockout costs by 20-40%."
       },
       {
-        "b": "No per-token API charges",
-        "span": "Pay for GPU infrastructure, not per-token usage. Costs scale predictably with your own capacity."
+        "b": "Seasonality & event modeling",
+        "span": "Captures weekly, holiday, and promotional patterns to prevent overstock and lost sales."
       },
       {
-        "b": "Full data ownership and privacy",
-        "span": "Training data, prompts, and outputs stay in your infrastructure. No provider data retention or review."
+        "b": "Stockout cost minimization",
+        "span": "Quantifies lost revenue per out-of-stock event, dynamically adjusting safety stock targets."
       },
       {
-        "b": "Fine-tune at any scale",
-        "span": "LoRA, QLoRA, and full fine-tuning on open weights deliver custom behavior without API constraints."
+        "b": "Deterministic inventory guardrails",
+        "span": "Confidence intervals and automatic reorder triggers with human-in-the-loop escalation for anomalies."
       }
     ]
   },
   "what-is": {
     "sec-head": {
       "eyebrow": "Plain answer",
-      "h2": "Hugging Face vs OpenAI for custom models?"
+      "h2": "What is ML demand forecasting for retail?"
     },
     "tldr": {
-      "b": "The verdict",
+      "b": "Definition",
       "p": [
-        "The difference between Hugging Face and OpenAI for custom models is a build versus buy decision. Hugging Face open weights give you self-serve fine-tuning and complete control over custom model hosting \u2014 your VPC, on-premises, or a dedicated GPU cluster \u2014 with full data ownership and no per-token fees. OpenAI delivers powerful managed APIs with convenient fine-tuning endpoints, but locks you into closed weights, per-token costs, and provider-controlled infrastructure. Building on Hugging Face wins when you need tailored behavior, strict data privacy, or predictable cost at scale; buying OpenAI wins when you prioritize velocity and zero infrastructure maintenance."
+        "Machine learning demand forecasting for retail is an AI system that combines time-series models with store-level transaction data, weather, and promotional calendars to predict unit demand at the individual SKU and location level. By grounding every forecast in historical sell-through rates and real-time inventory feeds, it eliminates guesswork, reduces stockout penalties by up to 35%, and automates replenishment decisions with measurable ROI."
       ]
     }
   },
   "vs-agency": {
     "sec-head": {
-      "eyebrow": "Build vs buy",
-      "h2": "Hugging Face open weights vs OpenAI API"
+      "eyebrow": "Direct access vs agency",
+      "h2": "Independent forecasting engineer vs agency"
     },
     "tablewrap": {
       "thead": [
         "Factor",
-        "Build: Hugging Face Open Weights",
-        "Buy: OpenAI Managed API"
+        "Independent Forecasting Engineer (me)",
+        "Generalist AI Outsourcing Agency"
       ],
       "tbody": [
         {
-          "th": "Model customization",
+          "th": "Retail & SKU expertise",
           "td": [
-            "Download open weights and fine-tune with LoRA, QLoRA, or full fine-tuning. You control the architecture, dataset splits, and evaluation loop.",
-            "Limited to OpenAI's fine-tuning API surface. No access to weights, logits, or internal model representations."
+            "Deep specialization in SKU-level time-series, seasonality, and stockout cost models",
+            "Generalist teams spread across unrelated commercial verticals"
           ]
         },
         {
-          "th": "Cost & pricing model",
+          "th": "Data & security accountability",
           "td": [
-            "Predictable GPU infrastructure costs with zero per-token fees. Models are free to download; you pay only for compute.",
-            "Per-token charges on every inference call plus separate training fees. Costs grow linearly with usage and scale."
+            "Direct engineer manages POS and inventory data; no third-party exposure",
+            "Complex subcontractor chains increasing data breach and IP risk"
           ]
         },
         {
-          "th": "Data privacy & ownership",
+          "th": "Deployment speed",
           "td": [
-            "Self-host in your VPC or on-premises. Training data, prompts, and outputs never leave your infrastructure.",
-            "Prompts and outputs traverse OpenAI's API and are subject to their retention and safety-review policies."
+            "Functional SKU-level forecast POC in 3 weeks; production in 8 weeks",
+            "3 to 6 months delayed by account managers and discovery layers"
           ]
         },
         {
-          "th": "Deployment flexibility",
+          "th": "Cost structure",
           "td": [
-            "Deploy to any GPU cloud, your own data center, or edge devices. No vendor approval or API keys required.",
-            "Deploy on OpenAI's cloud only. No air-gapped, VPC, or on-premises option for their closed models."
+            "Transparent milestone pricing without agency overhead markups",
+            "High monthly retainer overhead with billable hours for project managers"
           ]
         }
       ]
     },
     "callout": {
       "p": [
-        "Open weights means total control",
-        "With open weights, every layer from tokenizer to deployment checkpoint is inspectable and modifiable, so your roadmap is never blocked by a vendor's release schedule. Buying API access trades this leverage for convenience, leaving custom model decisions in the hands of a provider."
+        "Direct access guarantees higher forecast accuracy",
+        "In retail, a misconfigured seasonal factor or stockout threshold can cost millions in lost sales. Working directly with the engineer building the prediction pipeline gives your operations team complete architectural clarity and unbroken communication."
       ]
     }
   }
