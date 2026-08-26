@@ -44,6 +44,13 @@ sys.path.insert(0, BASE_DIR)
 from generate_viwer import generate_viewer
 from inject_viewer import inject_widget_into_html
 
+# Image generation module (for placeholder replacement)
+from image_generation import generate_for_placeholder
+
+# Generated images output directory
+GENERATED_IMAGES_DIR = os.path.join(BASE_DIR, "generated_images")
+os.makedirs(GENERATED_IMAGES_DIR, exist_ok=True)
+
 # ── paths ─────────────────────────────────────────────────────────────────────
 IS_VERCEL = "VERCEL" in os.environ or "AWS_LAMBDA_FUNCTION_NAME" in os.environ
 
@@ -300,6 +307,9 @@ Return ONLY valid JSON matching the exact original structure.
                 except (json.JSONDecodeError, ValueError):
                     pass
 
+        if not isinstance(new_data, dict) or not new_data:
+            raise ValueError(f"Generated content for {section_title} is not a valid non-empty JSON object.")
+
         os.makedirs(os.path.dirname(output_path_json) or ".", exist_ok=True)
         with open(output_path_json, "w", encoding="utf-8") as f:
             json.dump(new_data, f, indent=2)
@@ -308,18 +318,8 @@ Return ONLY valid JSON matching the exact original structure.
         return new_data
 
     except Exception as e:
-        print(f"  [ERROR] Error generating {section_name}: {e}")
-        try:
-            with open(data_path, "r", encoding="utf-8") as f:
-                fb_data = json.load(f)
-            os.makedirs(os.path.dirname(output_path_json) or ".", exist_ok=True)
-            with open(output_path_json, "w", encoding="utf-8") as f:
-                json.dump(fb_data, f, indent=2)
-            print(f"  [FALLBACK] Used base template section data -> {output_path_json}")
-            return fb_data
-        except Exception as fb_err:
-            print(f"  [ERROR] Fallback failed for {section_name}: {fb_err}")
-            return None
+        print(f"\n  [FATAL ERROR] Step {step_num}/{total_steps} failed: {section_title} ({section_name}): {e}")
+        raise RuntimeError(f"Section generation failed for '{section_title}': {e}") from e
 
 
 # ── Helper stubs (kept for _update_meta_and_jsonld; real helpers are in compilers/shared.py) ──
@@ -477,35 +477,34 @@ def compile_html(page_title, page_type, primary_keyword, secondary_keyword, cont
 
     _, _, gen_dir = get_page_type_dirs(page_type)
 
-    def load_json(path):
-        try:
-            with open(path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-                if isinstance(data, dict) and len(data) == 1:
-                    only_key = list(data.keys())[0]
-                    only_val = data[only_key]
-                    if isinstance(only_val, str):
-                        try:
-                            unwrapped = json.loads(only_val)
-                            if isinstance(unwrapped, dict) and len(unwrapped) > 0:
-                                data = unwrapped
-                        except (json.JSONDecodeError, ValueError):
-                            pass
-                return data
-        except FileNotFoundError:
-            print(f"  Warning: {path} not found. Skipping.")
-            return None
+    def load_json(path, sec_name):
+        if not os.path.exists(path):
+            raise FileNotFoundError(f"Required generated data file missing: {path} ({sec_name})")
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            if isinstance(data, dict) and len(data) == 1:
+                only_key = list(data.keys())[0]
+                only_val = data[only_key]
+                if isinstance(only_val, str):
+                    try:
+                        unwrapped = json.loads(only_val)
+                        if isinstance(unwrapped, dict) and len(unwrapped) > 0:
+                            data = unwrapped
+                    except (json.JSONDecodeError, ValueError):
+                        pass
+            return data
 
-    hero_data   = load_json(os.path.join(gen_dir, "new_hero.json"))
-    second_data = load_json(os.path.join(gen_dir, "new_second_hero.json"))
-    third_data  = load_json(os.path.join(gen_dir, "new_third_section.json"))
-    final_data  = load_json(os.path.join(gen_dir, "new_final_section.json"))
+    hero_data   = load_json(os.path.join(gen_dir, "new_hero.json"), "Hero Section")
+    second_data = load_json(os.path.join(gen_dir, "new_second_hero.json"), "Value & Quick Answer")
+    third_data  = load_json(os.path.join(gen_dir, "new_third_section.json"), "Services & Breakdown")
+    final_data  = load_json(os.path.join(gen_dir, "new_final_section.json"), "Process, Pricing & FAQ")
 
     if not hero_data:
-        print("  Error: Hero JSON is required. Cannot compile.")
-        return
+        raise ValueError("Hero section data is missing or invalid. Cannot compile HTML.")
 
     template_file = get_template_path(page_type)
+    if not os.path.exists(template_file):
+        raise FileNotFoundError(f"Template HTML file not found: {template_file}")
     with open(template_file, "r", encoding="utf-8") as f:
         html_content = f.read()
 
@@ -559,6 +558,8 @@ def main():
                         help="Skip LLM generation and only compile HTML from existing generated/ files.")
     parser.add_argument("--skip-widget", action="store_true",
                         help="Skip hero viewer widget generation and injection.")
+    parser.add_argument("--skip-images", action="store_true",
+                        help="Skip image generation for placeholders.")
     parser.add_argument("--sample-widget", type=str, default=None,
                         help="Filename of a specific widget in widgets/ to use as blueprint.")
     args = parser.parse_args()
@@ -576,96 +577,244 @@ def main():
     else:
         output_path = os.path.join(HTML_PAGES_DIR, os.path.basename(output_html))
 
-    # ── Step 1: Generate content for each section ──
-    actual_data_dir, rules_dir, gen_dir = get_page_type_dirs(args.page_type)
+    try:
+        # ── Step 1: Generate content for each section ──
+        actual_data_dir, rules_dir, gen_dir = get_page_type_dirs(args.page_type)
 
-    if not args.skip_generate:
-        print("\n" + "="*60)
-        print("  STEP 1: Generating content via LLM")
-        print("="*60)
+        if not args.skip_generate:
+            print("\n" + "="*60)
+            print("  STEP 1: Generating content via LLM")
+            print("="*60)
 
-        os.makedirs(gen_dir, exist_ok=True)
+            os.makedirs(gen_dir, exist_ok=True)
 
-        for i, section in enumerate(SECTIONS, 1):
-            data_path = os.path.join(actual_data_dir, section["data"])
-            rules_path = os.path.join(rules_dir, section["rules"])
-            output_path_json = os.path.join(gen_dir, section["output"])
+            for i, section in enumerate(SECTIONS, 1):
+                data_path = os.path.join(actual_data_dir, section["data"])
+                rules_path = os.path.join(rules_dir, section["rules"])
+                output_path_json = os.path.join(gen_dir, section["output"])
 
-            if not os.path.exists(data_path):
-                print(f"  ⚠ Skipping {section['data']} — file not found in {actual_data_dir}/")
-                continue
-            if not os.path.exists(rules_path):
-                print(f"  ⚠ Skipping {section['data']} — rules file not found in {rules_dir}/")
-                continue
+                if not os.path.exists(data_path):
+                    raise FileNotFoundError(f"Section data file missing: {data_path}")
+                if not os.path.exists(rules_path):
+                    raise FileNotFoundError(f"Section rules file missing: {rules_path}")
 
-            sec_title = section.get("name", f"Section {i}")
-            generate_section(
-                page_title=args.page_title,
-                page_type=args.page_type,
-                primary_keyword=args.primary_keyword,
-                secondary_keyword=args.secondary_keyword,
-                content_angle=args.content_angle,
-                model=args.model,
-                data_path=data_path,
-                rules_path=rules_path,
-                output_path_json=output_path_json,
-                step_num=i,
-                total_steps=len(SECTIONS),
-                section_title=sec_title
-            )
-    else:
-        print("\n  Skipping LLM generation (--skip-generate). Using existing generated/ files.")
-
-    # ── Step 2: Compile final HTML ──
-    print("\n" + "="*60)
-    print("  STEP 2: Compiling HTML")
-    print("="*60)
-
-    compile_html(
-        page_title=args.page_title,
-        page_type=args.page_type,
-        primary_keyword=args.primary_keyword,
-        secondary_keyword=args.secondary_keyword,
-        content_angle=args.content_angle,
-        output_path=output_path
-    )
-
-    # ── Step 3: Hero Viewer Widget Generation & Injection ──
-    if not args.skip_widget:
-        print("\n" + "="*60)
-        print("  STEP 3: Hero Viewer Widget Generation & Injection")
-        print("="*60)
-
-        tmp_widget_path = os.path.join(BASE_DIR, "generated_components", "interactive_viewer.html")
-
-        if not args.skip_generate or not os.path.exists(tmp_widget_path):
-            print("  Generating page-specific hero viewer widget via LLM...")
-            generate_viewer(
-                page_title          = args.page_title,
-                page_type           = args.page_type,
-                primary_keyword     = args.primary_keyword,
-                secondary_keyword   = args.secondary_keyword,
-                content_angle       = args.content_angle,
-                sample_widget_path  = args.sample_widget,
-                model               = args.model,
-                output_path         = tmp_widget_path,
-            )
+                sec_title = section.get("name", f"Section {i}")
+                generate_section(
+                    page_title=args.page_title,
+                    page_type=args.page_type,
+                    primary_keyword=args.primary_keyword,
+                    secondary_keyword=args.secondary_keyword,
+                    content_angle=args.content_angle,
+                    model=args.model,
+                    data_path=data_path,
+                    rules_path=rules_path,
+                    output_path_json=output_path_json,
+                    step_num=i,
+                    total_steps=len(SECTIONS),
+                    section_title=sec_title
+                )
         else:
-            print(f"  Using existing hero widget file: {tmp_widget_path}")
+            print("\n  Skipping LLM generation (--skip-generate). Using existing generated/ files.")
 
-        if os.path.exists(tmp_widget_path):
+        # ── Step 2: Compile final HTML ──
+        print("\n" + "="*60)
+        print("  STEP 2: Compiling HTML")
+        print("="*60)
+
+        compile_html(
+            page_title=args.page_title,
+            page_type=args.page_type,
+            primary_keyword=args.primary_keyword,
+            secondary_keyword=args.secondary_keyword,
+            content_angle=args.content_angle,
+            output_path=output_path
+        )
+
+        # ── Step 3: Hero Viewer Widget Generation & Injection ──
+        if not args.skip_widget:
+            print("\n" + "="*60)
+            print("  STEP 3: Hero Viewer Widget Generation & Injection")
+            print("="*60)
+
+            tmp_widget_path = os.path.join(BASE_DIR, "generated_components", "interactive_viewer.html")
+
+            if not args.skip_generate or not os.path.exists(tmp_widget_path):
+                print("  Generating page-specific hero viewer widget via LLM...")
+                generate_viewer(
+                    page_title          = args.page_title,
+                    page_type           = args.page_type,
+                    primary_keyword     = args.primary_keyword,
+                    secondary_keyword   = args.secondary_keyword,
+                    content_angle       = args.content_angle,
+                    sample_widget_path  = args.sample_widget,
+                    model               = args.model,
+                    output_path         = tmp_widget_path,
+                )
+            else:
+                print(f"  Using existing hero widget file: {tmp_widget_path}")
+
+            if not os.path.exists(tmp_widget_path):
+                raise FileNotFoundError(f"Hero viewer widget file not generated: {tmp_widget_path}")
+
             with open(tmp_widget_path, "r", encoding="utf-8") as f:
                 widget_html = f.read()
             with open(output_path, "r", encoding="utf-8") as f:
                 page_html = f.read()
 
+            updated_html = inject_widget_into_html(page_html, widget_html)
+            with open(output_path, "w", encoding="utf-8") as f:
+                f.write(updated_html)
+            print(f"  ✓ Hero viewer widget injected into: {output_path}")
+
+        # ── Step 4: Image Generation & Placeholder Replacement ──
+        if not getattr(args, 'skip_images', False):
+            print("\n" + "="*60)
+            print("  STEP 4: Image Generation & Placeholder Replacement")
+            print("="*60)
+
+            _replace_image_placeholders(
+                output_path=output_path,
+                page_title=args.page_title,
+                page_type=args.page_type,
+                primary_keyword=args.primary_keyword,
+                secondary_keyword=args.secondary_keyword,
+                content_angle=args.content_angle,
+            )
+        else:
+            print("\n  Skipping image generation (--skip-images).")
+
+        print("\n" + "="*60)
+        print(f"  🎉 PIPELINE COMPLETE: Website ready at {output_path}")
+        print("="*60)
+
+    except Exception as e:
+        print(f"\n{'='*60}")
+        print(f"  ❌ [PIPELINE FAILED] Execution aborted due to error:")
+        print(f"     {e}")
+        print(f"{'='*60}")
+        # Clean up partial output file so no broken/failed artifact exists
+        if os.path.exists(output_path):
             try:
-                updated_html = inject_widget_into_html(page_html, widget_html)
-                with open(output_path, "w", encoding="utf-8") as f:
-                    f.write(updated_html)
-                print(f"  ✓ Hero viewer widget injected into: {output_path}")
-            except Exception as e:
-                print(f"  ⚠ Widget injection skipped or failed: {e}")
+                os.remove(output_path)
+                print(f"  [CLEANUP] Deleted incomplete output file: {output_path}")
+            except Exception as rem_err:
+                print(f"  [CLEANUP ERROR] Failed to delete {output_path}: {rem_err}")
+        sys.exit(1)
+
+
+# ── Image placeholder replacement engine ──────────────────────────────────────
+def _replace_image_placeholders(
+    output_path,
+    page_title,
+    page_type,
+    primary_keyword,
+    secondary_keyword,
+    content_angle,
+):
+    """
+    Scan the compiled HTML for all .img-placeholder elements, generate an image
+    for each via VModel API, download locally, and replace the placeholder with
+    an <img> tag.
+    """
+    if not os.path.exists(output_path):
+        raise FileNotFoundError(f"Output HTML not found for image placeholder replacement: {output_path}")
+
+    with open(output_path, "r", encoding="utf-8") as f:
+        html = f.read()
+
+    soup = BeautifulSoup(html, "html.parser")
+    placeholders = soup.find_all("div", class_="img-placeholder")
+
+    if not placeholders:
+        print("  No .img-placeholder elements found — nothing to generate.")
+        return
+
+    print(f"  Found {len(placeholders)} image placeholder(s). Generating images...")
+    slug = re.sub(r"[^\w\-]+", "-", page_title.lower()).strip("-")
+    modified = False
+
+    for idx, placeholder in enumerate(placeholders):
+        print(f"\n  ── Placeholder {idx + 1}/{len(placeholders)} ──")
+
+        # 1. Extract aspect ratio from the <span> text inside the placeholder
+        aspect_ratio = "1:1"  # default
+        span = placeholder.find("span")
+        if span and span.get_text():
+            span_text = span.get_text(strip=True)
+            # Look for patterns like (1:1), (16:9), (4:3)
+            ar_match = re.search(r"\((\d+:\d+)\)", span_text)
+            if ar_match:
+                aspect_ratio = ar_match.group(1)
+        print(f"     Aspect ratio: {aspect_ratio}")
+
+        # 2. Extract section context from surrounding HTML
+        section_context_parts = []
+        parent_section = placeholder.find_parent("section")
+        if parent_section:
+            sec_id = parent_section.get("id", "")
+            if sec_id:
+                section_context_parts.append(f"Section: {sec_id}")
+            eyebrow = parent_section.find(class_="eyebrow")
+            if eyebrow:
+                section_context_parts.append(f"Eyebrow: {eyebrow.get_text(strip=True)}")
+            h2 = parent_section.find("h2")
+            if h2:
+                section_context_parts.append(f"Heading: {h2.get_text(strip=True)}")
+        section_context = "; ".join(section_context_parts)
+        print(f"     Context: {section_context or '(none)'}")
+
+        # 3. Determine image type from section context
+        image_type = "hero_architecture"  # default
+        context_lower = section_context.lower()
+        if any(kw in context_lower for kw in ["security", "compliance", "architecture", "technical"]):
+            image_type = "technical_security"
+        elif any(kw in context_lower for kw in ["workflow", "process", "how", "step"]):
+            image_type = "workflow_ui"
+
+        # 4. Build save path
+        suffix = f"-{idx + 1}" if len(placeholders) > 1 else ""
+        filename = f"{slug}{suffix}-{image_type}.jpg"
+        save_path = os.path.join(GENERATED_IMAGES_DIR, filename)
+
+        # 5. Generate and download image
+        local_path = generate_for_placeholder(
+            page_title=page_title,
+            page_type=page_type,
+            primary_keyword=primary_keyword,
+            secondary_keywords=secondary_keyword,
+            content_angle_notes=content_angle,
+            section_context=section_context,
+            image_type=image_type,
+            aspect_ratio=aspect_ratio,
+            save_path=save_path,
+        )
+
+        if not local_path or not os.path.exists(local_path):
+            raise RuntimeError(f"Image generation/download failed for placeholder #{idx + 1} (type: {image_type}, aspect: {aspect_ratio})")
+
+        # 6. Build the <img> tag and replace the placeholder
+        img_src = f"/generated_images/{filename}"
+        alt_text = section_context or page_title
+        img_tag = soup.new_tag(
+            "img",
+            src=img_src,
+            alt=alt_text,
+            loading="lazy",
+        )
+
+        # Replace the .img-placeholder div with the <img> tag
+        placeholder.replace_with(img_tag)
+        modified = True
+        print(f"     ✓ Placeholder replaced with <img src=\"{img_src}\" />")
+
+    if modified:
+        html_out = str(soup)
+        # Fix SVG case-sensitivity mangled by BeautifulSoup
+        html_out = html_out.replace("<lineargradient", "<linearGradient").replace("</lineargradient>", "</linearGradient>")
+        html_out = html_out.replace("viewbox=", "viewBox=")
+        with open(output_path, "w", encoding="utf-8") as f:
+            f.write(html_out)
+        print(f"\n  ✓ All image placeholders processed. HTML updated: {output_path}")
 
 
 if __name__ == "__main__":

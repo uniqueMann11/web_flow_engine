@@ -712,6 +712,73 @@
       font-size: .94rem
     }
 
+    .svcp .what-is-wrap {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 28px;
+      align-items: stretch
+    }
+
+    .svcp .what-is-media {
+      position: relative;
+      width: 100%;
+      border-radius: var(--r);
+      overflow: hidden;
+      display: flex
+    }
+
+    .svcp .img-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 240px;
+      aspect-ratio: 1 / 1;
+      border-radius: var(--r);
+      background: var(--soft);
+      border: 2px dashed var(--line);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .08em
+    }
+
+    .svcp .img-placeholder svg {
+      stroke: currentColor;
+      opacity: .75
+    }
+
+    .svcp .what-is-media img,
+    .svcp .when-not-media img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: var(--r);
+      display: block;
+      border: 1px solid var(--line);
+      box-shadow: var(--sh-sm)
+    }
+
+    .svcp .when-not-wrap {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 28px;
+      align-items: stretch
+    }
+
+    .svcp .when-not-media {
+      position: relative;
+      width: 100%;
+      border-radius: var(--r);
+      overflow: hidden;
+      display: flex
+    }
+
     .svcp .grid {
       display: grid;
       gap: 20px
@@ -1074,8 +1141,16 @@
         position: static
       }
 
-      .svcp .comply-in {
+      .svcp .comply-in,
+      .svcp .what-is-wrap,
+      .svcp .when-not-wrap {
         grid-template-columns: 1fr
+      }
+
+      .svcp .what-is-media,
+      .svcp .when-not-media {
+        max-width: 280px;
+        margin: 0 auto
       }
 
       .svcp .comply-in>div {
@@ -1234,13 +1309,26 @@
             <p class="eyebrow">Plain answer</p>
             <h2>What is a RAG chatbot for healthcare?</h2>
           </div>
-          <div class="tldr reveal">
-            <b>Definition</b>
-            <p>A healthcare RAG (Retrieval-Augmented Generation) chatbot is an AI system that combines medical-grade
-              language models with a secure, real-time knowledge retrieval engine. It extracts relevant context from EHR
-              records, clinical guidelines, radiology reports, and drug formularies before generating an answer. By
-              grounding every response in verifiable medical sources, it eliminates hallucinations, maintains strict
-              HIPAA compliance, and provides doctors and patients with evidence-backed answers.</p>
+          <div class="what-is-wrap reveal">
+            <div class="what-is-media">
+              <!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
+              <div class="img-placeholder" aria-label="Image placeholder">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                  <circle cx="9" cy="9" r="2"/>
+                  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                </svg>
+                <span>Image Placeholder (1:1)</span>
+              </div>
+            </div>
+            <div class="tldr">
+              <b>Definition</b>
+              <p>A healthcare RAG (Retrieval-Augmented Generation) chatbot is an AI system that combines medical-grade
+                language models with a secure, real-time knowledge retrieval engine. It extracts relevant context from EHR
+                records, clinical guidelines, radiology reports, and drug formularies before generating an answer. By
+                grounding every response in verifiable medical sources, it eliminates hallucinations, maintains strict
+                HIPAA compliance, and provides doctors and patients with evidence-backed answers.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -1436,12 +1524,25 @@
             <p class="eyebrow">Clinical boundaries</p>
             <h2>When a RAG chatbot is NOT the right choice</h2>
           </div>
-          <div class="callout amber reveal" style="margin-top:0">
-            <p>Safety-first engineering in healthcare AI</p>
-            <p>A RAG chatbot is designed for clinical decision support, information retrieval, and patient navigation.
-              It must <strong>never</strong> be deployed as an autonomous, unsupervised diagnostic authority for acute
-              life-threatening emergencies. Any system offering medical guidance must enforce human-in-the-loop
-              validation and unambiguous clinician oversight.</p>
+          <div class="when-not-wrap reveal">
+            <div class="callout amber" style="margin-top:0">
+              <p>Safety-first engineering in healthcare AI</p>
+              <p>A RAG chatbot is designed for clinical decision support, information retrieval, and patient navigation.
+                It must <strong>never</strong> be deployed as an autonomous, unsupervised diagnostic authority for acute
+                life-threatening emergencies. Any system offering medical guidance must enforce human-in-the-loop
+                validation and unambiguous clinician oversight.</p>
+            </div>
+            <div class="when-not-media">
+              <!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
+              <div class="img-placeholder" aria-label="Image placeholder">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                  <circle cx="9" cy="9" r="2"/>
+                  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                </svg>
+                <span>Image Placeholder (1:1)</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>

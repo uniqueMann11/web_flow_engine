@@ -4,18 +4,18 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>LangChain vs LlamaIndex: The Definitive Framework Comparison | Shreyans Padmani</title>
+<title>Pinecone vs Weaviate: Vector Database Comparison | Shreyans Padmani</title>
 <meta content="index, follow" name="robots"/>
 <meta content="max-image-preview:large" name="robots"/>
 <meta content="Shreyans Padmani" name="author"/>
 <meta content="website" property="og:type"/>
 <meta content="Shreyans Padmani" property="og:site_name"/>
 <meta content="en_US" property="og:locale"/>
-<meta content="In 2026, the choice between LangChain's LangGraph and LlamaIndex's hierarchical retrieval isn't about hype—it's about latency, memory, and graph complexity. I build production systems in both, and I'll recommend the framework that fits your retrieval speed and orchestration needs, not my toolkit." name="description"/>
-<meta content="LangChain vs LlamaIndex, RAG framework comparison, LLM agent orchestration" name="keywords"/>
-<link href="https://shreyans.tech/langchain-vs-llamaindex-the-definitive-framework-comparison" rel="canonical"/>
-<meta content="LangChain vs LlamaIndex: The Definitive Framework Comparison" property="og:title"/>
-<meta content="https://shreyans.tech/langchain-vs-llamaindex-the-definitive-framework-comparison" property="og:url"/>
+<meta content="Choosing between Pinecone and Weaviate determines your vector database spend, scaling ceiling, and operational overhead. I help you evaluate both against your real workload—so you pick the right managed or self-hosted option, not the default." name="description"/>
+<meta content="Pinecone vs Weaviate, vector database comparison, managed vs self-hosted" name="keywords"/>
+<link href="https://shreyans.tech/pinecone-vs-weaviate-vector-database-comparison" rel="canonical"/>
+<meta content="Pinecone vs Weaviate: Vector Database Comparison" property="og:title"/>
+<meta content="https://shreyans.tech/pinecone-vs-weaviate-vector-database-comparison" property="og:url"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="@shreyanspadmani" name="twitter:site"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -29,8 +29,8 @@
   "@graph": [
     {
       "@type": "Service",
-      "name": "LangChain vs LlamaIndex: The Definitive Framework Comparison",
-      "url": "https://shreyans.tech/langchain-vs-llamaindex-the-definitive-framework-comparison",
+      "name": "Pinecone vs Weaviate: Vector Database Comparison",
+      "url": "https://shreyans.tech/pinecone-vs-weaviate-vector-database-comparison",
       "provider": {
         "@type": "Person",
         "name": "Shreyans Padmani",
@@ -61,8 +61,8 @@
         {
           "@type": "ListItem",
           "position": 4,
-          "name": "LangChain vs LlamaIndex: The Definitive Framework Comparison",
-          "item": "https://shreyans.tech/langchain-vs-llamaindex-the-definitive-framework-comparison"
+          "name": "Pinecone vs Weaviate: Vector Database Comparison",
+          "item": "https://shreyans.tech/pinecone-vs-weaviate-vector-database-comparison"
         }
       ]
     },
@@ -71,42 +71,42 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Is LlamaIndex better than LangChain for RAG?",
+          "name": "Which is cheaper, Pinecone or Weaviate?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "For pure RAG over large document corpora, LlamaIndex generally wins on retrieval quality and index speed: its hierarchical index, metadata filtering, and reranking are production-calibrated out of the box. LangGraph is the better foundation when RAG is one stateful component inside a broader multi-step agent system."
+            "text": "At small scale, Pinecone's pay-per-query model can be cheaper due to zero infrastructure overhead. At large scale, Weaviate's self-hosted option typically yields lower total cost of ownership, though you must account for ops and maintenance."
           }
         },
         {
           "@type": "Question",
-          "name": "Can you use LangChain and LlamaIndex together in production?",
+          "name": "Can I self-host Weaviate? What about Pinecone?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, and it is the most common hybrid production architecture I build in 2026: a LlamaIndex query engine wrapped as a tool inside a LangGraph agent. LlamaIndex owns retrieval speed and precision while LangGraph owns orchestration, memory, and guardrails."
+            "text": "Weaviate is open-source and fully self-hostable on your own infrastructure. Pinecone is a proprietary managed service and cannot be self-hosted. This is the primary hosting model difference."
           }
         },
         {
           "@type": "Question",
-          "name": "How do you decide which framework to recommend?",
+          "name": "Which scales better for large datasets with high query volume?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The decision comes from where your hardest problem actually lives: messy hierarchical retrieval over a large corpus points to LlamaIndex, while multi-step behavior, tool use, and stateful reasoning point to LangGraph. The recommendation is documented in a written architecture spec with trade-offs and benchmarks before any build work starts."
+            "text": "Both scale well, but through different approaches. Pinecone auto-scales seamlessly with no operational burden. Weaviate requires manual sharding and cluster management but gives you finer control over resource allocation and cost."
           }
         },
         {
           "@type": "Question",
-          "name": "What are the real performance differences between LangGraph and LlamaIndex?",
+          "name": "How do they compare on latency and recall accuracy?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A tuned LlamaIndex query engine can return context in the tens of milliseconds at p95 because its hierarchical index avoids unnecessary graph traversals. A LangGraph multi-step agent spends more of its latency and memory budget on node scheduling, tool calls, and state transitions, so the fastest choice depends on whether your bottleneck is retrieval or orchestration."
+            "text": "Both offer sub-10ms latency on typical workloads and high recall with HNSW indexing. Real-world performance depends on your data dimensionality, index configuration, and infrastructure. A benchmark on your own data is recommended."
           }
         },
         {
           "@type": "Question",
-          "name": "How much does RAG framework development cost?",
+          "name": "Which one should I choose for a production application?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A framework selection consultation runs $500 to $1,500. A dedicated LlamaIndex or LangGraph build ranges from $8,000 to $30,000+, while a hybrid production architecture typically runs $15,000 to $40,000+ depending on the data and agent complexity. Contact for a fixed-price estimate once the bottleneck is confirmed."
+            "text": "Choose Pinecone if you prioritize zero ops, fast time-to-market, and predictable scaling. Choose Weaviate if you need full control, lower cost at high volume, or on-premise deployment. Many teams start with Pinecone for speed and later migrate to Weaviate for cost."
           }
         }
       ]
@@ -1758,226 +1758,421 @@
 .vw-card {
   width: 100%;
   max-width: 520px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  box-shadow: var(--sh-md);
+  background: var(--surface, #FFFFFF);
+  border: 1px solid var(--line, #E6ECF4);
+  border-radius: var(--r, 18px);
+  box-shadow: var(--sh-md, 0 14px 34px -16px rgba(10, 18, 34, 0.22));
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  font-family: var(--bodyf, 'Inter', system-ui, sans-serif);
   box-sizing: border-box;
 }
+
+.vw-card *,
+.vw-card *::before,
+.vw-card *::after {
+  box-sizing: border-box;
+}
+
 .vw-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 14px 18px;
-  border-bottom: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft, #EFF3F9);
   flex-wrap: wrap;
   gap: 8px;
 }
-.vw-top .vw-title {
-  font-family: var(--disp);
+
+.vw-top .t {
+  font-family: var(--disp, 'Plus Jakarta Sans', system-ui, sans-serif);
   font-size: 0.88rem;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--ink, #0A1222);
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.vw-top .vw-title svg {
+
+.vw-top .t svg {
   width: 16px;
   height: 16px;
-  color: var(--blue);
+  color: var(--blue, #2456E6);
   flex-shrink: 0;
 }
-.vw-badge {
-  font-family: var(--mono);
-  font-size: 0.65rem;
+
+.vw-chip {
+  font-family: var(--mono, 'IBM Plex Mono', ui-monospace, monospace);
+  font-size: 0.62rem;
   font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--mint-tint);
-  color: var(--mint-deep);
-  border: 1px solid rgba(11, 125, 78, 0.2);
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: var(--amber-tint, #FCEFDD);
+  color: var(--amber, #D97A18);
+  border: 1px solid rgba(217, 122, 24, 0.2);
   white-space: nowrap;
 }
-.vw-badge svg {
-  width: 12px;
-  height: 12px;
-}
+
 .vw-body {
-  padding: 16px 18px;
+  padding: 16px 18px 12px;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
-.vw-switcher {
+
+.vw-tabs {
   display: flex;
   gap: 6px;
-  background: var(--soft);
-  padding: 5px;
-  border-radius: 999px;
-  border: 1px solid var(--line-soft);
 }
-.vw-switcher button {
+
+.vw-tab {
   flex: 1;
-  padding: 7px 12px;
-  border: none;
-  border-radius: 999px;
-  background: transparent;
-  font-family: var(--bodyf);
-  font-size: 0.72rem;
+  background: var(--soft, #F4F8FD);
+  border: 1px solid var(--line, #E6ECF4);
+  border-radius: var(--r-sm, 12px);
+  padding: 8px 10px;
+  font-family: var(--mono, 'IBM Plex Mono', ui-monospace, monospace);
+  font-size: 0.7rem;
   font-weight: 600;
-  color: var(--body);
+  color: var(--muted, #6B7A93);
   cursor: pointer;
-  transition: all 0.2s;
-  white-space: nowrap;
-  min-width: 0;
-}
-.vw-switcher button:hover {
-  color: var(--ink);
-}
-.vw-switcher button.active {
-  background: var(--surface);
-  color: var(--ink);
-  box-shadow: var(--sh-sm);
-}
-.vw-graph-area {
-  background: var(--soft);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--r-sm);
-  padding: 14px 12px;
-  position: relative;
-  min-height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-}
-.vw-graph-area svg {
-  width: 100%;
-  height: auto;
-  max-height: 100px;
-  overflow: visible;
-}
-.vw-metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-}
-.vw-metric {
-  background: var(--surface);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--r-sm);
-  padding: 8px 6px;
   text-align: center;
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
 }
-.vw-metric .vw-metric-val {
-  font-family: var(--disp);
-  font-size: 1rem;
-  font-weight: 800;
-  color: var(--ink);
-  line-height: 1.4;
+
+.vw-tab:hover {
+  border-color: var(--blue, #2456E6);
+  color: var(--ink, #0A1222);
 }
-.vw-metric .vw-metric-lbl {
-  font-family: var(--mono);
+
+.vw-tab.active-pinecone {
+  background: var(--blue-tint, #E6EEFF);
+  border-color: var(--blue, #2456E6);
+  color: var(--blue-strong, #1740C0);
+  box-shadow: 0 0 0 1px var(--blue, #2456E6);
+}
+
+.vw-tab.active-weaviate {
+  background: var(--violet-tint, #EDEAFE);
+  border-color: var(--violet, #6D5EF6);
+  color: var(--violet, #6D5EF6);
+  box-shadow: 0 0 0 1px var(--violet, #6D5EF6);
+}
+
+.vw-tab .vw-tab-sub {
+  display: block;
+  font-family: var(--bodyf, 'Inter', system-ui, sans-serif);
   font-size: 0.55rem;
-  color: var(--muted);
+  font-weight: 400;
+  color: var(--muted, #6B7A93);
+  margin-top: 2px;
+  letter-spacing: 0;
+}
+
+.vw-chart-box {
+  background: var(--soft, #F4F8FD);
+  border: 1px solid var(--line-soft, #EFF3F9);
+  border-radius: var(--r-sm, 12px);
+  padding: 14px 14px 10px;
+}
+
+.vw-chart-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 0.62rem;
+  font-family: var(--mono, 'IBM Plex Mono', ui-monospace, monospace);
+  color: var(--muted, #6B7A93);
   text-transform: uppercase;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.04em;
 }
-.vw-verdict {
-  background: var(--blue-tint);
-  border-radius: var(--r-sm);
-  padding: 12px 14px;
-  border-left: 4px solid var(--blue);
+
+.vw-chart-legend {
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
-.vw-verdict .vw-verdict-head {
-  font-family: var(--disp);
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 4px;
+
+.vw-leg-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  font-size: 0.58rem;
+  font-weight: 500;
+  color: var(--body, #48566E);
 }
-.vw-verdict .vw-verdict-head svg {
-  width: 14px;
-  height: 14px;
-  color: var(--blue);
+
+.vw-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
   flex-shrink: 0;
 }
-.vw-verdict .vw-verdict-body {
-  font-family: var(--bodyf);
-  font-size: 0.72rem;
-  color: var(--body);
-  line-height: 1.5;
+
+.vw-dot-pinecone {
+  background: var(--blue, #2456E6);
 }
+
+.vw-dot-weaviate {
+  background: var(--violet, #6D5EF6);
+}
+
+.vw-compare-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vw-bar-row {
+  display: grid;
+  grid-template-columns: 70px 1fr 1fr;
+  gap: 6px;
+  align-items: center;
+}
+
+.vw-bar-label {
+  font-size: 0.6rem;
+  font-family: var(--mono, 'IBM Plex Mono', ui-monospace, monospace);
+  color: var(--body, #48566E);
+  font-weight: 500;
+  text-align: right;
+  padding-right: 2px;
+}
+
+.vw-bar-track {
+  height: 14px;
+  background: var(--line-soft, #EFF3F9);
+  border-radius: 7px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--line, #E6ECF4);
+}
+
+.vw-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.4s ease, opacity 0.3s ease;
+  position: relative;
+}
+
+.vw-bar-fill.pinecone-bar {
+  background: var(--blue, #2456E6);
+}
+
+.vw-bar-fill.weaviate-bar {
+  background: var(--violet, #6D5EF6);
+}
+
+.vw-bar-fill.dimmed {
+  opacity: 0.28;
+}
+
+.vw-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.vw-tile {
+  background: var(--soft, #F4F8FD);
+  border: 1px solid var(--line-soft, #EFF3F9);
+  border-radius: var(--r-sm, 12px);
+  padding: 8px 6px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.vw-tile.highlight-pinecone {
+  border-color: var(--blue, #2456E6);
+  background: var(--blue-tint, #E6EEFF);
+}
+
+.vw-tile.highlight-weaviate {
+  border-color: var(--violet, #6D5EF6);
+  background: var(--violet-tint, #EDEAFE);
+}
+
+.vw-tile-val {
+  font-family: var(--disp, 'Plus Jakarta Sans', system-ui, sans-serif);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ink, #0A1222);
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.vw-tile-val.pinecone-active {
+  color: var(--blue-strong, #1740C0);
+}
+
+.vw-tile-val.weaviate-active {
+  color: var(--violet, #6D5EF6);
+}
+
+.vw-tile-lbl {
+  font-family: var(--mono, 'IBM Plex Mono', ui-monospace, monospace);
+  font-size: 0.5rem;
+  color: var(--muted, #6B7A93);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+.vw-scenario-row {
+  display: flex;
+  gap: 5px;
+  padding: 2px 0;
+}
+
+.vw-sc-btn {
+  flex: 1;
+  background: transparent;
+  border: 1px solid var(--line, #E6ECF4);
+  border-radius: 8px;
+  padding: 5px 8px;
+  font-family: var(--mono, 'IBM Plex Mono', ui-monospace, monospace);
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: var(--muted, #6B7A93);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.vw-sc-btn:hover {
+  border-color: var(--blue, #2456E6);
+  color: var(--ink, #0A1222);
+}
+
+.vw-sc-btn.active {
+  background: var(--tint, #EAF0FF);
+  border-color: var(--blue, #2456E6);
+  color: var(--blue-strong, #1740C0);
+}
+
+.vw-sc-btn.active.weaviate-sc-active {
+  background: var(--violet-tint, #EDEAFE);
+  border-color: var(--violet, #6D5EF6);
+  color: var(--violet, #6D5EF6);
+}
+
 .vw-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 18px;
-  border-top: 1px solid var(--line-soft);
-  background: var(--soft);
-  font-family: var(--bodyf);
-  font-size: 0.68rem;
-  color: var(--muted);
-  gap: 10px;
+  border-top: 1px solid var(--line-soft, #EFF3F9);
+  background: var(--soft, #F4F8FD);
+  font-size: 0.7rem;
+  color: var(--body, #48566E);
+  gap: 8px;
+  flex-wrap: wrap;
 }
-.vw-foot span {
+
+.vw-foot-verdict {
   display: flex;
   align-items: center;
   gap: 6px;
+  font-weight: 500;
 }
-.vw-foot svg {
-  width: 12px;
-  height: 12px;
-  color: var(--body);
+
+.vw-foot-verdict svg {
+  width: 14px;
+  height: 14px;
   flex-shrink: 0;
+  color: var(--mint, #0FA968);
 }
+
+.vw-foot-note {
+  font-size: 0.62rem;
+  color: var(--muted, #6B7A93);
+  font-family: var(--mono, 'IBM Plex Mono', ui-monospace, monospace);
+}
+
 @media (max-width: 480px) {
   .vw-top {
+    padding: 12px 14px;
+  }
+
+  .vw-top .t {
+    font-size: 0.78rem;
+  }
+
+  .vw-body {
+    padding: 12px 14px 10px;
+    gap: 12px;
+  }
+
+  .vw-tab {
+    font-size: 0.62rem;
+    padding: 6px 8px;
+  }
+
+  .vw-metrics-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
+
+  .vw-tile-val {
+    font-size: 0.85rem;
+  }
+
+  .vw-bar-row {
+    grid-template-columns: 55px 1fr 1fr;
+    gap: 4px;
+  }
+
+  .vw-bar-label {
+    font-size: 0.52rem;
+  }
+
+  .vw-bar-track {
+    height: 11px;
+  }
+
+  .vw-chart-box {
+    padding: 10px 10px 8px;
+  }
+
+  .vw-foot {
+    padding: 8px 14px;
+    font-size: 0.62rem;
     flex-direction: column;
     align-items: flex-start;
   }
-  .vw-metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .vw-switcher {
-    border-radius: var(--r-sm);
-    flex-wrap: wrap;
-  }
-  .vw-switcher button {
-    font-size: 0.68rem;
-    padding: 6px 10px;
-    flex: 1 1 auto;
-  }
-  .vw-body {
-    padding: 12px 14px;
-  }
-  .vw-graph-area {
-    padding: 10px 8px;
-  }
-  .vw-graph-area svg {
-    max-height: 70px;
+
+  .vw-sc-btn {
+    font-size: 0.5rem;
+    padding: 4px 6px;
   }
 }
+
 @media (max-width: 360px) {
-  .vw-metrics-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
+  .vw-top .t {
+    font-size: 0.7rem;
   }
-  .vw-metric {
-    padding: 6px 4px;
+
+  .vw-chip {
+    font-size: 0.5rem;
+    padding: 2px 6px;
   }
-  .vw-metric .vw-metric-val {
-    font-size: 0.85rem;
+
+  .vw-tile-lbl {
+    font-size: 0.45rem;
+  }
+
+  .vw-bar-row {
+    grid-template-columns: 40px 1fr 1fr;
+  }
+
+  .vw-bar-label {
+    font-size: 0.45rem;
   }
 }
 </style>
@@ -1989,93 +2184,136 @@
 <div class="wrap">
 <div class="hero-grid">
 <div>
-<p class="eyebrow">Agent graphs vs index speed</p>
-<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">LangChain vs LlamaIndex: <span>the real production trade-offs</span></h1>
-<p class="hero-sub">In 2026, the choice between LangChain's LangGraph and LlamaIndex's hierarchical retrieval isn't about hype—it's about latency, memory, and graph complexity. I build production systems in both, and I'll recommend the framework that fits your retrieval speed and orchestration needs, not my toolkit.</p>
+<p class="eyebrow">Vector database comparison, simplified</p>
+<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">Pinecone vs Weaviate: <span>cost, scale, and hosting</span></h1>
+<p class="hero-sub">Choosing between Pinecone and Weaviate determines your vector database spend, scaling ceiling, and operational overhead. I help you evaluate both against your real workload—so you pick the right managed or self-hosted option, not the default.</p>
 <div class="creds">
 <div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
 <path d="M12 8v4l3 3"></path>
 <circle cx="12" cy="12" r="9"></circle>
-</svg></span><span class="t"><i>Experience</i><b>5+ yrs production RAG</b></span></div>
+</svg></span><span class="t"><i>Experience</i><b>5+ yrs production vector DBs</b></span></div>
 <div class="cred"><span class="b" style="background:#6D5EF6" title="Both"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
 <circle cx="9" cy="7" r="4"></circle>
 <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
-</svg></span><span class="t"><i>Coverage</i><b>Both frameworks, used correctly</b></span></div>
+</svg></span><span class="t"><i>Coverage</i><b>Both platforms, used correctly</b></span></div>
 <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="14">
 <circle cx="12" cy="12" r="10"></circle>
 <path d="M12 6v6l4 2"></path>
 </svg></span><span class="t"><i>Turnaround</i><b>48h architecture rec.</b></span></div>
 </div>
 <div class="hero-cta">
-<a class="btn btn-primary" href="#lets-talk">Get a framework recommendation <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+<a class="btn btn-primary" href="#lets-talk">Get a DB recommendation <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
 <path d="M5 12h14M13 6l6 6-6 6"></path>
 </svg></a>
 <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
 </div>
-<p class="live"><span class="pulse"></span> Written recommendation with latency and memory benchmarks, before any build work begins.</p>
+<p class="live"><span class="pulse"></span> Written recommendation with reasoning, before any build work begins</p>
 </div>
 <!-- ===== SIGNATURE: framework fit finder ===== -->
 <div class="viewer"><div class="vw-card">
 <div class="vw-top">
-<span class="vw-title">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon><line x1="12" x2="12" y1="22" y2="15.5"></line><polyline points="22 8.5 12 15.5 2 8.5"></polyline></svg>
-      LangChain vs LlamaIndex
+<span class="t">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+<path d="M2 17l10 5 10-5"></path>
+<path d="M2 12l10 5 10-5"></path>
+</svg>
+      Pinecone vs Weaviate
     </span>
-<span class="vw-badge">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-      Live Comparison
-    </span>
+<span class="vw-chip" id="vwChip">Managed vs Self-Hosted</span>
 </div>
 <div class="vw-body">
-<div class="vw-switcher" id="scenarioSwitcher">
-<button class="active" data-scenario="agent">LangGraph Agent</button>
-<button data-scenario="index">LlamaIndex</button>
-<button data-scenario="hybrid">Hybrid Prod</button>
+<div class="vw-tabs">
+<button class="vw-tab active-pinecone" data-db="pinecone" id="vwTabPinecone">
+        Pinecone
+        <span class="vw-tab-sub">Managed SaaS</span>
+</button>
+<button class="vw-tab" data-db="weaviate" id="vwTabWeaviate">
+        Weaviate
+        <span class="vw-tab-sub">Self-hosted / Cloud</span>
+</button>
 </div>
-<div class="vw-graph-area" id="graphArea">
-<svg id="graphSvg" viewBox="0 0 460 80">
-<defs>
-<marker id="arrowBlue" markerheight="6" markerunits="strokeWidth" markerwidth="6" orient="auto" refx="5" refy="3"><path d="M0,0 L0,6 L6,3 z" fill="var(--blue)"></path></marker>
-<marker id="arrowMuted" markerheight="6" markerunits="strokeWidth" markerwidth="6" orient="auto" refx="5" refy="3"><path d="M0,0 L0,6 L6,3 z" fill="var(--muted)"></path></marker>
-</defs>
-<g id="graphNodes"></g>
-</svg>
-</div>
-<div class="vw-metrics-grid" id="metricsGrid">
-<div class="vw-metric">
-<div class="vw-metric-val" id="metricLatency" style="color: var(--amber);">420ms</div>
-<div class="vw-metric-lbl">Latency</div>
-</div>
-<div class="vw-metric">
-<div class="vw-metric-val" id="metricMemory" style="color: var(--rose);">128MB</div>
-<div class="vw-metric-lbl">Mem Overhead</div>
-</div>
-<div class="vw-metric">
-<div class="vw-metric-val" id="metricSpeed" style="color: var(--mint);">85 tok/s</div>
-<div class="vw-metric-lbl">Retrieval Speed</div>
-</div>
-<div class="vw-metric">
-<div class="vw-metric-val" id="metricComplexity">180</div>
-<div class="vw-metric-lbl">Code Lines</div>
+<div class="vw-chart-box">
+<div class="vw-chart-title">
+<span>Metric Comparison</span>
+<div class="vw-chart-legend">
+<span class="vw-leg-item"><span class="vw-dot vw-dot-pinecone"></span> Pinecone</span>
+<span class="vw-leg-item"><span class="vw-dot vw-dot-weaviate"></span> Weaviate</span>
 </div>
 </div>
-<div class="vw-verdict" id="verdictBox">
-<div class="vw-verdict-head">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"></path></svg>
-        Engineering Verdict
-      </div>
-<div class="vw-verdict-body" id="verdictBody">
-        LangGraph offers unparalleled flexibility for complex, multi-step agentic workflows but introduces significant latency and memory overhead. Best for tasks requiring deep reasoning and tool orchestration.
-      </div>
+<div class="vw-compare-bars" id="vwBars">
+<div class="vw-bar-row">
+<span class="vw-bar-label">Cost</span>
+<div class="vw-bar-track">
+<div class="vw-bar-fill pinecone-bar" id="barPineconeCost" style="width:60%"></div>
+</div>
+<div class="vw-bar-track">
+<div class="vw-bar-fill weaviate-bar" id="barWeaviateCost" style="width:90%"></div>
+</div>
+</div>
+<div class="vw-bar-row">
+<span class="vw-bar-label">Latency</span>
+<div class="vw-bar-track">
+<div class="vw-bar-fill pinecone-bar" id="barPineconeLatency" style="width:80%"></div>
+</div>
+<div class="vw-bar-track">
+<div class="vw-bar-fill weaviate-bar" id="barWeaviateLatency" style="width:90%"></div>
+</div>
+</div>
+<div class="vw-bar-row">
+<span class="vw-bar-label">Scale</span>
+<div class="vw-bar-track">
+<div class="vw-bar-fill pinecone-bar" id="barPineconeScale" style="width:90%"></div>
+</div>
+<div class="vw-bar-track">
+<div class="vw-bar-fill weaviate-bar" id="barWeaviateScale" style="width:70%"></div>
+</div>
+</div>
+<div class="vw-bar-row">
+<span class="vw-bar-label">Indexing</span>
+<div class="vw-bar-track">
+<div class="vw-bar-fill pinecone-bar" id="barPineconeIndexing" style="width:80%"></div>
+</div>
+<div class="vw-bar-track">
+<div class="vw-bar-fill weaviate-bar" id="barWeaviateIndexing" style="width:70%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="vw-metrics-row" id="vwMetrics">
+<div class="vw-tile highlight-pinecone" id="tileCost">
+<div class="vw-tile-val pinecone-active" id="valCost">$0.10</div>
+<div class="vw-tile-lbl">Cost / 100k vec</div>
+</div>
+<div class="vw-tile highlight-pinecone" id="tileLatency">
+<div class="vw-tile-val pinecone-active" id="valLatency">5ms</div>
+<div class="vw-tile-lbl">p99 Latency</div>
+</div>
+<div class="vw-tile highlight-pinecone" id="tileDimensions">
+<div class="vw-tile-val pinecone-active" id="valDimensions">2,000</div>
+<div class="vw-tile-lbl">Max Dims</div>
+</div>
+<div class="vw-tile highlight-pinecone" id="tileDeploy">
+<div class="vw-tile-val pinecone-active" id="valDeploy">Managed</div>
+<div class="vw-tile-lbl">Deployment</div>
+</div>
+</div>
+<div class="vw-scenario-row" id="vwScenario">
+<button class="vw-sc-btn active" data-scenario="small" id="scSmall">Small Scale</button>
+<button class="vw-sc-btn" data-scenario="medium" id="scMedium">Medium Scale</button>
+<button class="vw-sc-btn" data-scenario="large" id="scLarge">Large Scale</button>
 </div>
 </div>
 <div class="vw-foot">
-<span>
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
-      Production Reality Check
-    </span>
-<span>v2.4 · Hybrid Architecture Ready</span>
+<span class="vw-foot-verdict">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+<polyline points="22 4 12 14.01 9 11.01"></polyline>
+</svg>
+<span id="vwVerdict">Pinecone wins on scale &amp; ease; Weaviate on cost &amp; control</span>
+</span>
+<span class="vw-foot-note" id="vwScenarioLabel">Small scale · &lt;100k vectors</span>
 </div>
 </div></div>
 </div>
@@ -2084,14 +2322,10 @@
 <!-- ================= COMPLY STRIP ================= -->
 <div class="comply">
 <div class="wrap comply-in">
-<div><span><b>Both frameworks, done right</b>LangChain, LangGraph, and LlamaIndex, used for what each is
-              actually built for.</span></div>
-<div><span><b>Recommendation in writing</b>A specific framework choice, with the reasoning behind it, before
-              any build begins.</span></div>
-<div><span><b>Hybrid when it earns it</b>LlamaIndex retrieval wrapped as a tool inside a LangGraph agent, the
-              standard 2026 pattern.</span></div>
-<div><span><b>Honest, not default</b>If your project doesn't need the complexity of one framework, I'll say
-              so.</span></div>
+<div><span><b>Cost clarity, upfront</b>A detailed cost comparison table, including per-vector, storage, egress, and compute costs at scale.</span></div>
+<div><span><b>Hosting model verdict</b>A clear recommendation for managed (Pinecone) vs. self-hosted (Weaviate) based on your team's ops capacity and latency needs.</span></div>
+<div><span><b>Scale-specific guidance</b>Breakdown of where each database excels at 100k, 1M, 10M, and 100M+ vectors, with real performance benchmarks.</span></div>
+<div><span><b>Honest trade-offs</b>No vendor bias: if Weaviate's hybrid search or Pinecone's serverless simplicity is the better fit, I'll say so.</span></div>
 </div>
 </div>
 <!-- ================= WHAT IS ================= -->
@@ -2099,20 +2333,16 @@
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">Plain answer</p>
-<h2>What is LangChain? What is LlamaIndex?</h2>
+<h2>What is Pinecone? What is Weaviate?</h2>
 </div>
 <div class="what-is-wrap reveal">
 <div class="what-is-media">
 <!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
-<img alt="Section: what-is; Eyebrow: Plain answer; Heading: What is LangChain? What is LlamaIndex?" loading="lazy" src="/generated_images/langchain-vs-llamaindex-the-definitive-framework-comparison-hero_architecture.jpg"/>
+<img alt="Section: what-is; Eyebrow: Plain answer; Heading: What is Pinecone? What is Weaviate?" loading="lazy" src="/generated_images/pinecone-vs-weaviate-vector-database-comparison-hero_architecture.jpg"/>
 </div>
 <div class="tldr">
 <b>Quick answer</b>
-<p>LangChain is a broad LLM application framework built around composable chains, agents, tools, and memory,
-                with LangGraph as its production agent orchestration layer. LlamaIndex is a focused data framework for
-                LLMs, purpose-built for ingesting, indexing, and querying document corpora via retrieval-augmented
-                generation. Both are open-source, MIT-licensed, and by 2026 both frameworks handle RAG and agents to some
-                degree, the real choice is about where your project's hardest problem actually lives.</p>
+<p>Pinecone is a fully managed vector database optimized for high-throughput similarity search with zero operational overhead, while Weaviate is an open-source vector database offering both managed and self-hosted options with built-in hybrid search capabilities. Both excel at powering retrieval-augmented generation (RAG) and semantic search, but the core architectural choice hinges on whether you prioritize operational simplicity (Pinecone) or flexibility and data sovereignty (Weaviate).</p>
 </div>
 </div>
 </div>
@@ -2123,56 +2353,54 @@
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">The comparison</p>
-<h2>Framework comparison: LangChain vs LlamaIndex</h2>
+<h2>Vector database comparison: Pinecone vs Weaviate</h2>
 </div>
 <div class="tablewrap reveal">
 <table>
 <thead>
 <tr>
 <th>Factor</th>
-<th class="col-me">LangChain (via LangGraph)</th>
-<th>LlamaIndex</th>
+<th class="col-me">Pinecone (Managed)</th>
+<th>Weaviate (Self-Hosted / Managed)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<th scope="row">Primary strength</th>
-<td class="col-me">Multi-step agent orchestration, state, tools, memory</td>
-<td>Retrieval quality: chunking, indexing, query synthesis</td>
+<th scope="row">Hosting model</th>
+<td class="col-me">Fully managed serverless (Pinecone Serverless) or pod-based</td>
+<td>Self-hosted (Kubernetes, Docker) or managed cloud (Weaviate Cloud Services)</td>
 </tr>
 <tr>
-<th scope="row">Best for</th>
-<td class="col-me">Agentic systems where RAG is one component</td>
-<td>Retrieval-first products where document Q&amp;A is the core</td>
+<th scope="row">Cost at 1M vectors (approximate)</th>
+<td class="col-me">$70/month (serverless, no egress charges within region)</td>
+<td>$30-$100/month (self-hosted on cloud VMs, variable by instance type and storage)</td>
 </tr>
 <tr>
-<th scope="row">Code volume for equivalent RAG</th>
-<td class="col-me">Baseline</td>
-<td>30 to 40% less code</td>
+<th scope="row">Cost at 100M vectors (approximate)</th>
+<td class="col-me">$7,000/month (serverless, scales linearly)</td>
+<td>$2,000-$6,000/month (self-hosted, requires cluster management)</td>
 </tr>
 <tr>
-<th scope="row">Framework overhead</th>
-<td class="col-me">~14ms (LangGraph)</td>
-<td>~6ms</td>
+<th scope="row">Search latency (p99)</th>
+<td class="col-me">~10ms (serverless, single-region)</td>
+<td>~5-15ms (self-hosted, optimized cluster)</td>
 </tr>
 <tr>
-<th scope="row">Ecosystem</th>
-<td class="col-me">500+ integrations, most mature agent tooling</td>
-<td>300+ connectors, native document parsing via LlamaParse</td>
+<th scope="row">Hybrid search</th>
+<td class="col-me">Not natively supported; requires separate keyword index</td>
+<td>Built-in hybrid (sparse + dense) search with BM25</td>
 </tr>
 <tr>
-<th scope="row">Observability</th>
-<td class="col-me">LangSmith (first-party, paid tiers)</td>
-<td>Typically requires third-party tracing</td>
+<th scope="row">Operational overhead</th>
+<td class="col-me">Zero: auto-scaling, backups, and updates managed by Pinecone</td>
+<td>High: requires DevOps for scaling, monitoring, and updates</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="callout reveal">
 <p>The 2026 reality</p>
-<p>Most production systems use both together: LlamaIndex handling ingestion, indexing, and retrieval, with
-              LangGraph orchestrating the broader multi-step agent logic around it. This is the standard architecture I
-              build when a project genuinely needs both retrieval quality and agentic behavior.</p>
+<p>Most production systems choose based on cost and ops maturity: startups and teams without dedicated DevOps prefer Pinecone's managed simplicity, while enterprises with strict data residency or high-volume hybrid search needs lean toward self-hosted Weaviate. Hybrid setups using Weaviate for retrieval and Pinecone for high-throughput caching are becoming common in latency-sensitive applications.</p>
 </div>
 </div>
 </section>
@@ -2180,34 +2408,34 @@
 <section id="services">
 <div class="wrap">
 <div class="sec-head reveal">
-<p class="eyebrow">What I build</p>
-<h2>RAG framework development services</h2>
+<p class="eyebrow">What we compare</p>
+<h2>Pinecone vs Weaviate: Key differences at a glance</h2>
 <p>What I build with each framework, matched to what your project actually needs.</p>
 </div>
 <div class="grid g3 reveal">
-<div class="card"><span class="n advise">CONSULT</span>
-<h3>Framework selection consulting</h3>
-<p>An independent architecture assessment of your use case, data size, and latency requirements – delivers a written recommendation for LangChain, LlamaIndex, or a hybrid, with benchmarks from 2026 production stacks.</p>
+<div class="card"><span class="n advise">COST</span>
+<h3>Pricing model</h3>
+<p>Pinecone is fully managed with a pay-as-you-go plan starting at $70/month for 1M vectors; Weaviate offers a free tier and self-hosted options with no per-vector cost but higher infrastructure overhead.</p>
 </div>
-<div class="card"><span class="n build">BUILD</span>
-<h3>LlamaIndex RAG development</h3>
-<p>Retrieval-first builds: document ingestion, hierarchical chunking, auto‑merging retrieval, and query synthesis optimized for sub‑200ms latency and minimal memory overhead.</p>
+<div class="card"><span class="n build">SCALE</span>
+<h3>Throughput and latency</h3>
+<p>Pinecone automatically shards and scales with sub-10ms latency at high QPS; Weaviate requires manual sharding but can achieve similar performance with proper node sizing.</p>
 </div>
-<div class="card"><span class="n build">BUILD</span>
-<h3>LangChain &amp; LangGraph agent development</h3>
-<p>Multi‑step agent systems with tool use, conversational memory, state management, and human‑in‑the‑loop checkpoints – built for tasks that require reasoning, not just retrieval.</p>
+<div class="card"><span class="n build">HOST</span>
+<h3>Hosting model</h3>
+<p>Pinecone is fully managed (no self-hosted option); Weaviate supports self-hosted (Kubernetes, Docker), managed cloud, and hybrid deployments.</p>
 </div>
-<div class="card"><span class="n build">BUILD</span>
-<h3>Hybrid architecture (both frameworks)</h3>
-<p>LlamaIndex as the retrieval layer wrapped as a tool inside a LangGraph agent – combining best‑in‑class retrieval speed with production‑grade orchestration and checkpoints.</p>
+<div class="card"><span class="n build">PERF</span>
+<h3>Performance benchmarks</h3>
+<p>Pinecone consistently achieves &gt;99% recall on ANN benchmarks with minimal tuning; Weaviate's multi-tenancy and filter performance often surpass Pinecone in filtered search scenarios.</p>
 </div>
-<div class="card"><span class="n advise">AUDIT</span>
-<h3>Migration &amp; framework audits</h3>
-<p>Assessment and migration support for teams hitting friction with the wrong framework – includes memory profile analysis, latency benchmarks, and a step‑by‑step hybrid migration plan.</p>
+<div class="card"><span class="n advise">USE</span>
+<h3>Ideal use cases</h3>
+<p>Pinecone best for SaaS apps needing zero ops; Weaviate ideal for enterprises requiring data sovereignty, custom infrastructure, or hybrid cloud.</p>
 </div>
 <div class="card cta-card">
-<h3>Not sure which you need?</h3>
-<p>Try the fit‑check widget above, or get a scoped recommendation.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get a recommendation</a>
+<h3>Still unsure?</h3>
+<p>Use our comparison table to decide, or get a recommendation.</p><a class="btn btn-primary" href="#comparison-table" style="background:#fff;color:#0A1222">View full comparison</a>
 </div>
 </div>
 </div>
@@ -2218,27 +2446,27 @@
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">The honest breakdown</p>
-<h2>Where each framework wins</h2>
+<h2>Where each vector database wins</h2>
 </div>
 <div class="grid g2 reveal">
 <div class="card">
-<span class="n">LLAMAINDEX WINS WHEN</span>
-<h3>Retrieval quality is the bottleneck</h3>
+<span class="n">PINECONE WINS WHEN</span>
+<h3>Operational simplicity is critical</h3>
 <ul>
-<li>You need complex multi‑document reasoning: tree index and response synthesizers produce 10‑15% better answers on multi‑source synthesis benchmarks</li>
-<li>Your documents are hierarchically structured (legal, code, technical manuals): composable indices deliver 15‑25% better retrieval accuracy with 40% less memory overhead</li>
-<li>You want to ship faster with less code – a typical LlamaIndex RAG pipeline is 30‑50% fewer lines than an equivalent LangGraph setup</li>
-<li>Latency budget is tight: retrieval‑first architectures keep p95 response times under 300ms vs. 600ms+ for multi‑step agent graphs</li>
+<li>You want zero ops and auto-scaling without managing infrastructure.</li>
+<li>Your team lacks Kubernetes or DevOps expertise for self-hosting.</li>
+<li>You need predictable low-latency at scale without manual tuning.</li>
+<li>Cost per query is competitive when including ops overhead (self-hosted Weaviate often 2-3x more expensive at low scale).</li>
 </ul>
 </div>
 <div class="card">
-<span class="n build">LANGCHAIN WINS WHEN</span>
-<h3>RAG is one piece of a larger agent</h3>
+<span class="n build">WEAVIATE WINS WHEN</span>
+<h3>Data sovereignty or cost control matters</h3>
 <ul>
-<li>You need tool use, multi‑step reasoning, or persistent memory – LangGraph’s state machines handle branching and loops natively</li>
-<li>Human‑in‑the‑loop checkpoints matter: LangGraph has native interrupt/resume support with built‑in checkpointing</li>
-<li>First‑party observability (LangSmith) is a requirement – trace every hop across tools, retrievals, and LLM calls</li>
-<li>Your architecture benefits from a hybrid pattern: LlamaIndex as a retrieval tool inside a LangGraph agent gives you the speed of indexing with the flexibility of graph‑based orchestration</li>
+<li>You need on-premise or air-gapped deployment for compliance (GDPR, HIPAA, etc.).</li>
+<li>Your query patterns involve heavy filtered search where Weaviate's inverted index outperforms Pinecone by 30-50%.</li>
+<li>You want predictable infrastructure costs (self-hosted fixed monthly vs Pinecone's variable per-vector pricing).</li>
+<li>You require multi-tenancy or custom vector index tuning beyond Pinecone's managed defaults.</li>
 </ul>
 </div>
 </div>
@@ -2248,39 +2476,39 @@
 <section id="process">
 <div class="wrap">
 <div class="sec-head reveal">
-<p class="eyebrow">How it's built</p>
-<h2>LangChain vs LlamaIndex: engagement process</h2>
+<p class="eyebrow">How to decide</p>
+<h2>Comparison process</h2>
 </div>
 <div class="steps reveal">
 <details class="step" open="">
 <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
 <h3>Discovery</h3><span class="cv">+</span>
 </summary>
-<div class="body">A working session on your corpus, query patterns, latency budget, and memory constraints. We isolate whether the real bottleneck is LlamaIndex-style hierarchical retrieval or LangGraph-style multi-step agent orchestration before any code is written.</div>
+<div class="body">We analyze your data volume, query patterns, latency requirements, and hosting preferences (managed vs self-hosted) to frame the comparison.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
-<h3>Framework recommendation</h3><span class="cv">+</span>
+<h3>Architecture recommendation</h3><span class="cv">+</span>
 </summary>
-<div class="body">A written architecture decision record comparing LangChain vs LlamaIndex for your actual data. It covers projected p95 retrieval latency, memory overhead, agent graph complexity, and where a hybrid production architecture pays off.</div>
+<div class="body">A written comparison table with cost projections, scalability benchmarks, and a clear verdict on Pinecone vs Weaviate for your use case.</div>
 </details>
 <details class="step gate">
 <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
-<h3>Build</h3><span class="cv">+</span>
+<h3>Proof of concept</h3><span class="cv">+</span>
 </summary>
-<div class="body">Milestone-based development: retrieval layer first when LlamaIndex is involved, then LangGraph agent graphs, tool bindings, memory, and guardrails. Every milestone is tested against a frozen eval set, not a demo notebook.</div>
+<div class="body">We deploy a small-scale test with both databases using your data to measure recall, latency, and throughput under realistic conditions.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
-<h3>Evaluation</h3><span class="cv">+</span>
+<h3>Benchmarking</h3><span class="cv">+</span>
 </summary>
-<div class="body">Quantitative evaluation with RAGAS or a custom eval set: faithfulness, answer relevancy, context precision, and end-to-end p95 latency. This is where framework trade-offs become measurable in your environment.</div>
+<div class="body">Run your real queries and compare results including cost-per-query, indexing speed, and query latency across different vector dimensions.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 05<span class="days">handoff</span></span>
-<h3>Deployment</h3><span class="cv">+</span>
+<h3>Verdict</h3><span class="cv">+</span>
 </summary>
-<div class="body">Production deployment with tracing, memory-overhead monitoring, and documentation. Your team leaves with a defended framework decision, runbooks, and the ability to extend the architecture in 2026 and beyond.</div>
+<div class="body">Final recommendation with a detailed breakdown of trade-offs, total cost of ownership, and a roadmap for production deployment.</div>
 </details>
 </div>
 </div>
@@ -2290,33 +2518,33 @@
 <section class="soft" id="pricing">
 <div class="wrap">
 <div class="sec-head reveal">
-<p class="eyebrow">Investment</p>
-<h2>LangChain vs LlamaIndex engagement options</h2>
+<p class="eyebrow">Cost comparison</p>
+<h2>Pinecone vs Weaviate at a Glance</h2>
 </div>
 <div class="tablewrap reveal">
 <table>
 <thead>
 <tr>
-<th>Engagement type</th>
-<th class="col-me">What's included</th>
+<th>Factor</th>
+<th class="col-me">Pinecone vs Weaviate</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Framework selection consulting <span class="badge-free" style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span></td>
-<td class="col-me">Written architecture decision record: LangGraph vs LlamaIndex for your data, including retrieval latency, memory overhead, and hybrid recommendation.</td>
+<td>Hosting model</td>
+<td class="col-me">Pinecone: fully managed SaaS. Weaviate: self-hosted, managed cloud, or hybrid.</td>
 </tr>
 <tr>
-<td>LlamaIndex RAG build</td>
-<td class="col-me">Ingestion pipeline, hierarchical index design, reranking, query engine, custom eval suite, and production deployment.</td>
+<td>Pricing model</td>
+<td class="col-me">Pinecone: pay-per-query + storage. Weaviate: open-source core, cloud pricing per node.</td>
 </tr>
 <tr>
-<td>LangGraph agent build</td>
-<td class="col-me">Multi-step agent graphs, tool integration, memory management, guardrails, tracing, and production deployment.</td>
+<td>Scalability</td>
+<td class="col-me">Pinecone: auto-scaling, no ops. Weaviate: manual sharding, more control but more overhead.</td>
 </tr>
 <tr class="me-row">
-<td>Hybrid production architecture</td>
-<td class="col-me">LlamaIndex retrieval wrapped as a LangGraph tool: the 2026 pattern for combining retrieval speed with agent orchestration, including observability and runbooks.</td>
+<td>Latency</td>
+<td class="col-me">Pinecone: low single-digit ms for typical workloads. Weaviate: comparable but depends on self-hosted infrastructure.</td>
 </tr>
 </tbody>
 </table>
@@ -2328,28 +2556,28 @@
 <div class="wrap">
 <div class="sec-head center reveal">
 <p class="eyebrow">FAQ</p>
-<h2>LangChain vs LlamaIndex: frequently asked questions</h2>
+<h2>Frequently asked questions</h2>
 </div>
 <div class="faq reveal">
 <details open="">
-<summary>Is LlamaIndex better than LangChain for RAG?</summary>
-<div class="a">For pure RAG over large document corpora, LlamaIndex generally wins on retrieval quality and index speed: its hierarchical index, metadata filtering, and reranking are production-calibrated out of the box. LangGraph is the better foundation when RAG is one stateful component inside a broader multi-step agent system.</div>
+<summary>Which is cheaper, Pinecone or Weaviate?</summary>
+<div class="a">At small scale, Pinecone's pay-per-query model can be cheaper due to zero infrastructure overhead. At large scale, Weaviate's self-hosted option typically yields lower total cost of ownership, though you must account for ops and maintenance.</div>
 </details>
 <details>
-<summary>Can you use LangChain and LlamaIndex together in production?</summary>
-<div class="a">Yes, and it is the most common hybrid production architecture I build in 2026: a LlamaIndex query engine wrapped as a tool inside a LangGraph agent. LlamaIndex owns retrieval speed and precision while LangGraph owns orchestration, memory, and guardrails.</div>
+<summary>Can I self-host Weaviate? What about Pinecone?</summary>
+<div class="a">Weaviate is open-source and fully self-hostable on your own infrastructure. Pinecone is a proprietary managed service and cannot be self-hosted. This is the primary hosting model difference.</div>
 </details>
 <details>
-<summary>How do you decide which framework to recommend?</summary>
-<div class="a">The decision comes from where your hardest problem actually lives: messy hierarchical retrieval over a large corpus points to LlamaIndex, while multi-step behavior, tool use, and stateful reasoning point to LangGraph. The recommendation is documented in a written architecture spec with trade-offs and benchmarks before any build work starts.</div>
+<summary>Which scales better for large datasets with high query volume?</summary>
+<div class="a">Both scale well, but through different approaches. Pinecone auto-scales seamlessly with no operational burden. Weaviate requires manual sharding and cluster management but gives you finer control over resource allocation and cost.</div>
 </details>
 <details>
-<summary>What are the real performance differences between LangGraph and LlamaIndex?</summary>
-<div class="a">A tuned LlamaIndex query engine can return context in the tens of milliseconds at p95 because its hierarchical index avoids unnecessary graph traversals. A LangGraph multi-step agent spends more of its latency and memory budget on node scheduling, tool calls, and state transitions, so the fastest choice depends on whether your bottleneck is retrieval or orchestration.</div>
+<summary>How do they compare on latency and recall accuracy?</summary>
+<div class="a">Both offer sub-10ms latency on typical workloads and high recall with HNSW indexing. Real-world performance depends on your data dimensionality, index configuration, and infrastructure. A benchmark on your own data is recommended.</div>
 </details>
 <details>
-<summary>How much does RAG framework development cost?</summary>
-<div class="a">A framework selection consultation runs $500 to $1,500. A dedicated LlamaIndex or LangGraph build ranges from $8,000 to $30,000+, while a hybrid production architecture typically runs $15,000 to $40,000+ depending on the data and agent complexity. Contact for a fixed-price estimate once the bottleneck is confirmed.</div>
+<summary>Which one should I choose for a production application?</summary>
+<div class="a">Choose Pinecone if you prioritize zero ops, fast time-to-market, and predictable scaling. Choose Weaviate if you need full control, lower cost at high volume, or on-premise deployment. Many teams start with Pinecone for speed and later migrate to Weaviate for cost.</div>
 </details>
 </div>
 </div>
@@ -2547,109 +2775,212 @@
   </script>
 <script>
 (function() {
-  'use strict';
+  const activeDb = { current: 'pinecone', scenario: 'small' };
 
-  const scenarios = {
-    agent: {
-      metrics: { latency: '420ms', memory: '128MB', speed: '85 tok/s', complexity: '180' },
-      verdict: 'LangGraph offers unparalleled flexibility for complex, multi-step agentic workflows but introduces significant latency and memory overhead. Best for tasks requiring deep reasoning and tool orchestration.',
-      colors: { latency: 'var(--amber)', memory: 'var(--rose)', speed: 'var(--mint)', complexity: 'var(--body)' },
-      svg: `<rect x="10" y="20" width="60" height="28" rx="8" fill="var(--surface)" stroke="var(--blue)" stroke-width="1.5"/><text x="40" y="38" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Input</text>
-            <line x1="70" y1="34" x2="100" y2="34" stroke="var(--blue)" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
-            <rect x="102" y="14" width="70" height="28" rx="8" fill="var(--surface)" stroke="var(--blue)" stroke-width="1.5"/><text x="137" y="32" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Plan</text>
-            <line x1="172" y1="28" x2="202" y2="28" stroke="var(--blue)" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
-            <rect x="204" y="14" width="70" height="28" rx="8" fill="var(--surface)" stroke="var(--blue)" stroke-width="1.5"/><text x="239" y="32" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Execute</text>
-            <line x1="274" y1="28" x2="304" y2="28" stroke="var(--blue)" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
-            <rect x="306" y="14" width="70" height="28" rx="8" fill="var(--surface)" stroke="var(--blue)" stroke-width="1.5"/><text x="341" y="32" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Synth</text>
-            <line x1="376" y1="34" x2="406" y2="34" stroke="var(--blue)" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
-            <rect x="408" y="20" width="50" height="28" rx="8" fill="var(--blue)" stroke="none"/><text x="433" y="38" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="#fff">Output</text>
-            <circle cx="40" cy="55" r="3" fill="var(--mint)"/><text x="48" y="58" font-family="var(--mono)" font-size="7" fill="var(--muted)">Stateful</text>
-            <circle cx="433" cy="55" r="3" fill="var(--mint)"/><text x="441" y="58" font-family="var(--mono)" font-size="7" fill="var(--muted)">Graph</text>`
+  const data = {
+    pinecone: {
+      label: 'Pinecone',
+      badge: 'Managed SaaS',
+      chip: 'Managed vs Self-Hosted',
+      scores: { cost: 60, latency: 80, scale: 90, indexing: 80 },
+      metrics: {
+        small:  { cost: '$0.12', latency: '6ms', dimensions: '2,000', deploy: 'Managed' },
+        medium: { cost: '$0.10', latency: '5ms', dimensions: '2,000', deploy: 'Managed' },
+        large:  { cost: '$0.08', latency: '4ms', dimensions: '2,000', deploy: 'Managed' }
+      },
+      verdict: {
+        small:  'Pinecone is simple but pricier at small scale; Weaviate offers better cost efficiency',
+        medium: 'Pinecone excels in scale & zero ops; Weaviate balances cost with self-hosted flexibility',
+        large:  'Pinecone dominates on operational ease & scale; Weaviate requires infrastructure management'
+      }
     },
-    index: {
-      metrics: { latency: '120ms', memory: '64MB', speed: '210 tok/s', complexity: '90' },
-      verdict: 'LlamaIndex excels at high-speed, structured retrieval with minimal memory footprint. Its hierarchical indexing strategy is ideal for production RAG pipelines where latency and cost efficiency are critical.',
-      colors: { latency: 'var(--mint)', memory: 'var(--mint)', speed: 'var(--blue)', complexity: 'var(--muted)' },
-      svg: `<rect x="10" y="20" width="60" height="28" rx="8" fill="var(--surface)" stroke="var(--mint)" stroke-width="1.5"/><text x="40" y="38" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Query</text>
-            <line x1="70" y1="34" x2="100" y2="34" stroke="var(--mint)" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
-            <rect x="102" y="14" width="70" height="28" rx="8" fill="var(--surface)" stroke="var(--mint)" stroke-width="1.5"/><text x="137" y="32" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Chunk</text>
-            <line x1="172" y1="28" x2="202" y2="28" stroke="var(--mint)" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
-            <rect x="204" y="14" width="70" height="28" rx="8" fill="var(--surface)" stroke="var(--mint)" stroke-width="1.5"/><text x="239" y="32" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Vector Embed</text>
-            <line x1="274" y1="28" x2="304" y2="28" stroke="var(--mint)" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
-            <rect x="306" y="14" width="70" height="28" rx="8" fill="var(--surface)" stroke="var(--mint)" stroke-width="1.5"/><text x="341" y="32" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Retriever</text>
-            <line x1="376" y1="34" x2="406" y2="34" stroke="var(--mint)" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
-            <rect x="408" y="20" width="50" height="28" rx="8" fill="var(--mint)" stroke="none"/><text x="433" y="38" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="#fff">LLM</text>
-            <circle cx="40" cy="55" r="3" fill="var(--blue)"/><text x="48" y="58" font-family="var(--mono)" font-size="7" fill="var(--muted)">Hierarchical</text>
-            <circle cx="433" cy="55" r="3" fill="var(--blue)"/><text x="441" y="58" font-family="var(--mono)" font-size="7" fill="var(--muted)">Index</text>`
-    },
-    hybrid: {
-      metrics: { latency: '250ms', memory: '96MB', speed: '150 tok/s', complexity: '140' },
-      verdict: 'The Hybrid architecture combines LangGraph agentic orchestration with LlamaIndex retrieval, offering a balanced trade-off. Ideal for complex production systems needing both deep reasoning and fast knowledge lookup.',
-      colors: { latency: 'var(--amber)', memory: 'var(--amber)', speed: 'var(--blue)', complexity: 'var(--body)' },
-      svg: `<rect x="10" y="20" width="60" height="28" rx="8" fill="var(--surface)" stroke="var(--violet)" stroke-width="1.5"/><text x="40" y="38" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Input</text>
-            <line x1="70" y1="34" x2="100" y2="34" stroke="var(--violet)" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
-            <rect x="102" y="14" width="50" height="28" rx="8" fill="var(--surface)" stroke="var(--violet)" stroke-width="1.5"/><text x="127" y="32" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Router</text>
-            <line x1="152" y1="16" x2="180" y2="8" stroke="var(--blue)" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
-            <rect x="182" y="2" width="60" height="24" rx="6" fill="var(--surface)" stroke="var(--blue)" stroke-width="1.2"/><text x="212" y="17" font-family="var(--mono)" font-size="7" text-anchor="middle" fill="var(--ink)">Agent</text>
-            <line x1="152" y1="40" x2="180" y2="48" stroke="var(--mint)" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
-            <rect x="182" y="42" width="60" height="24" rx="6" fill="var(--surface)" stroke="var(--mint)" stroke-width="1.2"/><text x="212" y="57" font-family="var(--mono)" font-size="7" text-anchor="middle" fill="var(--ink)">Index</text>
-            <line x1="242" y1="14" x2="280" y2="30" stroke="var(--blue)" stroke-width="1.5"/>
-            <line x1="242" y1="54" x2="280" y2="40" stroke="var(--mint)" stroke-width="1.5"/>
-            <rect x="282" y="14" width="70" height="28" rx="8" fill="var(--surface)" stroke="var(--violet)" stroke-width="1.5"/><text x="317" y="32" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="var(--ink)">Fuser</text>
-            <line x1="352" y1="34" x2="382" y2="34" stroke="var(--violet)" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
-            <rect x="384" y="20" width="50" height="28" rx="8" fill="var(--violet)" stroke="none"/><text x="409" y="38" font-family="var(--mono)" font-size="8" text-anchor="middle" fill="#fff">Output</text>
-            <circle cx="40" cy="55" r="3" fill="var(--amber)"/><text x="48" y="58" font-family="var(--mono)" font-size="7" fill="var(--muted)">Resilient</text>
-            <circle cx="409" cy="55" r="3" fill="var(--amber)"/><text x="417" y="58" font-family="var(--mono)" font-size="7" fill="var(--muted)">Prod</text>`
+    weaviate: {
+      label: 'Weaviate',
+      badge: 'Self-hosted / Cloud',
+      chip: 'Self-hosted vs Managed',
+      scores: { cost: 90, latency: 90, scale: 70, indexing: 70 },
+      metrics: {
+        small:  { cost: '$0.04', latency: '3ms', dimensions: '1,000+', deploy: 'Self-host' },
+        medium: { cost: '$0.04', latency: '3ms', dimensions: '1,000+', deploy: 'Hybrid' },
+        large:  { cost: '$0.03', latency: '5ms', dimensions: '1,000+', deploy: 'Self-host' }
+      },
+      verdict: {
+        small:  'Weaviate wins on raw cost & latency; Pinecone offers simpler managed onboarding',
+        medium: 'Weaviate stays cost-effective; Pinecone reduces operational overhead at scale',
+        large:  'Weaviate requires ops investment; Pinecone delivers consistent managed performance'
+      }
     }
   };
 
-  const buttons = document.querySelectorAll('#scenarioSwitcher button');
-  const graphSvg = document.getElementById('graphNodes');
-  const metricLatency = document.getElementById('metricLatency');
-  const metricMemory = document.getElementById('metricMemory');
-  const metricSpeed = document.getElementById('metricSpeed');
-  const metricComplexity = document.getElementById('metricComplexity');
-  const verdictBody = document.getElementById('verdictBody');
+  const scenarioLabels = {
+    small:  'Small scale · &lt;100k vectors',
+    medium: 'Medium scale · ~1M vectors',
+    large:  'Large scale · 10M+ vectors'
+  };
 
-  function updateWidget(scenarioKey) {
-    const data = scenarios[scenarioKey];
-    if (!data) return;
+  const dbTabs = {
+    pinecone: document.getElementById('vwTabPinecone'),
+    weaviate: document.getElementById('vwTabWeaviate')
+  };
 
-    // Update SVG
-    graphSvg.innerHTML = data.svg;
+  const scBtns = {
+    small:  document.getElementById('scSmall'),
+    medium: document.getElementById('scMedium'),
+    large:  document.getElementById('scLarge')
+  };
 
-    // Update Metrics
-    metricLatency.textContent = data.metrics.latency;
-    metricLatency.style.color = data.colors.latency;
-    metricMemory.textContent = data.metrics.memory;
-    metricMemory.style.color = data.colors.memory;
-    metricSpeed.textContent = data.metrics.speed;
-    metricSpeed.style.color = data.colors.speed;
-    metricComplexity.textContent = data.metrics.complexity;
-    metricComplexity.style.color = data.colors.complexity;
+  const bars = {
+    pinecone: {
+      cost: document.getElementById('barPineconeCost'),
+      latency: document.getElementById('barPineconeLatency'),
+      scale: document.getElementById('barPineconeScale'),
+      indexing: document.getElementById('barPineconeIndexing')
+    },
+    weaviate: {
+      cost: document.getElementById('barWeaviateCost'),
+      latency: document.getElementById('barWeaviateLatency'),
+      scale: document.getElementById('barWeaviateScale'),
+      indexing: document.getElementById('barWeaviateIndexing')
+    }
+  };
 
-    // Update Verdict
-    verdictBody.textContent = data.verdict;
+  const tiles = {
+    cost: document.getElementById('tileCost'),
+    latency: document.getElementById('tileLatency'),
+    dimensions: document.getElementById('tileDimensions'),
+    deploy: document.getElementById('tileDeploy')
+  };
 
-    // Update Button Active States
-    buttons.forEach(btn => {
-      btn.classList.remove('active');
-      if (btn.dataset.scenario === scenarioKey) {
-        btn.classList.add('active');
+  const valCost = document.getElementById('valCost');
+  const valLatency = document.getElementById('valLatency');
+  const valDimensions = document.getElementById('valDimensions');
+  const valDeploy = document.getElementById('valDeploy');
+  const chip = document.getElementById('vwChip');
+  const verdict = document.getElementById('vwVerdict');
+  const scenarioLabel = document.getElementById('vwScenarioLabel');
+
+  function setActiveTab(db) {
+    Object.keys(dbTabs).forEach(key => {
+      const el = dbTabs[key];
+      el.classList.remove('active-pinecone', 'active-weaviate');
+      if (key === db) {
+        el.classList.add(key === 'pinecone' ? 'active-pinecone' : 'active-weaviate');
       }
     });
   }
 
-  // Attach Event Listeners
-  buttons.forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      const scenarioKey = this.dataset.scenario;
-      updateWidget(scenarioKey);
+  function setActiveScenario(scenario) {
+    Object.keys(scBtns).forEach(key => {
+      const el = scBtns[key];
+      el.classList.remove('active', 'weaviate-sc-active');
+      if (key === scenario) {
+        el.classList.add('active');
+        if (activeDb.current === 'weaviate') {
+          el.classList.add('weaviate-sc-active');
+        }
+      }
+    });
+  }
+
+  function updateTileHighlights(db) {
+    Object.keys(tiles).forEach(key => {
+      const el = tiles[key];
+      el.classList.remove('highlight-pinecone', 'highlight-weaviate');
+      el.classList.add(db === 'pinecone' ? 'highlight-pinecone' : 'highlight-weaviate');
+    });
+    const valEls = [valCost, valLatency, valDimensions, valDeploy];
+    valEls.forEach(el => {
+      el.classList.remove('pinecone-active', 'weaviate-active');
+      el.classList.add(db === 'pinecone' ? 'pinecone-active' : 'weaviate-active');
+    });
+  }
+
+  function updateBars(db) {
+    const scores = data[db].scores;
+    const otherDb = db === 'pinecone' ? 'weaviate' : 'pinecone';
+    const otherScores = data[otherDb].scores;
+
+    Object.keys(scores).forEach(metric => {
+      const bar = bars[db][metric];
+      const otherBar = bars[otherDb][metric];
+      bar.style.width = scores[metric] + '%';
+      otherBar.style.width = otherScores[metric] + '%';
+      bar.classList.remove('dimmed');
+      otherBar.classList.remove('dimmed');
+      if (db === 'pinecone') {
+        bars.weaviate[metric].classList.add('dimmed');
+        bars.pinecone[metric].classList.remove('dimmed');
+      } else {
+        bars.pinecone[metric].classList.add('dimmed');
+        bars.weaviate[metric].classList.remove('dimmed');
+      }
+    });
+  }
+
+  function updateMetrics(db, scenario) {
+    const m = data[db].metrics[scenario];
+    valCost.textContent = m.cost;
+    valLatency.textContent = m.latency;
+    valDimensions.textContent = m.dimensions;
+    valDeploy.textContent = m.deploy;
+  }
+
+  function updateVerdict(db, scenario) {
+    verdict.textContent = data[db].verdict[scenario];
+  }
+
+  function updateChip(db) {
+    chip.textContent = data[db].chip;
+  }
+
+  function updateScenarioLabel(scenario) {
+    scenarioLabel.innerHTML = scenarioLabels[scenario];
+  }
+
+  function syncScenarioBtnStyle() {
+    Object.keys(scBtns).forEach(key => {
+      const el = scBtns[key];
+      el.classList.remove('weaviate-sc-active');
+      if (key === activeDb.scenario && activeDb.current === 'weaviate') {
+        el.classList.add('weaviate-sc-active');
+      }
+    });
+  }
+
+  function updateAll() {
+    const db = activeDb.current;
+    const scenario = activeDb.scenario;
+    setActiveTab(db);
+    setActiveScenario(scenario);
+    updateTileHighlights(db);
+    updateBars(db);
+    updateMetrics(db, scenario);
+    updateVerdict(db, scenario);
+    updateChip(db);
+    updateScenarioLabel(scenario);
+    syncScenarioBtnStyle();
+  }
+
+  // Tab click handlers
+  Object.keys(dbTabs).forEach(db => {
+    dbTabs[db].addEventListener('click', function() {
+      if (activeDb.current === db) return;
+      activeDb.current = db;
+      updateAll();
     });
   });
 
-  // Initialize with Agent scenario
-  updateWidget('agent');
+  // Scenario click handlers
+  Object.keys(scBtns).forEach(scenario => {
+    scBtns[scenario].addEventListener('click', function() {
+      if (activeDb.scenario === scenario) return;
+      activeDb.scenario = scenario;
+      updateAll();
+    });
+  });
+
+  // Initial render
+  updateAll();
 })();
 </script>
 </body>

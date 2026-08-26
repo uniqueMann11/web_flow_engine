@@ -1,35 +1,35 @@
 {
   "hero": {
-    "eyebrow": "When each fails, hybrid wins",
+    "eyebrow": "The right framework, built correctly",
     "h1": {
-      "h1": "Semantic Search vs Keyword Search:",
-      "span": "the hybrid answer"
+      "h1": "LangChain vs LlamaIndex development services:",
+      "span": "the right RAG framework"
     },
-    "hero-sub": "Choosing between semantic search and keyword search determines how much you spend, how fast results appear, and how well your system handles ambiguous queries. I build with both and apply hybrid search where each fails, ensuring production-grade retrieval that answers questions your users actually ask.",
+    "hero-sub": "Choosing between LangChain and LlamaIndex determines how much you spend, how fast it ships, and how well it performs in production. I build with both frameworks and pick the right one, or the right combination, based on your actual retrieval and orchestration needs, not a default toolkit.",
     "creds": [
       {
         "cred": {
           "i": "Experience",
-          "b": "5+ yrs production search"
+          "b": "5+ yrs production RAG"
         }
       },
       {
         "cred": {
           "i": "Coverage",
-          "b": "Both methods, used correctly"
+          "b": "Both frameworks, used correctly"
         }
       },
       {
         "cred": {
           "i": "Turnaround",
-          "b": "48h search architecture rec."
+          "b": "48h architecture rec."
         }
       }
     ],
     "hero-cta": [
       {
         "btn-primary": {
-          "text": "Get a search recommendation",
+          "text": "Get a framework recommendation",
           "url": "#lets-talk"
         }
       },
@@ -44,11 +44,11 @@
     "trust": [
       {
         "b": "5+",
-        "span": "Years building production search"
+        "span": "Years building production RAG"
       },
       {
         "b": "40%",
-        "span": "Higher recall with hybrid"
+        "span": "Less code, LlamaIndex vs baseline"
       },
       {
         "b": "48h",

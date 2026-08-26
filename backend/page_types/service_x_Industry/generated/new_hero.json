@@ -1,58 +1,58 @@
 {
   "hero": {
-    "eyebrow": "Brand-voice-safe, human-verified",
+    "eyebrow": "Build vs buy custom AI",
     "h1": {
-      "h1": "Generative AI for marketing content at scale:",
-      "span": "Multi-channel, on-brand, QA'd"
+      "h1": "Hugging Face vs OpenAI for custom models:",
+      "span": "Open weights vs proprietary API"
     },
-    "hero-sub": "I build and manage generative AI content pipelines that produce high-volume, on-brand copy for email, social, blog, and ads\u2014with human-in-the-loop QA to catch tone drift, factual errors, and compliance issues before anything goes live.",
+    "hero-sub": "I architect and deploy custom models using open-weight Hugging Face transformers or OpenAI's fine-tuning API, balancing control over data and training with production scalability. Whether you need a fully private model or a rapid API integration, I align the build-vs-buy decision with your latency, compliance, and cost requirements.",
     "creds": [
       {
         "cred": {
-          "i": "Scale",
-          "b": "10x content output"
+          "i": "Expertise",
+          "b": "5+ yrs custom model deployment"
         }
       },
       {
         "cred": {
-          "i": "Quality",
-          "b": "100% human-reviewed"
+          "i": "Flexibility",
+          "b": "100% open-weight or API"
         }
       },
       {
         "cred": {
-          "i": "Turnaround",
-          "b": "48h pilot setup"
+          "i": "Speed",
+          "b": "48h architecture comparison"
         }
       }
     ],
     "hero-cta": [
       {
         "btn-primary": {
-          "text": "Scale your content now",
+          "text": "Discuss your custom model project",
           "url": "#lets-talk"
         }
       },
       {
         "btn-ghost": {
-          "text": "See how it works",
-          "url": "/ai-content-case-studies"
+          "text": "View case studies",
+          "url": "/ai-case-studies"
         }
       }
     ],
-    "live": "Every piece of content passes human QA before publishing; brand voice guidelines are enforced programmatically.",
+    "live": "All open-weight models run in your infrastructure; no API data leakage.",
     "trust": [
       {
-        "b": "10x",
-        "span": "More content output"
+        "b": "5+",
+        "span": "Years deploying custom models"
       },
       {
         "b": "100%",
-        "span": "Human QA pass rate"
+        "span": "Open-weight model audit"
       },
       {
         "b": "48h",
-        "span": "To a working pilot"
+        "span": "To a build-vs-buy analysis"
       }
     ]
   }

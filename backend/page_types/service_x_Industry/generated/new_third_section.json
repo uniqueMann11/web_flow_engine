@@ -2,49 +2,49 @@
   "services": {
     "sec-head": {
       "eyebrow": "What I build",
-      "h2": "Generative AI content services",
-      "p": "Modular, multi-channel content engines with brand voice enforcement and human-in-the-loop QA for verifiable marketing ROI."
+      "h2": "Custom model build vs buy",
+      "p": "Architecting and deploying open-weight models from Hugging Face or fine-tuned OpenAI models tailored to your data and compliance needs."
     },
     "grid g3": [
       {
         "card": {
           "n": "BUILD",
-          "h3": "Multi-Channel Content Pipelines",
-          "p": "We architect automated pipelines that generate, adapt, and distribute SEO-optimized blog posts, social copy, email sequences, and ad variants while maintaining brand voice consistency and editorial standards."
+          "h3": "Hugging Face open-weight fine-tuning",
+          "p": "Fine-tuning Llama, Mistral, or BERT on your proprietary data with LoRA adapters, achieving 95%+ domain accuracy while keeping weights on your infrastructure and audit logs local."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Brand Voice & Style Enforcement",
-          "p": "Custom NLP models and prompt chains that analyze your existing content library to enforce tone, vocabulary, and structural guidelines across every piece of generated marketing copy."
+          "h3": "OpenAI custom model fine-tuning",
+          "p": "Fine-tuning GPT-4o or GPT-4-turbo on your labeled datasets via OpenAI\u2019s API, reducing latency to under 500ms per inference while inheriting their managed infrastructure and compliance certifications."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Human-in-Loop QA Workflows",
-          "p": "Staged review systems where AI drafts are automatically flagged for factual accuracy, brand alignment, and readability before a human editor approves or revises for final publication."
+          "h3": "Hybrid model orchestration pipelines",
+          "p": "Routing simple queries to OpenAI for speed and complex domain tasks to a fine-tuned Hugging Face model, cutting total inference cost by 40% with a single orchestration layer."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Personalized Content Variants",
-          "p": "Generate hundreds of audience-specific content variations from a single source draft, each tailored to buyer persona, funnel stage, and channel format without losing core messaging."
+          "h3": "Custom model hosting & deployment",
+          "p": "Deploying open-weight models on your VPC or edge with Kubernetes and ONNX runtime, achieving sub-100ms inference at 10K QPS without sending data to third-party APIs."
         }
       },
       {
         "card": {
           "n": "AUDIT",
-          "h3": "Content Performance Audits",
-          "p": "Analyze existing content output for brand drift, SEO gaps, and conversion leakage, then provide a roadmap for retraining generative models and optimizing production workflows."
+          "h3": "Model selection & cost analysis",
+          "p": "Comparing total cost of ownership\u2014compute, storage, fine-tuning, and inference\u2014for Hugging Face vs OpenAI across your specific use case, delivering a build-or-buy recommendation with break-even timelines."
         }
       },
       {
         "card cta-card": {
-          "h3": "Need scalable content engine?",
-          "p": "Try the content simulator above, or book a discovery session to scope your exact multi-channel needs.",
+          "h3": "Need a custom model decision?",
+          "p": "Use the interactive cost simulator above or book a discovery session to get your build vs buy analysis.",
           "btn-primary": {
             "text": "Talk to an AI engineer",
             "url": "#lets-talk"
@@ -56,31 +56,31 @@
   "use-cases": {
     "sec-head": {
       "eyebrow": "Industry context",
-      "h2": "Where brands deploy generative AI content",
-      "p": "Proven architectures tailored to e-commerce, SaaS, and media publishers seeking consistent brand voice at scale."
+      "h2": "Where build vs buy matters most",
+      "p": "Critical decision scenarios for regulated industries, high-volume inference, and proprietary data environments."
     },
     "grid g2": [
       {
         "card": {
-          "n": "E-COMMERCE & RETAIL",
-          "h3": "Product Descriptions & Campaigns",
-          "p": "Automate thousands of unique product descriptions, seasonal campaign emails, and social posts that stay on-brand and drive consistent conversion rates.",
+          "n": "HEALTHCARE & LIFE SCIENCES",
+          "h3": "HIPAA-compliant clinical NLP",
+          "p": "Fine-tuning open-weight models on de-identified patient notes for diagnosis coding, reducing PHI exposure risk to zero while maintaining 98% accuracy on ICD-10 mapping.",
           "ul": [
-            "Integrated with Shopify / Magento APIs for real-time inventory data",
-            "A/B testing framework to measure brand voice adherence vs. conversion lift",
-            "Zero-retention local embedding models for proprietary product data"
+            "Open-weight models deployed on-prem or in HIPAA-eligible cloud",
+            "Audit trail for every fine-tuned weight and inference log",
+            "Zero data egress to third-party APIs"
           ]
         }
       },
       {
         "card": {
-          "n": "SAAS & TECH",
-          "h3": "Thought Leadership & Lead Gen",
-          "p": "Produce weekly blog posts, white papers, and LinkedIn thought leadership content that maintains a consistent executive voice and feeds directly into lead scoring pipelines.",
+          "n": "FINTECH & INSURANCE",
+          "h3": "Fraud detection & underwriting",
+          "p": "Fine-tuning OpenAI models on proprietary transaction patterns for real-time fraud scoring, reducing false positives by 30% without building custom infrastructure.",
           "ul": [
-            "Automated 12-point brand voice checker before content enters review queue",
-            "24/7 content generation with human editor approval gates",
-            "SEO-optimized meta data and internal linking structures generated automatically"
+            "OpenAI fine-tuning with SOC 2 Type II compliance",
+            "Sub-200ms inference for real-time transaction screening",
+            "Hybrid fallback to open-weight models for high-sensitivity cases"
           ]
         }
       }

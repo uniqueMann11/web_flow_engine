@@ -1,71 +1,124 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RAG Development Services | What Is Retrieval-Augmented Generation | Shreyans Padmani</title>
-  <meta name="robots" content="index, follow">
-  <meta name="robots" content="max-image-preview:large">
-  <meta name="author" content="Shreyans Padmani">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Shreyans Padmani">
-  <meta property="og:locale" content="en_US">
-  <meta name="description"
-    content="RAG development services: what retrieval-augmented generation is, how it works, and how I build production RAG systems, document ingestion, retrieval engineering, guardrails, and deployment.">
-  <meta name="keywords" content="what is RAG, retrieval augmented generation explained, RAG development services">
-  <link rel="canonical" href="https://shreyans.tech/what-is-rag" />
-  <meta property="og:title" content="RAG Development Services | What Is RAG — Shreyans Padmani">
-  <meta property="og:url" content="https://shreyans.tech/what-is-rag">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@shreyanspadmani">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet">
-  <link rel="shortcut icon" href="/assets/image/shreyans.png" type="image/x-icon">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/image/shreyans.png">
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <script type="application/ld+json">{
-      "@context": "https://schema.org",
-      "@graph": [
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>What Is a System Prompt? | Shreyans Padmani</title>
+<meta content="index, follow" name="robots"/>
+<meta content="max-image-preview:large" name="robots"/>
+<meta content="Shreyans Padmani" name="author"/>
+<meta content="website" property="og:type"/>
+<meta content="Shreyans Padmani" property="og:site_name"/>
+<meta content="en_US" property="og:locale"/>
+<meta content="A system prompt is the set of initial instructions that defines an AI model's behavior, constraints, and output format before any user interaction. It grounds the model in a specific role, knowledge boundary, and safety guardrails, preventing it from guessing or drifting beyond your intended use case." name="description"/>
+<meta content="what is a system prompt, system prompt explained, LLM instructions" name="keywords"/>
+<link href="https://shreyans.tech/what-is-a-system-prompt" rel="canonical"/>
+<meta content="What Is a System Prompt?" property="og:title"/>
+<meta content="https://shreyans.tech/what-is-a-system-prompt" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="@shreyanspadmani" name="twitter:site"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/image/shreyans.png" rel="shortcut icon" type="image/x-icon"/>
+<link href="/assets/image/shreyans.png" rel="apple-touch-icon" sizes="180x180"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "What Is a System Prompt?",
+      "url": "https://shreyans.tech/what-is-a-system-prompt",
+      "provider": {
+        "@type": "Person",
+        "name": "Shreyans Padmani",
+        "url": "https://shreyans.tech"
+      }
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Retrieval-Augmented Generation",
+      "description": "Retrieval-augmented generation (RAG) is an AI architecture that improves large language model responses by retrieving relevant information from an external knowledge base at query time and inserting it into the model's context before it generates an answer, grounding each response in specific, current, and verifiable source content."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-          "@type": "Service",
-          "name": "RAG Development Services",
-          "url": "https://shreyans.tech/what-is-rag",
-          "provider": { "@type": "Person", "name": "Shreyans Padmani", "url": "https://shreyans.tech" }
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://shreyans.tech/"
         },
         {
-          "@type": "DefinedTerm",
-          "name": "Retrieval-Augmented Generation",
-          "description": "Retrieval-augmented generation (RAG) is an AI architecture that improves large language model responses by retrieving relevant information from an external knowledge base at query time and inserting it into the model's context before it generates an answer, grounding each response in specific, current, and verifiable source content."
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://shreyans.tech/hire-ai-developer"
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://shreyans.tech/" },
-            { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://shreyans.tech/hire-ai-developer" },
-            { "@type": "ListItem", "position": 3, "name": "RAG Development", "item": "https://shreyans.tech/services/rag-development" },
-            { "@type": "ListItem", "position": 4, "name": "What Is RAG", "item": "https://shreyans.tech/what-is-rag" }
-          ]
+          "@type": "ListItem",
+          "position": 3,
+          "name": "RAG Development",
+          "item": "https://shreyans.tech/services/rag-development"
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "What does RAG stand for?", "acceptedAnswer": { "@type": "Answer", "text": "RAG stands for retrieval-augmented generation, an AI architecture that retrieves relevant information before an LLM generates its response, rather than relying only on the model's training data." } },
-            { "@type": "Question", "name": "Is RAG the same as fine-tuning?", "acceptedAnswer": { "@type": "Answer", "text": "No. Fine-tuning changes a model's weights through additional training. RAG retrieves external information and adds it to the model's context at query time without changing the model. They solve different problems and are often used together." } },
-            { "@type": "Question", "name": "Does RAG eliminate AI hallucination?", "acceptedAnswer": { "@type": "Answer", "text": "RAG significantly reduces hallucination, typically 60 to 80% versus a bare LLM, by grounding responses in retrieved content, but does not eliminate it entirely. Guardrails and confidence thresholds are layered on top in every production system." } },
-            { "@type": "Question", "name": "How much does RAG development cost?", "acceptedAnswer": { "@type": "Answer", "text": "A proof-of-concept starts at $1,500 to $4,000. A full production RAG system ranges from $8,000 to $30,000 depending on complexity and data volume." } },
-            { "@type": "Question", "name": "How long does it take to build a RAG system?", "acceptedAnswer": { "@type": "Answer", "text": "A proof-of-concept typically takes 2 to 4 weeks. A full production system with guardrails, evaluation, and deployment typically takes 4 to 10 weeks depending on data complexity and integration scope." } }
-          ]
+          "@type": "ListItem",
+          "position": 4,
+          "name": "What Is a System Prompt?",
+          "item": "https://shreyans.tech/what-is-a-system-prompt"
         }
       ]
-    }</script>
-
-  <style>
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a system prompt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A system prompt is a block of instructions that sets the initial context and behavior for an LLM. It defines the model's role, constraints, tone, and rules for generating responses, making it the primary tool for shaping output quality and consistency."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is a system prompt different from a user prompt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A system prompt is set by the developer and remains constant across a conversation, while a user prompt changes per interaction. The system prompt provides overarching instructions, whereas user prompts are the specific queries the model responds to. Both are essential for controlled LLM behavior."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can system prompts prevent hallucination?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "System prompts can reduce hallucination by instructing the model to stay within certain boundaries or cite sources, but they do not eliminate it entirely. Grounding with retrieved information (RAG) or using guardrails is often needed for critical applications."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does system prompt development cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A basic consultation and draft starts at $500 to $1,500. A full production system prompt suite with testing and versioning ranges from $3,000 to $10,000 depending on complexity. Contact for a fixed-price estimate specific to your use case."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to develop a system prompt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A simple system prompt can be drafted in 1 to 2 days. Refining for production use typically takes 1 to 3 weeks, including testing, edge case handling, and integration into the application."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+<style>
     .svcp {
       --ink: #0A1222;
       --ink-soft: #1B2740;
@@ -1699,434 +1752,649 @@
         transform: none
       }
     }
-  </style>
+  
+.viewer {
+  width: 100%;
+  max-width: 520px;
+  box-sizing: border-box;
+  background: var(--surface, #FFFFFF);
+  border: 1px solid var(--line, #E6ECF4);
+  border-radius: var(--r, 18px);
+  box-shadow: var(--sh-md, 0 14px 34px -16px rgba(10, 18, 34, 0.22));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--bodyf, "Inter", system-ui, sans-serif);
+}
+
+.viewer .vw-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line-soft, #EFF3F9);
+}
+
+.viewer .vw-title {
+  font-family: var(--disp, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ink, #0A1222);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.viewer .vw-title svg {
+  width: 16px;
+  height: 16px;
+  color: var(--blue, #2456E6);
+}
+
+.viewer .vw-chip {
+  font-family: var(--mono, "IBM Plex Mono", ui-monospace, monospace);
+  font-size: 0.66rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--blue-tint, #E6EEFF);
+  color: var(--blue, #2456E6);
+  border: 1px solid rgba(36, 86, 230, 0.25);
+  white-space: nowrap;
+}
+
+.viewer .vw-body {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.viewer .vw-definition-card {
+  background: var(--soft, #F4F8FD);
+  border: 1px solid var(--line-soft, #EFF3F9);
+  border-radius: var(--r-sm, 12px);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.viewer .vw-def-lbl {
+  font-family: var(--mono, "IBM Plex Mono", ui-monospace, monospace);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted, #6B7A93);
+}
+
+.viewer .vw-def-text {
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ink-soft, #1B2740);
+  font-weight: 400;
+  margin: 0;
+}
+
+.viewer .vw-def-text strong {
+  color: var(--ink, #0A1222);
+  font-weight: 600;
+  background: linear-gradient(to right, var(--blue-tint, #E6EEFF), transparent);
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+.viewer .vw-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--soft, #F4F8FD);
+  padding: 4px;
+  border-radius: 10px;
+  border: 1px solid var(--line-soft, #EFF3F9);
+}
+
+.viewer .vw-tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 8px 6px;
+  border-radius: 8px;
+  font-family: var(--bodyf, "Inter", system-ui, sans-serif);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted, #6B7A93);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.viewer .vw-tab-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.viewer .vw-tab-btn.active {
+  background: var(--surface, #FFFFFF);
+  color: var(--ink, #0A1222);
+  box-shadow: var(--sh-sm, 0 1px 2px rgba(10, 18, 34, 0.04));
+  border-color: transparent;
+}
+
+.viewer .vw-visual-card {
+  background: var(--surface, #FFFFFF);
+  border: 1px solid var(--line, #E6ECF4);
+  border-radius: var(--r-sm, 12px);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.viewer .vw-prompt-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--soft, #F4F8FD);
+  border-left: 3px solid var(--blue, #2456E6);
+  border-radius: 0 8px 8px 0;
+  padding: 10px 12px;
+}
+
+.viewer .vw-prompt-line pre {
+  font-family: var(--mono, "IBM Plex Mono", ui-monospace, monospace);
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: var(--ink, #0A1222);
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.viewer .vw-role-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono, "IBM Plex Mono", ui-monospace, monospace);
+  font-size: 0.6rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--mint-tint, #E4F7EE);
+  color: var(--mint-deep, #0B7D4E);
+  border: 1px solid rgba(15, 169, 104, 0.2);
+  white-space: nowrap;
+}
+
+.viewer .vw-prompt-line.blue { border-left-color: var(--blue, #2456E6); background: var(--blue-tint, #E6EEFF); }
+.viewer .vw-prompt-line.violet { border-left-color: var(--violet, #6D5EF6); background: var(--violet-tint, #EDEAFE); }
+.viewer .vw-prompt-line.mint { border-left-color: var(--mint, #0FA968); background: var(--mint-tint, #E4F7EE); }
+
+.viewer .vw-prompt-line pre .tok { color: var(--blue, #2456E6); font-weight: 600; }
+.viewer .vw-prompt-line.violet pre .tok { color: var(--violet, #6D5EF6); }
+.viewer .vw-prompt-line.mint pre .tok { color: var(--mint-deep, #0B7D4E); }
+
+.viewer .vw-io-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.viewer .vw-io-box {
+  background: var(--soft, #F4F8FD);
+  border: 1px solid var(--line-soft, #EFF3F9);
+  border-radius: var(--r-sm, 12px);
+  padding: 10px 12px;
+}
+
+.viewer .vw-io-lbl {
+  font-family: var(--mono, "IBM Plex Mono", ui-monospace, monospace);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--muted, #6B7A93);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.viewer .vw-io-lbl svg { width: 12px; height: 12px; }
+
+.viewer .vw-io-text {
+  font-size: 0.77rem;
+  line-height: 1.5;
+  color: var(--ink, #0A1222);
+  font-family: var(--mono, "IBM Plex Mono", ui-monospace, monospace);
+  word-break: break-word;
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+.viewer .vw-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  border-top: 1px solid var(--line-soft, #EFF3F9);
+  background: var(--soft, #F4F8FD);
+  font-size: 0.7rem;
+  color: var(--muted, #6B7A93);
+  font-family: var(--bodyf, "Inter", system-ui, sans-serif);
+  gap: 12px;
+}
+
+.viewer .vw-foot span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.viewer .vw-foot svg { width: 12px; height: 12px; color: var(--mint, #0FA968); }
+
+@media (max-width: 480px) {
+  .viewer .vw-io-grid { grid-template-columns: 1fr; }
+  .viewer .vw-foot { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .viewer .vw-top { padding: 12px 14px; }
+  .viewer .vw-body { padding: 14px; }
+}
+</style>
 </head>
-
 <body>
-
-  <main class="svcp">
-
-    <!-- ================= HERO ================= -->
-    <section class="hero" id="demo">
-      <div class="wrap">
-        <div class="hero-grid">
-          <div>
-            <p class="eyebrow">The architecture behind grounded AI</p>
-            <h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">RAG development services: what retrieval-augmented
-              generation is, <span>and how I build it</span></h1>
-            <p class="hero-sub">Retrieval-augmented generation is the architecture behind every AI system that needs
-              to answer accurately from your own data instead of guessing from general training knowledge. I design
-              and build production RAG systems: document ingestion, retrieval engineering, generation, guardrails, and
-              deployment.</p>
-
-            <div class="creds">
-              <div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg width="15"
-                    height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 8v4l3 3" />
-                    <circle cx="12" cy="12" r="9" />
-                  </svg></span><span class="t"><i>Experience</i><b>5+ yrs production RAG</b></span></div>
-              <div class="cred"><span class="b" style="background:#0FA968" title="Reduction"><svg width="15" height="15"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="M3 3v18h18" />
-                    <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14" />
-                  </svg></span><span class="t"><i>Outcome</i><b>60&ndash;80% less hallucination</b></span></div>
-              <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg width="14" height="14"
-                    viewBox="0 0 24 24" fill="none" stroke="#2456E6" stroke-width="2.4" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M12 6v6l4 2" />
-                  </svg></span><span class="t"><i>Turnaround</i><b>48h written spec</b></span></div>
-            </div>
-
-            <div class="hero-cta">
-              <a class="btn btn-primary" href="#lets-talk">Talk to a RAG developer <svg fill="none"
-                  stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
-                  <path d="M5 12h14M13 6l6 6-6 6"></path>
-                </svg></a>
-              <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
-            </div>
-            <p class="live"><span class="pulse"></span> Every answer traces to a source, guardrails included from day
-              one</p>
+<main class="svcp">
+<!-- ================= HERO ================= -->
+<section class="hero" id="demo">
+<div class="wrap">
+<div class="hero-grid">
+<div>
+<p class="eyebrow">The invisible instruction layer</p>
+<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">What is a system prompt? definition, <span>role, and examples</span></h1>
+<p class="hero-sub">A system prompt is the set of initial instructions that defines an AI model's behavior, constraints, and output format before any user interaction. It grounds the model in a specific role, knowledge boundary, and safety guardrails, preventing it from guessing or drifting beyond your intended use case.</p>
+<div class="creds">
+<div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<path d="M12 8v4l3 3"></path>
+<circle cx="12" cy="12" r="9"></circle>
+</svg></span><span class="t"><i>Definition</i><b>Core AI instruction set</b></span></div>
+<div class="cred"><span class="b" style="background:#0FA968" title="Reduction"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<path d="M3 3v18h18"></path>
+<path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14"></path>
+</svg></span><span class="t"><i>Role</i><b>Behavior &amp; constraint control</b></span></div>
+<div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="14">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M12 6v6l4 2"></path>
+</svg></span><span class="t"><i>Example</i><b>ChatGPT's 'you are a helpful assistant'</b></span></div>
+</div>
+<div class="hero-cta">
+<a class="btn btn-primary" href="#lets-talk">Get expert prompt engineering <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M5 12h14M13 6l6 6-6 6"></path>
+</svg></a>
+<a class="btn btn-ghost" href="/prompt-examples">See prompt examples</a>
+</div>
+<p class="live"><span class="pulse"></span> Every system prompt enforces role, tone, and safety from the first token</p>
+</div>
+<!-- ===== SIGNATURE: RAG vs Plain LLM vs Fine-Tuning ===== -->
+<div class="viewer">
+<div class="vw-top">
+<span class="vw-title">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M4 17V6a2 2 0 0 1 2-2h11M4 17l-2 2 6-6M11 19h7a2 2 0 0 0 2-2v-1"></path>
+<circle cx="18" cy="18" r="2"></circle>
+<path d="M20 9h-4a2 2 0 0 1-2-2V4"></path>
+</svg>
+      System Prompt · Glossary
+    </span>
+<span class="vw-chip">Definition</span>
+</div>
+<div class="vw-body">
+<div class="vw-definition-card">
+<span class="vw-def-lbl">What is a system prompt?</span>
+<p class="vw-def-text">
+<strong>System prompt</strong> (or <strong>system message</strong>) is a set of <strong>LLM instructions</strong> placed at the beginning of the context window to define the AI's role, behavior, tone, and constraints — separate from user input.
+      </p>
+</div>
+<div class="vw-tabs" id="roleTabs">
+<button class="vw-tab-btn active" data-tab="general" type="button">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9"></path></svg>
+        General
+      </button>
+<button class="vw-tab-btn" data-tab="expert" type="button">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="22"></line></svg>
+        Expert
+      </button>
+<button class="vw-tab-btn" data-tab="creative" type="button">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>
+        Creative
+      </button>
+</div>
+<div class="vw-visual-card" id="visualCard">
+<div id="promptContainer">
+<div class="vw-prompt-line blue">
+<span class="vw-role-tag">System</span>
+<pre><span class="tok">You are</span> a helpful assistant with vast general knowledge. <span class="tok">Always</span> answer clearly. <span class="tok">If uncertain</span>, say so.</pre>
+</div>
+</div>
+<div class="vw-io-grid">
+<div class="vw-io-box">
+<div class="vw-io-lbl">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            User Input
           </div>
-
-          <!-- ===== SIGNATURE: RAG vs Plain LLM vs Fine-Tuning ===== -->
-          <div class="viewer">
-            <div class="viewer-top">
-              <span class="t">grounding preview, illustrative</span>
-              <span class="chip"><span class="d"></span>live</span>
-            </div>
-            <canvas id="sigcanvas"
-              aria-label="Illustration comparing retrieval-augmented generation, a plain LLM, and a fine-tuned model. RAG retrieves matching document chunks and cites them. A plain LLM guesses with no source. A fine-tuned model answers in a trained style but without a live, checkable source."></canvas>
-            <div class="modesw" role="tablist" aria-label="Grounding mode">
-              <button role="tab" aria-selected="true" data-m="rag" type="button">RAG</button>
-              <button role="tab" aria-selected="false" data-m="bare" type="button">Plain LLM</button>
-              <button role="tab" aria-selected="false" data-m="finetune" type="button">Fine-tuned</button>
-            </div>
-            <div class="segs" role="tablist" aria-label="Business scenario">
-              <button role="tab" aria-selected="true" data-d="0" type="button">support policy</button>
-              <button role="tab" aria-selected="false" data-d="1" type="button">internal wiki</button>
-              <button role="tab" aria-selected="false" data-d="2" type="button">product catalog</button>
-            </div>
-            <div class="metrics">
-              <div><b id="m1" class="sc-good">Low</b><span id="m1l">Hallucination risk</span></div>
-              <div><b id="m2">4</b><span id="m2l">Chunks retrieved</span></div>
-              <div><b id="m3">Live docs</b><span id="m3l">Answer basis</span></div>
-            </div>
-            <div class="answerbox">
-              <span class="k">Generated answer</span>
-              <p id="answer"></p>
-            </div>
-            <ul class="citelist" id="citelist"></ul>
-            <div class="viewer-foot" id="foot">Switch modes to see what each approach actually gives you, and what it
-              can't.</div>
+<p class="vw-io-text" id="userInput">"What is the capital of France?"</p>
+</div>
+<div class="vw-io-box">
+<div class="vw-io-lbl">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            Model Output
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= COMPLY STRIP ================= -->
-    <div class="comply">
-      <div class="wrap comply-in">
-        <div><span><b>Grounded, not guessed</b>Every answer is retrieved from your own documents at query time, not
-            the model's fixed training memory.</span></div>
-        <div><span><b>Source-traceable</b>Each response can cite the exact document it came from, for review and for
-            trust.</span></div>
-        <div><span><b>Guardrails included</b>Confidence thresholds and a defensive "I don't know" fallback ship with
-            every build, not bolted on later.</span></div>
-        <div><span><b>No retraining required</b>Update the knowledge base, not the model. Documents change daily, RAG
-            keeps up without a training run.</span></div>
-      </div>
-    </div>
-
-    <!-- ================= WHAT IS RAG (definition) ================= -->
-    <section id="what-is-rag">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">Plain answer</p>
-          <h2>What is RAG (retrieval-augmented generation)?</h2>
-        </div>
-        <div class="what-is-wrap reveal">
-          <div class="what-is-media">
-            <!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
-            <div class="img-placeholder" aria-label="Image placeholder">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                <circle cx="9" cy="9" r="2"/>
-                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-              </svg>
-              <span>Image Placeholder (1:1)</span>
-            </div>
-          </div>
-          <div class="tldr">
-            <b>Definition</b>
-            <p>Retrieval-augmented generation (RAG) is an AI architecture that improves large language model responses
-              by retrieving relevant information from an external knowledge base at query time and inserting it into the
-              model's context before it generates an answer. Instead of relying only on what the model learned during
-              training, a fixed and eventually outdated snapshot, RAG grounds each response in specific, current, and
-              verifiable source content, making answers more accurate, current, and traceable back to a source document.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= HOW RAG WORKS ================= -->
-    <section class="soft" id="how-it-works">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">Step by step</p>
-          <h2>How RAG works</h2>
-          <p>The same five-step pipeline animating in the signature panel above, applied to your own documents.</p>
-        </div>
-        <div class="grid g3 reveal" style="grid-template-columns:repeat(5,1fr)">
-          <div class="card" style="padding:20px"><span class="n">STEP 1</span>
-            <h3 style="font-size:.98rem">Query submitted</h3>
-            <p style="font-size:.84rem">A user asks a question in natural language.</p>
-          </div>
-          <div class="card" style="padding:20px"><span class="n">STEP 2</span>
-            <h3 style="font-size:.98rem">Query embedded</h3>
-            <p style="font-size:.84rem">Converted into a numerical embedding capturing its meaning.</p>
-          </div>
-          <div class="card" style="padding:20px"><span class="n">STEP 3</span>
-            <h3 style="font-size:.98rem">Vector search</h3>
-            <p style="font-size:.84rem">The system finds the most relevant chunks in a vector database.</p>
-          </div>
-          <div class="card" style="padding:20px"><span class="n">STEP 4</span>
-            <h3 style="font-size:.98rem">Context inserted</h3>
-            <p style="font-size:.84rem">Retrieved content joins the query in the LLM's context window.</p>
-          </div>
-          <div class="card" style="padding:20px"><span class="n build">STEP 5</span>
-            <h3 style="font-size:.98rem">Grounded answer</h3>
-            <p style="font-size:.84rem">The LLM generates a response with sources available to cite.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="rule"></div>
-
-    <!-- ================= RAG vs LLM vs FINE-TUNING ================= -->
-    <section id="comparison">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">The decision</p>
-          <h2>RAG vs plain LLM vs fine-tuning</h2>
-          <p>These are frequently combined: a fine-tuned model for task-specific behavior, grounded by RAG for current
+<p class="vw-io-text" id="modelOutput">"The capital of France is Paris, known for the Eiffel Tower."</p>
+</div>
+</div>
+</div>
+</div>
+<div class="vw-foot">
+<span>
+<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      Role, constraints &amp; tone
+    </span>
+<span>
+<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+      Before user input
+    </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= COMPLY STRIP ================= -->
+<div class="comply">
+<div class="wrap comply-in">
+<div><span><b>Guides every response</b>The system prompt acts as a persistent instruction set for the model.</span></div>
+<div><span><b>No retraining needed</b>Change behavior by editing the prompt, not retraining the model.</span></div>
+<div><span><b>Consistent tone</b>Enforces a uniform voice and style across all generated content.</span></div>
+<div><span><b>Quick to iterate</b>Prompt variations can be tested in minutes, not days.</span></div>
+</div>
+</div>
+<!-- ================= WHAT IS RAG (definition) ================= -->
+<section id="what-is-rag">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Plain answer</p>
+<h2>What is a system prompt?</h2>
+</div>
+<div class="what-is-wrap reveal">
+<div class="what-is-media">
+<!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
+<img alt="Section: what-is-rag; Eyebrow: Plain answer; Heading: What is a system prompt?" loading="lazy" src="/generated_images/what-is-a-system-prompt-hero_architecture.jpg"/>
+</div>
+<div class="tldr">
+<b>Definition</b>
+<p>A system prompt is a set of instructions or context provided at the beginning of an LLM conversation that defines the model's behavior, tone, constraints, and capabilities. It acts as a persistent directive that shapes every response, ensuring consistency, alignment with user goals, and safety guardrails without requiring model retraining.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= HOW RAG WORKS ================= -->
+<section class="soft" id="how-it-works">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Step by step</p>
+<h2>How system prompts work</h2>
+<p>The same five-step pipeline animating in the signature panel above, applied to your own documents.</p>
+</div>
+<div class="grid g3 reveal" style="grid-template-columns:repeat(5,1fr)">
+<div class="card" style="padding:20px"><span class="n">STEP 1</span>
+<h3 style="font-size:.98rem">Define prompt</h3>
+<p style="font-size:.84rem">Craft the instruction set specifying persona, tone, and rules.</p>
+</div>
+<div class="card" style="padding:20px"><span class="n">STEP 2</span>
+<h3 style="font-size:.98rem">Embed in context</h3>
+<p style="font-size:.84rem">The prompt is prepended to the user's message in the API call.</p>
+</div>
+<div class="card" style="padding:20px"><span class="n">STEP 3</span>
+<h3 style="font-size:.98rem">Model processes</h3>
+<p style="font-size:.84rem">The LLM interprets the system prompt as a high-priority directive.</p>
+</div>
+<div class="card" style="padding:20px"><span class="n">STEP 4</span>
+<h3 style="font-size:.98rem">Generate response</h3>
+<p style="font-size:.84rem">The model produces output adhering to the given constraints.</p>
+</div>
+<div class="card" style="padding:20px"><span class="n build">STEP 5</span>
+<h3 style="font-size:.98rem">Output validated</h3>
+<p style="font-size:.84rem">Check that the response follows the system prompt's rules and tone.</p>
+</div>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= RAG vs LLM vs FINE-TUNING ================= -->
+<section id="comparison">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">The breakdown</p>
+<h2>System prompts vs other methods</h2>
+<p>These are frequently combined: a fine-tuned model for task-specific behavior, grounded by RAG for current
             or proprietary data access.</p>
-        </div>
-        <div class="tablewrap reveal">
-          <table>
-            <thead>
-              <tr>
-                <th>Factor</th>
-                <th>Plain LLM</th>
-                <th class="col-me">RAG</th>
-                <th>Fine-tuning</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Knowledge source</th>
-                <td>Fixed training data</td>
-                <td class="col-me">Training data plus live retrievable content</td>
-                <td>Training data plus new task-specific behavior</td>
-              </tr>
-              <tr>
-                <th scope="row">Update process</th>
-                <td>Requires retraining</td>
-                <td class="col-me">Add or update documents, no retraining</td>
-                <td>Requires retraining on new examples</td>
-              </tr>
-              <tr>
-                <th scope="row">Best for</th>
-                <td>General knowledge tasks</td>
-                <td class="col-me">Domain-specific, current, or private data access</td>
-                <td>Changing model style, tone, or task behavior</td>
-              </tr>
-              <tr>
-                <th scope="row">Traceability</th>
-                <td>No source citation</td>
-                <td class="col-me">Can cite exact source document</td>
-                <td>No source citation</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= SERVICES ================= -->
-    <section class="soft" id="services">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">What I build</p>
-          <h2>RAG development services</h2>
-          <p>Each layer of a production RAG pipeline, built and tested as its own verifiable stage.</p>
-        </div>
-        <div class="grid g3 reveal">
-          <div class="card"><span class="n build">BUILD</span>
-            <h3>Document ingestion &amp; chunking</h3>
-            <p>Building the pipeline that prepares your source content, PDFs, wikis, databases, support tickets, into
-              properly chunked, retrievable pieces. This step determines the ceiling on everything downstream.</p>
-          </div>
-          <div class="card"><span class="n build">BUILD</span>
-            <h3>Vector database architecture</h3>
-            <p>Selecting and configuring the right vector store (Pinecone, Weaviate, Qdrant, FAISS, pgvector) for your
-              scale, latency, and hosting requirements.</p>
-          </div>
-          <div class="card"><span class="n build">BUILD</span>
-            <h3>Retrieval engineering</h3>
-            <p>Building the retrieval layer: hybrid search (semantic plus keyword), metadata filtering, and reranking
-              to maximize the relevance of what gets passed to the LLM.</p>
-          </div>
-          <div class="card"><span class="n build">BUILD</span>
-            <h3>Generation &amp; guardrails</h3>
-            <p>Configuring the generation layer with grounding constraints, defensive fallback behavior, and
-              confidence thresholds so the system says "I do not know" instead of guessing.</p>
-          </div>
-          <div class="card"><span class="n advise">EVALUATE</span>
-            <h3>RAG evaluation</h3>
-            <p>Testing retrieval and generation quality against your real queries using RAGAS, DeepEval, or a custom
-              evaluation set, with results shared transparently before launch.</p>
-          </div>
-          <div class="card"><span class="n build">BUILD</span>
-            <h3>Production deployment</h3>
-            <p>Deploying the full RAG pipeline as a versioned, monitored API integrated with your product or internal
-              tools.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="rule"></div>
-
-    <!-- ================= WHY BUSINESSES NEED RAG ================= -->
-    <section id="why">
-      <div class="wrap">
-        <div class="grid g2 reveal">
-          <div class="sec-head" style="margin-bottom:0">
-            <p class="eyebrow">Why it matters</p>
-            <h2>Why businesses need RAG</h2>
-            <p>A plain LLM has no access to your private,
-              proprietary, or real-time information, and will either say it does not know or generate a
-              plausible-sounding but incorrect answer. RAG solves this directly by giving the model exactly the
-              information it needs, retrieved fresh at query time, without the cost and delay of retraining the model
-              every time your underlying information changes.</p>
-          </div>
-          <div class="card" style="align-self:start">
-            <span class="n">COMMON APPLICATIONS</span>
-            <h3 style="margin-bottom:4px">Where I've built RAG systems</h3>
-            <ul>
-              <li>Customer support chatbots grounded in product documentation and policies</li>
-              <li>Internal knowledge assistants for employee Q&amp;A over wikis and HR policies</li>
-              <li>Healthcare AI assistants grounded in clinical guidelines &mdash; <a href="/rag-chatbot-healthcare"
-                  style="font-weight:600">see the healthcare page</a></li>
-              <li>Legal and compliance research tools citing specific clauses or precedents</li>
-              <li>Ecommerce product Q&amp;A answering from a live product catalog</li>
-              <li>Enterprise search surfacing answers, not just links, across large repositories</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= PROCESS ================= -->
-    <section class="soft" id="process">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">How it gets built</p>
-          <h2>Process</h2>
-        </div>
-        <div class="steps reveal">
-          <details class="step" open>
-            <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
-              <h3>Discovery</h3><span class="cv">+</span>
-            </summary>
-            <div class="body">Understanding your data sources, use case, and what "accurate" needs to mean for your
-              application.</div>
-          </details>
-          <details class="step">
-            <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
-              <h3>Architecture spec</h3><span class="cv">+</span>
-            </summary>
-            <div class="body">A written technical spec covering retrieval strategy, vector database choice, and
-              guardrail design, delivered within 48 hours.</div>
-          </details>
-          <details class="step gate">
-            <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
-              <h3>Build in milestones</h3><span class="cv">+</span>
-            </summary>
-            <div class="body">Ingestion, retrieval, generation, and guardrails built and tested as separate,
-              verifiable stages.</div>
-          </details>
-          <details class="step">
-            <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
-              <h3>Evaluation</h3><span class="cv">+</span>
-            </summary>
-            <div class="body">Testing against real queries with transparent results before launch.</div>
-          </details>
-          <details class="step">
-            <summary><span class="num">PHASE 05<span class="days">30 days plus</span></span>
-              <h3>Deployment &amp; support</h3><span class="cv">+</span>
-            </summary>
-            <div class="body">Production deployment with monitoring and a post-launch support window.</div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <div class="rule"></div>
-
-    <!-- ================= PRICING ================= -->
-    <section id="pricing">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">Investment</p>
-          <h2>Engagement Options</h2>
-        </div>
-        <div class="tablewrap reveal">
-          <table>
-            <thead>
-              <tr>
-                <th>Engagement type</th>
-                <th class="col-me">What's included</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>RAG proof-of-concept <span class="badge-free"
-                    style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span>
-                </td>
-                <td class="col-me">Baseline retrieval pipeline on a data sample, evaluation report</td>
-              </tr>
-              <tr class="me-row">
-                <td>Production RAG system</td>
-                <td class="col-me">Full pipeline, guardrails, deployment, documentation</td>
-              </tr>
-              <tr>
-                <td>RAG system audit</td>
-                <td class="col-me">Diagnose and improve an underperforming existing system</td>
-              </tr>
-              <tr>
-                <td>Hourly consulting</td>
-                <td class="col-me">Architecture review, retrieval strategy design</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Retrieval-grounded systems
+</div>
+<div class="tablewrap reveal">
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Plain LLM</th>
+<th class="col-me">RAG</th>
+<th>System prompts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Knowledge source</th>
+<td>Fixed training data</td>
+<td class="col-me">Training data plus live retrievable content</td>
+<td>Training data plus explicit instructions</td>
+</tr>
+<tr>
+<th scope="row">Update process</th>
+<td>Requires retraining</td>
+<td class="col-me">Add or update documents, no retraining</td>
+<td>Edit the prompt text, no retraining</td>
+</tr>
+<tr>
+<th scope="row">Best for</th>
+<td>General knowledge tasks</td>
+<td class="col-me">Domain-specific, current, or private data access</td>
+<td>Constraining behavior, tone, and format</td>
+</tr>
+<tr>
+<th scope="row">Traceability</th>
+<td>No source citation</td>
+<td class="col-me">Can cite exact source document</td>
+<td>Clear from the provided instructions</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- ================= SERVICES ================= -->
+<section class="soft" id="services">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">What I build</p>
+<h2>System prompt services</h2>
+<p>Each layer of a production RAG pipeline, built and tested as its own verifiable stage.</p>
+</div>
+<div class="grid g3 reveal">
+<div class="card"><span class="n build">DEFINE</span>
+<h3>Goal &amp; persona definition</h3>
+<p>Articulating the AI's objective, target audience, and persona attributes to shape its fundamental behavior and responses.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Context &amp; constraint drafting</h3>
+<p>Writing explicit context boundaries, format specifications, guardrails, and 'do not' rules that the model must follow with zero ambiguity.</p>
+</div>
+<div class="card"><span class="n build">BUILD</span>
+<h3>Example &amp; few-shot inclusion</h3>
+<p>Crafting representative input-output pairs and role-playing examples within the prompt to demonstrate desired output structure and reasoning.</p>
+</div>
+<div class="card"><span class="n build">TEST</span>
+<h3>Edge case &amp; adversarial testing</h3>
+<p>Probing the prompt with jailbreak attempts, contradictory instructions, and off-topic queries to ensure directive adherence.</p>
+</div>
+<div class="card"><span class="n advise">REFINE</span>
+<h3>Iteration &amp; performance tuning</h3>
+<p>A/B testing prompt variants against your KPIs and refining language, examples, and constraints to improve consistency and relevance.</p>
+</div>
+<div class="card"><span class="n build">DEPLOY</span>
+<h3>Production versioning &amp; monitoring</h3>
+<p>Packaging your system prompt into a versioned artifact, integrated with your API, and monitored for drift and output failures.</p>
+</div>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= WHY BUSINESSES NEED RAG ================= -->
+<section id="why">
+<div class="wrap">
+<div class="grid g2 reveal">
+<div class="sec-head" style="margin-bottom:0">
+<p class="eyebrow">Why it matters</p>
+<h2>What is a system prompt</h2>
+<p>A system prompt is a set of instructions given to an LLM at the start of a conversation to define its behavior, tone, constraints, and role. Without a carefully crafted system prompt, the model may default to generic responses, ignore important context, or produce unsafe outputs—making it the single most important lever for controlling LLM output quality.</p>
+</div>
+<div class="card" style="align-self:start">
+<span class="n">EXAMPLES</span>
+<h3 style="margin-bottom:4px">System prompt use cases</h3>
+<ul>
+<li>Customer support chatbots with personality and tone instructions</li>
+<li>Internal knowledge assistants with role-based instructions</li>
+<li>Creative writing assistants with style guidelines</li>
+<li>Code generation with language and framework constraints</li>
+<li>Educational tutors with Socratic method prompts</li>
+<li>Content moderation with safety rules</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= PROCESS ================= -->
+<section class="soft" id="process">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">How it gets built</p>
+<h2>Process</h2>
+</div>
+<div class="steps reveal">
+<details class="step" open="">
+<summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
+<h3>Discovery</h3><span class="cv">+</span>
+</summary>
+<div class="body">Understanding the desired behavior, target audience, and edge cases that the system prompt must handle.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
+<h3>Drafting</h3><span class="cv">+</span>
+</summary>
+<div class="body">Writing an initial system prompt document with clear instructions, role definitions, and output format constraints.</div>
+</details>
+<details class="step gate">
+<summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
+<h3>Testing</h3><span class="cv">+</span>
+</summary>
+<div class="body">Running the prompt against a diverse set of test queries and evaluating consistency, safety, and accuracy.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 04<span class="days">before launch</span></span>
+<h3>Refinement</h3><span class="cv">+</span>
+</summary>
+<div class="body">Iterating on the prompt based on test failures, adding guardrails, and optimizing for edge cases.</div>
+</details>
+<details class="step">
+<summary><span class="num">PHASE 05<span class="days">30 days plus</span></span>
+<h3>Deployment &amp; support</h3><span class="cv">+</span>
+</summary>
+<div class="body">Versioning the final prompt, integrating into the application, and monitoring performance post-launch.</div>
+</details>
+</div>
+</div>
+</section>
+<div class="rule"></div>
+<!-- ================= PRICING ================= -->
+<section id="pricing">
+<div class="wrap">
+<div class="sec-head reveal">
+<p class="eyebrow">Investment</p>
+<h2>Engagement Options</h2>
+</div>
+<div class="tablewrap reveal">
+<table>
+<thead>
+<tr>
+<th>Engagement type</th>
+<th class="col-me">What's included</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>System prompt consultation <span class="badge-free" style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span></td>
+<td class="col-me">Baseline prompt draft and evaluation report</td>
+</tr>
+<tr class="me-row">
+<td>Production system prompt suite</td>
+<td class="col-me">Full prompt suite, versioning, testing, documentation</td>
+</tr>
+<tr>
+<td>System prompt audit</td>
+<td class="col-me">Diagnose and improve existing prompts</td>
+</tr>
+<tr>
+<td>Hourly consulting</td>
+<td class="col-me">Prompt strategy, edge case analysis</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Retrieval-grounded systems
           delivered include the AI Customer Feedback Classification pipeline and AI Video Summarizer. Full case
           studies at <a href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
-      </div>
-    </section>
-
-    <!-- ================= FAQ ================= -->
-    <section class="soft" id="faq">
-      <div class="wrap">
-        <div class="sec-head center reveal">
-          <p class="eyebrow">FAQ</p>
-          <h2>Frequently asked questions</h2>
-        </div>
-        <div class="faq reveal">
-          <details open>
-            <summary>What does RAG stand for?</summary>
-            <div class="a">RAG stands for retrieval-augmented generation, an AI architecture that retrieves relevant
-              information before an LLM generates its response, rather than relying only on the model's training data.
-            </div>
-          </details>
-          <details>
-            <summary>Is RAG the same as fine-tuning?</summary>
-            <div class="a">No. Fine-tuning changes a model's weights through additional training. RAG retrieves
-              external information and adds it to the model's context at query time without changing the model. They
-              solve different problems and are often used together.</div>
-          </details>
-          <details>
-            <summary>Does RAG eliminate AI hallucination?</summary>
-            <div class="a">RAG significantly reduces hallucination, typically 60 to 80% versus a bare LLM, by
-              grounding responses in retrieved content, but does not eliminate it entirely. Guardrails and confidence
-              thresholds are layered on top in every production system I build.</div>
-          </details>
-          <details>
-            <summary>How much does RAG development cost?</summary>
-            <div class="a">A proof-of-concept starts at $1,500 to $4,000. A full production RAG system ranges from
-              $8,000 to $30,000 depending on complexity and data volume. Contact for a fixed-price estimate specific
-              to your use case.</div>
-          </details>
-          <details>
-            <summary>How long does it take to build a RAG system?</summary>
-            <div class="a">A proof-of-concept typically takes 2 to 4 weeks. A full production system with guardrails,
-              evaluation, and deployment typically takes 4 to 10 weeks depending on data complexity and integration
-              scope.</div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <script>
+</div>
+</section>
+<!-- ================= FAQ ================= -->
+<section class="soft" id="faq">
+<div class="wrap">
+<div class="sec-head center reveal">
+<p class="eyebrow">FAQ</p>
+<h2>Frequently asked questions</h2>
+</div>
+<div class="faq reveal">
+<details open="">
+<summary>What is a system prompt?</summary>
+<div class="a">A system prompt is a block of instructions that sets the initial context and behavior for an LLM. It defines the model's role, constraints, tone, and rules for generating responses, making it the primary tool for shaping output quality and consistency.</div>
+</details>
+<details>
+<summary>How is a system prompt different from a user prompt?</summary>
+<div class="a">A system prompt is set by the developer and remains constant across a conversation, while a user prompt changes per interaction. The system prompt provides overarching instructions, whereas user prompts are the specific queries the model responds to. Both are essential for controlled LLM behavior.</div>
+</details>
+<details>
+<summary>Can system prompts prevent hallucination?</summary>
+<div class="a">System prompts can reduce hallucination by instructing the model to stay within certain boundaries or cite sources, but they do not eliminate it entirely. Grounding with retrieved information (RAG) or using guardrails is often needed for critical applications.</div>
+</details>
+<details>
+<summary>How much does system prompt development cost?</summary>
+<div class="a">A basic consultation and draft starts at $500 to $1,500. A full production system prompt suite with testing and versioning ranges from $3,000 to $10,000 depending on complexity. Contact for a fixed-price estimate specific to your use case.</div>
+</details>
+<details>
+<summary>How long does it take to develop a system prompt?</summary>
+<div class="a">A simple system prompt can be drafted in 1 to 2 days. Refining for production use typically takes 1 to 3 weeks, including testing, edge case handling, and integration into the application.</div>
+</details>
+</div>
+</div>
+</section>
+</main>
+<script>
     (function () {
       var page = document.querySelector('.svcp');
       if (!page) return;
@@ -2327,6 +2595,50 @@
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(); } else { draw(); cancelAnimationFrame(raf); }
     })();
   </script>
-</body>
+<script>
+(function () {
+  const tabs = document.querySelectorAll('.vw-tab-btn');
+  const promptContainer = document.getElementById('promptContainer');
+  const userInput = document.getElementById('userInput');
+  const modelOutput = document.getElementById('modelOutput');
 
+  const data = {
+    general: {
+      systemPrompt: `<div class="vw-prompt-line blue"><span class="vw-role-tag">System</span><pre><span class="tok">You are</span> a helpful assistant with vast general knowledge. <span class="tok">Always</span> answer clearly. <span class="tok">If uncertain</span>, say so.</pre></div>`,
+      user: '"What is the capital of France?"',
+      output: '"The capital of France is Paris, known for the Eiffel Tower."'
+    },
+    expert: {
+      systemPrompt: `<div class="vw-prompt-line violet"><span class="vw-role-tag">System</span><pre><span class="tok">You are</span> a senior data analyst. <span class="tok">Respond</span> with precision. <span class="tok">Use</span> technical terms. <span class="tok">Format</span> for tables.</pre></div>`,
+      user: '"Generate a quarterly summary of revenue."',
+      output: '"Q1: $1.2M, Q2: $1.8M. Growth 50%. Breakdown: SaaS 70%..."'
+    },
+    creative: {
+      systemPrompt: `<div class="vw-prompt-line mint"><span class="vw-role-tag">System</span><pre><span class="tok">You are</span> a poetic storyteller. <span class="tok">Write</span> with vivid imagery. <span class="tok">Avoid</span> jargon. be evocative.</pre></div>`,
+      user: '"Tell me about the sea."',
+      output: '"The sea is a breathing poem, ancient and restless..."'
+    }
+  };
+
+  function activateTab(tabId) {
+    tabs.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabId));
+    const entry = data[tabId];
+    if (entry) {
+      promptContainer.innerHTML = entry.systemPrompt;
+      userInput.textContent = entry.user;
+      modelOutput.textContent = entry.output;
+    }
+  }
+
+  tabs.forEach(btn => {
+    btn.addEventListener('click', function () {
+      activateTab(this.dataset.tab);
+    });
+  });
+
+  // initialize
+  activateTab('general');
+})();
+</script>
+</body>
 </html>

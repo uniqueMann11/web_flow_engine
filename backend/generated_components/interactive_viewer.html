@@ -1,5 +1,5 @@
 <style>
-.viewer {
+.vw-card {
   width: 100%;
   max-width: 520px;
   background: var(--surface);
@@ -7,24 +7,20 @@
   border-radius: var(--r);
   box-shadow: var(--sh-md);
   overflow: hidden;
-  font-family: var(--bodyf);
-  color: var(--body);
-  animation: viewerIn .55s ease both;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
-@keyframes viewerIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.viewer * { box-sizing: border-box; }
-.viewer .vw-top {
+
+.vw-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
   padding: 14px 18px;
   border-bottom: 1px solid var(--line-soft);
 }
-.viewer .vw-title {
+
+.vw-top .vw-label {
   font-family: var(--disp);
   font-size: 0.88rem;
   font-weight: 700;
@@ -33,508 +29,451 @@
   align-items: center;
   gap: 8px;
 }
-.viewer .vw-title svg {
+
+.vw-top .vw-label svg {
   width: 18px;
   height: 18px;
   color: var(--blue);
-  flex: none;
 }
-.viewer .vw-badge {
+
+.vw-toggle-group {
+  display: flex;
+  gap: 3px;
+  background: var(--soft);
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.vw-toggle-btn {
   font-family: var(--mono);
-  font-size: 0.66rem;
+  font-size: 0.65rem;
   font-weight: 600;
-  padding: 3px 9px;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  padding: 5px 10px;
   border-radius: 6px;
-  background: var(--mint-tint);
-  color: var(--mint-deep);
-  border: 1px solid rgba(11, 125, 78, 0.25);
-  white-space: nowrap;
-  transition: background .2s, color .2s, border-color .2s;
+  cursor: pointer;
+  transition: all 0.2s;
 }
-.viewer .vw-body {
+
+.vw-toggle-btn.active {
+  background: var(--surface);
+  color: var(--blue);
+  box-shadow: var(--sh-sm);
+}
+
+.vw-body {
   padding: 16px 18px;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
-.viewer .vw-search-box {
-  background: var(--soft);
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: border-color .2s, box-shadow .2s;
-}
-.viewer .vw-search-box svg {
-  width: 16px;
-  height: 16px;
-  color: var(--muted);
-  flex-shrink: 0;
-}
-.viewer .vw-query-display {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--ink);
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.viewer .vw-label {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  font-weight: 600;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 6px;
-}
-.viewer .vw-scenarios {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  padding-bottom: 2px;
-}
-.viewer .vw-scenario {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 5px 12px;
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: var(--muted);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.15s;
-  font-family: var(--bodyf);
-}
-.viewer .vw-scenario:hover { border-color: var(--blue); color: var(--ink); }
-.viewer .vw-scenario.active {
-  background: var(--blue-tint);
-  border-color: var(--blue);
-  color: var(--blue-strong);
-  font-weight: 600;
-}
-.viewer .vw-methods {
+
+.vw-comparison-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
-.viewer .vw-method {
+
+.vw-platform-card {
   background: var(--soft);
   border: 1px solid var(--line-soft);
   border-radius: var(--r-sm);
-  padding: 10px 6px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.15s;
-  font-family: var(--bodyf);
+  padding: 14px;
+  transition: all 0.3s;
 }
-.viewer .vw-method:hover { border-color: var(--line); }
-.viewer .vw-method.active {
-  background: var(--surface);
+
+.vw-platform-card.highlighted {
   border-color: var(--blue);
-  box-shadow: 0 0 0 2px var(--blue-tint);
+  background: var(--blue-tint);
+  box-shadow: 0 0 0 2px rgba(36, 86, 230, 0.12);
 }
-.viewer .vw-method-icon {
-  width: 20px;
-  height: 20px;
-  margin: 0 auto 4px;
-  color: var(--muted);
-  transition: color .15s;
-}
-.viewer .vw-method.active .vw-method-icon { color: var(--blue); }
-.viewer .vw-method-name {
-  font-size: 0.72rem;
+
+.vw-platform-name {
+  font-family: var(--disp);
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
 }
-.viewer .vw-method-desc {
-  font-size: 0.58rem;
-  color: var(--muted);
-  margin-top: 2px;
+
+.vw-platform-name svg {
+  width: 14px;
+  height: 14px;
 }
-.viewer .vw-method.active .vw-method-name { color: var(--blue-strong); }
-.viewer .vw-results {
-  background: var(--soft);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--r-sm);
-  padding: 12px;
+
+.vw-platform-name .hf { color: var(--amber); }
+.vw-platform-name .oa { color: var(--mint); }
+
+.vw-metric-list {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  min-height: 130px;
-  transition: background .2s;
 }
-.viewer .vw-results-header {
+
+.vw-metric-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+}
+
+.vw-metric-label {
+  color: var(--body);
+  font-family: var(--bodyf);
+}
+
+.vw-metric-value {
+  font-family: var(--mono);
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 0.72rem;
+}
+
+.vw-badge {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.vw-badge.blue-bg {
+  background: var(--blue-tint);
+  color: var(--blue);
+}
+
+.vw-badge.green-bg {
+  background: var(--mint-tint);
+  color: var(--mint);
+}
+
+.vw-badge.amber-bg {
+  background: var(--amber-tint);
+  color: var(--amber);
+}
+
+.vw-scenario-box {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 12px 14px;
+}
+
+.vw-scenario-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  font-family: var(--mono);
-  font-size: 0.64rem;
-  color: var(--muted);
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 6px;
+  margin-bottom: 10px;
 }
-.viewer .vw-result-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 6px 0;
-  border-bottom: 1px dashed var(--line);
-  animation: resultSlide .25s ease both;
-}
-@keyframes resultSlide {
-  from { opacity: 0; transform: translateX(-6px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-.viewer .vw-result-item:last-child { border-bottom: none; }
-.viewer .vw-result-rank {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  font-weight: 600;
-  color: var(--muted);
-  min-width: 18px;
-  text-align: center;
-  margin-top: 1px;
-}
-.viewer .vw-result-content {
-  flex: 1;
-  min-width: 0;
-}
-.viewer .vw-result-title {
-  font-size: 0.72rem;
-  font-weight: 600;
+
+.vw-scenario-title {
+  font-family: var(--disp);
+  font-size: 0.82rem;
+  font-weight: 700;
   color: var(--ink);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
-.viewer .vw-result-snippet {
-  font-size: 0.66rem;
-  color: var(--body);
-  line-height: 1.4;
-  margin-top: 2px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+
+.vw-scenario-controls {
+  display: flex;
+  gap: 4px;
 }
-.viewer .vw-result-score {
+
+.vw-sc-btn {
   font-family: var(--mono);
   font-size: 0.6rem;
   font-weight: 600;
-  color: var(--blue);
-  white-space: nowrap;
-  padding: 2px 6px;
-  border-radius: 4px;
-  background: var(--blue-tint);
-}
-.viewer .vw-result-score.high { background: var(--mint-tint); color: var(--mint-deep); }
-.viewer .vw-result-score.medium { background: var(--amber-tint); color: var(--amber); }
-.viewer .vw-result-score.low { background: rgba(225, 29, 72, 0.1); color: var(--rose); }
-.viewer .vw-empty {
-  text-align: center;
-  padding: 16px 0;
-  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--surface);
   color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
 }
-.viewer .vw-metrics {
+
+.vw-sc-btn.active {
+  background: var(--blue-tint);
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.vw-recommendation {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--tint);
+  border-radius: var(--r-sm);
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+
+.vw-recommendation svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--blue);
+}
+
+.vw-recommendation .rec-bold {
+  font-weight: 700;
+  font-family: var(--disp);
+}
+
+.vw-metrics-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
 }
-.viewer .vw-tile {
+
+.vw-tile {
   background: var(--soft);
   border: 1px solid var(--line-soft);
   border-radius: var(--r-sm);
-  padding: 8px 6px;
+  padding: 8px 10px;
   text-align: center;
 }
-.viewer .vw-tile-val {
+
+.vw-tile-val {
   font-family: var(--disp);
   font-size: 1rem;
   font-weight: 800;
   color: var(--ink);
-  line-height: 1.2;
-  transition: color .2s;
+  transition: color 0.3s;
 }
-.viewer .vw-tile-lbl {
+
+.vw-tile-lbl {
   font-family: var(--mono);
-  font-size: 0.52rem;
+  font-size: 0.55rem;
   color: var(--muted);
   text-transform: uppercase;
-  margin-top: 2px;
+  letter-spacing: 0.3px;
+  margin-top: 3px;
 }
-.viewer .vw-tile-val.good { color: var(--mint); }
-.viewer .vw-tile-val.warn { color: var(--amber); }
-.viewer .vw-tile-val.bad { color: var(--rose); }
-.viewer .vw-foot {
+
+.vw-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
   padding: 10px 18px;
   border-top: 1px solid var(--line-soft);
   background: var(--soft);
   font-size: 0.7rem;
   color: var(--muted);
 }
-.viewer .vw-tip {
-  position: relative;
-  cursor: help;
-  border-bottom: 1px dotted var(--muted);
-  white-space: nowrap;
-}
-.viewer .vw-tip::after {
-  content: attr(data-tip);
-  position: absolute;
-  bottom: 135%;
-  left: 0;
-  width: 220px;
-  white-space: normal;
-  background: var(--ink);
-  color: #fff;
-  padding: 7px 10px;
-  border-radius: 8px;
-  font-size: 0.62rem;
-  line-height: 1.35;
-  font-family: var(--bodyf);
-  box-shadow: var(--sh-md);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .15s ease;
-  z-index: 5;
-}
-.viewer .vw-tip:hover::after { opacity: 1; }
+
 @media (max-width: 480px) {
-  .viewer .vw-tile-val { font-size: 0.85rem; }
-  .viewer .vw-metrics { grid-template-columns: repeat(2, 1fr); }
-  .viewer .vw-tip { max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .viewer { animation: none !important; }
-  .viewer .vw-result-item { animation: none !important; }
-  .viewer .vw-method, .viewer .vw-badge, .viewer .vw-search-box { transition: none !important; }
+  .vw-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+  .vw-metrics-row {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
-<div class="viewer">
+
+<div class="vw-card">
   <div class="vw-top">
-    <span class="vw-title">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-      Semantic vs Keyword Search
+    <span class="vw-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 20V10" /><path d="M18 20V4" /><path d="M6 20v-4" />
+      </svg>
+      HF vs OpenAI
     </span>
-    <span class="vw-badge" id="methodBadge">Hybrid Ready</span>
+    <div class="vw-toggle-group">
+      <button class="vw-toggle-btn active" data-view="build">Build</button>
+      <button class="vw-toggle-btn" data-view="buy">Buy</button>
+    </div>
   </div>
+
   <div class="vw-body">
-    <div class="vw-search-box">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <span class="vw-query-display" id="queryDisplay">"renew passport"</span>
-    </div>
-    <div>
-      <div class="vw-label">Query Scenario</div>
-      <div class="vw-scenarios">
-        <button class="vw-scenario active" data-s="exact">"renew passport"</button>
-        <button class="vw-scenario" data-s="vague">"feeling stressed at work"</button>
-        <button class="vw-scenario" data-s="hybrid">"best budget laptop 2025"</button>
+    <!-- Platform Comparison -->
+    <div class="vw-comparison-grid">
+      <div class="vw-platform-card" id="hfCard">
+        <div class="vw-platform-name">
+          <svg class="hf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+          Hugging Face
+          <span class="vw-badge amber-bg">open weights</span>
+        </div>
+        <div class="vw-metric-list">
+          <div class="vw-metric-item">
+            <span class="vw-metric-label">Inference latency</span>
+            <span class="vw-metric-value" id="hfLatency">~120ms</span>
+          </div>
+          <div class="vw-metric-item">
+            <span class="vw-metric-label">Monthly cost (1K req/d)</span>
+            <span class="vw-metric-value" id="hfCost">$240</span>
+          </div>
+          <div class="vw-metric-item">
+            <span class="vw-metric-label">Model control</span>
+            <span class="vw-metric-value vw-badge green-bg">full</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="vw-platform-card" id="oaCard">
+        <div class="vw-platform-name">
+          <svg class="oa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+          </svg>
+          OpenAI
+          <span class="vw-badge blue-bg">API</span>
+        </div>
+        <div class="vw-metric-list">
+          <div class="vw-metric-item">
+            <span class="vw-metric-label">Inference latency</span>
+            <span class="vw-metric-value" id="oaLatency">~340ms</span>
+          </div>
+          <div class="vw-metric-item">
+            <span class="vw-metric-label">Monthly cost (1K req/d)</span>
+            <span class="vw-metric-value" id="oaCost">$720</span>
+          </div>
+          <div class="vw-metric-item">
+            <span class="vw-metric-label">Model control</span>
+            <span class="vw-metric-value vw-badge amber-bg">limited</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div>
-      <div class="vw-label">Search Method</div>
-      <div class="vw-methods">
-        <button class="vw-method active" data-m="keyword">
-          <svg class="vw-method-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
-          <div class="vw-method-name">Keyword</div>
-          <div class="vw-method-desc">Exact match</div>
-        </button>
-        <button class="vw-method" data-m="semantic">
-          <svg class="vw-method-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 7.07 17.07L12 22l-7.07-2.93A10 10 0 0 1 12 2z"/><path d="M8 12l2 2 4-4"/></svg>
-          <div class="vw-method-name">Semantic</div>
-          <div class="vw-method-desc">Meaning & intent</div>
-        </button>
-        <button class="vw-method" data-m="hybrid">
-          <svg class="vw-method-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          <div class="vw-method-name">Hybrid</div>
-          <div class="vw-method-desc">Best of both</div>
-        </button>
+
+    <!-- Scenario Selector -->
+    <div class="vw-scenario-box">
+      <div class="vw-scenario-header">
+        <span class="vw-scenario-title">Test by use case</span>
+        <div class="vw-scenario-controls">
+          <button class="vw-sc-btn active" data-scenario="fine-tune">Fine-tune</button>
+          <button class="vw-sc-btn" data-scenario="real-time">Real-time</button>
+          <button class="vw-sc-btn" data-scenario="compliance">Compliance</button>
+        </div>
+      </div>
+
+      <div class="vw-recommendation" id="recBox">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/>
+        </svg>
+        <span id="recText"><span class="rec-bold">Recommended:</span> Hugging Face — fine-tuning requires full weight access and lower latency.</span>
       </div>
     </div>
-    <div class="vw-results" id="resultsArea">
-      <div class="vw-results-header">
-        <span>Top Results</span>
-        <span id="resultCount">3 documents</span>
-      </div>
-      <div id="resultList"></div>
-    </div>
-    <div class="vw-metrics">
+
+    <!-- Metrics Row -->
+    <div class="vw-metrics-row">
       <div class="vw-tile">
-        <div class="vw-tile-val" id="metricPrecision">94%</div>
-        <div class="vw-tile-lbl">Precision</div>
+        <div class="vw-tile-val" id="metricLatency" style="color: var(--mint);">120ms</div>
+        <div class="vw-tile-lbl">Best Latency</div>
       </div>
       <div class="vw-tile">
-        <div class="vw-tile-val" id="metricRecall">72%</div>
-        <div class="vw-tile-lbl">Recall</div>
+        <div class="vw-tile-val" id="metricCost" style="color: var(--blue);">$240</div>
+        <div class="vw-tile-lbl">Best Cost</div>
       </div>
       <div class="vw-tile">
-        <div class="vw-tile-val" id="metricLatency">0.2s</div>
-        <div class="vw-tile-lbl">Latency</div>
-      </div>
-      <div class="vw-tile">
-        <div class="vw-tile-val" id="metricRelevance">High</div>
-        <div class="vw-tile-lbl">Relevance</div>
+        <div class="vw-tile-val" id="metricControl" style="color: var(--mint);">Full</div>
+        <div class="vw-tile-lbl">Model Control</div>
       </div>
     </div>
   </div>
+
   <div class="vw-foot">
-    <span class="vw-tip" data-tip="Hybrid search combines keyword precision with semantic understanding, making it the AEO standard for modern search engines.">Why hybrid wins for AEO</span>
-    <span>Toggle scenarios to compare</span>
+    <span>Build vs buy — 3 scenarios compared</span>
+    <span>Open weights vs API lock-in</span>
   </div>
 </div>
+
 <script>
 (function() {
-  const data = {
-    exact: {
-      keyword: {
-        results: [
-          { title: "Passport Renewal Application Form", snippet: "Download DS-82 form for passport renewal by mail. Valid for adults with previous passport issued within last 15 years.", score: 97, rank: 1 },
-          { title: "Schedule Passport Appointment", snippet: "Book an appointment at your nearest passport acceptance facility. Walk-ins limited.", score: 94, rank: 2 },
-          { title: "Passport Renewal Fees & Processing", snippet: "Current passport renewal fee is $130. Standard processing takes 6-8 weeks.", score: 89, rank: 3 }
-        ],
-        precision: 94, recall: 72, latency: "0.2s", relevance: "High", count: "3 documents"
-      },
-      semantic: {
-        results: [
-          { title: "How to Renew Your U.S. Passport", snippet: "Step-by-step guide for renewing your passport. Check eligibility, complete form DS-82, submit photo and fee.", score: 91, rank: 1 },
-          { title: "Passport Services Overview", snippet: "Find information on passport applications, renewals, name changes, and expedited service options.", score: 85, rank: 2 },
-          { title: "Travel Document Requirements", snippet: "All travelers need valid passport. Renewal recommended 9 months before expiration for international travel.", score: 76, rank: 3 }
-        ],
-        precision: 84, recall: 88, latency: "0.5s", relevance: "High", count: "3 documents"
-      },
-      hybrid: {
-        results: [
-          { title: "Passport Renewal Application Form", snippet: "Download DS-82 form for passport renewal by mail. Valid for adults with previous passport issued within last 15 years.", score: 98, rank: 1 },
-          { title: "How to Renew Your U.S. Passport", snippet: "Step-by-step guide for renewing your passport. Check eligibility, complete form DS-82, submit photo and fee.", score: 95, rank: 2 },
-          { title: "Schedule Passport Appointment", snippet: "Book an appointment at your nearest passport acceptance facility. Walk-ins limited.", score: 92, rank: 3 }
-        ],
-        precision: 95, recall: 91, latency: "0.4s", relevance: "High", count: "3 documents"
-      }
+  const toggleBtns = document.querySelectorAll('.vw-toggle-btn');
+  const scBtns = document.querySelectorAll('.vw-sc-btn');
+  const hfCard = document.getElementById('hfCard');
+  const oaCard = document.getElementById('oaCard');
+  const hfLatency = document.getElementById('hfLatency');
+  const hfCost = document.getElementById('hfCost');
+  const oaLatency = document.getElementById('oaLatency');
+  const oaCost = document.getElementById('oaCost');
+  const metricLatency = document.getElementById('metricLatency');
+  const metricCost = document.getElementById('metricCost');
+  const metricControl = document.getElementById('metricControl');
+  const recText = document.getElementById('recText');
+
+  let currentView = 'build';
+  let currentScenario = 'fine-tune';
+
+  // Data for each scenario
+  const scenarioData = {
+    'fine-tune': {
+      build: { hfLat: '~120ms', hfCost: '$240', oaLat: '~340ms', oaCost: '$720', bestLat: '120ms', bestCost: '$240', control: 'Full', rec: '<span class="rec-bold">Recommended:</span> Hugging Face — fine-tuning requires full weight access and lower latency.' },
+      buy: { hfLat: 'N/A', hfCost: '$0', oaLat: '~340ms', oaCost: '$720', bestLat: '340ms', bestCost: '$720', control: 'Limited', rec: '<span class="rec-bold">Recommended:</span> OpenAI — no infra setup, pay per call for fine-tuned models.' }
     },
-    vague: {
-      keyword: {
-        results: [
-          { title: "Employee Stress Management Policy", snippet: "Company policy on workplace stress. Includes EAP resources and manager referral procedures.", score: 43, rank: 1 },
-          { title: "Workplace Safety Guidelines", snippet: "OSHA compliance manual for office environments. Section 5 covers ergonomic stress.", score: 21, rank: 2 }
-        ],
-        precision: 32, recall: 15, latency: "0.1s", relevance: "Low", count: "2 documents"
-      },
-      semantic: {
-        results: [
-          { title: "Coping with Work Anxiety: A Guide", snippet: "Practical strategies for managing workplace stress. Includes breathing exercises, boundary setting, and when to seek help.", score: 94, rank: 1 },
-          { title: "Employee Mental Health Resources", snippet: "Confidential counseling services available 24/7. Free therapy sessions for all employees and their families.", score: 91, rank: 2 },
-          { title: "Work-Life Balance Best Practices", snippet: "How to set boundaries, prioritize tasks, and avoid burnout. Tips from organizational psychologists.", score: 87, rank: 3 },
-          { title: "Signs of Workplace Burnout", snippet: "Recognize early warning signs: exhaustion, cynicism, reduced performance. Prevention strategies included.", score: 84, rank: 4 }
-        ],
-        precision: 89, recall: 94, latency: "0.6s", relevance: "High", count: "4 documents"
-      },
-      hybrid: {
-        results: [
-          { title: "Coping with Work Anxiety: A Guide", snippet: "Practical strategies for managing workplace stress. Includes breathing exercises, boundary setting, and when to seek help.", score: 96, rank: 1 },
-          { title: "Employee Mental Health Resources", snippet: "Confidential counseling services available 24/7. Free therapy sessions for all employees and their families.", score: 93, rank: 2 },
-          { title: "Work-Life Balance Best Practices", snippet: "How to set boundaries, prioritize tasks, and avoid burnout. Tips from organizational psychologists.", score: 89, rank: 3 },
-          { title: "Employee Stress Management Policy", snippet: "Company policy on workplace stress. Includes EAP resources and manager referral procedures.", score: 85, rank: 4 }
-        ],
-        precision: 91, recall: 96, latency: "0.5s", relevance: "High", count: "4 documents"
-      }
+    'real-time': {
+      build: { hfLat: '~95ms', hfCost: '$180', oaLat: '~420ms', oaCost: '$900', bestLat: '95ms', bestCost: '$180', control: 'Full', rec: '<span class="rec-bold">Recommended:</span> Hugging Face — self-hosted GPUs deliver sub-100ms inference.' },
+      buy: { hfLat: 'N/A', hfCost: '$0', oaLat: '~420ms', oaCost: '$900', bestLat: '420ms', bestCost: '$900', control: 'Limited', rec: '<span class="rec-bold">Recommended:</span> OpenAI — zero ops, scales instantly for real-time APIs.' }
     },
-    hybrid: {
-      keyword: {
-        results: [
-          { title: "Best Budget Laptops 2025 — Top Picks", snippet: "Our experts tested 50+ laptops under $1000. Find the best value for your money with detailed benchmarks.", score: 96, rank: 1 },
-          { title: "Laptop Buying Guide 2025", snippet: "What to look for in a budget laptop: processor, RAM, storage, display quality. Price comparisons included.", score: 88, rank: 2 },
-          { title: "Budget Laptop Deals & Discounts", snippet: "Current sales on budget laptops from Dell, HP, Lenovo, Acer. Save up to 40% this season.", score: 82, rank: 3 }
-        ],
-        precision: 89, recall: 65, latency: "0.2s", relevance: "Medium", count: "3 documents"
-      },
-      semantic: {
-        results: [
-          { title: "Top Affordable Laptops for Students", snippet: "Best budget-friendly laptops for college. Lightweight, long battery life, under $700. Includes Chromebook picks.", score: 92, rank: 1 },
-          { title: "Best Budget Laptops 2025 — Top Picks", snippet: "Our experts tested 50+ laptops under $1000. Find the best value for your money with detailed benchmarks.", score: 90, rank: 2 },
-          { title: "Value for Money: Best Laptops Reviewed", snippet: "Which laptops offer the best specs for the price. Performance per dollar ranking for 2025 models.", score: 86, rank: 3 },
-          { title: "Budget Gaming Laptops Under $800", snippet: "Affordable gaming laptops that don't compromise on performance. RTX 3050 and above.", score: 79, rank: 4 }
-        ],
-        precision: 87, recall: 91, latency: "0.5s", relevance: "High", count: "4 documents"
-      },
-      hybrid: {
-        results: [
-          { title: "Best Budget Laptops 2025 — Top Picks", snippet: "Our experts tested 50+ laptops under $1000. Find the best value for your money with detailed benchmarks.", score: 99, rank: 1 },
-          { title: "Top Affordable Laptops for Students", snippet: "Best budget-friendly laptops for college. Lightweight, long battery life, under $700. Includes Chromebook picks.", score: 95, rank: 2 },
-          { title: "Laptop Buying Guide 2025", snippet: "What to look for in a budget laptop: processor, RAM, storage, display quality. Price comparisons included.", score: 91, rank: 3 },
-          { title: "Value for Money: Best Laptops Reviewed", snippet: "Which laptops offer the best specs for the price. Performance per dollar ranking for 2025 models.", score: 88, rank: 4 }
-        ],
-        precision: 93, recall: 94, latency: "0.4s", relevance: "High", count: "4 documents"
-      }
+    'compliance': {
+      build: { hfLat: '~150ms', hfCost: '$300', oaLat: '~380ms', oaCost: '$1,100', bestLat: '150ms', bestCost: '$300', control: 'Full', rec: '<span class="rec-bold">Recommended:</span> Hugging Face — data never leaves your VPC; full audit trail.' },
+      buy: { hfLat: 'N/A', hfCost: '$0', oaLat: '~380ms', oaCost: '$1,100', bestLat: '380ms', bestCost: '$1,100', control: 'Limited', rec: '<span class="rec-bold">Recommended:</span> OpenAI — SOC 2 compliant, but data passes through their API.' }
     }
   };
-  var scenarioBtns = document.querySelectorAll('.viewer .vw-scenario');
-  var methodBtns = document.querySelectorAll('.viewer .vw-method');
-  var resultList = document.getElementById('resultList');
-  var resultCount = document.getElementById('resultCount');
-  var queryDisplay = document.getElementById('queryDisplay');
-  var metricPrecision = document.getElementById('metricPrecision');
-  var metricRecall = document.getElementById('metricRecall');
-  var metricLatency = document.getElementById('metricLatency');
-  var metricRelevance = document.getElementById('metricRelevance');
-  var methodBadge = document.getElementById('methodBadge');
-  var currentScenario = 'exact';
-  var currentMethod = 'keyword';
-  var queryMap = { exact: '"renew passport"', vague: '"feeling stressed at work"', hybrid: '"best budget laptop 2025"' };
-  function render() {
-    var d = data[currentScenario][currentMethod];
-    if (!d) return;
-    queryDisplay.textContent = queryMap[currentScenario];
-    var items = '';
-    for (var i = 0; i < d.results.length; i++) {
-      var r = d.results[i];
-      var scoreClass = r.score >= 90 ? 'high' : r.score >= 70 ? 'medium' : 'low';
-      items += '<div class="vw-result-item" style="animation-delay:' + (i * 0.05) + 's"><div class="vw-result-rank">' + r.rank + '</div><div class="vw-result-content"><div class="vw-result-title">' + r.title + '</div><div class="vw-result-snippet">' + r.snippet + '</div></div><div class="vw-result-score ' + scoreClass + '">' + r.score + '%</div></div>';
+
+  function updateWidget() {
+    const data = scenarioData[currentScenario][currentView];
+    hfLatency.textContent = data.hfLat;
+    hfCost.textContent = data.hfCost;
+    oaLatency.textContent = data.oaLat;
+    oaCost.textContent = data.oaCost;
+    metricLatency.textContent = data.bestLat;
+    metricCost.textContent = data.bestCost;
+    metricControl.textContent = data.control;
+    recText.innerHTML = data.rec;
+
+    // Highlight the recommended platform
+    const recLower = recText.textContent.toLowerCase();
+    if (recLower.includes('hugging face')) {
+      hfCard.classList.add('highlighted');
+      oaCard.classList.remove('highlighted');
+    } else {
+      oaCard.classList.add('highlighted');
+      hfCard.classList.remove('highlighted');
     }
-    resultList.innerHTML = items;
-    resultCount.textContent = d.count;
-    metricPrecision.textContent = d.precision + '%';
-    metricPrecision.className = 'vw-tile-val ' + (d.precision >= 90 ? 'good' : d.precision >= 70 ? 'warn' : 'bad');
-    metricRecall.textContent = d.recall + '%';
-    metricRecall.className = 'vw-tile-val ' + (d.recall >= 90 ? 'good' : d.recall >= 70 ? 'warn' : 'bad');
-    metricLatency.textContent = d.latency;
-    metricLatency.className = 'vw-tile-val';
-    metricRelevance.textContent = d.relevance;
-    metricRelevance.className = 'vw-tile-val ' + (d.relevance === 'High' ? 'good' : d.relevance === 'Medium' ? 'warn' : 'bad');
-    var methodName = currentMethod.charAt(0).toUpperCase() + currentMethod.slice(1);
-    methodBadge.textContent = methodName + ' Mode';
-    if (currentMethod === 'keyword') { methodBadge.style.background = 'var(--amber-tint)'; methodBadge.style.color = 'var(--amber)'; methodBadge.style.borderColor = 'rgba(217, 122, 24, 0.25)'; }
-    else if (currentMethod === 'semantic') { methodBadge.style.background = 'var(--violet-tint)'; methodBadge.style.color = 'var(--violet)'; methodBadge.style.borderColor = 'rgba(109, 94, 246, 0.25)'; }
-    else { methodBadge.style.background = 'var(--mint-tint)'; methodBadge.style.color = 'var(--mint-deep)'; methodBadge.style.borderColor = 'rgba(11, 125, 78, 0.25)'; }
+
+    // Set metric colors based on which platform is best
+    if (recLower.includes('hugging face')) {
+      metricLatency.style.color = 'var(--mint)';
+      metricCost.style.color = 'var(--blue)';
+      metricControl.style.color = 'var(--mint)';
+    } else {
+      metricLatency.style.color = 'var(--amber)';
+      metricCost.style.color = 'var(--amber)';
+      metricControl.style.color = 'var(--amber)';
+    }
   }
-  function selectScenario(btn) {
-    for (var i = 0; i < scenarioBtns.length; i++) scenarioBtns[i].classList.remove('active');
-    btn.classList.add('active');
-    currentScenario = btn.getAttribute('data-s');
-    render();
-  }
-  function selectMethod(btn) {
-    for (var i = 0; i < methodBtns.length; i++) methodBtns[i].classList.remove('active');
-    btn.classList.add('active');
-    currentMethod = btn.getAttribute('data-m');
-    render();
-  }
-  for (var i = 0; i < scenarioBtns.length; i++) {
-    scenarioBtns[i].addEventListener('click', function() { selectScenario(this); });
-  }
-  for (var i = 0; i < methodBtns.length; i++) {
-    methodBtns[i].addEventListener('click', function() { selectMethod(this); });
-  }
-  render();
+
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      toggleBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentView = btn.dataset.view;
+      updateWidget();
+    });
+  });
+
+  scBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      scBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentScenario = btn.dataset.scenario;
+      updateWidget();
+    });
+  });
+
+  // Initialize
+  updateWidget();
 })();
 </script>

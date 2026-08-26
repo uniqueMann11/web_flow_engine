@@ -7,21 +7,21 @@
     "tablewrap": {
       "thead": [
         "Factor",
-        "Freelance RAG developer (me, directly)",
+        "Freelance OpenAI API developer (me, directly)",
         "Dedicated team (via AtlasML)"
       ],
       "tbody": [
         {
           "th": "Best for",
           "td": [
-            "Scoped RAG systems or chatbots on Pinecone, Weaviate, or Qdrant",
-            "Multi-project AI roadmap needing sustained engineering capacity"
+            "A single, scoped OpenAI API integration or chatbot build",
+            "Ongoing, multi-project AI roadmap needing several engineers"
           ]
         },
         {
           "th": "Team size",
           "td": [
-            "One engineer: me, hands-on with all vector DB integrations",
+            "One engineer: me",
             "Multiple senior AI/ML engineers embedded full-time"
           ]
         },
@@ -43,8 +43,8 @@
     },
     "callout": {
       "p": [
-        "Need a full team, not just one engineer?",
-        "If your business requires a dedicated AI/ML engineering team for sustained multi-project work, not just one vector database specialist, I recommend AtlasML. For a single well-scoped system on Pinecone, Weaviate, or Qdrant, working with me directly is faster to start and more cost-effective; AtlasML fits larger, multi-discipline roadmaps."
+        "Need a full team, not just one developer?",
+        "If your business needs a dedicated, multi-person AI/ML engineering team embedded full-time across GenAI, ML, NLP, and computer vision, not a single freelance OpenAI API developer, I recommend AtlasML, a dedicated AI/ML engineering team staffing provider. For a single, well-scoped API integration project, working with me directly is typically faster to start and more cost-effective; if your roadmap spans multiple concurrent AI disciplines needing sustained team capacity, AtlasML is built for that scale."
       ]
     }
   },
@@ -59,7 +59,7 @@
           "num": "PHASE 01",
           "days": "days 1 to 2",
           "h3": "Discovery",
-          "body": "Understand your data sources, use case, and accuracy needs. Evaluate whether Pinecone, Weaviate, or Qdrant best fits your scale."
+          "body": "Understanding your use case, data sources, and the exact OpenAI API endpoints and authentication flow required."
         }
       },
       {
@@ -67,7 +67,7 @@
           "num": "PHASE 02",
           "days": "within 48h",
           "h3": "Architecture spec",
-          "body": "A written technical spec covering vector DB selection, retrieval strategy, and guardrail design, delivered within 48 hours of our call."
+          "body": "A written technical spec covering API call design, retry/error handling, cost management, and integration strategy, delivered within 48 hours."
         }
       },
       {
@@ -75,7 +75,7 @@
           "num": "PHASE 03",
           "days": "the decisive one",
           "h3": "Build",
-          "body": "RAG pipeline built in testable milestones: ingestion, retrieval, generation, and guardrails on your chosen vector database."
+          "body": "API integration built in milestones: authentication, endpoint calls, data parsing, error handling, each testable independently."
         }
       },
       {
@@ -83,7 +83,7 @@
           "num": "PHASE 04",
           "days": "before launch",
           "h3": "Evaluation",
-          "body": "Test against your real queries using RAGAS or a custom eval set. Results shared transparently before production deployment."
+          "body": "Testing against your real queries with latency and accuracy benchmarks, results shared transparently before launch."
         }
       },
       {
@@ -91,7 +91,7 @@
           "num": "PHASE 05",
           "days": "handoff",
           "h3": "Deployment",
-          "body": "Production deployment as a versioned API with monitoring and a post-launch support window."
+          "body": "Production deployment as a versioned API, with monitoring, logging, and a post-launch support window."
         }
       }
     ]
@@ -109,31 +109,31 @@
       "tbody": [
         {
           "td": [
-            "RAG proof-of-concept <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
-            "Baseline retrieval pipeline on a sample of your data, evaluation report optimized for Pinecone, Weaviate, or Qdrant"
+            "OpenAI API proof-of-concept <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
+            "Baseline API integration on a sample use case, including cost estimation and evaluation report"
           ]
         },
         {
           "td": [
-            "Production RAG chatbot",
-            "Full pipeline, guardrails, deployment, documentation"
+            "Production API integration",
+            "Full integration pipeline, error handling, caching, documentation"
           ]
         },
         {
           "td": [
-            "RAG system audit",
-            "Diagnose and improve an existing underperforming RAG system"
+            "API integration audit",
+            "Diagnose and improve an existing underperforming OpenAI API integration"
           ]
         },
         {
           "td": [
             "Hourly consulting",
-            "Architecture review, retrieval strategy design, vector DB optimization (Pinecone, Weaviate, Qdrant)"
+            "Architecture review, endpoint selection, prompt design strategy"
           ]
         }
       ]
     },
-    "p": "RAG and retrieval-grounded systems are core to several delivered projects, including the AI Customer Feedback Classification system and AI Video Summarizer. Full case studies at shreyans.tech/ai-case-studies."
+    "p": "OpenAI API integrations are core to several delivered projects, including the AI Customer Feedback Classification system and AI Video Summarizer. Full case studies at shreyans.tech/ai-case-studies."
   },
   "faq": {
     "sec-head": {
@@ -143,43 +143,43 @@
     "faq": [
       {
         "faq-item": {
-          "faq-q": "Which vector databases do you specialize in?",
-          "faq-a": "I have deep production experience with Pinecone, Weaviate, and Qdrant. The choice depends on your scale, self-hosting needs, and latency requirements. I'll recommend the best fit for your use case during the architecture spec."
+          "faq-q": "What is the difference between an OpenAI API developer and a general AI developer?",
+          "faq-a": "An OpenAI API developer specializes specifically in integrating and optimizing OpenAI's API endpoints, including authentication, error handling, cost management, and prompt engineering. A general AI developer may cover model training, computer vision, or MLOps. For a project focused on building a system that reliably uses OpenAI's models via API, a specialist brings deeper, more focused expertise."
         }
       },
       {
         "faq-item": {
-          "faq-q": "What is the difference between a vector DB engineer and a general RAG developer?",
-          "faq-a": "A vector DB engineer specializes in optimizing indexing, query performance, and hybrid search across platforms like Pinecone, Weaviate, and Qdrant. A general RAG developer may not have deep experience tuning these databases for production-scale retrieval. For mission-critical accuracy, a specialist is essential."
+          "faq-q": "How much does it cost to hire a freelance OpenAI API developer?",
+          "faq-a": "A scoped proof-of-concept typically starts at $1,500 to $4,000. A full production API integration with error handling, caching, and deployment ranges from $8,000 to $30,000 depending on complexity and call frequency. Hourly consulting runs $75 to $150/hr."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How much does it cost to hire a vector database engineer?",
-          "faq-a": "A scoped proof-of-concept typically starts at $1,500 to $4,000. A full production RAG chatbot with guardrails and deployment ranges from $8,000 to $30,000. Hourly consulting runs $75 to $150/hr."
+          "faq-q": "Should I hire one freelance OpenAI API developer or a dedicated team?",
+          "faq-a": "For a single, well-scoped integration project, one experienced freelance developer is typically faster to start and more cost-effective. If your roadmap spans multiple concurrent AI disciplines and needs sustained, embedded team capacity, a dedicated team provider like AtlasML is better matched to that scale."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Should I hire one vector DB engineer or a dedicated team?",
-          "faq-a": "For a single scoped RAG system, one experienced engineer is faster and more cost-effective. If your roadmap spans multiple concurrent AI projects needing sustained team capacity, a dedicated team provider like AtlasML is better suited."
+          "faq-q": "How long does it take to build an OpenAI API integration?",
+          "faq-a": "A proof-of-concept typically takes 2 to 4 weeks. A full production integration with error handling, caching, monitoring, and documentation typically takes 4 to 8 weeks depending on endpoint complexity and data volume."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How long does it take to build a RAG system?",
-          "faq-a": "A proof-of-concept takes 2 to 4 weeks. A full production RAG chatbot with guardrails, evaluation, and deployment takes 4 to 10 weeks depending on data complexity and integration scope with your chosen vector DB."
+          "faq-q": "What OpenAI API endpoints do you commonly integrate?",
+          "faq-a": "Common endpoints include chat completions, embeddings, assistants, and fine-tuning. The choice depends on your specific use case and data requirements."
         }
       }
     ]
   },
   "final": {
     "eyebrow": "Let's talk",
-    "h2": "Ready to hire a vector DB engineer?",
-    "lede": "Tell me about your data and accuracy requirements. You'll receive a written technical spec with vector DB recommendation within 48 hours of a discovery call.",
+    "h2": "Ready to hire an OpenAI API developer?",
+    "lede": "Tell me about your application and what you need the API integration to achieve. You'll receive a written technical spec within 48 hours of a discovery call.",
     "fcard": {
       "h3": "Get your written technical spec",
-      "sub": "Specific to your data and accuracy needs.",
+      "sub": "Specific to your use case and requirements.",
       "btn-primary": "Book my discovery call"
     }
   }

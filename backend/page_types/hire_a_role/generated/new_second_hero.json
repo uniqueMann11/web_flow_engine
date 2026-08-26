@@ -22,19 +22,19 @@
   "what-is": {
     "sec-head": {
       "eyebrow": "Plain answer",
-      "h2": "What does a vector database engineer do?"
+      "h2": "What does an OpenAI API developer do?"
     },
     "tldr": {
       "b": "Quick answer",
       "p": [
-        "A vector database engineer designs and deploys vector search systems: pipelines that store, index, and retrieve high-dimensional embeddings for similarity search. This includes vector database selection (Pinecone, Weaviate, Qdrant), embedding model tuning, hybrid search architecture, metadata filtering, and production scaling. A freelance vector database engineer delivers a deployed, integrated system, not just a proof-of-concept."
+        "An OpenAI API developer designs, builds, and integrates production-grade systems using OpenAI's models (GPT-4o, Assistants, embeddings, Whisper). This includes API orchestration, prompt engineering, function calling, streaming, rate-limit handling, and secure key management. A freelance OpenAI API developer delivers a working, integrated system connected to your existing stack, backed by a proven API integration track record."
       ]
     }
   },
   "roles": {
     "sec-head": {
       "eyebrow": "Job title decoder",
-      "h2": "Vector DB engineer vs search engineer vs AI engineer"
+      "h2": "OpenAI API developer vs AI engineer vs ML engineer"
     },
     "tablewrap": {
       "thead": [
@@ -44,24 +44,24 @@
       ],
       "tbody": [
         {
-          "th": "Vector DB engineer",
+          "th": "OpenAI API developer",
           "td": [
-            "Vector database selection, indexing, embedding pipelines, hybrid search",
-            "You need a production-ready vector search system grounded in your data"
-          ]
-        },
-        {
-          "th": "Search engineer",
-          "td": [
-            "Full-text search, relevance tuning, search ranking, and query understanding",
-            "You need advanced text search with traditional BM25 or Elasticsearch"
+            "Direct OpenAI API integration, prompt chains, tool use, streaming, and production deployment",
+            "You need a custom AI feature built specifically on OpenAI's API with a proven integration track record"
           ]
         },
         {
           "th": "AI engineer",
           "td": [
-            "Broader AI/ML system design, may include RAG, training, and MLOps",
-            "You need end-to-end AI infrastructure, vector search being one component"
+            "Broader AI system design, may include multiple model providers, MLOps, and data pipelines",
+            "You need end-to-end AI infrastructure, with OpenAI integration being one component"
+          ]
+        },
+        {
+          "th": "ML engineer",
+          "td": [
+            "Model training, fine-tuning, evaluation, and deployment infrastructure",
+            "You need to train or fine-tune custom models, not just integrate existing APIs"
           ]
         }
       ]

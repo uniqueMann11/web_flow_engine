@@ -2,75 +2,75 @@
   "comply": {
     "comply-in": [
       {
-        "b": "Multi-modal grounding",
-        "span": "Combines text, images, and audio for richer context understanding."
-      },
-      {
-        "b": "Unified reasoning",
-        "span": "Processes multiple data types in a single model architecture."
-      },
-      {
-        "b": "Cross-modal retrieval",
-        "span": "Finds relevant content across different modalities at query time."
+        "b": "Guides every response",
+        "span": "The system prompt acts as a persistent instruction set for the model."
       },
       {
         "b": "No retraining needed",
-        "span": "Update with new data types without full model retraining."
+        "span": "Change behavior by editing the prompt, not retraining the model."
+      },
+      {
+        "b": "Consistent tone",
+        "span": "Enforces a uniform voice and style across all generated content."
+      },
+      {
+        "b": "Quick to iterate",
+        "span": "Prompt variations can be tested in minutes, not days."
       }
     ]
   },
   "what-is": {
     "sec-head": {
       "eyebrow": "Plain answer",
-      "h2": "What is multimodal AI?"
+      "h2": "What is a system prompt?"
     },
     "tldr": {
       "b": "Definition",
       "p": [
-        "Multimodal AI is an artificial intelligence system that processes and integrates multiple types of data\u2014such as text, images, and audio\u2014simultaneously within a unified architecture, enabling it to understand, reason, and generate responses that leverage the combined context of different modalities, leading to more human-like comprehension and more accurate, grounded outputs without requiring separate models per data type."
+        "A system prompt is a set of instructions or context provided at the beginning of an LLM conversation that defines the model's behavior, tone, constraints, and capabilities. It acts as a persistent directive that shapes every response, ensuring consistency, alignment with user goals, and safety guardrails without requiring model retraining."
       ]
     }
   },
   "how-it-works": {
     "sec-head": {
       "eyebrow": "Step by step",
-      "h2": "How multimodal AI works",
-      "p": "The same five-step pipeline animating in the signature panel above, applied to your own multimodal data."
+      "h2": "How system prompts work",
+      "p": "The five-step process of defining, embedding, and executing a system prompt in an LLM interaction."
     },
     "grid g3": [
       {
         "card": {
           "n": "STEP 1",
-          "h3": "Query submitted",
-          "p": "A user submits a query that may include text, an image, or an audio clip."
+          "h3": "Define prompt",
+          "p": "Craft the instruction set specifying persona, tone, and rules."
         }
       },
       {
         "card": {
           "n": "STEP 2",
-          "h3": "Modalities embedded",
-          "p": "Each modality is converted into a numerical embedding capturing its meaning."
+          "h3": "Embed in context",
+          "p": "The prompt is prepended to the user's message in the API call."
         }
       },
       {
         "card": {
           "n": "STEP 3",
-          "h3": "Multimodal search",
-          "p": "The system finds the most relevant chunks across all modalities in a vector database."
+          "h3": "Model processes",
+          "p": "The LLM interprets the system prompt as a high-priority directive."
         }
       },
       {
         "card": {
           "n": "STEP 4",
-          "h3": "Context assembled",
-          "p": "Retrieved content from all modalities joins the query in the model's context window."
+          "h3": "Generate response",
+          "p": "The model produces output adhering to the given constraints."
         }
       },
       {
         "card": {
           "n": "STEP 5",
-          "h3": "Grounded answer",
-          "p": "The model generates a response that can include text, images, or audio with sources."
+          "h3": "Output validated",
+          "p": "Check that the response follows the system prompt's rules and tone."
         }
       }
     ]

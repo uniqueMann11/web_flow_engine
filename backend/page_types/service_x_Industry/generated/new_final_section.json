@@ -2,60 +2,60 @@
   "process": {
     "sec-head": {
       "eyebrow": "How it gets built",
-      "h2": "Marketing content generation process"
+      "h2": "Custom model build process"
     },
     "steps": [
       {
         "step": {
           "num": "PHASE 01",
           "days": "days 1 to 2",
-          "h3": "Brand & Channel Discovery",
-          "body": "Auditing existing brand guidelines, content archives, and multi-channel distribution maps to define voice parameters and compliance rules."
+          "h3": "Requirement & Data Audit",
+          "body": "Analyzing your data, use case, latency constraints, and compliance needs to determine if open weights or API fine-tuning fits best."
         }
       },
       {
         "step": {
           "num": "PHASE 02",
           "days": "within 48h",
-          "h3": "Content Strategy & Taxonomy",
-          "body": "Delivering a blueprint covering content pillars, persona segments, SEO keyword clusters, and cross-channel repurposing logic."
+          "h3": "Architecture & Vendor Spec",
+          "body": "Delivering a blueprint comparing Hugging Face open-weight deployment vs OpenAI API costs, infrastructure overhead, and security isolation."
         }
       },
       {
         "step gate": {
           "num": "PHASE 03",
           "days": "the decisive one",
-          "h3": "Pipeline Build & QA Loop",
-          "body": "Building ingestion workers, template engines, brand-voice fine-tuned models, and a human-in-the-loop review gate for factual accuracy."
+          "h3": "Model Selection & Test Bench",
+          "body": "Running controlled benchmarks on accuracy, latency, throughput, and custom fine-tuning ROI for your specific industry domain."
         }
       },
       {
         "step": {
           "num": "PHASE 04",
           "days": "before launch",
-          "h3": "Multi-Channel QA & Tuning",
-          "body": "Testing output across email, social, blog, and ad formats; validating consistency, tone, and compliance with brand safety rules."
+          "h3": "Fine-Tuning & Evaluation",
+          "body": "Executing distributed fine-tuning, evaluation on private test sets, and hallucination red-teaming for production readiness."
         }
       },
       {
         "step": {
           "num": "PHASE 05",
           "days": "handoff",
-          "h3": "Production Deployment & Monitoring",
-          "body": "Deploying to your existing CMS or marketing stack with real-time content performance dashboards, human override workflows, and support."
+          "h3": "Deployment & Monitoring Setup",
+          "body": "Deploying to your infrastructure with inference monitoring, cost tracking, and model versioning for ongoing optimization."
         }
       }
     ]
   },
   "when-not": {
     "sec-head": {
-      "eyebrow": "Content boundaries",
-      "h2": "When generative AI is NOT the right choice"
+      "eyebrow": "Build vs buy",
+      "h2": "When custom model hosting is NOT the right choice"
     },
     "callout": {
       "p": [
-        "Responsible content creation in marketing",
-        "Generative AI for marketing content excels at scaling drafts, personalization, and rapid iteration. It must never be used for final legal disclaimers, regulated financial advice, or highly sensitive crisis communications without explicit human review and sign-off. Any automated system must enforce a human-in-the-loop QA gate for brand-critical assets."
+        "Strategically choose your AI path",
+        "Custom model hosting excels for data privacy, low latency, and domain specialization. But if your use case requires minimal customization, rapid prototyping, or variable workloads, OpenAI's API provides faster iteration and lower upfront infrastructure overhead. The decision hinges on long-term cost scale, regulatory requirements, and internal MLOps maturity."
       ]
     }
   },
@@ -72,31 +72,31 @@
       "tbody": [
         {
           "td": [
-            "Generative AI Marketing Proof-of-Concept <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
-            "Brand voice audit, sample content pipeline for one channel, human-in-loop QA demonstration"
+            "Custom Model Proof-of-Concept <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
+            "Architecture comparison, benchmark report, and fine-tuning feasibility assessment"
           ]
         },
         {
           "td": [
-            "Production Content Automation System",
-            "Full multi-channel pipeline, brand voice engines, CMS integration, real-time QA dashboard"
+            "Full Custom Model Deployment",
+            "Open-weight fine-tuning, inference pipeline, monitoring, and ongoing optimization"
           ]
         },
         {
           "td": [
-            "Marketing Content Safety Audit",
-            "Red-teaming for brand tone drift, hallucination, and compliance gaps in generated content"
+            "AI Vendor Risk & Cost Audit",
+            "ROI analysis comparing Hugging Face vs OpenAI, latency benchmarks, and compliance review"
           ]
         },
         {
           "td": [
-            "Hourly Marketing AI Consulting",
-            "Strategy review, channel mapping, human-in-loop workflow design, cost optimization"
+            "Hourly AI Strategy Consulting",
+            "Architecture review, model selection, deployment planning, and cost optimization"
           ]
         }
       ]
     },
-    "p": "Delivered projects include multi-channel content automation for e-commerce brands and compliance-safe copy generation. Full case studies at shreyans.tech/ai-case-studies."
+    "p": "Delivered projects include custom fine-tuned language models and vendor migration analyses. Full case studies at shreyans.tech/ai-case-studies."
   },
   "faq": {
     "sec-head": {
@@ -106,32 +106,32 @@
     "faq": [
       {
         "faq-item": {
-          "faq-q": "How do you maintain brand voice across channels with generative AI?",
-          "faq-a": "We fine-tune base models on your existing brand guidelines and content archives, then apply deterministic style rules per channel. A human-in-the-loop QA gate reviews every output for tone consistency before publication."
+          "faq-q": "When should I choose Hugging Face over OpenAI for custom models?",
+          "faq-a": "Choose Hugging Face when you need data sovereignty, sub-500ms inference latency, or deep model customization. OpenAI is better for rapid prototyping, variable loads, and teams without ML infrastructure."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Can the system integrate with existing marketing platforms like HubSpot or Salesforce?",
-          "faq-a": "Yes. We connect via APIs to your CMS, email service provider, and social scheduling tools. The pipeline can auto-populate drafts, suggest subject lines, and flag compliance issues while respecting your existing workflows."
+          "faq-q": "How do I compare costs between self-hosting and API usage?",
+          "faq-a": "Self-hosting has higher upfront GPU cost but lower per-token price at scale. A detailed cost model includes inference volume, batch size, GPU type, and energy costs to find your break-even point."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How does the system prevent factual hallucinations in marketing copy?",
-          "faq-a": "The system enforces source grounding: all claims about products, features, or pricing are pulled from a curated knowledge base. When confidence is low, the content is routed to a human reviewer for fact-checking before any distribution."
+          "faq-q": "Can I fine-tune open weights models for my specific industry?",
+          "faq-a": "Yes, open-weight models like Llama 3.1 or Mistral can be fine-tuned on proprietary data using LoRA or full-parameter methods, achieving domain-specific accuracy comparable to proprietary APIs."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Do I need a content automation agency or can an independent engineer build this?",
-          "faq-a": "Working directly with a specialized independent engineer gives you direct accountability, faster iteration, and no bureaucratic overhead. You get hands-on tuning of brand voice and QA loops without paying for agency account management layers."
+          "faq-q": "Do I need an agency or can an independent engineer build this?",
+          "faq-a": "Working directly with a specialized independent engineer ensures direct accountability, faster decisions, and lower costs without agency overhead layers or account management fees."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How much does a generative AI marketing system cost to build?",
-          "faq-a": "A scoped proof-of-concept for a single channel starts at $2,500 to $6,000. A full production system with multi-channel support, brand voice fine-tuning, and human-in-loop QA typically ranges from $12,000 to $45,000."
+          "faq-q": "How much does custom model hosting cost to implement?",
+          "faq-a": "A scoped proof-of-concept starts at $3,000 to $7,000. Full production deployment with fine-tuning, inference, and monitoring typically ranges from $15,000 to $50,000 depending on model size and infrastructure needs."
         }
       }
     ]

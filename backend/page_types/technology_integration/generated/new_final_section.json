@@ -10,7 +10,7 @@
           "num": "PHASE 01",
           "days": "days 1 to 2",
           "h3": "Discovery",
-          "body": "Understanding throughput targets, latency SLAs, GPU budget, and model requirements. We evaluate whether PagedAttention, tensor parallelism, or continuous batching best fit your serving load."
+          "body": "We map your data sources, establish chunking strategies, and define the retrieval logic and generation requirements for the full pipeline from ingest to answer."
         }
       },
       {
@@ -18,7 +18,7 @@
           "num": "PHASE 02",
           "days": "within 48h",
           "h3": "Architecture spec",
-          "body": "A written spec covering GPU topology, KV cache sizing, scheduling strategy, and cost-per-token projections. Delivered within 48 hours."
+          "body": "A written spec covering document parsing, embedding model selection, vector store topology, and retrieval strategies, delivered within 48 hours."
         }
       },
       {
@@ -26,7 +26,7 @@
           "num": "PHASE 03",
           "days": "the decisive one",
           "h3": "Build in milestones",
-          "body": "Model loading first, then batching and parallelism config, then production-ready optimizations like speculative decoding and prefix caching."
+          "body": "Ingestion pipeline and embedding indexing first, then retrieval and generation logic, then guardrails and evaluation harnesses."
         }
       },
       {
@@ -34,7 +34,7 @@
           "num": "PHASE 04",
           "days": "before launch",
           "h3": "Testing & evaluation",
-          "body": "Stress-testing with realistic request patterns, measuring throughput, latency tail, and GPU utilization. Comparing cost against managed API alternatives."
+          "body": "End-to-end testing against held-out queries, measuring retrieval precision, generation faithfulness, and latency under realistic loads."
         }
       },
       {
@@ -42,7 +42,7 @@
           "num": "PHASE 05",
           "days": "handoff",
           "h3": "Deployment & monitoring",
-          "body": "Production deployment with Prometheus/Grafana dashboards for throughput, memory pressure, and GPU metrics. Full logging for debugging and capacity planning."
+          "body": "Production deployment with logging and tracing (LangSmith or equivalent) for full visibility into retrieval and generation behavior across the pipeline."
         }
       }
     ]
@@ -50,12 +50,12 @@
   "when-not": {
     "sec-head": {
       "eyebrow": "Honest tool selection",
-      "h2": "When vLLM is not the right choice"
+      "h2": "When LangChain is not the right choice"
     },
     "callout": {
       "p": [
         "Direct architectural honesty upfront",
-        "If your workload is purely low-latency (<50ms) single-request inference with small models, a simpler solution like Hugging Face TGI or a direct ONNX runtime may be cheaper and easier. vLLM shines under high throughput, large models, and dynamic batching. For fully managed needs, consider OpenAI or Anthropic APIs instead of self-hosted LLM serving."
+        "Part of a proper RAG pipeline development engagement is an honest assessment of whether LangChain is even the right tool for your specific retrieval needs. If your actual need is a simpler, single-model retrieval setup with no multi-step orchestration, a dedicated RAG build agency using a lightweight framework may be a simpler, lower-overhead choice."
       ]
     }
   },
@@ -72,31 +72,31 @@
       "tbody": [
         {
           "td": [
-            "Single model deployment <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
-            "One model with basic batching and default scheduling"
+            "Single tool/agent integration <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
+            "One scoped agent or tool-calling workflow"
           ]
         },
         {
           "td": [
-            "Production serving setup",
-            "Multi-model, tensor parallelism, continuous batching, monitoring"
+            "Full agentic system",
+            "Multi-step agent with state, tools, memory, guardrails"
           ]
         },
         {
           "td": [
-            "vLLM system audit",
-            "Review of existing deployment, throughput bottlenecks, cost optimization"
+            "LangChain system audit",
+            "Review and improvement plan for an existing implementation"
           ]
         },
         {
           "td": [
             "Hourly consulting",
-            "Architecture review, GPU capacity planning, debugging support"
+            "Architecture review, debugging support"
           ]
         }
       ]
     },
-    "p": "Real-world deployments include the AI Customer Feedback Classification pipeline and AI Video Summarizer. Full case studies at shreyans.tech/ai-case-studies."
+    "p": "Retrieval and generation-grounded systems built using this class of architecture include the AI Customer Feedback Classification pipeline and AI Video Summarizer. Full case studies at shreyans.tech/ai-case-studies."
   },
   "faq": {
     "sec-head": {
@@ -106,32 +106,32 @@
     "faq": [
       {
         "faq-item": {
-          "faq-q": "What is the difference between vLLM and Hugging Face TGI?",
-          "faq-a": "vLLM uses PagedAttention for near-zero memory waste and higher throughput under concurrent requests. TGI supports simpler batching and is easier to set up for small models. vLLM is the better choice for large models and high-throughput serving."
+          "faq-q": "What is the difference between LangChain and LangGraph?",
+          "faq-a": "LangChain is the broader framework providing composable building blocks. LangGraph is LangChain's graph-based agent framework, built for multi-step, stateful agent workflows with explicit control flow and checkpointing. For anything beyond a simple single-shot chain, LangGraph is the standard production approach."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Do I need a vLLM consultant, or can I deploy it myself?",
-          "faq-a": "Basic deployment is straightforward, but optimizing throughput, GPU utilization, and cost per token often requires deep experience with scheduling, tensor parallelism, and KV cache sizing. A consultant accelerates production readiness and avoids costly mistakes."
+          "faq-q": "Do I need a LangChain agency, or can a freelance consultant handle my project?",
+          "faq-a": "Most LangChain projects are well within scope for a single experienced developer. An agency's advantage becomes relevant when a project needs multiple specialists across disciplines working simultaneously on a larger product."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How much do vLLM deployment services cost?",
-          "faq-a": "A single model deployment typically runs $2,500 to $7,000. A full production serving setup ranges from $10,000 to $35,000+ depending on model size and parallelism. Hourly consulting is $100 to $200/hr."
+          "faq-q": "How much do LangChain development services cost?",
+          "faq-a": "A single scoped tool or agent integration typically runs $2,000 to $6,000. A full agentic system ranges from $8,000 to $30,000+ depending on complexity. Hourly consulting runs $75 to $150/hr."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Is vLLM free to use?",
-          "faq-a": "Yes, vLLM is open-source under the Apache 2.0 license. There are no licensing fees, but you pay for GPU compute. Our services focus on maximizing throughput per GPU to reduce your serving costs."
+          "faq-q": "Is LangChain free to use?",
+          "faq-a": "Yes, LangChain and LangGraph are open-source and free under the MIT license. LangSmith, LangChain's observability platform, has a free tier with paid plans starting around $39/month per seat."
         }
       },
       {
         "faq-item": {
-          "faq-q": "When should I NOT use vLLM?",
-          "faq-a": "If you need sub-50ms latency for single requests with small models, a simpler framework like TGI or ONNX Runtime may be more cost-effective. vLLM excels under high throughput, dynamic batching, and large model serving."
+          "faq-q": "When should I NOT use LangChain?",
+          "faq-a": "If your use case is purely high-quality document retrieval with no agentic or multi-step behavior needed, LlamaIndex alone is often a simpler, lower-overhead choice. LangChain earns its complexity when you need tool use, state management, or multi-step reasoning."
         }
       }
     ]

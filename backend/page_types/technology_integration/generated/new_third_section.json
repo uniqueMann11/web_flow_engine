@@ -2,48 +2,48 @@
   "services": {
     "sec-head": {
       "eyebrow": "What I build",
-      "h2": "vLLM deployment services"
+      "h2": "RAG pipeline development services"
     },
     "grid g3": [
       {
         "card": {
           "n": "BUILD",
-          "h3": "Throughput-optimized vLLM serving",
-          "p": "Deploy vLLM with PagedAttention and continuous batching to maximize token throughput per GPU, targeting peak utilization for production LLM workloads."
+          "h3": "RAG pipeline development",
+          "p": "Full ingest-to-answer RAG pipelines using LangChain's retriever and chain primitives, paired with LlamaIndex for document-heavy retrieval quality, covering chunking, embedding, hybrid search, and answer generation."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Multi-GPU & distributed inference",
-          "p": "Configure tensor parallelism and pipeline parallelism across multiple GPUs or nodes to serve large models (e.g., 70B+ parameters) with minimal latency overhead."
+          "h3": "Multi-step agent development (LangGraph)",
+          "p": "Agents that orchestrate multiple retrieval steps, re-rank results, and call external tools based on intermediate findings, built with explicit state graphs and checkpointing for production reliability."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Kubernetes-based vLLM orchestration",
-          "p": "Containerize and deploy vLLM on Kubernetes with auto-scaling, health checks, and GPU resource management for elastic, self-hosted LLM serving."
+          "h3": "Tool-using & function-calling systems",
+          "p": "Systems that connect your RAG pipeline to live business tools\u2014databases, internal APIs, third-party services\u2014so the AI can fetch real-time data and take actions beyond static text generation."
         }
       },
       {
         "card": {
-          "n": "OPTIMIZE",
-          "h3": "Cost & GPU utilization tuning",
-          "p": "Analyze serving cost per token and GPU memory usage, then tune vLLM parameters (batch size, scheduler policy, quantization) to reduce expense without sacrificing throughput."
+          "n": "BUILD",
+          "h3": "Conversational memory systems",
+          "p": "Chatbots and assistants that maintain context across a conversation or across sessions, tuned to your specific need: short-term context, long-term preference memory, or both."
         }
       },
       {
         "card": {
           "n": "AUDIT",
-          "h3": "vLLM system audits & migration",
-          "p": "Evaluate existing LLM serving infrastructure for bottlenecks in latency or cost, and migrate from other frameworks (e.g., TGI, Ray Serve) to vLLM for better performance."
+          "h3": "LangChain system audits & migration",
+          "p": "Review and improvement of an existing RAG implementation, or migration support for teams adding agentic capability to a retrieval-only pipeline."
         }
       },
       {
         "card cta-card": {
-          "h3": "Not sure vLLM is worth it?",
-          "p": "I'll assess your current serving costs and GPU utilization to determine if the throughput gains justify migration.",
+          "h3": "Not sure where to start?",
+          "p": "Part of the engagement is an honest read on whether RAG is even the right fit for your data and use case.",
           "btn-primary": {
             "text": "Get an honest assessment",
             "url": "#lets-talk"
@@ -62,21 +62,21 @@
         "card": {
           "n": "PROJECT-BASED",
           "h3": "Fixed-price, milestone-based",
-          "p": "A scoped vLLM deployment build delivered as a fixed-price, milestone-based engagement."
+          "p": "A scoped RAG pipeline build delivered as a fixed-price, milestone-based engagement with clear deliverables from ingest to answer."
         }
       },
       {
         "card": {
           "n": "HOURLY",
           "h3": "Consulting",
-          "p": "Architecture review or debugging support for an existing serving implementation."
+          "p": "Architecture review or debugging support for an existing RAG implementation, including retrieval quality analysis and pipeline optimization."
         }
       },
       {
         "card": {
           "n": "RETAINER",
           "h3": "Dedicated monthly",
-          "p": "Ongoing optimization and management of your vLLM infrastructure for businesses with a growing AI serving roadmap."
+          "p": "Ongoing RAG pipeline development for businesses with a continuing AI roadmap requiring iterative improvement and new data source integration."
         }
       }
     ]
