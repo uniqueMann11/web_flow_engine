@@ -103,6 +103,13 @@ DIMENSION & STRUCTURE RULES:
 - Responsive: ensure it looks crisp on mobile screens down to 320px.
 - Make whole widget in the light theame, no dark theame needed.
 
+JAVASCRIPT & DOM RELIABILITY RULES (CRITICAL):
+- Exact Selector Match: Every `id`, `class`, and `data-*` attribute referenced in JavaScript (via querySelector, getElementById, dataset, etc.) MUST exist verbatim in your HTML markup. No orphaned or mismatched selectors. Avoid duplicate IDs.
+- Defensive DOM Access: Never assume an element exists. Safely validate elements before attaching listeners or accessing properties (e.g., `const el = document.querySelector(...); if (el) { ... }`).
+- Complete End-to-End Logic: Every interactive button, tab, toggle, slider, accordion, or control MUST have complete working HTML -> Event Listener -> State Change -> DOM-update logic. Never create non-functional visual controls or leave placeholder/stub handlers.
+- Component Isolation & Lifecycle: Wrap component JS in an IIFE or safe scope so it initializes after the DOM is ready without leaking global variables or crashing parent page scripts.
+- Visual & Canvas Integrity: Ensure CSS pointer-events, z-index, and overflow never block interaction. If using `<canvas>`, safely check context (`getContext('2d')`), handle sizing, and render only after initialization.
+
 OUTPUT RULES:
 - Return ONLY the raw HTML component string (with embedded `<style>` and `<script>`).
 - No markdown fences (no ```html), no explanations, no extra prose.
@@ -220,6 +227,7 @@ Requirements:
 - Pure vanilla HTML + CSS + JS only. Start directly with <style>.
 - Do NOT style `body` or `*`. Scope all CSS inside `.viewer` or `.vw-card`.
 - Don't use any emojis. Icons can be used.
+- Robust JavaScript: Every selector and ID in JS must match the HTML exactly, with defensive null-checks and complete working event->state->DOM logic for all interactive controls.
 """
 
     response = completion(
