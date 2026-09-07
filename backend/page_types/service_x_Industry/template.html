@@ -1212,568 +1212,909 @@
 </head>
 
 <body>
-  
-    <main class="svcp">
 
-      <!-- ================= HERO ================= -->
-      <section class="hero" id="demo">
-        <div class="wrap">
-          <div class="hero-grid">
-            <div>
-              <p class="eyebrow">HIPAA-compliant, clinically grounded</p>
-              <h1>RAG chatbot development for healthcare: <span>HIPAA-compliant clinical &amp; patient AI</span></h1>
-              <p class="hero-sub">I design and build production-grade healthcare RAG pipelines and clinical decision
-                support chatbots grounded in your EHR systems, medical guidelines, and clinical notes—with zero PHI
-                exposure, sub-100ms hybrid search, and deterministic safety guardrails.</p>
+  <main class="svcp">
 
-              <div class="creds">
-                <div class="cred"><span class="b" style="background:#0FA968" title="Experience"><svg width="15"
-                      height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 8v4l3 3" />
-                      <circle cx="12" cy="12" r="9" />
-                    </svg></span><span class="t"><i>Experience</i><b>5+ yrs healthcare AI</b></span></div>
-                <div class="cred"><span class="b" style="background:#2456E6" title="Security"><svg width="15"
-                      height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg></span><span class="t"><i>Compliance</i><b>100% HIPAA &amp; BAA ready</b></span></div>
-                <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg width="14" height="14"
-                      viewBox="0 0 24 24" fill="none" stroke="#2456E6" stroke-width="2.4" stroke-linecap="round"
-                      stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M12 6v6l4 2" />
-                    </svg></span><span class="t"><i>Turnaround</i><b>48h architecture spec</b></span></div>
-              </div>
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="demo">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">HIPAA-compliant, clinically grounded</p>
+            <h1>RAG chatbot development for healthcare: <span>HIPAA-compliant clinical &amp; patient AI</span></h1>
+            <p class="hero-sub">I design and build production-grade healthcare RAG pipelines and clinical decision
+              support chatbots grounded in your EHR systems, medical guidelines, and clinical notes—with zero PHI
+              exposure, sub-100ms hybrid search, and deterministic safety guardrails.</p>
 
-              <div class="hero-cta">
-                <a class="btn btn-primary" href="#lets-talk">Discuss your healthcare project <svg fill="none"
-                    stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
-                    <path d="M5 12h14M13 6l6 6-6 6"></path>
-                  </svg></a>
-                <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
-              </div>
-              <p class="live"><span class="pulse"></span> Zero model training on patient data, BAA signed before any
-                data access</p>
-
+            <div class="creds">
+              <div class="cred"><span class="b" style="background:#0FA968" title="Experience"><svg width="15"
+                    height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 8v4l3 3" />
+                    <circle cx="12" cy="12" r="9" />
+                  </svg></span><span class="t"><i>Experience</i><b>5+ yrs healthcare AI</b></span></div>
+              <div class="cred"><span class="b" style="background:#2456E6" title="Security"><svg width="15" height="15"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg></span><span class="t"><i>Compliance</i><b>100% HIPAA &amp; BAA ready</b></span></div>
+              <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg width="14" height="14"
+                    viewBox="0 0 24 24" fill="none" stroke="#2456E6" stroke-width="2.4" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" />
+                  </svg></span><span class="t"><i>Turnaround</i><b>48h architecture spec</b></span></div>
             </div>
 
-            <!-- ===== SIGNATURE: Interactive Clinical Grounding & PHI Simulator ===== -->
-            <div class="viewer">
-              <div class="viewer-top">
-                <span class="t">clinical grounding preview, illustrative</span>
-                <span class="chip"><span class="d"></span>live simulation</span>
-              </div>
-              <canvas id="sigcanvas"
-                aria-label="Clinical grounding flow simulation showing query de-identification, FHIR retrieval, vector search, and grounded response generation."></canvas>
-              <div class="modesw" role="tablist" aria-label="Clinical workflow">
-                <button role="tab" aria-selected="true" data-m="ehr" type="button">Clinical Notes &amp; EHR</button>
-                <button role="tab" aria-selected="false" data-m="guide" type="button">Medical Guidelines</button>
-                <button role="tab" aria-selected="false" data-m="rx" type="button">Formularies &amp; Rx</button>
-              </div>
-              <div class="metrics">
-                <div><b id="m1" class="sc-good">Active</b><span id="m1l">PHI Masking</span></div>
-                <div><b id="m2">100%</b><span id="m2l">Source Traceable</span></div>
-                <div><b id="m3" class="sc-good">Zero</b><span id="m3l">Hallucination Risk</span></div>
-              </div>
-              <div class="answerbox">
-                <span class="k">Grounded clinical output</span>
-                <p id="answer"></p>
-              </div>
-              <ul class="citelist" id="citelist"></ul>
-              <div class="viewer-foot" id="foot">Every response is strictly grounded in verified medical documents and
-                de-identified patient data before generation.</div>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#lets-talk">Discuss your healthcare project <svg fill="none"
+                  stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6"></path>
+                </svg></a>
+              <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
             </div>
+            <p class="live"><span class="pulse"></span> Zero model training on patient data, BAA signed before any
+              data access</p>
+
           </div>
-        </div>
-      </section>
 
-      <!-- ================= COMPLY STRIP ================= -->
-      <div class="comply">
-        <div class="wrap comply-in">
-          <div><span><b>100% HIPAA &amp; BAA compliant</b>Private VPC and on-premise deployments with zero data
-              retention on model providers.</span></div>
-          <div><span><b>De-identified PHI processing</b>Automatic scrubbing of 18 HIPAA identifiers at the ingestion and
-              query boundaries.</span></div>
-          <div><span><b>Evidence-backed citations</b>Every clinical recommendation cites specific medical guidelines,
-              lab reports, or formulary entries.</span></div>
-          <div><span><b>Deterministic guardrails</b>Strict confidence thresholds with automatic clinician escalation for
-              out-of-domain queries.</span></div>
+          <!-- ===== SIGNATURE: Interactive Clinical Grounding & PHI Simulator ===== -->
+          <div class="viewer">
+            <div class="viewer-top">
+              <span class="t">clinical grounding preview, illustrative</span>
+              <span class="chip"><span class="d"></span>live simulation</span>
+            </div>
+            <canvas id="sigcanvas"
+              aria-label="Clinical grounding flow simulation showing query de-identification, FHIR retrieval, vector search, and grounded response generation."></canvas>
+            <div class="modesw" role="tablist" aria-label="Clinical workflow">
+              <button role="tab" aria-selected="true" data-m="ehr" type="button">Clinical Notes &amp; EHR</button>
+              <button role="tab" aria-selected="false" data-m="guide" type="button">Medical Guidelines</button>
+              <button role="tab" aria-selected="false" data-m="rx" type="button">Formularies &amp; Rx</button>
+            </div>
+            <div class="metrics">
+              <div><b id="m1" class="sc-good">Active</b><span id="m1l">PHI Masking</span></div>
+              <div><b id="m2">100%</b><span id="m2l">Source Traceable</span></div>
+              <div><b id="m3" class="sc-good">Zero</b><span id="m3l">Hallucination Risk</span></div>
+            </div>
+            <div class="answerbox">
+              <span class="k">Grounded clinical output</span>
+              <p id="answer"></p>
+            </div>
+            <ul class="citelist" id="citelist"></ul>
+            <div class="viewer-foot" id="foot">Every response is strictly grounded in verified medical documents and
+              de-identified patient data before generation.</div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- ================= WHAT IS HEALTHCARE RAG ================= -->
-      <section id="what-is">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">Plain answer</p>
-            <h2>What is a RAG chatbot for healthcare?</h2>
-          </div>
-          <div class="what-is-wrap reveal">
-            <div class="what-is-media">
-              <!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
-              <div class="img-placeholder" aria-label="Image placeholder">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                  <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                  <circle cx="9" cy="9" r="2"/>
-                  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-                </svg>
-                <span>Image Placeholder (1:1)</span>
-              </div>
+    <!-- ================= COMPLY STRIP ================= -->
+    <div class="comply">
+      <div class="wrap comply-in">
+        <div><span><b>100% HIPAA &amp; BAA compliant</b>Private VPC and on-premise deployments with zero data
+            retention on model providers.</span></div>
+        <div><span><b>De-identified PHI processing</b>Automatic scrubbing of 18 HIPAA identifiers at the ingestion and
+            query boundaries.</span></div>
+        <div><span><b>Evidence-backed citations</b>Every clinical recommendation cites specific medical guidelines,
+            lab reports, or formulary entries.</span></div>
+        <div><span><b>Deterministic guardrails</b>Strict confidence thresholds with automatic clinician escalation for
+            out-of-domain queries.</span></div>
+      </div>
+    </div>
+
+    <!-- ================= WHAT IS HEALTHCARE RAG ================= -->
+    <section id="what-is">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Plain answer</p>
+          <h2>What is a RAG chatbot for healthcare?</h2>
+        </div>
+        <div class="what-is-wrap reveal">
+          <div class="what-is-media">
+            <!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
+            <div class="img-placeholder" aria-label="Image placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                <circle cx="9" cy="9" r="2" />
+                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+              </svg>
+              <span>Image Placeholder (1:1)</span>
             </div>
-            <div class="tldr">
-              <b>Definition</b>
-              <p>A healthcare RAG (Retrieval-Augmented Generation) chatbot is an AI system that combines medical-grade
-                language models with a secure, real-time knowledge retrieval engine. It extracts relevant context from EHR
-                records, clinical guidelines, radiology reports, and drug formularies before generating an answer. By
-                grounding every response in verifiable medical sources, it eliminates hallucinations, maintains strict
-                HIPAA compliance, and provides doctors and patients with evidence-backed answers.</p>
+          </div>
+          <div class="tldr">
+            <b>Definition</b>
+            <p>A healthcare RAG (Retrieval-Augmented Generation) chatbot is an AI system that combines medical-grade
+              language models with a secure, real-time knowledge retrieval engine. It extracts relevant context from EHR
+              records, clinical guidelines, radiology reports, and drug formularies before generating an answer. By
+              grounding every response in verifiable medical sources, it eliminates hallucinations, maintains strict
+              HIPAA compliance, and provides doctors and patients with evidence-backed answers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- ================= SERVICES ================= -->
+    <section id="services">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">What I build</p>
+          <h2>Healthcare RAG development services</h2>
+          <p>Custom, HIPAA-compliant retrieval pipelines and conversational AI assistants built specifically for
+            medical systems.</p>
+        </div>
+        <div class="grid g3 reveal">
+          <div class="card"><span class="n build">BUILD</span>
+            <h3>Clinical Decision Support Chatbots</h3>
+            <p>Physician-facing assistants that retrieve and cross-reference institutional protocols, PubMed
+              literature, and UpToDate guidelines in seconds.</p>
+          </div>
+          <div class="card"><span class="n build">BUILD</span>
+            <h3>Patient Intake &amp; Triage Assistants</h3>
+            <p>24/7 patient-facing symptom intake chatbots that collect histories, match with clinical triage
+              protocols, and route emergency cases immediately.</p>
+          </div>
+          <div class="card"><span class="n build">BUILD</span>
+            <h3>EHR &amp; Medical Record Q&amp;A (FHIR)</h3>
+            <p>Multi-document synthesis across longitudinal patient records, lab histories, and doctor notes using
+              HL7/FHIR compliant retrieval pipelines.</p>
+          </div>
+          <div class="card"><span class="n build">BUILD</span>
+            <h3>Formulary &amp; Prescription Checkers</h3>
+            <p>Real-time drug-to-drug interaction checkers and insurance formulary lookup tools that help prescribers
+              select covered, compatible medications.</p>
+          </div>
+          <div class="card"><span class="n advise">AUDIT</span>
+            <h3>Healthcare AI Red-Teaming &amp; Audits</h3>
+            <p>Rigorous evaluations for clinical accuracy, PHI leak vulnerabilities, prompt injection resistance, and
+              hallucination boundary enforcement.</p>
+          </div>
+          <div class="card cta-card">
+            <h3>Need custom medical AI architecture?</h3>
+            <p>Try the clinical simulator widget above, or book a discovery session to scope your exact EHR
+              integration.</p>
+            <a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Talk to an AI
+              engineer</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- ================= CONSULTANT VS AGENCY ================= -->
+    <section class="soft" id="vs-agency">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Direct access vs agency</p>
+          <h2>Independent healthcare AI engineer vs agency</h2>
+        </div>
+        <div class="tablewrap reveal">
+          <table>
+            <thead>
+              <tr>
+                <th>Factor</th>
+                <th class="col-me">Independent Healthcare AI Engineer (me)</th>
+                <th>Generalist AI Outsourcing Agency</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Clinical &amp; PHI expertise</th>
+                <td class="col-me">Direct specialization in HIPAA Safe Harbor, FHIR, and clinical RAG</td>
+                <td>Generalist developers rotated across unrelated commercial verticals</td>
+              </tr>
+              <tr>
+                <th scope="row">Security &amp; BAA accountability</th>
+                <td class="col-me">Direct engineer signing BAA; zero third-party subcontractor exposure</td>
+                <td>Complex subcontractor chains increasing data breach liability</td>
+              </tr>
+              <tr>
+                <th scope="row">Deployment speed</th>
+                <td class="col-me">Functional clinical POC in 2 to 3 weeks; production in 6 to 8 weeks</td>
+                <td>3 to 6 months weighed down by account managers and discovery layers</td>
+              </tr>
+              <tr>
+                <th scope="row">Cost structure</th>
+                <td class="col-me">Transparent milestone pricing without agency overhead markups</td>
+                <td>High monthly retainer overhead with billable hours for project managers</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout reveal">
+          <p>Direct access guarantees higher compliance rigor</p>
+          <p>In healthcare, a misconfigured vector chunk or unmasked PHI field can result in severe HIPAA violations.
+            Working directly with the engineer writing the ingestion and retrieval code gives your clinical leadership
+            complete architectural clarity and unbroken communication.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= USE CASES / SOLUTIONS ================= -->
+    <section id="use-cases">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Industry context</p>
+          <h2>Where healthcare organizations deploy RAG</h2>
+          <p>Proven architectures tailored to hospitals, digital health platforms, and medical research institutes.
+          </p>
+        </div>
+        <div class="grid g2 reveal">
+          <div class="card">
+            <span class="n comply">HOSPITALS &amp; HEALTH SYSTEMS</span>
+            <h3>Inpatient Triage &amp; Clinical Protocols</h3>
+            <p>Instant clinician lookup for ICU protocols, infection control guidelines, and post-op care steps
+              without leaving the electronic chart.</p>
+            <ul>
+              <li>Integrated with Epic / Cerner via FHIR APIs</li>
+              <li>Clinician audit trail for every synthesized recommendation</li>
+              <li>Zero-retention local embedding models</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="n comply">TELEHEALTH &amp; DIGITAL HEALTH</span>
+            <h3>Patient Intake &amp; Asynchronous Triage</h3>
+            <p>Automating intake questionnaires, extracting structured medical history, and pre-populating doctor
+              consultation summaries.</p>
+            <ul>
+              <li>Automated 18-element PHI scrubber before LLM ingestion</li>
+              <li>24/7 symptom categorization and emergency flag triggers</li>
+              <li>Patient-friendly explanations of lab results and vitals</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- ================= PROCESS ================= -->
+    <section class="soft" id="process">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">How it gets built</p>
+          <h2>Healthcare RAG implementation process</h2>
+        </div>
+        <div class="steps reveal">
+          <details class="step" open>
+            <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
+              <h3>Clinical Discovery &amp; PHI Scoping</h3><span class="cv">+</span>
+            </summary>
+            <div class="body">Reviewing medical data sources, EHR integration endpoints, user roles, and HIPAA
+              compliance requirements.</div>
+          </details>
+          <details class="step">
+            <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
+              <h3>Architecture &amp; Security Spec</h3><span class="cv">+</span>
+            </summary>
+            <div class="body">Delivering a written blueprint covering de-identification strategy, vector database
+              isolation, and clinician escalation rules.</div>
+          </details>
+          <details class="step gate">
+            <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
+              <h3>Pipeline Build &amp; Masking Engine</h3><span class="cv">+</span>
+            </summary>
+            <div class="body">Building ingestion workers, FHIR connectors, embedding indexers, and confidence
+              threshold guardrails.</div>
+          </details>
+          <details class="step">
+            <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
+              <h3>Clinical Evaluation &amp; Red-Teaming</h3><span class="cv">+</span>
+            </summary>
+            <div class="body">Testing against real medical query sets (MedQA/RAGAS benchmarks), validating citation
+              accuracy, and verifying PHI zero-leakage.</div>
+          </details>
+          <details class="step">
+            <summary><span class="num">PHASE 05<span class="days">handoff</span></span>
+              <h3>Production Deployment &amp; Monitoring</h3><span class="cv">+</span>
+            </summary>
+            <div class="body">Deploying to your private VPC/on-premise servers with real-time audit logging, latency
+              tracking, and support window.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= WHEN NOT HEALTHCARE RAG ================= -->
+    <section id="when-not">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Clinical boundaries</p>
+          <h2>When a RAG chatbot is NOT the right choice</h2>
+        </div>
+        <div class="when-not-wrap reveal">
+          <div class="callout amber" style="margin-top:0">
+            <p>Safety-first engineering in healthcare AI</p>
+            <p>A RAG chatbot is designed for clinical decision support, information retrieval, and patient navigation.
+              It must <strong>never</strong> be deployed as an autonomous, unsupervised diagnostic authority for acute
+              life-threatening emergencies. Any system offering medical guidance must enforce human-in-the-loop
+              validation and unambiguous clinician oversight.</p>
+          </div>
+          <div class="when-not-media">
+            <!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
+            <div class="img-placeholder" aria-label="Image placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                <circle cx="9" cy="9" r="2" />
+                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+              </svg>
+              <span>Image Placeholder (1:1)</span>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <div class="rule"></div>
-
-      <!-- ================= SERVICES ================= -->
-      <section id="services">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">What I build</p>
-            <h2>Healthcare RAG development services</h2>
-            <p>Custom, HIPAA-compliant retrieval pipelines and conversational AI assistants built specifically for
-              medical systems.</p>
-          </div>
-          <div class="grid g3 reveal">
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Clinical Decision Support Chatbots</h3>
-              <p>Physician-facing assistants that retrieve and cross-reference institutional protocols, PubMed
-                literature, and UpToDate guidelines in seconds.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Patient Intake &amp; Triage Assistants</h3>
-              <p>24/7 patient-facing symptom intake chatbots that collect histories, match with clinical triage
-                protocols, and route emergency cases immediately.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>EHR &amp; Medical Record Q&amp;A (FHIR)</h3>
-              <p>Multi-document synthesis across longitudinal patient records, lab histories, and doctor notes using
-                HL7/FHIR compliant retrieval pipelines.</p>
-            </div>
-            <div class="card"><span class="n build">BUILD</span>
-              <h3>Formulary &amp; Prescription Checkers</h3>
-              <p>Real-time drug-to-drug interaction checkers and insurance formulary lookup tools that help prescribers
-                select covered, compatible medications.</p>
-            </div>
-            <div class="card"><span class="n advise">AUDIT</span>
-              <h3>Healthcare AI Red-Teaming &amp; Audits</h3>
-              <p>Rigorous evaluations for clinical accuracy, PHI leak vulnerabilities, prompt injection resistance, and
-                hallucination boundary enforcement.</p>
-            </div>
-            <div class="card cta-card">
-              <h3>Need custom medical AI architecture?</h3>
-              <p>Try the clinical simulator widget above, or book a discovery session to scope your exact EHR
-                integration.</p>
-              <a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Talk to an AI
-                engineer</a>
-            </div>
-          </div>
+    <!-- ================= PRICING ================= -->
+    <section class="soft" id="pricing">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Investment</p>
+          <h2>Engagement Options</h2>
         </div>
-      </section>
-
-      <div class="rule"></div>
-
-      <!-- ================= CONSULTANT VS AGENCY ================= -->
-      <section class="soft" id="vs-agency">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">Direct access vs agency</p>
-            <h2>Independent healthcare AI engineer vs agency</h2>
-          </div>
-          <div class="tablewrap reveal">
-            <table>
-              <thead>
-                <tr>
-                  <th>Factor</th>
-                  <th class="col-me">Independent Healthcare AI Engineer (me)</th>
-                  <th>Generalist AI Outsourcing Agency</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Clinical &amp; PHI expertise</th>
-                  <td class="col-me">Direct specialization in HIPAA Safe Harbor, FHIR, and clinical RAG</td>
-                  <td>Generalist developers rotated across unrelated commercial verticals</td>
-                </tr>
-                <tr>
-                  <th scope="row">Security &amp; BAA accountability</th>
-                  <td class="col-me">Direct engineer signing BAA; zero third-party subcontractor exposure</td>
-                  <td>Complex subcontractor chains increasing data breach liability</td>
-                </tr>
-                <tr>
-                  <th scope="row">Deployment speed</th>
-                  <td class="col-me">Functional clinical POC in 2 to 3 weeks; production in 6 to 8 weeks</td>
-                  <td>3 to 6 months weighed down by account managers and discovery layers</td>
-                </tr>
-                <tr>
-                  <th scope="row">Cost structure</th>
-                  <td class="col-me">Transparent milestone pricing without agency overhead markups</td>
-                  <td>High monthly retainer overhead with billable hours for project managers</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="callout reveal">
-            <p>Direct access guarantees higher compliance rigor</p>
-            <p>In healthcare, a misconfigured vector chunk or unmasked PHI field can result in severe HIPAA violations.
-              Working directly with the engineer writing the ingestion and retrieval code gives your clinical leadership
-              complete architectural clarity and unbroken communication.</p>
-          </div>
+        <div class="tablewrap reveal">
+          <table>
+            <thead>
+              <tr>
+                <th>Engagement type</th>
+                <th class="col-me">What's included</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>HIPAA RAG Proof-of-Concept <span class="badge-free"
+                    style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span>
+                </td>
+                <td class="col-me">De-identified retrieval pipeline on sample EHR/guidelines, safety eval report</td>
+              </tr>
+              <tr class="me-row">
+                <td>Production Clinical RAG System</td>
+                <td class="col-me">Full pipeline, FHIR integration, PHI scrubber, guardrails, VPC deployment</td>
+              </tr>
+              <tr>
+                <td>Healthcare AI Safety Audit</td>
+                <td class="col-me">Red-teaming for hallucination, prompt injection, and PHI exposure risks</td>
+              </tr>
+              <tr>
+                <td>Hourly Medical AI Consulting</td>
+                <td class="col-me">Architecture review, HIPAA compliance planning, retrieval strategy</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      </section>
+        <p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Delivered projects include AI
+          clinical feedback categorization and automated medical literature synthesis. Full case studies at <a
+            href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
+      </div>
+    </section>
 
-      <!-- ================= USE CASES / SOLUTIONS ================= -->
-      <section id="use-cases">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">Industry context</p>
-            <h2>Where healthcare organizations deploy RAG</h2>
-            <p>Proven architectures tailored to hospitals, digital health platforms, and medical research institutes.
-            </p>
-          </div>
-          <div class="grid g2 reveal">
-            <div class="card">
-              <span class="n comply">HOSPITALS &amp; HEALTH SYSTEMS</span>
-              <h3>Inpatient Triage &amp; Clinical Protocols</h3>
-              <p>Instant clinician lookup for ICU protocols, infection control guidelines, and post-op care steps
-                without leaving the electronic chart.</p>
-              <ul>
-                <li>Integrated with Epic / Cerner via FHIR APIs</li>
-                <li>Clinician audit trail for every synthesized recommendation</li>
-                <li>Zero-retention local embedding models</li>
-              </ul>
-            </div>
-            <div class="card">
-              <span class="n comply">TELEHEALTH &amp; DIGITAL HEALTH</span>
-              <h3>Patient Intake &amp; Asynchronous Triage</h3>
-              <p>Automating intake questionnaires, extracting structured medical history, and pre-populating doctor
-                consultation summaries.</p>
-              <ul>
-                <li>Automated 18-element PHI scrubber before LLM ingestion</li>
-                <li>24/7 symptom categorization and emergency flag triggers</li>
-                <li>Patient-friendly explanations of lab results and vitals</li>
-              </ul>
-            </div>
-          </div>
+    <!-- ================= FAQ ================= -->
+    <section id="faq">
+      <div class="wrap">
+        <div class="sec-head center reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2>Frequently asked questions</h2>
         </div>
-      </section>
-
-      <div class="rule"></div>
-
-      <!-- ================= PROCESS ================= -->
-      <section class="soft" id="process">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">How it gets built</p>
-            <h2>Healthcare RAG implementation process</h2>
-          </div>
-          <div class="steps reveal">
-            <details class="step" open>
-              <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
-                <h3>Clinical Discovery &amp; PHI Scoping</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Reviewing medical data sources, EHR integration endpoints, user roles, and HIPAA
-                compliance requirements.</div>
-            </details>
-            <details class="step">
-              <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
-                <h3>Architecture &amp; Security Spec</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Delivering a written blueprint covering de-identification strategy, vector database
-                isolation, and clinician escalation rules.</div>
-            </details>
-            <details class="step gate">
-              <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
-                <h3>Pipeline Build &amp; Masking Engine</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Building ingestion workers, FHIR connectors, embedding indexers, and confidence
-                threshold guardrails.</div>
-            </details>
-            <details class="step">
-              <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
-                <h3>Clinical Evaluation &amp; Red-Teaming</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Testing against real medical query sets (MedQA/RAGAS benchmarks), validating citation
-                accuracy, and verifying PHI zero-leakage.</div>
-            </details>
-            <details class="step">
-              <summary><span class="num">PHASE 05<span class="days">handoff</span></span>
-                <h3>Production Deployment &amp; Monitoring</h3><span class="cv">+</span>
-              </summary>
-              <div class="body">Deploying to your private VPC/on-premise servers with real-time audit logging, latency
-                tracking, and support window.</div>
-            </details>
-          </div>
+        <div class="faq reveal">
+          <details open>
+            <summary>How do you ensure HIPAA compliance in healthcare RAG systems?</summary>
+            <div class="a">HIPAA compliance is built into the architecture: automatic de-identification of all 18 PHI
+              identifiers before embedding, isolated private VPC or on-premise deployments, end-to-end encryption at
+              rest and in transit, zero data retention agreements with model providers, and signed BAAs.</div>
+          </details>
+          <details>
+            <summary>Can the RAG chatbot integrate with EHR systems like Epic or Cerner?</summary>
+            <div class="a">Yes. Retrieval pipelines connect via HL7/FHIR APIs and secure database connectors, pulling
+              relevant clinical notes, lab results, and patient histories in real time while respecting role-based
+              access control (RBAC).</div>
+          </details>
+          <details>
+            <summary>How does the system prevent medical hallucinations?</summary>
+            <div class="a">The system applies strict semantic chunking, cross-encoder reranking, and deterministic
+              prompt constraints requiring exact citations from approved medical guidelines. When query confidence
+              falls below a strict threshold, it triggers a defensive fallback with human clinician escalation.</div>
+          </details>
+          <details>
+            <summary>Do I need an agency or can an independent AI engineer build this?</summary>
+            <div class="a">Working directly with a specialized independent engineer ensures direct accountability,
+              deeper compliance oversight, and 2-3x faster deployment without paying for agency account management
+              layers.</div>
+          </details>
+          <details>
+            <summary>How much does a healthcare RAG chatbot cost to build?</summary>
+            <div class="a">A scoped HIPAA proof-of-concept starts at $2,500 to $6,000. A full production clinical RAG
+              chatbot with EHR integration, guardrails, and compliance audits typically ranges from $12,000 to
+              $45,000.</div>
+          </details>
         </div>
-      </section>
-
-      <!-- ================= WHEN NOT HEALTHCARE RAG ================= -->
-      <section id="when-not">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">Clinical boundaries</p>
-            <h2>When a RAG chatbot is NOT the right choice</h2>
-          </div>
-          <div class="when-not-wrap reveal">
-            <div class="callout amber" style="margin-top:0">
-              <p>Safety-first engineering in healthcare AI</p>
-              <p>A RAG chatbot is designed for clinical decision support, information retrieval, and patient navigation.
-                It must <strong>never</strong> be deployed as an autonomous, unsupervised diagnostic authority for acute
-                life-threatening emergencies. Any system offering medical guidance must enforce human-in-the-loop
-                validation and unambiguous clinician oversight.</p>
-            </div>
-            <div class="when-not-media">
-              <!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
-              <div class="img-placeholder" aria-label="Image placeholder">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                  <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                  <circle cx="9" cy="9" r="2"/>
-                  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-                </svg>
-                <span>Image Placeholder (1:1)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= PRICING ================= -->
-      <section class="soft" id="pricing">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <p class="eyebrow">Investment</p>
-            <h2>Engagement Options</h2>
-          </div>
-          <div class="tablewrap reveal">
-            <table>
-              <thead>
-                <tr>
-                  <th>Engagement type</th>
-                  <th class="col-me">What's included</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>HIPAA RAG Proof-of-Concept <span class="badge-free"
-                      style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span>
-                  </td>
-                  <td class="col-me">De-identified retrieval pipeline on sample EHR/guidelines, safety eval report</td>
-                </tr>
-                <tr class="me-row">
-                  <td>Production Clinical RAG System</td>
-                  <td class="col-me">Full pipeline, FHIR integration, PHI scrubber, guardrails, VPC deployment</td>
-                </tr>
-                <tr>
-                  <td>Healthcare AI Safety Audit</td>
-                  <td class="col-me">Red-teaming for hallucination, prompt injection, and PHI exposure risks</td>
-                </tr>
-                <tr>
-                  <td>Hourly Medical AI Consulting</td>
-                  <td class="col-me">Architecture review, HIPAA compliance planning, retrieval strategy</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Delivered projects include AI
-            clinical feedback categorization and automated medical literature synthesis. Full case studies at <a
-              href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
-        </div>
-      </section>
-
-      <!-- ================= FAQ ================= -->
-      <section id="faq">
-        <div class="wrap">
-          <div class="sec-head center reveal">
-            <p class="eyebrow">FAQ</p>
-            <h2>Frequently asked questions</h2>
-          </div>
-          <div class="faq reveal">
-            <details open>
-              <summary>How do you ensure HIPAA compliance in healthcare RAG systems?</summary>
-              <div class="a">HIPAA compliance is built into the architecture: automatic de-identification of all 18 PHI
-                identifiers before embedding, isolated private VPC or on-premise deployments, end-to-end encryption at
-                rest and in transit, zero data retention agreements with model providers, and signed BAAs.</div>
-            </details>
-            <details>
-              <summary>Can the RAG chatbot integrate with EHR systems like Epic or Cerner?</summary>
-              <div class="a">Yes. Retrieval pipelines connect via HL7/FHIR APIs and secure database connectors, pulling
-                relevant clinical notes, lab results, and patient histories in real time while respecting role-based
-                access control (RBAC).</div>
-            </details>
-            <details>
-              <summary>How does the system prevent medical hallucinations?</summary>
-              <div class="a">The system applies strict semantic chunking, cross-encoder reranking, and deterministic
-                prompt constraints requiring exact citations from approved medical guidelines. When query confidence
-                falls below a strict threshold, it triggers a defensive fallback with human clinician escalation.</div>
-            </details>
-            <details>
-              <summary>Do I need an agency or can an independent AI engineer build this?</summary>
-              <div class="a">Working directly with a specialized independent engineer ensures direct accountability,
-                deeper compliance oversight, and 2-3x faster deployment without paying for agency account management
-                layers.</div>
-            </details>
-            <details>
-              <summary>How much does a healthcare RAG chatbot cost to build?</summary>
-              <div class="a">A scoped HIPAA proof-of-concept starts at $2,500 to $6,000. A full production clinical RAG
-                chatbot with EHR integration, guardrails, and compliance audits typically ranges from $12,000 to
-                $45,000.</div>
-            </details>
-          </div>
-        </div>
-      </section>
-    </main>
+      </div>
+    </section>
+  </main>
 
   <script>
     (function () {
       var page = document.querySelector('.svcp');
       if (!page) return;
 
-      var io = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-      }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
-      page.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              io.unobserve(e.target);
+            }
+          });
+        }, {
+          threshold: 0.12,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        page.querySelectorAll('.reveal').forEach(function (el) {
+          io.observe(el);
+        });
+      } else {
+        page.querySelectorAll('.reveal').forEach(function (el) {
+          el.classList.add('in');
+        });
+      }
 
       function countUp(el) {
-        var target = parseFloat(el.dataset.count), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
-        var t0 = null, dur = 1300;
+        if (!el) return;
+
+        var target = parseFloat(el.dataset.count);
+        if (isNaN(target)) return;
+
+        var pre = el.dataset.prefix || '';
+        var suf = el.dataset.suffix || '';
+        var t0 = null;
+        var dur = 1300;
+
         function step(ts) {
-          if (!t0) t0 = ts; var p = Math.min((ts - t0) / dur, 1); var e = 1 - Math.pow(1 - p, 3);
-          el.textContent = pre + Math.round(target * e) + suf; if (p < 1) requestAnimationFrame(step);
+          if (!t0) t0 = ts;
+
+          var p = Math.min((ts - t0) / dur, 1);
+          var e = 1 - Math.pow(1 - p, 3);
+
+          el.textContent =
+            pre +
+            Math.round(target * e) +
+            suf;
+
+          if (p < 1) {
+            requestAnimationFrame(step);
+          }
         }
+
         requestAnimationFrame(step);
       }
-      var cio = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } });
-      }, { threshold: .6 });
-      page.querySelectorAll('[data-count]').forEach(function (el) { cio.observe(el); });
+
+      if ('IntersectionObserver' in window) {
+        var cio = new IntersectionObserver(function (es) {
+          es.forEach(function (e) {
+            if (e.isIntersecting) {
+              countUp(e.target);
+              cio.unobserve(e.target);
+            }
+          });
+        }, {
+          threshold: 0.6
+        });
+
+        page.querySelectorAll('[data-count]').forEach(function (el) {
+          cio.observe(el);
+        });
+      } else {
+        page.querySelectorAll('[data-count]').forEach(function (el) {
+          countUp(el);
+        });
+      }
 
       page.querySelectorAll('.faq details').forEach(function (d) {
-        d.addEventListener('toggle', function () { if (d.open) { page.querySelectorAll('.faq details').forEach(function (o) { if (o !== d) o.open = false; }); } });
+        d.addEventListener('toggle', function () {
+          if (!d.open) return;
+
+          page.querySelectorAll('.faq details').forEach(function (o) {
+            if (o !== d) {
+              o.open = false;
+            }
+          });
+        });
       });
     })();
 
     (function () {
       var page = document.querySelector('.svcp');
-      var canvas = document.getElementById('sigcanvas'), ctx = canvas.getContext('2d');
-      var workflow = 'ehr', t = 0, raf = null;
+      if (!page) return;
+
+      var canvas = document.getElementById('sigcanvas');
+      if (!canvas) return;
+
+      var ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      var workflow = 'ehr';
+      var t = 0;
+      var raf = null;
 
       var workflows = {
         ehr: {
           q: 'Patient Discharge: Post-Op Care & Drug Interactions',
           a: 'Per <b>Post-Op Cardiology Protocol v4</b> and <b>FHIR Patient Encounter #419</b>, patient [DE-IDENTIFIED] is prescribed Metoprolol 50mg BID. No contraindications found with current Lisinopril therapy. Patient scheduled for wound check in 7 days.',
-          cites: [['epic_fhir_encounter_419.json', '0.97'], ['cardiology_discharge_v4.pdf', '0.94'], ['drug_interaction_matrix.csv', '0.91']],
-          m1: '100% PHI Scrubbed', m2: '3 FHIR Nodes', m3: 'Zero'
+          cites: [
+            ['epic_fhir_encounter_419.json', '0.97'],
+            ['cardiology_discharge_v4.pdf', '0.94'],
+            ['drug_interaction_matrix.csv', '0.91']
+          ],
+          m1: '100% PHI Scrubbed',
+          m2: '3 FHIR Nodes',
+          m3: 'Zero'
         },
+
         guide: {
           q: 'Clinical Protocol: STEMI Management in Triage',
           a: 'According to <b>AHA/ACC STEMI Guidelines 2026</b>, initiate aspirin 325mg non-enteric chewable, high-flow O2 if SaO2 &lt; 90%, and acquire 12-lead ECG within 10 minutes of arrival. Immediate cath lab activation required for ST elevation &gt; 1mm in 2 contiguous leads.',
-          cites: [['aha_acc_stemi_2026.pdf', '0.99'], ['triage_escalation_sop.pdf', '0.95'], ['emergency_formulary.json', '0.89']],
-          m1: 'Non-PHI Protocol', m2: '4 Guidelines', m3: 'Zero'
+          cites: [
+            ['aha_acc_stemi_2026.pdf', '0.99'],
+            ['triage_escalation_sop.pdf', '0.95'],
+            ['emergency_formulary.json', '0.89']
+          ],
+          m1: 'Non-PHI Protocol',
+          m2: '4 Guidelines',
+          m3: 'Zero'
         },
+
         rx: {
           q: 'Formulary Check: Anticoagulant Prior Auth & Dosage',
           a: 'Per <b>Hospital Tier-1 Formulary</b>, Apixaban (Eliquis) 5mg BID is preferred for non-valvular atrial fibrillation without prior authorization. Dose reduction to 2.5mg BID required if patient meets &ge; 2 criteria: age &ge; 80, weight &le; 60kg, serum creatinine &ge; 1.5 mg/dL.',
-          cites: [['hospital_formulary_2026.pdf', '0.98'], ['anticoagulation_dosing.pdf', '0.96'], ['payer_prior_auth_rules.csv', '0.88']],
-          m1: 'Formulary Grounded', m2: '3 Formularies', m3: 'Zero'
+          cites: [
+            ['hospital_formulary_2026.pdf', '0.98'],
+            ['anticoagulation_dosing.pdf', '0.96'],
+            ['payer_prior_auth_rules.csv', '0.88']
+          ],
+          m1: 'Formulary Grounded',
+          m2: '3 Formularies',
+          m3: 'Zero'
         }
       };
 
       function resize() {
-        var r = canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
-        canvas.width = r.width * d; canvas.height = r.height * d;
-        ctx.setTransform(d, 0, 0, d, 0, 0);
+        var r = canvas.getBoundingClientRect();
+
+        var width = r.width;
+        var height = r.height;
+
+        if (!width || !height) return;
+
+        var d = Math.min(
+          window.devicePixelRatio || 1,
+          2
+        );
+
+        canvas.width = Math.round(width * d);
+        canvas.height = Math.round(height * d);
+
+        ctx.setTransform(
+          d,
+          0,
+          0,
+          d,
+          0,
+          0
+        );
       }
 
       var nodes = [
-        { x: .12, y: .5, label: 'Query / EHR' },
-        { x: .38, y: .5, label: 'PHI De-ID Gateway' },
-        { x: .65, y: .32, label: 'Clinical Vector DB' },
-        { x: .65, y: .68, label: 'FHIR / EHR Store' },
-        { x: .88, y: .5, label: 'Verified AI Output' }
+        { x: 0.12, y: 0.5, label: 'Query / EHR' },
+        { x: 0.38, y: 0.5, label: 'PHI De-ID Gateway' },
+        { x: 0.65, y: 0.32, label: 'Clinical Vector DB' },
+        { x: 0.65, y: 0.68, label: 'FHIR / EHR Store' },
+        { x: 0.88, y: 0.5, label: 'Verified AI Output' }
       ];
 
-      function draw() {
-        var r = canvas.getBoundingClientRect(), W = r.width, H = r.height;
+      function drawFrame() {
+        var r = canvas.getBoundingClientRect();
+
+        var W = r.width;
+        var H = r.height;
+
+        if (!W || !H) return;
+
         ctx.clearRect(0, 0, W, H);
 
-        ctx.strokeStyle = 'rgba(36,86,230,.06)'; ctx.lineWidth = 1;
-        for (var gx = 0; gx <= W; gx += W / 8) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
-        for (var gy = 0; gy <= H; gy += H / 4) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
+        ctx.strokeStyle =
+          'rgba(36,86,230,.06)';
 
-        ctx.strokeStyle = 'rgba(36,86,230,.22)'; ctx.lineWidth = 1.6;
-        ctx.beginPath(); ctx.moveTo(nodes[0].x * W, nodes[0].y * H); ctx.lineTo(nodes[1].x * W, nodes[1].y * H); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(nodes[1].x * W, nodes[1].y * H); ctx.lineTo(nodes[2].x * W, nodes[2].y * H); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(nodes[1].x * W, nodes[1].y * H); ctx.lineTo(nodes[3].x * W, nodes[3].y * H); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(nodes[2].x * W, nodes[2].y * H); ctx.lineTo(nodes[4].x * W, nodes[4].y * H); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(nodes[3].x * W, nodes[3].y * H); ctx.lineTo(nodes[4].x * W, nodes[4].y * H); ctx.stroke();
+        ctx.lineWidth = 1;
 
-        var p1 = (t * .015) % 1;
+        var gridX = W / 8;
+        var gridY = H / 4;
+
+        if (gridX > 0) {
+          for (var gx = 0; gx <= W; gx += gridX) {
+            ctx.beginPath();
+            ctx.moveTo(gx, 0);
+            ctx.lineTo(gx, H);
+            ctx.stroke();
+          }
+        }
+
+        if (gridY > 0) {
+          for (var gy = 0; gy <= H; gy += gridY) {
+            ctx.beginPath();
+            ctx.moveTo(0, gy);
+            ctx.lineTo(W, gy);
+            ctx.stroke();
+          }
+        }
+
+        ctx.strokeStyle =
+          'rgba(36,86,230,.22)';
+
+        ctx.lineWidth = 1.6;
+
+        function connect(a, b) {
+          ctx.beginPath();
+          ctx.moveTo(
+            nodes[a].x * W,
+            nodes[a].y * H
+          );
+          ctx.lineTo(
+            nodes[b].x * W,
+            nodes[b].y * H
+          );
+          ctx.stroke();
+        }
+
+        connect(0, 1);
+        connect(1, 2);
+        connect(1, 3);
+        connect(2, 4);
+        connect(3, 4);
+
+        var p1 = (t * 0.015) % 1;
+
         ctx.beginPath();
-        ctx.arc(nodes[0].x * W + (nodes[1].x - nodes[0].x) * W * p1, nodes[0].y * H, 3.5, 0, Math.PI * 2);
-        ctx.fillStyle = '#0FA968'; ctx.fill();
 
-        var p2 = (t * .015 + .3) % 1;
-        ctx.beginPath();
-        ctx.arc(nodes[1].x * W + (nodes[2].x - nodes[1].x) * W * p2, nodes[1].y * H + (nodes[2].y - nodes[1].y) * H * p2, 3.5, 0, Math.PI * 2);
-        ctx.fillStyle = '#2456E6'; ctx.fill();
+        ctx.arc(
+          nodes[0].x * W +
+          (nodes[1].x - nodes[0].x) *
+          W *
+          p1,
+          nodes[0].y * H,
+          3.5,
+          0,
+          Math.PI * 2
+        );
 
-        var p3 = (t * .015 + .6) % 1;
+        ctx.fillStyle = '#0FA968';
+        ctx.fill();
+
+        var p2 = (t * 0.015 + 0.3) % 1;
+
         ctx.beginPath();
-        ctx.arc(nodes[2].x * W + (nodes[4].x - nodes[2].x) * W * p3, nodes[2].y * H + (nodes[4].y - nodes[2].y) * H * p3, 3.5, 0, Math.PI * 2);
-        ctx.fillStyle = '#6D5EF6'; ctx.fill();
+
+        ctx.arc(
+          nodes[1].x * W +
+          (nodes[2].x - nodes[1].x) *
+          W *
+          p2,
+          nodes[1].y * H +
+          (nodes[2].y - nodes[1].y) *
+          H *
+          p2,
+          3.5,
+          0,
+          Math.PI * 2
+        );
+
+        ctx.fillStyle = '#2456E6';
+        ctx.fill();
+
+        var p3 = (t * 0.015 + 0.6) % 1;
+
+        ctx.beginPath();
+
+        ctx.arc(
+          nodes[2].x * W +
+          (nodes[4].x - nodes[2].x) *
+          W *
+          p3,
+          nodes[2].y * H +
+          (nodes[4].y - nodes[2].y) *
+          H *
+          p3,
+          3.5,
+          0,
+          Math.PI * 2
+        );
+
+        ctx.fillStyle = '#6D5EF6';
+        ctx.fill();
 
         nodes.forEach(function (n, idx) {
-          var nx = n.x * W, ny = n.y * H;
-          ctx.beginPath(); ctx.arc(nx, ny, idx === 1 ? 14 : 11, 0, Math.PI * 2);
-          ctx.fillStyle = idx === 1 ? 'rgba(15,169,104,.15)' : 'rgba(36,86,230,.12)'; ctx.fill();
+          var nx = n.x * W;
+          var ny = n.y * H;
 
-          ctx.beginPath(); ctx.arc(nx, ny, idx === 1 ? 7 : 5.5, 0, Math.PI * 2);
-          ctx.fillStyle = idx === 1 ? '#0FA968' : (idx === 4 ? '#6D5EF6' : '#2456E6'); ctx.fill();
+          ctx.beginPath();
 
-          ctx.fillStyle = '#48566E'; ctx.font = '600 10px "IBM Plex Mono",monospace';
+          ctx.arc(
+            nx,
+            ny,
+            idx === 1 ? 14 : 11,
+            0,
+            Math.PI * 2
+          );
+
+          ctx.fillStyle =
+            idx === 1
+              ? 'rgba(15,169,104,.15)'
+              : 'rgba(36,86,230,.12)';
+
+          ctx.fill();
+
+          ctx.beginPath();
+
+          ctx.arc(
+            nx,
+            ny,
+            idx === 1 ? 7 : 5.5,
+            0,
+            Math.PI * 2
+          );
+
+          ctx.fillStyle =
+            idx === 1
+              ? '#0FA968'
+              : idx === 4
+                ? '#6D5EF6'
+                : '#2456E6';
+
+          ctx.fill();
+
+          ctx.fillStyle = '#48566E';
+          ctx.font =
+            '600 10px "IBM Plex Mono",monospace';
+
           ctx.textAlign = 'center';
-          ctx.fillText(n.label, nx, ny + (idx === 2 ? -14 : 20));
-        });
 
-        t += 1; raf = requestAnimationFrame(draw);
+          ctx.fillText(
+            n.label,
+            nx,
+            ny + (idx === 2 ? -14 : 20)
+          );
+        });
+      }
+
+      function draw() {
+        drawFrame();
+
+        t += 1;
+
+        raf = requestAnimationFrame(draw);
       }
 
       function update() {
         var d = workflows[workflow];
-        var m1 = document.getElementById('m1'), m2 = document.getElementById('m2'), m3 = document.getElementById('m3');
-        var cl = document.getElementById('citelist'), ans = document.getElementById('answer');
-        document.querySelector('.viewer-top .t').textContent = d.q;
 
-        ans.innerHTML = d.a;
-        m1.textContent = d.m1;
-        m2.textContent = d.m2;
-        m3.textContent = d.m3;
+        if (!d) return;
 
-        cl.innerHTML = d.cites.map(function (c) {
-          return '<li><span class="src">' + c[0] + '</span> <span class="rel">rel ' + c[1] + '</span></li>';
-        }).join('');
+        var title =
+          page.querySelector('.viewer-top .t');
+
+        var m1 =
+          document.getElementById('m1');
+
+        var m2 =
+          document.getElementById('m2');
+
+        var m3 =
+          document.getElementById('m3');
+
+        var cl =
+          document.getElementById('citelist');
+
+        var ans =
+          document.getElementById('answer');
+
+        if (title) {
+          title.textContent = d.q;
+        }
+
+        if (ans) {
+          ans.innerHTML = d.a;
+        }
+
+        if (m1) {
+          m1.textContent = d.m1;
+        }
+
+        if (m2) {
+          m2.textContent = d.m2;
+        }
+
+        if (m3) {
+          m3.textContent = d.m3;
+        }
+
+        if (cl) {
+          cl.innerHTML = d.cites.map(function (c) {
+            return (
+              '<li><span class="src">' +
+              c[0] +
+              '</span> <span class="rel">rel ' +
+              c[1] +
+              '</span></li>'
+            );
+          }).join('');
+        }
       }
 
-      page.querySelectorAll('.modesw [role="tab"]').forEach(function (b) {
-        b.addEventListener('click', function () {
-          page.querySelectorAll('.modesw [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
-          b.setAttribute('aria-selected', 'true'); workflow = b.dataset.m; t = 0; update();
+      page
+        .querySelectorAll('.modesw [role="tab"]')
+        .forEach(function (b) {
+          b.addEventListener('click', function () {
+            page
+              .querySelectorAll('.modesw [role="tab"]')
+              .forEach(function (x) {
+                x.setAttribute(
+                  'aria-selected',
+                  'false'
+                );
+              });
+
+            b.setAttribute(
+              'aria-selected',
+              'true'
+            );
+
+            var selectedWorkflow =
+              b.dataset.m;
+
+            if (workflows[selectedWorkflow]) {
+              workflow = selectedWorkflow;
+            }
+
+            t = 0;
+            update();
+
+            if (
+              window.matchMedia(
+                '(prefers-reduced-motion: reduce)'
+              ).matches
+            ) {
+              drawFrame();
+            }
+          });
         });
+
+      window.addEventListener('resize', function () {
+        resize();
+
+        if (
+          window.matchMedia(
+            '(prefers-reduced-motion: reduce)'
+          ).matches
+        ) {
+          drawFrame();
+        }
       });
 
-      window.addEventListener('resize', resize);
-      resize(); update();
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(); } else { draw(); cancelAnimationFrame(raf); }
+      resize();
+      update();
+
+      if (
+        window.matchMedia(
+          '(prefers-reduced-motion: reduce)'
+        ).matches
+      ) {
+        drawFrame();
+      } else {
+        draw();
+      }
     })();
   </script>
 </body>

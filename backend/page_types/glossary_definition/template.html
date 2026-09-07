@@ -1811,10 +1811,11 @@
           <div class="what-is-media">
             <!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
             <div class="img-placeholder" aria-label="Image placeholder">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                <circle cx="9" cy="9" r="2"/>
-                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                <circle cx="9" cy="9" r="2" />
+                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
               </svg>
               <span>Image Placeholder (1:1)</span>
             </div>
@@ -2127,206 +2128,1068 @@
   </main>
 
   <script>
-    (function () {
-      var page = document.querySelector('.svcp');
-      if (!page) return;
+    document.addEventListener('DOMContentLoaded', function () {
 
-      var io = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-      }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
-      page.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+      (function () {
+        var page = document.querySelector('.svcp');
+        if (!page) return;
 
-      function countUp(el) {
-        var target = parseFloat(el.dataset.count), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
-        var t0 = null, dur = 1300;
-        function step(ts) {
-          if (!t0) t0 = ts; var p = Math.min((ts - t0) / dur, 1); var e = 1 - Math.pow(1 - p, 3);
-          el.textContent = pre + Math.round(target * e) + suf; if (p < 1) requestAnimationFrame(step);
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('in');
+                io.unobserve(entry.target);
+              }
+            });
+          }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+          });
+
+          page.querySelectorAll('.reveal').forEach(function (el) {
+            io.observe(el);
+          });
+        } else {
+          page.querySelectorAll('.reveal').forEach(function (el) {
+            el.classList.add('in');
+          });
         }
-        requestAnimationFrame(step);
-      }
-      var cio = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } });
-      }, { threshold: .6 });
-      page.querySelectorAll('[data-count]').forEach(function (el) { cio.observe(el); });
 
-      page.querySelectorAll('.stack').forEach(function (root) {
-        var tabs = root.querySelectorAll('.stack-tabs [role="tab"]'), panels = root.querySelectorAll('.stack-panel');
-        function act(tab) {
-          var t = tab.dataset.s;
-          tabs.forEach(function (x) { x.setAttribute('aria-selected', x === tab ? 'true' : 'false'); });
-          panels.forEach(function (p) { p.classList.toggle('on', p.dataset.p === t); });
+        function countUp(el) {
+          if (!el) return;
+
+          var target = parseFloat(el.dataset.count);
+          if (isNaN(target)) return;
+
+          var pre = el.dataset.prefix || '';
+          var suf = el.dataset.suffix || '';
+          var t0 = null;
+          var dur = 1300;
+
+          function step(ts) {
+            if (!t0) t0 = ts;
+
+            var p = Math.min((ts - t0) / dur, 1);
+            var e = 1 - Math.pow(1 - p, 3);
+
+            el.textContent =
+              pre +
+              Math.round(target * e) +
+              suf;
+
+            if (p < 1) {
+              requestAnimationFrame(step);
+            }
+          }
+
+          requestAnimationFrame(step);
         }
-        tabs.forEach(function (tab, i) {
-          tab.addEventListener('click', function () { act(tab); });
-          tab.addEventListener('keydown', function (e) {
-            var n = null;
-            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = tabs[i + 1] || tabs[0];
-            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = tabs[i - 1] || tabs[tabs.length - 1];
-            if (n) { e.preventDefault(); n.focus(); act(n); }
+
+        if ('IntersectionObserver' in window) {
+          var cio = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                countUp(entry.target);
+                cio.unobserve(entry.target);
+              }
+            });
+          }, {
+            threshold: 0.6
+          });
+
+          page.querySelectorAll('[data-count]').forEach(function (el) {
+            cio.observe(el);
+          });
+        } else {
+          page.querySelectorAll('[data-count]').forEach(function (el) {
+            countUp(el);
+          });
+        }
+
+        page.querySelectorAll('.stack').forEach(function (root) {
+          var tabs =
+            root.querySelectorAll('.stack-tabs [role="tab"]');
+
+          var panels =
+            root.querySelectorAll('.stack-panel');
+
+          function activateTab(tab) {
+            if (!tab) return;
+
+            var value = tab.dataset.s;
+            if (value === undefined) return;
+
+            tabs.forEach(function (item) {
+              item.setAttribute(
+                'aria-selected',
+                item === tab ? 'true' : 'false'
+              );
+            });
+
+            panels.forEach(function (panel) {
+              panel.classList.toggle(
+                'on',
+                panel.dataset.p === value
+              );
+            });
+          }
+
+          tabs.forEach(function (tab, index) {
+            tab.addEventListener('click', function () {
+              activateTab(tab);
+            });
+
+            tab.addEventListener('keydown', function (event) {
+              var nextTab = null;
+
+              if (
+                event.key === 'ArrowRight' ||
+                event.key === 'ArrowDown'
+              ) {
+                nextTab =
+                  tabs[index + 1] ||
+                  tabs[0];
+              }
+
+              if (
+                event.key === 'ArrowLeft' ||
+                event.key === 'ArrowUp'
+              ) {
+                nextTab =
+                  tabs[index - 1] ||
+                  tabs[tabs.length - 1];
+              }
+
+              if (nextTab) {
+                event.preventDefault();
+                nextTab.focus();
+                activateTab(nextTab);
+              }
+            });
           });
         });
-      });
 
-      page.querySelectorAll('.faq details').forEach(function (d) {
-        d.addEventListener('toggle', function () { if (d.open) { page.querySelectorAll('.faq details').forEach(function (o) { if (o !== d) o.open = false; }); } });
-      });
-    })();
+        page.querySelectorAll('.faq details').forEach(function (detail) {
+          detail.addEventListener('toggle', function () {
+            if (!detail.open) return;
 
-
-    (function () {
-      var page = document.querySelector('.svcp');
-      var canvas = document.getElementById('sigcanvas'), ctx = canvas.getContext('2d');
-      var mode = 'rag', domain = 0, t = 0, raf = null;
-
-      var domains = [
-        {
-          seg: 'support policy',
-          rag: {
-            q: 'What is our refund window for enterprise plans?',
-            a: 'Per your <b>Enterprise Terms v3</b>, enterprise plans carry a 30-day refund window from the invoice date; anything past that routes to a manual review queue.',
-            cites: [['enterprise_terms_v3.pdf', '0.95'], ['billing_policy.md', '0.87'], ['plan_comparison.pdf', '0.80']]
-          },
-          bare: { a: '<span class="warn">Unverified:</span> Most SaaS refund windows run 14 to 30 days. (A generic industry guess, not your actual policy.)' },
-          finetune: { a: '<span class="good">Tone-matched:</span> replies fluently in your brand voice, but the refund-window figure itself is whatever pattern was frozen into the weights at the last training run, not today\'s policy.' }
-        },
-        {
-          seg: 'internal wiki',
-          rag: {
-            q: 'What is the approval process for expenses over $5,000?',
-            a: 'Per the <b>Finance Approval Matrix</b>, spend above $5,000 requires director sign-off plus a two-day finance review before the PO is issued.',
-            cites: [['finance_approval_matrix.pdf', '0.93'], ['procurement_policy.md', '0.85'], ['finance_faq.pdf', '0.79']]
-          },
-          bare: { a: '<span class="warn">Unverified:</span> Usually needs manager approval above a few thousand dollars. (No specific threshold, no named approver, invented.)' },
-          finetune: { a: '<span class="good">Tone-matched:</span> sounds like your finance team, but the $5,000 threshold and approver name are whatever was true when the model was last fine-tuned.' }
-        },
-        {
-          seg: 'product catalog',
-          rag: {
-            q: 'Is the XR-200 compatible with the older mounting kit?',
-            a: 'Per the <b>XR-200 spec sheet</b>, it requires the v2 mounting kit; the original kit is not compatible without the v2 adapter plate.',
-            cites: [['xr200_spec_sheet.pdf', '0.96'], ['mounting_kit_v2.pdf', '0.88'], ['compat_matrix.csv', '0.82']]
-          },
-          bare: { a: '<span class="warn">Unverified:</span> Probably compatible, most mounts are similar across a product line. (No spec lookup, no real answer.)' },
-          finetune: { a: '<span class="good">Tone-matched:</span> answers helpfully and on-brand, but for a product launched after the last fine-tune, it has no idea the XR-200 exists.' }
-        }];
-
-      function resize() { var r = canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2); canvas.width = r.width * d; canvas.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
-
-      var pts = []; (function seed() {
-        var rng = 17; function rnd() { rng = (rng * 9301 + 49297) % 233280; return rng / 233280; }
-        for (var i = 0; i < 24; i++) { pts.push({ x: .12 + rnd() * .76, y: .16 + rnd() * .7, r: 2 + rnd() * 2 }); }
+            page.querySelectorAll('.faq details').forEach(function (other) {
+              if (other !== detail) {
+                other.open = false;
+              }
+            });
+          });
+        });
       })();
 
-      function draw() {
-        var r = canvas.getBoundingClientRect(), W = r.width, H = r.height;
-        ctx.clearRect(0, 0, W, H);
-        ctx.strokeStyle = 'rgba(36,86,230,.06)'; ctx.lineWidth = 1;
-        for (var gx = 0; gx <= W; gx += W / 8) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
-        for (var gy = 0; gy <= H; gy += H / 5) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
 
-        var q = { x: W * .16, y: H * .5 };
-        pts.forEach(function (p) { ctx.beginPath(); ctx.arc(p.x * W, p.y * H, p.r, 0, Math.PI * 2); ctx.fillStyle = 'rgba(107,122,147,.28)'; ctx.fill(); });
+      (function () {
+        var page = document.querySelector('.svcp');
+        if (!page) return;
 
-        if (mode === 'rag') {
-          var targets = [{ x: W * .62, y: H * .26 }, { x: W * .74, y: H * .44 }, { x: W * .68, y: H * .66 }, { x: W * .82, y: H * .58 }];
-          targets.forEach(function (tp, i) {
-            var prog = Math.min(1, Math.max(0, (t - i * 10) / 40));
-            var mx = q.x + (tp.x - q.x) * prog, my = q.y + (tp.y - q.y) * prog;
-            var grad = ctx.createLinearGradient(q.x, q.y, tp.x, tp.y);
-            grad.addColorStop(0, 'rgba(36,86,230,.7)'); grad.addColorStop(1, 'rgba(109,94,246,.25)');
-            ctx.strokeStyle = grad; ctx.lineWidth = 1.6;
-            ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(mx, my); ctx.stroke();
-            var pp = (t * .02 + i * .25) % 1;
-            ctx.beginPath(); ctx.arc(q.x + (tp.x - q.x) * pp, q.y + (tp.y - q.y) * pp, 2.6, 0, Math.PI * 2); ctx.fillStyle = 'rgba(15,169,104,.9)'; ctx.fill();
-          });
-          targets.forEach(function (tp) {
-            ctx.beginPath(); ctx.arc(tp.x, tp.y, 7, 0, Math.PI * 2); ctx.fillStyle = 'rgba(15,169,104,.16)'; ctx.fill();
-            ctx.beginPath(); ctx.arc(tp.x, tp.y, 4, 0, Math.PI * 2); ctx.fillStyle = '#0FA968'; ctx.fill();
-          });
-          ctx.fillStyle = 'rgba(15,169,104,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
-          ctx.fillText('retrieved \u00b7 grounded', W * .58, H * .14);
-        } else if (mode === 'bare') {
-          var wob = Math.sin(t * .05) * 6;
-          ctx.strokeStyle = 'rgba(225,29,72,.35)'; ctx.lineWidth = 1.4; ctx.setLineDash([4, 4]);
-          ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(W * .7 + wob, H * .4); ctx.stroke(); ctx.setLineDash([]);
-          ctx.beginPath(); ctx.arc(W * .7 + wob, H * .4, 5, 0, Math.PI * 2); ctx.fillStyle = 'rgba(225,29,72,.7)'; ctx.fill();
-          ctx.fillStyle = 'rgba(225,29,72,.85)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
-          ctx.fillText('no retrieval \u00b7 ungrounded', W * .5, H * .14);
-        } else {
-          var mnode = { x: W * .62, y: H * .44 };
-          ctx.strokeStyle = 'rgba(109,94,246,.5)'; ctx.lineWidth = 1.6;
-          ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(mnode.x, mnode.y); ctx.stroke();
-          ctx.beginPath(); ctx.arc(mnode.x, mnode.y, 16, 0, Math.PI * 2); ctx.fillStyle = 'rgba(109,94,246,.14)'; ctx.fill();
-          ctx.beginPath(); ctx.arc(mnode.x, mnode.y, 9, 0, Math.PI * 2); ctx.fillStyle = '#6D5EF6'; ctx.fill();
-          for (var i = 0; i < 3; i++) {
-            var ang = t * .03 + i * (Math.PI * 2 / 3); var ox = mnode.x + Math.cos(ang) * 26, oy = mnode.y + Math.sin(ang) * 26;
-            ctx.beginPath(); ctx.arc(ox, oy, 2.4, 0, Math.PI * 2); ctx.fillStyle = 'rgba(109,94,246,.6)'; ctx.fill();
+        var canvas =
+          document.getElementById('sigcanvas');
+
+        if (!canvas) return;
+
+        var ctx =
+          canvas.getContext('2d');
+
+        if (!ctx) return;
+
+        var mode = 'rag';
+        var domain = 0;
+        var t = 0;
+        var raf = null;
+
+        var domains = [
+          {
+            seg: 'support policy',
+
+            rag: {
+              q: 'What is our refund window for enterprise plans?',
+              a: 'Per your <b>Enterprise Terms v3</b>, enterprise plans carry a 30-day refund window from the invoice date; anything past that routes to a manual review queue.',
+              cites: [
+                ['enterprise_terms_v3.pdf', '0.95'],
+                ['billing_policy.md', '0.87'],
+                ['plan_comparison.pdf', '0.80']
+              ]
+            },
+
+            bare: {
+              a: '<span class="warn">Unverified:</span> Most SaaS refund windows run 14 to 30 days. (A generic industry guess, not your actual policy.)'
+            },
+
+            finetune: {
+              a: '<span class="good">Tone-matched:</span> replies fluently in your brand voice, but the refund-window figure itself is whatever pattern was frozen into the weights at the last training run, not today\'s policy.'
+            }
+          },
+
+          {
+            seg: 'internal wiki',
+
+            rag: {
+              q: 'What is the approval process for expenses over $5,000?',
+              a: 'Per the <b>Finance Approval Matrix</b>, spend above $5,000 requires director sign-off plus a two-day finance review before the PO is issued.',
+              cites: [
+                ['finance_approval_matrix.pdf', '0.93'],
+                ['procurement_policy.md', '0.85'],
+                ['finance_faq.pdf', '0.79']
+              ]
+            },
+
+            bare: {
+              a: '<span class="warn">Unverified:</span> Usually needs manager approval above a few thousand dollars. (No specific threshold, no named approver, invented.)'
+            },
+
+            finetune: {
+              a: '<span class="good">Tone-matched:</span> sounds like your finance team, but the $5,000 threshold and approver name are whatever was true when the model was last fine-tuned.'
+            }
+          },
+
+          {
+            seg: 'product catalog',
+
+            rag: {
+              q: 'Is the XR-200 compatible with the older mounting kit?',
+              a: 'Per the <b>XR-200 spec sheet</b>, it requires the v2 mounting kit; the original kit is not compatible without the v2 adapter plate.',
+              cites: [
+                ['xr200_spec_sheet.pdf', '0.96'],
+                ['mounting_kit_v2.pdf', '0.88'],
+                ['compat_matrix.csv', '0.82']
+              ]
+            },
+
+            bare: {
+              a: '<span class="warn">Unverified:</span> Probably compatible, most mounts are similar across a product line. (No spec lookup, no real answer.)'
+            },
+
+            finetune: {
+              a: '<span class="good">Tone-matched:</span> answers helpfully and on-brand, but for a product launched after the last fine-tune, it has no idea the XR-200 exists.'
+            }
           }
-          ctx.fillStyle = 'rgba(109,94,246,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
-          ctx.fillText('trained into weights \u00b7 static', W * .5, H * .14);
+        ];
+
+        function resize() {
+          var rect =
+            canvas.getBoundingClientRect();
+
+          var width = rect.width;
+          var height = rect.height;
+
+          if (!width || !height) return;
+
+          var dpr =
+            Math.min(
+              window.devicePixelRatio || 1,
+              2
+            );
+
+          canvas.width =
+            Math.round(width * dpr);
+
+          canvas.height =
+            Math.round(height * dpr);
+
+          ctx.setTransform(
+            dpr,
+            0,
+            0,
+            dpr,
+            0,
+            0
+          );
         }
 
-        var pr = 6 + Math.sin(t * .08) * 1.4;
-        ctx.beginPath(); ctx.arc(q.x, q.y, pr + 7, 0, Math.PI * 2); ctx.fillStyle = 'rgba(36,86,230,.14)'; ctx.fill();
-        ctx.beginPath(); ctx.arc(q.x, q.y, pr, 0, Math.PI * 2); ctx.fillStyle = '#2456E6'; ctx.fill();
-        ctx.fillStyle = '#1B2740'; ctx.font = '600 11px "IBM Plex Mono",monospace';
-        ctx.fillText('query', q.x - 16, q.y + 22);
+        var pts = [];
 
-        t += 1; raf = requestAnimationFrame(draw);
-      }
+        (function seed() {
+          var rng = 17;
 
-      function update() {
-        var d = domains[domain];
-        var m1 = document.getElementById('m1'), m2 = document.getElementById('m2'), m3 = document.getElementById('m3');
-        var m1l = document.getElementById('m1l'), m2l = document.getElementById('m2l'), m3l = document.getElementById('m3l');
-        var cl = document.getElementById('citelist'), foot = document.getElementById('foot'), ans = document.getElementById('answer');
-        document.querySelector('.viewer-top .t').textContent = d.rag.q;
-        if (mode === 'rag') {
-          ans.innerHTML = d.rag.a;
-          m1.textContent = 'Low'; m1.className = 'sc-good'; m1l.textContent = 'Hallucination risk';
-          m2.textContent = '4'; m2l.textContent = 'Chunks retrieved';
-          m3.textContent = 'Live docs'; m3l.textContent = 'Answer basis';
-          cl.classList.remove('empty');
-          cl.innerHTML = d.rag.cites.map(function (c) { return '<li><span class="src">' + c[0] + '</span> <span class="rel">rel ' + c[1] + '</span></li>'; }).join('');
-          foot.textContent = 'Every answer traces back to the exact document it was generated from, that traceability is what a compliance or accuracy review depends on.';
-        } else if (mode === 'bare') {
-          ans.innerHTML = d.bare.a;
-          m1.textContent = 'High'; m1.className = 'sc-bad'; m1l.textContent = 'Hallucination risk';
-          m2.textContent = '0'; m2l.textContent = 'Chunks retrieved';
-          m3.textContent = 'Training only'; m3l.textContent = 'Answer basis';
-          cl.classList.add('empty');
-          cl.innerHTML = '<li>No sources retrieved, answer cannot be verified</li>';
-          foot.textContent = 'Faster, but nothing to cite and nothing to check. This is the exact failure mode RAG exists to prevent.';
-        } else {
-          ans.innerHTML = d.finetune.a;
-          m1.textContent = 'Med'; m1.className = ''; m1l.textContent = 'Staleness risk';
-          m2.textContent = 'Yes'; m2l.textContent = 'Retrain to update';
-          m3.textContent = 'Model weights'; m3l.textContent = 'Answer basis';
-          cl.classList.add('empty');
-          cl.innerHTML = '<li>No live source, behavior is frozen at training time</li>';
-          foot.textContent = 'Fine-tuning changes how the model answers, tone, format, task, not what it currently knows. That is exactly why RAG and fine-tuning are often combined.';
+          function rnd() {
+            rng =
+              (rng * 9301 + 49297) %
+              233280;
+
+            return rng / 233280;
+          }
+
+          for (var i = 0; i < 24; i++) {
+            pts.push({
+              x: 0.12 + rnd() * 0.76,
+              y: 0.16 + rnd() * 0.7,
+              r: 2 + rnd() * 2
+            });
+          }
+        })();
+
+        function drawBackground(W, H) {
+          if (!W || !H) return;
+
+          ctx.strokeStyle =
+            'rgba(36,86,230,.06)';
+
+          ctx.lineWidth = 1;
+
+          var xStep = W / 8;
+          var yStep = H / 5;
+
+          if (xStep > 0) {
+            for (
+              var gx = 0;
+              gx <= W;
+              gx += xStep
+            ) {
+              ctx.beginPath();
+              ctx.moveTo(gx, 0);
+              ctx.lineTo(gx, H);
+              ctx.stroke();
+            }
+          }
+
+          if (yStep > 0) {
+            for (
+              var gy = 0;
+              gy <= H;
+              gy += yStep
+            ) {
+              ctx.beginPath();
+              ctx.moveTo(0, gy);
+              ctx.lineTo(W, gy);
+              ctx.stroke();
+            }
+          }
         }
-      }
 
-      page.querySelectorAll('.modesw [role="tab"]').forEach(function (b) {
-        b.addEventListener('click', function () {
-          page.querySelectorAll('.modesw [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
-          b.setAttribute('aria-selected', 'true'); mode = b.dataset.m; t = 0; update();
-        });
-      });
-      page.querySelectorAll('.segs [role="tab"]').forEach(function (b) {
-        b.addEventListener('click', function () {
-          page.querySelectorAll('.segs [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
-          b.setAttribute('aria-selected', 'true'); domain = +b.dataset.d; t = 0; update();
-        });
-      });
+        function drawFrame() {
+          var rect =
+            canvas.getBoundingClientRect();
 
-      window.addEventListener('resize', resize);
-      resize(); update();
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(); } else { draw(); cancelAnimationFrame(raf); }
-    })();
+          var W = rect.width;
+          var H = rect.height;
+
+          if (!W || !H) return;
+
+          ctx.clearRect(
+            0,
+            0,
+            W,
+            H
+          );
+
+          drawBackground(W, H);
+
+          var q = {
+            x: W * 0.16,
+            y: H * 0.5
+          };
+
+          pts.forEach(function (point) {
+            ctx.beginPath();
+
+            ctx.arc(
+              point.x * W,
+              point.y * H,
+              point.r,
+              0,
+              Math.PI * 2
+            );
+
+            ctx.fillStyle =
+              'rgba(107,122,147,.28)';
+
+            ctx.fill();
+          });
+
+          if (mode === 'rag') {
+            var targets = [
+              {
+                x: W * 0.62,
+                y: H * 0.26
+              },
+              {
+                x: W * 0.74,
+                y: H * 0.44
+              },
+              {
+                x: W * 0.68,
+                y: H * 0.66
+              },
+              {
+                x: W * 0.82,
+                y: H * 0.58
+              }
+            ];
+
+            targets.forEach(function (target, index) {
+              var progress =
+                Math.min(
+                  1,
+                  Math.max(
+                    0,
+                    (t - index * 10) / 40
+                  )
+                );
+
+              var mx =
+                q.x +
+                (target.x - q.x) *
+                progress;
+
+              var my =
+                q.y +
+                (target.y - q.y) *
+                progress;
+
+              var gradient =
+                ctx.createLinearGradient(
+                  q.x,
+                  q.y,
+                  target.x,
+                  target.y
+                );
+
+              gradient.addColorStop(
+                0,
+                'rgba(36,86,230,.7)'
+              );
+
+              gradient.addColorStop(
+                1,
+                'rgba(109,94,246,.25)'
+              );
+
+              ctx.strokeStyle = gradient;
+              ctx.lineWidth = 1.6;
+
+              ctx.beginPath();
+              ctx.moveTo(q.x, q.y);
+              ctx.lineTo(mx, my);
+              ctx.stroke();
+
+              var particleProgress =
+                (t * 0.02 + index * 0.25) %
+                1;
+
+              ctx.beginPath();
+
+              ctx.arc(
+                q.x +
+                (target.x - q.x) *
+                particleProgress,
+                q.y +
+                (target.y - q.y) *
+                particleProgress,
+                2.6,
+                0,
+                Math.PI * 2
+              );
+
+              ctx.fillStyle =
+                'rgba(15,169,104,.9)';
+
+              ctx.fill();
+            });
+
+            targets.forEach(function (target) {
+              ctx.beginPath();
+
+              ctx.arc(
+                target.x,
+                target.y,
+                7,
+                0,
+                Math.PI * 2
+              );
+
+              ctx.fillStyle =
+                'rgba(15,169,104,.16)';
+
+              ctx.fill();
+
+              ctx.beginPath();
+
+              ctx.arc(
+                target.x,
+                target.y,
+                4,
+                0,
+                Math.PI * 2
+              );
+
+              ctx.fillStyle =
+                '#0FA968';
+
+              ctx.fill();
+            });
+
+            ctx.fillStyle =
+              'rgba(15,169,104,.9)';
+
+            ctx.font =
+              '600 11px "IBM Plex Mono",monospace';
+
+            ctx.fillText(
+              'retrieved · grounded',
+              W * 0.58,
+              H * 0.14
+            );
+
+          } else if (mode === 'bare') {
+            var wob =
+              Math.sin(t * 0.05) * 6;
+
+            var endX =
+              W * 0.7 + wob;
+
+            var endY =
+              H * 0.4;
+
+            ctx.strokeStyle =
+              'rgba(225,29,72,.35)';
+
+            ctx.lineWidth = 1.4;
+            ctx.setLineDash([4, 4]);
+
+            ctx.beginPath();
+            ctx.moveTo(q.x, q.y);
+            ctx.lineTo(endX, endY);
+            ctx.stroke();
+
+            ctx.setLineDash([]);
+
+            ctx.beginPath();
+
+            ctx.arc(
+              endX,
+              endY,
+              5,
+              0,
+              Math.PI * 2
+            );
+
+            ctx.fillStyle =
+              'rgba(225,29,72,.7)';
+
+            ctx.fill();
+
+            ctx.fillStyle =
+              'rgba(225,29,72,.85)';
+
+            ctx.font =
+              '600 11px "IBM Plex Mono",monospace';
+
+            ctx.fillText(
+              'no retrieval · ungrounded',
+              W * 0.5,
+              H * 0.14
+            );
+
+          } else {
+            var memoryNode = {
+              x: W * 0.62,
+              y: H * 0.44
+            };
+
+            ctx.strokeStyle =
+              'rgba(109,94,246,.5)';
+
+            ctx.lineWidth = 1.6;
+
+            ctx.beginPath();
+            ctx.moveTo(q.x, q.y);
+            ctx.lineTo(
+              memoryNode.x,
+              memoryNode.y
+            );
+            ctx.stroke();
+
+            ctx.beginPath();
+
+            ctx.arc(
+              memoryNode.x,
+              memoryNode.y,
+              16,
+              0,
+              Math.PI * 2
+            );
+
+            ctx.fillStyle =
+              'rgba(109,94,246,.14)';
+
+            ctx.fill();
+
+            ctx.beginPath();
+
+            ctx.arc(
+              memoryNode.x,
+              memoryNode.y,
+              9,
+              0,
+              Math.PI * 2
+            );
+
+            ctx.fillStyle =
+              '#6D5EF6';
+
+            ctx.fill();
+
+            for (var j = 0; j < 3; j++) {
+              var angle =
+                t * 0.03 +
+                j *
+                (Math.PI * 2 / 3);
+
+              var offsetX =
+                memoryNode.x +
+                Math.cos(angle) * 26;
+
+              var offsetY =
+                memoryNode.y +
+                Math.sin(angle) * 26;
+
+              ctx.beginPath();
+
+              ctx.arc(
+                offsetX,
+                offsetY,
+                2.4,
+                0,
+                Math.PI * 2
+              );
+
+              ctx.fillStyle =
+                'rgba(109,94,246,.6)';
+
+              ctx.fill();
+            }
+
+            ctx.fillStyle =
+              'rgba(109,94,246,.9)';
+
+            ctx.font =
+              '600 11px "IBM Plex Mono",monospace';
+
+            ctx.fillText(
+              'trained into weights · static',
+              W * 0.5,
+              H * 0.14
+            );
+          }
+
+          var pulseRadius =
+            6 +
+            Math.sin(t * 0.08) * 1.4;
+
+          ctx.beginPath();
+
+          ctx.arc(
+            q.x,
+            q.y,
+            pulseRadius + 7,
+            0,
+            Math.PI * 2
+          );
+
+          ctx.fillStyle =
+            'rgba(36,86,230,.14)';
+
+          ctx.fill();
+
+          ctx.beginPath();
+
+          ctx.arc(
+            q.x,
+            q.y,
+            pulseRadius,
+            0,
+            Math.PI * 2
+          );
+
+          ctx.fillStyle =
+            '#2456E6';
+
+          ctx.fill();
+
+          ctx.fillStyle =
+            '#1B2740';
+
+          ctx.font =
+            '600 11px "IBM Plex Mono",monospace';
+
+          ctx.fillText(
+            'query',
+            q.x - 16,
+            q.y + 22
+          );
+        }
+
+        function draw() {
+          drawFrame();
+
+          t += 1;
+
+          raf =
+            requestAnimationFrame(draw);
+        }
+
+        function update() {
+          var data =
+            domains[domain];
+
+          if (!data) return;
+
+          var titleEl =
+            page.querySelector(
+              '.viewer-top .t'
+            );
+
+          var m1 =
+            document.getElementById('m1');
+
+          var m2 =
+            document.getElementById('m2');
+
+          var m3 =
+            document.getElementById('m3');
+
+          var m1Label =
+            document.getElementById('m1l');
+
+          var m2Label =
+            document.getElementById('m2l');
+
+          var m3Label =
+            document.getElementById('m3l');
+
+          var citationList =
+            document.getElementById('citelist');
+
+          var footer =
+            document.getElementById('foot');
+
+          var answer =
+            document.getElementById('answer');
+
+          if (titleEl && data.rag) {
+            titleEl.textContent =
+              data.rag.q;
+          }
+
+          if (mode === 'rag') {
+            if (answer) {
+              answer.innerHTML =
+                data.rag
+                  ? data.rag.a
+                  : '';
+            }
+
+            if (m1) {
+              m1.textContent = 'Low';
+              m1.className = 'sc-good';
+            }
+
+            if (m1Label) {
+              m1Label.textContent =
+                'Hallucination risk';
+            }
+
+            if (m2) {
+              m2.textContent = '4';
+            }
+
+            if (m2Label) {
+              m2Label.textContent =
+                'Chunks retrieved';
+            }
+
+            if (m3) {
+              m3.textContent = 'Live docs';
+            }
+
+            if (m3Label) {
+              m3Label.textContent =
+                'Answer basis';
+            }
+
+            if (citationList) {
+              citationList.classList.remove(
+                'empty'
+              );
+
+              citationList.innerHTML =
+                data.rag &&
+                  Array.isArray(data.rag.cites)
+                  ? data.rag.cites
+                    .map(function (citation) {
+                      return (
+                        '<li><span class="src">' +
+                        citation[0] +
+                        '</span> <span class="rel">rel ' +
+                        citation[1] +
+                        '</span></li>'
+                      );
+                    })
+                    .join('')
+                  : '';
+            }
+
+            if (footer) {
+              footer.textContent =
+                'Every answer traces back to the exact document it was generated from, that traceability is what a compliance or accuracy review depends on.';
+            }
+
+          } else if (mode === 'bare') {
+            if (answer) {
+              answer.innerHTML =
+                data.bare
+                  ? data.bare.a
+                  : '';
+            }
+
+            if (m1) {
+              m1.textContent = 'High';
+              m1.className = 'sc-bad';
+            }
+
+            if (m1Label) {
+              m1Label.textContent =
+                'Hallucination risk';
+            }
+
+            if (m2) {
+              m2.textContent = '0';
+            }
+
+            if (m2Label) {
+              m2Label.textContent =
+                'Chunks retrieved';
+            }
+
+            if (m3) {
+              m3.textContent =
+                'Training only';
+            }
+
+            if (m3Label) {
+              m3Label.textContent =
+                'Answer basis';
+            }
+
+            if (citationList) {
+              citationList.classList.add(
+                'empty'
+              );
+
+              citationList.innerHTML =
+                '<li>No sources retrieved, answer cannot be verified</li>';
+            }
+
+            if (footer) {
+              footer.textContent =
+                'Faster, but nothing to cite and nothing to check. This is the exact failure mode RAG exists to prevent.';
+            }
+
+          } else {
+            if (answer) {
+              answer.innerHTML =
+                data.finetune
+                  ? data.finetune.a
+                  : '';
+            }
+
+            if (m1) {
+              m1.textContent = 'Med';
+              m1.className = '';
+            }
+
+            if (m1Label) {
+              m1Label.textContent =
+                'Staleness risk';
+            }
+
+            if (m2) {
+              m2.textContent = 'Yes';
+            }
+
+            if (m2Label) {
+              m2Label.textContent =
+                'Retrain to update';
+            }
+
+            if (m3) {
+              m3.textContent =
+                'Model weights';
+            }
+
+            if (m3Label) {
+              m3Label.textContent =
+                'Answer basis';
+            }
+
+            if (citationList) {
+              citationList.classList.add(
+                'empty'
+              );
+
+              citationList.innerHTML =
+                '<li>No live source, behavior is frozen at training time</li>';
+            }
+
+            if (footer) {
+              footer.textContent =
+                'Fine-tuning changes how the model answers, tone, format, task, not what it currently knows. That is exactly why RAG and fine-tuning are often combined.';
+            }
+          }
+        }
+
+        page
+          .querySelectorAll(
+            '.modesw [role="tab"]'
+          )
+          .forEach(function (button) {
+            button.addEventListener(
+              'click',
+              function () {
+                page
+                  .querySelectorAll(
+                    '.modesw [role="tab"]'
+                  )
+                  .forEach(function (item) {
+                    item.setAttribute(
+                      'aria-selected',
+                      'false'
+                    );
+                  });
+
+                button.setAttribute(
+                  'aria-selected',
+                  'true'
+                );
+
+                var selectedMode =
+                  button.dataset.m;
+
+                if (
+                  selectedMode === 'rag' ||
+                  selectedMode === 'bare' ||
+                  selectedMode === 'finetune'
+                ) {
+                  mode = selectedMode;
+                }
+
+                t = 0;
+                update();
+
+                if (
+                  window.matchMedia(
+                    '(prefers-reduced-motion: reduce)'
+                  ).matches
+                ) {
+                  drawFrame();
+                }
+              }
+            );
+          });
+
+        page
+          .querySelectorAll(
+            '.segs [role="tab"]'
+          )
+          .forEach(function (button) {
+            button.addEventListener(
+              'click',
+              function () {
+                page
+                  .querySelectorAll(
+                    '.segs [role="tab"]'
+                  )
+                  .forEach(function (item) {
+                    item.setAttribute(
+                      'aria-selected',
+                      'false'
+                    );
+                  });
+
+                button.setAttribute(
+                  'aria-selected',
+                  'true'
+                );
+
+                var selectedDomain =
+                  parseInt(
+                    button.dataset.d,
+                    10
+                  );
+
+                if (
+                  !isNaN(selectedDomain) &&
+                  domains[selectedDomain]
+                ) {
+                  domain =
+                    selectedDomain;
+
+                  t = 0;
+                  update();
+
+                  if (
+                    window.matchMedia(
+                      '(prefers-reduced-motion: reduce)'
+                    ).matches
+                  ) {
+                    drawFrame();
+                  }
+                }
+              }
+            );
+          });
+
+        function stopAnimation() {
+          if (raf !== null) {
+            cancelAnimationFrame(raf);
+            raf = null;
+          }
+        }
+
+        function startAnimation() {
+          stopAnimation();
+
+          if (
+            window.matchMedia(
+              '(prefers-reduced-motion: reduce)'
+            ).matches
+          ) {
+            drawFrame();
+            return;
+          }
+
+          draw();
+        }
+
+        window.addEventListener(
+          'resize',
+          function () {
+            resize();
+
+            if (
+              window.matchMedia(
+                '(prefers-reduced-motion: reduce)'
+              ).matches
+            ) {
+              drawFrame();
+            }
+          }
+        );
+
+        resize();
+        update();
+        startAnimation();
+      })();
+
+    });
   </script>
+
 </body>
 
 </html>

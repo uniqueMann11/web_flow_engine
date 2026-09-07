@@ -66,7 +66,8 @@
     }</script>
 
   <style>
-    :root, .svcp {
+    :root,
+    .svcp {
       --ink: #0A1222;
       --ink-soft: #1B2740;
       --body: #48566E;
@@ -1826,10 +1827,11 @@
           <div class="what-is-media">
             <!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
             <div class="img-placeholder" aria-label="Image placeholder">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                <circle cx="9" cy="9" r="2"/>
-                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                <circle cx="9" cy="9" r="2" />
+                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
               </svg>
               <span>Image Placeholder (1:1)</span>
             </div>
@@ -2325,7 +2327,9 @@
             </thead>
             <tbody>
               <tr>
-                <td>RAG proof-of-concept <span class="badge-free" style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span></td>
+                <td>RAG proof-of-concept <span class="badge-free"
+                    style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span>
+                </td>
                 <td class="col-me">Baseline retrieval pipeline on a sample of your data, evaluation report</td>
               </tr>
               <tr class="me-row">
@@ -2402,56 +2406,145 @@
       if (!page) return;
 
       var io = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-      }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
-      page.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+        es.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      }, {
+        threshold: .12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      page.querySelectorAll('.reveal').forEach(function (el) {
+        io.observe(el);
+      });
 
       function countUp(el) {
-        var target = parseFloat(el.dataset.count), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
-        var t0 = null, dur = 1300;
+        var target = parseFloat(el.dataset.count),
+          pre = el.dataset.prefix || '',
+          suf = el.dataset.suffix || '';
+
+        var t0 = null,
+          dur = 1300;
+
         function step(ts) {
-          if (!t0) t0 = ts; var p = Math.min((ts - t0) / dur, 1); var e = 1 - Math.pow(1 - p, 3);
-          el.textContent = pre + Math.round(target * e) + suf; if (p < 1) requestAnimationFrame(step);
+          if (!t0) t0 = ts;
+
+          var p = Math.min((ts - t0) / dur, 1);
+          var e = 1 - Math.pow(1 - p, 3);
+
+          el.textContent = pre + Math.round(target * e) + suf;
+
+          if (p < 1) requestAnimationFrame(step);
         }
+
         requestAnimationFrame(step);
       }
+
       var cio = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } });
-      }, { threshold: .6 });
-      page.querySelectorAll('[data-count]').forEach(function (el) { cio.observe(el); });
+        es.forEach(function (e) {
+          if (e.isIntersecting) {
+            countUp(e.target);
+            cio.unobserve(e.target);
+          }
+        });
+      }, {
+        threshold: .6
+      });
+
+      page.querySelectorAll('[data-count]').forEach(function (el) {
+        cio.observe(el);
+      });
 
       page.querySelectorAll('.stack').forEach(function (root) {
-        var tabs = root.querySelectorAll('.stack-tabs [role="tab"]'), panels = root.querySelectorAll('.stack-panel');
+        var tabs = root.querySelectorAll('.stack-tabs [role="tab"]'),
+          panels = root.querySelectorAll('.stack-panel');
+
         function act(tab) {
           var t = tab.dataset.s;
-          tabs.forEach(function (x) { x.setAttribute('aria-selected', x === tab ? 'true' : 'false'); });
-          panels.forEach(function (p) { p.classList.toggle('on', p.dataset.p === t); });
+
+          tabs.forEach(function (x) {
+            x.setAttribute(
+              'aria-selected',
+              x === tab ? 'true' : 'false'
+            );
+          });
+
+          panels.forEach(function (p) {
+            p.classList.toggle('on', p.dataset.p === t);
+          });
         }
+
         tabs.forEach(function (tab, i) {
-          tab.addEventListener('click', function () { act(tab); });
+          tab.addEventListener('click', function () {
+            act(tab);
+          });
+
           tab.addEventListener('keydown', function (e) {
             var n = null;
-            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = tabs[i + 1] || tabs[0];
-            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = tabs[i - 1] || tabs[tabs.length - 1];
-            if (n) { e.preventDefault(); n.focus(); act(n); }
+
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown')
+              n = tabs[i + 1] || tabs[0];
+
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp')
+              n = tabs[i - 1] || tabs[tabs.length - 1];
+
+            if (n) {
+              e.preventDefault();
+              n.focus();
+              act(n);
+            }
           });
         });
       });
 
       page.querySelectorAll('.faq details').forEach(function (d) {
-        d.addEventListener('toggle', function () { if (d.open) { page.querySelectorAll('.faq details').forEach(function (o) { if (o !== d) o.open = false; }); } });
+        d.addEventListener('toggle', function () {
+          if (d.open) {
+            page.querySelectorAll('.faq details').forEach(function (o) {
+              if (o !== d) o.open = false;
+            });
+          }
+        });
       });
     })();
 
 
     (function () {
       var page = document.querySelector('.svcp');
+
       var specs = [
-        { title: 'RAG chatbot: written technical spec', stack: 'LlamaIndex + pgvector', data: 'Docs, FAQs, product pages', guard: 'Confidence threshold + fallback', time: '4 to 6 weeks', cost: '$8,000 to $18,000' },
-        { title: 'Internal knowledge assistant: written spec', stack: 'LlamaIndex + LangGraph agent', data: 'Wikis, HR policies, Slack exports', guard: 'Role-based access + citation required', time: '5 to 8 weeks', cost: '$10,000 to $22,000' },
-        { title: 'Hybrid RAG + agent: written spec', stack: 'LlamaIndex retrieval + LangGraph orchestration', data: 'Docs plus internal APIs / tools', guard: 'Human-in-the-loop checkpoints', time: '8 to 12 weeks', cost: '$18,000 to $35,000+' }];
+        {
+          title: 'RAG chatbot: written technical spec',
+          stack: 'LlamaIndex + pgvector',
+          data: 'Docs, FAQs, product pages',
+          guard: 'Confidence threshold + fallback',
+          time: '4 to 6 weeks',
+          cost: '$8,000 to $18,000'
+        },
+        {
+          title: 'Internal knowledge assistant: written spec',
+          stack: 'LlamaIndex + LangGraph agent',
+          data: 'Wikis, HR policies, Slack exports',
+          guard: 'Role-based access + citation required',
+          time: '5 to 8 weeks',
+          cost: '$10,000 to $22,000'
+        },
+        {
+          title: 'Hybrid RAG + agent: written spec',
+          stack: 'LlamaIndex retrieval + LangGraph orchestration',
+          data: 'Docs plus internal APIs / tools',
+          guard: 'Human-in-the-loop checkpoints',
+          time: '8 to 12 weeks',
+          cost: '$18,000 to $35,000+'
+        }
+      ];
+
       function update(i) {
         var s = specs[i];
+
         document.getElementById('sd-title').textContent = s.title;
         document.getElementById('sd-stack').textContent = s.stack;
         document.getElementById('sd-data').textContent = s.data;
@@ -2459,12 +2552,18 @@
         document.getElementById('sd-time').textContent = s.time;
         document.getElementById('sd-cost').textContent = s.cost;
       }
+
       page.querySelectorAll('.specpick [role="tab"]').forEach(function (b) {
         b.addEventListener('click', function () {
-          page.querySelectorAll('.specpick [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
-          b.setAttribute('aria-selected', 'true'); update(+b.dataset.p);
+          page.querySelectorAll('.specpick [role="tab"]').forEach(function (x) {
+            x.setAttribute('aria-selected', 'false');
+          });
+
+          b.setAttribute('aria-selected', 'true');
+          update(+b.dataset.p);
         });
       });
+
       update(0);
     })();
   </script>
