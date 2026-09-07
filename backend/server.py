@@ -217,7 +217,7 @@ def extract_code_components(html_content: str) -> dict:
 
     # Step 3: Extract Embedded Stylesheets (<style>)
     styles = [s.string.strip() for s in soup.find_all("style") if s.string]
-    css_content = "\n\n/* ========================================== */\n\n".join(styles) if styles else ""
+    css_content = "\n\n".join(styles) if styles else ""
 
     # Step 4: Extract JavaScript Code (<script> without ld+json)
     scripts = []
@@ -225,7 +225,7 @@ def extract_code_components(html_content: str) -> dict:
         stype = s.get("type", "").lower()
         if "ld+json" not in stype and s.string:
             scripts.append(s.string.strip())
-    js_content = "\n\n// ==========================================\n\n".join(scripts) if scripts else ""
+    js_content = "\n\n".join(scripts) if scripts else ""
 
     # Step 5: Extract JSON-LD Structured Data Schema
     json_ld_list = []
