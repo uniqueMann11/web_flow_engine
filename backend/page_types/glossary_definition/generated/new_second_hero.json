@@ -2,20 +2,20 @@
   "comply": {
     "comply-in": [
       {
-        "b": "Unified, not separate",
-        "span": "Processes text, images, and audio in one model for coherent understanding."
+        "b": "Multiple modalities, one model",
+        "span": "Processes text, images, and audio in a single unified architecture."
       },
       {
-        "b": "Cross-modal insights",
-        "span": "Connects information across different modalities for richer answers."
+        "b": "Cross-modal reasoning",
+        "span": "Connects meaning across different input types for richer understanding."
       },
       {
-        "b": "Flexible input",
-        "span": "Accepts any combination of text, image, or audio queries."
+        "b": "Vision-language fusion",
+        "span": "Combines visual and textual data to answer complex queries."
       },
       {
-        "b": "Scalable training",
-        "span": "Train on diverse data; model adapts without starting from scratch."
+        "b": "No retraining for new tasks",
+        "span": "Adapts to new multimodal tasks without additional fine-tuning."
       }
     ]
   },
@@ -27,50 +27,50 @@
     "tldr": {
       "b": "Definition",
       "p": [
-        "Multimodal AI is a machine learning architecture that simultaneously processes and integrates multiple data modalities\u2014such as text, images, and audio\u2014by encoding them into a shared embedding space, enabling the model to reason across modalities and generate outputs that leverage combined context, without requiring separate models for each input type."
+        "Multimodal AI is an artificial intelligence system that processes and integrates multiple types of data\u2014such as text, images, and audio\u2014within a single model, enabling it to understand, reason, and generate responses that leverage the combined context from different modalities, rather than relying on a single input type."
       ]
     }
   },
   "how-it-works": {
     "sec-head": {
       "eyebrow": "Step by step",
-      "h2": "How multimodal AI works",
-      "p": "The pipeline that processes and integrates multiple modalities in a unified model."
+      "h2": "How it works",
+      "p": "The same multimodal pipeline animating in the diagram above, applied to your diverse data inputs."
     },
     "grid g3": [
       {
         "card": {
           "n": "STEP 1",
-          "h3": "Input received",
-          "p": "A user provides text, image, or audio input."
+          "h3": "Inputs received",
+          "p": "The system accepts text, images, and audio simultaneously."
         }
       },
       {
         "card": {
           "n": "STEP 2",
-          "h3": "Modalities encoded",
-          "p": "Each modality is converted into numerical embeddings."
+          "h3": "Modality encoding",
+          "p": "Each input type is converted into a shared embedding space."
         }
       },
       {
         "card": {
           "n": "STEP 3",
-          "h3": "Fusion layer",
-          "p": "The embeddings are combined into a shared representation."
+          "h3": "Cross-modal fusion",
+          "p": "The model aligns and merges representations from different modalities."
         }
       },
       {
         "card": {
           "n": "STEP 4",
           "h3": "Joint reasoning",
-          "p": "The model analyzes the combined data for context."
+          "p": "The combined context informs a unified understanding of the query."
         }
       },
       {
         "card": {
           "n": "STEP 5",
-          "h3": "Output generated",
-          "p": "The model produces a response leveraging all modalities."
+          "h3": "Multimodal output",
+          "p": "The model generates a response that may include text, image, or audio."
         }
       }
     ]

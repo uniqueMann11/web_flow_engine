@@ -1045,6 +1045,7 @@ def _replace_image_placeholders(
 
         for fut in as_completed(img_futures):
             t = img_futures[fut]
+            print(t)
             try:
                 local_path = fut.result()
                 if not local_path or not os.path.exists(local_path):

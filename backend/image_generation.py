@@ -10,7 +10,7 @@ from typing import Dict, Any
 API_URL = "https://api.vmodel.ai/api/tasks/v1/create"
 API_TOKEN = os.getenv(
     "VModel_API_TOKEN",
-    "Rb5cf9IwzPrRRqnKW2ctTIT2hDVAWFks4tR1l9T-orhkbFOg3RR0raG0LvhaS2ctAFPwW9xqfdtBTZDDGt3mEQ=="
+    "VHxpErPlGQaxSPX4tT4A-IDttqcjrg4yucUo52TlpqHi2-rcBQMzp3DhDdVvxFAH3W8SRO6zCqrChCqvL-3YMQ=="
 )
 
 # ==============================================================================

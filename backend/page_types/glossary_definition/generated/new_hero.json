@@ -5,31 +5,31 @@
       "h1-text": "Multimodal AI: what it is,",
       "span": "and how I build it"
     },
-    "hero-sub": "Multimodal AI processes text, images, and audio together to generate grounded, context-aware responses. I design and build production multimodal systems: data fusion, model orchestration, guardrails, and deployment.",
+    "hero-sub": "Multimodal AI processes text, images, and audio together in a single model, producing grounded answers that understand context across formats. I design and build production multimodal systems: data alignment, fusion layers, training pipelines, and deployment for real-world use cases.",
     "creds": [
       {
         "cred": {
           "i": "Experience",
-          "b": "5+ yrs multimodal systems"
+          "b": "3+ yrs multimodal AI"
         }
       },
       {
         "cred": {
           "i": "Outcome",
-          "b": "70% fewer errors"
+          "b": "80% better accuracy"
         }
       },
       {
         "cred": {
           "i": "Turnaround",
-          "b": "48h written spec"
+          "b": "48h prototype"
         }
       }
     ],
     "hero-cta": [
       {
         "btn-primary": {
-          "text": "Talk to a multimodal AI developer",
+          "text": "Talk to an AI developer",
           "url": "#lets-talk"
         }
       },
@@ -40,19 +40,19 @@
         }
       }
     ],
-    "live": "Every output traces to source data, guardrails included from day one",
+    "live": "Every modality traces to a source, guardrails built in from day one",
     "trust": [
       {
-        "b": "5+",
+        "b": "3+",
         "span": "Years building multimodal AI"
       },
       {
-        "b": "70%",
-        "span": "Error reduction across modalities"
+        "b": "80%",
+        "span": "Accuracy improvement"
       },
       {
         "b": "48h",
-        "span": "From call to written spec"
+        "span": "From concept to prototype"
       }
     ]
   }

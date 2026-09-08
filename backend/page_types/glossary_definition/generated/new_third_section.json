@@ -1,100 +1,102 @@
 {
   "comparison": {
-    "sec-head": {
-      "eyebrow": "The comparison",
-      "h2": "Unimodal vs multimodal models",
-      "p": "Multimodal AI combines text, images, and audio, while unimodal models process only one data type."
-    },
-    "tablewrap": {
-      "thead": [
-        "Factor",
-        "Text-only LLM",
-        "Vision-Language Model",
-        "Full Multimodal AI"
-      ],
-      "tbody": [
-        {
-          "th": "Knowledge source",
-          "td": [
-            "Large text corpora",
-            "Image-text pairs",
-            "Multi-modal datasets (text, image, audio)"
-          ]
-        },
-        {
-          "th": "Update process",
-          "td": [
-            "Requires retraining for new data",
-            "Fine-tune on new image-text pairs",
-            "Requires retraining for new modalities"
-          ]
-        },
-        {
-          "th": "Best for",
-          "td": [
-            "General text tasks",
-            "Visual reasoning, captioning",
-            "Cross-modal tasks, content moderation"
-          ]
-        },
-        {
-          "th": "Traceability",
-          "td": [
-            "No source citation",
-            "Can cite image regions",
-            "Can cite across modalities"
-          ]
-        }
-      ]
+    ",": {
+      "sec-head": {
+        "eyebrow": "The breakdown",
+        "h2": "Multimodal AI architectures compared",
+        "p": "These approaches can be combined: a multimodal fusion model for rich understanding, grounded by RAG for external knowledge."
+      },
+      "tablewrap": {
+        "thead": [
+          "Factor",
+          "Unimodal AI",
+          "Multimodal AI",
+          "Multimodal with RAG"
+        ],
+        "tbody": [
+          {
+            "th": "Knowledge source",
+            "td": [
+              "Single modality (e.g., text only)",
+              "Multiple modalities fused (text, image, audio)",
+              "Multiple modalities plus live retrievable content"
+            ]
+          },
+          {
+            "th": "Update process",
+            "td": [
+              "Requires retraining on new data",
+              "Requires retraining on multimodal examples",
+              "Add or update documents, no retraining needed"
+            ]
+          },
+          {
+            "th": "Best for",
+            "td": [
+              "Simple, single\u2011input tasks",
+              "Rich, cross\u2011modal understanding (e.g., vision\u2011language)",
+              "Domain\u2011specific multimodal tasks with private data"
+            ]
+          },
+          {
+            "th": "Traceability",
+            "td": [
+              "No source citation",
+              "No source citation",
+              "Can cite exact source document"
+            ]
+          }
+        ]
+      }
     }
   },
   "services": {
     "sec-head": {
       "eyebrow": "What I build",
       "h2": "Multimodal AI services",
-      "p": "Each component of a multimodal system, built and integrated for reliable cross-modal understanding."
+      "p": "Each layer of a production multimodal pipeline, built and tested as its own verifiable stage."
     },
     "grid g3": [
       {
         "card": {
           "n": "BUILD",
-          "h3": "Multi-modal data ingestion",
-          "p": "Building pipelines to ingest and align text, images, and audio from various sources, ensuring proper tokenization and preprocessing for each modality."
+          "h3": "Data fusion & preprocessing",
+          "p": "Building pipelines to ingest, align, and preprocess text, image, and audio data. This step determines the ceiling on multimodal model performance."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Model architecture selection",
-          "p": "Selecting and configuring the right multimodal architecture (e.g., CLIP, Flamingo, LLaVA) for your use case, balancing performance and computational cost."
+          "h3": "Multimodal model architecture",
+          "p": "Selecting and configuring the right fusion approach (early, late, or hybrid) and backbone models (CLIP, LLaVA, Whisper) for your use case and latency requirements."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Fusion layer engineering",
-          "p": "Designing the fusion mechanism (early, late, or hybrid) to combine embeddings from different modalities, optimizing for cross-modal interaction."
+          "h3": "Retrieval augmentation for multimodal",
+          "p": "Building a retrieval layer that indexes images, transcripts, and documents, enabling the model to ground its outputs in verified external sources."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Training & fine-tuning",
-          "p": "Training or fine-tuning the multimodal model on your domain-specific data, with careful handling of modality imbalance and alignment."
+          "h3": "Generation & grounding",
+          "p": "Configuring the generation layer with grounding constraints, confidence thresholds, and defensive fallback so the system says 'I do not know' instead of hallucinating."
         }
       },
       {
         "card": {
           "n": "EVALUATE",
           "h3": "Multimodal evaluation",
-          "p": "Testing the model's performance on cross-modal tasks using relevant benchmarks and custom metrics, ensuring robust understanding and generation."
+          "p": "Testing cross\u2011modal reasoning, retrieval quality, and generation fidelity using benchmarks (e.g., MMLU, VQA) and your real queries, with transparent results."
         }
       },
       {
         "card": {
           "n": "BUILD",
           "h3": "Production deployment",
-          "p": "Deploying the multimodal model as a scalable API, integrated with your product or workflows, with monitoring for drift and accuracy."
+          "p": "Deploying the full multimodal pipeline as a versioned, monitored API integrated with your product or internal tools."
         }
       }
     ]

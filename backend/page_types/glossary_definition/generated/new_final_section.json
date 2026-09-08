@@ -2,25 +2,25 @@
   "why": {
     "sec-head": {
       "eyebrow": "Why it matters",
-      "h2": "What is multimodal AI",
-      "p": "Standard unimodal models, limited to a single data type like text, miss the rich context present in images, audio, and video. Multimodal AI breaks this barrier by processing and reasoning across multiple modalities simultaneously, enabling applications that understand a scene from an image, a voice tone, and a text query together. This eliminates the need for separate models and pipelines, reducing latency and improving accuracy in real-world tasks."
+      "h2": "Why multimodal AI matters",
+      "p": "A standard AI model trained on text alone cannot interpret images, audio, or video, limiting its ability to understand real-world context. Multimodal AI solves this by fusing information from multiple modalities \u2014 text, image, and audio \u2014 enabling richer, more accurate responses without separate pipelines."
     },
     "card": {
       "n": "COMMON APPLICATIONS",
-      "h3": "Where multimodal AI shines",
+      "h3": "Multimodal AI in action",
       "ul": [
         "Image captioning and visual question answering for accessibility tools",
-        "Voice-controlled virtual assistants that also interpret visual context from cameras",
-        "Healthcare diagnostics combining medical images with patient records and voice notes",
-        "Content moderation analyzing text, images, and audio together for policy enforcement",
-        "Autonomous vehicle perception fusing camera feeds, LiDAR data, and audio cues",
-        "Multimodal search across images, documents, and speech transcripts for enterprise knowledge"
+        "Video content analysis combining frames, speech, and metadata",
+        "Voice assistants with visual grounding for smart home and retail",
+        "Healthcare diagnostics merging medical imaging with clinical notes",
+        "Ecommerce product tagging from images, descriptions, and reviews",
+        "Cross-modal search retrieving results across text, images, and audio"
       ]
     }
   },
   "process": {
     "sec-head": {
-      "eyebrow": "How it's built",
+      "eyebrow": "How it gets built",
       "h2": "Process"
     },
     "steps": [
@@ -29,7 +29,7 @@
           "num": "PHASE 01",
           "days": "days 1 to 2",
           "h3": "Discovery",
-          "body": "Understanding your data modalities\u2014text, image, audio\u2014and the specific use case to define what accurate means for your application."
+          "body": "Identifying your data sources across modalities, defining the fusion strategy, and setting accuracy benchmarks for your specific use case."
         }
       },
       {
@@ -37,7 +37,7 @@
           "num": "PHASE 02",
           "days": "within 48h",
           "h3": "Architecture spec",
-          "body": "A written technical spec covering modality encoders, fusion strategy, and model selection, delivered within 48 hours."
+          "body": "A written technical spec covering encoder selection, alignment layer design, and inference pipeline, delivered within 48 hours."
         }
       },
       {
@@ -45,7 +45,7 @@
           "num": "PHASE 03",
           "days": "the decisive one",
           "h3": "Build in milestones",
-          "body": "Ingestion pipelines, encoder fine-tuning, fusion layer, and output generation built and tested as separate, verifiable stages."
+          "body": "Data preprocessing, modality encoding, fusion, and generation built and tested as separate, verifiable stages."
         }
       },
       {
@@ -53,7 +53,7 @@
           "num": "PHASE 04",
           "days": "before launch",
           "h3": "Evaluation",
-          "body": "Testing against real cross-modal queries with transparent results on accuracy and latency before launch."
+          "body": "Testing against real multimodal queries with transparent metrics for each modality before launch."
         }
       },
       {
@@ -61,7 +61,7 @@
           "num": "PHASE 05",
           "days": "30 days plus",
           "h3": "Deployment & support",
-          "body": "Production deployment with monitoring for modality drift and a post-launch support window."
+          "body": "Production deployment with monitoring for latency drift across modalities and a post-launch support window."
         }
       }
     ]
@@ -79,31 +79,31 @@
       "tbody": [
         {
           "td": [
-            "Multimodal AI proof-of-concept <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
-            "Baseline multimodal pipeline on a data sample, evaluation report"
+            "Multimodal proof-of-concept <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
+            "Baseline multimodal pipeline on a sample dataset, evaluation report"
           ]
         },
         {
           "td": [
-            "Production multimodal AI system",
-            "Full pipeline, fusion, deployment, documentation"
+            "Production multimodal system",
+            "Full pipeline, fusion layers, deployment, documentation"
           ]
         },
         {
           "td": [
-            "Multimodal AI system audit",
-            "Diagnose and improve an underperforming existing system"
+            "Multimodal system audit",
+            "Diagnose and improve an underperforming existing multimodal system"
           ]
         },
         {
           "td": [
             "Hourly consulting",
-            "Architecture review, modality strategy design"
+            "Architecture review, modality alignment strategy design"
           ]
         }
       ]
     },
-    "p": "Multimodal AI systems delivered include the AI Video Summarizer and Visual Search Engine. Full case studies at shreyans.tech/ai-case-studies."
+    "p": "Multimodal systems delivered include the AI Video Summarizer and Image Captioning pipeline. Full case studies at shreyans.tech/ai-case-studies."
   },
   "faq": {
     "sec-head": {
@@ -113,32 +113,32 @@
     "faq": [
       {
         "faq-item": {
-          "faq-q": "What does multimodal AI mean?",
-          "faq-a": "Multimodal AI refers to artificial intelligence systems that process and understand multiple types of data\u2014such as text, images, and audio\u2014simultaneously to produce more comprehensive and context-aware outputs. It combines the strengths of each modality for richer reasoning."
+          "faq-q": "What is multimodal AI?",
+          "faq-a": "Multimodal AI is an artificial intelligence architecture that processes and integrates data from multiple modalities \u2014 such as text, images, and audio \u2014 simultaneously. It enables richer understanding and generation by combining signals across different input types, rather than relying on a single modality."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Is multimodal AI the same as unimodal AI?",
-          "faq-a": "No. Unimodal AI handles only one data type, like text-only models. Multimodal AI integrates multiple modalities, enabling richer understanding and more accurate responses in complex scenarios such as visual question answering or voice-controlled interfaces with camera input."
+          "faq-q": "How does multimodal AI differ from standard AI?",
+          "faq-a": "Standard AI models typically handle one modality (e.g., text-only LLMs). Multimodal AI fuses information from multiple modalities using dedicated encoders and alignment layers, allowing it to reason across formats like answering questions about an image or generating captions for a video."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Does multimodal AI reduce hallucination?",
-          "faq-a": "Multimodal AI can reduce hallucination by providing additional contextual signals from different modalities, cross-validating information across text, image, and audio. However, it does not eliminate hallucination entirely. Cross-modal consistency checks and confidence thresholds are layered on top in every production system I build."
+          "faq-q": "What types of data can multimodal AI handle?",
+          "faq-a": "Multimodal AI can handle text, images, audio, and video, and often integrates structured data like tables or sensor readings. The exact modalities depend on the architecture, but common combinations include text+image, text+audio, and image+video+text."
         }
       },
       {
         "faq-item": {
           "faq-q": "How much does multimodal AI development cost?",
-          "faq-a": "A proof-of-concept starts at $2,000 to $5,000. A full production multimodal AI system ranges from $10,000 to $40,000 depending on modality complexity and data volume. Contact for a fixed-price estimate specific to your use case."
+          "faq-a": "A proof-of-concept starts at $2,000 to $5,000. A full production multimodal system ranges from $10,000 to $40,000 depending on modality count, data volume, and inference latency requirements. Contact for a fixed-price estimate specific to your use case."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How long does it take to build a multimodal AI system?",
-          "faq-a": "A proof-of-concept typically takes 3 to 5 weeks. A full production system with fusion, evaluation, and deployment typically takes 6 to 12 weeks depending on data complexity and integration scope."
+          "faq-q": "How long does it take to build a multimodal system?",
+          "faq-a": "A proof-of-concept typically takes 3 to 5 weeks. A full production system with custom encoders, fusion logic, and deployment typically takes 6 to 12 weeks depending on data complexity and integration scope."
         }
       }
     ]

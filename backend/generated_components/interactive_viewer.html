@@ -1,445 +1,376 @@
 <style>
-.vw-card {
-  width: 100%;
-  max-width: 520px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  box-shadow: var(--sh-md);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  animation: vw-cardIn .55s ease both;
-}
-
-@keyframes vw-cardIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.vw-card .vw-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 14px 18px;
-  border-bottom: 1px solid var(--line-soft);
-}
-
-.vw-card .vw-title {
-  font-family: var(--disp);
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.vw-card .vw-title svg {
-  width: 18px;
-  height: 18px;
-  color: var(--blue);
-  flex: none;
-}
-
-.vw-card .vw-badge {
-  font-family: var(--mono);
-  font-size: 0.64rem;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: var(--blue-tint);
-  color: var(--blue-strong);
-  border: 1px solid rgba(36, 86, 230, 0.25);
-  white-space: nowrap;
-}
-
-.vw-card .vw-tabs {
-  display: flex;
-  gap: 4px;
-  padding: 12px 18px 0;
-  background: var(--surface);
-  border-bottom: 1px solid var(--line-soft);
-}
-
-.vw-card .vw-tab {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 8px 10px;
-  font-family: var(--bodyf);
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--muted);
-  background: var(--soft);
-  border: 1px solid var(--line-soft);
-  border-bottom: none;
-  border-radius: var(--r-sm) var(--r-sm) 0 0;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  text-align: center;
-  line-height: 1.2;
-  position: relative;
-  bottom: -1px;
-}
-
-.vw-card .vw-tab svg {
-  width: 14px;
-  height: 14px;
-  flex: none;
-  color: var(--muted);
-  transition: color 0.15s;
-}
-
-.vw-card .vw-tab:hover {
-  color: var(--ink);
-  background: var(--surface);
-}
-
-.vw-card .vw-tab:hover svg {
-  color: var(--ink);
-}
-
-.vw-card .vw-tab.active {
-  background: var(--surface);
-  color: var(--blue);
-  border-color: var(--line);
-  border-bottom: 1px solid var(--surface);
-}
-
-.vw-card .vw-tab.active svg {
-  color: var(--blue);
-}
-
-.vw-card .vw-body {
-  padding: 16px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.vw-card .vw-content {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-height: 120px;
-}
-
-.vw-card .vw-content-title {
-  font-family: var(--disp);
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.3;
-}
-
-.vw-card .vw-content-desc {
-  font-family: var(--bodyf);
-  font-size: 0.8rem;
-  line-height: 1.6;
-  color: var(--body);
-  margin: 0;
-}
-
-.vw-card .vw-content-example {
-  background: var(--soft);
-  border-radius: var(--r-sm);
-  padding: 12px 14px;
-  border-left: 3px solid var(--mint);
-  margin-top: 4px;
-}
-
-.vw-card .vw-example-label {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--mint-deep);
-  letter-spacing: 0.5px;
-  margin-bottom: 4px;
-}
-
-.vw-card .vw-example-text {
-  font-family: var(--bodyf);
-  font-size: 0.75rem;
-  line-height: 1.5;
-  color: var(--ink-soft);
-  margin: 0;
-}
-
-.vw-card .vw-content-fade {
-  animation: vwFadeIn .3s ease both;
-}
-
-@keyframes vwFadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.vw-card .vw-metrics {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-}
-
-.vw-card .vw-metric {
-  background: var(--soft);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--r-sm);
-  padding: 10px 8px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.vw-card .vw-metric-value {
-  font-family: var(--disp);
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: var(--ink);
-  line-height: 1.1;
-}
-
-.vw-card .vw-metric-value.mint {
-  color: var(--mint-deep);
-}
-
-.vw-card .vw-metric-value.blue {
-  color: var(--blue-strong);
-}
-
-.vw-card .vw-metric-label {
-  font-family: var(--mono);
-  font-size: 0.55rem;
-  font-weight: 600;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  line-height: 1.2;
-}
-
-.vw-card .vw-foot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 18px;
-  border-top: 1px solid var(--line-soft);
-  background: var(--soft);
-  font-family: var(--bodyf);
-  font-size: 0.7rem;
-  color: var(--muted);
-  text-align: center;
-}
-
-.vw-card .vw-foot svg {
-  width: 14px;
-  height: 14px;
-  color: var(--blue);
-  flex: none;
-}
-
-@media (max-width: 480px) {
-  .vw-card .vw-tab {
-    font-size: 0.65rem;
-    padding: 6px 6px;
-  }
-  .vw-card .vw-tab svg {
-    width: 12px;
-    height: 12px;
-  }
-  .vw-card .vw-metric-value {
-    font-size: 0.9rem;
-  }
-  .vw-card .vw-title {
-    font-size: 0.82rem;
-  }
-  .vw-card .vw-badge {
-    font-size: 0.55rem;
-    padding: 3px 8px;
-  }
-}
-
-@media (max-width: 360px) {
-  .vw-card .vw-tabs {
+  .viewer, .viewer * { box-sizing: border-box; }
+  .viewer { width: 100%; max-width: 520px; margin: 0 auto; font-family: var(--bodyf); }
+  .viewer .vw-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    box-shadow: var(--sh-md);
+    overflow: hidden;
+    display: flex;
     flex-direction: column;
-    gap: 2px;
-    padding: 10px 12px 0;
   }
-  .vw-card .vw-tab {
-    border-radius: var(--r-sm);
+  .viewer .vw-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 14px 18px;
     border-bottom: 1px solid var(--line-soft);
-    bottom: 0;
+    background: var(--surface);
   }
-  .vw-card .vw-tab.active {
-    border-bottom: 1px solid var(--line);
+  .viewer .vw-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--disp);
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.01em;
   }
-  .vw-card .vw-body {
-    padding: 12px;
+  .viewer .vw-title svg { width: 16px; height: 16px; color: var(--blue); flex-shrink: 0; }
+  .viewer .vw-chip {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: var(--mint-deep);
+    background: var(--mint-tint);
+    border: 1px solid rgba(15, 169, 104, 0.25);
+    padding: 3px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
   }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .vw-card { animation: none !important; }
-  .vw-card .vw-content-fade { animation: none !important; }
-  .vw-card .vw-tab { transition: none !important; }
-}
+  .viewer .vw-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 13px; }
+  .viewer .vw-def { margin: 0; font-size: 0.8rem; line-height: 1.6; color: var(--body); }
+  .viewer .vw-def strong { color: var(--ink); font-weight: 700; }
+  .viewer .vw-mod-label,
+  .viewer .vw-uses-lbl {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .viewer .vw-mod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .viewer .vw-mod {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 6px 9px;
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    cursor: pointer;
+    font-family: var(--bodyf);
+    transition: all 0.18s ease;
+  }
+  .viewer .vw-mod:hover { border-color: var(--blue); background: var(--blue-tint); }
+  .viewer .vw-mod.active { background: var(--blue-tint); border-color: var(--blue); box-shadow: var(--sh-sm); }
+  .viewer .vw-mod svg { width: 18px; height: 18px; color: var(--muted); transition: color 0.18s; }
+  .viewer .vw-mod.active svg { color: var(--blue); }
+  .viewer .vw-mod-name { font-size: 0.72rem; font-weight: 700; color: var(--ink); }
+  .viewer .vw-mod-sub { font-family: var(--mono); font-size: 0.56rem; color: var(--muted); transition: color 0.18s; }
+  .viewer .vw-mod.active .vw-mod-sub { color: var(--blue); }
+  .viewer .vw-fuse {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    background: var(--violet-tint);
+    border: 1px dashed var(--violet);
+    border-radius: var(--r-sm);
+  }
+  .viewer .vw-fuse svg { width: 16px; height: 16px; color: var(--violet); flex-shrink: 0; }
+  .viewer .vw-fuse-title { font-family: var(--disp); font-size: 0.7rem; font-weight: 800; color: var(--violet); line-height: 1.2; }
+  .viewer .vw-fuse-sub { font-family: var(--mono); font-size: 0.58rem; color: var(--violet); opacity: 0.85; line-height: 1.3; }
+  .viewer .vw-fuse-dot { margin-left: auto; width: 8px; height: 8px; border-radius: 50%; background: var(--violet); animation: vwPulse 1.6s ease-in-out infinite; flex-shrink: 0; }
+  .viewer .vw-out { background: var(--soft); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 12px 13px; display: flex; flex-direction: column; gap: 8px; min-height: 124px; }
+  .viewer .vw-out-hdr { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-family: var(--mono); font-size: 0.56rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .viewer .vw-out-chip { font-size: 0.54rem; font-weight: 600; letter-spacing: 0; text-transform: none; padding: 2px 8px; border-radius: 999px; background: var(--tint); color: var(--blue); border: 1px solid var(--line); white-space: nowrap; }
+  .viewer .vw-out-title { font-family: var(--disp); font-size: 0.78rem; font-weight: 800; color: var(--ink); line-height: 1.3; }
+  .viewer .vw-out-lines { display: flex; flex-direction: column; gap: 5px; }
+  .viewer .vw-out-line { display: flex; align-items: flex-start; gap: 8px; font-family: var(--mono); font-size: 0.64rem; line-height: 1.55; color: var(--body); }
+  .viewer .vw-tag { font-family: var(--mono); font-size: 0.52rem; font-weight: 700; letter-spacing: 0.05em; padding: 2px 6px; border-radius: 5px; flex-shrink: 0; text-transform: uppercase; }
+  .viewer .vw-tag-align { background: var(--violet-tint); color: var(--violet); }
+  .viewer .vw-tag-reason { background: var(--blue-tint); color: var(--blue); }
+  .viewer .vw-tag-result { background: var(--mint-tint); color: var(--mint-deep); }
+  .viewer .vw-tag-input { background: var(--line-soft); color: var(--muted); }
+  .viewer .vw-tag-state { background: var(--amber-tint); color: var(--amber); }
+  .viewer .vw-uses { display: flex; flex-direction: column; gap: 7px; }
+  .viewer .vw-uses-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .viewer .vw-use {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: var(--body);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+  .viewer .vw-use:hover { border-color: var(--blue); color: var(--blue); }
+  .viewer .vw-use.active { background: var(--blue-tint); border-color: var(--blue); color: var(--blue-strong); box-shadow: var(--sh-sm); }
+  .viewer .vw-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 18px;
+    border-top: 1px solid var(--line-soft);
+    background: var(--soft);
+    font-family: var(--mono);
+    font-size: 0.56rem;
+    color: var(--muted);
+    letter-spacing: 0.01em;
+  }
+  .viewer button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+  @keyframes vwPulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(109, 94, 246, 0.18); }
+    50% { box-shadow: 0 0 0 6px rgba(109, 94, 246, 0.06); }
+  }
+  @media (max-width: 380px) {
+    .viewer .vw-top { padding: 12px; }
+    .viewer .vw-body { padding: 13px 12px 15px; }
+    .viewer .vw-foot { flex-direction: column; align-items: flex-start; gap: 3px; padding: 10px 12px; }
+    .viewer .vw-mod-sub { display: none; }
+    .viewer .vw-out-chip { display: none; }
+  }
 </style>
 
-<div class="vw-card">
-  <div class="vw-top">
-    <span class="vw-title">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.5L9 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"/>
-        <circle cx="12" cy="12" r="3"/>
-        <path d="M12 9v6"/>
-        <path d="M9 12h6"/>
-      </svg>
-      What Is Multimodal AI?
-    </span>
-    <span class="vw-badge">Definition</span>
-  </div>
+<div class="viewer">
+  <div class="vw-card">
+    <div class="vw-top">
+      <div class="vw-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 8 4-8 4-8-4 8-4z"/><path d="m4 12 8 4 8-4"/><path d="m4 18 8 4 8-4"/></svg>
+        What Is Multimodal AI?
+      </div>
+      <span class="vw-chip">Definition</span>
+    </div>
 
-  <div class="vw-tabs">
-    <button class="vw-tab active" data-tab="vision">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-        <circle cx="8.5" cy="8.5" r="1.5"/>
-        <polyline points="21 15 16 10 5 21"/>
-      </svg>
-      Text + Image
-    </button>
-    <button class="vw-tab" data-tab="audio">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M9 18V5l12-2v13"/>
-        <circle cx="6" cy="18" r="3"/>
-        <circle cx="18" cy="16" r="3"/>
-      </svg>
-      Text + Audio
-    </button>
-    <button class="vw-tab" data-tab="full">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-        <path d="M2 17l10 5 10-5"/>
-        <path d="M2 12l10 5 10-5"/>
-      </svg>
-      All Three
-    </button>
-  </div>
+    <div class="vw-body">
+      <p class="vw-def">
+        A single AI system that <strong>processes and combines</strong> multiple data types — text, image, and audio — inside one shared model. Toggle the inputs below to see how each modality changes understanding.
+      </p>
 
-  <div class="vw-body">
-    <div class="vw-content" id="vwContent">
-      <div class="vw-content-fade">
-        <div class="vw-content-title">Vision Language Models (VLMs)</div>
-        <p class="vw-content-desc">Models like GPT-4V and LLaVA process images alongside text. They can caption photos, answer questions about visual content, and extract information from documents.</p>
-        <div class="vw-content-example">
-          <div class="vw-example-label">Use Case Example</div>
-          <p class="vw-example-text">Analyzing medical scans (X-ray, MRI) and generating radiology reports.</p>
+      <div class="vw-mod-label">Toggle input modalities</div>
+      <div class="vw-mod-grid">
+        <button class="vw-mod active" data-mod="text" type="button" aria-pressed="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h10"/><path d="M4 18h7"/></svg>
+          <span class="vw-mod-name">Text</span>
+          <span class="vw-mod-sub">tokens</span>
+        </button>
+        <button class="vw-mod active" data-mod="image" type="button" aria-pressed="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.5-3.5L6 21"/></svg>
+          <span class="vw-mod-name">Image</span>
+          <span class="vw-mod-sub">patches</span>
+        </button>
+        <button class="vw-mod active" data-mod="audio" type="button" aria-pressed="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+          <span class="vw-mod-name">Audio</span>
+          <span class="vw-mod-sub">waveform</span>
+        </button>
+      </div>
+
+      <div class="vw-fuse">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/></svg>
+        <div>
+          <div class="vw-fuse-title">Fusion Layer</div>
+          <div class="vw-fuse-sub" id="vwFuseText">Aligning 3/3 encoder outputs into one space</div>
+        </div>
+        <span class="vw-fuse-dot"></span>
+      </div>
+
+      <div class="vw-out">
+        <div class="vw-out-hdr">
+          <span>Model output</span>
+          <span class="vw-out-chip" id="vwOutChip">3/3 modalities</span>
+        </div>
+        <div class="vw-out-title" id="vwOutTitle">Full multimodal fusion</div>
+        <div class="vw-out-lines" id="vwOutLines"></div>
+      </div>
+
+      <div class="vw-uses">
+        <span class="vw-uses-lbl">Try a real-ild use case</span>
+        <div class="vw-uses-row">
+          <button class="vw-use active" data-combo="text+image+audio" type="button" aria-pressed="true">Video QA</button>
+          <button class="vw-use" data-combo="text+image" type="button" aria-pressed="false">Captioning</button>
+          <button class="vw-use" data-combo="text+audio" type="button" aria-pressed="false">Voice Assist</button>
         </div>
       </div>
     </div>
 
-    <div class="vw-metrics">
-      <div class="vw-metric">
-        <span class="vw-metric-value blue" id="metricOne">175B</span>
-        <span class="vw-metric-label">Parameters</span>
-      </div>
-      <div class="vw-metric">
-        <span class="vw-metric-value" id="metricTwo">92%</span>
-        <span class="vw-metric-label">VQA Score</span>
-      </div>
-      <div class="vw-metric">
-        <span class="vw-metric-value mint" id="metricThree">2 Modes</span>
-        <span class="vw-metric-label">Modalities</span>
-      </div>
+    <div class="vw-foot">
+      <span>joint embedding · cross-modal attention</span>
+      <span>GPT-4V · Gemini · LLaVA</span>
     </div>
-  </div>
-
-  <div class="vw-foot">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-      <path d="M12 16v-4"/>
-      <path d="M12 8h.01"/>
-    </svg>
-    Multimodal AI combines text, images, and audio for richer context-aware intelligence.
   </div>
 </div>
 
 <script>
-(function() {
-  'use strict';
+(function () {
+  function init() {
+    var root = document.querySelector('.viewer');
+    if (!root) return;
 
-  const tabs = document.querySelectorAll('.vw-card .vw-tab');
-  const contentArea = document.getElementById('vwContent');
-  const metricOne = document.getElementById('metricOne');
-  const metricTwo = document.getElementById('metricTwo');
-  const metricThree = document.getElementById('metricThree');
+    var modBtns = root.querySelectorAll('.vw-mod');
+    var useBtns = root.querySelectorAll('.vw-use');
+    var fuseText = root.querySelector('#vwFuseText');
+    var outChip = root.querySelector('#vwOutChip');
+    var outTitle = root.querySelector('#vwOutTitle');
+    var outLines = root.querySelector('#vwOutLines');
 
-  if (!tabs.length || !contentArea || !metricOne || !metricTwo || !metricThree) {
-    return;
-  }
+    if (!fuseText || !outChip || !outTitle || !outLines) return;
 
-  const tabData = {
-    vision: {
-      title: 'Vision Language Models (VLMs)',
-      desc: 'Models like GPT-4V and LLaVA process images alongside text. They can caption photos, answer questions about visual content, and extract information from documents.',
-      example: 'Analyzing medical scans (X-ray, MRI) and generating radiology reports.',
-      metrics: ['175B', '92%', '2 Modes']
-    },
-    audio: {
-      title: 'Speech & Audio Understanding',
-      desc: 'Models like Whisper or AudioLM convert speech to text, generate music from text prompts, or understand the emotional tone of a conversation.',
-      example: 'Real-time transcription and translation during multilingual meetings.',
-      metrics: ['1.5B', '98%', '<1s Latency']
-    },
-    full: {
-      title: 'Unified Multimodal Models',
-      desc: 'Models like Gemini and GPT-4o can ingest any combination of text, images, audio, and video, enabling seamless cross-modal understanding and generation.',
-      example: 'An interactive tutor that sees a drawing, hears a question, and responds with spoken feedback and visual hints.',
-      metrics: ['1T+', 'Human-level', 'All 3 Modes']
+    var state = { text: true, image: true, audio: true };
+
+    var outputs = {
+      none: {
+        title: 'No input — model idle',
+        chip: '0/3 modalities',
+        lines: [
+          ['state', 'Select at least one modality to see multimodal understanding in action.']
+        ]
+      },
+      text: {
+        title: 'Text-only understanding',
+        chip: '1/3 modalities',
+        lines: [
+          ['input', 'Text tokens are streamed into the language encoder.'],
+          ['reason', 'Self-attention parses grammar, entities, and facts.'],
+          ['result', 'The model extracts meaning from words alone, with no visual or audio context.']
+        ]
+      },
+      image: {
+        title: 'Vision-only perception',
+        chip: '1/3 modalities',
+        lines: [
+          ['input', 'Image patches are fed to the vision encoder.'],
+          ['reason', 'The encoder detects edges, objects, and spatial layout.'],
+          ['result', 'Structure is perceived, but labels and sounds remain unknown without text or audio.']
+        ]
+      },
+      audio: {
+        title: 'Audio-only listening',
+        chip: '1/3 modalities',
+        lines: [
+          ['input', 'The audio waveform is converted into spectrogram features.'],
+          ['reason', 'The encoder isolates speech, pitch, and background sounds.'],
+          ['result', 'Patterns are recognized, yet no semantic names or visual grounding exist.']
+        ]
+      },
+      'text+image': {
+        title: 'Vision-language alignment',
+        chip: '2/3 modalities',
+        lines: [
+          ['align', 'Text tokens and image patches are mapped into one shared embedding space.'],
+          ['reason', 'Cross-modal attention links words like "dog" to specific regions of the image.'],
+          ['result', 'Enables captioning, visual QA, and zero-shot object recognition.']
+        ]
+      },
+      'text+audio': {
+        title: 'Speech-text fusion',
+        chip: '2/3 modalities',
+        lines: [
+          ['align', 'Audio features and text tokens are aligned in a single encoder.'],
+          ['reason', 'The model connects words to sounds and understands spoken intent.'],
+          ['result', 'Powers voice assistants, transcription, and audio-grounded chat.']
+        ]
+      },
+      'image+audio': {
+        title: 'Audiovisual binding',
+        chip: '2/3 modalities',
+        lines: [
+          ['align', 'Vision patches and audio spectrograms share the same latent space.'],
+          ['reason', 'Objects and sounds that co-occur are bound into joint concepts.'],
+          ['result', 'The model links a barking sound to a dog image, without any text.']
+        ]
+      },
+      'text+image+audio': {
+        title: 'Full multimodal fusion',
+        chip: '3/3 modalities',
+        lines: [
+          ['align', 'Three encoders project text, vision, and audio into one joint embedding space.'],
+          ['reason', 'The fusion layer learns pairwise alignments and resolves cross-modal conflict.'],
+          ['result', 'Rich grounding: who said what, where, and with what emotion. Enables video QA and rich captions.']
+        ]
+      }
+    };
+
+    function comboKey() {
+      var parts = [];
+      if (state.text) parts.push('text');
+      if (state.image) parts.push('image');
+      if (state.audio) parts.push('audio');
+      return parts.join('+') || 'none';
     }
-  };
 
-  function updateContent(tabId) {
-    const data = tabData[tabId];
-    if (!data) return;
+    function setCombo(combo) {
+      state.text = combo.indexOf('text') !== -1;
+      state.image = combo.indexOf('image') !== -1;
+      state.audio = combo.indexOf('audio') !== -1;
+    }
 
-    tabs.forEach(function(tab) {
-      if (tab.getAttribute('data-tab') === tabId) {
-        tab.classList.add('active');
-      } else {
-        tab.classList.remove('active');
-      }
+    function render() {
+      modBtns.forEach(function (btn) {
+        var mod = btn.getAttribute('data-mod');
+        var active = !!state[mod];
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+
+      var count = (state.text ? 1 : 0) + (state.image ? 1 : 0) + (state.audio ? 1 : 0);
+      fuseText.textContent = count === 0
+        ? 'Waiting for input modalities'
+        : 'Aligning ' + count + '/3 encoder outputs into one space';
+
+      var key = comboKey();
+      var data = outputs[key] || outputs.none;
+
+      outChip.textContent = data.chip;
+      outTitle.textContent = data.title;
+      outLines.innerHTML = data.lines.map(function (line) {
+        return '<div class="vw-out-line"><span class="vw-tag vw-tag-' + line[0] + '">' + line[0] + '</span><span>' + line[1] + '</span></div>';
+      }).join('');
+
+      useBtns.forEach(function (btn) {
+        var combo = btn.getAttribute('data-combo');
+        var active = combo === key;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+    }
+
+    modBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var mod = btn.getAttribute('data-mod');
+        state[mod] = !state[mod];
+        render();
+      });
     });
 
-    const contentHTML = 
-      '<div class="vw-content-fade">' +
-        '<div class="vw-content-title">' + data.title + '</div>' +
-        '<p class="vw-content-desc">' + data.desc + '</p>' +
-        '<div class="vw-content-example">' +
-          '<div class="vw-example-label">Use Case Example</div>' +
-          '<p class="vw-example-text">' + data.example + '</p>' +
-        '</div>' +
-      '</div>';
+    useBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var combo = btn.getAttribute('data-combo');
+        setCombo(combo);
+        render();
+      });
+    });
 
-    contentArea.innerHTML = contentHTML;
-
-    metricOne.textContent = data.metrics[0];
-    metricTwo.textContent = data.metrics[1];
-    metricThree.textContent = data.metrics[2];
+    render();
   }
 
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      const tabId = tab.getAttribute('data-tab');
-      if (tabId) {
-        updateContent(tabId);
-      }
-    });
-  });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
 </script>
