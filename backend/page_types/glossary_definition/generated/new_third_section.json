@@ -1,48 +1,48 @@
 {
   "comparison": {
     "sec-head": {
-      "eyebrow": "The breakdown",
-      "h2": "System prompts vs other methods",
-      "p": "System prompts are often combined with fine-tuning and RAG for task-specific behavior grounded in current data."
+      "eyebrow": "The comparison",
+      "h2": "Unimodal vs multimodal models",
+      "p": "Multimodal AI combines text, images, and audio, while unimodal models process only one data type."
     },
     "tablewrap": {
       "thead": [
         "Factor",
-        "Plain LLM",
-        "RAG",
-        "System prompts"
+        "Text-only LLM",
+        "Vision-Language Model",
+        "Full Multimodal AI"
       ],
       "tbody": [
         {
           "th": "Knowledge source",
           "td": [
-            "Fixed training data",
-            "Training data plus live retrievable content",
-            "Training data plus explicit instructions"
+            "Large text corpora",
+            "Image-text pairs",
+            "Multi-modal datasets (text, image, audio)"
           ]
         },
         {
           "th": "Update process",
           "td": [
-            "Requires retraining",
-            "Add or update documents, no retraining",
-            "Edit the prompt text, no retraining"
+            "Requires retraining for new data",
+            "Fine-tune on new image-text pairs",
+            "Requires retraining for new modalities"
           ]
         },
         {
           "th": "Best for",
           "td": [
-            "General knowledge tasks",
-            "Domain-specific, current, or private data access",
-            "Constraining behavior, tone, and format"
+            "General text tasks",
+            "Visual reasoning, captioning",
+            "Cross-modal tasks, content moderation"
           ]
         },
         {
           "th": "Traceability",
           "td": [
             "No source citation",
-            "Can cite exact source document",
-            "Clear from the provided instructions"
+            "Can cite image regions",
+            "Can cite across modalities"
           ]
         }
       ]
@@ -51,50 +51,50 @@
   "services": {
     "sec-head": {
       "eyebrow": "What I build",
-      "h2": "System prompt services",
-      "p": "Each stage of system prompt development, tested and refined for reliable, on-brand outputs."
+      "h2": "Multimodal AI services",
+      "p": "Each component of a multimodal system, built and integrated for reliable cross-modal understanding."
     },
     "grid g3": [
       {
         "card": {
-          "n": "DEFINE",
-          "h3": "Goal & persona definition",
-          "p": "Articulating the AI's objective, target audience, and persona attributes to shape its fundamental behavior and responses."
+          "n": "BUILD",
+          "h3": "Multi-modal data ingestion",
+          "p": "Building pipelines to ingest and align text, images, and audio from various sources, ensuring proper tokenization and preprocessing for each modality."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Context & constraint drafting",
-          "p": "Writing explicit context boundaries, format specifications, guardrails, and 'do not' rules that the model must follow with zero ambiguity."
+          "h3": "Model architecture selection",
+          "p": "Selecting and configuring the right multimodal architecture (e.g., CLIP, Flamingo, LLaVA) for your use case, balancing performance and computational cost."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Example & few-shot inclusion",
-          "p": "Crafting representative input-output pairs and role-playing examples within the prompt to demonstrate desired output structure and reasoning."
+          "h3": "Fusion layer engineering",
+          "p": "Designing the fusion mechanism (early, late, or hybrid) to combine embeddings from different modalities, optimizing for cross-modal interaction."
         }
       },
       {
         "card": {
-          "n": "TEST",
-          "h3": "Edge case & adversarial testing",
-          "p": "Probing the prompt with jailbreak attempts, contradictory instructions, and off-topic queries to ensure directive adherence."
+          "n": "BUILD",
+          "h3": "Training & fine-tuning",
+          "p": "Training or fine-tuning the multimodal model on your domain-specific data, with careful handling of modality imbalance and alignment."
         }
       },
       {
         "card": {
-          "n": "REFINE",
-          "h3": "Iteration & performance tuning",
-          "p": "A/B testing prompt variants against your KPIs and refining language, examples, and constraints to improve consistency and relevance."
+          "n": "EVALUATE",
+          "h3": "Multimodal evaluation",
+          "p": "Testing the model's performance on cross-modal tasks using relevant benchmarks and custom metrics, ensuring robust understanding and generation."
         }
       },
       {
         "card": {
-          "n": "DEPLOY",
-          "h3": "Production versioning & monitoring",
-          "p": "Packaging your system prompt into a versioned artifact, integrated with your API, and monitored for drift and output failures."
+          "n": "BUILD",
+          "h3": "Production deployment",
+          "p": "Deploying the multimodal model as a scalable API, integrated with your product or workflows, with monitoring for drift and accuracy."
         }
       }
     ]

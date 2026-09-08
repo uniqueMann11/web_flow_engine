@@ -374,14 +374,22 @@ def _update_meta_and_jsonld(soup, page_title, page_type, primary_keyword, second
     slug = re.sub(r"[^\w\-]+", "-", page_title.lower()).strip("-")
     page_url = f"https://shreyans.tech/{slug}"
 
-    for meta in head.find_all("meta"):
-        prop = meta.get("property") or meta.get("name", "")
-        if prop in ("og:title", "twitter:title"):
-            meta["content"] = page_title
-        elif prop in ("og:description", "twitter:description"):
-            meta["content"] = desc_text
-        elif prop == "og:url":
-            meta["content"] = page_url
+    def _ensure_meta_tag(attr_key, attr_val, content_val):
+        if not content_val:
+            return
+        tag = head.find("meta", attrs={attr_key: attr_val})
+        if tag:
+            tag["content"] = content_val
+        else:
+            new_tag = soup.new_tag("meta", content=content_val)
+            new_tag[attr_key] = attr_val
+            head.append(new_tag)
+
+    _ensure_meta_tag("property", "og:title", page_title)
+    _ensure_meta_tag("name", "twitter:title", page_title)
+    _ensure_meta_tag("property", "og:description", desc_text)
+    _ensure_meta_tag("name", "twitter:description", desc_text)
+    _ensure_meta_tag("property", "og:url", page_url)
 
     # 5. Canonical link
     canon = head.find("link", rel="canonical")
@@ -536,6 +544,200 @@ def compile_html(page_title, page_type, primary_keyword, secondary_keyword, cont
     print(f"\n  ✓ Final website written to: {output_path}")
 
 
+# ── SEO & Open Graph Metadata Generator ───────────────────────────────────────
+def generate_meta_and_og(
+    page_title: str,
+    primary_keyword: str = "",
+    secondary_keyword: str = "",
+    content_angle: str = "",
+    model: str = "openrouter/deepseek/deepseek-v4-flash"
+):
+    """
+    Generate SEO Meta Title, Meta Description, OG Title, and OG Description via LLM,
+    and print the results to stdout.
+    """
+    print(f"\n{'='*60}")
+    print("  PHASE 4: Generating SEO & Open Graph Metadata via LLM")
+    print(f"{'='*60}")
+
+    system_prompt = """You are an expert SEO specialist, digital copywriter, and metadata strategist.
+Your task is to generate compelling, high-converting, and search-optimized metadata for a web page based on the given page details.
+
+You MUST generate the following 4 fields:
+1. Meta Title: Highly compelling, search-optimized title (50-60 characters). Include the Primary Keyword naturally near the beginning.
+2. Meta Description: Engaging search snippet summary (140-160 characters) with a clear value proposition and call-to-action that maximizes CTR. Include primary and/or secondary keywords naturally.
+3. OG Title: Optimized for social sharing (LinkedIn, Twitter/X, Facebook). Punchy, professional, and curiosity-provoking (50-65 characters).
+4. OG Description: Optimized for social feed cards (100-150 characters) emphasizing benefits and driving engagement.
+
+Output MUST be ONLY a valid JSON object with exactly these keys:
+{
+  "meta_title": "...",
+  "meta_description": "...",
+  "og_title": "...",
+  "og_description": "..."
+}
+Do not output any markdown formatting, no explanations, no text outside the JSON object."""
+
+    user_prompt = f"""Page Title:
+{page_title}
+
+Primary Keyword (SEO):
+{primary_keyword}
+
+Secondary Keyword(s):
+{secondary_keyword}
+
+Content Angle / Notes:
+{content_angle}
+
+Return ONLY valid JSON matching the specified format."""
+
+    try:
+        response = completion(
+            model=model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            response_format={"type": "json_object"},
+            temperature=0.7,
+            max_tokens=1000
+        )
+
+        content = response.choices[0].message.content.strip()
+
+        # Clean markdown fences if model included them
+        if content.startswith("```"):
+            lines = content.splitlines()
+            if lines[0].startswith("```json") or lines[0].startswith("```"):
+                content = "\n".join(lines[1:-1]).strip()
+
+        data = json.loads(content)
+
+        # Handle potential single-key double-encoded JSON
+        if isinstance(data, dict) and len(data) == 1:
+            only_val = list(data.values())[0]
+            if isinstance(only_val, str):
+                try:
+                    unwrapped = json.loads(only_val)
+                    if isinstance(unwrapped, dict) and len(unwrapped) > 0:
+                        data = unwrapped
+                except Exception:
+                    pass
+
+        meta_title = data.get("meta_title") or data.get("Meta Title") or ""
+        meta_description = data.get("meta_description") or data.get("Meta Description") or ""
+        og_title = data.get("og_title") or data.get("OG Title") or ""
+        og_description = data.get("og_description") or data.get("OG Description") or ""
+
+        print("\n" + "="*60)
+        print("  SEO & OPEN GRAPH METADATA GENERATED")
+        print("="*60)
+        print(f"  Meta Title       : {meta_title}")
+        print(f"  Meta Description : {meta_description}")
+        print(f"  OG Title         : {og_title}")
+        print(f"  OG Description   : {og_description}")
+        print("="*60 + "\n")
+
+        return {
+            "meta_title": meta_title,
+            "meta_description": meta_description,
+            "og_title": og_title,
+            "og_description": og_description
+        }
+
+    except Exception as e:
+        print(f"\n  ⚠ [WARNING] Failed to generate SEO/OG metadata: {e}\n")
+        fb_desc = f"{page_title}: {content_angle}" if content_angle else page_title
+        return {
+            "meta_title": f"{page_title} | Shreyans Padmani" if not "Shreyans" in page_title else page_title,
+            "meta_description": fb_desc,
+            "og_title": page_title,
+            "og_description": fb_desc
+        }
+
+
+def apply_meta_and_og_to_html(output_path: str, meta_data: dict, page_type: str = "Comparison"):
+    """
+    Injects or updates the generated SEO & OG metadata into the compiled HTML file,
+    and writes sidecar JSON files so the frontend and API can always retrieve them.
+    """
+    if not meta_data or not os.path.exists(output_path):
+        return
+
+    meta_title = meta_data.get("meta_title", "")
+    meta_description = meta_data.get("meta_description", "")
+    og_title = meta_data.get("og_title", "")
+    og_description = meta_data.get("og_description", "")
+
+    try:
+        with open(output_path, "r", encoding="utf-8") as f:
+            html = f.read()
+
+        soup = BeautifulSoup(html, "html.parser")
+        head = soup.find("head")
+        if head:
+            # 1. Update <title>
+            if meta_title:
+                title_tag = head.find("title")
+                if title_tag:
+                    title_tag.string = meta_title
+                else:
+                    new_title = soup.new_tag("title")
+                    new_title.string = meta_title
+                    head.append(new_title)
+
+            def set_meta(attrs, content_val):
+                if not content_val:
+                    return
+                tag = head.find("meta", attrs=attrs)
+                if tag:
+                    tag["content"] = content_val
+                else:
+                    new_tag = soup.new_tag("meta", content=content_val, **attrs)
+                    head.append(new_tag)
+
+            # 2. Meta description
+            if meta_description:
+                set_meta({"name": "description"}, meta_description)
+
+            # 3. OG Title & Twitter Title
+            if og_title:
+                set_meta({"property": "og:title"}, og_title)
+                set_meta({"name": "twitter:title"}, og_title)
+
+            # 4. OG Description & Twitter Description
+            if og_description:
+                set_meta({"property": "og:description"}, og_description)
+                set_meta({"name": "twitter:description"}, og_description)
+
+            with open(output_path, "w", encoding="utf-8") as f:
+                f.write(str(soup))
+            print(f"  ✓ SEO & OG metadata tags injected into: {output_path}")
+
+    except Exception as e:
+        print(f"  ⚠ Failed to inject SEO/OG metadata into HTML: {e}")
+
+    # Also save sidecar JSON files for API and frontend decomposition
+    try:
+        sidecar_path = os.path.splitext(output_path)[0] + ".meta.json"
+        with open(sidecar_path, "w", encoding="utf-8") as f:
+            json.dump(meta_data, f, indent=2)
+
+        filename = os.path.basename(output_path)
+        hp_sidecar = os.path.join(HTML_PAGES_DIR, os.path.splitext(filename)[0] + ".meta.json")
+        if hp_sidecar != sidecar_path:
+            with open(hp_sidecar, "w", encoding="utf-8") as f:
+                json.dump(meta_data, f, indent=2)
+
+        _, _, gen_dir = get_page_type_dirs(page_type)
+        if os.path.exists(gen_dir):
+            with open(os.path.join(gen_dir, "new_meta_and_og.json"), "w", encoding="utf-8") as f:
+                json.dump(meta_data, f, indent=2)
+    except Exception as e:
+        print(f"  ⚠ Could not write meta sidecar JSON: {e}")
+
+
 # ── main entry point ─────────────────────────────────────────────────────────
 def main():
     parser = argparse.ArgumentParser(
@@ -687,10 +889,26 @@ def main():
                 f.write(updated_html)
             print(f"  ✓ Hero viewer widget injected into: {output_path}")
 
-        # ── Phase 4: Parallel Image Generation & Placeholder Replacement ──
+        # ── Phase 4: Parallel Image Generation, Placeholder Replacement & Metadata ──
+        print("\n" + "="*60)
+        print("  PHASE 4: Image & SEO/OG Metadata Generation")
+        print("="*60)
+
+        # Call LLM to generate Meta Title, Meta Description, OG Title, OG Description
+        meta_og_data = generate_meta_and_og(
+            page_title=args.page_title,
+            primary_keyword=args.primary_keyword,
+            secondary_keyword=args.secondary_keyword,
+            content_angle=args.content_angle,
+            model=args.model,
+        )
+
+        if meta_og_data:
+            apply_meta_and_og_to_html(output_path, meta_og_data, page_type=args.page_type)
+
         if not getattr(args, 'skip_images', False):
             print("\n" + "="*60)
-            print("  PHASE 4: Parallel Image Generation & Placeholder Replacement")
+            print("  Parallel Image Generation & Placeholder Replacement")
             print("="*60)
 
             _replace_image_placeholders(
@@ -701,6 +919,10 @@ def main():
                 secondary_keyword=args.secondary_keyword,
                 content_angle=args.content_angle,
             )
+
+            # Re-apply metadata to ensure tags remain present after image placeholder replacement
+            if meta_og_data:
+                apply_meta_and_og_to_html(output_path, meta_og_data, page_type=args.page_type)
         else:
             print("\n  Skipping image generation (--skip-images).")
 

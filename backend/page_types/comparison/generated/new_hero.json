@@ -1,11 +1,11 @@
 {
   "hero": {
-    "eyebrow": "Definitive framework comparison",
+    "eyebrow": "Agent graphs vs retrieval speed",
     "h1": {
-      "h1": "LangChain vs LlamaIndex: the definitive comparison",
-      "span": "multi-step vs hierarchical retrieval"
+      "h1": "LangChain vs LlamaIndex in 2026:",
+      "span": "the definitive production comparison"
     },
-    "hero-sub": "Choosing between LangChain and LlamaIndex determines your agent orchestration complexity, retrieval speed, and memory footprint. I build production systems with both, evaluating LangGraph's multi-step agent graphs against LlamaIndex's hierarchical index retrieval for speed and overhead. I pick the right framework or hybrid architecture based on your actual retrieval latency and orchestration needs, not a default toolkit.",
+    "hero-sub": "Choosing between LangChain and LlamaIndex is an architecture decision that determines orchestration complexity, retrieval latency, and memory overhead\u2014not just a toolkit preference. LangGraph multi-step agent graphs handle stateful LLM agent orchestration that LlamaIndex alone cannot match, while LlamaIndex hierarchical indexes deliver faster retrieval with meaningfully lower memory footprints. I build with both frameworks and design hybrid production architectures for 2026 that deploy each where it objectively wins.",
     "creds": [
       {
         "cred": {
@@ -16,7 +16,7 @@
       {
         "cred": {
           "i": "Coverage",
-          "b": "LangChain & LlamaIndex"
+          "b": "Both frameworks, used correctly"
         }
       },
       {
@@ -29,7 +29,7 @@
     "hero-cta": [
       {
         "btn-primary": {
-          "text": "Get a framework comparison",
+          "text": "Get a framework recommendation",
           "url": "#lets-talk"
         }
       },
@@ -40,7 +40,7 @@
         }
       }
     ],
-    "live": "Written comparison with benchmarks, before any build work begins",
+    "live": "A written, benchmark-backed framework recommendation before any build work begins.",
     "trust": [
       {
         "b": "5+",
@@ -48,7 +48,7 @@
       },
       {
         "b": "40%",
-        "span": "lower memory overhead"
+        "span": "Lower memory overhead with LlamaIndex"
       },
       {
         "b": "48h",

@@ -14,6 +14,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
+from db import get_config_status as db_config_status, test_connection as db_test_connection, save_page_to_db
 
 # Set ProactorEventLoop on Windows so asyncio supports subprocesses natively
 if sys.platform == "win32":
@@ -99,6 +100,9 @@ class PipelineRequest(BaseModel):
     skip_widget: bool = False
     skip_images: bool = False
     sample_widget: Optional[str] = None
+    url_slug: Optional[str] = ""
+    og_image_url: Optional[str] = ""
+    publish_date: Optional[str] = ""
     # Backward compatibility
     role: Optional[str] = None
     city: Optional[str] = None
@@ -106,6 +110,24 @@ class PipelineRequest(BaseModel):
     geo_code: Optional[str] = None
     landmarks: Optional[str] = None
     dominentIindustries: Optional[str] = None
+
+
+class PublishRequest(BaseModel):
+    page_title: str
+    slug: str
+    page_type: str = ""
+    meta_title: str = ""
+    meta_description: str = ""
+    keywords: str = ""
+    og_title: str = ""
+    og_description: str = ""
+    og_image_url: str = ""
+    publish_datetime: str = ""
+    is_active: bool = True
+    html_content: str = ""
+    schema_script: str = ""
+    css_content: str = ""
+    js_content: str = ""
 
 # Default presets for all 6 target page types
 PRESETS = [
@@ -168,6 +190,7 @@ PRESETS = [
 # =============================================================================
 # 5. HELPER FUNCTIONS
 # =============================================================================
+
 def find_html_file(filename: str) -> str:
     """
     Searches for an HTML file across all valid directory locations.
@@ -188,7 +211,7 @@ def find_html_file(filename: str) -> str:
     return os.path.join(HTML_PAGES_DIR, filename)
 
 
-def extract_code_components(html_content: str) -> dict:
+def extract_code_components(html_content: str, file_path: Optional[str] = None) -> dict:
     """
     Decomposes a compiled HTML file into distinct, syntax-highlightable blocks:
       - Title (<title>)
@@ -197,6 +220,7 @@ def extract_code_components(html_content: str) -> dict:
       - Client Scripts (<script>)
       - Structured Data (<script type="application/ld+json">)
       - Head Meta Tags (<meta>, <link>)
+      - Extracted SEO & OG metadata fields (from HTML and optional sidecar .meta.json)
       - Summary statistics (lines, size in KB)
     """
     soup = BeautifulSoup(html_content, "html.parser")
@@ -242,6 +266,89 @@ def extract_code_components(html_content: str) -> dict:
     meta_tags = [str(m) for m in soup.find_all(["meta", "link"])]
     meta_content = "\n".join(meta_tags)
 
+    # Step 7: Extract SEO & OG meta fields from <head>
+    extracted_meta = {}
+    head = soup.find("head")
+    if head:
+        # Meta title from <title> tag
+        extracted_meta["meta_title"] = title
+
+        # Meta description (check name, property, and twitter:description)
+        desc_tag = (
+            head.find("meta", attrs={"name": "description"}) or
+            head.find("meta", attrs={"property": "description"}) or
+            head.find("meta", attrs={"name": "twitter:description"})
+        )
+        extracted_meta["meta_description"] = desc_tag["content"] if desc_tag and desc_tag.get("content") else ""
+
+        # Keywords
+        kw_tag = (
+            head.find("meta", attrs={"name": "keywords"}) or
+            head.find("meta", attrs={"property": "keywords"})
+        )
+        extracted_meta["keywords"] = kw_tag["content"] if kw_tag and kw_tag.get("content") else ""
+
+        # OG Title (check property, name, and twitter:title)
+        og_title_tag = (
+            head.find("meta", attrs={"property": "og:title"}) or
+            head.find("meta", attrs={"name": "og:title"}) or
+            head.find("meta", attrs={"name": "twitter:title"})
+        )
+        extracted_meta["og_title"] = og_title_tag["content"] if og_title_tag and og_title_tag.get("content") else ""
+
+        # OG Description (check property, name, twitter:description)
+        og_desc_tag = (
+            head.find("meta", attrs={"property": "og:description"}) or
+            head.find("meta", attrs={"name": "og:description"}) or
+            head.find("meta", attrs={"property": "twitter:description"}) or
+            head.find("meta", attrs={"name": "twitter:description"})
+        )
+        extracted_meta["og_description"] = og_desc_tag["content"] if og_desc_tag and og_desc_tag.get("content") else ""
+
+        # OG Image (TwitterCard column)
+        og_img_tag = (
+            head.find("meta", attrs={"property": "og:image"}) or
+            head.find("meta", attrs={"name": "og:image"}) or
+            head.find("meta", attrs={"name": "twitter:image"})
+        )
+        extracted_meta["og_image_url"] = og_img_tag["content"] if og_img_tag and og_img_tag.get("content") else ""
+
+        # URL slug from og:url or canonical
+        og_url_tag = (
+            head.find("meta", attrs={"property": "og:url"}) or
+            head.find("meta", attrs={"name": "og:url"})
+        )
+        canonical_tag = head.find("link", attrs={"rel": "canonical"})
+        page_url = ""
+        if og_url_tag and og_url_tag.get("content"):
+            page_url = og_url_tag["content"]
+        elif canonical_tag and canonical_tag.get("href"):
+            page_url = canonical_tag["href"]
+        # Extract slug from URL (last path segment)
+        if page_url:
+            slug_part = page_url.rstrip("/").split("/")[-1]
+            extracted_meta["url_slug"] = slug_part
+        else:
+            extracted_meta["url_slug"] = ""
+
+    # Step 8: Fallback check against sidecar .meta.json files
+    if file_path:
+        sidecars = [
+            os.path.splitext(file_path)[0] + ".meta.json",
+            os.path.join(HTML_PAGES_DIR, os.path.splitext(os.path.basename(file_path))[0] + ".meta.json")
+        ]
+        for sc in sidecars:
+            if os.path.exists(sc):
+                try:
+                    with open(sc, "r", encoding="utf-8") as sc_f:
+                        sc_meta = json.load(sc_f)
+                        for k in ["meta_title", "meta_description", "og_title", "og_description"]:
+                            if sc_meta.get(k) and (not extracted_meta.get(k) or extracted_meta.get(k) == title):
+                                extracted_meta[k] = sc_meta[k]
+                    break
+                except Exception:
+                    pass
+
     return {
         "title": title,
         "full_html": html_content,
@@ -251,6 +358,8 @@ def extract_code_components(html_content: str) -> dict:
         "js": js_content,
         "json_ld": json_ld_content,
         "meta": meta_content,
+        "extracted_meta": extracted_meta,
+        "meta_and_og": extracted_meta,
         "stats": {
             "full_lines": len(html_content.splitlines()),
             "full_size_kb": round(len(html_content.encode("utf-8")) / 1024, 2),
@@ -354,7 +463,7 @@ def decompose_file(file: str = Query(..., description="Filename to decompose")):
     with open(file_path, "r", encoding="utf-8") as f:
         html_content = f.read()
 
-    components = extract_code_components(html_content)
+    components = extract_code_components(html_content, file_path=file_path)
     components["filename"] = file
     components["preview_url"] = f"/api/preview/{file}"
     logger.info(f"Successfully decomposed {file} ({components['stats']['full_size_kb']} KB)")
@@ -464,7 +573,24 @@ async def run_pipeline(req: PipelineRequest):
         with open(output_path, "r", encoding="utf-8") as f:
             html_content = f.read()
 
-        components = extract_code_components(html_content)
+        components = extract_code_components(html_content, file_path=output_path)
+        # Parse stdout_text for generated meta fields as immediate fallback
+        meta_from_logs = {}
+        for l in stdout_text.splitlines():
+            if "Meta Title       :" in l:
+                meta_from_logs["meta_title"] = l.split("Meta Title       :", 1)[1].strip()
+            elif "Meta Description :" in l:
+                meta_from_logs["meta_description"] = l.split("Meta Description :", 1)[1].strip()
+            elif "OG Title         :" in l:
+                meta_from_logs["og_title"] = l.split("OG Title         :", 1)[1].strip()
+            elif "OG Description   :" in l:
+                meta_from_logs["og_description"] = l.split("OG Description   :", 1)[1].strip()
+        if meta_from_logs:
+            for k, v in meta_from_logs.items():
+                if v and (not components["extracted_meta"].get(k) or components["extracted_meta"].get(k) == components.get("title")):
+                    components["extracted_meta"][k] = v
+            components["meta_and_og"] = components["extracted_meta"]
+
         components["success"] = True
         components["filename"] = output_filename
         components["preview_url"] = f"/api/preview/{output_filename}"
@@ -566,7 +692,26 @@ async def run_pipeline_stream(req: PipelineRequest):
         if returncode == 0 and os.path.exists(output_path):
             with open(output_path, "r", encoding="utf-8") as f:
                 html_content = f.read()
-            components = extract_code_components(html_content)
+            components = extract_code_components(html_content, file_path=output_path)
+
+            # Extract generated metadata from stream logs as immediate fallback
+            meta_from_logs = {}
+            for l in log_lines:
+                if "Meta Title       :" in l:
+                    meta_from_logs["meta_title"] = l.split("Meta Title       :", 1)[1].strip()
+                elif "Meta Description :" in l:
+                    meta_from_logs["meta_description"] = l.split("Meta Description :", 1)[1].strip()
+                elif "OG Title         :" in l:
+                    meta_from_logs["og_title"] = l.split("OG Title         :", 1)[1].strip()
+                elif "OG Description   :" in l:
+                    meta_from_logs["og_description"] = l.split("OG Description   :", 1)[1].strip()
+
+            if meta_from_logs:
+                for k, v in meta_from_logs.items():
+                    if v and (not components["extracted_meta"].get(k) or components["extracted_meta"].get(k) == components.get("title")):
+                        components["extracted_meta"][k] = v
+                components["meta_and_og"] = components["extracted_meta"]
+
             components["success"] = True
             components["filename"] = output_filename
             components["preview_url"] = f"/api/preview/{output_filename}"
@@ -583,7 +728,71 @@ async def run_pipeline_stream(req: PipelineRequest):
 
 
 # =============================================================================
-# 7. LOCAL SERVER ENTRYPOINT
+# 7. DATABASE ENDPOINTS
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Endpoint: GET /api/database/config-status
+# Purpose:  Returns whether database credentials are configured in .env.
+# -----------------------------------------------------------------------------
+@app.get("/api/database/config-status")
+def database_config_status():
+    """
+    Check if DB_HOST, DB_NAME, DB_USER are set in environment.
+    Returns configuration status without exposing passwords.
+    """
+    status = db_config_status()
+    logger.info(f"Database config status check: configured={status['configured']}")
+    return status
+
+
+# -----------------------------------------------------------------------------
+# Endpoint: POST /api/database/test-connection
+# Purpose:  Tests connectivity to the configured PostgreSQL instance.
+# -----------------------------------------------------------------------------
+@app.post("/api/database/test-connection")
+def database_test_connection():
+    """
+    Attempt a SELECT 1 query against the configured PostgreSQL database.
+    Returns success status and diagnostic message.
+    """
+    success, message = db_test_connection()
+    logger.info(f"Database connection test: success={success}, message={message}")
+    if success:
+        return {"success": True, "message": message}
+    else:
+        return JSONResponse(
+            status_code=400,
+            content={"success": False, "message": message}
+        )
+
+
+# -----------------------------------------------------------------------------
+# Endpoint: POST /api/database/publish
+# Purpose:  Publishes (INSERT or UPDATE) a generated page into MST_Page.
+# -----------------------------------------------------------------------------
+@app.post("/api/database/publish")
+def database_publish(req: PublishRequest):
+    """
+    Step 1: Validate all 15 fields from the review form.
+    Step 2: Call db.save_page_to_db() which checks slug existence.
+    Step 3: If slug exists -> UPDATE, if not -> INSERT.
+    Step 4: Return success with action taken and page ID.
+    """
+    try:
+        result = save_page_to_db(req.model_dump())
+        logger.info(f"Database publish: {result['action']} slug='{result['slug']}' page_id={result['page_id']}")
+        return result
+    except ValueError as ve:
+        logger.warning(f"Database publish validation error: {ve}")
+        return JSONResponse(status_code=400, content={"success": False, "message": str(ve)})
+    except Exception as e:
+        logger.exception(f"Database publish failed: {e}")
+        return JSONResponse(status_code=500, content={"success": False, "message": str(e)})
+
+
+# =============================================================================
+# 8. LOCAL SERVER ENTRYPOINT
 # =============================================================================
 # Run directly with `python backend/server.py` or `python run_studio.py`
 if __name__ == "__main__":

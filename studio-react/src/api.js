@@ -68,3 +68,25 @@ export function openPipelineStream(payload, onLog, onComplete, onError) {
 
   return () => ctrl.abort();
 }
+
+// ── Database API ─────────────────────────────────────────────
+export async function getDbConfigStatus() {
+  const r = await fetch(`${BASE}/api/database/config-status`);
+  return r.json();
+}
+
+export async function testDbConnection() {
+  const r = await fetch(`${BASE}/api/database/test-connection`, { method: "POST" });
+  return r.json();
+}
+
+export async function publishToDatabase(payload) {
+  const r = await fetch(`${BASE}/api/database/publish`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  const data = await r.json();
+  if (!r.ok || !data.success) throw new Error(data.message || "Publish failed");
+  return data;
+}

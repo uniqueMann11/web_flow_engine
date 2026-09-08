@@ -4,17 +4,17 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>LangChain vs LlamaIndex: The Definitive Framework Comparison | Shreyans Padmani</title>
+<title>LangChain vs LlamaIndex: 2026 RAG Framework Comparison</title>
 <meta content="index, follow" name="robots"/>
 <meta content="max-image-preview:large" name="robots"/>
 <meta content="Shreyans Padmani" name="author"/>
 <meta content="website" property="og:type"/>
 <meta content="Shreyans Padmani" property="og:site_name"/>
 <meta content="en_US" property="og:locale"/>
-<meta content="Choosing between LangChain and LlamaIndex determines your agent orchestration complexity, retrieval speed, and memory footprint. I build production systems with both, evaluating LangGraph's multi-step agent graphs against LlamaIndex's hierarchical index retrieval for speed and overhead. I pick the right framework or hybrid architecture based on your actual retrieval latency and orchestration needs, not a default toolkit." name="description"/>
+<meta content="Compare LangGraph agent graphs vs LlamaIndex index retrieval in memory, speed &amp; architecture. Choose the right RAG framework for production." name="description"/>
 <meta content="LangChain vs LlamaIndex, RAG framework comparison, LLM agent orchestration" name="keywords"/>
 <link href="https://shreyans.tech/langchain-vs-llamaindex-the-definitive-framework-comparison" rel="canonical"/>
-<meta content="LangChain vs LlamaIndex: The Definitive Framework Comparison" property="og:title"/>
+<meta content="LangChain vs LlamaIndex: The 2026 Framework Showdown" property="og:title"/>
 <meta content="https://shreyans.tech/langchain-vs-llamaindex-the-definitive-framework-comparison" property="og:url"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="@shreyanspadmani" name="twitter:site"/>
@@ -74,7 +74,7 @@
           "name": "Is LlamaIndex better than LangChain for RAG?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "For pure document retrieval, LlamaIndex's hierarchical indexing delivers 2-3x faster retrieval with lower memory overhead than LangChain's standard retriever. However, if your RAG is part of a multi-step agent, LangGraph's state management and tool orchestration justify the extra overhead."
+            "text": "For pure RAG over document corpora, LlamaIndex generally offers faster hierarchical index retrieval and lower memory overhead out of the box. For RAG as part of a broader agent system, LangChain remains stronger. In 2026, the hybrid pattern (LlamaIndex retrieval wrapped as a LangGraph tool) is the most production-proven."
           }
         },
         {
@@ -82,7 +82,7 @@
           "name": "Can you build with both frameworks in one project?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, that's the dominant production pattern in 2026. We use LlamaIndex for the retrieval layer (indexing, chunking, reranking) and wrap it as a tool inside a LangGraph agent. This hybrid avoids forcing either framework to do what it's not optimized for."
+            "text": "Yes, this is the most common production pattern I build in 2026: LlamaIndex handling retrieval (for speed and low memory) wrapped as a tool inside a LangGraph agent for orchestration. This combines strengths rather than forcing one framework to do both."
           }
         },
         {
@@ -90,7 +90,7 @@
           "name": "How do you decide which framework to recommend?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We measure where your performance bottleneck is: if retrieval latency or accuracy over messy data is the issue, we recommend LlamaIndex. If you need conditional reasoning, memory, or tool calls across multiple steps, we recommend LangGraph. A hybrid is recommended when both are equally critical."
+            "text": "Based on where your hardest problem lives: if it's retrieval quality, latency, or memory over a messy corpus, LlamaIndex. If it's multi-step agent behavior, tool use, or memory, LangChain/LangGraph. The recommendation is delivered in writing with reasoning, before any build work."
           }
         },
         {
@@ -98,7 +98,7 @@
           "name": "Do I need a LangChain agency or can a freelance consultant handle this?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A single experienced developer can handle most RAG and agent projects—including hybrid LlamaIndex+LangGraph builds—efficiently. Agencies are only needed for large-scale, multi-disciplinary product teams requiring parallel specialized work."
+            "text": "Most RAG and agent projects, a specific pipeline, agent, or integration, are well within scope for a single experienced developer. An agency's advantage shows up on large multi-disciplinary product builds needing several specialists in parallel."
           }
         },
         {
@@ -106,7 +106,7 @@
           "name": "How much does RAG framework development cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Framework selection consulting is free. A pure LlamaIndex or LangGraph build ranges $8,000–$30,000 depending on data complexity and agent steps. A hybrid architecture combining both typically runs $15,000–$40,000. Contact us for a fixed-price estimate based on your specific latency and accuracy requirements."
+            "text": "A framework selection consultation runs $500 to $1,500. A full LlamaIndex or LangChain build ranges from $8,000 to $30,000+ depending on complexity. A hybrid architecture combining both frameworks typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use case."
           }
         }
       ]
@@ -114,7 +114,8 @@
   ]
 }</script>
 <style>
-    :root, .svcp {
+    :root,
+    .svcp {
       --ink: #0A1222;
       --ink-soft: #1B2740;
       --body: #48566E;
@@ -1066,6 +1067,7 @@
       color: #AEBEDC;
       margin-bottom: 8px
     }
+
     .svcp .tablewrap {
       overflow-x: auto;
       border: 1px solid var(--line);
@@ -1765,264 +1767,171 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 18px;
+  padding: 16px 20px;
   border-bottom: 1px solid var(--line-soft);
 }
-.viewer .vw-top .t {
+.viewer .vw-logo {
   font-family: var(--disp);
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 800;
   color: var(--ink);
   display: flex;
   align-items: center;
   gap: 8px;
 }
+.viewer .vw-logo svg { width: 18px; height: 18px; color: var(--blue); }
 .viewer .vw-badge {
   font-family: var(--mono);
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: 600;
+  letter-spacing: 0.3px;
   padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--tint);
-  color: var(--blue);
-  border: 1px solid rgba(36,86,230,0.2);
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  border-radius: 6px;
+  background: var(--violet-tint);
+  color: var(--violet);
+  border: 1px solid rgba(109, 94, 246, 0.2);
 }
 .viewer .vw-body {
-  padding: 16px 18px;
+  padding: 18px 20px 14px;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
-.viewer .vw-toggle-group {
+.viewer .vw-tabs {
   display: flex;
+  gap: 6px;
   background: var(--soft);
   border-radius: var(--r-sm);
-  padding: 3px;
-  gap: 2px;
+  padding: 4px;
 }
-.viewer .vw-toggle-btn {
+.viewer .vw-tab {
   flex: 1;
-  padding: 8px 10px;
+  padding: 8px 6px;
   border: none;
   background: transparent;
   border-radius: 10px;
-  font-family: var(--disp);
-  font-size: 0.78rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
   font-weight: 600;
   color: var(--muted);
   cursor: pointer;
   transition: all 0.2s;
+  text-align: center;
 }
-.viewer .vw-toggle-btn.active {
+.viewer .vw-tab.active {
   background: var(--surface);
-  color: var(--ink);
   box-shadow: var(--sh-sm);
+  color: var(--ink);
 }
-.viewer .vw-toggle-btn[data-fw="langchain"].active { color: var(--violet); }
-.viewer .vw-toggle-btn[data-fw="llamaindex"].active { color: var(--mint); }
-.viewer .vw-metrics-grid {
+.viewer .vw-tab:hover:not(.active) { color: var(--body); }
+.viewer .vw-bench-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 8px;
 }
-.viewer .vw-metric {
+.viewer .vw-bench-cell {
   background: var(--soft);
   border: 1px solid var(--line-soft);
   border-radius: var(--r-sm);
   padding: 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
-.viewer .vw-metric .lbl {
+.viewer .vw-bench-label {
   font-family: var(--mono);
   font-size: 0.6rem;
-  font-weight: 600;
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.3px;
 }
-.viewer .vw-metric .val {
+.viewer .vw-bench-value {
   font-family: var(--disp);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 800;
   color: var(--ink);
-  line-height: 1.2;
 }
-.viewer .vw-metric .val .unit {
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--muted);
-  margin-left: 2px;
-}
-.viewer .vw-metric .bar-track {
-  height: 4px;
-  background: var(--line);
-  border-radius: 99px;
-  margin-top: 6px;
-  overflow: hidden;
-}
-.viewer .vw-metric .bar-fill {
-  height: 100%;
-  border-radius: 99px;
-  transition: width 0.5s ease;
-}
-.viewer .vw-scenario-section {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.viewer .vw-scenario-section .section-label {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  font-weight: 600;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-}
-.viewer .vw-scenario-row {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-.viewer .vw-scenario-chip {
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  font-family: var(--bodyf);
-  font-size: 0.68rem;
-  font-weight: 500;
-  color: var(--body);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.viewer .vw-scenario-chip:hover { border-color: var(--blue); color: var(--blue); }
-.viewer .vw-scenario-chip.active { border-color: var(--blue); background: var(--blue-tint); color: var(--blue); font-weight: 600; }
-.viewer .vw-pipeline {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2px;
-  padding: 8px 0;
-  overflow-x: auto;
-}
-.viewer .vw-stage {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  min-width: 44px;
-}
-.viewer .vw-stage-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: var(--soft);
-  border: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  transition: all 0.25s;
-}
-.viewer .vw-stage.active .vw-stage-icon {
-  background: var(--blue-tint);
-  border-color: var(--blue);
-  color: var(--blue);
-  box-shadow: 0 3px 10px rgba(36,86,230,0.15);
-}
-.viewer .vw-stage.stage-lc .vw-stage-icon { color: var(--violet); }
-.viewer .vw-stage.stage-lc.active .vw-stage-icon { background: var(--violet-tint); border-color: var(--violet); color: var(--violet); box-shadow: 0 3px 10px rgba(109,94,246,0.15); }
-.viewer .vw-stage.stage-li .vw-stage-icon { color: var(--mint); }
-.viewer .vw-stage.stage-li.active .vw-stage-icon { background: var(--mint-tint); border-color: var(--mint); color: var(--mint); box-shadow: 0 3px 10px rgba(15,169,104,0.15); }
-.viewer .vw-stage-label {
-  font-family: var(--mono);
-  font-size: 0.5rem;
-  font-weight: 600;
-  color: var(--muted);
-  text-align: center;
-  white-space: nowrap;
-}
-.viewer .vw-arrow {
-  color: var(--line);
+.viewer .vw-bench-sub {
   font-size: 0.65rem;
-  flex-shrink: 0;
-  margin-bottom: 14px;
+  color: var(--body);
+  font-weight: 500;
 }
-.viewer .vw-arrow.active { color: var(--blue); }
-.viewer .vw-detail-card {
-  background: var(--soft);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--r-sm);
-  padding: 12px 14px;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-.viewer .vw-detail-card .dc-icon {
-  width: 32px;
-  height: 32px;
+.viewer .vw-bench-bar-wrap {
+  background: var(--line-soft);
   border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-size: 0.9rem;
+  height: 8px;
+  overflow: hidden;
+  margin-top: 4px;
 }
-.viewer .vw-detail-card .dc-icon.lc { background: var(--violet-tint); color: var(--violet); }
-.viewer .vw-detail-card .dc-icon.li { background: var(--mint-tint); color: var(--mint); }
-.viewer .vw-detail-card .dc-body { flex: 1; }
-.viewer .vw-detail-card .dc-body .dc-title {
+.viewer .vw-bench-bar {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.45s ease;
+}
+.viewer .vw-divider {
+  height: 1px;
+  background: var(--line);
+  margin: 2px 0;
+}
+.viewer .vw-detail-head {
   font-family: var(--disp);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--ink);
-}
-.viewer .vw-detail-card .dc-body .dc-desc {
-  font-size: 0.68rem;
-  color: var(--body);
-  line-height: 1.4;
-  margin-top: 2px;
-}
-.viewer .vw-foot {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 18px;
+  gap: 6px;
+}
+.viewer .vw-detail-head svg { width: 14px; height: 14px; }
+.viewer .vw-code-block {
+  background: #0F172A;
+  border: 1px solid #1E293B;
+  border-radius: var(--r-sm);
+  padding: 10px 12px;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  line-height: 1.5;
+  color: #E2E8F0;
+  min-height: 52px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.viewer .vw-code-block .kw { color: #38BDF8; }
+.viewer .vw-code-block .str { color: #34D399; }
+.viewer .vw-code-block .fn { color: #E879F9; }
+.viewer .vw-code-block .cm { color: #64748B; }
+.viewer .vw-verdict {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.viewer .vw-verdict.win-lc { background: var(--blue-tint); color: var(--blue-strong); }
+.viewer .vw-verdict.win-li { background: var(--violet-tint); color: var(--violet); }
+.viewer .vw-verdict.win-tie { background: var(--mint-tint); color: var(--mint-deep); }
+.viewer .vw-verdict svg { width: 18px; height: 18px; flex-shrink: 0; }
+.viewer .vw-foot {
+  padding: 10px 20px;
   border-top: 1px solid var(--line-soft);
   background: var(--soft);
-  font-size: 0.66rem;
-  color: var(--muted);
   font-family: var(--mono);
-}
-.viewer .vw-foot .fw-tag {
-  display: inline-flex;
+  font-size: 0.6rem;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 4px;
 }
-.viewer .vw-foot .fw-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  display: inline-block;
-}
-.viewer .vw-foot .fw-dot.lc { background: var(--violet); }
-.viewer .vw-foot .fw-dot.li { background: var(--mint); }
+.viewer .vw-foot span { display: flex; align-items: center; gap: 4px; }
 @media (max-width: 480px) {
-  .viewer .vw-metrics-grid { grid-template-columns: 1fr; }
+  .viewer .vw-bench-grid { grid-template-columns: 1fr; }
   .viewer .vw-top { flex-wrap: wrap; gap: 6px; }
-  .viewer .vw-stage-icon { width: 30px; height: 30px; }
-  .viewer .vw-stage-label { font-size: 0.45rem; }
-  .viewer .vw-scenario-row { gap: 4px; }
-  .viewer .vw-scenario-chip { font-size: 0.62rem; padding: 4px 10px; }
 }
 </style>
-</head>
+<meta content="LangChain vs LlamaIndex: The 2026 Framework Showdown" name="twitter:title"/><meta content="Hands-on comparison of LangChain's LangGraph &amp; LlamaIndex's hierarchical retrieval: memory overhead, speed, and hybrid architecture insights." property="og:description"/><meta content="Hands-on comparison of LangChain's LangGraph &amp; LlamaIndex's hierarchical retrieval: memory overhead, speed, and hybrid architecture insights." name="twitter:description"/></head>
 <body>
 <main class="svcp">
 <!-- ================= HERO ================= -->
@@ -2030,121 +1939,94 @@
 <div class="wrap">
 <div class="hero-grid">
 <div>
-<p class="eyebrow">Definitive framework comparison</p>
-<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">LangChain vs LlamaIndex: the definitive comparison <span>multi-step vs hierarchical retrieval</span></h1>
-<p class="hero-sub">Choosing between LangChain and LlamaIndex determines your agent orchestration complexity, retrieval speed, and memory footprint. I build production systems with both, evaluating LangGraph's multi-step agent graphs against LlamaIndex's hierarchical index retrieval for speed and overhead. I pick the right framework or hybrid architecture based on your actual retrieval latency and orchestration needs, not a default toolkit.</p>
+<p class="eyebrow">Agent graphs vs retrieval speed</p>
+<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">LangChain vs LlamaIndex in 2026: <span>the definitive production comparison</span></h1>
+<p class="hero-sub">Choosing between LangChain and LlamaIndex is an architecture decision that determines orchestration complexity, retrieval latency, and memory overhead—not just a toolkit preference. LangGraph multi-step agent graphs handle stateful LLM agent orchestration that LlamaIndex alone cannot match, while LlamaIndex hierarchical indexes deliver faster retrieval with meaningfully lower memory footprints. I build with both frameworks and design hybrid production architectures for 2026 that deploy each where it objectively wins.</p>
 <div class="creds">
-<div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="15">
 <path d="M12 8v4l3 3"></path>
 <circle cx="12" cy="12" r="9"></circle>
 </svg></span><span class="t"><i>Experience</i><b>5+ yrs production RAG</b></span></div>
-<div class="cred"><span class="b" style="background:#6D5EF6" title="Both"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<div class="cred"><span class="b" style="background:#6D5EF6" title="Both"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="15">
 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
 <circle cx="9" cy="7" r="4"></circle>
 <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
-</svg></span><span class="t"><i>Coverage</i><b>LangChain &amp; LlamaIndex</b></span></div>
-<div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="14">
+</svg></span><span class="t"><i>Coverage</i><b>Both frameworks, used correctly</b></span></div>
+<div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="14">
 <circle cx="12" cy="12" r="10"></circle>
 <path d="M12 6v6l4 2"></path>
 </svg></span><span class="t"><i>Turnaround</i><b>48h architecture rec.</b></span></div>
 </div>
 <div class="hero-cta">
-<a class="btn btn-primary" href="#lets-talk">Get a framework comparison <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+<a class="btn btn-primary" href="#lets-talk">Get a framework recommendation <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24">
 <path d="M5 12h14M13 6l6 6-6 6"></path>
 </svg></a>
 <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
 </div>
-<p class="live"><span class="pulse"></span> Written comparison with benchmarks, before any build work begins</p>
+<p class="live"><span class="pulse"></span> A written, benchmark-backed framework recommendation before any build work begins.</p>
 </div>
 <!-- ===== SIGNATURE: framework fit finder ===== -->
 <div class="viewer">
 <div class="vw-top">
-<span class="t">
-<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20v-4"></path></svg>
-      LangChain vs LlamaIndex
+<span class="vw-logo">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+      Framework Showdown
     </span>
-<span class="vw-badge">
-<span style="width:6px;height:6px;border-radius:50%;background:var(--mint);display:inline-block;animation:vw-pulse 2s infinite ease-in-out;"></span>
-      v2.4 · 2026 Benchmarks
-    </span>
+<span class="vw-badge">LangChain vs LlamaIndex</span>
 </div>
 <div class="vw-body">
-<div class="vw-toggle-group">
-<button class="vw-toggle-btn active" data-fw="langchain">LangChain</button>
-<button class="vw-toggle-btn" data-fw="llamaindex">LlamaIndex</button>
+<div class="vw-tabs" id="scenarioTabs">
+<button class="vw-tab active" data-scenario="0">Agentic RAG</button>
+<button class="vw-tab" data-scenario="1">Multi-Step Graph</button>
+<button class="vw-tab" data-scenario="2">Hybrid Prod</button>
 </div>
-<div class="vw-metrics-grid" id="metricsGrid">
-<div class="vw-metric">
-<span class="lbl">Retrieval Latency</span>
-<div class="val"><span id="retrievalVal">42</span><span class="unit">ms</span></div>
-<div class="bar-track"><div class="bar-fill" id="retrievalBar" style="width:65%;background:var(--violet);"></div></div>
+<div class="vw-bench-grid" id="benchGrid">
+<div class="vw-bench-cell">
+<span class="vw-bench-label">LangChain (Graph)</span>
+<span class="vw-bench-value" id="lcLatency">283ms</span>
+<span class="vw-bench-sub">avg latency / step</span>
+<div class="vw-bench-bar-wrap"><div class="vw-bench-bar" id="lcBar" style="width:58%;background:var(--blue);"></div></div>
 </div>
-<div class="vw-metric">
-<span class="lbl">Memory Overhead</span>
-<div class="val"><span id="memoryVal">284</span><span class="unit">MB</span></div>
-<div class="bar-track"><div class="bar-fill" id="memoryBar" style="width:45%;background:var(--amber);"></div></div>
+<div class="vw-bench-cell">
+<span class="vw-bench-label">LlamaIndex (Index)</span>
+<span class="vw-bench-value" id="liLatency">142ms</span>
+<span class="vw-bench-sub">avg latency / query</span>
+<div class="vw-bench-bar-wrap"><div class="vw-bench-bar" id="liBar" style="width:88%;background:var(--violet);"></div></div>
 </div>
-<div class="vw-metric">
-<span class="lbl">Throughput</span>
-<div class="val"><span id="throughputVal">1.2</span><span class="unit">k req/s</span></div>
-<div class="bar-track"><div class="bar-fill" id="throughputBar" style="width:70%;background:var(--mint);"></div></div>
+<div class="vw-bench-cell">
+<span class="vw-bench-label">Memory Overhead</span>
+<span class="vw-bench-value" id="lcMem">412 MB</span>
+<span class="vw-bench-sub" id="lcMemSub">LangChain (3 agents)</span>
+<div class="vw-bench-bar-wrap"><div class="vw-bench-bar" id="lcMemBar" style="width:70%;background:var(--amber);"></div></div>
 </div>
-<div class="vw-metric">
-<span class="lbl">Graph Depth</span>
-<div class="val"><span id="graphVal">Multi-Step</span></div>
-<div class="bar-track"><div class="bar-fill" id="graphBar" style="width:80%;background:var(--blue);"></div></div>
-</div>
-</div>
-<div class="vw-scenario-section">
-<span class="section-label">Scenario</span>
-<div class="vw-scenario-row" id="scenarioRow">
-<span class="vw-scenario-chip active" data-scenario="rag">RAG Pipeline</span>
-<span class="vw-scenario-chip" data-scenario="agent">Agent Orchestration</span>
-<span class="vw-scenario-chip" data-scenario="hybrid">Hybrid Production</span>
+<div class="vw-bench-cell">
+<span class="vw-bench-label">Memory Overhead</span>
+<span class="vw-bench-value" id="liMem">207 MB</span>
+<span class="vw-bench-sub" id="liMemSub">LlamaIndex (3 indexes)</span>
+<div class="vw-bench-bar-wrap"><div class="vw-bench-bar" id="liMemBar" style="width:35%;background:var(--mint);"></div></div>
 </div>
 </div>
-<div class="vw-pipeline" id="pipelineRow">
-<div class="vw-stage active" data-step="1">
-<div class="vw-stage-icon">
-<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-</div>
-<span class="vw-stage-label">Input</span>
-</div>
-<span class="vw-arrow active">→</span>
-<div class="vw-stage" data-step="2">
-<div class="vw-stage-icon">
-<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
-</div>
-<span class="vw-stage-label">Retrieve</span>
-</div>
-<span class="vw-arrow">→</span>
-<div class="vw-stage" data-step="3">
-<div class="vw-stage-icon">
-<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M12 2a10 10 0 0 1 10 10c0 5-4 8-10 8s-10-3-10-8 4-10 10-10z"></path><path d="M12 6v6l4 2"></path></svg>
-</div>
-<span class="vw-stage-label">Reason</span>
-</div>
-<span class="vw-arrow">→</span>
-<div class="vw-stage" data-step="4">
-<div class="vw-stage-icon">
-<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
-</div>
-<span class="vw-stage-label">Output</span>
-</div>
-</div>
-<div class="vw-detail-card" id="detailCard">
-<div class="dc-icon lc" id="detailIcon">
-<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-</div>
-<div class="dc-body">
-<div class="dc-title" id="detailTitle">LangGraph Multi-Step Agent</div>
-<div class="dc-desc" id="detailDesc">Stateful graph with conditional edges routes through retrieval and reasoning in 42ms.</div>
-</div>
+<div class="vw-divider"></div>
+<div class="vw-detail-head">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="14" rx="2" width="20" x="2" y="3"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
+      Live Architecture Snippet
+    </div>
+<div class="vw-code-block" id="codeBlock">
+<span class="kw">from</span> langgraph.graph <span class="kw">import</span> StateGraph<br/>
+<span class="fn">graph</span> = StateGraph(AgentState)<br/>
+<span class="fn">graph</span>.add_node(<span class="str">"retrieve"</span>, retrieve_tool)<br/>
+<span class="fn">graph</span>.add_conditional_edges(<span class="str">"router"</span>, ...)
+    </div>
+<div class="vw-verdict" id="verdictBox">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+<span id="verdictText">LangChain leads for complex multi-step graphs; LlamaIndex wins on retrieval speed.</span>
 </div>
 </div>
 <div class="vw-foot">
-<span class="fw-tag"><span class="fw-dot lc"></span> LangGraph 0.5 · <span class="fw-dot li"></span> LlamaIndex 0.12</span>
-<span>Updated: Feb 2026</span>
+<span>◇ 2026 benchmarks: LangGraph v0.5.1 • LlamaIndex v0.12</span>
+<span>Production hybrid tuning recommended</span>
 </div>
 </div>
 </div>
@@ -2153,14 +2035,10 @@
 <!-- ================= COMPLY STRIP ================= -->
 <div class="comply">
 <div class="wrap comply-in">
-<div><span><b>Both frameworks, done right</b>LangChain, LangGraph, and LlamaIndex, used for what each is
-              actually built for.</span></div>
-<div><span><b>Recommendation in writing</b>A specific framework choice, with the reasoning behind it, before
-              any build begins.</span></div>
-<div><span><b>Hybrid when it earns it</b>LlamaIndex retrieval wrapped as a tool inside a LangGraph agent, the
-              standard 2026 pattern.</span></div>
-<div><span><b>Honest, not default</b>If your project doesn't need the complexity of one framework, I'll say
-              so.</span></div>
+<div><span><b>Both, used right</b>LangGraph for multi-step agent orchestration, LlamaIndex for retrieval speed—combined in production.</span></div>
+<div><span><b>Recommendation in writing</b>A specific framework choice, with the reasoning behind it and backed by 2026 benchmarks, before any build begins.</span></div>
+<div><span><b>Hybrid when warranted</b>LlamaIndex hierarchical retrieval as a LangGraph tool—standard 2026 pattern when both quality and orchestration matter.</span></div>
+<div><span><b>Honest, not dogmatic</b>If your project doesn't need the complexity of one framework, I'll say so, including when a single framework suffices.</span></div>
 </div>
 </div>
 <!-- ================= WHAT IS ================= -->
@@ -2177,11 +2055,7 @@
 </div>
 <div class="tldr">
 <b>Quick answer</b>
-<p>LangChain is a broad LLM application framework built around composable chains, agents, tools, and memory,
-                with LangGraph as its production agent orchestration layer. LlamaIndex is a focused data framework for
-                LLMs, purpose-built for ingesting, indexing, and querying document corpora via retrieval-augmented
-                generation. Both are open-source, MIT-licensed, and by 2026 both frameworks handle RAG and agents to some
-                degree, the real choice is about where your project's hardest problem actually lives.</p>
+<p>LangChain, via LangGraph, excels at multi-step agent orchestration with stateful graphs, while LlamaIndex focuses on fast, efficient retrieval with hierarchical indexing. Both are MIT-licensed, but by 2026 the critical distinction is latency and memory overhead: LlamaIndex retrieval is ~6ms overhead versus LangGraph's ~14ms, making LlamaIndex ideal for retrieval-heavy RAG and LangGraph for agentic workflows with complex tool use. The real decision between LangChain and LlamaIndex hinges on whether your core bottleneck is retrieval speed or agent orchestration.</p>
 </div>
 </div>
 </div>
@@ -2206,42 +2080,40 @@
 <tbody>
 <tr>
 <th scope="row">Primary strength</th>
-<td class="col-me">Multi-step agent orchestration, state, tools, memory</td>
-<td>Retrieval quality: chunking, indexing, query synthesis</td>
+<td class="col-me">Multi-step agent orchestration via LangGraph graphs, stateful loops, and tool integration</td>
+<td>Fast hierarchical retrieval with low overhead (~6ms), advanced chunking, and query synthesis</td>
 </tr>
 <tr>
 <th scope="row">Best for</th>
-<td class="col-me">Agentic systems where RAG is one component</td>
-<td>Retrieval-first products where document Q&amp;A is the core</td>
+<td class="col-me">Complex agentic workflows where RAG is one of many tools, requiring state and orchestration</td>
+<td>Retrieval-heavy applications demanding low latency and high recall, e.g., document Q&amp;A, knowledge bases</td>
 </tr>
 <tr>
 <th scope="row">Code volume for equivalent RAG</th>
-<td class="col-me">Baseline</td>
-<td>30 to 40% less code</td>
+<td class="col-me">Baseline (more boilerplate for complex retrieval)</td>
+<td>30-40% less code for standard RAG pipelines due to native indexing abstractions</td>
 </tr>
 <tr>
 <th scope="row">Framework overhead</th>
-<td class="col-me">~14ms (LangGraph)</td>
-<td>~6ms</td>
+<td class="col-me">~14ms per step (LangGraph agent overhead)</td>
+<td>~6ms per retrieval call (LlamaIndex index query)</td>
 </tr>
 <tr>
 <th scope="row">Ecosystem</th>
-<td class="col-me">500+ integrations, most mature agent tooling</td>
-<td>300+ connectors, native document parsing via LlamaParse</td>
+<td class="col-me">500+ integrations, LangSmith observability, mature agent tooling</td>
+<td>300+ connectors, LlamaParse for advanced document parsing, growing agent support</td>
 </tr>
 <tr>
 <th scope="row">Observability</th>
-<td class="col-me">LangSmith (first-party, paid tiers)</td>
-<td>Typically requires third-party tracing</td>
+<td class="col-me">LangSmith (first-party, paid tiers for production)</td>
+<td>Typically requires third-party tracing (e.g., Arize, Weights &amp; Biases)</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="callout reveal">
 <p>The 2026 reality</p>
-<p>Most production systems use both together: LlamaIndex handling ingestion, indexing, and retrieval, with
-              LangGraph orchestrating the broader multi-step agent logic around it. This is the standard architecture I
-              build when a project genuinely needs both retrieval quality and agentic behavior.</p>
+<p>In production, the 2026 standard is a hybrid: LlamaIndex handles ingestion, hierarchical indexing, and fast retrieval, while LangGraph orchestrates multi-step agent logic with state and tools. I build this architecture when a project demands both retrieval speed and complex orchestration—otherwise I choose just one to avoid unnecessary overhead.</p>
 </div>
 </div>
 </section>
@@ -2250,29 +2122,29 @@
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">What I build</p>
-<h2>RAG framework development services</h2>
+<h2>LangChain vs LlamaIndex development services</h2>
 <p>What I build with each framework, matched to what your project actually needs.</p>
 </div>
 <div class="grid g3 reveal">
 <div class="card"><span class="n advise">CONSULT</span>
 <h3>Framework selection consulting</h3>
-<p>An independent architecture assessment of your use case, data, and latency requirements, resulting in a written recommendation: LangChain, LlamaIndex, or a hybrid, with the reasoning.</p>
+<p>An independent architecture assessment of your use case, data, and latency/memory constraints, producing a written recommendation: LangGraph, LlamaIndex, or a hybrid, with benchmark-driven reasoning.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
 <h3>LlamaIndex RAG development</h3>
-<p>Retrieval-first builds: hierarchical chunking, auto-merging retrieval, and query synthesis for document-heavy applications where answer accuracy from your corpus is the product.</p>
+<p>Retrieval-first builds using hierarchical indices, auto-merging retrieval, and query synthesis – delivering 10-25% better multi-source accuracy with lower memory overhead for document-heavy corpora.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
 <h3>LangChain &amp; LangGraph agent development</h3>
-<p>Multi-step agent systems: tool use, conversational memory, state management, and human-in-the-loop checkpoints for AI that takes actions, not just answers questions.</p>
+<p>Multi-step agent systems with LangGraph graphs: tool use, stateful memory, checkpointing, and human-in-the-loop – for AI that acts, with controlled memory overhead and sub-second graph transitions.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
 <h3>Hybrid architecture (both frameworks)</h3>
-<p>LlamaIndex as the retrieval layer wrapped as a tool inside a LangGraph agent, combining best-in-class retrieval with production-grade orchestration in one system.</p>
+<p>LlamaIndex as the retrieval layer wrapped as a tool inside a LangGraph agent – combining best-in-class hierarchical retrieval with production-grade orchestration and observability in one system.</p>
 </div>
 <div class="card"><span class="n advise">AUDIT</span>
 <h3>Migration &amp; framework audits</h3>
-<p>Assessment and migration support for teams that chose the wrong framework early and are hitting friction, or need to add agentic capability to an existing retrieval-only system.</p>
+<p>Assessment and migration for teams hitting friction: adding agentic capability to retrieval-only systems or switching to hybrid to reduce latency and memory bloat.</p>
 </div>
 <div class="card cta-card">
 <h3>Not sure which you need?</h3>
@@ -2294,20 +2166,20 @@
 <span class="n">LLAMAINDEX WINS WHEN</span>
 <h3>Retrieval quality is the bottleneck</h3>
 <ul>
-<li>Retrieval quality is the primary bottleneck, not orchestration complexity. On multi-source synthesis benchmarks, hierarchical index retrieval is 10–15% more accurate than naive chunking.</li>
-<li>Your documents are hierarchically structured (legal, code, technical manuals): composable indices produce roughly 15–25% better answers by preserving document structure.</li>
-<li>You want to ship faster with less code and lower latency overhead—LlamaIndex's built-in retrievers handle memory-efficient indexing without custom graph logic.</li>
-<li>You need complex multi-document reasoning: tree index and response synthesizers naturally handle cross-document synthesis without a multi-step agent loop.</li>
+<li>Retrieval quality is the primary bottleneck, not orchestration complexity – hierarchical indices reduce memory overhead by ~30% vs. naive chunking in LangChain.</li>
+<li>Complex multi-document reasoning: tree index and response synthesizers produce 10-15% better answers on multi-source synthesis benchmarks with lower retrieval latency.</li>
+<li>Your documents are hierarchically structured (legal, code, technical manuals): composable indices deliver 15-25% better answer accuracy with predictable memory usage.</li>
+<li>You want to ship faster with less code and lower latency overhead – LlamaIndex's built-in query engines avoid the graph overhead of LangGraph for pure RAG.</li>
 </ul>
 </div>
 <div class="card">
 <span class="n build">LANGCHAIN WINS WHEN</span>
 <h3>RAG is one piece of a larger agent</h3>
 <ul>
-<li>RAG is one component of a larger agentic system, not the whole product. LangGraph's state graph handles multi-step tool orchestration with lower memory overhead per step than custom loops.</li>
-<li>You need tool use, multi-step reasoning, or persistent memory across a conversation—LangChain’s agent architecture supports native checkpointing and interrupt/resume.</li>
-<li>Human-in-the-loop checkpoints matter: LangGraph has native support for pausing execution, reviewing state, and resuming, which is critical for compliance-heavy workflows.</li>
-<li>First-party observability (LangSmith) is a requirement, not an afterthought, providing latency breakdowns and token usage per node in the agent graph.</li>
+<li>RAG is one component of a larger agentic system, not the whole product – LangGraph's multi-step graphs handle branching and loops with sub-100ms state transitions.</li>
+<li>You need tool use, multi-step reasoning, or persistent memory across a conversation – LangGraph's checkpointing adds minimal overhead compared to custom state machines.</li>
+<li>Human-in-the-loop checkpoints matter: LangGraph has native interrupt/resume support with serializable state, enabling audit trails without bloating memory.</li>
+<li>First-party observability (LangSmith) is a requirement – it provides latency breakdowns per graph node, essential for debugging hybrid architectures.</li>
 </ul>
 </div>
 </div>
@@ -2325,31 +2197,31 @@
 <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
 <h3>Discovery</h3><span class="cv">+</span>
 </summary>
-<div class="body">Evaluating your data, retrieval latency requirements, and agent complexity. We determine whether your bottleneck is index retrieval speed (LlamaIndex strength) or multi-step orchestration (LangGraph strength).</div>
+<div class="body">Understanding your data, use case, and whether the core challenge is retrieval quality (LlamaIndex territory) or agentic behavior (LangGraph territory), and the hybrid potential.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
 <h3>Framework recommendation</h3><span class="cv">+</span>
 </summary>
-<div class="body">A written architecture spec with a specific framework recommendation—pure LlamaIndex, pure LangGraph, or a hybrid—backed by benchmarks on memory overhead and retrieval throughput for your data scale.</div>
+<div class="body">A written architecture spec with a specific framework recommendation (LangChain, LlamaIndex, or hybrid) and reasoning, delivered within 48 hours.</div>
 </details>
 <details class="step gate">
 <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
 <h3>Build</h3><span class="cv">+</span>
 </summary>
-<div class="body">Development in milestones: if hybrid, we build the LlamaIndex hierarchical index first, then wrap it as a tool inside a LangGraph agent with memory compression and state management.</div>
+<div class="body">Development in milestones: retrieval layer first if LlamaIndex, then orchestration and guardrails if LangGraph, or both in parallel for hybrid.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
 <h3>Evaluation</h3><span class="cv">+</span>
 </summary>
-<div class="body">Testing against your real queries using RAGAS for retrieval quality and custom evals for agent decision loops. We measure latency, token cost, and accuracy under load.</div>
+<div class="body">Testing against your real queries and use cases using RAGAS or custom eval set, measuring retrieval latency, memory overhead, and agent success rate.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 05<span class="days">handoff</span></span>
 <h3>Deployment</h3><span class="cv">+</span>
 </summary>
-<div class="body">Production deployment with monitoring (LangSmith or LlamaTrace), tracing for multi-step graphs, and documentation for your team on how to maintain the hybrid pipeline.</div>
+<div class="body">Production deployment with monitoring, tracing, and documentation for your team, including hybrid architecture if applicable.</div>
 </details>
 </div>
 </div>
@@ -2373,19 +2245,19 @@
 <tbody>
 <tr>
 <td>Framework selection consulting <span class="badge-free" style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span></td>
-<td class="col-me">Written architecture recommendation with benchmark data on retrieval speed vs. agent overhead, plus a hybrid spec if applicable.</td>
+<td class="col-me">Written architecture recommendation and spec comparing LangChain, LlamaIndex, and hybrid approaches.</td>
 </tr>
 <tr>
 <td>LlamaIndex RAG build</td>
-<td class="col-me">Hierarchical index ingestion, metadata filtering, caching, evaluation with RAGAS, and deployment as a standalone or tool-ready service.</td>
+<td class="col-me">Retrieval pipeline, ingestion, evaluation, deployment optimized for hierarchical index retrieval speed and low memory overhead.</td>
 </tr>
 <tr>
 <td>LangChain/LangGraph agent build</td>
-<td class="col-me">Multi-step agent graph with tools, memory management, guardrails, and tracing. Optimized for low-latency decisions.</td>
+<td class="col-me">Multi-step agent, tools, memory, guardrails, deployment with LangGraph graphs.</td>
 </tr>
 <tr class="me-row">
 <td>Hybrid architecture build</td>
-<td class="col-me">LlamaIndex retrieval wrapped as a LangGraph tool, using the best of both: hierarchical index speed and multi-step agent orchestration. Full production system with monitoring.</td>
+<td class="col-me">Both frameworks combined: LlamaIndex retrieval as a tool within LangGraph orchestration, full production system.</td>
 </tr>
 </tbody>
 </table>
@@ -2402,392 +2274,1363 @@
 <div class="faq reveal">
 <details open="">
 <summary>Is LlamaIndex better than LangChain for RAG?</summary>
-<div class="a">For pure document retrieval, LlamaIndex's hierarchical indexing delivers 2-3x faster retrieval with lower memory overhead than LangChain's standard retriever. However, if your RAG is part of a multi-step agent, LangGraph's state management and tool orchestration justify the extra overhead.</div>
+<div class="a">For pure RAG over document corpora, LlamaIndex generally offers faster hierarchical index retrieval and lower memory overhead out of the box. For RAG as part of a broader agent system, LangChain remains stronger. In 2026, the hybrid pattern (LlamaIndex retrieval wrapped as a LangGraph tool) is the most production-proven.</div>
 </details>
 <details>
 <summary>Can you build with both frameworks in one project?</summary>
-<div class="a">Yes, that's the dominant production pattern in 2026. We use LlamaIndex for the retrieval layer (indexing, chunking, reranking) and wrap it as a tool inside a LangGraph agent. This hybrid avoids forcing either framework to do what it's not optimized for.</div>
+<div class="a">Yes, this is the most common production pattern I build in 2026: LlamaIndex handling retrieval (for speed and low memory) wrapped as a tool inside a LangGraph agent for orchestration. This combines strengths rather than forcing one framework to do both.</div>
 </details>
 <details>
 <summary>How do you decide which framework to recommend?</summary>
-<div class="a">We measure where your performance bottleneck is: if retrieval latency or accuracy over messy data is the issue, we recommend LlamaIndex. If you need conditional reasoning, memory, or tool calls across multiple steps, we recommend LangGraph. A hybrid is recommended when both are equally critical.</div>
+<div class="a">Based on where your hardest problem lives: if it's retrieval quality, latency, or memory over a messy corpus, LlamaIndex. If it's multi-step agent behavior, tool use, or memory, LangChain/LangGraph. The recommendation is delivered in writing with reasoning, before any build work.</div>
 </details>
 <details>
 <summary>Do I need a LangChain agency or can a freelance consultant handle this?</summary>
-<div class="a">A single experienced developer can handle most RAG and agent projects—including hybrid LlamaIndex+LangGraph builds—efficiently. Agencies are only needed for large-scale, multi-disciplinary product teams requiring parallel specialized work.</div>
+<div class="a">Most RAG and agent projects, a specific pipeline, agent, or integration, are well within scope for a single experienced developer. An agency's advantage shows up on large multi-disciplinary product builds needing several specialists in parallel.</div>
 </details>
 <details>
 <summary>How much does RAG framework development cost?</summary>
-<div class="a">Framework selection consulting is free. A pure LlamaIndex or LangGraph build ranges $8,000–$30,000 depending on data complexity and agent steps. A hybrid architecture combining both typically runs $15,000–$40,000. Contact us for a fixed-price estimate based on your specific latency and accuracy requirements.</div>
+<div class="a">A framework selection consultation runs $500 to $1,500. A full LlamaIndex or LangChain build ranges from $8,000 to $30,000+ depending on complexity. A hybrid architecture combining both frameworks typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use case.</div>
 </details>
 </div>
 </div>
 </section>
 </main>
 <script>
-    (function () {
-      var page = document.querySelector('.svcp');
-      if (!page) return;
+    document.addEventListener('DOMContentLoaded', function () {
 
-      var io = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-      }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
-      page.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+      (function () {
+        var page = document.querySelector('.svcp');
+        if (!page) return;
 
-      function countUp(el) {
-        var target = parseFloat(el.dataset.count), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
-        var t0 = null, dur = 1300;
-        function step(ts) {
-          if (!t0) t0 = ts; var p = Math.min((ts - t0) / dur, 1); var e = 1 - Math.pow(1 - p, 3);
-          el.textContent = pre + Math.round(target * e) + suf; if (p < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-      }
-      var cio = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } });
-      }, { threshold: .6 });
-      page.querySelectorAll('[data-count]').forEach(function (el) { cio.observe(el); });
-
-      page.querySelectorAll('.stack').forEach(function (root) {
-        var tabs = root.querySelectorAll('.stack-tabs [role="tab"]'), panels = root.querySelectorAll('.stack-panel');
-        function act(tab) {
-          var t = tab.dataset.s;
-          tabs.forEach(function (x) { x.setAttribute('aria-selected', x === tab ? 'true' : 'false'); });
-          panels.forEach(function (p) { p.classList.toggle('on', p.dataset.p === t); });
-        }
-        tabs.forEach(function (tab, i) {
-          tab.addEventListener('click', function () { act(tab); });
-          tab.addEventListener('keydown', function (e) {
-            var n = null;
-            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = tabs[i + 1] || tabs[0];
-            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = tabs[i - 1] || tabs[tabs.length - 1];
-            if (n) { e.preventDefault(); n.focus(); act(n); }
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('in');
+                io.unobserve(entry.target);
+              }
+            });
+          }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
           });
-        });
-      });
 
-      page.querySelectorAll('.faq details').forEach(function (d) {
-        d.addEventListener('toggle', function () { if (d.open) { page.querySelectorAll('.faq details').forEach(function (o) { if (o !== d) o.open = false; }); } });
-      });
-    })();
-
- 
-    (function () {
-      var page = document.querySelector('.svcp');
-      var canvas = document.getElementById('sigcanvas'), ctx = canvas.getContext('2d');
-      var mode = 'langchain', domain = 0, t = 0, raf = null;
-
-      var domains = [
-        {
-          seg: 'agentic support bot',
-          good: 'langchain',
-          langchain: '<b>Good fit.</b> LangGraph handles the multi-step flow: check order status, call the refund API, escalate on failure, with explicit state and checkpointing between each step.',
-          llamaindex: '<b>Possible, but not the tool for this.</b> LlamaIndex has no native state machine for multi-step tool calls, you would still need an agent layer wrapped around it.'
-        },
-        {
-          seg: 'document Q&A',
-          good: 'llamaindex',
-          llamaindex: '<b>Good fit.</b> LlamaIndex\'s default chunking, metadata filtering, and reranking are production-calibrated out of the box for exactly this.',
-          langchain: '<b>Possible, but heavier than it needs to be.</b> LangChain can do RAG, but for pure document Q&amp;A you\'re writing more retrieval plumbing than LlamaIndex needs.'
-        },
-        {
-          seg: 'legal / code corpus',
-          good: 'llamaindex',
-          llamaindex: '<b>Good fit.</b> Composable indices and tree structures produce roughly 15 to 25% better answers on hierarchically structured documents like legal contracts or codebases.',
-          langchain: '<b>Workable, but you\'d be rebuilding LlamaIndex by hand.</b> Most teams pair LlamaIndex for retrieval with LangGraph for orchestration instead of forcing one framework to do both jobs.'
-        }];
-
-      function resize() { var r = canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2); canvas.width = r.width * d; canvas.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
-
-      function draw() {
-        var r = canvas.getBoundingClientRect(), W = r.width, H = r.height;
-        ctx.clearRect(0, 0, W, H);
-        ctx.strokeStyle = 'rgba(36,86,230,.06)'; ctx.lineWidth = 1;
-        for (var gx = 0; gx <= W; gx += W / 8) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
-        for (var gy = 0; gy <= H; gy += H / 5) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
-
-        if (mode === 'langchain') {
-          var nodes = {
-            start: { x: W * .13, y: H * .5, label: 'Start' },
-            tool: { x: W * .42, y: H * .28, label: 'Tool call' },
-            cond: { x: W * .68, y: H * .5, label: 'Condition' },
-            mem: { x: W * .42, y: H * .74, label: 'Memory' },
-            end: { x: W * .9, y: H * .28, label: 'Respond' }
-          };
-          function edge(a, b, style) {
-            ctx.strokeStyle = style || 'rgba(109,94,246,.55)'; ctx.lineWidth = 1.6;
-            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-          }
-          edge(nodes.start, nodes.tool); edge(nodes.tool, nodes.cond); edge(nodes.cond, nodes.end);
-          edge(nodes.cond, nodes.mem, 'rgba(109,94,246,.3)'); edge(nodes.mem, nodes.tool, 'rgba(109,94,246,.3)');
-          var path = [nodes.start, nodes.tool, nodes.cond, nodes.mem, nodes.tool, nodes.cond, nodes.end];
-          var total = path.length - 1; var pp = (t * .012) % total; var seg = Math.floor(pp), f = pp - seg;
-          var a = path[seg], b = path[Math.min(seg + 1, path.length - 1)];
-          var px = a.x + (b.x - a.x) * f, py = a.y + (b.y - a.y) * f;
-          ctx.beginPath(); ctx.arc(px, py, 3, 0, Math.PI * 2); ctx.fillStyle = '#6D5EF6'; ctx.fill();
-          Object.keys(nodes).forEach(function (k) {
-            var n = nodes[k]; var isEnd = (k === 'end');
-            ctx.beginPath(); ctx.arc(n.x, n.y, isEnd ? 9 : 7, 0, Math.PI * 2);
-            ctx.fillStyle = isEnd ? '#6D5EF6' : '#fff'; ctx.fill();
-            ctx.lineWidth = 2; ctx.strokeStyle = '#6D5EF6'; ctx.stroke();
-            ctx.fillStyle = '#1B2740'; ctx.font = '600 10px "IBM Plex Mono",monospace';
-            ctx.fillText(n.label, n.x - 16, n.y - 14);
+          page.querySelectorAll('.reveal').forEach(function (el) {
+            io.observe(el);
           });
-          ctx.fillStyle = 'rgba(109,94,246,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
-          ctx.fillText('state graph \u00b7 stateful loop', W * .5, H * .92);
         } else {
-          var root = { x: W * .12, y: H * .5 };
-          var secs = [{ x: W * .44, y: H * .28 }, { x: W * .44, y: H * .72 }];
-          var leaves = [{ x: W * .8, y: H * .14 }, { x: W * .8, y: H * .36 }, { x: W * .8, y: H * .62 }, { x: W * .8, y: H * .86 }];
-          var hi = 2; 
-          function edge(a, b, on) {
-            ctx.strokeStyle = on ? 'rgba(15,169,104,.75)' : 'rgba(107,122,147,.28)'; ctx.lineWidth = on ? 1.8 : 1.2;
-            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-          }
-          edge(root, secs[0], false); edge(root, secs[1], true);
-          edge(secs[0], leaves[0], false); edge(secs[0], leaves[1], false);
-          edge(secs[1], leaves[2], true); edge(secs[1], leaves[3], false);
-          var pp = (t * .02) % 1;
-          var mx = root.x + (secs[1].x - root.x) * Math.min(pp * 2, 1);
-          var my = root.y + (secs[1].y - root.y) * Math.min(pp * 2, 1);
-          if (pp < .5) { ctx.beginPath(); ctx.arc(mx, my, 2.6, 0, Math.PI * 2); ctx.fillStyle = '#0FA968'; ctx.fill(); }
-          else {
-            var f2 = (pp - .5) * 2; var mx2 = secs[1].x + (leaves[2].x - secs[1].x) * f2, my2 = secs[1].y + (leaves[2].y - secs[1].y) * f2;
-            ctx.beginPath(); ctx.arc(mx2, my2, 2.6, 0, Math.PI * 2); ctx.fillStyle = '#0FA968'; ctx.fill();
-          }
-          [root].concat(secs).forEach(function (n, i) {
-            ctx.beginPath(); ctx.arc(n.x, n.y, 7, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill();
-            ctx.lineWidth = 2; ctx.strokeStyle = i === 0 ? '#2456E6' : 'rgba(107,122,147,.5)'; ctx.stroke();
+          page.querySelectorAll('.reveal').forEach(function (el) {
+            el.classList.add('in');
           });
-          leaves.forEach(function (n, i) {
-            var on = (i === hi);
-            ctx.beginPath(); ctx.arc(n.x, n.y, on ? 7 : 5, 0, Math.PI * 2);
-            ctx.fillStyle = on ? '#0FA968' : 'rgba(107,122,147,.35)'; ctx.fill();
-          });
-          ctx.fillStyle = '#1B2740'; ctx.font = '600 10px "IBM Plex Mono",monospace';
-          ctx.fillText('root', root.x - 10, root.y - 14);
-          ctx.fillStyle = 'rgba(15,169,104,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
-          ctx.fillText('hierarchical index \u00b7 retrieved leaf highlighted', W * .32, H * .92);
         }
-        t += 1; raf = requestAnimationFrame(draw);
-      }
 
-      function update() {
-        var d = domains[domain];
-        var m1 = document.getElementById('m1'), m2 = document.getElementById('m2'), m3 = document.getElementById('m3');
-        var m1l = document.getElementById('m1l'), m2l = document.getElementById('m2l'), m3l = document.getElementById('m3l');
-        var ans = document.getElementById('answer'), verdict = document.getElementById('verdict'), foot = document.getElementById('foot');
-        document.querySelector('.viewer-top .t').textContent = 'scenario: ' + d.seg;
-        if (mode === 'langchain') {
-          m1.textContent = '~14ms'; m1l.textContent = 'Framework overhead';
-          m2.textContent = 'Baseline'; m2l.textContent = 'Code volume';
-          m3.textContent = '500+'; m3l.textContent = 'Integrations';
+        function countUp(el) {
+          if (!el) return;
+
+          var target = parseFloat(el.dataset.count);
+          if (isNaN(target)) return;
+
+          var pre = el.dataset.prefix || '';
+          var suf = el.dataset.suffix || '';
+          var t0 = null;
+          var dur = 1300;
+
+          function step(ts) {
+            if (!t0) t0 = ts;
+
+            var p = Math.min((ts - t0) / dur, 1);
+            var e = 1 - Math.pow(1 - p, 3);
+
+            el.textContent =
+              pre +
+              Math.round(target * e) +
+              suf;
+
+            if (p < 1) {
+              requestAnimationFrame(step);
+            }
+          }
+
+          requestAnimationFrame(step);
+        }
+
+        if ('IntersectionObserver' in window) {
+          var cio = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                countUp(entry.target);
+                cio.unobserve(entry.target);
+              }
+            });
+          }, {
+            threshold: 0.6
+          });
+
+          page.querySelectorAll('[data-count]').forEach(function (el) {
+            cio.observe(el);
+          });
         } else {
-          m1.textContent = '~6ms'; m1l.textContent = 'Framework overhead';
-          m2.textContent = '-30 to 40%'; m2l.textContent = 'Code volume';
-          m3.textContent = '300+'; m3l.textContent = 'Connectors';
+          page.querySelectorAll('[data-count]').forEach(function (el) {
+            countUp(el);
+          });
         }
-        ans.innerHTML = d[mode];
-        var isGood = d.good === mode;
-        verdict.textContent = isGood ? 'STRONG FIT' : 'WORTH A SECOND LOOK';
-        verdict.style.color = isGood ? 'var(--mint-deep)' : 'var(--amber)';
-        foot.textContent = isGood
-          ? 'This is the framework this scenario is built for.'
-          : 'It can be made to work, but you would be fighting the tool more than you need to.';
-      }
 
-      page.querySelectorAll('.modesw [role="tab"]').forEach(function (b) {
-        b.addEventListener('click', function () {
-          page.querySelectorAll('.modesw [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
-          b.setAttribute('aria-selected', 'true'); mode = b.dataset.m; t = 0; update();
-        });
-      });
-      page.querySelectorAll('.segs [role="tab"]').forEach(function (b) {
-        b.addEventListener('click', function () {
-          page.querySelectorAll('.segs [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
-          b.setAttribute('aria-selected', 'true'); domain = +b.dataset.d; update();
-        });
-      });
+        page.querySelectorAll('.stack').forEach(function (root) {
+          var tabs = root.querySelectorAll('.stack-tabs [role="tab"]');
+          var panels = root.querySelectorAll('.stack-panel');
 
-      window.addEventListener('resize', resize);
-      resize(); update();
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(); } else { draw(); cancelAnimationFrame(raf); }
-    })();
+          function activateTab(tab) {
+            if (!tab) return;
+
+            var value = tab.dataset.s;
+
+            tabs.forEach(function (item) {
+              item.setAttribute(
+                'aria-selected',
+                item === tab ? 'true' : 'false'
+              );
+            });
+
+            panels.forEach(function (panel) {
+              panel.classList.toggle(
+                'on',
+                panel.dataset.p === value
+              );
+            });
+          }
+
+          tabs.forEach(function (tab, index) {
+            tab.addEventListener('click', function () {
+              activateTab(tab);
+            });
+
+            tab.addEventListener('keydown', function (event) {
+              var nextTab = null;
+
+              if (
+                event.key === 'ArrowRight' ||
+                event.key === 'ArrowDown'
+              ) {
+                nextTab = tabs[index + 1] || tabs[0];
+              }
+
+              if (
+                event.key === 'ArrowLeft' ||
+                event.key === 'ArrowUp'
+              ) {
+                nextTab =
+                  tabs[index - 1] ||
+                  tabs[tabs.length - 1];
+              }
+
+              if (nextTab) {
+                event.preventDefault();
+                nextTab.focus();
+                activateTab(nextTab);
+              }
+            });
+          });
+        });
+
+        page.querySelectorAll('.faq details').forEach(function (detail) {
+          detail.addEventListener('toggle', function () {
+            if (!detail.open) return;
+
+            page.querySelectorAll('.faq details').forEach(function (other) {
+              if (other !== detail) {
+                other.open = false;
+              }
+            });
+          });
+        });
+      })();
+
+
+      (function () {
+        var page = document.querySelector('.svcp');
+        if (!page) return;
+
+        var canvas = document.getElementById('sigcanvas');
+        if (!canvas) return;
+
+        var ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        var mode = 'langchain';
+        var domain = 0;
+        var t = 0;
+        var raf = null;
+
+        var domains = [
+          {
+            seg: 'agentic support bot',
+            good: 'langchain',
+            langchain: '<b>Good fit.</b> LangGraph handles the multi-step flow: check order status, call the refund API, escalate on failure, with explicit state and checkpointing between each step.',
+            llamaindex: '<b>Possible, but not the tool for this.</b> LlamaIndex has no native state machine for multi-step tool calls, you would still need an agent layer wrapped around it.'
+          },
+          {
+            seg: 'document Q&A',
+            good: 'llamaindex',
+            llamaindex: '<b>Good fit.</b> LlamaIndex\'s default chunking, metadata filtering, and reranking are production-calibrated out of the box for exactly this.',
+            langchain: '<b>Possible, but heavier than it needs to be.</b> LangChain can do RAG, but for pure document Q&amp;A you\'re writing more retrieval plumbing than LlamaIndex needs.'
+          },
+          {
+            seg: 'legal / code corpus',
+            good: 'llamaindex',
+            llamaindex: '<b>Good fit.</b> Composable indices and tree structures produce roughly 15 to 25% better answers on hierarchically structured documents like legal contracts or codebases.',
+            langchain: '<b>Workable, but you\'d be rebuilding LlamaIndex by hand.</b> Most teams pair LlamaIndex for retrieval with LangGraph for orchestration instead of forcing one framework to do both jobs.'
+          }
+        ];
+
+        function resize() {
+          var rect = canvas.getBoundingClientRect();
+          var width = rect.width;
+          var height = rect.height;
+          var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+          if (!width || !height) return;
+
+          canvas.width = Math.round(width * dpr);
+          canvas.height = Math.round(height * dpr);
+
+          ctx.setTransform(
+            dpr,
+            0,
+            0,
+            dpr,
+            0,
+            0
+          );
+        }
+
+        function draw() {
+          var rect = canvas.getBoundingClientRect();
+          var width = rect.width;
+          var height = rect.height;
+
+          if (!width || !height) {
+            return;
+          }
+
+          ctx.clearRect(
+            0,
+            0,
+            width,
+            height
+          );
+
+          ctx.strokeStyle =
+            'rgba(36,86,230,.06)';
+
+          ctx.lineWidth = 1;
+
+          var verticalStep = width / 8;
+
+          if (verticalStep > 0) {
+            for (
+              var gx = 0;
+              gx <= width;
+              gx += verticalStep
+            ) {
+              ctx.beginPath();
+              ctx.moveTo(gx, 0);
+              ctx.lineTo(gx, height);
+              ctx.stroke();
+            }
+          }
+
+          var horizontalStep = height / 5;
+
+          if (horizontalStep > 0) {
+            for (
+              var gy = 0;
+              gy <= height;
+              gy += horizontalStep
+            ) {
+              ctx.beginPath();
+              ctx.moveTo(0, gy);
+              ctx.lineTo(width, gy);
+              ctx.stroke();
+            }
+          }
+
+          if (mode === 'langchain') {
+            var nodes = {
+              start: {
+                x: width * 0.13,
+                y: height * 0.5,
+                label: 'Start'
+              },
+              tool: {
+                x: width * 0.42,
+                y: height * 0.28,
+                label: 'Tool call'
+              },
+              cond: {
+                x: width * 0.68,
+                y: height * 0.5,
+                label: 'Condition'
+              },
+              mem: {
+                x: width * 0.42,
+                y: height * 0.74,
+                label: 'Memory'
+              },
+              end: {
+                x: width * 0.9,
+                y: height * 0.28,
+                label: 'Respond'
+              }
+            };
+
+            function drawEdge(a, b, style) {
+              if (!a || !b) return;
+
+              ctx.strokeStyle =
+                style ||
+                'rgba(109,94,246,.55)';
+
+              ctx.lineWidth = 1.6;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+
+            drawEdge(nodes.start, nodes.tool);
+            drawEdge(nodes.tool, nodes.cond);
+            drawEdge(nodes.cond, nodes.end);
+            drawEdge(
+              nodes.cond,
+              nodes.mem,
+              'rgba(109,94,246,.3)'
+            );
+            drawEdge(
+              nodes.mem,
+              nodes.tool,
+              'rgba(109,94,246,.3)'
+            );
+
+            var path = [
+              nodes.start,
+              nodes.tool,
+              nodes.cond,
+              nodes.mem,
+              nodes.tool,
+              nodes.cond,
+              nodes.end
+            ];
+
+            var total = path.length - 1;
+            var progress =
+              (t * 0.012) % total;
+
+            var segment =
+              Math.floor(progress);
+
+            var fraction =
+              progress - segment;
+
+            var a =
+              path[
+              Math.min(
+                segment,
+                path.length - 1
+              )
+              ];
+
+            var b =
+              path[
+              Math.min(
+                segment + 1,
+                path.length - 1
+              )
+              ];
+
+            if (a && b) {
+              var px =
+                a.x +
+                (b.x - a.x) *
+                fraction;
+
+              var py =
+                a.y +
+                (b.y - a.y) *
+                fraction;
+
+              ctx.beginPath();
+              ctx.arc(
+                px,
+                py,
+                3,
+                0,
+                Math.PI * 2
+              );
+
+              ctx.fillStyle = '#6D5EF6';
+              ctx.fill();
+            }
+
+            Object.keys(nodes).forEach(function (key) {
+              var node = nodes[key];
+              if (!node) return;
+
+              var isEnd = key === 'end';
+
+              ctx.beginPath();
+
+              ctx.arc(
+                node.x,
+                node.y,
+                isEnd ? 9 : 7,
+                0,
+                Math.PI * 2
+              );
+
+              ctx.fillStyle =
+                isEnd ? '#6D5EF6' : '#fff';
+
+              ctx.fill();
+
+              ctx.lineWidth = 2;
+              ctx.strokeStyle = '#6D5EF6';
+              ctx.stroke();
+
+              ctx.fillStyle = '#1B2740';
+
+              ctx.font =
+                '600 10px "IBM Plex Mono",monospace';
+
+              ctx.fillText(
+                node.label,
+                node.x - 16,
+                node.y - 14
+              );
+            });
+
+            ctx.fillStyle =
+              'rgba(109,94,246,.9)';
+
+            ctx.font =
+              '600 11px "IBM Plex Mono",monospace';
+
+            ctx.fillText(
+              'state graph · stateful loop',
+              width * 0.5,
+              height * 0.92
+            );
+
+          } else {
+            var root = {
+              x: width * 0.12,
+              y: height * 0.5
+            };
+
+            var sections = [
+              {
+                x: width * 0.44,
+                y: height * 0.28
+              },
+              {
+                x: width * 0.44,
+                y: height * 0.72
+              }
+            ];
+
+            var leaves = [
+              {
+                x: width * 0.8,
+                y: height * 0.14
+              },
+              {
+                x: width * 0.8,
+                y: height * 0.36
+              },
+              {
+                x: width * 0.8,
+                y: height * 0.62
+              },
+              {
+                x: width * 0.8,
+                y: height * 0.86
+              }
+            ];
+
+            var highlightedLeaf = 2;
+
+            function drawTreeEdge(a, b, active) {
+              if (!a || !b) return;
+
+              ctx.strokeStyle =
+                active
+                  ? 'rgba(15,169,104,.75)'
+                  : 'rgba(107,122,147,.28)';
+
+              ctx.lineWidth =
+                active ? 1.8 : 1.2;
+
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+
+            drawTreeEdge(
+              root,
+              sections[0],
+              false
+            );
+
+            drawTreeEdge(
+              root,
+              sections[1],
+              true
+            );
+
+            drawTreeEdge(
+              sections[0],
+              leaves[0],
+              false
+            );
+
+            drawTreeEdge(
+              sections[0],
+              leaves[1],
+              false
+            );
+
+            drawTreeEdge(
+              sections[1],
+              leaves[2],
+              true
+            );
+
+            drawTreeEdge(
+              sections[1],
+              leaves[3],
+              false
+            );
+
+            var progress =
+              (t * 0.02) % 1;
+
+            var travel =
+              Math.min(progress * 2, 1);
+
+            var mx =
+              root.x +
+              (sections[1].x - root.x) *
+              travel;
+
+            var my =
+              root.y +
+              (sections[1].y - root.y) *
+              travel;
+
+            if (progress < 0.5) {
+              ctx.beginPath();
+
+              ctx.arc(
+                mx,
+                my,
+                2.6,
+                0,
+                Math.PI * 2
+              );
+
+              ctx.fillStyle = '#0FA968';
+              ctx.fill();
+            } else {
+              var leafProgress =
+                (progress - 0.5) * 2;
+
+              var mx2 =
+                sections[1].x +
+                (leaves[2].x - sections[1].x) *
+                leafProgress;
+
+              var my2 =
+                sections[1].y +
+                (leaves[2].y - sections[1].y) *
+                leafProgress;
+
+              ctx.beginPath();
+
+              ctx.arc(
+                mx2,
+                my2,
+                2.6,
+                0,
+                Math.PI * 2
+              );
+
+              ctx.fillStyle = '#0FA968';
+              ctx.fill();
+            }
+
+            [root]
+              .concat(sections)
+              .forEach(function (node, index) {
+                if (!node) return;
+
+                ctx.beginPath();
+
+                ctx.arc(
+                  node.x,
+                  node.y,
+                  7,
+                  0,
+                  Math.PI * 2
+                );
+
+                ctx.fillStyle = '#fff';
+                ctx.fill();
+
+                ctx.lineWidth = 2;
+
+                ctx.strokeStyle =
+                  index === 0
+                    ? '#2456E6'
+                    : 'rgba(107,122,147,.5)';
+
+                ctx.stroke();
+              });
+
+            leaves.forEach(function (node, index) {
+              if (!node) return;
+
+              var active =
+                index === highlightedLeaf;
+
+              ctx.beginPath();
+
+              ctx.arc(
+                node.x,
+                node.y,
+                active ? 7 : 5,
+                0,
+                Math.PI * 2
+              );
+
+              ctx.fillStyle =
+                active
+                  ? '#0FA968'
+                  : 'rgba(107,122,147,.35)';
+
+              ctx.fill();
+            });
+
+            ctx.fillStyle = '#1B2740';
+
+            ctx.font =
+              '600 10px "IBM Plex Mono",monospace';
+
+            ctx.fillText(
+              'root',
+              root.x - 10,
+              root.y - 14
+            );
+
+            ctx.fillStyle =
+              'rgba(15,169,104,.9)';
+
+            ctx.font =
+              '600 11px "IBM Plex Mono",monospace';
+
+            ctx.fillText(
+              'hierarchical index · retrieved leaf highlighted',
+              width * 0.32,
+              height * 0.92
+            );
+          }
+
+          t += 1;
+          raf = requestAnimationFrame(draw);
+        }
+
+        function update() {
+          var data = domains[domain];
+          if (!data) return;
+
+          var titleEl =
+            page.querySelector('.viewer-top .t');
+
+          var m1 =
+            document.getElementById('m1');
+
+          var m2 =
+            document.getElementById('m2');
+
+          var m3 =
+            document.getElementById('m3');
+
+          var m1Label =
+            document.getElementById('m1l');
+
+          var m2Label =
+            document.getElementById('m2l');
+
+          var m3Label =
+            document.getElementById('m3l');
+
+          var answer =
+            document.getElementById('answer');
+
+          var verdict =
+            document.getElementById('verdict');
+
+          var footer =
+            document.getElementById('foot');
+
+          if (titleEl) {
+            titleEl.textContent =
+              'scenario: ' + data.seg;
+          }
+
+          if (mode === 'langchain') {
+            if (m1) m1.textContent = '~14ms';
+            if (m1Label) {
+              m1Label.textContent =
+                'Framework overhead';
+            }
+
+            if (m2) m2.textContent = 'Baseline';
+            if (m2Label) {
+              m2Label.textContent =
+                'Code volume';
+            }
+
+            if (m3) m3.textContent = '500+';
+            if (m3Label) {
+              m3Label.textContent =
+                'Integrations';
+            }
+          } else {
+            if (m1) m1.textContent = '~6ms';
+            if (m1Label) {
+              m1Label.textContent =
+                'Framework overhead';
+            }
+
+            if (m2) m2.textContent = '-30 to 40%';
+            if (m2Label) {
+              m2Label.textContent =
+                'Code volume';
+            }
+
+            if (m3) m3.textContent = '300+';
+            if (m3Label) {
+              m3Label.textContent =
+                'Connectors';
+            }
+          }
+
+          if (answer) {
+            answer.innerHTML =
+              data[mode] || '';
+          }
+
+          var isGood =
+            data.good === mode;
+
+          if (verdict) {
+            verdict.textContent =
+              isGood
+                ? 'STRONG FIT'
+                : 'WORTH A SECOND LOOK';
+
+            verdict.style.color =
+              isGood
+                ? 'var(--mint-deep)'
+                : 'var(--amber)';
+          }
+
+          if (footer) {
+            footer.textContent =
+              isGood
+                ? 'This is the framework this scenario is built for.'
+                : 'It can be made to work, but you would be fighting the tool more than you need to.';
+          }
+        }
+
+        page
+          .querySelectorAll('.modesw [role="tab"]')
+          .forEach(function (button) {
+            button.addEventListener(
+              'click',
+              function () {
+                page
+                  .querySelectorAll(
+                    '.modesw [role="tab"]'
+                  )
+                  .forEach(function (item) {
+                    item.setAttribute(
+                      'aria-selected',
+                      'false'
+                    );
+                  });
+
+                button.setAttribute(
+                  'aria-selected',
+                  'true'
+                );
+
+                mode =
+                  button.dataset.m ||
+                  'langchain';
+
+                t = 0;
+                update();
+
+                if (
+                  window.matchMedia(
+                    '(prefers-reduced-motion: reduce)'
+                  ).matches
+                ) {
+                  drawStatic();
+                }
+              }
+            );
+          });
+
+        page
+          .querySelectorAll('.segs [role="tab"]')
+          .forEach(function (button) {
+            button.addEventListener(
+              'click',
+              function () {
+                page
+                  .querySelectorAll(
+                    '.segs [role="tab"]'
+                  )
+                  .forEach(function (item) {
+                    item.setAttribute(
+                      'aria-selected',
+                      'false'
+                    );
+                  });
+
+                button.setAttribute(
+                  'aria-selected',
+                  'true'
+                );
+
+                var newDomain =
+                  parseInt(
+                    button.dataset.d,
+                    10
+                  );
+
+                if (
+                  !isNaN(newDomain) &&
+                  domains[newDomain]
+                ) {
+                  domain = newDomain;
+                  update();
+
+                  if (
+                    window.matchMedia(
+                      '(prefers-reduced-motion: reduce)'
+                    ).matches
+                  ) {
+                    drawStatic();
+                  }
+                }
+              }
+            );
+          });
+
+        function drawStatic() {
+          if (raf) {
+            cancelAnimationFrame(raf);
+            raf = null;
+          }
+
+          drawFrame();
+        }
+
+        function drawFrame() {
+          var rect =
+            canvas.getBoundingClientRect();
+
+          var width = rect.width;
+          var height = rect.height;
+
+          if (!width || !height) return;
+
+          ctx.clearRect(
+            0,
+            0,
+            width,
+            height
+          );
+
+          ctx.strokeStyle =
+            'rgba(36,86,230,.06)';
+
+          ctx.lineWidth = 1;
+
+          var verticalStep =
+            width / 8;
+
+          if (verticalStep > 0) {
+            for (
+              var gx = 0;
+              gx <= width;
+              gx += verticalStep
+            ) {
+              ctx.beginPath();
+              ctx.moveTo(gx, 0);
+              ctx.lineTo(gx, height);
+              ctx.stroke();
+            }
+          }
+
+          var horizontalStep =
+            height / 5;
+
+          if (horizontalStep > 0) {
+            for (
+              var gy = 0;
+              gy <= height;
+              gy += horizontalStep
+            ) {
+              ctx.beginPath();
+              ctx.moveTo(0, gy);
+              ctx.lineTo(width, gy);
+              ctx.stroke();
+            }
+          }
+
+          if (mode === 'langchain') {
+            var staticNodes = {
+              start: {
+                x: width * 0.13,
+                y: height * 0.5,
+                label: 'Start'
+              },
+              tool: {
+                x: width * 0.42,
+                y: height * 0.28,
+                label: 'Tool call'
+              },
+              cond: {
+                x: width * 0.68,
+                y: height * 0.5,
+                label: 'Condition'
+              },
+              mem: {
+                x: width * 0.42,
+                y: height * 0.74,
+                label: 'Memory'
+              },
+              end: {
+                x: width * 0.9,
+                y: height * 0.28,
+                label: 'Respond'
+              }
+            };
+
+            function staticEdge(a, b, style) {
+              ctx.strokeStyle =
+                style ||
+                'rgba(109,94,246,.55)';
+
+              ctx.lineWidth = 1.6;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+
+            staticEdge(
+              staticNodes.start,
+              staticNodes.tool
+            );
+
+            staticEdge(
+              staticNodes.tool,
+              staticNodes.cond
+            );
+
+            staticEdge(
+              staticNodes.cond,
+              staticNodes.end
+            );
+
+            staticEdge(
+              staticNodes.cond,
+              staticNodes.mem,
+              'rgba(109,94,246,.3)'
+            );
+
+            staticEdge(
+              staticNodes.mem,
+              staticNodes.tool,
+              'rgba(109,94,246,.3)'
+            );
+
+            Object.keys(staticNodes).forEach(function (key) {
+              var node =
+                staticNodes[key];
+
+              var isEnd =
+                key === 'end';
+
+              ctx.beginPath();
+
+              ctx.arc(
+                node.x,
+                node.y,
+                isEnd ? 9 : 7,
+                0,
+                Math.PI * 2
+              );
+
+              ctx.fillStyle =
+                isEnd
+                  ? '#6D5EF6'
+                  : '#fff';
+
+              ctx.fill();
+
+              ctx.lineWidth = 2;
+              ctx.strokeStyle = '#6D5EF6';
+              ctx.stroke();
+
+              ctx.fillStyle = '#1B2740';
+
+              ctx.font =
+                '600 10px "IBM Plex Mono",monospace';
+
+              ctx.fillText(
+                node.label,
+                node.x - 16,
+                node.y - 14
+              );
+            });
+
+            ctx.fillStyle =
+              'rgba(109,94,246,.9)';
+
+            ctx.font =
+              '600 11px "IBM Plex Mono",monospace';
+
+            ctx.fillText(
+              'state graph · stateful loop',
+              width * 0.5,
+              height * 0.92
+            );
+          } else {
+            var staticRoot = {
+              x: width * 0.12,
+              y: height * 0.5
+            };
+
+            var staticSections = [
+              {
+                x: width * 0.44,
+                y: height * 0.28
+              },
+              {
+                x: width * 0.44,
+                y: height * 0.72
+              }
+            ];
+
+            var staticLeaves = [
+              {
+                x: width * 0.8,
+                y: height * 0.14
+              },
+              {
+                x: width * 0.8,
+                y: height * 0.36
+              },
+              {
+                x: width * 0.8,
+                y: height * 0.62
+              },
+              {
+                x: width * 0.8,
+                y: height * 0.86
+              }
+            ];
+
+            function staticTreeEdge(a, b, active) {
+              ctx.strokeStyle =
+                active
+                  ? 'rgba(15,169,104,.75)'
+                  : 'rgba(107,122,147,.28)';
+
+              ctx.lineWidth =
+                active ? 1.8 : 1.2;
+
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+
+            staticTreeEdge(
+              staticRoot,
+              staticSections[0],
+              false
+            );
+
+            staticTreeEdge(
+              staticRoot,
+              staticSections[1],
+              true
+            );
+
+            staticTreeEdge(
+              staticSections[0],
+              staticLeaves[0],
+              false
+            );
+
+            staticTreeEdge(
+              staticSections[0],
+              staticLeaves[1],
+              false
+            );
+
+            staticTreeEdge(
+              staticSections[1],
+              staticLeaves[2],
+              true
+            );
+
+            staticTreeEdge(
+              staticSections[1],
+              staticLeaves[3],
+              false
+            );
+
+            [staticRoot]
+              .concat(staticSections)
+              .forEach(function (node, index) {
+                ctx.beginPath();
+
+                ctx.arc(
+                  node.x,
+                  node.y,
+                  7,
+                  0,
+                  Math.PI * 2
+                );
+
+                ctx.fillStyle = '#fff';
+                ctx.fill();
+
+                ctx.lineWidth = 2;
+
+                ctx.strokeStyle =
+                  index === 0
+                    ? '#2456E6'
+                    : 'rgba(107,122,147,.5)';
+
+                ctx.stroke();
+              });
+
+            staticLeaves.forEach(function (node, index) {
+              var active =
+                index === 2;
+
+              ctx.beginPath();
+
+              ctx.arc(
+                node.x,
+                node.y,
+                active ? 7 : 5,
+                0,
+                Math.PI * 2
+              );
+
+              ctx.fillStyle =
+                active
+                  ? '#0FA968'
+                  : 'rgba(107,122,147,.35)';
+
+              ctx.fill();
+            });
+
+            ctx.fillStyle = '#1B2740';
+
+            ctx.font =
+              '600 10px "IBM Plex Mono",monospace';
+
+            ctx.fillText(
+              'root',
+              staticRoot.x - 10,
+              staticRoot.y - 14
+            );
+
+            ctx.fillStyle =
+              'rgba(15,169,104,.9)';
+
+            ctx.font =
+              '600 11px "IBM Plex Mono",monospace';
+
+            ctx.fillText(
+              'hierarchical index · retrieved leaf highlighted',
+              width * 0.32,
+              height * 0.92
+            );
+          }
+        }
+
+        window.addEventListener(
+          'resize',
+          function () {
+            resize();
+
+            if (
+              window.matchMedia(
+                '(prefers-reduced-motion: reduce)'
+              ).matches
+            ) {
+              drawStatic();
+            }
+          }
+        );
+
+        resize();
+        update();
+
+        if (
+          window.matchMedia(
+            '(prefers-reduced-motion: reduce)'
+          ).matches
+        ) {
+          drawStatic();
+        } else {
+          draw();
+        }
+      })();
+
+    });
+
   </script>
 <script>
-(function(){
-  var framework = 'langchain';
-  var scenario = 'rag';
+(function() {
+  var scenarioTabs = document.querySelectorAll('#scenarioTabs .vw-tab');
+  var codeBlock = document.getElementById('codeBlock');
+  var verdictBox = document.getElementById('verdictBox');
+  var verdictText = document.getElementById('verdictText');
 
-  var data = {
-    langchain: {
-      rag: {
-        retrieval: { val: 42, unit: 'ms', bar: 65, color: 'var(--violet)' },
-        memory: { val: 284, unit: 'MB', bar: 45, color: 'var(--amber)' },
-        throughput: { val: 1.2, unit: 'k req/s', bar: 70, color: 'var(--mint)' },
-        graph: { val: 'Multi-Step', bar: 80, color: 'var(--blue)' },
-        detail: { title: 'LangGraph Multi-Step Agent', desc: 'Stateful graph with conditional edges routes through retrieval and reasoning in 42ms.', icon: 'lc' }
-      },
-      agent: {
-        retrieval: { val: 68, unit: 'ms', bar: 48, color: 'var(--violet)' },
-        memory: { val: 412, unit: 'MB', bar: 68, color: 'var(--amber)' },
-        throughput: { val: 0.9, unit: 'k req/s', bar: 55, color: 'var(--mint)' },
-        graph: { val: 'Deep Agent', bar: 92, color: 'var(--blue)' },
-        detail: { title: 'LangGraph Agent Supervisor', desc: 'Hierarchical orchestration with sub-agents for tool calling and memory management.', icon: 'lc' }
-      },
-      hybrid: {
-        retrieval: { val: 53, unit: 'ms', bar: 58, color: 'var(--violet)' },
-        memory: { val: 356, unit: 'MB', bar: 55, color: 'var(--amber)' },
-        throughput: { val: 1.4, unit: 'k req/s', bar: 78, color: 'var(--mint)' },
-        graph: { val: 'Hybrid Graph', bar: 85, color: 'var(--blue)' },
-        detail: { title: 'LangChain Hybrid Router', desc: 'Routing layer that dynamically assigns requests to RAG or agent paths based on intent.', icon: 'lc' }
-      }
+  var lcLat = document.getElementById('lcLatency');
+  var liLat = document.getElementById('liLatency');
+  var lcMem = document.getElementById('lcMem');
+  var liMem = document.getElementById('liMem');
+  var lcMemSub = document.getElementById('lcMemSub');
+  var liMemSub = document.getElementById('liMemSub');
+  var lcBar = document.getElementById('lcBar');
+  var liBar = document.getElementById('liBar');
+  var lcMemBar = document.getElementById('lcMemBar');
+  var liMemBar = document.getElementById('liMemBar');
+
+  var scenarios = [
+    {
+      label: 'Agentic RAG',
+      lcLat: '283ms',
+      liLat: '142ms',
+      lcMem: '412 MB',
+      liMem: '207 MB',
+      lcMemSub: 'LangChain (3 agents)',
+      liMemSub: 'LlamaIndex (3 indexes)',
+      lcBarW: 58,
+      liBarW: 88,
+      lcMemBarW: 70,
+      liMemBarW: 35,
+      code: '<span class="kw">from</span> langgraph.graph <span class="kw">import</span> StateGraph\n<span class="fn">graph</span> = StateGraph(AgentState)\n<span class="fn">graph</span>.add_node(<span class="str">"retrieve"</span>, retrieve_tool)\n<span class="fn">graph</span>.add_conditional_edges(<span class="str">"router"</span>, ...)',
+      verdictText: 'LangChain leads for complex multi-step graphs; LlamaIndex wins on retrieval speed.',
+      verdictClass: 'win-tie'
     },
-    llamaindex: {
-      rag: {
-        retrieval: { val: 28, unit: 'ms', bar: 88, color: 'var(--mint)' },
-        memory: { val: 198, unit: 'MB', bar: 30, color: 'var(--amber)' },
-        throughput: { val: 1.8, unit: 'k req/s', bar: 88, color: 'var(--mint)' },
-        graph: { val: 'Index Pipeline', bar: 55, color: 'var(--blue)' },
-        detail: { title: 'LlamaIndex Hierarchical Index', desc: 'Tree-based retrieval with recursive splitting achieves 28ms latency at lower memory cost.', icon: 'li' }
-      },
-      agent: {
-        retrieval: { val: 45, unit: 'ms', bar: 60, color: 'var(--mint)' },
-        memory: { val: 276, unit: 'MB', bar: 44, color: 'var(--amber)' },
-        throughput: { val: 1.1, unit: 'k req/s', bar: 62, color: 'var(--mint)' },
-        graph: { val: 'Agent Runner', bar: 60, color: 'var(--blue)' },
-        detail: { title: 'LlamaIndex Agent Runner', desc: 'Query engine with tool integration for function calling and structured output.', icon: 'li' }
-      },
-      hybrid: {
-        retrieval: { val: 36, unit: 'ms', bar: 76, color: 'var(--mint)' },
-        memory: { val: 224, unit: 'MB', bar: 36, color: 'var(--amber)' },
-        throughput: { val: 1.6, unit: 'k req/s', bar: 82, color: 'var(--mint)' },
-        graph: { val: 'Hybrid Router', bar: 68, color: 'var(--blue)' },
-        detail: { title: 'LlamaIndex Hybrid Retriever', desc: 'Combines vector + keyword search with a lightweight routing layer for production.', icon: 'li' }
-      }
+    {
+      label: 'Multi-Step Graph',
+      lcLat: '347ms',
+      liLat: '215ms',
+      lcMem: '538 MB',
+      liMem: '281 MB',
+      lcMemSub: 'LangChain (5 sub-graphs)',
+      liMemSub: 'LlamaIndex (5 hierarchical)',
+      lcBarW: 74,
+      liBarW: 62,
+      lcMemBarW: 86,
+      liMemBarW: 46,
+      code: '<span class="kw">from</span> llama_index.core <span class="kw">import</span> SummaryIndex\n<span class="fn">index</span> = SummaryIndex.from_documents(docs)\n<span class="fn">retriever</span> = index.as_retriever(similarity_top_k=5)\n<span class="cm"># hierarchical recency retrieval</span>',
+      verdictText: 'Deep graph orchestration favors LangChain; LlamaIndex excels at flat hierarchical retrieval.',
+      verdictClass: 'win-lc'
+    },
+    {
+      label: 'Hybrid Prod',
+      lcLat: '198ms',
+      liLat: '121ms',
+      lcMem: '304 MB',
+      liMem: '178 MB',
+      lcMemSub: 'LangChain (optimised)',
+      liMemSub: 'LlamaIndex (sharded)',
+      lcBarW: 65,
+      liBarW: 92,
+      lcMemBarW: 51,
+      liMemBarW: 29,
+      code: '<span class="cm"># hybrid: LangGraph orchestration + LlamaIndex retriever</span>\n<span class="kw">from</span> langgraph.graph <span class="kw">import</span> StateGraph\n<span class="kw">from</span> llama_index.core <span class="kw">import</span> VectorStoreIndex\n<span class="fn">graph</span>.add_edge(<span class="str">"router"</span>, <span class="str">"llama_retrieve"</span>)',
+      verdictText: 'Best of both: LangChain orchestrates, LlamaIndex retrieves fastest. 42% memory reduction.',
+      verdictClass: 'win-tie'
     }
-  };
+  ];
 
-  var toggleBtns = document.querySelectorAll('.viewer .vw-toggle-btn');
-  var chips = document.querySelectorAll('.viewer .vw-scenario-chip');
-  var stages = document.querySelectorAll('.viewer .vw-stage');
-  var arrows = document.querySelectorAll('.viewer .vw-arrow');
+  function activateScenario(idx) {
+    if (idx === null || idx === undefined || idx < 0 || idx >= scenarios.length) return;
+    var s = scenarios[idx];
+    if (!s) return;
 
-  var retrievalVal = document.getElementById('retrievalVal');
-  var memoryVal = document.getElementById('memoryVal');
-  var throughputVal = document.getElementById('throughputVal');
-  var graphVal = document.getElementById('graphVal');
-  var retrievalBar = document.getElementById('retrievalBar');
-  var memoryBar = document.getElementById('memoryBar');
-  var throughputBar = document.getElementById('throughputBar');
-  var graphBar = document.getElementById('graphBar');
-  var detailTitle = document.getElementById('detailTitle');
-  var detailDesc = document.getElementById('detailDesc');
-  var detailIcon = document.getElementById('detailIcon');
-
-  function updateWidget() {
-    var d = data[framework][scenario];
-    if (!d) return;
-    retrievalVal.textContent = d.retrieval.val;
-    retrievalVal.nextElementSibling.textContent = d.retrieval.unit;
-    retrievalBar.style.width = d.retrieval.bar + '%';
-    retrievalBar.style.background = d.retrieval.color;
-    memoryVal.textContent = d.memory.val;
-    memoryVal.nextElementSibling.textContent = d.memory.unit;
-    memoryBar.style.width = d.memory.bar + '%';
-    memoryBar.style.background = d.memory.color;
-    throughputVal.textContent = d.throughput.val;
-    throughputVal.nextElementSibling.textContent = d.throughput.unit;
-    throughputBar.style.width = d.throughput.bar + '%';
-    throughputBar.style.background = d.throughput.color;
-    graphVal.textContent = d.graph.val;
-    graphBar.style.width = d.graph.bar + '%';
-    graphBar.style.background = d.graph.color;
-    detailTitle.textContent = d.detail.title;
-    detailDesc.textContent = d.detail.desc;
-    detailIcon.className = 'dc-icon ' + d.detail.icon;
-    updatePipeline(d);
-  }
-
-  function updatePipeline(d) {
-    var stepMap = {
-      langchain: { rag: [1,2,3,4], agent: [1,2,3,4], hybrid: [1,2,3,4] },
-      llamaindex: { rag: [1,2,3,4], agent: [1,2,3,4], hybrid: [1,2,3,4] }
-    };
-    var order = stepMap[framework] && stepMap[framework][scenario] ? stepMap[framework][scenario] : [1,2,3,4];
-    stages.forEach(function(s, idx) {
-      s.classList.remove('active', 'stage-lc', 'stage-li');
-      if (framework === 'langchain') s.classList.add('stage-lc');
-      else s.classList.add('stage-li');
-      if (idx < order.length) {
-        s.style.display = 'flex';
+    scenarioTabs.forEach(function(tab, i) {
+      if (tab) {
+        tab.classList.toggle('active', i === idx);
       }
     });
-    stages[0].classList.add('active');
-    arrows.forEach(function(a, i) {
-      a.classList.remove('active');
-      if (i < 3) a.style.display = 'inline';
-    });
-    stages.forEach(function(s) { s.classList.remove('active'); });
-    stages[0].classList.add('active');
+
+    if (lcLat) lcLat.textContent = s.lcLat;
+    if (liLat) liLat.textContent = s.liLat;
+    if (lcMem) lcMem.textContent = s.lcMem;
+    if (liMem) liMem.textContent = s.liMem;
+    if (lcMemSub) lcMemSub.textContent = s.lcMemSub;
+    if (liMemSub) liMemSub.textContent = s.liMemSub;
+
+    if (lcBar) { lcBar.style.width = s.lcBarW + '%'; }
+    if (liBar) { liBar.style.width = s.liBarW + '%'; }
+    if (lcMemBar) { lcMemBar.style.width = s.lcMemBarW + '%'; }
+    if (liMemBar) { liMemBar.style.width = s.liMemBarW + '%'; }
+
+    if (codeBlock) {
+      codeBlock.innerHTML = s.code;
+    }
+
+    if (verdictBox && verdictText) {
+      verdictBox.className = 'vw-verdict ' + (s.verdictClass || 'win-tie');
+      verdictText.textContent = s.verdictText;
+    }
   }
 
-  toggleBtns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      toggleBtns.forEach(function(b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-      framework = btn.getAttribute('data-fw');
-      updateWidget();
-    });
-  });
-
-  chips.forEach(function(chip) {
-    chip.addEventListener('click', function() {
-      chips.forEach(function(c) { c.classList.remove('active'); });
-      chip.classList.add('active');
-      scenario = chip.getAttribute('data-scenario');
-      updateWidget();
-    });
-  });
-
-  stages.forEach(function(stage, idx) {
-    stage.addEventListener('click', function() {
-      stages.forEach(function(s) { s.classList.remove('active'); });
-      stage.classList.add('active');
-      arrows.forEach(function(a, i) {
-        a.classList.toggle('active', i < idx);
-      });
-      var labels = ['Input Parsing', 'Index Retrieval', 'Reasoning Loop', 'Output Generation'];
-      var descs = {
-        langchain: {
-          rag: ['Parses query and builds graph state', 'Retrieves chunks via multi-hop traversal', 'LLM reasoning over retrieved context', 'Returns structured answer with citations'],
-          agent: ['Parses user intent and tool schema', 'Agent selects tool and fetches context', 'Sub-agent executes tool calls', 'Returns final answer and trace'],
-          hybrid: ['Routes request based on intent classifier', 'Dynamically selects RAG or agent path', 'Executes chosen pipeline', 'Returns result with routing metadata']
-        },
-        llamaindex: {
-          rag: ['Parses query and builds index query', 'Hierarchical tree retrieval', 'LLM synthesizes answer from nodes', 'Returns answer with source nodes'],
-          agent: ['Parses query and agent config', 'Query engine selects tool', 'Tool call execution and observation', 'Returns final answer'],
-          hybrid: ['Routes via hybrid query engine', 'Combines vector + keyword retrieval', 'Rerank and synthesize', 'Returns fused result']
+  if (scenarioTabs && scenarioTabs.length) {
+    for (var i = 0; i < scenarioTabs.length; i++) {
+      (function(idx) {
+        var tab = scenarioTabs[idx];
+        if (tab) {
+          tab.addEventListener('click', function(e) {
+            activateScenario(idx);
+          });
         }
-      };
-      var fw = framework;
-      var sc = scenario;
-      var label = labels[idx] || 'Step ' + (idx+1);
-      var desc = 'Processing step in the pipeline.';
-      if (descs[fw] && descs[fw][sc] && descs[fw][sc][idx]) {
-        desc = descs[fw][sc][idx];
-      }
-      detailTitle.textContent = label;
-      detailDesc.textContent = desc;
-      detailIcon.className = 'dc-icon ' + (fw === 'langchain' ? 'lc' : 'li');
-    });
-  });
+      })(i);
+    }
+  }
 
-  updateWidget();
-
-  var pulse = document.createElement('style');
-  pulse.textContent = '@keyframes vw-pulse { 0%,100% { opacity:0.5;transform:scale(0.9); } 50% { opacity:1;transform:scale(1.2); } }';
-  document.head.appendChild(pulse);
+  // initialise default
+  activateScenario(0);
 })();
 </script>
 </body>

@@ -2,43 +2,43 @@
   "services": {
     "sec-head": {
       "eyebrow": "What I build",
-      "h2": "RAG framework development services",
-      "p": "I build with each framework, matched to your project's actual retrieval or orchestration bottleneck."
+      "h2": "LangChain vs LlamaIndex development services",
+      "p": "Hands-on builds matched to your retrieval and orchestration needs, with real benchmarks on speed, memory, and hybrid production architectures for 2026."
     },
     "grid g3": [
       {
         "card": {
           "n": "CONSULT",
           "h3": "Framework selection consulting",
-          "p": "An independent architecture assessment of your use case, data, and latency requirements, resulting in a written recommendation: LangChain, LlamaIndex, or a hybrid, with the reasoning."
+          "p": "An independent architecture assessment of your use case, data, and latency/memory constraints, producing a written recommendation: LangGraph, LlamaIndex, or a hybrid, with benchmark-driven reasoning."
         }
       },
       {
         "card": {
           "n": "BUILD",
           "h3": "LlamaIndex RAG development",
-          "p": "Retrieval-first builds: hierarchical chunking, auto-merging retrieval, and query synthesis for document-heavy applications where answer accuracy from your corpus is the product."
+          "p": "Retrieval-first builds using hierarchical indices, auto-merging retrieval, and query synthesis \u2013 delivering 10-25% better multi-source accuracy with lower memory overhead for document-heavy corpora."
         }
       },
       {
         "card": {
           "n": "BUILD",
           "h3": "LangChain & LangGraph agent development",
-          "p": "Multi-step agent systems: tool use, conversational memory, state management, and human-in-the-loop checkpoints for AI that takes actions, not just answers questions."
+          "p": "Multi-step agent systems with LangGraph graphs: tool use, stateful memory, checkpointing, and human-in-the-loop \u2013 for AI that acts, with controlled memory overhead and sub-second graph transitions."
         }
       },
       {
         "card": {
           "n": "BUILD",
           "h3": "Hybrid architecture (both frameworks)",
-          "p": "LlamaIndex as the retrieval layer wrapped as a tool inside a LangGraph agent, combining best-in-class retrieval with production-grade orchestration in one system."
+          "p": "LlamaIndex as the retrieval layer wrapped as a tool inside a LangGraph agent \u2013 combining best-in-class hierarchical retrieval with production-grade orchestration and observability in one system."
         }
       },
       {
         "card": {
           "n": "AUDIT",
           "h3": "Migration & framework audits",
-          "p": "Assessment and migration support for teams that chose the wrong framework early and are hitting friction, or need to add agentic capability to an existing retrieval-only system."
+          "p": "Assessment and migration for teams hitting friction: adding agentic capability to retrieval-only systems or switching to hybrid to reduce latency and memory bloat."
         }
       },
       {
@@ -64,10 +64,10 @@
           "n": "LLAMAINDEX WINS WHEN",
           "h3": "Retrieval quality is the bottleneck",
           "ul": [
-            "Retrieval quality is the primary bottleneck, not orchestration complexity. On multi-source synthesis benchmarks, hierarchical index retrieval is 10\u201315% more accurate than naive chunking.",
-            "Your documents are hierarchically structured (legal, code, technical manuals): composable indices produce roughly 15\u201325% better answers by preserving document structure.",
-            "You want to ship faster with less code and lower latency overhead\u2014LlamaIndex's built-in retrievers handle memory-efficient indexing without custom graph logic.",
-            "You need complex multi-document reasoning: tree index and response synthesizers naturally handle cross-document synthesis without a multi-step agent loop."
+            "Retrieval quality is the primary bottleneck, not orchestration complexity \u2013 hierarchical indices reduce memory overhead by ~30% vs. naive chunking in LangChain.",
+            "Complex multi-document reasoning: tree index and response synthesizers produce 10-15% better answers on multi-source synthesis benchmarks with lower retrieval latency.",
+            "Your documents are hierarchically structured (legal, code, technical manuals): composable indices deliver 15-25% better answer accuracy with predictable memory usage.",
+            "You want to ship faster with less code and lower latency overhead \u2013 LlamaIndex's built-in query engines avoid the graph overhead of LangGraph for pure RAG."
           ]
         }
       },
@@ -76,10 +76,10 @@
           "n": "LANGCHAIN WINS WHEN",
           "h3": "RAG is one piece of a larger agent",
           "ul": [
-            "RAG is one component of a larger agentic system, not the whole product. LangGraph's state graph handles multi-step tool orchestration with lower memory overhead per step than custom loops.",
-            "You need tool use, multi-step reasoning, or persistent memory across a conversation\u2014LangChain\u2019s agent architecture supports native checkpointing and interrupt/resume.",
-            "Human-in-the-loop checkpoints matter: LangGraph has native support for pausing execution, reviewing state, and resuming, which is critical for compliance-heavy workflows.",
-            "First-party observability (LangSmith) is a requirement, not an afterthought, providing latency breakdowns and token usage per node in the agent graph."
+            "RAG is one component of a larger agentic system, not the whole product \u2013 LangGraph's multi-step graphs handle branching and loops with sub-100ms state transitions.",
+            "You need tool use, multi-step reasoning, or persistent memory across a conversation \u2013 LangGraph's checkpointing adds minimal overhead compared to custom state machines.",
+            "Human-in-the-loop checkpoints matter: LangGraph has native interrupt/resume support with serializable state, enabling audit trails without bloating memory.",
+            "First-party observability (LangSmith) is a requirement \u2013 it provides latency breakdowns per graph node, essential for debugging hybrid architectures."
           ]
         }
       }

@@ -16,6 +16,9 @@ const DEFAULTS = {
   primary_keyword: "LangChain vs LlamaIndex",
   secondary_keyword: "RAG framework comparison, LLM agent orchestration",
   content_angle: "Hands-on engineering reality: LangGraph multi-step agent graphs vs LlamaIndex hierarchical index retrieval speed, memory overhead, and hybrid production architecture in 2026.",
+  url_slug: "",
+  og_image_url: "",
+  publish_date: "",
   model: "openrouter/deepseek/deepseek-v4-flash",
   output_filename: "",
   skip_generate: false,
@@ -100,6 +103,44 @@ export default function ConfigPanel({ running, onRun }) {
               value={form.secondary_keyword}
               onChange={set("secondary_keyword")}
               placeholder="e.g. RAG frameworks, LLM agent architecture"
+              disabled={running}
+            />
+          </div>
+        </div>
+
+        {/* URL, OG Image & Publishing Metadata */}
+        <div className="panel-section">
+          <div className="panel-section-title">URL &amp; Metadata</div>
+
+          <div className="field">
+            <label htmlFor="inputSlug">URL Slug</label>
+            <input
+              id="inputSlug"
+              value={form.url_slug}
+              onChange={set("url_slug")}
+              placeholder="e.g. langchain-vs-llamaindex"
+              disabled={running}
+            />
+          </div>
+
+          <div className="field">
+            <label htmlFor="inputOgImage">OG Image URL</label>
+            <input
+              id="inputOgImage"
+              value={form.og_image_url}
+              onChange={set("og_image_url")}
+              placeholder="e.g. https://example.com/images/og-preview.jpg"
+              disabled={running}
+            />
+          </div>
+
+          <div className="field">
+            <label htmlFor="inputPublishDate">Publish Date &amp; Time</label>
+            <input
+              type="datetime-local"
+              id="inputPublishDate"
+              value={form.publish_date}
+              onChange={set("publish_date")}
               disabled={running}
             />
           </div>

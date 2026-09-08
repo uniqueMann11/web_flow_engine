@@ -10,7 +10,7 @@
           "num": "PHASE 01",
           "days": "days 1 to 2",
           "h3": "Discovery",
-          "body": "Evaluating your data, retrieval latency requirements, and agent complexity. We determine whether your bottleneck is index retrieval speed (LlamaIndex strength) or multi-step orchestration (LangGraph strength)."
+          "body": "Understanding your data, use case, and whether the core challenge is retrieval quality (LlamaIndex territory) or agentic behavior (LangGraph territory), and the hybrid potential."
         }
       },
       {
@@ -18,7 +18,7 @@
           "num": "PHASE 02",
           "days": "within 48h",
           "h3": "Framework recommendation",
-          "body": "A written architecture spec with a specific framework recommendation\u2014pure LlamaIndex, pure LangGraph, or a hybrid\u2014backed by benchmarks on memory overhead and retrieval throughput for your data scale."
+          "body": "A written architecture spec with a specific framework recommendation (LangChain, LlamaIndex, or hybrid) and reasoning, delivered within 48 hours."
         }
       },
       {
@@ -26,7 +26,7 @@
           "num": "PHASE 03",
           "days": "the decisive one",
           "h3": "Build",
-          "body": "Development in milestones: if hybrid, we build the LlamaIndex hierarchical index first, then wrap it as a tool inside a LangGraph agent with memory compression and state management."
+          "body": "Development in milestones: retrieval layer first if LlamaIndex, then orchestration and guardrails if LangGraph, or both in parallel for hybrid."
         }
       },
       {
@@ -34,7 +34,7 @@
           "num": "PHASE 04",
           "days": "before launch",
           "h3": "Evaluation",
-          "body": "Testing against your real queries using RAGAS for retrieval quality and custom evals for agent decision loops. We measure latency, token cost, and accuracy under load."
+          "body": "Testing against your real queries and use cases using RAGAS or custom eval set, measuring retrieval latency, memory overhead, and agent success rate."
         }
       },
       {
@@ -42,7 +42,7 @@
           "num": "PHASE 05",
           "days": "handoff",
           "h3": "Deployment",
-          "body": "Production deployment with monitoring (LangSmith or LlamaTrace), tracing for multi-step graphs, and documentation for your team on how to maintain the hybrid pipeline."
+          "body": "Production deployment with monitoring, tracing, and documentation for your team, including hybrid architecture if applicable."
         }
       }
     ]
@@ -61,25 +61,25 @@
         {
           "td": [
             "Framework selection consulting <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
-            "Written architecture recommendation with benchmark data on retrieval speed vs. agent overhead, plus a hybrid spec if applicable."
+            "Written architecture recommendation and spec comparing LangChain, LlamaIndex, and hybrid approaches."
           ]
         },
         {
           "td": [
             "LlamaIndex RAG build",
-            "Hierarchical index ingestion, metadata filtering, caching, evaluation with RAGAS, and deployment as a standalone or tool-ready service."
+            "Retrieval pipeline, ingestion, evaluation, deployment optimized for hierarchical index retrieval speed and low memory overhead."
           ]
         },
         {
           "td": [
             "LangChain/LangGraph agent build",
-            "Multi-step agent graph with tools, memory management, guardrails, and tracing. Optimized for low-latency decisions."
+            "Multi-step agent, tools, memory, guardrails, deployment with LangGraph graphs."
           ]
         },
         {
           "td": [
             "Hybrid architecture build",
-            "LlamaIndex retrieval wrapped as a LangGraph tool, using the best of both: hierarchical index speed and multi-step agent orchestration. Full production system with monitoring."
+            "Both frameworks combined: LlamaIndex retrieval as a tool within LangGraph orchestration, full production system."
           ]
         }
       ]
@@ -94,31 +94,31 @@
       {
         "faq-item": {
           "faq-q": "Is LlamaIndex better than LangChain for RAG?",
-          "faq-a": "For pure document retrieval, LlamaIndex's hierarchical indexing delivers 2-3x faster retrieval with lower memory overhead than LangChain's standard retriever. However, if your RAG is part of a multi-step agent, LangGraph's state management and tool orchestration justify the extra overhead."
+          "faq-a": "For pure RAG over document corpora, LlamaIndex generally offers faster hierarchical index retrieval and lower memory overhead out of the box. For RAG as part of a broader agent system, LangChain remains stronger. In 2026, the hybrid pattern (LlamaIndex retrieval wrapped as a LangGraph tool) is the most production-proven."
         }
       },
       {
         "faq-item": {
           "faq-q": "Can you build with both frameworks in one project?",
-          "faq-a": "Yes, that's the dominant production pattern in 2026. We use LlamaIndex for the retrieval layer (indexing, chunking, reranking) and wrap it as a tool inside a LangGraph agent. This hybrid avoids forcing either framework to do what it's not optimized for."
+          "faq-a": "Yes, this is the most common production pattern I build in 2026: LlamaIndex handling retrieval (for speed and low memory) wrapped as a tool inside a LangGraph agent for orchestration. This combines strengths rather than forcing one framework to do both."
         }
       },
       {
         "faq-item": {
           "faq-q": "How do you decide which framework to recommend?",
-          "faq-a": "We measure where your performance bottleneck is: if retrieval latency or accuracy over messy data is the issue, we recommend LlamaIndex. If you need conditional reasoning, memory, or tool calls across multiple steps, we recommend LangGraph. A hybrid is recommended when both are equally critical."
+          "faq-a": "Based on where your hardest problem lives: if it's retrieval quality, latency, or memory over a messy corpus, LlamaIndex. If it's multi-step agent behavior, tool use, or memory, LangChain/LangGraph. The recommendation is delivered in writing with reasoning, before any build work."
         }
       },
       {
         "faq-item": {
           "faq-q": "Do I need a LangChain agency or can a freelance consultant handle this?",
-          "faq-a": "A single experienced developer can handle most RAG and agent projects\u2014including hybrid LlamaIndex+LangGraph builds\u2014efficiently. Agencies are only needed for large-scale, multi-disciplinary product teams requiring parallel specialized work."
+          "faq-a": "Most RAG and agent projects, a specific pipeline, agent, or integration, are well within scope for a single experienced developer. An agency's advantage shows up on large multi-disciplinary product builds needing several specialists in parallel."
         }
       },
       {
         "faq-item": {
           "faq-q": "How much does RAG framework development cost?",
-          "faq-a": "Framework selection consulting is free. A pure LlamaIndex or LangGraph build ranges $8,000\u2013$30,000 depending on data complexity and agent steps. A hybrid architecture combining both typically runs $15,000\u2013$40,000. Contact us for a fixed-price estimate based on your specific latency and accuracy requirements."
+          "faq-a": "A framework selection consultation runs $500 to $1,500. A full LlamaIndex or LangChain build ranges from $8,000 to $30,000+ depending on complexity. A hybrid architecture combining both frameworks typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use case."
         }
       }
     ]

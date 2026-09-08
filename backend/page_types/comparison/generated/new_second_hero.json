@@ -1,3 +1,97 @@
 {
-  "": ""
+  "comply": {
+    "comply-in": [
+      {
+        "b": "Both, used right",
+        "span": "LangGraph for multi-step agent orchestration, LlamaIndex for retrieval speed\u2014combined in production."
+      },
+      {
+        "b": "Recommendation in writing",
+        "span": "A specific framework choice, with the reasoning behind it and backed by 2026 benchmarks, before any build begins."
+      },
+      {
+        "b": "Hybrid when warranted",
+        "span": "LlamaIndex hierarchical retrieval as a LangGraph tool\u2014standard 2026 pattern when both quality and orchestration matter."
+      },
+      {
+        "b": "Honest, not dogmatic",
+        "span": "If your project doesn't need the complexity of one framework, I'll say so, including when a single framework suffices."
+      }
+    ]
+  },
+  "what-is": {
+    "sec-head": {
+      "eyebrow": "Plain answer",
+      "h2": "What is LangChain? What is LlamaIndex?"
+    },
+    "tldr": {
+      "b": "Quick answer",
+      "p": [
+        "LangChain, via LangGraph, excels at multi-step agent orchestration with stateful graphs, while LlamaIndex focuses on fast, efficient retrieval with hierarchical indexing. Both are MIT-licensed, but by 2026 the critical distinction is latency and memory overhead: LlamaIndex retrieval is ~6ms overhead versus LangGraph's ~14ms, making LlamaIndex ideal for retrieval-heavy RAG and LangGraph for agentic workflows with complex tool use. The real decision between LangChain and LlamaIndex hinges on whether your core bottleneck is retrieval speed or agent orchestration."
+      ]
+    }
+  },
+  "comparison": {
+    "sec-head": {
+      "eyebrow": "The comparison",
+      "h2": "Framework comparison: LangChain vs LlamaIndex"
+    },
+    "tablewrap": {
+      "thead": [
+        "Factor",
+        "LangChain (via LangGraph)",
+        "LlamaIndex"
+      ],
+      "tbody": [
+        {
+          "th": "Primary strength",
+          "td": [
+            "Multi-step agent orchestration via LangGraph graphs, stateful loops, and tool integration",
+            "Fast hierarchical retrieval with low overhead (~6ms), advanced chunking, and query synthesis"
+          ]
+        },
+        {
+          "th": "Best for",
+          "td": [
+            "Complex agentic workflows where RAG is one of many tools, requiring state and orchestration",
+            "Retrieval-heavy applications demanding low latency and high recall, e.g., document Q&A, knowledge bases"
+          ]
+        },
+        {
+          "th": "Code volume for equivalent RAG",
+          "td": [
+            "Baseline (more boilerplate for complex retrieval)",
+            "30-40% less code for standard RAG pipelines due to native indexing abstractions"
+          ]
+        },
+        {
+          "th": "Framework overhead",
+          "td": [
+            "~14ms per step (LangGraph agent overhead)",
+            "~6ms per retrieval call (LlamaIndex index query)"
+          ]
+        },
+        {
+          "th": "Ecosystem",
+          "td": [
+            "500+ integrations, LangSmith observability, mature agent tooling",
+            "300+ connectors, LlamaParse for advanced document parsing, growing agent support"
+          ]
+        },
+        {
+          "th": "Observability",
+          "td": [
+            "LangSmith (first-party, paid tiers for production)",
+            "Typically requires third-party tracing (e.g., Arize, Weights & Biases)"
+          ]
+        }
+      ]
+    },
+    "callout": {
+      "p": [
+        "The 2026 reality",
+        "In production, the 2026 standard is a hybrid: LlamaIndex handles ingestion, hierarchical indexing, and fast retrieval, while LangGraph orchestrates multi-step agent logic with state and tools. I build this architecture when a project demands both retrieval speed and complex orchestration\u2014otherwise I choose just one to avoid unnecessary overhead."
+      ]
+    }
+  }
 }

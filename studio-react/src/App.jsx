@@ -4,8 +4,9 @@ import ConfigPanel from "./components/ConfigPanel.jsx";
 import PreviewPane from "./components/PreviewPane.jsx";
 import CodeViewer from "./components/CodeViewer.jsx";
 import TerminalLogs from "./components/TerminalLogs.jsx";
+import DatabasePublishTab from "./components/DatabasePublishTab.jsx";
 import { previewUrl, openPipelineStream } from "./api.js";
-import { FileText, Code, ScrollText, Eye } from "lucide-react";
+import { FileText, Code, ScrollText, Eye, Database } from "lucide-react";
 
 import { Activity } from "lucide-react";
 
@@ -13,6 +14,7 @@ const TABS = [
   { id: "preview", label: "Preview", Icon: Eye },
   { id: "code",    label: "Code Inspector", Icon: Code },
   { id: "logs",    label: "Generation Progress", Icon: Activity },
+  { id: "database", label: "Publish to DB", Icon: Database },
 ];
 
 function Toast({ message }) {
@@ -36,6 +38,7 @@ export default function App() {
   const [toast, setToast] = useState("");
   const toastTimer = useRef(null);
   const stopStream = useRef(null);
+  const [lastFormData, setLastFormData] = useState(null);
 
   // Apply theme to <html>
   useEffect(() => {
@@ -61,6 +64,7 @@ export default function App() {
     const titleText = formData.page_title || "New Page";
     setPageTitle(`Generating: ${titleText} (${formData.page_type || "Comparison"})...`);
     setActiveTab("logs");
+    setLastFormData(formData);
 
     const newLogs = [];
     function addLog(text) {
@@ -87,7 +91,7 @@ export default function App() {
         setRunning(false);
         addLog(`\n[SUCCESS] Pipeline complete -> ${data.filename}`);
         showToast(`Generated ${data.filename}`);
-        setTimeout(() => setActiveTab("preview"), 700);
+        setTimeout(() => setActiveTab("database"), 700);
       },
       (errText) => {
         addLog(`\n[ERROR] ${errText}`);
@@ -182,6 +186,16 @@ export default function App() {
                 logs={logs}
                 running={running}
                 onClear={() => setLogs([])}
+              />
+            </div>
+
+            {/* Database Publish */}
+            <div className={`tab-pane ${activeTab === "database" ? "active" : ""}`}>
+              <DatabasePublishTab
+                components={components}
+                formData={lastFormData}
+                logs={logs}
+                onToast={showToast}
               />
             </div>
           </div>

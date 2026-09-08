@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    Pipeline Studio - Design Tokens & Base Styles
    ============================================================ */
 
@@ -666,3 +666,117 @@ button { cursor: pointer; font-family: inherit; }
 
 .raw-line { white-space: pre-wrap; word-break: break-word; }
 .raw-line.sys { color: #6B7280; font-style: italic; }
+
+/* ============================================================
+   DATABASE PUBLISH TAB
+   ============================================================ */
+.db-publish-tab {
+  height: 100%; display: flex; flex-direction: column;
+  background: var(--bg-base); overflow: hidden;
+}
+
+/* ── Header bar ────────────────────────────────────────────── */
+.db-header {
+  height: 40px; background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 16px; display: flex; align-items: center;
+  justify-content: space-between; flex-shrink: 0; gap: 8px;
+}
+.db-header-left { display: flex; align-items: center; gap: 8px; }
+.db-header-left svg { color: var(--primary); }
+.db-header-title { font-size: 0.8rem; font-weight: 600; color: var(--text-main); }
+.db-header-right { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+
+.db-publish-btn {
+  padding: 5px 14px; border-radius: var(--radius-sm); border: none;
+  background: var(--accent-green); color: #fff;
+  font-size: 0.76rem; font-weight: 600; font-family: inherit;
+  display: flex; align-items: center; gap: 6px;
+  transition: opacity 0.15s; cursor: pointer;
+}
+.db-publish-btn:hover:not(:disabled) { opacity: 0.88; }
+.db-publish-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ── Result banner ─────────────────────────────────────────── */
+.db-result-banner {
+  padding: 6px 16px; display: flex; align-items: center; gap: 8px;
+  font-size: 0.76rem; font-weight: 500; flex-shrink: 0;
+}
+.db-result-banner.success {
+  background: var(--accent-green-tint); color: var(--accent-green);
+  border-bottom: 1px solid var(--accent-green);
+}
+.db-result-banner.error {
+  background: rgba(248,81,73,.08); color: var(--accent-rose);
+  border-bottom: 1px solid var(--accent-rose);
+}
+
+/* ── Empty state ───────────────────────────────────────────── */
+.db-empty {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px;
+  color: var(--text-muted);
+}
+.db-empty p { font-size: 0.82rem; }
+
+/* ── Body: Two-column layout ───────────────────────────────── */
+.db-body {
+  flex: 1; display: flex; overflow: hidden;
+}
+
+.db-col {
+  overflow-y: auto; padding: 14px 18px;
+}
+
+.db-col-meta {
+  width: 50%; min-width: 300px; border-right: 1px solid var(--border-subtle);
+}
+
+.db-col-code {
+  flex: 1; min-width: 300px;
+}
+
+.db-col-title {
+  font-size: 0.68rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 12px;
+}
+
+.db-row-2 {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+
+.db-divider {
+  height: 1px; background: var(--border-subtle); margin: 10px 0;
+}
+
+.db-char-count {
+  font-family: var(--font-mono); font-size: 0.62rem; float: right;
+}
+
+/* ── Code sections (accordion) ─────────────────────────────── */
+.db-code-section {
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
+  margin-bottom: 8px; overflow: hidden;
+}
+
+.db-code-toggle {
+  width: 100%; background: var(--bg-card); border: none; padding: 8px 10px;
+  display: flex; align-items: center; gap: 6px;
+  color: var(--text-main); font-family: inherit; font-size: 0.76rem;
+  font-weight: 500; cursor: pointer; transition: background 0.15s;
+}
+.db-code-toggle:hover { background: var(--bg-surface); }
+
+.db-code-lines {
+  margin-left: auto; font-family: var(--font-mono); font-size: 0.62rem;
+  color: var(--text-dim);
+}
+
+.db-code-editor {
+  width: 100%; min-height: 200px; max-height: 400px; resize: vertical;
+  background: var(--bg-code); color: var(--text-main);
+  font-family: var(--font-mono); font-size: 0.72rem; line-height: 1.6;
+  border: none; border-top: 1px solid var(--border-subtle);
+  padding: 10px 12px; outline: none;
+}
+

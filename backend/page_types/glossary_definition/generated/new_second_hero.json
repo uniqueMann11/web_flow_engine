@@ -2,75 +2,75 @@
   "comply": {
     "comply-in": [
       {
-        "b": "Guides every response",
-        "span": "The system prompt acts as a persistent instruction set for the model."
+        "b": "Unified, not separate",
+        "span": "Processes text, images, and audio in one model for coherent understanding."
       },
       {
-        "b": "No retraining needed",
-        "span": "Change behavior by editing the prompt, not retraining the model."
+        "b": "Cross-modal insights",
+        "span": "Connects information across different modalities for richer answers."
       },
       {
-        "b": "Consistent tone",
-        "span": "Enforces a uniform voice and style across all generated content."
+        "b": "Flexible input",
+        "span": "Accepts any combination of text, image, or audio queries."
       },
       {
-        "b": "Quick to iterate",
-        "span": "Prompt variations can be tested in minutes, not days."
+        "b": "Scalable training",
+        "span": "Train on diverse data; model adapts without starting from scratch."
       }
     ]
   },
   "what-is": {
     "sec-head": {
       "eyebrow": "Plain answer",
-      "h2": "What is a system prompt?"
+      "h2": "What is multimodal AI?"
     },
     "tldr": {
       "b": "Definition",
       "p": [
-        "A system prompt is a set of instructions or context provided at the beginning of an LLM conversation that defines the model's behavior, tone, constraints, and capabilities. It acts as a persistent directive that shapes every response, ensuring consistency, alignment with user goals, and safety guardrails without requiring model retraining."
+        "Multimodal AI is a machine learning architecture that simultaneously processes and integrates multiple data modalities\u2014such as text, images, and audio\u2014by encoding them into a shared embedding space, enabling the model to reason across modalities and generate outputs that leverage combined context, without requiring separate models for each input type."
       ]
     }
   },
   "how-it-works": {
     "sec-head": {
       "eyebrow": "Step by step",
-      "h2": "How system prompts work",
-      "p": "The five-step process of defining, embedding, and executing a system prompt in an LLM interaction."
+      "h2": "How multimodal AI works",
+      "p": "The pipeline that processes and integrates multiple modalities in a unified model."
     },
     "grid g3": [
       {
         "card": {
           "n": "STEP 1",
-          "h3": "Define prompt",
-          "p": "Craft the instruction set specifying persona, tone, and rules."
+          "h3": "Input received",
+          "p": "A user provides text, image, or audio input."
         }
       },
       {
         "card": {
           "n": "STEP 2",
-          "h3": "Embed in context",
-          "p": "The prompt is prepended to the user's message in the API call."
+          "h3": "Modalities encoded",
+          "p": "Each modality is converted into numerical embeddings."
         }
       },
       {
         "card": {
           "n": "STEP 3",
-          "h3": "Model processes",
-          "p": "The LLM interprets the system prompt as a high-priority directive."
+          "h3": "Fusion layer",
+          "p": "The embeddings are combined into a shared representation."
         }
       },
       {
         "card": {
           "n": "STEP 4",
-          "h3": "Generate response",
-          "p": "The model produces output adhering to the given constraints."
+          "h3": "Joint reasoning",
+          "p": "The model analyzes the combined data for context."
         }
       },
       {
         "card": {
           "n": "STEP 5",
-          "h3": "Output validated",
-          "p": "Check that the response follows the system prompt's rules and tone."
+          "h3": "Output generated",
+          "p": "The model produces a response leveraging all modalities."
         }
       }
     ]
