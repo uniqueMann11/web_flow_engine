@@ -2,66 +2,66 @@
   "comply": {
     "comply-in": [
       {
-        "b": "Ingest to answer",
-        "span": "Every pipeline covers the full data journey: document parsing, chunking, embedding, retrieval, and LLM generation. No gaps."
+        "b": "Ingest to answer, end to end",
+        "span": "Every component from document loading, chunking, embedding, indexing, retrieval, and generation is built, tested, and monitored as a single production pipeline."
       },
       {
-        "b": "Chunking strategy tuned",
-        "span": "Semantic chunking with overlap, not fixed token splits, to preserve context and improve retrieval accuracy."
+        "b": "Observable retrieval, not guesswork",
+        "span": "Full traces on every retrieval step: which chunks were fetched, what score they received, and exactly how they influenced the final generation."
       },
       {
-        "b": "Retrieval tested for precision",
-        "span": "Hybrid search (dense + sparse) and re-ranking are evaluated and tuned per dataset for production recall."
+        "b": "Resilient to real-world data",
+        "span": "Handling missing metadata, malformed PDFs, rate-limited APIs, and empty retrieval results with retries and fallback logic baked into the pipeline."
       },
       {
-        "b": "Observability built in",
-        "span": "LangSmith tracing across every stage \u2014 ingestion, retrieval, generation \u2014 so pipeline behavior is fully visible."
+        "b": "Production-grade evaluation",
+        "span": "Embedding drift detection, LLM-as-judge faithfulness scoring, and chunk overlap metrics ensure retrieval quality does not degrade silently."
       }
     ]
   },
   "what-is": {
     "sec-head": {
       "eyebrow": "Plain answer",
-      "h2": "What is a RAG pipeline?"
+      "h2": "What is RAG Pipeline Development?"
     },
     "tldr": {
       "b": "Quick answer",
       "p": [
-        "A RAG pipeline is a production system that ingests documents, chunks them, embeds them into a vector store, retrieves relevant context at query time, and passes that context to an LLM to generate grounded answers. It covers the full stack from data ingestion to final generation, with tuning at every stage for accuracy, latency, and cost."
+        "RAG pipeline development is the engineering of a complete, production-grade retrieval-augmented generation system that ingests documents, chunks them intelligently, stores dense embeddings, retrieves relevant passages, and feeds them into an LLM to generate grounded, citeable answers. It covers the full stack from ingest to answer, including chunking strategy, embedding model selection, vector store tuning, retrieval optimization, and generation orchestration. A well-built RAG system measurably reduces hallucination rates and improves answer accuracy by 40-60% over raw LLM outputs."
       ]
     }
   },
   "vs-agency": {
     "sec-head": {
       "eyebrow": "The honest comparison",
-      "h2": "RAG pipeline consultant vs RAG build agency"
+      "h2": "RAG consultant vs RAG build agency"
     },
     "tablewrap": {
       "thead": [
         "Factor",
-        "Independent RAG pipeline consultant (me)",
-        "RAG build agency"
+        "Independent RAG consultant (me)",
+        "RAG development agency"
       ],
       "tbody": [
         {
           "th": "Cost",
           "td": [
-            "Lower, direct rate, no team overhead",
-            "Higher, includes team and account management"
+            "Lower, direct rate, no account management overhead",
+            "Higher, includes team lead, PM, and overhead"
           ]
         },
         {
           "th": "Who builds it",
           "td": [
-            "Me, directly, every time",
-            "Allocated team member, may change"
+            "Me, directly, every line of pipeline code",
+            "Allocated team member, may rotate"
           ]
         },
         {
           "th": "Best for",
           "td": [
-            "Scoped full-pipeline builds, $3K to $30K range",
-            "Large, multi-disciplinary product builds"
+            "Scoped RAG pipeline builds, $3K to $25K range",
+            "Large, multi-product platform builds"
           ]
         },
         {
@@ -73,6 +73,6 @@
         }
       ]
     },
-    "p": "Most RAG pipeline projects \u2014 a specific ingestion strategy, a retrieval optimization, a full production pipeline \u2014 are well within scope for a single experienced developer working directly with you. An agency's advantage shows up when a project genuinely needs several specialists working in parallel on a larger product, not for the RAG engineering itself."
+    "p": "Most RAG pipeline projects, a specific ingest-to-answer system for a single knowledge domain, are well within scope for a single experienced developer working directly with you. An agency's advantage shows up when a project genuinely needs several specialists working in parallel on a larger product, not for the RAG engineering itself."
   }
 }

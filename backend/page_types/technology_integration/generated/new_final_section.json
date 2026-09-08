@@ -10,7 +10,7 @@
           "num": "PHASE 01",
           "days": "days 1 to 2",
           "h3": "Discovery",
-          "body": "We map your data sources, establish chunking strategies, and define the retrieval logic and generation requirements for the full pipeline from ingest to answer."
+          "body": "Mapping your data sources, understanding retrieval needs, and defining the exact answer format \u2013 from raw docs to final user-facing response."
         }
       },
       {
@@ -18,7 +18,7 @@
           "num": "PHASE 02",
           "days": "within 48h",
           "h3": "Architecture spec",
-          "body": "A written spec covering document parsing, embedding model selection, vector store topology, and retrieval strategies, delivered within 48 hours."
+          "body": "A written spec covering ingestion pipeline design (chunking, embedding, indexing), retrieval strategy (hybrid search, reranking), and generation layer (prompt template, context window)."
         }
       },
       {
@@ -26,7 +26,7 @@
           "num": "PHASE 03",
           "days": "the decisive one",
           "h3": "Build in milestones",
-          "body": "Ingestion pipeline and embedding indexing first, then retrieval and generation logic, then guardrails and evaluation harnesses."
+          "body": "Core ingestion first, then retrieval logic, then generation tuning, and finally edge-case handling like missing data or ambiguous queries."
         }
       },
       {
@@ -34,7 +34,7 @@
           "num": "PHASE 04",
           "days": "before launch",
           "h3": "Testing & evaluation",
-          "body": "End-to-end testing against held-out queries, measuring retrieval precision, generation faithfulness, and latency under realistic loads."
+          "body": "Evaluating end-to-end pipeline accuracy, latency, and retrieval quality using benchmark datasets and realistic query scenarios."
         }
       },
       {
@@ -42,7 +42,7 @@
           "num": "PHASE 05",
           "days": "handoff",
           "h3": "Deployment & monitoring",
-          "body": "Production deployment with logging and tracing (LangSmith or equivalent) for full visibility into retrieval and generation behavior across the pipeline."
+          "body": "Production deployment with logging and tracing (LangSmith or equivalent) for full visibility into retrieval behavior and answer quality."
         }
       }
     ]
@@ -50,12 +50,12 @@
   "when-not": {
     "sec-head": {
       "eyebrow": "Honest tool selection",
-      "h2": "When LangChain is not the right choice"
+      "h2": "When RAG is not the right choice"
     },
     "callout": {
       "p": [
         "Direct architectural honesty upfront",
-        "Part of a proper RAG pipeline development engagement is an honest assessment of whether LangChain is even the right tool for your specific retrieval needs. If your actual need is a simpler, single-model retrieval setup with no multi-step orchestration, a dedicated RAG build agency using a lightweight framework may be a simpler, lower-overhead choice."
+        "Part of a proper RAG pipeline development engagement is an honest assessment of whether a full retrieval-augmented generation pipeline is even necessary. If your data fits in a single prompt context or your questions are purely factual with no need for grounding, a simpler LLM call or a direct search may be faster and cheaper. See the RAG build agency services page for the fuller comparison."
       ]
     }
   },
@@ -72,26 +72,26 @@
       "tbody": [
         {
           "td": [
-            "Single tool/agent integration <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
-            "One scoped agent or tool-calling workflow"
+            "Single data source RAG pipeline <span class=\"badge-free\" style=\"display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle\">Free</span>",
+            "One data source, basic ingestion and retrieval pipeline"
           ]
         },
         {
           "td": [
-            "Full agentic system",
-            "Multi-step agent with state, tools, memory, guardrails"
+            "Multi-source RAG pipeline",
+            "Multiple data sources, hybrid search, reranking, and custom generation"
           ]
         },
         {
           "td": [
-            "LangChain system audit",
-            "Review and improvement plan for an existing implementation"
+            "RAG pipeline audit",
+            "Review and improvement plan for an existing retrieval pipeline"
           ]
         },
         {
           "td": [
             "Hourly consulting",
-            "Architecture review, debugging support"
+            "Architecture review, debugging support, or performance tuning"
           ]
         }
       ]
@@ -106,32 +106,32 @@
     "faq": [
       {
         "faq-item": {
-          "faq-q": "What is the difference between LangChain and LangGraph?",
-          "faq-a": "LangChain is the broader framework providing composable building blocks. LangGraph is LangChain's graph-based agent framework, built for multi-step, stateful agent workflows with explicit control flow and checkpointing. For anything beyond a simple single-shot chain, LangGraph is the standard production approach."
+          "faq-q": "What is the difference between a simple RAG pipeline and a multi-hop RAG?",
+          "faq-a": "A simple RAG pipeline retrieves documents for a single query and generates an answer. Multi-hop RAG breaks a complex question into sub-questions, retrieves iteratively, and synthesizes across multiple sources \u2013 ideal for domain-specific reasoning."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Do I need a LangChain agency, or can a freelance consultant handle my project?",
-          "faq-a": "Most LangChain projects are well within scope for a single experienced developer. An agency's advantage becomes relevant when a project needs multiple specialists across disciplines working simultaneously on a larger product."
+          "faq-q": "Do I need a RAG build agency, or can a freelance consultant handle my project?",
+          "faq-a": "Most RAG pipeline development projects are well within scope for a single experienced developer. An agency's advantage becomes relevant when a project needs multiple specialists across disciplines working simultaneously on a larger product."
         }
       },
       {
         "faq-item": {
-          "faq-q": "How much do LangChain development services cost?",
-          "faq-a": "A single scoped tool or agent integration typically runs $2,000 to $6,000. A full agentic system ranges from $8,000 to $30,000+ depending on complexity. Hourly consulting runs $75 to $150/hr."
+          "faq-q": "How much does RAG pipeline development cost?",
+          "faq-a": "A single data source RAG pipeline typically runs $2,000 to $6,000. A full multi-source pipeline ranges from $8,000 to $30,000+ depending on complexity. Hourly consulting runs $75 to $150/hr."
         }
       },
       {
         "faq-item": {
-          "faq-q": "Is LangChain free to use?",
-          "faq-a": "Yes, LangChain and LangGraph are open-source and free under the MIT license. LangSmith, LangChain's observability platform, has a free tier with paid plans starting around $39/month per seat."
+          "faq-q": "Is RAG free to use?",
+          "faq-a": "RAG frameworks like LangChain and LlamaIndex are open-source and free under the MIT license. Embedding and LLM APIs incur costs based on usage, typically $0.10\u2013$0.50 per 1M tokens for embeddings and $0.02\u2013$0.10 per 1K tokens for generation."
         }
       },
       {
         "faq-item": {
-          "faq-q": "When should I NOT use LangChain?",
-          "faq-a": "If your use case is purely high-quality document retrieval with no agentic or multi-step behavior needed, LlamaIndex alone is often a simpler, lower-overhead choice. LangChain earns its complexity when you need tool use, state management, or multi-step reasoning."
+          "faq-q": "When should I NOT use RAG?",
+          "faq-a": "If your data fits in a single prompt context (e.g., < 8K tokens) or your queries are purely factual with no need for grounding, a direct LLM call or a simple search may be faster and cheaper. RAG earns its complexity when you need to ground answers in large, dynamic corpora."
         }
       }
     ]

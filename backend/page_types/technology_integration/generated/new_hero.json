@@ -2,15 +2,15 @@
   "hero": {
     "eyebrow": "Full pipeline: ingest to answer",
     "h1": {
-      "h1": "RAG pipeline development services:",
-      "span": "production-grade ingest to answer"
+      "h1": "RAG pipeline development:",
+      "span": "ingest-query-generate in production"
     },
-    "hero-sub": "RAG pipeline development goes beyond simple Q&A: it requires building a complete end-to-end system from document ingestion, chunking, embedding, retrieval, to generation. I build these correctly\u2014production-grade, not a fragile demo that breaks at the first real-world query.",
+    "hero-sub": "RAG is the pattern that brings real data to LLMs without hallucinations: ingest documents, store vectors, retrieve context, and generate grounded answers. I build the full pipeline from raw files to production responses, not a demo that chokes on the first enterprise PDF.",
     "creds": [
       {
         "cred": {
           "i": "Experience",
-          "b": "5+ yrs LangChain/LangGraph"
+          "b": "5+ yrs RAG & retrieval"
         }
       },
       {
@@ -22,7 +22,7 @@
       {
         "cred": {
           "i": "Turnaround",
-          "b": "48h architecture spec"
+          "b": "48h pipeline architecture"
         }
       }
     ],
@@ -40,7 +40,7 @@
         }
       }
     ],
-    "live": "Honest read included: whether a full RAG pipeline is even the right fit.",
+    "live": "Honest read included: whether RAG is even the right architecture for your data.",
     "trust": [
       {
         "b": "119K+",
@@ -52,7 +52,7 @@
       },
       {
         "b": "48h",
-        "span": "To a written architecture spec"
+        "span": "To a pipeline architecture spec"
       }
     ]
   }

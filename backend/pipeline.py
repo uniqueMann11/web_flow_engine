@@ -48,6 +48,10 @@ from inject_viewer import inject_widget_into_html
 # Image generation module (for placeholder replacement)
 from image_generation import generate_for_placeholder
 
+# FTP upload & database persistence for generated images
+from ftp_uploader import upload_image_to_ftp, is_ftp_configured
+from db import add_page_image_to_db
+
 # Generated images output directory
 GENERATED_IMAGES_DIR = os.path.join(BASE_DIR, "generated_images")
 os.makedirs(GENERATED_IMAGES_DIR, exist_ok=True)
@@ -1045,7 +1049,6 @@ def _replace_image_placeholders(
 
         for fut in as_completed(img_futures):
             t = img_futures[fut]
-            print(t)
             try:
                 local_path = fut.result()
                 if not local_path or not os.path.exists(local_path):
@@ -1057,9 +1060,56 @@ def _replace_image_placeholders(
                     other_f.cancel()
                 raise RuntimeError(f"Image generation failed for placeholder #{t['idx'] + 1}: {exc}") from exc
 
-    # 6. Replace all placeholder DOM elements with <img> tags
+    # 6. Upload images to FTP & persist to database
+    ftp_cfg = is_ftp_configured()
+    ftp_available = ftp_cfg.get("configured", False)
+    uploaded_images = []  # Collect all uploaded image info
+
+    if ftp_available:
+        print(f"\n  FTP Upload: Uploading {len(tasks)} image(s) to {ftp_cfg['host']}:{ftp_cfg.get('folder', 'dynamicpage')}...")
+    else:
+        print("\n  FTP not configured — using local image paths.")
+
     for t in tasks:
-        img_src = f"/generated_images/{t['filename']}"
+        local_path = t.get("local_path", "")
+        img_src = f"/generated_images/{t['filename']}"  # default local fallback
+
+        if ftp_available and local_path and os.path.exists(local_path):
+            try:
+                ftp_result = upload_image_to_ftp(local_path, t["filename"])
+                if ftp_result["success"]:
+                    img_src = ftp_result["public_url"]
+                    t["ftp_url"] = ftp_result["public_url"]
+                    print(f"  ✓ FTP uploaded #{t['idx'] + 1}: {ftp_result['public_url']}")
+
+                    # Persist to PAG_PagesImages table
+                    try:
+                        db_result = add_page_image_to_db(ftp_result["public_url"])
+                        print(f"  ✓ DB saved #{t['idx'] + 1}: ImageID={db_result.get('image_id')}")
+                        uploaded_images.append({
+                            "placeholder_index": t["idx"] + 1,
+                            "ftp_url": ftp_result["public_url"],
+                            "image_id": db_result.get("image_id"),
+                            "filename": t["filename"],
+                        })
+                    except Exception as db_err:
+                        print(f"  ⚠ DB insert failed for #{t['idx'] + 1}: {db_err}")
+                        uploaded_images.append({
+                            "placeholder_index": t["idx"] + 1,
+                            "ftp_url": ftp_result["public_url"],
+                            "image_id": None,
+                            "filename": t["filename"],
+                        })
+                else:
+                    print(f"  ⚠ FTP upload failed #{t['idx'] + 1}: {ftp_result['error']} — using local path")
+            except Exception as ftp_err:
+                print(f"  ⚠ FTP error #{t['idx'] + 1}: {ftp_err} — using local path")
+
+        t["final_src"] = img_src
+
+    # 7. Replace all placeholder DOM elements with <img> tags
+    for t in tasks:
+        img_src = t.get("final_src", f"/generated_images/{t['filename']}")
         alt_text = t["section_context"] or page_title
         img_tag = soup.new_tag(
             "img",
@@ -1069,12 +1119,35 @@ def _replace_image_placeholders(
         )
         t["placeholder"].replace_with(img_tag)
 
+    # 8. Update OG image with the hero image (first image / hero_architecture)
+    hero_url = None
+    for t in tasks:
+        if t.get("ftp_url"):
+            hero_url = t["ftp_url"]
+            break  # Use the first FTP-uploaded image as OG image
+    if hero_url:
+        og_img = soup.find("meta", attrs={"property": "og:image"})
+        if og_img:
+            og_img["content"] = hero_url
+        else:
+            head = soup.find("head")
+            if head:
+                new_og = soup.new_tag("meta", property="og:image", content=hero_url)
+                head.append(new_og)
+        print(f"  ✓ OG Image updated: {hero_url}")
+
     html_out = str(soup)
     html_out = html_out.replace("<lineargradient", "<linearGradient").replace("</lineargradient>", "</linearGradient>")
     html_out = html_out.replace("viewbox=", "viewBox=")
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(html_out)
-    print(f"\n  ✓ All image placeholders replaced in parallel. HTML updated: {output_path}")
+
+    if uploaded_images:
+        print(f"\n  ✓ {len(uploaded_images)} image(s) uploaded to FTP & saved to DB.")
+        for img in uploaded_images:
+            print(f"    • #{img['placeholder_index']}: {img['ftp_url']} (ImageID: {img['image_id']})")
+
+    print(f"\n  ✓ All image placeholders replaced. HTML updated: {output_path}")
 
 
 if __name__ == "__main__":

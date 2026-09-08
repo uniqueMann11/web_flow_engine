@@ -184,3 +184,81 @@ def save_page_to_db(page_data: dict) -> dict:
         cursor.close()
         conn.close()
         raise e
+
+
+def add_page_image_to_db(image_url: str) -> dict:
+    """
+    Insert a single image record into the "PAG_PagesImages" table.
+
+    Args:
+        image_url: The public URL of the uploaded image.
+
+    Returns:
+        dict with keys: success, image_id, image_url, message
+    """
+    conn = _connect()
+    cursor = conn.cursor()
+    try:
+        sql = """
+        INSERT INTO "PAG_PagesImages" ("ImageLink", "CreatedAt", "IsDeleted")
+        VALUES (%s, NOW(), FALSE)
+        RETURNING "ImageID"
+        """
+        cursor.execute(sql, (image_url,))
+        result = cursor.fetchone()
+        image_id = result[0] if result else None
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return {
+            "success": True,
+            "image_id": image_id,
+            "image_url": image_url,
+            "message": f"Image saved (ID: {image_id})",
+        }
+    except Exception as e:
+        conn.rollback()
+        cursor.close()
+        conn.close()
+        raise e
+
+
+def add_page_images_bulk(image_urls: list) -> list:
+    """
+    Insert multiple image records into "PAG_PagesImages" in a single transaction.
+
+    Args:
+        image_urls: List of public URLs.
+
+    Returns:
+        List of dicts with keys: success, image_id, image_url
+    """
+    if not image_urls:
+        return []
+
+    conn = _connect()
+    cursor = conn.cursor()
+    results = []
+    try:
+        for url in image_urls:
+            sql = """
+            INSERT INTO "PAG_PagesImages" ("ImageLink", "CreatedAt", "IsDeleted")
+            VALUES (%s, NOW(), FALSE)
+            RETURNING "ImageID"
+            """
+            cursor.execute(sql, (url,))
+            row = cursor.fetchone()
+            results.append({
+                "success": True,
+                "image_id": row[0] if row else None,
+                "image_url": url,
+            })
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return results
+    except Exception as e:
+        conn.rollback()
+        cursor.close()
+        conn.close()
+        raise e

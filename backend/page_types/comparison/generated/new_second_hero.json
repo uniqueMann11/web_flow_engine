@@ -2,20 +2,20 @@
   "comply": {
     "comply-in": [
       {
-        "b": "Both, used right",
-        "span": "LangGraph for multi-step agent orchestration, LlamaIndex for retrieval speed\u2014combined in production."
+        "b": "Both frameworks, done right",
+        "span": "LangChain, LangGraph, and LlamaIndex, used for what each is actually built for in 2026 production systems."
       },
       {
         "b": "Recommendation in writing",
-        "span": "A specific framework choice, with the reasoning behind it and backed by 2026 benchmarks, before any build begins."
+        "span": "A specific framework choice, with the reasoning and measured overhead, before any build begins."
       },
       {
-        "b": "Hybrid when warranted",
-        "span": "LlamaIndex hierarchical retrieval as a LangGraph tool\u2014standard 2026 pattern when both quality and orchestration matter."
+        "b": "Hybrid when it earns it",
+        "span": "LlamaIndex retrieval wrapped as a tool inside a LangGraph agent \u2014 the standard 2026 pattern that minimizes memory and latency overhead."
       },
       {
-        "b": "Honest, not dogmatic",
-        "span": "If your project doesn't need the complexity of one framework, I'll say so, including when a single framework suffices."
+        "b": "Honest, not default",
+        "span": "If your project doesn\u2019t need multi-step agent graphs or hierarchical indexing, I\u2019ll say so straight away."
       }
     ]
   },
@@ -27,7 +27,7 @@
     "tldr": {
       "b": "Quick answer",
       "p": [
-        "LangChain, via LangGraph, excels at multi-step agent orchestration with stateful graphs, while LlamaIndex focuses on fast, efficient retrieval with hierarchical indexing. Both are MIT-licensed, but by 2026 the critical distinction is latency and memory overhead: LlamaIndex retrieval is ~6ms overhead versus LangGraph's ~14ms, making LlamaIndex ideal for retrieval-heavy RAG and LangGraph for agentic workflows with complex tool use. The real decision between LangChain and LlamaIndex hinges on whether your core bottleneck is retrieval speed or agent orchestration."
+        "LangChain is a broad LLM application framework built around composable chains, agents, tools, and memory, with LangGraph as its production agent orchestration layer. LlamaIndex is a focused data framework for LLMs, purpose-built for ingesting, indexing, and querying document corpora via retrieval-augmented generation. Both are open-source, MIT-licensed, and by 2026 both frameworks handle RAG and agents to some degree \u2014 the real choice is about where your project\u2019s hardest problem actually lives: agentic control flow or retrieval quality."
       ]
     }
   },
@@ -46,43 +46,43 @@
         {
           "th": "Primary strength",
           "td": [
-            "Multi-step agent orchestration via LangGraph graphs, stateful loops, and tool integration",
-            "Fast hierarchical retrieval with low overhead (~6ms), advanced chunking, and query synthesis"
+            "Multi-step agent orchestration with state, tools, and memory in LangGraph",
+            "Hierarchical index retrieval speed and query synthesis quality"
           ]
         },
         {
           "th": "Best for",
           "td": [
-            "Complex agentic workflows where RAG is one of many tools, requiring state and orchestration",
-            "Retrieval-heavy applications demanding low latency and high recall, e.g., document Q&A, knowledge bases"
+            "Agentic systems where RAG is one component, requiring dynamic decision chains",
+            "Retrieval-first products where document Q&A is the core, with minimal agent overhead"
           ]
         },
         {
           "th": "Code volume for equivalent RAG",
           "td": [
-            "Baseline (more boilerplate for complex retrieval)",
-            "30-40% less code for standard RAG pipelines due to native indexing abstractions"
+            "Baseline",
+            "30 to 40% less code for a comparable retrieval pipeline"
           ]
         },
         {
           "th": "Framework overhead",
           "td": [
-            "~14ms per step (LangGraph agent overhead)",
-            "~6ms per retrieval call (LlamaIndex index query)"
+            "~14ms per step (LangGraph state machine overhead)",
+            "~6ms per retrieval call (direct index traversal)"
           ]
         },
         {
           "th": "Ecosystem",
           "td": [
-            "500+ integrations, LangSmith observability, mature agent tooling",
-            "300+ connectors, LlamaParse for advanced document parsing, growing agent support"
+            "500+ integrations, most mature agent tooling, LangSmith observability",
+            "300+ connectors, native document parsing via LlamaParse, lower integration complexity"
           ]
         },
         {
           "th": "Observability",
           "td": [
-            "LangSmith (first-party, paid tiers for production)",
-            "Typically requires third-party tracing (e.g., Arize, Weights & Biases)"
+            "LangSmith (first-party, paid tiers) with full trace and latency breakdown",
+            "Typically requires third-party tracing; LlamaTrace introduced in 2026 for basic monitoring"
           ]
         }
       ]
@@ -90,7 +90,7 @@
     "callout": {
       "p": [
         "The 2026 reality",
-        "In production, the 2026 standard is a hybrid: LlamaIndex handles ingestion, hierarchical indexing, and fast retrieval, while LangGraph orchestrates multi-step agent logic with state and tools. I build this architecture when a project demands both retrieval speed and complex orchestration\u2014otherwise I choose just one to avoid unnecessary overhead."
+        "Most production systems use both together: LlamaIndex handling ingestion, hierarchical indexing, and retrieval, with LangGraph orchestrating the broader multi-step agent logic around it. This hybrid architecture delivers retrieval latency under 50ms and agent overhead under 150ms per turn \u2014 the standard I build when a project genuinely needs both retrieval quality and agentic behavior."
       ]
     }
   }

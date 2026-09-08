@@ -14,6 +14,8 @@ import {
   getDbConfigStatus,
   testDbConnection,
   publishToDatabase,
+  getFtpConfigStatus,
+  testFtpConnection,
 } from "../api.js";
 
 /**
@@ -62,11 +64,20 @@ export default function DatabasePublishTab({
   // ── Original fields for reset ───────────────────────
   const [originalFields, setOriginalFields] = useState(null);
 
-  // Load DB config status on mount
+  // ── FTP state ───────────────────────────────────────
+  const [ftpStatus, setFtpStatus] = useState(null);
+  const [ftpConnResult, setFtpConnResult] = useState(null);
+  const [ftpTesting, setFtpTesting] = useState(false);
+  const [pageImages, setPageImages] = useState([]);
+
+  // Load DB + FTP config status on mount
   useEffect(() => {
     getDbConfigStatus()
       .then(setDbStatus)
       .catch(() => setDbStatus({ configured: false }));
+    getFtpConfigStatus()
+      .then(setFtpStatus)
+      .catch(() => setFtpStatus({ configured: false }));
   }, []);
 
   // Auto-populate fields when components or formData change
@@ -148,6 +159,23 @@ export default function DatabasePublishTab({
     setFields(populated);
     setOriginalFields(populated);
     setPublishResult(null);
+
+    // Extract FTP-uploaded images from HTML content
+    const htmlContent = components.main_html || "";
+    const imgRegex = /<img[^>]+src=["'](https:\/\/shreyans\.tech\/uploads\/[^"']+)["'][^>]*>/gi;
+    const foundImages = [];
+    let match;
+    while ((match = imgRegex.exec(htmlContent)) !== null) {
+      foundImages.push(match[1]);
+    }
+    setPageImages(foundImages);
+
+    // Auto-populate OG image from the first FTP image if not already set
+    if (foundImages.length > 0 && !populated.og_image_url) {
+      const withOgImage = { ...populated, og_image_url: foundImages[0] };
+      setFields(withOgImage);
+      setOriginalFields(withOgImage);
+    }
   }, [components, formData, logs]);
 
   function set(key) {
@@ -197,6 +225,20 @@ export default function DatabasePublishTab({
       onToast?.(`Publish failed: ${e.message}`);
     }
     setPublishing(false);
+  }
+
+  async function handleFtpTest() {
+    setFtpTesting(true);
+    setFtpConnResult(null);
+    try {
+      const result = await testFtpConnection();
+      setFtpConnResult(result);
+      onToast?.(result.success ? "✓ FTP connected" : `✗ ${result.message}`);
+    } catch (e) {
+      setFtpConnResult({ success: false, message: e.message });
+      onToast?.(`FTP test failed: ${e.message}`);
+    }
+    setFtpTesting(false);
   }
 
   function toggleSection(name) {
@@ -417,6 +459,57 @@ export default function DatabasePublishTab({
                 onChange={set("og_image_url")}
                 placeholder="https://example.com/og-image.jpg"
               />
+              {fields.og_image_url && (
+                <div className="db-og-preview">
+                  <img
+                    src={fields.og_image_url}
+                    alt="OG Image Preview"
+                    onError={(e) => { e.target.style.display = 'none'; }}
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* ── FTP Image Gallery ───────────────── */}
+            <div className="db-divider" />
+            <div className="db-ftp-section">
+              <div className="db-ftp-header">
+                <span className="db-ftp-title">Page Images (FTP)</span>
+                <span className={`badge ${ftpStatus?.configured ? 'ready' : 'error'}`}>
+                  {ftpStatus?.configured ? 'FTP Active' : 'FTP Not Configured'}
+                </span>
+                <button
+                  className="icon-btn"
+                  onClick={handleFtpTest}
+                  disabled={ftpTesting}
+                  style={{ marginLeft: 'auto' }}
+                >
+                  {ftpTesting ? <div className="spinner" /> : <RefreshCw size={12} />}
+                  Test FTP
+                </button>
+              </div>
+              {ftpConnResult && (
+                <div className={`db-ftp-result ${ftpConnResult.success ? 'success' : 'error'}`}>
+                  {ftpConnResult.success ? <CheckCircle size={12} /> : <XCircle size={12} />}
+                  <span>{ftpConnResult.message}</span>
+                </div>
+              )}
+              {pageImages.length > 0 ? (
+                <div className="db-ftp-gallery">
+                  {pageImages.map((url, i) => (
+                    <div key={i} className="db-ftp-image-card">
+                      <img src={url} alt={`Page image ${i + 1}`} />
+                      <div className="db-ftp-image-url" title={url}>
+                        {url.split('/').pop()}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="db-ftp-empty">
+                  No FTP images found. Images will appear here after pipeline generates and uploads them.
+                </div>
+              )}
             </div>
           </div>
 

@@ -1,35 +1,35 @@
 {
   "hero": {
-    "eyebrow": "The architecture behind multimodal AI",
+    "eyebrow": "The architecture of grounded perception",
     "h1": {
-      "h1-text": "Multimodal AI: what it is,",
-      "span": "and how I build it"
+      "h1-text": "What is multimodal AI? How models combine text, images, and audio,",
+      "span": "and why it matters"
     },
-    "hero-sub": "Multimodal AI processes text, images, and audio together in a single model, producing grounded answers that understand context across formats. I design and build production multimodal systems: data alignment, fusion layers, training pipelines, and deployment for real-world use cases.",
+    "hero-sub": "Multimodal AI is the architecture that enables models to process and reason across text, images, and audio simultaneously\u2014instead of treating each modality in isolation. I design and build production multimodal systems: data fusion, cross-modal retrieval, generation, and integration.",
     "creds": [
       {
         "cred": {
           "i": "Experience",
-          "b": "3+ yrs multimodal AI"
+          "b": "5+ yrs multimodal AI"
         }
       },
       {
         "cred": {
           "i": "Outcome",
-          "b": "80% better accuracy"
+          "b": "70% better context accuracy"
         }
       },
       {
         "cred": {
           "i": "Turnaround",
-          "b": "48h prototype"
+          "b": "48h feasibility spec"
         }
       }
     ],
     "hero-cta": [
       {
         "btn-primary": {
-          "text": "Talk to an AI developer",
+          "text": "Talk to a multimodal engineer",
           "url": "#lets-talk"
         }
       },
@@ -40,19 +40,19 @@
         }
       }
     ],
-    "live": "Every modality traces to a source, guardrails built in from day one",
+    "live": "Every modality is aligned and grounded, safety built in from day one.",
     "trust": [
       {
-        "b": "3+",
+        "b": "5+",
         "span": "Years building multimodal AI"
       },
       {
-        "b": "80%",
-        "span": "Accuracy improvement"
+        "b": "70%",
+        "span": "Improved context accuracy"
       },
       {
         "b": "48h",
-        "span": "From concept to prototype"
+        "span": "From concept to spec"
       }
     ]
   }

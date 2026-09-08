@@ -1,95 +1,93 @@
 {
   "comparison": {
-    ",": {
-      "sec-head": {
-        "eyebrow": "The breakdown",
-        "h2": "Multimodal AI architectures compared",
-        "p": "These approaches can be combined: a multimodal fusion model for rich understanding, grounded by RAG for external knowledge."
-      },
-      "tablewrap": {
-        "thead": [
-          "Factor",
-          "Unimodal AI",
-          "Multimodal AI",
-          "Multimodal with RAG"
-        ],
-        "tbody": [
-          {
-            "th": "Knowledge source",
-            "td": [
-              "Single modality (e.g., text only)",
-              "Multiple modalities fused (text, image, audio)",
-              "Multiple modalities plus live retrievable content"
-            ]
-          },
-          {
-            "th": "Update process",
-            "td": [
-              "Requires retraining on new data",
-              "Requires retraining on multimodal examples",
-              "Add or update documents, no retraining needed"
-            ]
-          },
-          {
-            "th": "Best for",
-            "td": [
-              "Simple, single\u2011input tasks",
-              "Rich, cross\u2011modal understanding (e.g., vision\u2011language)",
-              "Domain\u2011specific multimodal tasks with private data"
-            ]
-          },
-          {
-            "th": "Traceability",
-            "td": [
-              "No source citation",
-              "No source citation",
-              "Can cite exact source document"
-            ]
-          }
-        ]
-      }
+    "sec-head": {
+      "eyebrow": "The decision",
+      "h2": "Multimodal vs unimodal vs hybrid",
+      "p": "Many production systems combine unimodal, multimodal, and hybrid architectures depending on input types and task requirements."
+    },
+    "tablewrap": {
+      "thead": [
+        "Factor",
+        "Unimodal AI",
+        "Multimodal AI",
+        "Hybrid Multimodal"
+      ],
+      "tbody": [
+        {
+          "th": "Knowledge source",
+          "td": [
+            "Single modality (e.g., text only)",
+            "Multiple modalities (text, image, audio) jointly",
+            "Separate models per modality, combined later"
+          ]
+        },
+        {
+          "th": "Update process",
+          "td": [
+            "Retrain on new data of the same modality",
+            "Retrain on multimodal datasets",
+            "Update individual modality models independently"
+          ]
+        },
+        {
+          "th": "Best for",
+          "td": [
+            "Tasks with a single input type",
+            "Tasks requiring joint understanding of multiple inputs",
+            "Flexible handling of varied input combinations"
+          ]
+        },
+        {
+          "th": "Traceability",
+          "td": [
+            "No cross-modal citation",
+            "Can attribute outputs to specific modalities",
+            "Partial traceability per modality"
+          ]
+        }
+      ]
     }
   },
   "services": {
     "sec-head": {
       "eyebrow": "What I build",
       "h2": "Multimodal AI services",
-      "p": "Each layer of a production multimodal pipeline, built and tested as its own verifiable stage."
+      "p": "Each stage of a multimodal AI pipeline, built and tested as its own verifiable module."
     },
     "grid g3": [
       {
         "card": {
           "n": "BUILD",
-          "h3": "Data fusion & preprocessing",
-          "p": "Building pipelines to ingest, align, and preprocess text, image, and audio data. This step determines the ceiling on multimodal model performance."
+          "h3": "Multimodal data ingestion",
+          "p": "Building the pipeline that ingests and preprocesses text, images, and audio from your sources into aligned, tokenized representations. This step defines the quality ceiling for all downstream tasks."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Multimodal model architecture",
-          "p": "Selecting and configuring the right fusion approach (early, late, or hybrid) and backbone models (CLIP, LLaVA, Whisper) for your use case and latency requirements."
+          "h3": "Multimodal embedding & indexing",
+          "p": "Selecting and configuring embedding models (CLIP, ImageBind, Whisper) and vector stores to index multimodal data in a unified space for cross-modal retrieval."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Retrieval augmentation for multimodal",
-          "p": "Building a retrieval layer that indexes images, transcripts, and documents, enabling the model to ground its outputs in verified external sources."
+          "h3": "Cross-modal retrieval",
+          "p": "Building retrieval that queries across modalities using hybrid search (text\u2192image, audio\u2192text) with metadata filtering and reranking to maximize relevance."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Generation & grounding",
-          "p": "Configuring the generation layer with grounding constraints, confidence thresholds, and defensive fallback so the system says 'I do not know' instead of hallucinating."
+          "h3": "Multimodal generation & grounding",
+          "p": "Configuring generation with grounded constraints, confidence thresholds, and fallback behavior so the model says 'I do not know' instead of hallucinating across modalities."
         }
       },
       {
         "card": {
           "n": "EVALUATE",
           "h3": "Multimodal evaluation",
-          "p": "Testing cross\u2011modal reasoning, retrieval quality, and generation fidelity using benchmarks (e.g., MMLU, VQA) and your real queries, with transparent results."
+          "p": "Testing retrieval and generation quality against real multimodal queries using custom metrics (modality alignment, cross-modal consistency) with transparent results before launch."
         }
       },
       {

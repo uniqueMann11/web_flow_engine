@@ -1,216 +1,401 @@
 <style>
-  .viewer, .viewer * { box-sizing: border-box; }
-  .viewer { width: 100%; max-width: 520px; margin: 0 auto; font-family: var(--bodyf); }
-  .viewer .vw-card {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--r);
-    box-shadow: var(--sh-md);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-  .viewer .vw-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--line-soft);
-    background: var(--surface);
-  }
-  .viewer .vw-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--disp);
-    font-size: 0.92rem;
-    font-weight: 800;
-    color: var(--ink);
-    letter-spacing: -0.01em;
-  }
-  .viewer .vw-title svg { width: 16px; height: 16px; color: var(--blue); flex-shrink: 0; }
-  .viewer .vw-chip {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    font-weight: 600;
-    color: var(--mint-deep);
-    background: var(--mint-tint);
-    border: 1px solid rgba(15, 169, 104, 0.25);
-    padding: 3px 10px;
-    border-radius: 999px;
-    white-space: nowrap;
-    letter-spacing: 0.02em;
-  }
-  .viewer .vw-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 13px; }
-  .viewer .vw-def { margin: 0; font-size: 0.8rem; line-height: 1.6; color: var(--body); }
-  .viewer .vw-def strong { color: var(--ink); font-weight: 700; }
-  .viewer .vw-mod-label,
-  .viewer .vw-uses-lbl {
-    font-family: var(--mono);
-    font-size: 0.58rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-  }
-  .viewer .vw-mod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .viewer .vw-mod {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    padding: 10px 6px 9px;
-    background: var(--soft);
-    border: 1px solid var(--line);
-    border-radius: var(--r-sm);
-    cursor: pointer;
-    font-family: var(--bodyf);
-    transition: all 0.18s ease;
-  }
-  .viewer .vw-mod:hover { border-color: var(--blue); background: var(--blue-tint); }
-  .viewer .vw-mod.active { background: var(--blue-tint); border-color: var(--blue); box-shadow: var(--sh-sm); }
-  .viewer .vw-mod svg { width: 18px; height: 18px; color: var(--muted); transition: color 0.18s; }
-  .viewer .vw-mod.active svg { color: var(--blue); }
-  .viewer .vw-mod-name { font-size: 0.72rem; font-weight: 700; color: var(--ink); }
-  .viewer .vw-mod-sub { font-family: var(--mono); font-size: 0.56rem; color: var(--muted); transition: color 0.18s; }
-  .viewer .vw-mod.active .vw-mod-sub { color: var(--blue); }
-  .viewer .vw-fuse {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px 12px;
-    background: var(--violet-tint);
-    border: 1px dashed var(--violet);
-    border-radius: var(--r-sm);
-  }
-  .viewer .vw-fuse svg { width: 16px; height: 16px; color: var(--violet); flex-shrink: 0; }
-  .viewer .vw-fuse-title { font-family: var(--disp); font-size: 0.7rem; font-weight: 800; color: var(--violet); line-height: 1.2; }
-  .viewer .vw-fuse-sub { font-family: var(--mono); font-size: 0.58rem; color: var(--violet); opacity: 0.85; line-height: 1.3; }
-  .viewer .vw-fuse-dot { margin-left: auto; width: 8px; height: 8px; border-radius: 50%; background: var(--violet); animation: vwPulse 1.6s ease-in-out infinite; flex-shrink: 0; }
-  .viewer .vw-out { background: var(--soft); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 12px 13px; display: flex; flex-direction: column; gap: 8px; min-height: 124px; }
-  .viewer .vw-out-hdr { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-family: var(--mono); font-size: 0.56rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-  .viewer .vw-out-chip { font-size: 0.54rem; font-weight: 600; letter-spacing: 0; text-transform: none; padding: 2px 8px; border-radius: 999px; background: var(--tint); color: var(--blue); border: 1px solid var(--line); white-space: nowrap; }
-  .viewer .vw-out-title { font-family: var(--disp); font-size: 0.78rem; font-weight: 800; color: var(--ink); line-height: 1.3; }
-  .viewer .vw-out-lines { display: flex; flex-direction: column; gap: 5px; }
-  .viewer .vw-out-line { display: flex; align-items: flex-start; gap: 8px; font-family: var(--mono); font-size: 0.64rem; line-height: 1.55; color: var(--body); }
-  .viewer .vw-tag { font-family: var(--mono); font-size: 0.52rem; font-weight: 700; letter-spacing: 0.05em; padding: 2px 6px; border-radius: 5px; flex-shrink: 0; text-transform: uppercase; }
-  .viewer .vw-tag-align { background: var(--violet-tint); color: var(--violet); }
-  .viewer .vw-tag-reason { background: var(--blue-tint); color: var(--blue); }
-  .viewer .vw-tag-result { background: var(--mint-tint); color: var(--mint-deep); }
-  .viewer .vw-tag-input { background: var(--line-soft); color: var(--muted); }
-  .viewer .vw-tag-state { background: var(--amber-tint); color: var(--amber); }
-  .viewer .vw-uses { display: flex; flex-direction: column; gap: 7px; }
-  .viewer .vw-uses-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-  .viewer .vw-use {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    font-weight: 600;
-    color: var(--body);
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 7px 6px;
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.15s ease;
-    white-space: nowrap;
-  }
-  .viewer .vw-use:hover { border-color: var(--blue); color: var(--blue); }
-  .viewer .vw-use.active { background: var(--blue-tint); border-color: var(--blue); color: var(--blue-strong); box-shadow: var(--sh-sm); }
-  .viewer .vw-foot {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    padding: 10px 18px;
-    border-top: 1px solid var(--line-soft);
-    background: var(--soft);
-    font-family: var(--mono);
-    font-size: 0.56rem;
-    color: var(--muted);
-    letter-spacing: 0.01em;
-  }
-  .viewer button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-  @keyframes vwPulse {
-    0%, 100% { box-shadow: 0 0 0 3px rgba(109, 94, 246, 0.18); }
-    50% { box-shadow: 0 0 0 6px rgba(109, 94, 246, 0.06); }
-  }
-  @media (max-width: 380px) {
-    .viewer .vw-top { padding: 12px; }
-    .viewer .vw-body { padding: 13px 12px 15px; }
-    .viewer .vw-foot { flex-direction: column; align-items: flex-start; gap: 3px; padding: 10px 12px; }
-    .viewer .vw-mod-sub { display: none; }
-    .viewer .vw-out-chip { display: none; }
-  }
+.viewer {
+  width: 100%;
+  max-width: 520px;
+  box-sizing: border-box;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--sh-md);
+  overflow: hidden;
+  font-family: var(--bodyf);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+.viewer *, .viewer *::before, .viewer *::after { box-sizing: border-box; }
+
+.viewer .vw-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 16px;
+  background: var(--soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+.viewer .vw-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.viewer .vw-brand {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--disp);
+  font-size: .84rem;
+  font-weight: 800;
+  letter-spacing: .01em;
+  color: var(--ink);
+}
+.viewer .vw-brand svg {
+  width: 16px;
+  height: 16px;
+  color: var(--blue);
+  flex: 0 0 auto;
+}
+.viewer .vw-sub {
+  font-size: .64rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: .01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.viewer .vw-tag {
+  font-family: var(--mono);
+  font-size: .6rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--blue-strong);
+  background: var(--blue-tint);
+  border: 1px solid var(--line);
+  padding: 4px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.viewer .vw-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 14px 16px 0;
+}
+.viewer .vw-tab {
+  font-family: var(--bodyf);
+  font-size: .72rem;
+  font-weight: 650;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 6px;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color .18s ease, color .18s ease, background .18s ease, box-shadow .18s ease;
+}
+.viewer .vw-tab:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+.viewer .vw-tab.active {
+  color: var(--surface);
+  background: var(--blue);
+  border-color: var(--blue);
+  box-shadow: var(--sh-sm);
+}
+
+.viewer .vw-ctx {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 16px 14px;
+}
+.viewer .vw-ctx-label {
+  font-family: var(--mono);
+  font-size: .58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.viewer .vw-ctx-desc {
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-align: right;
+  line-height: 1.35;
+}
+
+.viewer .vw-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 16px 14px;
+}
+
+.viewer .vw-fw {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  box-shadow: var(--sh-sm);
+}
+.viewer .vw-fw-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 9px 10px;
+  font-family: var(--disp);
+  font-size: .72rem;
+  font-weight: 800;
+}
+.viewer .vw-fw-head.lc { background: var(--mint-tint); color: var(--mint-deep); }
+.viewer .vw-fw-head.li { background: var(--violet-tint); color: var(--violet); }
+.viewer .vw-fw-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.viewer .vw-fw-name .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+.viewer .vw-fw-head.lc .dot { background: var(--mint); }
+.viewer .vw-fw-head.li .dot { background: var(--violet); }
+.viewer .vw-fw-tag {
+  font-family: var(--mono);
+  font-size: .56rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  opacity: .8;
+  white-space: nowrap;
+}
+
+.viewer .vw-score-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 10px 7px;
+}
+.viewer .vw-score-num {
+  font-family: var(--disp);
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1;
+  min-width: 28px;
+}
+.viewer .vw-score-track {
+  flex: 1;
+  height: 6px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.viewer .vw-score-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width .35s ease;
+}
+.viewer .vw-score-fill.lc { background: var(--mint); }
+.viewer .vw-score-fill.li { background: var(--violet); }
+
+.viewer .vw-metric {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 8px 6px;
+  padding: 6px 8px;
+  background: var(--soft);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.viewer .vw-metric:hover {
+  background: var(--surface);
+  border-color: var(--line);
+}
+.viewer .vw-metric.active {
+  background: var(--tint);
+  border-color: var(--blue);
+  box-shadow: inset 0 0 0 1px var(--blue);
+}
+.viewer .vw-metric .k {
+  font-size: .66rem;
+  font-weight: 650;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.viewer .vw-metric .v {
+  font-family: var(--mono);
+  font-size: .68rem;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  text-align: right;
+}
+.viewer .vw-metric.active .v { color: var(--blue-strong); }
+
+.viewer .vw-arch {
+  margin: 2px 8px 10px;
+  padding: 6px 8px;
+  font-family: var(--mono);
+  font-size: .58rem;
+  line-height: 1.5;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+}
+
+.viewer .vw-verdict {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px 16px 14px;
+  background: var(--soft);
+  border-top: 1px solid var(--line);
+}
+.viewer .vw-winner {
+  align-self: flex-start;
+  font-family: var(--mono);
+  font-size: .62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--line-soft);
+  color: var(--ink-soft);
+  transition: background .2s ease, color .2s ease;
+}
+.viewer .vw-winner.on-lc { background: var(--mint-tint); color: var(--mint-deep); }
+.viewer .vw-winner.on-li { background: var(--violet-tint); color: var(--violet); }
+.viewer .vw-winner.on-draw { background: var(--amber-tint); color: var(--amber); }
+.viewer .vw-vtxt {
+  font-size: .74rem;
+  font-weight: 650;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+.viewer .vw-note {
+  font-size: .68rem;
+  color: var(--muted);
+  line-height: 1.45;
+  border-top: 1px dashed var(--line);
+  padding-top: 6px;
+}
+
+@media (max-width: 380px) {
+  .viewer .vw-grid { gap: 8px; padding-left: 10px; padding-right: 10px; }
+  .viewer .vw-tabs { padding-left: 10px; padding-right: 10px; gap: 4px; }
+  .viewer .vw-ctx { padding-left: 12px; padding-right: 12px; }
+  .viewer .vw-metric { margin: 0 4px 6px; padding: 5px 6px; }
+  .viewer .vw-metric .k { font-size: .6rem; }
+  .viewer .vw-metric .v { font-size: .62rem; }
+  .viewer .vw-arch { margin-left: 4px; margin-right: 4px; font-size: .56rem; }
+  .viewer .vw-score-row { padding-left: 6px; padding-right: 6px; }
+  .viewer .vw-verdict { padding: 10px 12px 12px; }
+}
 </style>
 
 <div class="viewer">
-  <div class="vw-card">
-    <div class="vw-top">
-      <div class="vw-title">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 8 4-8 4-8-4 8-4z"/><path d="m4 12 8 4 8-4"/><path d="m4 18 8 4 8-4"/></svg>
-        What Is Multimodal AI?
-      </div>
-      <span class="vw-chip">Definition</span>
+  <div class="vw-top">
+    <div class="vw-titles">
+      <span class="vw-brand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="6" y1="20" x2="6" y2="10"></line>
+          <line x1="12" y1="20" x2="12" y2="4"></line>
+          <line x1="18" y1="20" x2="18" y2="14"></line>
+        </svg>
+        Framework Bench
+      </span>
+      <span class="vw-sub">LangChain vs LlamaIndex · engineering reality</span>
     </div>
+    <span class="vw-tag">2026</span>
+  </div>
 
-    <div class="vw-body">
-      <p class="vw-def">
-        A single AI system that <strong>processes and combines</strong> multiple data types — text, image, and audio — inside one shared model. Toggle the inputs below to see how each modality changes understanding.
-      </p>
+  <div class="vw-tabs" role="tablist">
+    <button class="vw-tab active" data-scenario="rag" role="tab">RAG Pipeline</button>
+    <button class="vw-tab" data-scenario="agent" role="tab">Agent Graph</button>
+    <button class="vw-tab" data-scenario="hybrid" role="tab">Hybrid Stack</button>
+  </div>
 
-      <div class="vw-mod-label">Toggle input modalities</div>
-      <div class="vw-mod-grid">
-        <button class="vw-mod active" data-mod="text" type="button" aria-pressed="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h10"/><path d="M4 18h7"/></svg>
-          <span class="vw-mod-name">Text</span>
-          <span class="vw-mod-sub">tokens</span>
-        </button>
-        <button class="vw-mod active" data-mod="image" type="button" aria-pressed="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.5-3.5L6 21"/></svg>
-          <span class="vw-mod-name">Image</span>
-          <span class="vw-mod-sub">patches</span>
-        </button>
-        <button class="vw-mod active" data-mod="audio" type="button" aria-pressed="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
-          <span class="vw-mod-name">Audio</span>
-          <span class="vw-mod-sub">waveform</span>
-        </button>
+  <div class="vw-ctx">
+    <span class="vw-ctx-label">Scenario</span>
+    <span class="vw-ctx-desc" id="ctxDesc">10k docs · vector index · one shot answer</span>
+  </div>
+
+  <div class="vw-grid">
+    <div class="vw-fw">
+      <div class="vw-fw-head lc">
+        <span class="vw-fw-name"><span class="dot"></span>LangChain</span>
+        <span class="vw-fw-tag">langgraph</span>
       </div>
-
-      <div class="vw-fuse">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/></svg>
-        <div>
-          <div class="vw-fuse-title">Fusion Layer</div>
-          <div class="vw-fuse-sub" id="vwFuseText">Aligning 3/3 encoder outputs into one space</div>
-        </div>
-        <span class="vw-fuse-dot"></span>
-      </div>
-
-      <div class="vw-out">
-        <div class="vw-out-hdr">
-          <span>Model output</span>
-          <span class="vw-out-chip" id="vwOutChip">3/3 modalities</span>
-        </div>
-        <div class="vw-out-title" id="vwOutTitle">Full multimodal fusion</div>
-        <div class="vw-out-lines" id="vwOutLines"></div>
-      </div>
-
-      <div class="vw-uses">
-        <span class="vw-uses-lbl">Try a real-ild use case</span>
-        <div class="vw-uses-row">
-          <button class="vw-use active" data-combo="text+image+audio" type="button" aria-pressed="true">Video QA</button>
-          <button class="vw-use" data-combo="text+image" type="button" aria-pressed="false">Captioning</button>
-          <button class="vw-use" data-combo="text+audio" type="button" aria-pressed="false">Voice Assist</button>
+      <div class="vw-score-row">
+        <span class="vw-score-num" id="lcScore">74</span>
+        <div class="vw-score-track">
+          <div class="vw-score-fill lc" id="lcScoreFill" style="width:74%"></div>
         </div>
       </div>
+      <div class="vw-metric" data-metric="latency">
+        <span class="k">Latency</span>
+        <span class="v" id="lcLatency">218 ms</span>
+      </div>
+      <div class="vw-metric" data-metric="memory">
+        <span class="k">Memory</span>
+        <span class="v" id="lcMemory">840 MB</span>
+      </div>
+      <div class="vw-metric" data-metric="code">
+        <span class="k">Code to ship</span>
+        <span class="v" id="lcCode">92 loc</span>
+      </div>
+      <div class="vw-metric" data-metric="retrieval">
+        <span class="k">P50 retrieval</span>
+        <span class="v" id="lcRetrieval">64 ms</span>
+      </div>
+      <div class="vw-arch" id="lcArch">Retriever → LCEL chain → LLM</div>
     </div>
 
-    <div class="vw-foot">
-      <span>joint embedding · cross-modal attention</span>
-      <span>GPT-4V · Gemini · LLaVA</span>
+    <div class="vw-fw">
+      <div class="vw-fw-head li">
+        <span class="vw-fw-name"><span class="dot"></span>LlamaIndex</span>
+        <span class="vw-fw-tag">lindex</span>
+      </div>
+      <div class="vw-score-row">
+        <span class="vw-score-num" id="liScore">92</span>
+        <div class="vw-score-track">
+          <div class="vw-score-fill li" id="liScoreFill" style="width:92%"></div>
+        </div>
+      </div>
+      <div class="vw-metric" data-metric="latency">
+        <span class="k">Latency</span>
+        <span class="v" id="liLatency">112 ms</span>
+      </div>
+      <div class="vw-metric" data-metric="memory">
+        <span class="k">Memory</span>
+        <span class="v" id="liMemory">410 MB</span>
+      </div>
+      <div class="vw-metric" data-metric="code">
+        <span class="k">Code to ship</span>
+        <span class="v" id="liCode">41 loc</span>
+      </div>
+      <div class="vw-metric" data-metric="retrieval">
+        <span class="k">P50 retrieval</span>
+        <span class="v" id="liRetrieval">28 ms</span>
+      </div>
+      <div class="vw-arch" id="liArch">VectorStoreIndex → query_engine</div>
     </div>
+  </div>
+
+  <div class="vw-verdict">
+    <span class="vw-winner on-li" id="winnerBadge">Winner: LlamaIndex</span>
+    <p class="vw-vtxt" id="verdictTxt">LlamaIndex wins on retrieval-first RAG: faster lookups, half the memory, less glue code.</p>
+    <p class="vw-note" id="noteTxt">Tap any metric to compare that layer across frameworks.</p>
   </div>
 </div>
 
@@ -220,147 +405,140 @@
     var root = document.querySelector('.viewer');
     if (!root) return;
 
-    var modBtns = root.querySelectorAll('.vw-mod');
-    var useBtns = root.querySelectorAll('.vw-use');
-    var fuseText = root.querySelector('#vwFuseText');
-    var outChip = root.querySelector('#vwOutChip');
-    var outTitle = root.querySelector('#vwOutTitle');
-    var outLines = root.querySelector('#vwOutLines');
+    function setText(id, text) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = text;
+    }
+    function setWidth(id, pct) {
+      var el = document.getElementById(id);
+      if (el) el.style.width = pct + '%';
+    }
 
-    if (!fuseText || !outChip || !outTitle || !outLines) return;
-
-    var state = { text: true, image: true, audio: true };
-
-    var outputs = {
-      none: {
-        title: 'No input — model idle',
-        chip: '0/3 modalities',
-        lines: [
-          ['state', 'Select at least one modality to see multimodal understanding in action.']
-        ]
+    var DATA = {
+      rag: {
+        desc: '10k docs · vector index · one shot answer',
+        lc: { lat: '218 ms', mem: '840 MB', code: '92 loc', ret: '64 ms', score: 74, arch: 'Retriever → LCEL chain → LLM' },
+        li: { lat: '112 ms', mem: '410 MB', code: '41 loc', ret: '28 ms', score: 92, arch: 'VectorStoreIndex → query_engine' },
+        verdict: 'LlamaIndex wins on retrieval-first RAG: faster lookups, half the memory, less glue code.',
+        winner: 'li',
+        notes: {
+          latency: 'LlamaIndex answers 48% faster on a 10k-doc corpus.',
+          memory: 'LlamaIndex holds at 410 MB vs 840 MB — 51% leaner runtime.',
+          code: 'LlamaIndex ships with 41 loc vs LangChain\u2019s 92 loc.',
+          retrieval: 'P50 lookup is 28 ms vs 64 ms — hierarchical index is 2.3x faster.'
+        }
       },
-      text: {
-        title: 'Text-only understanding',
-        chip: '1/3 modalities',
-        lines: [
-          ['input', 'Text tokens are streamed into the language encoder.'],
-          ['reason', 'Self-attention parses grammar, entities, and facts.'],
-          ['result', 'The model extracts meaning from words alone, with no visual or audio context.']
-        ]
+      agent: {
+        desc: 'plan → tool call → reflect → final answer',
+        lc: { lat: '1.6 s', mem: '1.9 GB', code: '310 loc', ret: '42 ms', score: 95, arch: 'StateGraph: add_node → add_edge → compile' },
+        li: { lat: '2.4 s', mem: '2.2 GB', code: '245 loc', ret: '45 ms', score: 58, arch: 'AgentRunner + FunctionTool loop' },
+        verdict: 'LangGraph dominates stateful multi-step agents — native graph state machine beats a hand-rolled loop.',
+        winner: 'lc',
+        notes: {
+          latency: 'LangGraph finishes the full agent loop 33% sooner.',
+          memory: 'LangChain keeps ~300 MB extra headroom in long-running sessions.',
+          code: 'LlamaIndex writes fewer lines but hand-rolls all state transitions.',
+          retrieval: 'Retrieval times are nearly tied; orchestration overhead is the real cost.'
+        }
       },
-      image: {
-        title: 'Vision-only perception',
-        chip: '1/3 modalities',
-        lines: [
-          ['input', 'Image patches are fed to the vision encoder.'],
-          ['reason', 'The encoder detects edges, objects, and spatial layout.'],
-          ['result', 'Structure is perceived, but labels and sounds remain unknown without text or audio.']
-        ]
-      },
-      audio: {
-        title: 'Audio-only listening',
-        chip: '1/3 modalities',
-        lines: [
-          ['input', 'The audio waveform is converted into spectrogram features.'],
-          ['reason', 'The encoder isolates speech, pitch, and background sounds.'],
-          ['result', 'Patterns are recognized, yet no semantic names or visual grounding exist.']
-        ]
-      },
-      'text+image': {
-        title: 'Vision-language alignment',
-        chip: '2/3 modalities',
-        lines: [
-          ['align', 'Text tokens and image patches are mapped into one shared embedding space.'],
-          ['reason', 'Cross-modal attention links words like "dog" to specific regions of the image.'],
-          ['result', 'Enables captioning, visual QA, and zero-shot object recognition.']
-        ]
-      },
-      'text+audio': {
-        title: 'Speech-text fusion',
-        chip: '2/3 modalities',
-        lines: [
-          ['align', 'Audio features and text tokens are aligned in a single encoder.'],
-          ['reason', 'The model connects words to sounds and understands spoken intent.'],
-          ['result', 'Powers voice assistants, transcription, and audio-grounded chat.']
-        ]
-      },
-      'image+audio': {
-        title: 'Audiovisual binding',
-        chip: '2/3 modalities',
-        lines: [
-          ['align', 'Vision patches and audio spectrograms share the same latent space.'],
-          ['reason', 'Objects and sounds that co-occur are bound into joint concepts.'],
-          ['result', 'The model links a barking sound to a dog image, without any text.']
-        ]
-      },
-      'text+image+audio': {
-        title: 'Full multimodal fusion',
-        chip: '3/3 modalities',
-        lines: [
-          ['align', 'Three encoders project text, vision, and audio into one joint embedding space.'],
-          ['reason', 'The fusion layer learns pairwise alignments and resolves cross-modal conflict.'],
-          ['result', 'Rich grounding: who said what, where, and with what emotion. Enables video QA and rich captions.']
-        ]
+      hybrid: {
+        desc: 'production: both frameworks in one pipeline',
+        lc: { lat: '145 ms', mem: '1.1 GB', code: '180 loc', ret: '30 ms', score: 88, arch: 'LangGraph orchestrates · LlamaIndex retrieves' },
+        li: { lat: '134 ms', mem: '1.0 GB', code: '170 loc', ret: '29 ms', score: 86, arch: 'LlamaIndex core + LangChain callbacks' },
+        verdict: 'Toss-up. In 2026 the architecture pattern matters more than framework choice.',
+        winner: 'draw',
+        notes: {
+          latency: 'LlamaIndex shaves 11 ms — inside noise on production hardware.',
+          memory: 'LlamaIndex keeps about 100 MB more headroom.',
+          code: 'Neck and neck: 170 vs 180 lines of delivery code.',
+          retrieval: 'Only 1 ms apart here — the stack glue between them dominates.'
+        }
       }
     };
 
-    function comboKey() {
-      var parts = [];
-      if (state.text) parts.push('text');
-      if (state.image) parts.push('image');
-      if (state.audio) parts.push('audio');
-      return parts.join('+') || 'none';
-    }
+    var scenario = 'rag';
+    var activeMetric = null;
+    var tabs = root.querySelectorAll('.vw-tab');
+    var metrics = root.querySelectorAll('.vw-metric');
 
-    function setCombo(combo) {
-      state.text = combo.indexOf('text') !== -1;
-      state.image = combo.indexOf('image') !== -1;
-      state.audio = combo.indexOf('audio') !== -1;
+    function clearActiveMetric() {
+      root.querySelectorAll('.vw-metric.active').forEach(function (el) {
+        el.classList.remove('active');
+      });
     }
 
     function render() {
-      modBtns.forEach(function (btn) {
-        var mod = btn.getAttribute('data-mod');
-        var active = !!state[mod];
-        btn.classList.toggle('active', active);
-        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-      });
+      var s = DATA[scenario];
+      if (!s) return;
 
-      var count = (state.text ? 1 : 0) + (state.image ? 1 : 0) + (state.audio ? 1 : 0);
-      fuseText.textContent = count === 0
-        ? 'Waiting for input modalities'
-        : 'Aligning ' + count + '/3 encoder outputs into one space';
+      setText('ctxDesc', s.desc);
 
-      var key = comboKey();
-      var data = outputs[key] || outputs.none;
+      setText('lcScore', s.lc.score);
+      setWidth('lcScoreFill', s.lc.score);
+      setText('lcLatency', s.lc.lat);
+      setText('lcMemory', s.lc.mem);
+      setText('lcCode', s.lc.code);
+      setText('lcRetrieval', s.lc.ret);
+      setText('lcArch', s.lc.arch);
 
-      outChip.textContent = data.chip;
-      outTitle.textContent = data.title;
-      outLines.innerHTML = data.lines.map(function (line) {
-        return '<div class="vw-out-line"><span class="vw-tag vw-tag-' + line[0] + '">' + line[0] + '</span><span>' + line[1] + '</span></div>';
-      }).join('');
+      setText('liScore', s.li.score);
+      setWidth('liScoreFill', s.li.score);
+      setText('liLatency', s.li.lat);
+      setText('liMemory', s.li.mem);
+      setText('liCode', s.li.code);
+      setText('liRetrieval', s.li.ret);
+      setText('liArch', s.li.arch);
 
-      useBtns.forEach(function (btn) {
-        var combo = btn.getAttribute('data-combo');
-        var active = combo === key;
-        btn.classList.toggle('active', active);
-        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-      });
+      setText('verdictTxt', s.verdict);
+
+      var badge = document.getElementById('winnerBadge');
+      if (badge) {
+        badge.className = 'vw-winner';
+        if (s.winner === 'lc') {
+          badge.classList.add('on-lc');
+          badge.textContent = 'Winner: LangChain';
+        } else if (s.winner === 'li') {
+          badge.classList.add('on-li');
+          badge.textContent = 'Winner: LlamaIndex';
+        } else {
+          badge.classList.add('on-draw');
+          badge.textContent = 'Toss-up';
+        }
+      }
+
+      activeMetric = null;
+      clearActiveMetric();
+      setText('noteTxt', 'Tap any metric to compare that layer across frameworks.');
     }
 
-    modBtns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var mod = btn.getAttribute('data-mod');
-        state[mod] = !state[mod];
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(function (t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        scenario = tab.dataset.scenario;
         render();
       });
     });
 
-    useBtns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var combo = btn.getAttribute('data-combo');
-        setCombo(combo);
-        render();
+    metrics.forEach(function (met) {
+      met.addEventListener('click', function () {
+        var key = met.dataset.metric;
+        var s = DATA[scenario];
+        if (!key || !s || !s.notes[key]) return;
+
+        if (activeMetric === key) {
+          activeMetric = null;
+          clearActiveMetric();
+          setText('noteTxt', 'Tap any metric to compare that layer across frameworks.');
+          return;
+        }
+
+        clearActiveMetric();
+        activeMetric = key;
+        root.querySelectorAll('.vw-metric[data-metric="' + key + '"]').forEach(function (m) {
+          m.classList.add('active');
+        });
+        setText('noteTxt', s.notes[key]);
       });
     });
 

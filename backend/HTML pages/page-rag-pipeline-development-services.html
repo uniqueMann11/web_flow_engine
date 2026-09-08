@@ -11,7 +11,7 @@
 <meta content="website" property="og:type"/>
 <meta content="Shreyans Padmani" property="og:site_name"/>
 <meta content="en_US" property="og:locale"/>
-<meta content="RAG pipeline development goes beyond simple Q&amp;A: it requires building a complete end-to-end system from document ingestion, chunking, embedding, retrieval, to generation. I build these correctly—production-grade, not a fragile demo that breaks at the first real-world query." name="description"/>
+<meta content="RAG Pipeline Development Services: Full pipeline: ingest to answer." name="description"/>
 <meta content="RAG pipeline development, RAG build agency, retrieval pipeline" name="keywords"/>
 <link href="https://shreyans.tech/rag-pipeline-development-services" rel="canonical"/>
 <meta content="RAG Pipeline Development Services" property="og:title"/>
@@ -71,42 +71,42 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "What is the difference between LangChain and LangGraph?",
+          "name": "What is the difference between a simple RAG pipeline and a multi-hop RAG?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "LangChain is the broader framework providing composable building blocks. LangGraph is LangChain's graph-based agent framework, built for multi-step, stateful agent workflows with explicit control flow and checkpointing. For anything beyond a simple single-shot chain, LangGraph is the standard production approach."
+            "text": "A simple RAG pipeline retrieves documents for a single query and generates an answer. Multi-hop RAG breaks a complex question into sub-questions, retrieves iteratively, and synthesizes across multiple sources – ideal for domain-specific reasoning."
           }
         },
         {
           "@type": "Question",
-          "name": "Do I need a LangChain agency, or can a freelance consultant handle my project?",
+          "name": "Do I need a RAG build agency, or can a freelance consultant handle my project?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Most LangChain projects are well within scope for a single experienced developer. An agency's advantage becomes relevant when a project needs multiple specialists across disciplines working simultaneously on a larger product."
+            "text": "Most RAG pipeline development projects are well within scope for a single experienced developer. An agency's advantage becomes relevant when a project needs multiple specialists across disciplines working simultaneously on a larger product."
           }
         },
         {
           "@type": "Question",
-          "name": "How much do LangChain development services cost?",
+          "name": "How much does RAG pipeline development cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A single scoped tool or agent integration typically runs $2,000 to $6,000. A full agentic system ranges from $8,000 to $30,000+ depending on complexity. Hourly consulting runs $75 to $150/hr."
+            "text": "A single data source RAG pipeline typically runs $2,000 to $6,000. A full multi-source pipeline ranges from $8,000 to $30,000+ depending on complexity. Hourly consulting runs $75 to $150/hr."
           }
         },
         {
           "@type": "Question",
-          "name": "Is LangChain free to use?",
+          "name": "Is RAG free to use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, LangChain and LangGraph are open-source and free under the MIT license. LangSmith, LangChain's observability platform, has a free tier with paid plans starting around $39/month per seat."
+            "text": "RAG frameworks like LangChain and LlamaIndex are open-source and free under the MIT license. Embedding and LLM APIs incur costs based on usage, typically $0.10–$0.50 per 1M tokens for embeddings and $0.02–$0.10 per 1K tokens for generation."
           }
         },
         {
           "@type": "Question",
-          "name": "When should I NOT use LangChain?",
+          "name": "When should I NOT use RAG?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "If your use case is purely high-quality document retrieval with no agentic or multi-step behavior needed, LlamaIndex alone is often a simpler, lower-overhead choice. LangChain earns its complexity when you need tool use, state management, or multi-step reasoning."
+            "text": "If your data fits in a single prompt context (e.g., < 8K tokens) or your queries are purely factual with no need for grounding, a direct LLM call or a simple search may be faster and cheaper. RAG earns its complexity when you need to ground answers in large, dynamic corpora."
           }
         }
       ]
@@ -114,7 +114,8 @@
   ]
 }</script>
 <style>
-    :root, .svcp {
+    :root,
+    .svcp {
       --ink: #0A1222;
       --ink-soft: #1B2740;
       --body: #48566E;
@@ -1766,204 +1767,436 @@
       }
     }
   
-.vw-card {
+.viewer {
   width: 100%;
   max-width: 520px;
+  box-sizing: border-box;
+  margin: 0 auto;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--r);
-  box-shadow: var(--sh-md);
+  box-shadow: var(--sh-lg);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  font-family: var(--bodyf);
+  color: var(--ink);
+  text-align: left;
+}
+.viewer *,
+.viewer *::before,
+.viewer *::after {
   box-sizing: border-box;
 }
-.vw-top {
+.viewer .vw-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   padding: 14px 18px;
   border-bottom: 1px solid var(--line-soft);
-}
-.vw-top .t {
-  font-family: var(--disp);
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.vw-top .t svg { width: 18px; height: 18px; color: var(--blue); }
-.vw-chip {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  font-weight: 600;
-  padding: 3px 9px;
-  border-radius: 6px;
-  background: var(--mint-tint);
-  color: var(--mint);
-  border: 1px solid rgba(15, 169, 104, 0.25);
-  white-space: nowrap;
-}
-.vw-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; }
-.vw-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-.vw-tab-btn {
   background: var(--soft);
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-  padding: 8px 10px;
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: var(--muted);
-  cursor: pointer;
-  text-align: center;
-  transition: all 0.15s;
 }
-.vw-tab-btn:hover { border-color: var(--blue); color: var(--ink); }
-.vw-tab-btn.active { background: var(--tint); border-color: var(--blue); color: var(--blue); }
-
-.vw-pipeline {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.vw-step {
+.viewer .vw-head-l {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
-  border: 1px solid var(--line-soft);
-  border-radius: var(--r-sm);
-  cursor: pointer;
-  transition: all 0.15s;
-  background: var(--surface);
+  min-width: 0;
 }
-.vw-step:hover { border-color: var(--blue); background: var(--tint); }
-.vw-step.active { border-color: var(--blue); background: var(--tint); box-shadow: 0 0 0 1px var(--blue); }
-.vw-step-indicator {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
+.viewer .vw-logo {
+  width: 20px;
+  height: 20px;
+  color: var(--blue);
+  flex: none;
 }
-.vw-step-info { flex: 1; min-width: 0; }
-.vw-step-title {
+.viewer .vw-head-t {
   font-family: var(--disp);
-  font-size: 0.78rem;
-  font-weight: 600;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
   color: var(--ink);
-  line-height: 1.2;
-}
-.vw-step-desc {
-  font-size: 0.62rem;
-  color: var(--muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.vw-step-arrow { color: var(--line); transition: transform 0.15s; flex-shrink: 0; }
-.vw-step.active .vw-step-arrow { color: var(--blue); transform: rotate(0deg); }
-
-.vw-focus {
+.viewer .vw-run {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 118px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--blue);
+  background: var(--blue);
+  color: #ffffff;
+  font-family: var(--bodyf);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow: var(--sh-sm);
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, color 0.2s ease;
+  flex: none;
+}
+.viewer .vw-run:hover {
+  background: var(--blue-strong);
+  transform: translateY(-1px);
+  box-shadow: var(--sh-md);
+}
+.viewer .vw-run:active {
+  transform: translateY(0);
+}
+.viewer .vw-run.running {
+  background: var(--surface);
+  color: var(--blue);
+  box-shadow: none;
+}
+.viewer .vw-run.running:hover {
+  background: var(--blue-tint);
+}
+.viewer .vw-run-ic {
+  width: 11px;
+  height: 11px;
+  display: block;
+  flex: none;
+}
+.viewer .vw-run-stop {
+  display: none;
+}
+.viewer .vw-run.running .vw-run-play {
+  display: none;
+}
+.viewer .vw-run.running .vw-run-stop {
+  display: block;
+}
+.viewer .vw-body {
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.viewer .vw-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.viewer .vw-scenario-lbl {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.viewer .vw-seg {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.viewer .vw-seg-btn {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--bodyf);
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 6px 11px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+.viewer .vw-seg-btn:hover {
+  color: var(--ink);
+}
+.viewer .vw-seg-btn.active {
+  background: var(--surface);
+  color: var(--blue);
+  box-shadow: var(--sh-sm);
+}
+.viewer .vw-steps {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+.viewer .vw-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 4px 7px;
   background: var(--soft);
   border: 1px solid var(--line);
   border-radius: var(--r-sm);
-  padding: 12px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  min-height: 100px;
-  transition: min-height 0.2s;
+  cursor: pointer;
+  color: var(--muted);
+  font-family: var(--bodyf);
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, transform 0.15s ease;
 }
-.vw-focus-header {
+.viewer .vw-step:hover {
+  border-color: #c6d4ec;
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+.viewer .vw-step:active {
+  transform: scale(0.96);
+}
+.viewer .vw-step.active {
+  background: var(--acc-tint, var(--blue-tint));
+  border-color: var(--acc, var(--blue));
+  color: var(--acc, var(--blue));
+  box-shadow: 0 6px 16px -8px rgba(36, 86, 230, 0.35);
+}
+.viewer .vw-step::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -8px;
+  width: 8px;
+  height: 2px;
+  background: var(--line);
+  transform: translateY(-50%);
+}
+.viewer .vw-step:last-child::after {
+  display: none;
+}
+.viewer .vw-step-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  padding: 0 5px;
 }
-.vw-focus-title {
-  font-family: var(--disp);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--ink);
-}
-.vw-focus-badge {
+.viewer .vw-step-num {
   font-family: var(--mono);
-  font-size: 0.55rem;
-  padding: 2px 6px;
-  border-radius: 4px;
+  font-size: 0.5rem;
   font-weight: 600;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
 }
-.vw-focus-config {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4px 12px;
+.viewer .vw-step-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--acc, var(--line));
 }
-.vw-focus-config-item {
+.viewer .vw-step-ic {
+  width: 20px;
+  height: 20px;
   display: flex;
-  justify-content: space-between;
-  font-size: 0.65rem;
-  padding: 2px 0;
-  border-bottom: 1px solid var(--line-soft);
+  align-items: center;
+  justify-content: center;
 }
-.vw-focus-config-item span:first-child { color: var(--muted); }
-.vw-focus-config-item span:last-child { font-family: var(--mono); color: var(--ink); font-weight: 500; }
-.vw-focus-desc {
-  font-size: 0.68rem;
-  color: var(--body);
-  line-height: 1.4;
-  padding-top: 4px;
-  border-top: 1px solid var(--line-soft);
+.viewer .vw-step-ic svg {
+  width: 100%;
+  height: 100%;
 }
-
-.vw-metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-.vw-tile {
+.viewer .vw-step-lbl {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.viewer .vw-detail {
+  position: relative;
+  overflow: hidden;
+  padding: 14px 16px 14px;
   background: var(--soft);
-  border: 1px solid var(--line-soft);
+  border: 1px solid var(--line);
   border-radius: var(--r-sm);
-  padding: 8px 10px;
-  text-align: center;
 }
-.vw-tile-val {
+.viewer .vw-detail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--acc, var(--blue));
+}
+.viewer .vw-detail.vw-anim {
+  animation: vwFade 0.3s ease;
+}
+.viewer .vw-detail-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.viewer .vw-detail-name {
   font-family: var(--disp);
   font-size: 1rem;
   font-weight: 800;
+  letter-spacing: -0.01em;
   color: var(--ink);
 }
-.vw-tile-lbl {
+.viewer .vw-detail-tag {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--acc-tint, var(--blue-tint));
+  color: var(--acc, var(--blue));
+}
+.viewer .vw-detail-desc {
+  margin: 8px 0 0;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: var(--body);
+}
+.viewer .vw-kv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+.viewer .vw-kv {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 9px 11px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.viewer .vw-kv-lbl {
   font-family: var(--mono);
   font-size: 0.5rem;
-  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
+  color: var(--muted);
 }
-
-.vw-foot {
+.viewer .vw-kv-val {
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  overflow-wrap: break-word;
+}
+.viewer .vw-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 9px 11px;
+  background: var(--amber-tint);
+  border: 1px solid rgba(217, 122, 24, 0.2);
+  border-radius: 10px;
+}
+.viewer .vw-tip-ic {
+  width: 13px;
+  height: 13px;
+  flex: none;
+  color: var(--amber);
+  margin-top: 1px;
+}
+.viewer .vw-tip-text {
+  font-size: 0.67rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--amber);
+}
+.viewer .vw-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
   padding: 10px 18px;
   border-top: 1px solid var(--line-soft);
   background: var(--soft);
-  font-size: 0.62rem;
+  font-size: 0.66rem;
   color: var(--muted);
 }
-
+.viewer .vw-health {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 600;
+}
+.viewer .vw-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--mint);
+  box-shadow: 0 0 0 3px var(--mint-tint);
+  animation: vwPulse 2s ease-in-out infinite;
+}
+.viewer .vw-latency {
+  font-family: var(--mono);
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.viewer .vw-step:focus-visible,
+.viewer .vw-seg-btn:focus-visible,
+.viewer .vw-run:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+@keyframes vwPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 3px var(--mint-tint);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(15, 169, 104, 0.14);
+  }
+}
+@keyframes vwFade {
+  from {
+    opacity: 0.55;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 @media (max-width: 480px) {
-  .vw-body { padding: 12px 14px; }
-  .vw-top { padding: 12px 14px; }
-  .vw-top .t { font-size: 0.8rem; }
-  .vw-step { padding: 8px 10px; }
-  .vw-step-title { font-size: 0.7rem; }
-  .vw-step-desc { font-size: 0.55rem; }
-  .vw-focus { padding: 10px; min-height: 80px; }
-  .vw-focus-title { font-size: 0.7rem; }
-  .vw-focus-config-item { font-size: 0.6rem; }
-  .vw-tile-val { font-size: 0.85rem; }
+  .viewer .vw-head {
+    padding: 12px 14px;
+  }
+  .viewer .vw-body {
+    padding: 14px 14px 16px;
+  }
+  .viewer .vw-foot {
+    padding: 10px 14px;
+  }
+  .viewer .vw-steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .viewer .vw-step:nth-child(3n)::after {
+    display: none;
+  }
+}
+@media (max-width: 380px) {
+  .viewer .vw-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .viewer .vw-seg {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .viewer .vw-head-t {
+    font-size: 0.78rem;
+  }
+  .viewer .vw-run {
+    min-width: 0;
+    padding: 6px 11px;
+  }
 }
 </style>
-</head>
+<meta content="RAG Pipeline Development Services" name="twitter:title"/><meta content="RAG Pipeline Development Services: Full pipeline: ingest to answer." property="og:description"/><meta content="RAG Pipeline Development Services: Full pipeline: ingest to answer." name="twitter:description"/><meta content="https://shreyans.tech/uploads/dynamicpage/page-img-5b2ad1ac-5298-4594-86d0-4c0d9277f5b3.jpg" property="og:image"/></head>
 <body>
 <main class="svcp">
 <!-- ================= HERO ================= -->
@@ -1972,128 +2205,120 @@
 <div class="hero-grid">
 <div>
 <p class="eyebrow">Full pipeline: ingest to answer</p>
-<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">RAG pipeline development services: <span>production-grade ingest to answer</span></h1>
-<p class="hero-sub">RAG pipeline development goes beyond simple Q&amp;A: it requires building a complete end-to-end system from document ingestion, chunking, embedding, retrieval, to generation. I build these correctly—production-grade, not a fragile demo that breaks at the first real-world query.</p>
+<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">RAG pipeline development: <span>ingest-query-generate in production</span></h1>
+<p class="hero-sub">RAG is the pattern that brings real data to LLMs without hallucinations: ingest documents, store vectors, retrieve context, and generate grounded answers. I build the full pipeline from raw files to production responses, not a demo that chokes on the first enterprise PDF.</p>
 <div class="creds">
-<div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+<div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="15">
 <path d="M12 8v4l3 3"></path>
 <circle cx="12" cy="12" r="9"></circle>
-</svg></span><span class="t"><i>Experience</i><b>5+ yrs LangChain/LangGraph</b></span></div>
-<div class="cred"><span class="b" style="background:#0FA968" title="Direct"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="15">
+</svg></span><span class="t"><i>Experience</i><b>5+ yrs RAG &amp; retrieval</b></span></div>
+<div class="cred"><span class="b" style="background:#0FA968" title="Direct"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="15">
 <path d="M14 7h-4a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4M10 7h4a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-4M8 12h8"></path>
 </svg></span><span class="t"><i>Access</i><b>Direct, no account manager</b></span></div>
-<div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="14">
+<div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="14">
 <circle cx="12" cy="12" r="10"></circle>
 <path d="M12 6v6l4 2"></path>
-</svg></span><span class="t"><i>Turnaround</i><b>48h architecture spec</b></span></div>
+</svg></span><span class="t"><i>Turnaround</i><b>48h pipeline architecture</b></span></div>
 </div>
 <div class="hero-cta">
-<a class="btn btn-primary" href="#lets-talk">Talk to a RAG developer <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+<a class="btn btn-primary" href="#lets-talk">Talk to a RAG developer <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24">
 <path d="M5 12h14M13 6l6 6-6 6"></path>
 </svg></a>
 <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
 </div>
-<p class="live"><span class="pulse"></span> Honest read included: whether a full RAG pipeline is even the right fit.</p>
+<p class="live"><span class="pulse"></span> Honest read included: whether RAG is even the right architecture for your data.</p>
 </div>
 <!-- ===== SIGNATURE: production agent vs fragile demo ===== -->
-<div class="viewer"><div class="vw-card">
-<div class="vw-top">
-<span class="t">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33"></path><path d="M4.6 15a1.65 1.65 0 0 1-.33 1.82l-.06.06a2 2 0 0 0 2.83 2.83l.06-.06a1.65 1.65 0 0 1 1.82-.33"></path><path d="M4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33"></path><path d="M19.4 9a1.65 1.65 0 0 1 .33-1.82l.06-.06a2 2 0 0 0-2.83-2.83l-.06.06a1.65 1.65 0 0 1-1.82.33"></path></svg>
-      RAG Pipeline Orchestrator
-    </span>
-<span class="vw-chip">Production Ready</span>
+<div class="viewer">
+<div class="vw-head">
+<div class="vw-head-l">
+<svg class="vw-logo" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="6" cy="12" r="2.5"></circle><circle cx="18" cy="6" r="2.5"></circle><circle cx="18" cy="18" r="2.5"></circle><path d="M8.5 12h7"></path><path d="M15.5 7.5l-5 3.5"></path><path d="M15.5 16.5l-5-3.5"></path></svg>
+<span class="vw-head-t">RAG Pipeline Development</span>
+</div>
+<button aria-label="Run pipeline animation" class="vw-run" id="runBtn" type="button">
+<svg class="vw-run-ic vw-run-play" fill="currentColor" viewbox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+<svg class="vw-run-ic vw-run-stop" fill="currentColor" viewbox="0 0 24 24"><rect height="12" rx="2" width="12" x="6" y="6"></rect></svg>
+<span class="vw-run-label">Run pipeline</span>
+</button>
 </div>
 <div class="vw-body">
-<div class="vw-tabs" role="tablist">
-<button class="vw-tab-btn active" data-p="standard">Standard RAG</button>
-<button class="vw-tab-btn" data-p="advanced">Advanced Hybrid</button>
-</div>
-<div class="vw-pipeline" id="pipelineContainer">
-<div class="vw-step" data-step="ingest">
-<span class="vw-step-indicator" style="background: var(--blue);"></span>
-<div class="vw-step-info">
-<div class="vw-step-title">Ingest</div>
-<div class="vw-step-desc" id="descIngest">Load &amp; parse documents</div>
-</div>
-<svg class="vw-step-arrow" fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><polyline points="9 18 15 12 9 6"></polyline></svg>
-</div>
-<div class="vw-step" data-step="chunk">
-<span class="vw-step-indicator" style="background: var(--violet);"></span>
-<div class="vw-step-info">
-<div class="vw-step-title">Chunk &amp; Embed</div>
-<div class="vw-step-desc" id="descChunk">Split text &amp; vectorize</div>
-</div>
-<svg class="vw-step-arrow" fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><polyline points="9 18 15 12 9 6"></polyline></svg>
-</div>
-<div class="vw-step" data-step="store">
-<span class="vw-step-indicator" style="background: var(--mint);"></span>
-<div class="vw-step-info">
-<div class="vw-step-title">Vector Store</div>
-<div class="vw-step-desc" id="descStore">Index vectors for retrieval</div>
-</div>
-<svg class="vw-step-arrow" fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><polyline points="9 18 15 12 9 6"></polyline></svg>
-</div>
-<div class="vw-step" data-step="retrieve">
-<span class="vw-step-indicator" style="background: var(--amber);"></span>
-<div class="vw-step-info">
-<div class="vw-step-title">Retrieve</div>
-<div class="vw-step-desc" id="descRetrieve">Query context &amp; rerank</div>
-</div>
-<svg class="vw-step-arrow" fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><polyline points="9 18 15 12 9 6"></polyline></svg>
-</div>
-<div class="vw-step" data-step="generate">
-<span class="vw-step-indicator" style="background: var(--rose);"></span>
-<div class="vw-step-info">
-<div class="vw-step-title">Generate</div>
-<div class="vw-step-desc" id="descGenerate">Augment &amp; produce answer</div>
-</div>
-<svg class="vw-step-arrow" fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><polyline points="9 18 15 12 9 6"></polyline></svg>
+<div class="vw-controls">
+<span class="vw-scenario-lbl">Scenario</span>
+<div aria-label="Choose a RAG scenario" class="vw-seg" role="group">
+<button aria-pressed="true" class="vw-seg-btn active" data-scenario="pdf" type="button">PDF Corpus</button>
+<button aria-pressed="false" class="vw-seg-btn" data-scenario="code" type="button">Codebase</button>
+<button aria-pressed="false" class="vw-seg-btn" data-scenario="support" type="button">Support KB</button>
 </div>
 </div>
-<div class="vw-focus" id="focusPanel">
-<div class="vw-focus-header">
-<span class="vw-focus-title" id="focusTitle">Ingest</span>
-<span class="vw-focus-badge" id="focusBadge">0.1s</span>
+<div aria-label="RAG pipeline stages" class="vw-steps" role="group">
+<button aria-pressed="true" class="vw-step active" data-stage="ingest" type="button">
+<span class="vw-step-top"><span class="vw-step-num">01</span><span class="vw-step-dot"></span></span>
+<span class="vw-step-ic"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="14 3 14 9 20 9"></polyline><line x1="12" x2="12" y1="13" y2="18"></line><polyline points="9.5 15.5 12 18 14.5 15.5"></polyline></svg></span>
+<span class="vw-step-lbl">Ingest</span>
+</button>
+<button aria-pressed="false" class="vw-step" data-stage="chunk" type="button">
+<span class="vw-step-top"><span class="vw-step-num">02</span><span class="vw-step-dot"></span></span>
+<span class="vw-step-ic"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" viewbox="0 0 24 24"><line x1="12" x2="12" y1="4" y2="20"></line><line x1="4" x2="20" y1="7" y2="7"></line><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="17" y2="17"></line></svg></span>
+<span class="vw-step-lbl">Chunk</span>
+</button>
+<button aria-pressed="false" class="vw-step" data-stage="embed" type="button">
+<span class="vw-step-top"><span class="vw-step-num">03</span><span class="vw-step-dot"></span></span>
+<span class="vw-step-ic"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="8" rx="1.5" width="8" x="3" y="3"></rect><rect height="8" rx="1.5" width="8" x="13" y="3"></rect><rect height="8" rx="1.5" width="8" x="3" y="13"></rect><rect height="8" rx="1.5" width="8" x="13" y="13"></rect></svg></span>
+<span class="vw-step-lbl">Embed</span>
+</button>
+<button aria-pressed="false" class="vw-step" data-stage="store" type="button">
+<span class="vw-step-top"><span class="vw-step-num">04</span><span class="vw-step-dot"></span></span>
+<span class="vw-step-ic"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="2.5"></ellipse><path d="M4 5v14c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5"></path><path d="M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"></path></svg></span>
+<span class="vw-step-lbl">Store</span>
+</button>
+<button aria-pressed="false" class="vw-step" data-stage="retrieve" type="button">
+<span class="vw-step-top"><span class="vw-step-num">05</span><span class="vw-step-dot"></span></span>
+<span class="vw-step-ic"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line><line x1="11" x2="11" y1="8.5" y2="13.5"></line><line x1="8.5" x2="13.5" y1="11" y2="11"></line></svg></span>
+<span class="vw-step-lbl">Retrieve</span>
+</button>
+<button aria-pressed="false" class="vw-step" data-stage="generate" type="button">
+<span class="vw-step-top"><span class="vw-step-num">06</span><span class="vw-step-dot"></span></span>
+<span class="vw-step-ic"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.3 0-2.6-.3-3.7-.8L3 21l1.8-5.8a8.5 8.5 0 1 1 16.2-3.7z"></path><line x1="8.5" x2="15.5" y1="9.5" y2="9.5"></line><line x1="8.5" x2="13" y1="12.5" y2="12.5"></line></svg></span>
+<span class="vw-step-lbl">Generate</span>
+</button>
 </div>
-<div class="vw-focus-config" id="focusConfig">
-<div class="vw-focus-config-item"><span>Source</span><span>Confluence, S3</span></div>
-<div class="vw-focus-config-item"><span>Strategy</span><span>Markdown parse</span></div>
-<div class="vw-focus-config-item"><span>Chunk Size</span><span>1000 chars</span></div>
-<div class="vw-focus-config-item"><span>Overlap</span><span>10%</span></div>
+<div aria-live="polite" class="vw-detail" id="detailPanel">
+<div class="vw-detail-head">
+<span class="vw-detail-name" id="stageName">Ingest</span>
+<span class="vw-detail-tag" id="stageTag">Parse &amp; Normalize</span>
 </div>
-<div class="vw-focus-desc" id="focusDesc">Load documents from connected sources and parse into structured markdown.</div>
+<p class="vw-detail-desc" id="stageDesc">Parses PDF, DOCX, Markdown and HTML sources into clean, structured text while preserving headings, tables and metadata.</p>
+<div class="vw-kv-grid">
+<div class="vw-kv">
+<span class="vw-kv-lbl" id="stageConfigLbl">Parser</span>
+<span class="vw-kv-val" id="stageConfigVal">PyPDF + OCR fallback</span>
 </div>
-<div class="vw-metrics-row">
-<div class="vw-tile">
-<div class="vw-tile-val" id="mLatency" style="color: var(--blue);">2.1s</div>
-<div class="vw-tile-lbl">Latency</div>
+<div class="vw-kv">
+<span class="vw-kv-lbl" id="stageMetricLbl">Throughput</span>
+<span class="vw-kv-val" id="stageMetricVal">2.4k docs/min</span>
 </div>
-<div class="vw-tile">
-<div class="vw-tile-val" id="mTokens">2,400</div>
-<div class="vw-tile-lbl">Chunks</div>
 </div>
-<div class="vw-tile">
-<div class="vw-tile-val" id="mCost" style="color: var(--mint);">$0.003</div>
-<div class="vw-tile-lbl">Cost / Query</div>
+<div class="vw-tip">
+<svg class="vw-tip-ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M9 18h6"></path><path d="M10 21h4"></path><path d="M12 3a6 6 0 0 1 4 10.5c-.7.7-1 1.5-1 2.5h-6c0-1-.3-1.8-1-2.5A6 6 0 0 1 12 3z"></path></svg>
+<span class="vw-tip-text" id="stageTip">Enable OCR only for scanned pages to keep ingest cost low.</span>
 </div>
 </div>
 </div>
 <div class="vw-foot">
-<span>Ingest ⟿ Answer in seconds</span>
-<span>Enterprise security &amp; audit logs</span>
+<span class="vw-health"><span class="vw-dot"></span><span id="healthText">All 6 stages connected</span></span>
+<span class="vw-latency" id="totalLatency">End-to-end 1.8s</span>
 </div>
-</div></div>
+</div>
 </div>
 </div>
 </section>
 <!-- ================= COMPLY STRIP ================= -->
 <div class="comply">
 <div class="wrap comply-in">
-<div><span><b>Ingest to answer</b>Every pipeline covers the full data journey: document parsing, chunking, embedding, retrieval, and LLM generation. No gaps.</span></div>
-<div><span><b>Chunking strategy tuned</b>Semantic chunking with overlap, not fixed token splits, to preserve context and improve retrieval accuracy.</span></div>
-<div><span><b>Retrieval tested for precision</b>Hybrid search (dense + sparse) and re-ranking are evaluated and tuned per dataset for production recall.</span></div>
-<div><span><b>Observability built in</b>LangSmith tracing across every stage — ingestion, retrieval, generation — so pipeline behavior is fully visible.</span></div>
+<div><span><b>Ingest to answer, end to end</b>Every component from document loading, chunking, embedding, indexing, retrieval, and generation is built, tested, and monitored as a single production pipeline.</span></div>
+<div><span><b>Observable retrieval, not guesswork</b>Full traces on every retrieval step: which chunks were fetched, what score they received, and exactly how they influenced the final generation.</span></div>
+<div><span><b>Resilient to real-world data</b>Handling missing metadata, malformed PDFs, rate-limited APIs, and empty retrieval results with retries and fallback logic baked into the pipeline.</span></div>
+<div><span><b>Production-grade evaluation</b>Embedding drift detection, LLM-as-judge faithfulness scoring, and chunk overlap metrics ensure retrieval quality does not degrade silently.</span></div>
 </div>
 </div>
 <!-- ================= WHAT IS LANGCHAIN ================= -->
@@ -2101,16 +2326,16 @@
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">Plain answer</p>
-<h2>What is a RAG pipeline?</h2>
+<h2>What is RAG Pipeline Development?</h2>
 </div>
 <div class="what-is-wrap reveal">
 <div class="what-is-media">
 <!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
-<img alt="Section: what-is; Eyebrow: Plain answer; Heading: What is a RAG pipeline?" loading="lazy" src="/generated_images/rag-pipeline-development-services-1-hero_architecture.jpg"/>
+<img alt="Section: what-is; Eyebrow: Plain answer; Heading: What is RAG Pipeline Development?" loading="lazy" src="https://shreyans.tech/uploads/dynamicpage/page-img-5b2ad1ac-5298-4594-86d0-4c0d9277f5b3.jpg"/>
 </div>
 <div class="tldr">
 <b>Quick answer</b>
-<p>A RAG pipeline is a production system that ingests documents, chunks them, embeds them into a vector store, retrieves relevant context at query time, and passes that context to an LLM to generate grounded answers. It covers the full stack from data ingestion to final generation, with tuning at every stage for accuracy, latency, and cost.</p>
+<p>RAG pipeline development is the engineering of a complete, production-grade retrieval-augmented generation system that ingests documents, chunks them intelligently, stores dense embeddings, retrieves relevant passages, and feeds them into an LLM to generate grounded, citeable answers. It covers the full stack from ingest to answer, including chunking strategy, embedding model selection, vector store tuning, retrieval optimization, and generation orchestration. A well-built RAG system measurably reduces hallucination rates and improves answer accuracy by 40-60% over raw LLM outputs.</p>
 </div>
 </div>
 </div>
@@ -2126,27 +2351,27 @@
 <div class="grid g3 reveal">
 <div class="card"><span class="n build">BUILD</span>
 <h3>RAG pipeline development</h3>
-<p>Full ingest-to-answer RAG pipelines using LangChain's retriever and chain primitives, paired with LlamaIndex for document-heavy retrieval quality, covering chunking, embedding, hybrid search, and answer generation.</p>
+<p>Full pipeline from ingest to answer: document ingestion, chunking, embedding, retrieval, and generation, using LangChain retriever chains paired with LlamaIndex for high-fidelity retrieval over complex document stores.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
 <h3>Multi-step agent development (LangGraph)</h3>
-<p>Agents that orchestrate multiple retrieval steps, re-rank results, and call external tools based on intermediate findings, built with explicit state graphs and checkpointing for production reliability.</p>
+<p>Agents that orchestrate retrieval, re-ranking, and generation in sequence, calling external tools and APIs with explicit state graphs and checkpointing for production reliability.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
 <h3>Tool-using &amp; function-calling systems</h3>
-<p>Systems that connect your RAG pipeline to live business tools—databases, internal APIs, third-party services—so the AI can fetch real-time data and take actions beyond static text generation.</p>
+<p>Systems that connect your RAG pipeline to live databases, internal APIs, and third-party services, so the AI can fetch real-time data and act on results, not just generate text.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
 <h3>Conversational memory systems</h3>
-<p>Chatbots and assistants that maintain context across a conversation or across sessions, tuned to your specific need: short-term context, long-term preference memory, or both.</p>
+<p>Chatbots and assistants that maintain context across multi-turn RAG conversations, with short-term session memory and long-term preference memory tuned for retrieval-heavy workflows.</p>
 </div>
 <div class="card"><span class="n advise">AUDIT</span>
-<h3>LangChain system audits &amp; migration</h3>
-<p>Review and improvement of an existing RAG implementation, or migration support for teams adding agentic capability to a retrieval-only pipeline.</p>
+<h3>RAG pipeline audits &amp; migration</h3>
+<p>Review and improvement of an existing RAG pipeline, or migration support for teams moving from retrieval-only to full ingest-to-answer systems with LangChain and LlamaIndex.</p>
 </div>
 <div class="card cta-card">
-<h3>Not sure where to start?</h3>
-<p>Part of the engagement is an honest read on whether RAG is even the right fit for your data and use case.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get an honest assessment</a>
+<h3>Not sure RAG is right for you?</h3>
+<p>Part of the engagement is an honest read on whether a full retrieval pipeline solves your problem or if simpler approaches fit better.</p><a class="btn btn-primary" href="#lets-talk" style="background:#fff;color:#0A1222">Get an honest assessment</a>
 </div>
 </div>
 </div>
@@ -2156,32 +2381,32 @@
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">The honest comparison</p>
-<h2>RAG pipeline consultant vs RAG build agency</h2>
+<h2>RAG consultant vs RAG build agency</h2>
 </div>
 <div class="tablewrap reveal">
 <table>
 <thead>
 <tr>
 <th>Factor</th>
-<th class="col-me">Independent RAG pipeline consultant (me)</th>
-<th>RAG build agency</th>
+<th class="col-me">Independent RAG consultant (me)</th>
+<th>RAG development agency</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <th scope="row">Cost</th>
-<td class="col-me">Lower, direct rate, no team overhead</td>
-<td>Higher, includes team and account management</td>
+<td class="col-me">Lower, direct rate, no account management overhead</td>
+<td>Higher, includes team lead, PM, and overhead</td>
 </tr>
 <tr>
 <th scope="row">Who builds it</th>
-<td class="col-me">Me, directly, every time</td>
-<td>Allocated team member, may change</td>
+<td class="col-me">Me, directly, every line of pipeline code</td>
+<td>Allocated team member, may rotate</td>
 </tr>
 <tr>
 <th scope="row">Best for</th>
-<td class="col-me">Scoped full-pipeline builds, $3K to $30K range</td>
-<td>Large, multi-disciplinary product builds</td>
+<td class="col-me">Scoped RAG pipeline builds, $3K to $25K range</td>
+<td>Large, multi-product platform builds</td>
 </tr>
 <tr>
 <th scope="row">Start time</th>
@@ -2191,7 +2416,7 @@
 </tbody>
 </table>
 </div>
-<p class="reveal" style="margin-top:20px;color:var(--muted);font-size:.96rem">Most RAG pipeline projects — a specific ingestion strategy, a retrieval optimization, a full production pipeline — are well within scope for a single experienced developer working directly with you. An agency's advantage shows up when a project genuinely needs several specialists working in parallel on a larger product, not for the RAG engineering itself.</p>
+<p class="reveal" style="margin-top:20px;color:var(--muted);font-size:.96rem">Most RAG pipeline projects, a specific ingest-to-answer system for a single knowledge domain, are well within scope for a single experienced developer working directly with you. An agency's advantage shows up when a project genuinely needs several specialists working in parallel on a larger product, not for the RAG engineering itself.</p>
 </div>
 </section>
 <!-- ================= ENGAGEMENT MODELS ================= -->
@@ -2208,11 +2433,11 @@
 </div>
 <div class="card"><span class="n">HOURLY</span>
 <h3>Consulting</h3>
-<p>Architecture review or debugging support for an existing RAG implementation, including retrieval quality analysis and pipeline optimization.</p>
+<p>Architecture review or debugging support for an existing RAG pipeline or retrieval-augmented generation system.</p>
 </div>
 <div class="card"><span class="n build">RETAINER</span>
 <h3>Dedicated monthly</h3>
-<p>Ongoing RAG pipeline development for businesses with a continuing AI roadmap requiring iterative improvement and new data source integration.</p>
+<p>Ongoing RAG pipeline development for businesses with a continuing AI roadmap requiring iterative improvements and scaling.</p>
 </div>
 </div>
 </div>
@@ -2230,31 +2455,31 @@
 <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
 <h3>Discovery</h3><span class="cv">+</span>
 </summary>
-<div class="body">We map your data sources, establish chunking strategies, and define the retrieval logic and generation requirements for the full pipeline from ingest to answer.</div>
+<div class="body">Mapping your data sources, understanding retrieval needs, and defining the exact answer format – from raw docs to final user-facing response.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
 <h3>Architecture spec</h3><span class="cv">+</span>
 </summary>
-<div class="body">A written spec covering document parsing, embedding model selection, vector store topology, and retrieval strategies, delivered within 48 hours.</div>
+<div class="body">A written spec covering ingestion pipeline design (chunking, embedding, indexing), retrieval strategy (hybrid search, reranking), and generation layer (prompt template, context window).</div>
 </details>
 <details class="step gate">
 <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
 <h3>Build in milestones</h3><span class="cv">+</span>
 </summary>
-<div class="body">Ingestion pipeline and embedding indexing first, then retrieval and generation logic, then guardrails and evaluation harnesses.</div>
+<div class="body">Core ingestion first, then retrieval logic, then generation tuning, and finally edge-case handling like missing data or ambiguous queries.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
 <h3>Testing &amp; evaluation</h3><span class="cv">+</span>
 </summary>
-<div class="body">End-to-end testing against held-out queries, measuring retrieval precision, generation faithfulness, and latency under realistic loads.</div>
+<div class="body">Evaluating end-to-end pipeline accuracy, latency, and retrieval quality using benchmark datasets and realistic query scenarios.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 05<span class="days">handoff</span></span>
 <h3>Deployment &amp; monitoring</h3><span class="cv">+</span>
 </summary>
-<div class="body">Production deployment with logging and tracing (LangSmith or equivalent) for full visibility into retrieval and generation behavior across the pipeline.</div>
+<div class="body">Production deployment with logging and tracing (LangSmith or equivalent) for full visibility into retrieval behavior and answer quality.</div>
 </details>
 </div>
 </div>
@@ -2264,16 +2489,16 @@
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">Honest tool selection</p>
-<h2>When LangChain is not the right choice</h2>
+<h2>When RAG is not the right choice</h2>
 </div>
 <div class="when-not-wrap reveal">
 <div class="callout amber" style="margin-top:0">
 <p>Direct architectural honesty upfront</p>
-<p>Part of a proper RAG pipeline development engagement is an honest assessment of whether LangChain is even the right tool for your specific retrieval needs. If your actual need is a simpler, single-model retrieval setup with no multi-step orchestration, a dedicated RAG build agency using a lightweight framework may be a simpler, lower-overhead choice.</p>
+<p>Part of a proper RAG pipeline development engagement is an honest assessment of whether a full retrieval-augmented generation pipeline is even necessary. If your data fits in a single prompt context or your questions are purely factual with no need for grounding, a simpler LLM call or a direct search may be faster and cheaper. See the RAG build agency services page for the fuller comparison.</p>
 </div>
 <div class="when-not-media">
 <!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
-<img alt="Section: when-not; Eyebrow: Honest tool selection; Heading: When LangChain is not the right choice" loading="lazy" src="/generated_images/rag-pipeline-development-services-2-hero_architecture.jpg"/>
+<img alt="Section: when-not; Eyebrow: Honest tool selection; Heading: When RAG is not the right choice" loading="lazy" src="https://shreyans.tech/uploads/dynamicpage/page-img-7907cb99-ec5c-4c50-b287-298263dc652b.jpg"/>
 </div>
 </div>
 </div>
@@ -2296,27 +2521,27 @@
 </thead>
 <tbody>
 <tr>
-<td>Single tool/agent integration <span class="badge-free" style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span></td>
-<td class="col-me">One scoped agent or tool-calling workflow</td>
+<td>Single data source RAG pipeline <span class="badge-free" style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span></td>
+<td class="col-me">One data source, basic ingestion and retrieval pipeline</td>
 </tr>
 <tr class="me-row">
-<td>Full agentic system</td>
-<td class="col-me">Multi-step agent with state, tools, memory, guardrails</td>
+<td>Multi-source RAG pipeline</td>
+<td class="col-me">Multiple data sources, hybrid search, reranking, and custom generation</td>
 </tr>
 <tr>
-<td>LangChain system audit</td>
-<td class="col-me">Review and improvement plan for an existing implementation</td>
+<td>RAG pipeline audit</td>
+<td class="col-me">Review and improvement plan for an existing retrieval pipeline</td>
 </tr>
 <tr>
 <td>Hourly consulting</td>
-<td class="col-me">Architecture review, debugging support</td>
+<td class="col-me">Architecture review, debugging support, or performance tuning</td>
 </tr>
 </tbody>
 </table>
 </div>
 <p class="reveal" style="margin-top:24px;color:var(--muted);font-size:.95rem">Retrieval and
-            generation-grounded systems built using this class of architecture include the AI Customer Feedback
-            Classification pipeline and AI Video Summarizer. Full case studies at <a href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
+          generation-grounded systems built using this class of architecture include the AI Customer Feedback
+          Classification pipeline and AI Video Summarizer. Full case studies at <a href="/ai-case-studies">shreyans.tech/ai-case-studies</a>.</p>
 </div>
 </section>
 <!-- ================= FAQ ================= -->
@@ -2328,24 +2553,24 @@
 </div>
 <div class="faq reveal">
 <details open="">
-<summary>What is the difference between LangChain and LangGraph?</summary>
-<div class="a">LangChain is the broader framework providing composable building blocks. LangGraph is LangChain's graph-based agent framework, built for multi-step, stateful agent workflows with explicit control flow and checkpointing. For anything beyond a simple single-shot chain, LangGraph is the standard production approach.</div>
+<summary>What is the difference between a simple RAG pipeline and a multi-hop RAG?</summary>
+<div class="a">A simple RAG pipeline retrieves documents for a single query and generates an answer. Multi-hop RAG breaks a complex question into sub-questions, retrieves iteratively, and synthesizes across multiple sources – ideal for domain-specific reasoning.</div>
 </details>
 <details>
-<summary>Do I need a LangChain agency, or can a freelance consultant handle my project?</summary>
-<div class="a">Most LangChain projects are well within scope for a single experienced developer. An agency's advantage becomes relevant when a project needs multiple specialists across disciplines working simultaneously on a larger product.</div>
+<summary>Do I need a RAG build agency, or can a freelance consultant handle my project?</summary>
+<div class="a">Most RAG pipeline development projects are well within scope for a single experienced developer. An agency's advantage becomes relevant when a project needs multiple specialists across disciplines working simultaneously on a larger product.</div>
 </details>
 <details>
-<summary>How much do LangChain development services cost?</summary>
-<div class="a">A single scoped tool or agent integration typically runs $2,000 to $6,000. A full agentic system ranges from $8,000 to $30,000+ depending on complexity. Hourly consulting runs $75 to $150/hr.</div>
+<summary>How much does RAG pipeline development cost?</summary>
+<div class="a">A single data source RAG pipeline typically runs $2,000 to $6,000. A full multi-source pipeline ranges from $8,000 to $30,000+ depending on complexity. Hourly consulting runs $75 to $150/hr.</div>
 </details>
 <details>
-<summary>Is LangChain free to use?</summary>
-<div class="a">Yes, LangChain and LangGraph are open-source and free under the MIT license. LangSmith, LangChain's observability platform, has a free tier with paid plans starting around $39/month per seat.</div>
+<summary>Is RAG free to use?</summary>
+<div class="a">RAG frameworks like LangChain and LlamaIndex are open-source and free under the MIT license. Embedding and LLM APIs incur costs based on usage, typically $0.10–$0.50 per 1M tokens for embeddings and $0.02–$0.10 per 1K tokens for generation.</div>
 </details>
 <details>
-<summary>When should I NOT use LangChain?</summary>
-<div class="a">If your use case is purely high-quality document retrieval with no agentic or multi-step behavior needed, LlamaIndex alone is often a simpler, lower-overhead choice. LangChain earns its complexity when you need tool use, state management, or multi-step reasoning.</div>
+<summary>When should I NOT use RAG?</summary>
+<div class="a">If your data fits in a single prompt context (e.g., &lt; 8K tokens) or your queries are purely factual with no need for grounding, a direct LLM call or a simple search may be faster and cheaper. RAG earns its complexity when you need to ground answers in large, dynamic corpora.</div>
 </details>
 </div>
 </div>
@@ -2356,54 +2581,16 @@
       var page = document.querySelector('.svcp');
       if (!page) return;
 
-      var io = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-      }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
-      page.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+      var canvas = document.getElementById('sigcanvas');
+      if (!canvas) return;
 
-      function countUp(el) {
-        var target = parseFloat(el.dataset.count), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
-        var t0 = null, dur = 1300;
-        function step(ts) {
-          if (!t0) t0 = ts; var p = Math.min((ts - t0) / dur, 1); var e = 1 - Math.pow(1 - p, 3);
-          el.textContent = pre + Math.round(target * e) + suf; if (p < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-      }
-      var cio = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } });
-      }, { threshold: .6 });
-      page.querySelectorAll('[data-count]').forEach(function (el) { cio.observe(el); });
+      var ctx = canvas.getContext('2d');
+      if (!ctx) return;
 
-      page.querySelectorAll('.stack').forEach(function (root) {
-        var tabs = root.querySelectorAll('.stack-tabs [role="tab"]'), panels = root.querySelectorAll('.stack-panel');
-        function act(tab) {
-          var t = tab.dataset.s;
-          tabs.forEach(function (x) { x.setAttribute('aria-selected', x === tab ? 'true' : 'false'); });
-          panels.forEach(function (p) { p.classList.toggle('on', p.dataset.p === t); });
-        }
-        tabs.forEach(function (tab, i) {
-          tab.addEventListener('click', function () { act(tab); });
-          tab.addEventListener('keydown', function (e) {
-            var n = null;
-            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = tabs[i + 1] || tabs[0];
-            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = tabs[i - 1] || tabs[tabs.length - 1];
-            if (n) { e.preventDefault(); n.focus(); act(n); }
-          });
-        });
-      });
-
-      page.querySelectorAll('.faq details').forEach(function (d) {
-        d.addEventListener('toggle', function () { if (d.open) { page.querySelectorAll('.faq details').forEach(function (o) { if (o !== d) o.open = false; }); } });
-      });
-    })();
-
-  </script>
-<script>
-    (function () {
-      var page = document.querySelector('.svcp');
-      var canvas = document.getElementById('sigcanvas'), ctx = canvas.getContext('2d');
-      var mode = 'prod', domain = 0, t = 0, raf = null;
+      var mode = 'prod';
+      var domain = 0;
+      var t = 0;
+      var raf = null;
 
       var domains = [
         {
@@ -2420,320 +2607,819 @@
           seg: 'needs human OK',
           prod: '<b>Handled.</b> A human-in-the-loop checkpoint pauses the graph, notifies a reviewer, and resumes exactly where it left off once approved.',
           demo: '<b>Skipped entirely.</b> There is no checkpoint concept, the demo either blocks forever waiting on nothing, or takes the risky action without approval.'
-        }];
+        }
+      ];
 
-      function resize() { var r = canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2); canvas.width = r.width * d; canvas.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
+      function resize() {
+        var r = canvas.getBoundingClientRect();
+        var W = r.width;
+        var H = r.height;
 
-      function draw() {
-        var r = canvas.getBoundingClientRect(), W = r.width, H = r.height;
+        if (!W || !H) return;
+
+        var d = Math.min(
+          window.devicePixelRatio || 1,
+          2
+        );
+
+        canvas.width = Math.round(W * d);
+        canvas.height = Math.round(H * d);
+
+        ctx.setTransform(
+          d,
+          0,
+          0,
+          d,
+          0,
+          0
+        );
+      }
+
+      function drawFrame() {
+        var r = canvas.getBoundingClientRect();
+        var W = r.width;
+        var H = r.height;
+
+        if (!W || !H) return;
+
         ctx.clearRect(0, 0, W, H);
-        ctx.strokeStyle = 'rgba(36,86,230,.06)'; ctx.lineWidth = 1;
-        for (var gx = 0; gx <= W; gx += W / 8) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
-        for (var gy = 0; gy <= H; gy += H / 5) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
+
+        ctx.strokeStyle = 'rgba(36,86,230,.06)';
+        ctx.lineWidth = 1;
+
+        var gridX = W / 8;
+        var gridY = H / 5;
+
+        if (gridX > 0) {
+          for (var gx = 0; gx <= W; gx += gridX) {
+            ctx.beginPath();
+            ctx.moveTo(gx, 0);
+            ctx.lineTo(gx, H);
+            ctx.stroke();
+          }
+        }
+
+        if (gridY > 0) {
+          for (var gy = 0; gy <= H; gy += gridY) {
+            ctx.beginPath();
+            ctx.moveTo(0, gy);
+            ctx.lineTo(W, gy);
+            ctx.stroke();
+          }
+        }
 
         if (mode === 'prod') {
           var n = {
-            start: { x: W * .1, y: H * .5 }, retrieve: { x: W * .3, y: H * .28 }, tool: { x: W * .5, y: H * .5 }, cond: { x: W * .68, y: H * .28 },
-            check: { x: W * .68, y: H * .74 }, end: { x: W * .9, y: H * .5 }
+            start: {
+              x: W * 0.1,
+              y: H * 0.5
+            },
+            retrieve: {
+              x: W * 0.3,
+              y: H * 0.28
+            },
+            tool: {
+              x: W * 0.5,
+              y: H * 0.5
+            },
+            cond: {
+              x: W * 0.68,
+              y: H * 0.28
+            },
+            check: {
+              x: W * 0.68,
+              y: H * 0.74
+            },
+            end: {
+              x: W * 0.9,
+              y: H * 0.5
+            }
           };
-          function edge(a, b, c) { ctx.strokeStyle = c || 'rgba(15,169,104,.6)'; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
-          edge(n.start, n.retrieve); edge(n.retrieve, n.tool); edge(n.tool, n.cond); edge(n.cond, n.end);
-          edge(n.tool, n.check, 'rgba(15,169,104,.35)'); edge(n.check, n.end, 'rgba(15,169,104,.35)');
-          ctx.strokeStyle = 'rgba(15,169,104,.4)'; ctx.lineWidth = 1.3; ctx.beginPath();
-          ctx.arc(n.tool.x, n.tool.y - 20, 14, Math.PI * 0.15, Math.PI * 1.6); ctx.stroke();
-          var path = [n.start, n.retrieve, n.tool, n.cond, n.end];
-          var total = path.length - 1; var pp = (t * .014) % total; var seg = Math.floor(pp), f = pp - seg;
-          var a = path[seg], b = path[Math.min(seg + 1, path.length - 1)];
-          ctx.beginPath(); ctx.arc(a.x + (b.x - a.x) * f, a.y + (b.y - a.y) * f, 3, 0, Math.PI * 2); ctx.fillStyle = '#0FA968'; ctx.fill();
+
+          function edge(a, b, c) {
+            ctx.strokeStyle =
+              c || 'rgba(15,169,104,.6)';
+
+            ctx.lineWidth = 1.6;
+
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+
+          edge(n.start, n.retrieve);
+          edge(n.retrieve, n.tool);
+          edge(n.tool, n.cond);
+          edge(n.cond, n.end);
+          edge(
+            n.tool,
+            n.check,
+            'rgba(15,169,104,.35)'
+          );
+          edge(
+            n.check,
+            n.end,
+            'rgba(15,169,104,.35)'
+          );
+
+          ctx.strokeStyle =
+            'rgba(15,169,104,.4)';
+
+          ctx.lineWidth = 1.3;
+
+          ctx.beginPath();
+
+          ctx.arc(
+            n.tool.x,
+            n.tool.y - 20,
+            14,
+            Math.PI * 0.15,
+            Math.PI * 1.6
+          );
+
+          ctx.stroke();
+
+          var path = [
+            n.start,
+            n.retrieve,
+            n.tool,
+            n.cond,
+            n.end
+          ];
+
+          var total = path.length - 1;
+          var pp = (t * 0.014) % total;
+          var seg = Math.floor(pp);
+          var f = pp - seg;
+
+          var a = path[seg];
+          var b =
+            path[
+            Math.min(
+              seg + 1,
+              path.length - 1
+            )
+            ];
+
+          ctx.beginPath();
+
+          ctx.arc(
+            a.x + (b.x - a.x) * f,
+            a.y + (b.y - a.y) * f,
+            3,
+            0,
+            Math.PI * 2
+          );
+
+          ctx.fillStyle = '#0FA968';
+          ctx.fill();
+
           Object.keys(n).forEach(function (k) {
-            var nd = n[k]; var isEnd = (k === 'end');
-            ctx.beginPath(); ctx.arc(nd.x, nd.y, isEnd ? 9 : 7, 0, Math.PI * 2);
-            ctx.fillStyle = isEnd ? '#0FA968' : '#fff'; ctx.fill();
-            ctx.lineWidth = 2; ctx.strokeStyle = '#0FA968'; ctx.stroke();
-            ctx.fillStyle = '#1B2740'; ctx.font = '600 9.5px "IBM Plex Mono",monospace';
-            var lbl = { start: 'Start', retrieve: 'Retrieve', tool: 'Tool call', cond: 'Condition', check: 'Checkpoint', end: 'Respond' }[k];
-            ctx.fillText(lbl, nd.x - 18, nd.y - 14);
+            var nd = n[k];
+            var isEnd = k === 'end';
+
+            ctx.beginPath();
+
+            ctx.arc(
+              nd.x,
+              nd.y,
+              isEnd ? 9 : 7,
+              0,
+              Math.PI * 2
+            );
+
+            ctx.fillStyle =
+              isEnd
+                ? '#0FA968'
+                : '#fff';
+
+            ctx.fill();
+
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = '#0FA968';
+            ctx.stroke();
+
+            ctx.fillStyle = '#1B2740';
+            ctx.font =
+              '600 9.5px "IBM Plex Mono",monospace';
+
+            var labels = {
+              start: 'Start',
+              retrieve: 'Retrieve',
+              tool: 'Tool call',
+              cond: 'Condition',
+              check: 'Checkpoint',
+              end: 'Respond'
+            };
+
+            ctx.fillText(
+              labels[k],
+              nd.x - 18,
+              nd.y - 14
+            );
           });
-          ctx.fillStyle = 'rgba(15,169,104,.9)'; ctx.font = '600 11px "IBM Plex Mono",monospace';
-          ctx.fillText('checkpointed \u00b7 retries \u00b7 human-in-the-loop', W * .18, H * .94);
+
+          ctx.fillStyle =
+            'rgba(15,169,104,.9)';
+
+          ctx.font =
+            '600 11px "IBM Plex Mono",monospace';
+
+          ctx.fillText(
+            'checkpointed · retries · human-in-the-loop',
+            W * 0.18,
+            H * 0.94
+          );
+
         } else {
-          var n2 = { start: { x: W * .14, y: H * .5 }, tool: { x: W * .5, y: H * .5 }, fail: { x: W * .8, y: H * .5 } };
-          ctx.strokeStyle = 'rgba(225,29,72,.5)'; ctx.lineWidth = 1.6;
-          ctx.beginPath(); ctx.moveTo(n2.start.x, n2.start.y); ctx.lineTo(n2.tool.x, n2.tool.y); ctx.stroke();
-          var wob = Math.sin(t * .06) * 4;
-          ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(n2.tool.x, n2.tool.y); ctx.lineTo(n2.fail.x, n2.fail.y + wob); ctx.stroke(); ctx.setLineDash([]);
-          ctx.beginPath(); ctx.arc(n2.start.x, n2.start.y, 7, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.lineWidth = 2; ctx.strokeStyle = '#E11D48'; ctx.fill(); ctx.stroke();
-          ctx.beginPath(); ctx.arc(n2.tool.x, n2.tool.y, 7, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill(); ctx.stroke();
-          var fx = n2.fail.x, fy = n2.fail.y + wob;
-          ctx.strokeStyle = '#E11D48'; ctx.lineWidth = 2.4;
-          ctx.beginPath(); ctx.moveTo(fx - 7, fy - 7); ctx.lineTo(fx + 7, fy + 7); ctx.moveTo(fx + 7, fy - 7); ctx.lineTo(fx - 7, fy + 7); ctx.stroke();
-          ctx.fillStyle = '#1B2740'; ctx.font = '600 9.5px "IBM Plex Mono",monospace';
-          ctx.fillText('Start', n2.start.x - 12, n2.start.y - 14);
-          ctx.fillText('Tool call', n2.tool.x - 20, n2.tool.y - 14);
-          ctx.fillStyle = 'rgba(225,29,72,.9)'; ctx.font = '600 10px "IBM Plex Mono",monospace';
-          ctx.fillText('dead end', fx - 24, fy + 22);
-          ctx.font = '600 11px "IBM Plex Mono",monospace';
-          ctx.fillText('no retry \u00b7 no fallback \u00b7 no checkpoint', W * .18, H * .94);
+          var n2 = {
+            start: {
+              x: W * 0.14,
+              y: H * 0.5
+            },
+            tool: {
+              x: W * 0.5,
+              y: H * 0.5
+            },
+            fail: {
+              x: W * 0.8,
+              y: H * 0.5
+            }
+          };
+
+          ctx.strokeStyle =
+            'rgba(225,29,72,.5)';
+
+          ctx.lineWidth = 1.6;
+
+          ctx.beginPath();
+          ctx.moveTo(
+            n2.start.x,
+            n2.start.y
+          );
+          ctx.lineTo(
+            n2.tool.x,
+            n2.tool.y
+          );
+          ctx.stroke();
+
+          var wob =
+            Math.sin(t * 0.06) * 4;
+
+          ctx.setLineDash([4, 4]);
+
+          ctx.beginPath();
+
+          ctx.moveTo(
+            n2.tool.x,
+            n2.tool.y
+          );
+
+          ctx.lineTo(
+            n2.fail.x,
+            n2.fail.y + wob
+          );
+
+          ctx.stroke();
+
+          ctx.setLineDash([]);
+
+          ctx.beginPath();
+
+          ctx.arc(
+            n2.start.x,
+            n2.start.y,
+            7,
+            0,
+            Math.PI * 2
+          );
+
+          ctx.fillStyle = '#fff';
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = '#E11D48';
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.beginPath();
+
+          ctx.arc(
+            n2.tool.x,
+            n2.tool.y,
+            7,
+            0,
+            Math.PI * 2
+          );
+
+          ctx.fillStyle = '#fff';
+          ctx.fill();
+          ctx.stroke();
+
+          var fx = n2.fail.x;
+          var fy = n2.fail.y + wob;
+
+          ctx.strokeStyle = '#E11D48';
+          ctx.lineWidth = 2.4;
+
+          ctx.beginPath();
+
+          ctx.moveTo(
+            fx - 7,
+            fy - 7
+          );
+
+          ctx.lineTo(
+            fx + 7,
+            fy + 7
+          );
+
+          ctx.moveTo(
+            fx + 7,
+            fy - 7
+          );
+
+          ctx.lineTo(
+            fx - 7,
+            fy + 7
+          );
+
+          ctx.stroke();
+
+          ctx.fillStyle = '#1B2740';
+          ctx.font =
+            '600 9.5px "IBM Plex Mono",monospace';
+
+          ctx.fillText(
+            'Start',
+            n2.start.x - 12,
+            n2.start.y - 14
+          );
+
+          ctx.fillText(
+            'Tool call',
+            n2.tool.x - 20,
+            n2.tool.y - 14
+          );
+
+          ctx.fillStyle =
+            'rgba(225,29,72,.9)';
+
+          ctx.font =
+            '600 10px "IBM Plex Mono",monospace';
+
+          ctx.fillText(
+            'dead end',
+            fx - 24,
+            fy + 22
+          );
+
+          ctx.font =
+            '600 11px "IBM Plex Mono",monospace';
+
+          ctx.fillText(
+            'no retry · no fallback · no checkpoint',
+            W * 0.18,
+            H * 0.94
+          );
         }
-        t += 1; raf = requestAnimationFrame(draw);
+      }
+
+      function draw() {
+        drawFrame();
+
+        t += 1;
+
+        raf = requestAnimationFrame(draw);
       }
 
       function update() {
         var d = domains[domain];
-        document.querySelector('.viewer-top .t').textContent = 'scenario: ' + d.seg;
-        var m1 = document.getElementById('m1'), m2 = document.getElementById('m2'), m3 = document.getElementById('m3'), ans = document.getElementById('answer'), foot = document.getElementById('foot');
+        if (!d) return;
+
+        var title =
+          page.querySelector('.viewer-top .t');
+
+        var m1 =
+          document.getElementById('m1');
+
+        var m2 =
+          document.getElementById('m2');
+
+        var m3 =
+          document.getElementById('m3');
+
+        var ans =
+          document.getElementById('answer');
+
+        var foot =
+          document.getElementById('foot');
+
+        if (title) {
+          title.textContent =
+            'scenario: ' + d.seg;
+        }
+
         if (mode === 'prod') {
-          m1.textContent = 'Retry + fallback'; m1.className = 'sc-good';
-          m2.textContent = 'Checkpointed';
-          m3.textContent = 'Logged';
-          ans.innerHTML = d.prod;
-          foot.textContent = 'This is what "production-grade" actually means: the graph has an explicit answer for every failure mode, not just the happy path.';
+          if (m1) {
+            m1.textContent =
+              'Retry + fallback';
+            m1.className =
+              'sc-good';
+          }
+
+          if (m2) {
+            m2.textContent =
+              'Checkpointed';
+          }
+
+          if (m3) {
+            m3.textContent =
+              'Logged';
+          }
+
+          if (ans) {
+            ans.innerHTML =
+              d.prod;
+          }
+
+          if (foot) {
+            foot.textContent =
+              'This is what "production-grade" actually means: the graph has an explicit answer for every failure mode, not just the happy path.';
+          }
+
         } else {
-          m1.textContent = 'Crashes'; m1.className = 'sc-bad';
-          m2.textContent = 'None';
-          m3.textContent = 'No visibility';
-          ans.innerHTML = d.demo;
-          foot.textContent = 'This is the fragile-demo failure mode: works perfectly until the first tool call misbehaves, then it just breaks.';
+          if (m1) {
+            m1.textContent =
+              'Crashes';
+            m1.className =
+              'sc-bad';
+          }
+
+          if (m2) {
+            m2.textContent =
+              'None';
+          }
+
+          if (m3) {
+            m3.textContent =
+              'No visibility';
+          }
+
+          if (ans) {
+            ans.innerHTML =
+              d.demo;
+          }
+
+          if (foot) {
+            foot.textContent =
+              'This is the fragile-demo failure mode: works perfectly until the first tool call misbehaves, then it just breaks.';
+          }
         }
       }
 
-      page.querySelectorAll('.modesw [role="tab"]').forEach(function (b) {
-        b.addEventListener('click', function () {
-          page.querySelectorAll('.modesw [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
-          b.setAttribute('aria-selected', 'true'); mode = b.dataset.m; t = 0; update();
+      page
+        .querySelectorAll('.modesw [role="tab"]')
+        .forEach(function (b) {
+          b.addEventListener('click', function () {
+            page
+              .querySelectorAll('.modesw [role="tab"]')
+              .forEach(function (x) {
+                x.setAttribute(
+                  'aria-selected',
+                  'false'
+                );
+              });
+
+            b.setAttribute(
+              'aria-selected',
+              'true'
+            );
+
+            var selectedMode =
+              b.dataset.m;
+
+            if (
+              selectedMode === 'prod' ||
+              selectedMode === 'demo'
+            ) {
+              mode = selectedMode;
+            }
+
+            t = 0;
+            update();
+
+            if (
+              window.matchMedia(
+                '(prefers-reduced-motion: reduce)'
+              ).matches
+            ) {
+              drawFrame();
+            }
+          });
         });
-      });
-      page.querySelectorAll('.segs [role="tab"]').forEach(function (b) {
-        b.addEventListener('click', function () {
-          page.querySelectorAll('.segs [role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
-          b.setAttribute('aria-selected', 'true'); domain = +b.dataset.d; update();
+
+      page
+        .querySelectorAll('.segs [role="tab"]')
+        .forEach(function (b) {
+          b.addEventListener('click', function () {
+            page
+              .querySelectorAll('.segs [role="tab"]')
+              .forEach(function (x) {
+                x.setAttribute(
+                  'aria-selected',
+                  'false'
+                );
+              });
+
+            b.setAttribute(
+              'aria-selected',
+              'true'
+            );
+
+            var selectedDomain =
+              parseInt(
+                b.dataset.d,
+                10
+              );
+
+            if (
+              !isNaN(selectedDomain) &&
+              domains[selectedDomain]
+            ) {
+              domain =
+                selectedDomain;
+
+              t = 0;
+              update();
+
+              if (
+                window.matchMedia(
+                  '(prefers-reduced-motion: reduce)'
+                ).matches
+              ) {
+                drawFrame();
+              }
+            }
+          });
         });
+
+      function stopAnimation() {
+        if (raf !== null) {
+          cancelAnimationFrame(raf);
+          raf = null;
+        }
+      }
+
+      function startAnimation() {
+        stopAnimation();
+
+        if (
+          window.matchMedia(
+            '(prefers-reduced-motion: reduce)'
+          ).matches
+        ) {
+          drawFrame();
+          return;
+        }
+
+        draw();
+      }
+
+      window.addEventListener('resize', function () {
+        resize();
+
+        if (
+          window.matchMedia(
+            '(prefers-reduced-motion: reduce)'
+          ).matches
+        ) {
+          drawFrame();
+        }
       });
 
-      window.addEventListener('resize', resize);
-      resize(); update();
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(); } else { draw(); cancelAnimationFrame(raf); }
+      resize();
+      update();
+      startAnimation();
     })();
   </script>
 <script>
-(function() {
-  const data = {
-    standard: {
-      steps: {
-        ingest: {
-          title: "Ingest",
-          desc: "Load & parse documents",
-          color: "var(--blue)",
-          badge: "0.1s",
-          config: [
-            { k: "Source", v: "Confluence, S3" },
-            { k: "Strategy", v: "Markdown parse" },
-            { k: "Chunk Size", v: "1000 chars" },
-            { k: "Overlap", v: "10%" }
-          ],
-          detail: "Load documents from connected sources and parse into structured markdown."
-        },
-        chunk: {
-          title: "Chunk & Embed",
-          desc: "Split text & vectorize",
-          color: "var(--violet)",
-          badge: "0.4s",
-          config: [
-            { k: "Model", v: "text-embedding-ada-002" },
-            { k: "Dimensions", v: "1536" },
-            { k: "Chunks", v: "2,400" },
-            { k: "Batch Size", v: "100" }
-          ],
-          detail: "Split documents into semantic chunks and generate vector embeddings."
-        },
-        store: {
-          title: "Vector Store",
-          desc: "Index vectors for retrieval",
-          color: "var(--mint)",
-          badge: "0.1s",
-          config: [
-            { k: "Provider", v: "Pinecone" },
-            { k: "Index Type", v: "Pod index" },
-            { k: "Metric", v: "Cosine" },
-            { k: "Replicas", v: "2" }
-          ],
-          detail: "Store vector embeddings in a scalable index for fast approximate nearest neighbor search."
-        },
-        retrieve: {
-          title: "Retrieve",
-          desc: "Query context & rerank",
-          color: "var(--amber)",
-          badge: "0.3s",
-          config: [
-            { k: "Top-K", v: "4 chunks" },
-            { k: "Reranker", v: "None" },
-            { k: "Similarity", v: "0.82 threshold" },
-            { k: "Strategy", v: "MMR" }
-          ],
-          detail: "Retrieve relevant context using dense vector search and diversity re-ranking."
-        },
-        generate: {
-          title: "Generate",
-          desc: "Augment & produce answer",
-          color: "var(--rose)",
-          badge: "1.2s",
-          config: [
-            { k: "LLM", v: "GPT-4o-mini" },
-            { k: "Max Tokens", v: "500" },
-            { k: "Temperature", v: "0.1" },
-            { k: "Guardrails", v: "No" }
-          ],
-          detail: "Combine query with retrieved context and generate a grounded, traceable answer."
-        }
-      },
-      metrics: { latency: "2.1s", tokens: "2,400", cost: "$0.003" }
+(function () {
+  var state = { scenario: 'pdf', activeStage: 'ingest', running: false, timer: null };
+  var stageOrder = ['ingest', 'chunk', 'embed', 'store', 'retrieve', 'generate'];
+
+  var stageMeta = {
+    ingest: {
+      name: 'Ingest',
+      tag: 'Parse & Normalize',
+      cLabel: 'Parser',
+      mLabel: 'Throughput',
+      desc: 'Parses PDF, DOCX, Markdown and HTML sources into clean, structured text while preserving headings, tables and metadata.',
+      accent: '#2456E6',
+      tint: '#E6EEFF'
     },
-    advanced: {
-      steps: {
-        ingest: {
-          title: "Ingest",
-          desc: "Multi-format parsing & vision",
-          color: "var(--blue)",
-          badge: "0.2s",
-          config: [
-            { k: "Source", v: "Unstructured API, Vision" },
-            { k: "Strategy", v: "Semantic parse" },
-            { k: "Chunk Size", v: "512 chars" },
-            { k: "Overlap", v: "15%" }
-          ],
-          detail: "Extract text and vision content from complex documents using Unstructured API."
-        },
-        chunk: {
-          title: "Chunk & Embed",
-          desc: "Semantic chunking & voyage-2",
-          color: "var(--violet)",
-          badge: "0.8s",
-          config: [
-            { k: "Model", v: "voyage-2" },
-            { k: "Dimensions", v: "1024" },
-            { k: "Chunks", v: "4,100" },
-            { k: "Batch Size", v: "50" }
-          ],
-          detail: "Use semantic splitting to form coherent passages and embed with voyage-2."
-        },
-        store: {
-          title: "Vector Store",
-          desc: "Hybrid index (dense + sparse)",
-          color: "var(--mint)",
-          badge: "0.1s",
-          config: [
-            { k: "Provider", v: "Weaviate" },
-            { k: "Index Type", v: "Hybrid HNSW" },
-            { k: "Metric", v: "Cosine + BM25" },
-            { k: "Replicas", v: "3" }
-          ],
-          detail: "Leverage a hybrid vector store combining dense embeddings with sparse keyword indexing."
-        },
-        retrieve: {
-          title: "Retrieve",
-          desc: "Hybrid search + RRR",
-          color: "var(--amber)",
-          badge: "0.9s",
-          config: [
-            { k: "Top-K", v: "8 chunks" },
-            { k: "Reranker", v: "Cohere Rerank" },
-            { k: "Similarity", v: "0.75 threshold" },
-            { k: "Strategy", v: "RRF fusion" }
-          ],
-          detail: "Perform hybrid retrieval (dense + sparse), fusion via RRF, and rerank for precision."
-        },
-        generate: {
-          title: "Generate",
-          desc: "Augment & guardrail enforce",
-          color: "var(--rose)",
-          badge: "2.8s",
-          config: [
-            { k: "LLM", v: "GPT-4o" },
-            { k: "Max Tokens", v: "1024" },
-            { k: "Temperature", v: "0.05" },
-            { k: "Guardrails", v: "NeMo Guardrails" }
-          ],
-          detail: "Generate final answer with strict guardrails for safety, factuality, and brand voice."
-        }
-      },
-      metrics: { latency: "4.8s", tokens: "4,100", cost: "$0.012" }
+    chunk: {
+      name: 'Chunk',
+      tag: 'Semantic Segmentation',
+      cLabel: 'Strategy',
+      mLabel: 'Latency',
+      desc: 'Splits documents into context-aware segments with controlled overlap so no meaning is lost at boundary cuts.',
+      accent: '#6D5EF6',
+      tint: '#EDEAFE'
+    },
+    embed: {
+      name: 'Embed',
+      tag: 'Vector Encoding',
+      cLabel: 'Model',
+      mLabel: 'Rate',
+      desc: 'Encodes each chunk into a high-dimensional vector using an embedding model matched to the content type and domain.',
+      accent: '#0FA968',
+      tint: '#E4F7EE'
+    },
+    store: {
+      name: 'Store',
+      tag: 'Vector Index',
+      cLabel: 'Backend',
+      mLabel: 'Index',
+      desc: 'Indexes vectors in a purpose-built vector database with metadata filters, namespaces and HNSW indexing.',
+      accent: '#D97A18',
+      tint: '#FCEFDD'
+    },
+    retrieve: {
+      name: 'Retrieve',
+      tag: 'Hybrid Search',
+      cLabel: 'Strategy',
+      mLabel: 'Time',
+      desc: 'Runs semantic search fused with keyword BM25, then a reranker reorders candidates for maximum relevance.',
+      accent: '#1740C0',
+      tint: '#E6EEFF'
+    },
+    generate: {
+      name: 'Generate',
+      tag: 'Grounded Answer',
+      cLabel: 'Model',
+      mLabel: 'Latency',
+      desc: 'Synthesizes the final answer from retrieved chunks with source citations and inline grounding checks.',
+      accent: '#0B7D4E',
+      tint: '#E4F7EE'
     }
   };
 
-  const tabBtns = document.querySelectorAll(".vw-tab-btn");
-  const steps = document.querySelectorAll(".vw-step");
-  const focusTitle = document.getElementById("focusTitle");
-  const focusBadge = document.getElementById("focusBadge");
-  const focusConfig = document.getElementById("focusConfig");
-  const focusDesc = document.getElementById("focusDesc");
-  const mLatency = document.getElementById("mLatency");
-  const mTokens = document.getElementById("mTokens");
-  const mCost = document.getElementById("mCost");
-  const descIngest = document.getElementById("descIngest");
-  const descChunk = document.getElementById("descChunk");
-  const descStore = document.getElementById("descStore");
-  const descRetrieve = document.getElementById("descRetrieve");
-  const descGenerate = document.getElementById("descGenerate");
+  var scenarioData = {
+    pdf: {
+      total: '1.8s',
+      health: 'All 6 stages connected',
+      stages: {
+        ingest: { config: 'PyPDF + OCR fallback', metric: '2.4k docs/min', tip: 'Enable OCR only for scanned pages to keep ingest cost low.' },
+        chunk: { config: '512 tokens, 15% overlap', metric: '38 ms/chunk', tip: 'Larger chunks fit dense reports; keep overlap for cross-page context.' },
+        embed: { config: 'text-embedding-3-large', metric: '1.2k emb/s', tip: 'A 1536-dim model improves semantic accuracy on long documents.' },
+        store: { config: 'pgvector, HNSW', metric: '12M vectors', tip: 'Add metadata filters for date, author and source scoping.' },
+        retrieve: { config: 'Top-K 5 + reranker', metric: '120 ms', tip: 'Reranking reduces hallucination by ~40% on PDF-heavy corpora.' },
+        generate: { config: '8B model + citations', metric: '0.9s', tip: 'Enforce inline citations so every answer stays auditable.' }
+      }
+    },
+    code: {
+      total: '1.4s',
+      health: 'All 6 stages connected',
+      stages: {
+        ingest: { config: 'Tree-sitter parsing', metric: '3.1k files/min', tip: 'Use AST parsing to retain function and class boundaries.' },
+        chunk: { config: '256 tokens, AST-aware', metric: '24 ms/chunk', tip: 'Respect method boundaries instead of fixed-size slices.' },
+        embed: { config: 'Code embedding model', metric: '2.0k emb/s', tip: 'A code-specific model captures API symbol semantics better.' },
+        store: { config: 'Qdrant + symbol index', metric: '6M vectors', tip: 'Store symbol names as metadata for exact-match fallback.' },
+        retrieve: { config: 'Top-K 8 + symbol boost', metric: '95 ms', tip: 'Boost exact identifier matches so reranking starts relevant.' },
+        generate: { config: '8B model + stack trace', metric: '0.8s', tip: 'Inject stack traces and error logs into context for precise fixes.' }
+      }
+    },
+    support: {
+      total: '1.1s',
+      health: 'All 6 stages connected',
+      stages: {
+        ingest: { config: 'Markdown + HTML crawl', metric: '4.2k pages/min', tip: 'Deduplicate canonical URLs during ingest to avoid index bloat.' },
+        chunk: { config: '384 tokens, header-aware', metric: '30 ms/chunk', tip: 'Anchor chunks to their nearest heading for structural context.' },
+        embed: { config: 'Dual-encoder v2', metric: '1.8k emb/s', tip: 'Refresh embeddings weekly so updated docs stay searchable.' },
+        store: { config: 'Pinecone, cosine + filters', metric: '8M vectors', tip: 'Use namespaces per product area for clean tenant isolation.' },
+        retrieve: { config: 'Top-K 4 + RRF fusion', metric: '80 ms', tip: 'RRF fusion balances BM25 and vector relevance scores.' },
+        generate: { config: '7B model + sources', metric: '0.6s', tip: 'Use a low temperature for consistent, repeatable support answers.' }
+      }
+    }
+  };
 
-  let currentMode = "standard";
-  let currentStep = "ingest";
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.vw-step'));
+  var segBtns = Array.prototype.slice.call(document.querySelectorAll('.vw-seg-btn'));
+  var runBtn = document.getElementById('runBtn');
+  var runLabel = runBtn ? runBtn.querySelector('.vw-run-label') : null;
+  var detailPanel = document.getElementById('detailPanel');
+  var stageName = document.getElementById('stageName');
+  var stageTag = document.getElementById('stageTag');
+  var stageDesc = document.getElementById('stageDesc');
+  var stageConfigLbl = document.getElementById('stageConfigLbl');
+  var stageConfigVal = document.getElementById('stageConfigVal');
+  var stageMetricLbl = document.getElementById('stageMetricLbl');
+  var stageMetricVal = document.getElementById('stageMetricVal');
+  var stageTip = document.getElementById('stageTip');
+  var totalLatency = document.getElementById('totalLatency');
+  var healthText = document.getElementById('healthText');
 
-  function updateUI(modeKey, stepKey) {
-    const modeData = data[modeKey];
-    const stepData = modeData.steps[stepKey];
+  function render() {
+    var meta = stageMeta[state.activeStage];
+    var sc = scenarioData[state.scenario];
+    if (!meta || !sc) return;
+    var s = sc.stages[state.activeStage];
+    if (!s) return;
 
-    // Update step descriptions
-    descIngest.textContent = modeData.steps.ingest.desc;
-    descChunk.textContent = modeData.steps.chunk.desc;
-    descStore.textContent = modeData.steps.store.desc;
-    descRetrieve.textContent = modeData.steps.retrieve.desc;
-    descGenerate.textContent = modeData.steps.generate.desc;
+    if (stageName) stageName.textContent = meta.name;
+    if (stageTag) stageTag.textContent = meta.tag;
+    if (stageDesc) stageDesc.textContent = meta.desc;
+    if (stageConfigLbl) stageConfigLbl.textContent = meta.cLabel;
+    if (stageConfigVal) stageConfigVal.textContent = s.config;
+    if (stageMetricLbl) stageMetricLbl.textContent = meta.mLabel;
+    if (stageMetricVal) stageMetricVal.textContent = s.metric;
+    if (stageTip) stageTip.textContent = s.tip;
+    if (totalLatency) totalLatency.textContent = 'End-to-end ' + sc.total;
+    if (healthText) healthText.textContent = sc.health;
 
-    // Update active step
-    steps.forEach(s => s.classList.remove("active"));
-    document.querySelector(`.vw-step[data-step="${stepKey}"]`).classList.add("active");
+    if (detailPanel) {
+      detailPanel.style.setProperty('--acc', meta.accent);
+      detailPanel.style.setProperty('--acc-tint', meta.tint);
+      detailPanel.classList.remove('vw-anim');
+      void detailPanel.offsetWidth;
+      detailPanel.classList.add('vw-anim');
+    }
 
-    // Update focus panel
-    focusTitle.textContent = stepData.title;
-    focusBadge.textContent = stepData.badge;
-    focusBadge.style.background = stepData.color + "20";
-    focusBadge.style.color = stepData.color;
-    let configHTML = "";
-    stepData.config.forEach(item => {
-      configHTML += `<div class="vw-focus-config-item"><span>${item.k}</span><span>${item.v}</span></div>`;
+    steps.forEach(function (step) {
+      var st = stageMeta[step.dataset.stage];
+      if (st) {
+        step.style.setProperty('--acc', st.accent);
+        step.style.setProperty('--acc-tint', st.tint);
+      }
+      var isActive = step.dataset.stage === state.activeStage;
+      step.classList.toggle('active', isActive);
+      step.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
-    focusConfig.innerHTML = configHTML;
-    focusDesc.textContent = stepData.detail;
 
-    // Update metrics
-    mLatency.textContent = modeData.metrics.latency;
-    mTokens.textContent = modeData.metrics.tokens;
-    mCost.textContent = modeData.metrics.cost;
+    segBtns.forEach(function (btn) {
+      var isActive = btn.dataset.scenario === state.scenario;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
   }
 
-  // Tab switching
-  tabBtns.forEach(btn => {
-    btn.addEventListener("click", function() {
-      tabBtns.forEach(b => b.classList.remove("active"));
-      this.classList.add("active");
-      currentMode = this.getAttribute("data-p");
-      // Reset to first step of the mode
-      currentStep = "ingest";
-      updateUI(currentMode, currentStep);
+  function stopRun() {
+    state.running = false;
+    if (state.timer) {
+      clearTimeout(state.timer);
+      state.timer = null;
+    }
+    if (runBtn) runBtn.classList.remove('running');
+    if (runLabel) runLabel.textContent = 'Run pipeline';
+  }
+
+  function startRun() {
+    if (!runBtn) return;
+    state.running = true;
+    runBtn.classList.add('running');
+    if (runLabel) runLabel.textContent = 'Stop';
+    var i = 0;
+    function tick() {
+      if (!state.running) return;
+      state.activeStage = stageOrder[i];
+      render();
+      i += 1;
+      if (i < stageOrder.length) {
+        state.timer = setTimeout(tick, 700);
+      } else {
+        state.timer = setTimeout(stopRun, 500);
+      }
+    }
+    tick();
+  }
+
+  if (runBtn) {
+    runBtn.addEventListener('click', function () {
+      if (state.running) {
+        stopRun();
+      } else {
+        startRun();
+      }
+    });
+  }
+
+  steps.forEach(function (step) {
+    step.addEventListener('click', function () {
+      stopRun();
+      state.activeStage = step.dataset.stage;
+      render();
     });
   });
 
-  // Step clicking
-  steps.forEach(step => {
-    step.addEventListener("click", function() {
-      const stepKey = this.getAttribute("data-step");
-      currentStep = stepKey;
-      updateUI(currentMode, currentStep);
+  segBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      stopRun();
+      state.scenario = btn.dataset.scenario;
+      render();
     });
   });
 
-  // Initial load
-  updateUI(currentMode, currentStep);
+  render();
 })();
 </script>
 </body>

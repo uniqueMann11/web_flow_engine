@@ -9,41 +9,41 @@
         "card": {
           "n": "BUILD",
           "h3": "RAG pipeline development",
-          "p": "Full ingest-to-answer RAG pipelines using LangChain's retriever and chain primitives, paired with LlamaIndex for document-heavy retrieval quality, covering chunking, embedding, hybrid search, and answer generation."
+          "p": "Full pipeline from ingest to answer: document ingestion, chunking, embedding, retrieval, and generation, using LangChain retriever chains paired with LlamaIndex for high-fidelity retrieval over complex document stores."
         }
       },
       {
         "card": {
           "n": "BUILD",
           "h3": "Multi-step agent development (LangGraph)",
-          "p": "Agents that orchestrate multiple retrieval steps, re-rank results, and call external tools based on intermediate findings, built with explicit state graphs and checkpointing for production reliability."
+          "p": "Agents that orchestrate retrieval, re-ranking, and generation in sequence, calling external tools and APIs with explicit state graphs and checkpointing for production reliability."
         }
       },
       {
         "card": {
           "n": "BUILD",
           "h3": "Tool-using & function-calling systems",
-          "p": "Systems that connect your RAG pipeline to live business tools\u2014databases, internal APIs, third-party services\u2014so the AI can fetch real-time data and take actions beyond static text generation."
+          "p": "Systems that connect your RAG pipeline to live databases, internal APIs, and third-party services, so the AI can fetch real-time data and act on results, not just generate text."
         }
       },
       {
         "card": {
           "n": "BUILD",
           "h3": "Conversational memory systems",
-          "p": "Chatbots and assistants that maintain context across a conversation or across sessions, tuned to your specific need: short-term context, long-term preference memory, or both."
+          "p": "Chatbots and assistants that maintain context across multi-turn RAG conversations, with short-term session memory and long-term preference memory tuned for retrieval-heavy workflows."
         }
       },
       {
         "card": {
           "n": "AUDIT",
-          "h3": "LangChain system audits & migration",
-          "p": "Review and improvement of an existing RAG implementation, or migration support for teams adding agentic capability to a retrieval-only pipeline."
+          "h3": "RAG pipeline audits & migration",
+          "p": "Review and improvement of an existing RAG pipeline, or migration support for teams moving from retrieval-only to full ingest-to-answer systems with LangChain and LlamaIndex."
         }
       },
       {
         "card cta-card": {
-          "h3": "Not sure where to start?",
-          "p": "Part of the engagement is an honest read on whether RAG is even the right fit for your data and use case.",
+          "h3": "Not sure RAG is right for you?",
+          "p": "Part of the engagement is an honest read on whether a full retrieval pipeline solves your problem or if simpler approaches fit better.",
           "btn-primary": {
             "text": "Get an honest assessment",
             "url": "#lets-talk"
@@ -69,14 +69,14 @@
         "card": {
           "n": "HOURLY",
           "h3": "Consulting",
-          "p": "Architecture review or debugging support for an existing RAG implementation, including retrieval quality analysis and pipeline optimization."
+          "p": "Architecture review or debugging support for an existing RAG pipeline or retrieval-augmented generation system."
         }
       },
       {
         "card": {
           "n": "RETAINER",
           "h3": "Dedicated monthly",
-          "p": "Ongoing RAG pipeline development for businesses with a continuing AI roadmap requiring iterative improvement and new data source integration."
+          "p": "Ongoing RAG pipeline development for businesses with a continuing AI roadmap requiring iterative improvements and scaling."
         }
       }
     ]

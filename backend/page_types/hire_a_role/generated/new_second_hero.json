@@ -27,14 +27,14 @@
     "tldr": {
       "b": "Quick answer",
       "p": [
-        "An OpenAI API developer designs, builds, and integrates production-grade systems using OpenAI's models (GPT-4o, Assistants, embeddings, Whisper). This includes API orchestration, prompt engineering, function calling, streaming, rate-limit handling, and secure key management. A freelance OpenAI API developer delivers a working, integrated system connected to your existing stack, backed by a proven API integration track record."
+        "An OpenAI API developer builds production-grade integrations connecting OpenAI models to your existing systems. This includes API authentication and rate-limit handling, prompt engineering for specific use cases, streaming response architecture, error handling and fallback logic, and monitoring for cost and latency. A freelance OpenAI API developer delivers a deployed, integrated system with a proven track record of reliable connections, not a sandbox demo."
       ]
     }
   },
   "roles": {
     "sec-head": {
       "eyebrow": "Job title decoder",
-      "h2": "OpenAI API developer vs AI engineer vs ML engineer"
+      "h2": "OpenAI API dev vs AI engineer vs LLM engineer"
     },
     "tablewrap": {
       "thead": [
@@ -46,22 +46,22 @@
         {
           "th": "OpenAI API developer",
           "td": [
-            "Direct OpenAI API integration, prompt chains, tool use, streaming, and production deployment",
-            "You need a custom AI feature built specifically on OpenAI's API with a proven integration track record"
+            "Production API integration, prompt engineering, streaming, error handling, cost optimization",
+            "You need to embed ChatGPT or GPT-4 into your product or workflow with reliable uptime"
+          ]
+        },
+        {
+          "th": "LLM engineer",
+          "td": [
+            "Fine-tuning, model evaluation, prompt architecture, custom model behavior",
+            "You need to customize model behavior itself, not just connect to the API"
           ]
         },
         {
           "th": "AI engineer",
           "td": [
-            "Broader AI system design, may include multiple model providers, MLOps, and data pipelines",
-            "You need end-to-end AI infrastructure, with OpenAI integration being one component"
-          ]
-        },
-        {
-          "th": "ML engineer",
-          "td": [
-            "Model training, fine-tuning, evaluation, and deployment infrastructure",
-            "You need to train or fine-tune custom models, not just integrate existing APIs"
+            "End-to-end ML/AI system design, may include training, MLOps, and broader infrastructure",
+            "You need full AI infrastructure where OpenAI API integration is one component"
           ]
         }
       ]

@@ -2,20 +2,20 @@
   "comply": {
     "comply-in": [
       {
-        "b": "Multiple modalities, one model",
-        "span": "Processes text, images, and audio in a single unified architecture."
+        "b": "One model, many modalities",
+        "span": "Processes text, images, and audio together to understand the whole context."
       },
       {
-        "b": "Cross-modal reasoning",
-        "span": "Connects meaning across different input types for richer understanding."
+        "b": "Aligned representations",
+        "span": "Learns shared meaning by mapping visual, auditory, and textual inputs into one space."
       },
       {
-        "b": "Vision-language fusion",
-        "span": "Combines visual and textual data to answer complex queries."
+        "b": "Rich context handled",
+        "span": "Accepts interleaved content without losing relationships between modalities or sequence."
       },
       {
-        "b": "No retraining for new tasks",
-        "span": "Adapts to new multimodal tasks without additional fine-tuning."
+        "b": "Reasons across senses",
+        "span": "Answers questions that require combining visual, auditory, and textual evidence."
       }
     ]
   },
@@ -27,50 +27,50 @@
     "tldr": {
       "b": "Definition",
       "p": [
-        "Multimodal AI is an artificial intelligence system that processes and integrates multiple types of data\u2014such as text, images, and audio\u2014within a single model, enabling it to understand, reason, and generate responses that leverage the combined context from different modalities, rather than relying on a single input type."
+        "Multimodal AI is an artificial intelligence system that simultaneously processes and integrates more than one input type, typically text, images, audio, and video, within a single model or orchestrated pipeline. Instead of treating each modality in isolation, these systems learn aligned representations that map concepts across different formats, enabling capabilities such as captioning an image, answering questions about a photo, transcribing and summarizing audio, and generating responses that reference visual and spoken evidence in one unified interaction."
       ]
     }
   },
   "how-it-works": {
     "sec-head": {
       "eyebrow": "Step by step",
-      "h2": "How it works",
-      "p": "The same multimodal pipeline animating in the diagram above, applied to your diverse data inputs."
+      "h2": "How multimodal AI works",
+      "p": "The five-stage pipeline that lets a multimodal model align an image, a spoken question, and text into one grounded response."
     },
     "grid g3": [
       {
         "card": {
           "n": "STEP 1",
-          "h3": "Inputs received",
-          "p": "The system accepts text, images, and audio simultaneously."
+          "h3": "Encoders process inputs",
+          "p": "Text, image, and audio encoders convert each input into numerical representations."
         }
       },
       {
         "card": {
           "n": "STEP 2",
-          "h3": "Modality encoding",
-          "p": "Each input type is converted into a shared embedding space."
+          "h3": "Tokens unified",
+          "p": "The model maps visual, auditory, and textual patches into a shared embedding space."
         }
       },
       {
         "card": {
           "n": "STEP 3",
           "h3": "Cross-modal fusion",
-          "p": "The model aligns and merges representations from different modalities."
+          "p": "Attention layers relate image regions, audio segments, and words to one another."
         }
       },
       {
         "card": {
           "n": "STEP 4",
           "h3": "Joint reasoning",
-          "p": "The combined context informs a unified understanding of the query."
+          "p": "The model synthesizes evidence across all modalities to interpret the full request."
         }
       },
       {
         "card": {
           "n": "STEP 5",
           "h3": "Multimodal output",
-          "p": "The model generates a response that may include text, image, or audio."
+          "p": "It generates an answer that can include text, audio, or a visual reference."
         }
       }
     ]

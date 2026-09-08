@@ -15,6 +15,7 @@ from pydantic import BaseModel
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from db import get_config_status as db_config_status, test_connection as db_test_connection, save_page_to_db
+from ftp_uploader import is_ftp_configured, test_ftp_connection
 
 # Set ProactorEventLoop on Windows so asyncio supports subprocesses natively
 if sys.platform == "win32":
@@ -792,7 +793,33 @@ def database_publish(req: PublishRequest):
 
 
 # =============================================================================
-# 8. LOCAL SERVER ENTRYPOINT
+# 8. FTP ENDPOINTS
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Endpoint: GET /api/ftp/config-status
+# Purpose:  Returns whether FTP credentials are configured (no secrets exposed).
+# -----------------------------------------------------------------------------
+@app.get("/api/ftp/config-status")
+def ftp_config_status():
+    return is_ftp_configured()
+
+
+# -----------------------------------------------------------------------------
+# Endpoint: POST /api/ftp/test-connection
+# Purpose:  Tests FTP connectivity and authentication.
+# -----------------------------------------------------------------------------
+@app.post("/api/ftp/test-connection")
+def ftp_test_connection():
+    try:
+        success, message = test_ftp_connection()
+        return {"success": success, "message": message}
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"success": False, "message": str(e)})
+
+
+# =============================================================================
+# 9. LOCAL SERVER ENTRYPOINT
 # =============================================================================
 # Run directly with `python backend/server.py` or `python run_studio.py`
 if __name__ == "__main__":

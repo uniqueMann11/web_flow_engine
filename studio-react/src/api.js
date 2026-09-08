@@ -90,3 +90,14 @@ export async function publishToDatabase(payload) {
   if (!r.ok || !data.success) throw new Error(data.message || "Publish failed");
   return data;
 }
+
+// ── FTP API ──────────────────────────────────────────────────
+export async function getFtpConfigStatus() {
+  const r = await fetch(`${BASE}/api/ftp/config-status`);
+  return r.json();
+}
+
+export async function testFtpConnection() {
+  const r = await fetch(`${BASE}/api/ftp/test-connection`, { method: "POST" });
+  return r.json();
+}

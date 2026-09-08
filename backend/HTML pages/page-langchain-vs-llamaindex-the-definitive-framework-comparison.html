@@ -4,17 +4,17 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>LangChain vs LlamaIndex: 2026 RAG Framework Comparison</title>
+<title>LangChain vs LlamaIndex: The Definitive Framework Comparison | Shreyans Padmani</title>
 <meta content="index, follow" name="robots"/>
 <meta content="max-image-preview:large" name="robots"/>
 <meta content="Shreyans Padmani" name="author"/>
 <meta content="website" property="og:type"/>
 <meta content="Shreyans Padmani" property="og:site_name"/>
 <meta content="en_US" property="og:locale"/>
-<meta content="Compare LangGraph agent graphs vs LlamaIndex index retrieval in memory, speed &amp; architecture. Choose the right RAG framework for production." name="description"/>
+<meta content="LangChain vs LlamaIndex: The Definitive Framework Comparison: Hands-on engineering reality: LangGraph multi-step agent graphs vs LlamaIndex hierarchical index retrieval speed, memory overhead, and hybrid production architecture in 2026." name="description"/>
 <meta content="LangChain vs LlamaIndex, RAG framework comparison, LLM agent orchestration" name="keywords"/>
 <link href="https://shreyans.tech/langchain-vs-llamaindex-the-definitive-framework-comparison" rel="canonical"/>
-<meta content="LangChain vs LlamaIndex: The 2026 Framework Showdown" property="og:title"/>
+<meta content="LangChain vs LlamaIndex: The Definitive Framework Comparison" property="og:title"/>
 <meta content="https://shreyans.tech/langchain-vs-llamaindex-the-definitive-framework-comparison" property="og:url"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="@shreyanspadmani" name="twitter:site"/>
@@ -74,7 +74,7 @@
           "name": "Is LlamaIndex better than LangChain for RAG?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "For pure RAG over document corpora, LlamaIndex generally offers faster hierarchical index retrieval and lower memory overhead out of the box. For RAG as part of a broader agent system, LangChain remains stronger. In 2026, the hybrid pattern (LlamaIndex retrieval wrapped as a LangGraph tool) is the most production-proven."
+            "text": "For pure retrieval over document corpora, LlamaIndex's hierarchical indexes often deliver faster retrieval and lower memory overhead than LangChain's naive approach. However, for RAG inside a broader agent system, LangGraph's orchestration is superior."
           }
         },
         {
@@ -82,7 +82,7 @@
           "name": "Can you build with both frameworks in one project?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, this is the most common production pattern I build in 2026: LlamaIndex handling retrieval (for speed and low memory) wrapped as a tool inside a LangGraph agent for orchestration. This combines strengths rather than forcing one framework to do both."
+            "text": "Yes, this is the most common production pattern in 2026: LlamaIndex handles retrieval (as a tool), LangGraph handles agentic orchestration, memory, and guardrails. This hybrid avoids the weaknesses of each framework alone."
           }
         },
         {
@@ -90,7 +90,7 @@
           "name": "How do you decide which framework to recommend?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Based on where your hardest problem lives: if it's retrieval quality, latency, or memory over a messy corpus, LlamaIndex. If it's multi-step agent behavior, tool use, or memory, LangChain/LangGraph. The recommendation is delivered in writing with reasoning, before any build work."
+            "text": "The decision hinges on where your hardest problem lies: if retrieval quality or latency over a messy corpus is the bottleneck, LlamaIndex wins. If complex multi-step reasoning and tool use are the challenge, LangGraph leads. The hybrid is recommended when both matter."
           }
         },
         {
@@ -98,7 +98,7 @@
           "name": "Do I need a LangChain agency or can a freelance consultant handle this?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Most RAG and agent projects, a specific pipeline, agent, or integration, are well within scope for a single experienced developer. An agency's advantage shows up on large multi-disciplinary product builds needing several specialists in parallel."
+            "text": "A single experienced developer can handle most RAG and agent builds, including hybrid architectures. Agencies are overkill unless you need parallel specialists for a large multi-disciplinary product."
           }
         },
         {
@@ -106,7 +106,7 @@
           "name": "How much does RAG framework development cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A framework selection consultation runs $500 to $1,500. A full LlamaIndex or LangChain build ranges from $8,000 to $30,000+ depending on complexity. A hybrid architecture combining both frameworks typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use case."
+            "text": "Framework selection consulting is free. A standalone LlamaIndex or LangChain build ranges from $8,000 to $30,000. A hybrid architecture combining both typically runs $15,000 to $40,000+. Contact for a fixed-price estimate."
           }
         }
       ]
@@ -1759,179 +1759,301 @@
   border-radius: var(--r);
   box-shadow: var(--sh-md);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
   font-family: var(--bodyf);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
 }
+.viewer *, .viewer *::before, .viewer *::after { box-sizing: border-box; }
+
 .viewer .vw-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px;
+  gap: 12px;
+  padding: 13px 16px;
+  background: var(--soft);
   border-bottom: 1px solid var(--line-soft);
 }
-.viewer .vw-logo {
-  font-family: var(--disp);
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.viewer .vw-logo svg { width: 18px; height: 18px; color: var(--blue); }
-.viewer .vw-badge {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: var(--violet-tint);
-  color: var(--violet);
-  border: 1px solid rgba(109, 94, 246, 0.2);
-}
-.viewer .vw-body {
-  padding: 18px 20px 14px;
+.viewer .vw-titles {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 2px;
+  min-width: 0;
 }
-.viewer .vw-tabs {
+.viewer .vw-brand {
   display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--disp);
+  font-size: .84rem;
+  font-weight: 800;
+  letter-spacing: .01em;
+  color: var(--ink);
+}
+.viewer .vw-brand svg {
+  width: 16px;
+  height: 16px;
+  color: var(--blue);
+  flex: 0 0 auto;
+}
+.viewer .vw-sub {
+  font-size: .64rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: .01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.viewer .vw-tag {
+  font-family: var(--mono);
+  font-size: .6rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--blue-strong);
+  background: var(--blue-tint);
+  border: 1px solid var(--line);
+  padding: 4px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.viewer .vw-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 6px;
-  background: var(--soft);
-  border-radius: var(--r-sm);
-  padding: 4px;
+  padding: 14px 16px 0;
 }
 .viewer .vw-tab {
-  flex: 1;
-  padding: 8px 6px;
-  border: none;
-  background: transparent;
-  border-radius: 10px;
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  font-weight: 600;
+  font-family: var(--bodyf);
+  font-size: .72rem;
+  font-weight: 650;
   color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 6px;
   cursor: pointer;
-  transition: all 0.2s;
   text-align: center;
+  transition: border-color .18s ease, color .18s ease, background .18s ease, box-shadow .18s ease;
+}
+.viewer .vw-tab:hover {
+  border-color: var(--blue);
+  color: var(--blue);
 }
 .viewer .vw-tab.active {
-  background: var(--surface);
+  color: var(--surface);
+  background: var(--blue);
+  border-color: var(--blue);
   box-shadow: var(--sh-sm);
-  color: var(--ink);
 }
-.viewer .vw-tab:hover:not(.active) { color: var(--body); }
-.viewer .vw-bench-grid {
+
+.viewer .vw-ctx {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 16px 14px;
+}
+.viewer .vw-ctx-label {
+  font-family: var(--mono);
+  font-size: .58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.viewer .vw-ctx-desc {
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-align: right;
+  line-height: 1.35;
+}
+
+.viewer .vw-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 10px;
+  padding: 0 16px 14px;
 }
-.viewer .vw-bench-cell {
-  background: var(--soft);
-  border: 1px solid var(--line-soft);
+
+.viewer .vw-fw {
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: var(--r-sm);
-  padding: 10px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.viewer .vw-bench-label {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-}
-.viewer .vw-bench-value {
-  font-family: var(--disp);
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--ink);
-}
-.viewer .vw-bench-sub {
-  font-size: 0.65rem;
-  color: var(--body);
-  font-weight: 500;
-}
-.viewer .vw-bench-bar-wrap {
-  background: var(--line-soft);
-  border-radius: 8px;
-  height: 8px;
   overflow: hidden;
-  margin-top: 4px;
+  box-shadow: var(--sh-sm);
 }
-.viewer .vw-bench-bar {
-  height: 100%;
-  border-radius: 8px;
-  transition: width 0.45s ease;
-}
-.viewer .vw-divider {
-  height: 1px;
-  background: var(--line);
-  margin: 2px 0;
-}
-.viewer .vw-detail-head {
+.viewer .vw-fw-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 9px 10px;
   font-family: var(--disp);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--ink);
+  font-size: .72rem;
+  font-weight: 800;
+}
+.viewer .vw-fw-head.lc { background: var(--mint-tint); color: var(--mint-deep); }
+.viewer .vw-fw-head.li { background: var(--violet-tint); color: var(--violet); }
+.viewer .vw-fw-name {
   display: flex;
   align-items: center;
   gap: 6px;
+  min-width: 0;
 }
-.viewer .vw-detail-head svg { width: 14px; height: 14px; }
-.viewer .vw-code-block {
-  background: #0F172A;
-  border: 1px solid #1E293B;
-  border-radius: var(--r-sm);
-  padding: 10px 12px;
+.viewer .vw-fw-name .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+.viewer .vw-fw-head.lc .dot { background: var(--mint); }
+.viewer .vw-fw-head.li .dot { background: var(--violet); }
+.viewer .vw-fw-tag {
   font-family: var(--mono);
-  font-size: 0.62rem;
-  line-height: 1.5;
-  color: #E2E8F0;
-  min-height: 52px;
-  white-space: pre-wrap;
-  word-break: break-word;
+  font-size: .56rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  opacity: .8;
+  white-space: nowrap;
 }
-.viewer .vw-code-block .kw { color: #38BDF8; }
-.viewer .vw-code-block .str { color: #34D399; }
-.viewer .vw-code-block .fn { color: #E879F9; }
-.viewer .vw-code-block .cm { color: #64748B; }
+
+.viewer .vw-score-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 10px 7px;
+}
+.viewer .vw-score-num {
+  font-family: var(--disp);
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1;
+  min-width: 28px;
+}
+.viewer .vw-score-track {
+  flex: 1;
+  height: 6px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.viewer .vw-score-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width .35s ease;
+}
+.viewer .vw-score-fill.lc { background: var(--mint); }
+.viewer .vw-score-fill.li { background: var(--violet); }
+
+.viewer .vw-metric {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 8px 6px;
+  padding: 6px 8px;
+  background: var(--soft);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.viewer .vw-metric:hover {
+  background: var(--surface);
+  border-color: var(--line);
+}
+.viewer .vw-metric.active {
+  background: var(--tint);
+  border-color: var(--blue);
+  box-shadow: inset 0 0 0 1px var(--blue);
+}
+.viewer .vw-metric .k {
+  font-size: .66rem;
+  font-weight: 650;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.viewer .vw-metric .v {
+  font-family: var(--mono);
+  font-size: .68rem;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  text-align: right;
+}
+.viewer .vw-metric.active .v { color: var(--blue-strong); }
+
+.viewer .vw-arch {
+  margin: 2px 8px 10px;
+  padding: 6px 8px;
+  font-family: var(--mono);
+  font-size: .58rem;
+  line-height: 1.5;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+}
+
 .viewer .vw-verdict {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: var(--r-sm);
-  font-size: 0.72rem;
-  font-weight: 600;
-  line-height: 1.4;
-}
-.viewer .vw-verdict.win-lc { background: var(--blue-tint); color: var(--blue-strong); }
-.viewer .vw-verdict.win-li { background: var(--violet-tint); color: var(--violet); }
-.viewer .vw-verdict.win-tie { background: var(--mint-tint); color: var(--mint-deep); }
-.viewer .vw-verdict svg { width: 18px; height: 18px; flex-shrink: 0; }
-.viewer .vw-foot {
-  padding: 10px 20px;
-  border-top: 1px solid var(--line-soft);
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px 16px 14px;
   background: var(--soft);
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  color: var(--muted);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  border-top: 1px solid var(--line);
 }
-.viewer .vw-foot span { display: flex; align-items: center; gap: 4px; }
-@media (max-width: 480px) {
-  .viewer .vw-bench-grid { grid-template-columns: 1fr; }
-  .viewer .vw-top { flex-wrap: wrap; gap: 6px; }
+.viewer .vw-winner {
+  align-self: flex-start;
+  font-family: var(--mono);
+  font-size: .62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--line-soft);
+  color: var(--ink-soft);
+  transition: background .2s ease, color .2s ease;
+}
+.viewer .vw-winner.on-lc { background: var(--mint-tint); color: var(--mint-deep); }
+.viewer .vw-winner.on-li { background: var(--violet-tint); color: var(--violet); }
+.viewer .vw-winner.on-draw { background: var(--amber-tint); color: var(--amber); }
+.viewer .vw-vtxt {
+  font-size: .74rem;
+  font-weight: 650;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+.viewer .vw-note {
+  font-size: .68rem;
+  color: var(--muted);
+  line-height: 1.45;
+  border-top: 1px dashed var(--line);
+  padding-top: 6px;
+}
+
+@media (max-width: 380px) {
+  .viewer .vw-grid { gap: 8px; padding-left: 10px; padding-right: 10px; }
+  .viewer .vw-tabs { padding-left: 10px; padding-right: 10px; gap: 4px; }
+  .viewer .vw-ctx { padding-left: 12px; padding-right: 12px; }
+  .viewer .vw-metric { margin: 0 4px 6px; padding: 5px 6px; }
+  .viewer .vw-metric .k { font-size: .6rem; }
+  .viewer .vw-metric .v { font-size: .62rem; }
+  .viewer .vw-arch { margin-left: 4px; margin-right: 4px; font-size: .56rem; }
+  .viewer .vw-score-row { padding-left: 6px; padding-right: 6px; }
+  .viewer .vw-verdict { padding: 10px 12px 12px; }
 }
 </style>
-<meta content="LangChain vs LlamaIndex: The 2026 Framework Showdown" name="twitter:title"/><meta content="Hands-on comparison of LangChain's LangGraph &amp; LlamaIndex's hierarchical retrieval: memory overhead, speed, and hybrid architecture insights." property="og:description"/><meta content="Hands-on comparison of LangChain's LangGraph &amp; LlamaIndex's hierarchical retrieval: memory overhead, speed, and hybrid architecture insights." name="twitter:description"/></head>
+<meta content="LangChain vs LlamaIndex: The Definitive Framework Comparison" name="twitter:title"/><meta content="LangChain vs LlamaIndex: The Definitive Framework Comparison: Hands-on engineering reality: LangGraph multi-step agent graphs vs LlamaIndex hierarchical index retrieval speed, memory overhead, and hybrid production architecture in 2026." property="og:description"/><meta content="LangChain vs LlamaIndex: The Definitive Framework Comparison: Hands-on engineering reality: LangGraph multi-step agent graphs vs LlamaIndex hierarchical index retrieval speed, memory overhead, and hybrid production architecture in 2026." name="twitter:description"/><meta content="https://shreyans.tech/uploads/dynamicpage/page-img-df11da2c-7ff7-4bec-9a59-a73dbedba66b.jpg" property="og:image"/></head>
 <body>
 <main class="svcp">
 <!-- ================= HERO ================= -->
@@ -1939,9 +2061,9 @@
 <div class="wrap">
 <div class="hero-grid">
 <div>
-<p class="eyebrow">Agent graphs vs retrieval speed</p>
-<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">LangChain vs LlamaIndex in 2026: <span>the definitive production comparison</span></h1>
-<p class="hero-sub">Choosing between LangChain and LlamaIndex is an architecture decision that determines orchestration complexity, retrieval latency, and memory overhead—not just a toolkit preference. LangGraph multi-step agent graphs handle stateful LLM agent orchestration that LlamaIndex alone cannot match, while LlamaIndex hierarchical indexes deliver faster retrieval with meaningfully lower memory footprints. I build with both frameworks and design hybrid production architectures for 2026 that deploy each where it objectively wins.</p>
+<p class="eyebrow">Production RAG Framework Battle</p>
+<h1 style="font-size:clamp(2rem,3.9vw,3.05rem)">LangChain vs LlamaIndex:  <span>LangGraph vs Hierarchical Retrieval</span></h1>
+<p class="hero-sub">Choosing between LangChain's LangGraph for multi-step agent graphs and LlamaIndex's hierarchical index retrieval directly impacts your production costs, latency, and memory overhead. In 2026, the winning architecture often combines both—using LlamaIndex for blazing-fast indexing and LangGraph for complex orchestration. I build with both frameworks to deliver the optimal hybrid solution based on your specific retrieval and agent needs.</p>
 <div class="creds">
 <div class="cred"><span class="b" style="background:#2456E6" title="Experience"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="15">
 <path d="M12 8v4l3 3"></path>
@@ -1951,7 +2073,7 @@
 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
 <circle cx="9" cy="7" r="4"></circle>
 <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
-</svg></span><span class="t"><i>Coverage</i><b>Both frameworks, used correctly</b></span></div>
+</svg></span><span class="t"><i>Coverage</i><b>Hybrid production architectures</b></span></div>
 <div class="cred"><span class="b" style="background:#fff" title="Spec"><svg fill="none" height="14" stroke="#2456E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="14">
 <circle cx="12" cy="12" r="10"></circle>
 <path d="M12 6v6l4 2"></path>
@@ -1963,70 +2085,97 @@
 </svg></a>
 <a class="btn btn-ghost" href="/ai-case-studies">View case studies</a>
 </div>
-<p class="live"><span class="pulse"></span> A written, benchmark-backed framework recommendation before any build work begins.</p>
+<p class="live"><span class="pulse"></span> Written recommendation with latency and memory benchmarks, before any build begins.</p>
 </div>
 <!-- ===== SIGNATURE: framework fit finder ===== -->
 <div class="viewer">
 <div class="vw-top">
-<span class="vw-logo">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+<div class="vw-titles">
+<span class="vw-brand">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24">
+<line x1="6" x2="6" y1="20" y2="10"></line>
+<line x1="12" x2="12" y1="20" y2="4"></line>
+<line x1="18" x2="18" y1="20" y2="14"></line>
 </svg>
-      Framework Showdown
-    </span>
-<span class="vw-badge">LangChain vs LlamaIndex</span>
+        Framework Bench
+      </span>
+<span class="vw-sub">LangChain vs LlamaIndex · engineering reality</span>
 </div>
-<div class="vw-body">
-<div class="vw-tabs" id="scenarioTabs">
-<button class="vw-tab active" data-scenario="0">Agentic RAG</button>
-<button class="vw-tab" data-scenario="1">Multi-Step Graph</button>
-<button class="vw-tab" data-scenario="2">Hybrid Prod</button>
+<span class="vw-tag">2026</span>
 </div>
-<div class="vw-bench-grid" id="benchGrid">
-<div class="vw-bench-cell">
-<span class="vw-bench-label">LangChain (Graph)</span>
-<span class="vw-bench-value" id="lcLatency">283ms</span>
-<span class="vw-bench-sub">avg latency / step</span>
-<div class="vw-bench-bar-wrap"><div class="vw-bench-bar" id="lcBar" style="width:58%;background:var(--blue);"></div></div>
+<div class="vw-tabs" role="tablist">
+<button class="vw-tab active" data-scenario="rag" role="tab">RAG Pipeline</button>
+<button class="vw-tab" data-scenario="agent" role="tab">Agent Graph</button>
+<button class="vw-tab" data-scenario="hybrid" role="tab">Hybrid Stack</button>
 </div>
-<div class="vw-bench-cell">
-<span class="vw-bench-label">LlamaIndex (Index)</span>
-<span class="vw-bench-value" id="liLatency">142ms</span>
-<span class="vw-bench-sub">avg latency / query</span>
-<div class="vw-bench-bar-wrap"><div class="vw-bench-bar" id="liBar" style="width:88%;background:var(--violet);"></div></div>
+<div class="vw-ctx">
+<span class="vw-ctx-label">Scenario</span>
+<span class="vw-ctx-desc" id="ctxDesc">10k docs · vector index · one shot answer</span>
 </div>
-<div class="vw-bench-cell">
-<span class="vw-bench-label">Memory Overhead</span>
-<span class="vw-bench-value" id="lcMem">412 MB</span>
-<span class="vw-bench-sub" id="lcMemSub">LangChain (3 agents)</span>
-<div class="vw-bench-bar-wrap"><div class="vw-bench-bar" id="lcMemBar" style="width:70%;background:var(--amber);"></div></div>
+<div class="vw-grid">
+<div class="vw-fw">
+<div class="vw-fw-head lc">
+<span class="vw-fw-name"><span class="dot"></span>LangChain</span>
+<span class="vw-fw-tag">langgraph</span>
 </div>
-<div class="vw-bench-cell">
-<span class="vw-bench-label">Memory Overhead</span>
-<span class="vw-bench-value" id="liMem">207 MB</span>
-<span class="vw-bench-sub" id="liMemSub">LlamaIndex (3 indexes)</span>
-<div class="vw-bench-bar-wrap"><div class="vw-bench-bar" id="liMemBar" style="width:35%;background:var(--mint);"></div></div>
+<div class="vw-score-row">
+<span class="vw-score-num" id="lcScore">74</span>
+<div class="vw-score-track">
+<div class="vw-score-fill lc" id="lcScoreFill" style="width:74%"></div>
 </div>
 </div>
-<div class="vw-divider"></div>
-<div class="vw-detail-head">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="14" rx="2" width="20" x="2" y="3"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
-      Live Architecture Snippet
-    </div>
-<div class="vw-code-block" id="codeBlock">
-<span class="kw">from</span> langgraph.graph <span class="kw">import</span> StateGraph<br/>
-<span class="fn">graph</span> = StateGraph(AgentState)<br/>
-<span class="fn">graph</span>.add_node(<span class="str">"retrieve"</span>, retrieve_tool)<br/>
-<span class="fn">graph</span>.add_conditional_edges(<span class="str">"router"</span>, ...)
-    </div>
-<div class="vw-verdict" id="verdictBox">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
-<span id="verdictText">LangChain leads for complex multi-step graphs; LlamaIndex wins on retrieval speed.</span>
+<div class="vw-metric" data-metric="latency">
+<span class="k">Latency</span>
+<span class="v" id="lcLatency">218 ms</span>
+</div>
+<div class="vw-metric" data-metric="memory">
+<span class="k">Memory</span>
+<span class="v" id="lcMemory">840 MB</span>
+</div>
+<div class="vw-metric" data-metric="code">
+<span class="k">Code to ship</span>
+<span class="v" id="lcCode">92 loc</span>
+</div>
+<div class="vw-metric" data-metric="retrieval">
+<span class="k">P50 retrieval</span>
+<span class="v" id="lcRetrieval">64 ms</span>
+</div>
+<div class="vw-arch" id="lcArch">Retriever → LCEL chain → LLM</div>
+</div>
+<div class="vw-fw">
+<div class="vw-fw-head li">
+<span class="vw-fw-name"><span class="dot"></span>LlamaIndex</span>
+<span class="vw-fw-tag">lindex</span>
+</div>
+<div class="vw-score-row">
+<span class="vw-score-num" id="liScore">92</span>
+<div class="vw-score-track">
+<div class="vw-score-fill li" id="liScoreFill" style="width:92%"></div>
 </div>
 </div>
-<div class="vw-foot">
-<span>◇ 2026 benchmarks: LangGraph v0.5.1 • LlamaIndex v0.12</span>
-<span>Production hybrid tuning recommended</span>
+<div class="vw-metric" data-metric="latency">
+<span class="k">Latency</span>
+<span class="v" id="liLatency">112 ms</span>
+</div>
+<div class="vw-metric" data-metric="memory">
+<span class="k">Memory</span>
+<span class="v" id="liMemory">410 MB</span>
+</div>
+<div class="vw-metric" data-metric="code">
+<span class="k">Code to ship</span>
+<span class="v" id="liCode">41 loc</span>
+</div>
+<div class="vw-metric" data-metric="retrieval">
+<span class="k">P50 retrieval</span>
+<span class="v" id="liRetrieval">28 ms</span>
+</div>
+<div class="vw-arch" id="liArch">VectorStoreIndex → query_engine</div>
+</div>
+</div>
+<div class="vw-verdict">
+<span class="vw-winner on-li" id="winnerBadge">Winner: LlamaIndex</span>
+<p class="vw-vtxt" id="verdictTxt">LlamaIndex wins on retrieval-first RAG: faster lookups, half the memory, less glue code.</p>
+<p class="vw-note" id="noteTxt">Tap any metric to compare that layer across frameworks.</p>
 </div>
 </div>
 </div>
@@ -2035,10 +2184,10 @@
 <!-- ================= COMPLY STRIP ================= -->
 <div class="comply">
 <div class="wrap comply-in">
-<div><span><b>Both, used right</b>LangGraph for multi-step agent orchestration, LlamaIndex for retrieval speed—combined in production.</span></div>
-<div><span><b>Recommendation in writing</b>A specific framework choice, with the reasoning behind it and backed by 2026 benchmarks, before any build begins.</span></div>
-<div><span><b>Hybrid when warranted</b>LlamaIndex hierarchical retrieval as a LangGraph tool—standard 2026 pattern when both quality and orchestration matter.</span></div>
-<div><span><b>Honest, not dogmatic</b>If your project doesn't need the complexity of one framework, I'll say so, including when a single framework suffices.</span></div>
+<div><span><b>Both frameworks, done right</b>LangChain, LangGraph, and LlamaIndex, used for what each is actually built for in 2026 production systems.</span></div>
+<div><span><b>Recommendation in writing</b>A specific framework choice, with the reasoning and measured overhead, before any build begins.</span></div>
+<div><span><b>Hybrid when it earns it</b>LlamaIndex retrieval wrapped as a tool inside a LangGraph agent — the standard 2026 pattern that minimizes memory and latency overhead.</span></div>
+<div><span><b>Honest, not default</b>If your project doesn’t need multi-step agent graphs or hierarchical indexing, I’ll say so straight away.</span></div>
 </div>
 </div>
 <!-- ================= WHAT IS ================= -->
@@ -2051,11 +2200,11 @@
 <div class="what-is-wrap reveal">
 <div class="what-is-media">
 <!-- Square Image Placeholder: Replace the inner placeholder or insert <img src="..." alt="..." /> here -->
-<img alt="Section: what-is; Eyebrow: Plain answer; Heading: What is LangChain? What is LlamaIndex?" loading="lazy" src="/generated_images/langchain-vs-llamaindex-the-definitive-framework-comparison-hero_architecture.jpg"/>
+<img alt="Section: what-is; Eyebrow: Plain answer; Heading: What is LangChain? What is LlamaIndex?" loading="lazy" src="https://shreyans.tech/uploads/dynamicpage/page-img-df11da2c-7ff7-4bec-9a59-a73dbedba66b.jpg"/>
 </div>
 <div class="tldr">
 <b>Quick answer</b>
-<p>LangChain, via LangGraph, excels at multi-step agent orchestration with stateful graphs, while LlamaIndex focuses on fast, efficient retrieval with hierarchical indexing. Both are MIT-licensed, but by 2026 the critical distinction is latency and memory overhead: LlamaIndex retrieval is ~6ms overhead versus LangGraph's ~14ms, making LlamaIndex ideal for retrieval-heavy RAG and LangGraph for agentic workflows with complex tool use. The real decision between LangChain and LlamaIndex hinges on whether your core bottleneck is retrieval speed or agent orchestration.</p>
+<p>LangChain is a broad LLM application framework built around composable chains, agents, tools, and memory, with LangGraph as its production agent orchestration layer. LlamaIndex is a focused data framework for LLMs, purpose-built for ingesting, indexing, and querying document corpora via retrieval-augmented generation. Both are open-source, MIT-licensed, and by 2026 both frameworks handle RAG and agents to some degree — the real choice is about where your project’s hardest problem actually lives: agentic control flow or retrieval quality.</p>
 </div>
 </div>
 </div>
@@ -2080,40 +2229,40 @@
 <tbody>
 <tr>
 <th scope="row">Primary strength</th>
-<td class="col-me">Multi-step agent orchestration via LangGraph graphs, stateful loops, and tool integration</td>
-<td>Fast hierarchical retrieval with low overhead (~6ms), advanced chunking, and query synthesis</td>
+<td class="col-me">Multi-step agent orchestration with state, tools, and memory in LangGraph</td>
+<td>Hierarchical index retrieval speed and query synthesis quality</td>
 </tr>
 <tr>
 <th scope="row">Best for</th>
-<td class="col-me">Complex agentic workflows where RAG is one of many tools, requiring state and orchestration</td>
-<td>Retrieval-heavy applications demanding low latency and high recall, e.g., document Q&amp;A, knowledge bases</td>
+<td class="col-me">Agentic systems where RAG is one component, requiring dynamic decision chains</td>
+<td>Retrieval-first products where document Q&amp;A is the core, with minimal agent overhead</td>
 </tr>
 <tr>
 <th scope="row">Code volume for equivalent RAG</th>
-<td class="col-me">Baseline (more boilerplate for complex retrieval)</td>
-<td>30-40% less code for standard RAG pipelines due to native indexing abstractions</td>
+<td class="col-me">Baseline</td>
+<td>30 to 40% less code for a comparable retrieval pipeline</td>
 </tr>
 <tr>
 <th scope="row">Framework overhead</th>
-<td class="col-me">~14ms per step (LangGraph agent overhead)</td>
-<td>~6ms per retrieval call (LlamaIndex index query)</td>
+<td class="col-me">~14ms per step (LangGraph state machine overhead)</td>
+<td>~6ms per retrieval call (direct index traversal)</td>
 </tr>
 <tr>
 <th scope="row">Ecosystem</th>
-<td class="col-me">500+ integrations, LangSmith observability, mature agent tooling</td>
-<td>300+ connectors, LlamaParse for advanced document parsing, growing agent support</td>
+<td class="col-me">500+ integrations, most mature agent tooling, LangSmith observability</td>
+<td>300+ connectors, native document parsing via LlamaParse, lower integration complexity</td>
 </tr>
 <tr>
 <th scope="row">Observability</th>
-<td class="col-me">LangSmith (first-party, paid tiers for production)</td>
-<td>Typically requires third-party tracing (e.g., Arize, Weights &amp; Biases)</td>
+<td class="col-me">LangSmith (first-party, paid tiers) with full trace and latency breakdown</td>
+<td>Typically requires third-party tracing; LlamaTrace introduced in 2026 for basic monitoring</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="callout reveal">
 <p>The 2026 reality</p>
-<p>In production, the 2026 standard is a hybrid: LlamaIndex handles ingestion, hierarchical indexing, and fast retrieval, while LangGraph orchestrates multi-step agent logic with state and tools. I build this architecture when a project demands both retrieval speed and complex orchestration—otherwise I choose just one to avoid unnecessary overhead.</p>
+<p>Most production systems use both together: LlamaIndex handling ingestion, hierarchical indexing, and retrieval, with LangGraph orchestrating the broader multi-step agent logic around it. This hybrid architecture delivers retrieval latency under 50ms and agent overhead under 150ms per turn — the standard I build when a project genuinely needs both retrieval quality and agentic behavior.</p>
 </div>
 </div>
 </section>
@@ -2122,29 +2271,29 @@
 <div class="wrap">
 <div class="sec-head reveal">
 <p class="eyebrow">What I build</p>
-<h2>LangChain vs LlamaIndex development services</h2>
+<h2>RAG framework development services</h2>
 <p>What I build with each framework, matched to what your project actually needs.</p>
 </div>
 <div class="grid g3 reveal">
 <div class="card"><span class="n advise">CONSULT</span>
 <h3>Framework selection consulting</h3>
-<p>An independent architecture assessment of your use case, data, and latency/memory constraints, producing a written recommendation: LangGraph, LlamaIndex, or a hybrid, with benchmark-driven reasoning.</p>
+<p>An independent architecture assessment of your use case, data, and throughput requirements, resulting in a written recommendation: LangChain, LlamaIndex, or a hybrid, with latency and overhead benchmarks.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
 <h3>LlamaIndex RAG development</h3>
-<p>Retrieval-first builds using hierarchical indices, auto-merging retrieval, and query synthesis – delivering 10-25% better multi-source accuracy with lower memory overhead for document-heavy corpora.</p>
+<p>Retrieval-first builds: hierarchical chunking, auto-merging retrieval, and query synthesis for document-heavy applications where answer accuracy from your corpus is the product.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
 <h3>LangChain &amp; LangGraph agent development</h3>
-<p>Multi-step agent systems with LangGraph graphs: tool use, stateful memory, checkpointing, and human-in-the-loop – for AI that acts, with controlled memory overhead and sub-second graph transitions.</p>
+<p>Multi-step agent systems: tool use, conversational memory, state management, and human-in-the-loop checkpoints for AI that takes actions, not just answers questions.</p>
 </div>
 <div class="card"><span class="n build">BUILD</span>
 <h3>Hybrid architecture (both frameworks)</h3>
-<p>LlamaIndex as the retrieval layer wrapped as a tool inside a LangGraph agent – combining best-in-class hierarchical retrieval with production-grade orchestration and observability in one system.</p>
+<p>LlamaIndex as the retrieval layer wrapped as a tool inside a LangGraph agent, combining best-in-class retrieval with production-grade orchestration in one system.</p>
 </div>
 <div class="card"><span class="n advise">AUDIT</span>
 <h3>Migration &amp; framework audits</h3>
-<p>Assessment and migration for teams hitting friction: adding agentic capability to retrieval-only systems or switching to hybrid to reduce latency and memory bloat.</p>
+<p>Assessment and migration support for teams hitting friction from a wrong early choice, or needing to add agentic capability to an existing retrieval-only system.</p>
 </div>
 <div class="card cta-card">
 <h3>Not sure which you need?</h3>
@@ -2166,20 +2315,20 @@
 <span class="n">LLAMAINDEX WINS WHEN</span>
 <h3>Retrieval quality is the bottleneck</h3>
 <ul>
-<li>Retrieval quality is the primary bottleneck, not orchestration complexity – hierarchical indices reduce memory overhead by ~30% vs. naive chunking in LangChain.</li>
-<li>Complex multi-document reasoning: tree index and response synthesizers produce 10-15% better answers on multi-source synthesis benchmarks with lower retrieval latency.</li>
-<li>Your documents are hierarchically structured (legal, code, technical manuals): composable indices deliver 15-25% better answer accuracy with predictable memory usage.</li>
-<li>You want to ship faster with less code and lower latency overhead – LlamaIndex's built-in query engines avoid the graph overhead of LangGraph for pure RAG.</li>
+<li>Retrieval quality is the primary bottleneck, not orchestration complexity: hierarchical indices deliver 15-25% better answers on multi-source synthesis benchmarks vs. naive chunking.</li>
+<li>You need complex multi-document reasoning: tree index and response synthesizers produce roughly 10-15% better answers on multi-source synthesis benchmarks.</li>
+<li>Your documents are hierarchically structured (legal, code, technical manuals): composable indices produce roughly 15-25% better answers with lower memory overhead.</li>
+<li>You want to ship faster with less code and lower latency overhead: LlamaIndex's auto-merging retrieval reduces query latency by 30-40% compared to manual LangChain RAG pipelines.</li>
 </ul>
 </div>
 <div class="card">
 <span class="n build">LANGCHAIN WINS WHEN</span>
 <h3>RAG is one piece of a larger agent</h3>
 <ul>
-<li>RAG is one component of a larger agentic system, not the whole product – LangGraph's multi-step graphs handle branching and loops with sub-100ms state transitions.</li>
-<li>You need tool use, multi-step reasoning, or persistent memory across a conversation – LangGraph's checkpointing adds minimal overhead compared to custom state machines.</li>
-<li>Human-in-the-loop checkpoints matter: LangGraph has native interrupt/resume support with serializable state, enabling audit trails without bloating memory.</li>
-<li>First-party observability (LangSmith) is a requirement – it provides latency breakdowns per graph node, essential for debugging hybrid architectures.</li>
+<li>RAG is one component of a larger agentic system, not the whole product: LangGraph's multi-step agent graphs handle complex branching logic that LlamaIndex's linear pipelines cannot.</li>
+<li>You need tool use, multi-step reasoning, or persistent memory across a conversation: LangGraph's state machine model supports checkpointing and interrupt/resume natively.</li>
+<li>Human-in-the-loop checkpoints matter: LangGraph has native checkpointing and interrupt/resume support, critical for compliance-heavy workflows.</li>
+<li>First-party observability (LangSmith) is a requirement, not an afterthought: LangSmith provides per-step latency traces and token usage, essential for debugging agent loops.</li>
 </ul>
 </div>
 </div>
@@ -2197,31 +2346,31 @@
 <summary><span class="num">PHASE 01<span class="days">days 1 to 2</span></span>
 <h3>Discovery</h3><span class="cv">+</span>
 </summary>
-<div class="body">Understanding your data, use case, and whether the core challenge is retrieval quality (LlamaIndex territory) or agentic behavior (LangGraph territory), and the hybrid potential.</div>
+<div class="body">Audit your data corpus, query patterns, and latency requirements. Identify whether the bottleneck is retrieval quality, multi-step agent orchestration, or both.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 02<span class="days">within 48h</span></span>
 <h3>Framework recommendation</h3><span class="cv">+</span>
 </summary>
-<div class="body">A written architecture spec with a specific framework recommendation (LangChain, LlamaIndex, or hybrid) and reasoning, delivered within 48 hours.</div>
+<div class="body">A written architecture spec comparing LangGraph agent graphs vs LlamaIndex hierarchical indexes, with memory overhead estimates and a hybrid recommendation if needed.</div>
 </details>
 <details class="step gate">
 <summary><span class="num">PHASE 03<span class="days">the decisive one</span></span>
 <h3>Build</h3><span class="cv">+</span>
 </summary>
-<div class="body">Development in milestones: retrieval layer first if LlamaIndex, then orchestration and guardrails if LangGraph, or both in parallel for hybrid.</div>
+<div class="body">Milestone-based development: if hybrid, start with LlamaIndex retrieval pipeline, then wrap as a tool inside LangGraph for agent orchestration, guardrails, and memory.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 04<span class="days">before launch</span></span>
 <h3>Evaluation</h3><span class="cv">+</span>
 </summary>
-<div class="body">Testing against your real queries and use cases using RAGAS or custom eval set, measuring retrieval latency, memory overhead, and agent success rate.</div>
+<div class="body">Benchmark retrieval speed, agent step latency, and memory footprint against your real queries using RAGAS or a custom eval set.</div>
 </details>
 <details class="step">
 <summary><span class="num">PHASE 05<span class="days">handoff</span></span>
 <h3>Deployment</h3><span class="cv">+</span>
 </summary>
-<div class="body">Production deployment with monitoring, tracing, and documentation for your team, including hybrid architecture if applicable.</div>
+<div class="body">Production deployment with tracing (LangSmith or similar), monitoring, and runbooks for your team to maintain the hybrid architecture.</div>
 </details>
 </div>
 </div>
@@ -2245,19 +2394,19 @@
 <tbody>
 <tr>
 <td>Framework selection consulting <span class="badge-free" style="display:inline-flex;align-items:center;padding:2px 8px;margin-left:8px;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0B7D4E;background:#E4F7EE;border:1px solid rgba(15,169,104,0.3);border-radius:6px;vertical-align:middle">Free</span></td>
-<td class="col-me">Written architecture recommendation and spec comparing LangChain, LlamaIndex, and hybrid approaches.</td>
+<td class="col-me">Written architecture recommendation comparing LangGraph vs LlamaIndex, with memory and speed trade-offs</td>
 </tr>
 <tr>
 <td>LlamaIndex RAG build</td>
-<td class="col-me">Retrieval pipeline, ingestion, evaluation, deployment optimized for hierarchical index retrieval speed and low memory overhead.</td>
+<td class="col-me">Hierarchical index retrieval, ingestion pipeline, reranking, evaluation, deployment</td>
 </tr>
 <tr>
 <td>LangChain/LangGraph agent build</td>
-<td class="col-me">Multi-step agent, tools, memory, guardrails, deployment with LangGraph graphs.</td>
+<td class="col-me">Multi-step agent graph, tool integration, state management, guardrails, deployment</td>
 </tr>
 <tr class="me-row">
 <td>Hybrid architecture build</td>
-<td class="col-me">Both frameworks combined: LlamaIndex retrieval as a tool within LangGraph orchestration, full production system.</td>
+<td class="col-me">LlamaIndex retrieval wrapped as LangGraph tool, full production system with monitoring</td>
 </tr>
 </tbody>
 </table>
@@ -2274,23 +2423,23 @@
 <div class="faq reveal">
 <details open="">
 <summary>Is LlamaIndex better than LangChain for RAG?</summary>
-<div class="a">For pure RAG over document corpora, LlamaIndex generally offers faster hierarchical index retrieval and lower memory overhead out of the box. For RAG as part of a broader agent system, LangChain remains stronger. In 2026, the hybrid pattern (LlamaIndex retrieval wrapped as a LangGraph tool) is the most production-proven.</div>
+<div class="a">For pure retrieval over document corpora, LlamaIndex's hierarchical indexes often deliver faster retrieval and lower memory overhead than LangChain's naive approach. However, for RAG inside a broader agent system, LangGraph's orchestration is superior.</div>
 </details>
 <details>
 <summary>Can you build with both frameworks in one project?</summary>
-<div class="a">Yes, this is the most common production pattern I build in 2026: LlamaIndex handling retrieval (for speed and low memory) wrapped as a tool inside a LangGraph agent for orchestration. This combines strengths rather than forcing one framework to do both.</div>
+<div class="a">Yes, this is the most common production pattern in 2026: LlamaIndex handles retrieval (as a tool), LangGraph handles agentic orchestration, memory, and guardrails. This hybrid avoids the weaknesses of each framework alone.</div>
 </details>
 <details>
 <summary>How do you decide which framework to recommend?</summary>
-<div class="a">Based on where your hardest problem lives: if it's retrieval quality, latency, or memory over a messy corpus, LlamaIndex. If it's multi-step agent behavior, tool use, or memory, LangChain/LangGraph. The recommendation is delivered in writing with reasoning, before any build work.</div>
+<div class="a">The decision hinges on where your hardest problem lies: if retrieval quality or latency over a messy corpus is the bottleneck, LlamaIndex wins. If complex multi-step reasoning and tool use are the challenge, LangGraph leads. The hybrid is recommended when both matter.</div>
 </details>
 <details>
 <summary>Do I need a LangChain agency or can a freelance consultant handle this?</summary>
-<div class="a">Most RAG and agent projects, a specific pipeline, agent, or integration, are well within scope for a single experienced developer. An agency's advantage shows up on large multi-disciplinary product builds needing several specialists in parallel.</div>
+<div class="a">A single experienced developer can handle most RAG and agent builds, including hybrid architectures. Agencies are overkill unless you need parallel specialists for a large multi-disciplinary product.</div>
 </details>
 <details>
 <summary>How much does RAG framework development cost?</summary>
-<div class="a">A framework selection consultation runs $500 to $1,500. A full LlamaIndex or LangChain build ranges from $8,000 to $30,000+ depending on complexity. A hybrid architecture combining both frameworks typically runs $15,000 to $40,000+. Contact for a fixed-price estimate specific to your use case.</div>
+<div class="a">Framework selection consulting is free. A standalone LlamaIndex or LangChain build ranges from $8,000 to $30,000. A hybrid architecture combining both typically runs $15,000 to $40,000+. Contact for a fixed-price estimate.</div>
 </details>
 </div>
 </div>
@@ -3515,122 +3664,156 @@
 
   </script>
 <script>
-(function() {
-  var scenarioTabs = document.querySelectorAll('#scenarioTabs .vw-tab');
-  var codeBlock = document.getElementById('codeBlock');
-  var verdictBox = document.getElementById('verdictBox');
-  var verdictText = document.getElementById('verdictText');
+(function () {
+  function init() {
+    var root = document.querySelector('.viewer');
+    if (!root) return;
 
-  var lcLat = document.getElementById('lcLatency');
-  var liLat = document.getElementById('liLatency');
-  var lcMem = document.getElementById('lcMem');
-  var liMem = document.getElementById('liMem');
-  var lcMemSub = document.getElementById('lcMemSub');
-  var liMemSub = document.getElementById('liMemSub');
-  var lcBar = document.getElementById('lcBar');
-  var liBar = document.getElementById('liBar');
-  var lcMemBar = document.getElementById('lcMemBar');
-  var liMemBar = document.getElementById('liMemBar');
-
-  var scenarios = [
-    {
-      label: 'Agentic RAG',
-      lcLat: '283ms',
-      liLat: '142ms',
-      lcMem: '412 MB',
-      liMem: '207 MB',
-      lcMemSub: 'LangChain (3 agents)',
-      liMemSub: 'LlamaIndex (3 indexes)',
-      lcBarW: 58,
-      liBarW: 88,
-      lcMemBarW: 70,
-      liMemBarW: 35,
-      code: '<span class="kw">from</span> langgraph.graph <span class="kw">import</span> StateGraph\n<span class="fn">graph</span> = StateGraph(AgentState)\n<span class="fn">graph</span>.add_node(<span class="str">"retrieve"</span>, retrieve_tool)\n<span class="fn">graph</span>.add_conditional_edges(<span class="str">"router"</span>, ...)',
-      verdictText: 'LangChain leads for complex multi-step graphs; LlamaIndex wins on retrieval speed.',
-      verdictClass: 'win-tie'
-    },
-    {
-      label: 'Multi-Step Graph',
-      lcLat: '347ms',
-      liLat: '215ms',
-      lcMem: '538 MB',
-      liMem: '281 MB',
-      lcMemSub: 'LangChain (5 sub-graphs)',
-      liMemSub: 'LlamaIndex (5 hierarchical)',
-      lcBarW: 74,
-      liBarW: 62,
-      lcMemBarW: 86,
-      liMemBarW: 46,
-      code: '<span class="kw">from</span> llama_index.core <span class="kw">import</span> SummaryIndex\n<span class="fn">index</span> = SummaryIndex.from_documents(docs)\n<span class="fn">retriever</span> = index.as_retriever(similarity_top_k=5)\n<span class="cm"># hierarchical recency retrieval</span>',
-      verdictText: 'Deep graph orchestration favors LangChain; LlamaIndex excels at flat hierarchical retrieval.',
-      verdictClass: 'win-lc'
-    },
-    {
-      label: 'Hybrid Prod',
-      lcLat: '198ms',
-      liLat: '121ms',
-      lcMem: '304 MB',
-      liMem: '178 MB',
-      lcMemSub: 'LangChain (optimised)',
-      liMemSub: 'LlamaIndex (sharded)',
-      lcBarW: 65,
-      liBarW: 92,
-      lcMemBarW: 51,
-      liMemBarW: 29,
-      code: '<span class="cm"># hybrid: LangGraph orchestration + LlamaIndex retriever</span>\n<span class="kw">from</span> langgraph.graph <span class="kw">import</span> StateGraph\n<span class="kw">from</span> llama_index.core <span class="kw">import</span> VectorStoreIndex\n<span class="fn">graph</span>.add_edge(<span class="str">"router"</span>, <span class="str">"llama_retrieve"</span>)',
-      verdictText: 'Best of both: LangChain orchestrates, LlamaIndex retrieves fastest. 42% memory reduction.',
-      verdictClass: 'win-tie'
+    function setText(id, text) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = text;
     }
-  ];
+    function setWidth(id, pct) {
+      var el = document.getElementById(id);
+      if (el) el.style.width = pct + '%';
+    }
 
-  function activateScenario(idx) {
-    if (idx === null || idx === undefined || idx < 0 || idx >= scenarios.length) return;
-    var s = scenarios[idx];
-    if (!s) return;
-
-    scenarioTabs.forEach(function(tab, i) {
-      if (tab) {
-        tab.classList.toggle('active', i === idx);
+    var DATA = {
+      rag: {
+        desc: '10k docs · vector index · one shot answer',
+        lc: { lat: '218 ms', mem: '840 MB', code: '92 loc', ret: '64 ms', score: 74, arch: 'Retriever → LCEL chain → LLM' },
+        li: { lat: '112 ms', mem: '410 MB', code: '41 loc', ret: '28 ms', score: 92, arch: 'VectorStoreIndex → query_engine' },
+        verdict: 'LlamaIndex wins on retrieval-first RAG: faster lookups, half the memory, less glue code.',
+        winner: 'li',
+        notes: {
+          latency: 'LlamaIndex answers 48% faster on a 10k-doc corpus.',
+          memory: 'LlamaIndex holds at 410 MB vs 840 MB — 51% leaner runtime.',
+          code: 'LlamaIndex ships with 41 loc vs LangChain\u2019s 92 loc.',
+          retrieval: 'P50 lookup is 28 ms vs 64 ms — hierarchical index is 2.3x faster.'
+        }
+      },
+      agent: {
+        desc: 'plan → tool call → reflect → final answer',
+        lc: { lat: '1.6 s', mem: '1.9 GB', code: '310 loc', ret: '42 ms', score: 95, arch: 'StateGraph: add_node → add_edge → compile' },
+        li: { lat: '2.4 s', mem: '2.2 GB', code: '245 loc', ret: '45 ms', score: 58, arch: 'AgentRunner + FunctionTool loop' },
+        verdict: 'LangGraph dominates stateful multi-step agents — native graph state machine beats a hand-rolled loop.',
+        winner: 'lc',
+        notes: {
+          latency: 'LangGraph finishes the full agent loop 33% sooner.',
+          memory: 'LangChain keeps ~300 MB extra headroom in long-running sessions.',
+          code: 'LlamaIndex writes fewer lines but hand-rolls all state transitions.',
+          retrieval: 'Retrieval times are nearly tied; orchestration overhead is the real cost.'
+        }
+      },
+      hybrid: {
+        desc: 'production: both frameworks in one pipeline',
+        lc: { lat: '145 ms', mem: '1.1 GB', code: '180 loc', ret: '30 ms', score: 88, arch: 'LangGraph orchestrates · LlamaIndex retrieves' },
+        li: { lat: '134 ms', mem: '1.0 GB', code: '170 loc', ret: '29 ms', score: 86, arch: 'LlamaIndex core + LangChain callbacks' },
+        verdict: 'Toss-up. In 2026 the architecture pattern matters more than framework choice.',
+        winner: 'draw',
+        notes: {
+          latency: 'LlamaIndex shaves 11 ms — inside noise on production hardware.',
+          memory: 'LlamaIndex keeps about 100 MB more headroom.',
+          code: 'Neck and neck: 170 vs 180 lines of delivery code.',
+          retrieval: 'Only 1 ms apart here — the stack glue between them dominates.'
+        }
       }
+    };
+
+    var scenario = 'rag';
+    var activeMetric = null;
+    var tabs = root.querySelectorAll('.vw-tab');
+    var metrics = root.querySelectorAll('.vw-metric');
+
+    function clearActiveMetric() {
+      root.querySelectorAll('.vw-metric.active').forEach(function (el) {
+        el.classList.remove('active');
+      });
+    }
+
+    function render() {
+      var s = DATA[scenario];
+      if (!s) return;
+
+      setText('ctxDesc', s.desc);
+
+      setText('lcScore', s.lc.score);
+      setWidth('lcScoreFill', s.lc.score);
+      setText('lcLatency', s.lc.lat);
+      setText('lcMemory', s.lc.mem);
+      setText('lcCode', s.lc.code);
+      setText('lcRetrieval', s.lc.ret);
+      setText('lcArch', s.lc.arch);
+
+      setText('liScore', s.li.score);
+      setWidth('liScoreFill', s.li.score);
+      setText('liLatency', s.li.lat);
+      setText('liMemory', s.li.mem);
+      setText('liCode', s.li.code);
+      setText('liRetrieval', s.li.ret);
+      setText('liArch', s.li.arch);
+
+      setText('verdictTxt', s.verdict);
+
+      var badge = document.getElementById('winnerBadge');
+      if (badge) {
+        badge.className = 'vw-winner';
+        if (s.winner === 'lc') {
+          badge.classList.add('on-lc');
+          badge.textContent = 'Winner: LangChain';
+        } else if (s.winner === 'li') {
+          badge.classList.add('on-li');
+          badge.textContent = 'Winner: LlamaIndex';
+        } else {
+          badge.classList.add('on-draw');
+          badge.textContent = 'Toss-up';
+        }
+      }
+
+      activeMetric = null;
+      clearActiveMetric();
+      setText('noteTxt', 'Tap any metric to compare that layer across frameworks.');
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(function (t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        scenario = tab.dataset.scenario;
+        render();
+      });
     });
 
-    if (lcLat) lcLat.textContent = s.lcLat;
-    if (liLat) liLat.textContent = s.liLat;
-    if (lcMem) lcMem.textContent = s.lcMem;
-    if (liMem) liMem.textContent = s.liMem;
-    if (lcMemSub) lcMemSub.textContent = s.lcMemSub;
-    if (liMemSub) liMemSub.textContent = s.liMemSub;
+    metrics.forEach(function (met) {
+      met.addEventListener('click', function () {
+        var key = met.dataset.metric;
+        var s = DATA[scenario];
+        if (!key || !s || !s.notes[key]) return;
 
-    if (lcBar) { lcBar.style.width = s.lcBarW + '%'; }
-    if (liBar) { liBar.style.width = s.liBarW + '%'; }
-    if (lcMemBar) { lcMemBar.style.width = s.lcMemBarW + '%'; }
-    if (liMemBar) { liMemBar.style.width = s.liMemBarW + '%'; }
-
-    if (codeBlock) {
-      codeBlock.innerHTML = s.code;
-    }
-
-    if (verdictBox && verdictText) {
-      verdictBox.className = 'vw-verdict ' + (s.verdictClass || 'win-tie');
-      verdictText.textContent = s.verdictText;
-    }
-  }
-
-  if (scenarioTabs && scenarioTabs.length) {
-    for (var i = 0; i < scenarioTabs.length; i++) {
-      (function(idx) {
-        var tab = scenarioTabs[idx];
-        if (tab) {
-          tab.addEventListener('click', function(e) {
-            activateScenario(idx);
-          });
+        if (activeMetric === key) {
+          activeMetric = null;
+          clearActiveMetric();
+          setText('noteTxt', 'Tap any metric to compare that layer across frameworks.');
+          return;
         }
-      })(i);
-    }
+
+        clearActiveMetric();
+        activeMetric = key;
+        root.querySelectorAll('.vw-metric[data-metric="' + key + '"]').forEach(function (m) {
+          m.classList.add('active');
+        });
+        setText('noteTxt', s.notes[key]);
+      });
+    });
+
+    render();
   }
 
-  // initialise default
-  activateScenario(0);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
 </script>
 </body>

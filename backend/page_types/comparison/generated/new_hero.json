@@ -1,11 +1,11 @@
 {
   "hero": {
-    "eyebrow": "Agent graphs vs retrieval speed",
+    "eyebrow": "Production RAG Framework Battle",
     "h1": {
-      "h1": "LangChain vs LlamaIndex in 2026:",
-      "span": "the definitive production comparison"
+      "h1": "LangChain vs LlamaIndex: ",
+      "span": "LangGraph vs Hierarchical Retrieval"
     },
-    "hero-sub": "Choosing between LangChain and LlamaIndex is an architecture decision that determines orchestration complexity, retrieval latency, and memory overhead\u2014not just a toolkit preference. LangGraph multi-step agent graphs handle stateful LLM agent orchestration that LlamaIndex alone cannot match, while LlamaIndex hierarchical indexes deliver faster retrieval with meaningfully lower memory footprints. I build with both frameworks and design hybrid production architectures for 2026 that deploy each where it objectively wins.",
+    "hero-sub": "Choosing between LangChain's LangGraph for multi-step agent graphs and LlamaIndex's hierarchical index retrieval directly impacts your production costs, latency, and memory overhead. In 2026, the winning architecture often combines both\u2014using LlamaIndex for blazing-fast indexing and LangGraph for complex orchestration. I build with both frameworks to deliver the optimal hybrid solution based on your specific retrieval and agent needs.",
     "creds": [
       {
         "cred": {
@@ -16,7 +16,7 @@
       {
         "cred": {
           "i": "Coverage",
-          "b": "Both frameworks, used correctly"
+          "b": "Hybrid production architectures"
         }
       },
       {
@@ -40,7 +40,7 @@
         }
       }
     ],
-    "live": "A written, benchmark-backed framework recommendation before any build work begins.",
+    "live": "Written recommendation with latency and memory benchmarks, before any build begins.",
     "trust": [
       {
         "b": "5+",
@@ -48,11 +48,11 @@
       },
       {
         "b": "40%",
-        "span": "Lower memory overhead with LlamaIndex"
+        "span": "Less code with LlamaIndex"
       },
       {
         "b": "48h",
-        "span": "To a written recommendation"
+        "span": "To written architecture rec"
       }
     ]
   }

@@ -1,28 +1,28 @@
 {
   "hero": {
-    "eyebrow": "Direct access, no account layer",
+    "eyebrow": "Direct API expertise, no layers",
     "h1": {
       "h1-text": "Hire an OpenAI API developer:",
-      "span": "freelance OpenAI integration engineer"
+      "span": "freelance OpenAI API integration expert"
     },
-    "hero-sub": "I am Shreyans Padmani, a freelance OpenAI API developer and integration specialist. I design, build, and deploy production\u2011grade OpenAI API integrations\u2014from chat completions to assistants and embeddings\u2014with a proven track record of 20+ successful integrations, strict rate\u2011limit handling, and seamless deployment to your existing stack.",
+    "hero-sub": "I am Shreyans Padmani, a freelance OpenAI API developer and AI engineer. I design and build integrations with OpenAI's models, assistants, and embeddings, then deploy them to production with the guardrails, monitoring, and custom pipelines your business needs.",
     "creds": [
       {
         "cred": {
           "i": "Experience",
-          "b": "5+ yrs API & AI systems"
+          "b": "5+ yrs OpenAI API integration"
         }
       },
       {
         "cred": {
           "i": "Delivered",
-          "b": "20+ integrations shipped"
+          "b": "20+ API integrations shipped"
         }
       },
       {
         "cred": {
           "i": "Turnaround",
-          "b": "48h written spec"
+          "b": "48h integration spec"
         }
       }
     ],
@@ -40,19 +40,19 @@
         }
       }
     ],
-    "live": "Start in 48 to 72 hours, no team overhead, no account manager",
+    "live": "Start in 48 to 72 hours with a proven API integrator, no team overhead, no account manager.",
     "trust": [
       {
         "b": "5+",
-        "span": "Years building API integrations"
+        "span": "Years of OpenAI API integration"
       },
       {
         "b": "20+",
-        "span": "Integrations shipped to production"
+        "span": "API integrations shipped to production"
       },
       {
         "b": "48h",
-        "span": "To a written technical spec"
+        "span": "To a written integration spec"
       }
     ]
   }

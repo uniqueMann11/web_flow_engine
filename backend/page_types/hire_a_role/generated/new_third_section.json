@@ -8,43 +8,46 @@
       {
         "card": {
           "n": "BUILD",
-          "h3": "Chat completion integration",
-          "p": "Seamless integration of GPT-4o and GPT-4 Turbo into your product, with streaming, function calling, and structured JSON output."
+          "h3": "Custom API integrations",
+          "p": "Integrate OpenAI APIs into your existing systems with robust error handling, retry logic, and rate limiting for production reliability."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Embeddings pipeline development",
-          "p": "Production-grade text-embedding-3-small and text-embedding-3-large pipelines for semantic search and retrieval."
+          "h3": "Chat completion systems",
+          "p": "Build conversational interfaces using GPT models, with context management, system prompts, and safety guardrails."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Assistants API implementation",
-          "p": "Custom assistants with code interpreter, file search, and tool use, deployed via the Assistants API for automated workflows."
+          "h3": "Embedding & vector pipelines",
+          "p": "Design and deploy retrieval pipelines using OpenAI embeddings for semantic search, RAG, and similarity matching."
         }
       },
       {
         "card": {
           "n": "BUILD",
-          "h3": "Fine-tuning & model customization",
-          "p": "Fine-tuning GPT-4o-mini and GPT-3.5 on your domain data to improve accuracy and reduce latency and token costs."
+          "h3": "Function calling agents",
+          "p": "Develop agents that use OpenAI function calling to perform multi-step tasks, with structured outputs and tool orchestration."
         }
       },
       {
         "card": {
           "n": "AUDIT",
-          "h3": "API integration audit & optimization",
-          "p": "Diagnosing rate limits, latency spikes, and token waste in existing OpenAI integrations, with immediate improvements."
+          "h3": "API audit & optimization",
+          "p": "Audit your existing OpenAI integrations for cost efficiency, latency, error handling, and scalability, then implement improvements."
         }
       },
       {
-        "card": {
-          "n": "ADVISE",
-          "h3": "API architecture & scaling strategy",
-          "p": "Advising on connection pooling, retry logic, batch processing, and multi-model strategies for enterprise-grade scale."
+        "card cta-card": {
+          "h3": "Not sure what you need?",
+          "p": "Try the spec-preview widget above, or get it scoped properly.",
+          "btn-primary": {
+            "text": "Talk it through",
+            "url": "#lets-talk"
+          }
         }
       }
     ]
@@ -83,10 +86,11 @@
     ],
     "stack-panels": {
       "orch": [
+        "OpenAI Python SDK",
+        "OpenAI Node.js SDK",
         "LangChain",
         "LlamaIndex",
-        "LangGraph",
-        "Haystack"
+        "Vercel AI SDK"
       ],
       "vec": [
         "Pinecone",
@@ -97,17 +101,18 @@
         "FAISS"
       ],
       "emb": [
-        "OpenAI Embeddings",
-        "Cohere Embed & Rerank",
-        "BAAI BGE",
-        "Voyage AI"
+        "OpenAI text-embedding-3-small",
+        "OpenAI text-embedding-3-large",
+        "OpenAI ada-002",
+        "Cohere Embed",
+        "BAAI BGE"
       ],
       "llm": [
         "OpenAI GPT-4o",
+        "OpenAI GPT-4-turbo",
+        "OpenAI GPT-3.5-turbo",
         "Anthropic Claude",
-        "Google Gemini",
-        "Meta Llama 3",
-        "Mistral AI"
+        "Google Gemini"
       ],
       "eval": [
         "RAGAS",
